@@ -1,0 +1,12 @@
+dist/*
+
+.sass-cache
+
+# Composer
+/vendor
+/composer.lock
+/composer.phar
+
+#NPM
+/npm-debug.log
+/node_modules

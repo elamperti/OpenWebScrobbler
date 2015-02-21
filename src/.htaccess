@@ -1,0 +1,10 @@
+Options -Indexes
+
+# Deny access to vendor folder
+RewriteCond %{REQUEST_FILENAME} -f [OR]
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^vendor.* [R=403,NC,L]
+
+ErrorDocument 403 /error.php?e=403
+ErrorDocument 404 /error.php?e=404
+ErrorDocument 500 /error.php?e=500

@@ -1,0 +1,15 @@
+{
+    "private": true,
+    "dependencies": {
+        "grunt": "*",
+        "grunt-contrib-clean": "*",
+        "grunt-contrib-copy": "*",
+        "grunt-contrib-cssmin": "*",
+        "grunt-contrib-uglify": "*",
+        "grunt-contrib-watch": "*",
+        "grunt-contrib-sass": "*",
+        "grunt-combine-media-queries": "*",
+        "grunt-rsync": "*",
+        "grunt-uncss": "*"
+    }
+}
