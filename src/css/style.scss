@@ -1,4 +1,10 @@
 @import "bootstrap/themes/slate/_variables.scss";
+$alert-danger-bg:      #9B4745;
+$alert-danger-border:  #9B4745;
 
 $icon-font-path: '/css/fonts/';
 @import "bootstrap";
+
+.btn-login {
+	margin-top: 1em;
+}

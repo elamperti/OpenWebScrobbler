@@ -4,6 +4,8 @@ Options -Indexes
 RewriteCond %{REQUEST_FILENAME} -f [OR]
 RewriteCond %{REQUEST_FILENAME} -d
 RewriteRule ^vendor.* [R=403,NC,L]
+RewriteRule ^views.* [R=403,NC,L]
+RewriteRule ^inc.* [R=403,NC,L]
 
 ErrorDocument 403 /error.php?e=403
 ErrorDocument 404 /error.php?e=404

@@ -1,6 +1,6 @@
 <?php
 
-	require('init.php');
+	require('inc/init.php');
 
 	if(isset($_GET['e'])) {
 		$error = intval($_GET['e']);
