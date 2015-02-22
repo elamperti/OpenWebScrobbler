@@ -97,6 +97,48 @@ module.exports = function(grunt) {
             }
         },
 
+        watch : {
+            scripts: {
+                files: ['src/js/*.js'],
+                tasks: ['uglify'],
+                options: {
+                    spawn : false,
+                    interrupt: true,
+                    livereload: true
+                }
+            },
+            
+            css: {
+                files: ['src/css/*.scss'],
+                tasks: ['sass', 'cmq', 'cssmin'],
+                options: {
+                    spawn : false,
+                    interrupt: true,
+                    livereload: true
+                },
+            },
+            
+            views: {
+                files : ['src/**/*.twig'],
+                tasks : [ 'copy' ],
+                options : {
+                    spawn : false,
+                    interrupt: false,
+                    livereload: true
+                }
+            },
+
+            php: {
+                files : ['src/**/*.php'],
+                tasks : [ 'copy' ],
+                options : {
+                    spawn : false,
+                    interrupt: false,
+                    livereload: false
+                }
+            }
+        },
+
     });
 
     // Load plugins
@@ -105,10 +147,10 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-uglify');
-    // grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-combine-media-queries');
-    // grunt.loadNpmTasks('grunt-uncss');
     grunt.loadNpmTasks("grunt-rsync");
+    // grunt.loadNpmTasks('grunt-uncss');
     
     // Tasks
     grunt.registerTask(
