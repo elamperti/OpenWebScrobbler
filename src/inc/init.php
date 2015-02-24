@@ -47,21 +47,17 @@
 	// Start session
 	session_start();
 
-	// Wipe session if logging out
-	if (isset($_GET['logout'])) {
-		session_destroy();
-		session_write_close();
-	}
-
 	// Create alert list if it doesn't exist
 	if (!isset($_SESSION['alerts'])) {
 		 $_SESSION['alerts'] = array(/* array(type, message) */);
+	}
 
-		// Add a logged out message
-		if (isset($_GET['logout'])) {
-			add_alert('info', 'You were successfully logged out.');
-			header('Location: /');
-		}
+	// Logout
+	function logout() {
+		// Wipe session
+		session_destroy();
+		session_write_close();
+		header('Location: /');
 	}
 
 	// Even simpler render calls

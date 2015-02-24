@@ -3,6 +3,10 @@
 	require('inc/init.php');
 	require('inc/config.php');
 
+	if (isset($_GET['logout'])) {
+		logout();
+	}
+
 	$vars = [];
 
 	$vars['lastfm_auth_link'] = 'http://www.last.fm/api/auth/?api_key=' . $lastfm_api_key;
