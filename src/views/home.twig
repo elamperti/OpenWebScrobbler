@@ -2,10 +2,7 @@
 
 {% block content %}
 	{% if username %}
-		<a href="scrobble.php" class="btn btn-warning btn-md center-block col-xs-8 col-xs-pull-2 col-sm-6 col-sm-push-3">
-			<span class="glyphicon glyphicon-sunglasses"></span>
-			Scrobble!
-		</a>
+		{% include 'manual_scrobble.twig' %}
 	{% else %}
 		<div class="well">
 			<h2>Welcome to the <strong>Open Web Scrobbler</strong>!</h2>
