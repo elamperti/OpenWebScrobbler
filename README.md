@@ -38,4 +38,4 @@ This app is built using [Grunt](http://gruntjs.com/). You should have grunt and 
   * Checkbox: love this track
   * Allow custom time
   * Create a notification on logout
-
+  * Add timer to the alerts
