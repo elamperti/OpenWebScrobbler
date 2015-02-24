@@ -24,10 +24,15 @@
 			curl_setopt($this->curl, CURLOPT_RETURNTRANSFER, true);
 
 			// fetch
-			$result = curl_exec($this->curl);
+			$response = curl_exec($this->curl);
 			curl_close($this->curl);
 
-			return $result;
+			if ($response) {
+		        // Parse and return the XML response
+		        return simplexml_load_string($response);
+		    } else {
+		    	return false;
+		    }
 		}
 
 		function get_signature($method, $params) {

@@ -11,21 +11,18 @@
     $response = $api->call('auth.getSession', array('token' => $token));   
 
     if ($response) {
-        // Parse the XML response
-        $xml = simplexml_load_string($response);
-
         // Did Last.fm recognize the token?
-        if (isset($xml) && $xml->attributes()['status'] == 'ok') {
+        if ($response->attributes()['status'] == 'ok') {
             // Looks good, store the results in the session
-            $_SESSION['username'] = strval($xml->session->name);
-            $_SESSION['key']      = strval($xml->session->key);
+            $_SESSION['username'] = strval($response->session->name);
+            $_SESSION['key']      = strval($response->session->key);
 
             // Friendly welcome message
-            add_alert('success', 'Hello, ' . $xml->session->name . '!');
+            // add_alert('success', 'Hello, ' . $response->session->name . '!');
 
         } else {
             // Tell the user there was a problem logging in
-            add_alert('warning', 'Last.fm reported status: ' . $xml->attributes()['status']);
+            add_alert('warning', 'Last.fm reported status: ' . $response->attributes()['status']);
         }
 
     } else {
