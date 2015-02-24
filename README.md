@@ -26,10 +26,16 @@ This app is built using [Grunt](http://gruntjs.com/). You should have grunt and 
 
 
 ## ToDo
-  * Scrobble songs
-  * Fix logout notification
   * Create logo and icon for last.fm API and a favicon while I'm at that
   * Implement Google Analytics
-  * Allow custom time
   * Scrobble through AJAX
+  * Check sessions' duration
+  * Add a footer linking to ows' Github repo
   * Complete this readme file
+
+## Wishlist
+  * Add user's avatar to the toolbar
+  * Checkbox: love this track
+  * Allow custom time
+  * Create a notification on logout
+
