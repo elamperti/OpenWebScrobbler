@@ -39,3 +39,5 @@ This app is built using [Grunt](http://gruntjs.com/). You should have grunt and 
   * Allow custom time
   * Create a notification on logout
   * Add timer to the alerts
+  * Share buttons for facebook, twitter, etc.
+  * Autocomplete for artist/tracks? (issue #1)
