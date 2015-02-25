@@ -70,9 +70,14 @@
 			unset($_SESSION['alerts']);
 		}
 
-		// And the username.
+		// The username.
 		if (isset($_SESSION['username'])) {
 			$vars['username'] = $_SESSION['username'];
+		}
+
+		// aaand the image.
+		if (isset($_SESSION['avatar'])) {
+			$vars['avatar_url'] = $_SESSION['avatar'];
 		}
 
 		echo $twig->render("$template.twig", $vars);

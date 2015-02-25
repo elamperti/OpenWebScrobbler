@@ -35,7 +35,7 @@ This app is built using [Grunt](http://gruntjs.com/). You should have grunt and 
 
 ## Wishlist
   * Track scrobble event with Analytics (to count how many scrobbles have been made through this tool)
-  * Add user's avatar to the toolbar
+  * ~~Add user's avatar to the toolbar~~
   * Checkbox: love this track
   * Allow custom time
   * Create a notification on logout

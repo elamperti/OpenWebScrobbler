@@ -60,12 +60,17 @@
             {% if username %}
                 <div class="collapse navbar-collapse" id="user-navbar">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="navbar-text">
-                            {# ToDo: link to the user's Last.fm profile #}
-                            <span class="glyphicon glyphicon-user hidden-xs"></span>
-                            {{ username }}
+                        <li>
+                            <a href="http://www.last.fm/user/{{ username }}">
+                                {% if avatar_url %}
+                                    <img src="{{ avatar_url }}" alt="{{ username }}" class="user-avatar img-circle" />
+                                {% else %}
+                                    <span class="glyphicon glyphicon-user hidden-xs"></span>
+                                {% endif %}
+                                {{ username }}
+                            </a>
                         </li>
-                        <li><a href="/?logout">Logout</a></li>
+                        <li><a href="/?logout">Logout <span class="glyphicon glyphicon-chevron-right"></span></a></li>
                         </li>
                     </ul>
                 </div>

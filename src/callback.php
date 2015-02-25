@@ -17,6 +17,14 @@
             $_SESSION['username'] = strval($response->session->name);
             $_SESSION['key']      = strval($response->session->key);
 
+            $user_data = $api->call('user.getInfo');
+            if($user_data && isset($user_data->user->image)) {
+                $_SESSION['avatar'] = strval($user_data->user->image);
+            } else {
+                print_r($user_data);
+                die();
+            }
+
             // Friendly welcome message
             // add_alert('success', 'Hello, ' . $response->session->name . '!');
 

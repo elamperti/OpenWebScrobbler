@@ -5,7 +5,7 @@
 	class APICall {
 		private $curl;
 
-		function call($method, $params, $usePOST=false) {
+		function call($method, $params=array(), $usePOST=false) {
 			$url = "http://ws.audioscrobbler.com/2.0/?";
 			$query = $this->prepare($method, $params);
 
