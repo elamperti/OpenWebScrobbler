@@ -26,7 +26,6 @@ This app is built using [Grunt](http://gruntjs.com/). You should have grunt and 
 
 
 ## ToDo
-  * Create logo and icon for last.fm API and a favicon while I'm at that
   * Implement Google Analytics
   * Scrobble through AJAX
   * Check sessions' duration
@@ -41,3 +40,4 @@ This app is built using [Grunt](http://gruntjs.com/). You should have grunt and 
   * Add timer to the alerts
   * Share buttons for facebook, twitter, etc.
   * Autocomplete for artist/tracks? (issue #1)
+  * A better logo
