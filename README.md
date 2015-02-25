@@ -22,17 +22,19 @@ This app is built using [Grunt](http://gruntjs.com/). You should have grunt and 
   * [Create a Last.fm API account](http://www.last.fm/api/account/create) 
   * Point your API account's **callback URL** to your ows `callback.php`
   * Copy your API key and secret to `config.sample.php` and save it as `config.php`
+  * You may add an Analytics tracking code to `config.php` to track pageviews.
   * Modify `Gruntfile.js` so the *rsync* task `dest` points to your server (e.g. `user@host:public_html/ows/`).
 
 
 ## ToDo
-  * Implement Google Analytics
   * Scrobble through AJAX
   * Check sessions' duration
-  * Add a footer linking to ows' Github repo
+  * Add a footer linking to this Github repo
+  * Enable grunt-uncss (and similar optimizations)
   * Complete this readme file
 
 ## Wishlist
+  * Track scrobble event with Analytics (to count how many scrobbles have been made through this tool)
   * Add user's avatar to the toolbar
   * Checkbox: love this track
   * Allow custom time
