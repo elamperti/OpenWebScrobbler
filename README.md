@@ -7,6 +7,12 @@ I was an occasional user of *Universal Scrobbler*, which was a nice (and free) s
 The owner decided to make it a paid service, which left me with nothing but frustration. That's why I created this tool. This tool is free and gratis.
 
 
+## Usage
+You may use it directly from here: [http://ows.elamperti.com/](http://ows.elamperti.com/)
+
+Or host your own instance at your server following the setup instructions.
+
+
 ## Requirements
 ### Server
 You need a PHP enabled server with the *curl* and *SimpleXML* extensions (they are pretty common).
