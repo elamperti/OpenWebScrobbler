@@ -26,6 +26,16 @@ module.exports = function(grunt) {
                 dot: true,
                 src: ['**', '.htaccess', '!**/*.js', '!**/*.css', '!**/*.scss', '!css/bootstrap*'],
                 dest: 'dist'
+            },
+
+            debug: {
+                expand: true,
+                cwd: 'src/',
+                dot: true,
+                files: {
+                    'dist/js/main.min.js': ['src/js/main.js'],
+                    'dist/js/lib/bootstrap.min.js': ['src/js/lib/bootstrap.js'],
+                }               
             }
         },
 
@@ -157,12 +167,24 @@ module.exports = function(grunt) {
         'default',
         [
             'clean:all',
-            'copy',
+            'copy:dist',
             'sass',
             // 'uncss',
             'cmq',
             'cssmin',
             'uglify',
+        ]
+    );
+
+    grunt.registerTask(
+        'debug',
+        [
+            'clean:all',
+            'copy:dist',
+            'copy:debug',
+            'sass',
+            // 'uncss',
+            'cmq',
         ]
     );
 
