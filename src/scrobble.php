@@ -2,23 +2,38 @@
 
 	require('inc/init.php');
 	require('inc/api.php');
-	
+//print_r($_POST);
+	// Create a JSON response if required
+	if (isset($_POST['format']) && $_POST['format'] == 'json') {
+		$json = true;
+	} else {
+		$json = false;
+	}
+
 	if (isset($_SESSION['key'])) {
 		if (isset($_POST['artist']) && isset($_POST['track'])) {
 
 			$track_info = array(
-				'artist'    => trim($_POST['artist']),
-				'track'     => trim($_POST['track']),
-				'timestamp' => time()
+				'artist'    => array_map('trim', $_POST['artist']),
+				'track'     => array_map('trim', $_POST['track']),
+				'timestamp' => array_fill(0, sizeof($_POST['artist']), time())
 			);
 
 			if (isset($_POST['album'])) {
-				$track_info['album'] = $_POST['album'];
+				$track_info['album'] = array_map('trim', $_POST['album']);
 			}
 
 			// All ready, call the API
-			$response = $api->call('track.scrobble', $track_info, true);
+			$response = $api->call('track.scrobble', $track_info, true, $json);
 
+			// If JSON requested, client-side script will take it from here.
+			if ($json) {
+				header('Content-Type: application/json');
+				echo $response;
+				die();
+			}
+
+			// The following code runs only if it wasn't an AJAX request
 			if ($response->attributes()['status'] == 'ok') {
 				$tracks_scrobbled = intval($response->scrobbles->attributes()['accepted']);
 				// $tracks_ignored   = intval($response->scrobbles->attributes()['ignored']);

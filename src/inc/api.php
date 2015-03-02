@@ -5,7 +5,7 @@
 	class APICall {
 		private $curl;
 
-		function call($method, $params=array(), $usePOST=false) {
+		function call($method, $params=array(), $usePOST=false, $returnJSON=false) {
 			$url = "http://ws.audioscrobbler.com/2.0/?";
 			$query = $this->prepare($method, $params);
 
@@ -28,8 +28,12 @@
 			curl_close($this->curl);
 
 			if ($response) {
-		        // Parse and return the XML response
-		        return simplexml_load_string($response);
+				$xml = simplexml_load_string($response);
+				if ($returnJSON) {
+					return json_encode($xml);
+				} else {
+			        return $xml;
+			    }
 		    } else {
 		    	return false;
 		    }
@@ -40,22 +44,37 @@
 
 			$signature = '';
 
+			// These must be removed from the signature
+			unset($params['callback']);
+			unset($params['format']);
+
+			// The API requires sorted parameters in the signature
 			ksort($params);
 
+			// Concatenate all the sorted items
 			foreach($params as $key => $val) {
-				// ToDo: ignore 'callback' and 'format'
 				$signature .= $key . $val;
-			}
-
+			} 
+			
+			// Append the API secret
 			$signature .= $lastfm_secret;
 
-			$signature = md5($signature);
-
-			return $signature;
+			// Return the signature
+			return md5($signature);
 		}
 
 		function prepare($method, $params) {
 			global $lastfm_api_key;
+
+			// Process arrays so they can be properly handled and sorted
+			foreach ($params as $param => $value) {
+				if (is_array($value)) {
+					// Flatten the array to a bunch of keys
+					$params = array_merge($params, $this->flatten_array($param, $value));
+					// Pop the original parameter containing the array
+					unset($params[$param]);
+				}
+			}
 
 			// Filling in the blanks
 			$params['method'] = $method;
@@ -71,6 +90,19 @@
 
 			return http_build_query($params);
 		}
+
+		function flatten_array($key, $a) {
+			$result = [];
+
+			for ($i=0; $i < sizeof($a); $i++) {
+				if (!empty($a[$i])) {
+					$result[$key . "[$i]"] = $a[$i];
+				}
+			}
+
+			return $result;
+		}
+
 	}
 
 	$api = new APICall();

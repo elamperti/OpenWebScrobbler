@@ -19,3 +19,17 @@ $icon-font-path: '/css/fonts/';
 	max-height: 20px;
 	margin-right: 0.4em;
 }
+
+#scrobbled-tracks {
+	h3 {
+		margin-top: 0;
+	}
+
+	ul {
+		list-style-type: none;
+	}
+}
+
+#scrobbling-form {
+	transition: all 0.5s ease;
+}
