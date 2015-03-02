@@ -1,7 +1,7 @@
 # Open Web Scrobbler
 An open source Last.fm scrobbler for the web. Just login and scrobble the track(s) you want.
 
-This tool lets you scrobble songs you heard at the radio, on vinyl or at some place where you need to manually scrobble.
+This tool lets you scrobble songs you heard on the radio, vinyl or at some place where you need to manually scrobble.
 
 
 ## Usage
@@ -35,7 +35,6 @@ Or host your own instance at your server following the setup instructions.
 
 ## ToDo
   * Check sessions' duration
-  * Add a footer linking to this Github repo
   * Verify if signature works with UTF-8 characters
   * Enable grunt-uncss (and similar optimizations)
   * Complete this readme file, add feature list

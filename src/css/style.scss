@@ -5,6 +5,14 @@ $alert-danger-border:  #9B4745;
 $icon-font-path: '/css/fonts/';
 @import "bootstrap";
 
+body {
+	min-height: 100%;
+}
+
+footer {
+	text-align: center;
+}
+
 .btn-login {
 	margin-top: 1em;
 }
@@ -13,6 +21,17 @@ $icon-font-path: '/css/fonts/';
 	label {
 		line-height: 2.5em;
 	}
+}
+
+.github-icon {
+	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAGFBMVEUAAAD///////////////////////////8jfp1fAAAACHRSTlMA/pk63sAZbNp+KAgAAABsSURBVAjXHc0xFsIgEITh3+CjdmGxDnqBYGHtHoEqLR6C+yebKeZ9b5oBPqZvgEXOrEB3lHMoU23vKy0xIjVTE+BtT8dfkZ/jLsjDcRMsO5pSbYNgifbSLXTJLHmOcH30L1HKdTqiDzBH3OEATR0MWtvXvhUAAAAASUVORK5CYII=);
+	background-repeat: no-repeat;
+	display: inline-block;
+	height: 16px;
+	overflow: hidden;
+	text-indent: 16px;
+	vertical-align: middle;
+	width: 16px;
 }
 
 .user-avatar {
