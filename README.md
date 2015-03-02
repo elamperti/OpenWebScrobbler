@@ -10,7 +10,7 @@ You may use it directly from here: [http://ows.elamperti.com/](http://ows.elampe
 Or host your own instance at your server following the setup instructions.
 
 
-## Setup
+## Installation
 
 ### Requirements
 #### Server
@@ -23,7 +23,7 @@ Or host your own instance at your server following the setup instructions.
   * [Composer](https://getcomposer.org/)
 
 
-## Setup
+### Setup
   * Run `npm install` to download the required Grunt plugins.
   * Run `composer install` to download Composer dependencies.
   * [Create a Last.fm API account](http://www.last.fm/api/account/create) 
