@@ -13,6 +13,10 @@ footer {
 	text-align: center;
 }
 
+h2.welcome {
+	margin-top: 0;
+}
+
 .btn-login {
 	margin-top: 1em;
 }
@@ -34,11 +38,6 @@ footer {
 	width: 16px;
 }
 
-.user-avatar {
-	max-height: 20px;
-	margin-right: 0.4em;
-}
-
 #scrobbled-tracks {
 	h3 {
 		margin-top: 0;
@@ -51,4 +50,9 @@ footer {
 
 #scrobbling-form {
 	transition: all 0.5s ease;
+}
+
+.user-avatar {
+	max-height: 20px;
+	margin-right: 0.4em;
 }
