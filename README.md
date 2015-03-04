@@ -40,7 +40,7 @@ Or host your own instance at your server following the setup instructions.
   * Complete this readme file, add feature list
 
 ## Wishlist
-  * Track scrobble event with Analytics (to count how many scrobbles have been made through this tool)
+  * Scrobble tracks from another user
   * Checkbox: love this track
   * Allow custom time
   * Create a notification on logout

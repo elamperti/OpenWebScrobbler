@@ -4,31 +4,35 @@
 	{% if username %}
 		{% include 'manual_scrobble.twig' %}
 	{% else %}
-		<div class="well">
+		<div class="text-center">
 			<h2 class="welcome">Welcome to the <strong>Open Web Scrobbler</strong>!</h2>
-			<p class="text-center">You need to authorize this application to begin. This is safely done over at Last.fm</p>
+			<p>You need to authorize this application to begin. This is safely done over at Last.fm</p>
 			<div class="row">
-				<a href="{{ lastfm_auth_link }}" class="btn btn-lg btn-info btn-login col-xs-10 col-xs-push-1 col-sm-6 col-sm-push-3 col-md-4 col-md-push-4">
+				<a href="{{ lastfm_auth_link }}" id="btn-login" class="btn btn-lg btn-info btn-login col-xs-10 col-xs-push-1 col-sm-6 col-sm-push-3 col-md-4 col-md-push-4">
 					Log in with Last.fm
 					<span class="glyphicon glyphicon-chevron-right"></span>
 				</a>
 			</div>
 		</div>
 
-		<h3>About</h3>
-		<p>This tool lets you scrobble songs you heard on the radio, vinyl or at some place where you need to manually scrobble.</p>
-		<p>You may want to join the <a href="http://www.last.fm/group/Open+Web+Scrobbler">group on Last.fm</a> or check out the source code <a href="https://github.com/elamperti/OpenWebScrobbler">at GitHub</a>.</p>
-		<h3>How to suggest new features</h3>
-		<p>
-			This scrobbler is still on its early days and feedback from its users will be greatly appreciated.<br>
-			You can leave a shout at the group, open an issue at GitHub or send a message to <a href="http://www.last.fm/user/Zimmund">Zimmund</a> on Last.fm
-		</p>
+		<hr>
+
+		<div class="row">
+			<div class="col-sm-10 col-sm-push-1">
+				<h3>About</h3>
+				<p>This tool lets you scrobble songs you heard on the radio, vinyl or at some place where you need to manually scrobble.</p>
+				<h3>How to suggest new features</h3>
+				<p>
+					This scrobbler is still on its early days and feedback from its users will be greatly appreciated.<br>
+					You can leave a shout at <a href="http://www.last.fm/group/Open+Web+Scrobbler">the group</a>, open an issue <a href="https://github.com/elamperti/OpenWebScrobbler">at GitHub</a> or send a message to <a href="http://www.last.fm/user/Zimmund">Zimmund</a> on Last.fm
+				</p>
+			</div>
+		</div>
 		<div class="row">
 			<div class="well col-sm-10 col-sm-push-1">
-				<span class="glyphicon glyphicon-heart">❤</span>
+				<span class="glyphicon glyphicon-heart"></span>
 				<strong>Remember</strong>: Open Web Scrobbler will always be free! If you like it, share it with your friends :)
 			</div>
 		</div>
-
 	{% endif %}
 {% endblock %}

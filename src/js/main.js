@@ -40,6 +40,21 @@
             $('input.form-control').first().focus();
         }
 
+        var login_button = document.getElementById('btn-login');        
+        if (login_button && typeof(ga) !== 'undefined') {
+            $(login_button).on('click', function(ev) {
+                var dest_url = ev.target.href;
+                
+                ev.preventDefault();
+
+                ga('send', 'event', 'btn-login', 'click', 'login', {
+                    'hitCallback': function() {
+                        document.location = dest_url;
+                    }
+                });
+            });
+        }
+
         function checkFieldData(fieldset) {
             var artist = $(".artist", fieldset).val();
             var track  = $(".track", fieldset).val();
@@ -64,8 +79,14 @@
             }).done(function(response) {
                 // ToDo: check the response is JSON
                 if (response['@attributes'].status == 'ok') {
+                    // Send event
+                    if (typeof(ga) !== 'undefined') {
+                        ga('send', 'event', 'btn-scrobble', 'scrobble', 'manual scrobble', 1);
+                    }
+
+                    // Enable scrobbled tracks list
                     var $scrobbled_tracks_list = $('#scrobbled-tracks ul');
-                    $('#scrobbling-form').removeClass('col-sm-push-3')
+                    $('#scrobbling-form').removeClass('col-sm-push-3');
                     $('#scrobbled-tracks').removeClass('hidden');
 
                     // Here is the scrobbled track info
