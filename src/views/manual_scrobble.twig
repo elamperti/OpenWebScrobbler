@@ -28,6 +28,16 @@
 						<input class="form-control album" type="text" name="album[]" aria-label="Album">
 					</div>
 				</div>
+
+				<div class="form-group">
+					<div class="col-xs-2 col-sm-3 text-right">
+						<label for="timestamp">Date</label>
+					</div>
+					<div class="col-xs-10 col-sm-9">
+						<input class="form-control timestamp" type="datetime-local" name="timestamp[]"
+							   value="{{ 'now'|date('Y-m-d\\TH:i:s') }}" aria-label="Date">
+					</div>
+				</div>
 			</fieldset>
 
 			<div>

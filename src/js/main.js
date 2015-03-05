@@ -9,7 +9,13 @@
 
             $('button.btn-scrobble', scrobble_form).on('click', function(ev) {
                 var $fieldsets = $('fieldset', scrobble_form);
-                var list_of_tracks = {'format': 'json', 'artist' : [], 'track': [], 'album': []};
+                var list_of_tracks = {
+                    'format': 'json',
+                    'artist' : [],
+                    'track': [],
+                    'album': [],
+                    'timestamp': []
+                };
                 var do_scrobble = true;
 
                 ev.preventDefault();
@@ -21,6 +27,7 @@
                         list_of_tracks.artist.push(track_info.artist);
                         list_of_tracks.track.push(track_info.track);
                         list_of_tracks.album.push(track_info.album);
+                        list_of_tracks.timestamp.push(track_info.timestamp);
                     } else {
                         do_scrobble = false;
                     }
@@ -59,12 +66,14 @@
             var artist = $(".artist", fieldset).val();
             var track  = $(".track", fieldset).val();
             var album  = $(".album", fieldset).val();
+            var timestamp  = $(".timestamp", fieldset).val();
 
             if (artist.trim() !== '' && track.trim() !== '') {
                 return {
                     'artist': artist,
                     'track' : track,
-                    'album' : album
+                    'album' : album,
+                    'timestamp' : timestamp
                 };
             } else {
                 $(fieldset).addClass('has-error').attr('aria-invalid', 'true');

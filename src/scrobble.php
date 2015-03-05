@@ -16,7 +16,7 @@
 			$track_info = array(
 				'artist'    => array_map('trim', $_POST['artist']),
 				'track'     => array_map('trim', $_POST['track']),
-				'timestamp' => array_fill(0, sizeof($_POST['artist']), time())
+				'timestamp' => array_map('strtotime', $_POST['timestamp'])
 			);
 
 			if (isset($_POST['album'])) {
