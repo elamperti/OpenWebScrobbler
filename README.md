@@ -15,7 +15,7 @@ Or host your own instance at your server following the setup instructions.
 ### Requirements
 #### Server
   * PHP enabled server 
-  * *curl* and *SimpleXML* extensions (they are pretty common)
+  * PHP *libcurl* and *SimpleXML* extensions
   * Optional: SSH access if you plan to use rsync (via Grunt)
 
 #### Local
@@ -31,23 +31,6 @@ Or host your own instance at your server following the setup instructions.
     * Copy your API key and secret to `config.sample.php` and save it as `config.php`
   * You may add a Google Analytics tracking code to `config.php` to track pageviews.
   * Modify `Gruntfile.js` so the *rsync* task points to your server (`dest` should be something like `user@host:public_html/ows/`)
-
-
-## ToDo
-  * Check sessions' duration
-  * Verify if signature works with UTF-8 characters
-  * Enable grunt-uncss (and similar optimizations)
-  * Complete this readme file, add feature list
-
-## Wishlist
-  * Scrobble tracks from another user
-  * Checkbox: love this track
-  * Allow custom time
-  * Create a notification on logout
-  * Add timer to the alerts
-  * Share buttons for facebook, twitter, etc.
-  * Autocomplete for artist/tracks? (issue #1)
-  * A better logo
 
 
 ### Motivation
