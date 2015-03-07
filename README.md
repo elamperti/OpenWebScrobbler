@@ -35,4 +35,4 @@ Or host your own instance at your server following the setup instructions.
 
 ### Motivation
 I was an occasional user of *Universal Scrobbler*, which was a nice service offered at no cost. ~~But everything changed when the fire nation attacked.~~
-The owner decided to make it a paid service, which left me with nothing but frustration. That's why I created this tool. This tool is free and gratis.
+The owner decided to make it a paid service, which left me with nothing but frustration. That's why I created this tool. This tool is open source and free of charge.
