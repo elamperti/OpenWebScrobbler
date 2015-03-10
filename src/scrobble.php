@@ -2,12 +2,17 @@
 
 	require('inc/init.php');
 	require('inc/api.php');
-//print_r($_POST);
+
 	// Create a JSON response if required
 	if (isset($_POST['format']) && $_POST['format'] == 'json') {
 		$json = true;
 	} else {
 		$json = false;
+	}
+
+	function check_timestamp($timestamp) {
+		// ToDo: check it's in the last two weeks
+		return strtotime($timestamp) ?: time();
 	}
 
 	if (isset($_SESSION['key'])) {
@@ -16,7 +21,7 @@
 			$track_info = array(
 				'artist'    => array_map('trim', $_POST['artist']),
 				'track'     => array_map('trim', $_POST['track']),
-				'timestamp' => array_map('strtotime', $_POST['timestamp'])
+				'timestamp' => array_map('check_timestamp', $_POST['timestamp'])
 			);
 
 			if (isset($_POST['album'])) {

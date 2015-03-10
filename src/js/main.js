@@ -69,7 +69,11 @@
             var artist = $(".artist", fieldset).val();
             var track  = $(".track", fieldset).val();
             var album  = $(".album", fieldset).val();
-            var timestamp  = $(".timestamp", fieldset).val();
+            var timestamp  = '';
+            
+            if ($('.custom-timestamp', fieldset).is(":checked")) {
+                timestamp = $(".timestamp", fieldset).val();
+            }
 
             if (artist.trim() !== '' && track.trim() !== '') {
                 return {
