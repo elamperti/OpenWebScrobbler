@@ -91,45 +91,50 @@
         function scrobble(list_of_tracks, callback) {
             $.ajax(post_url, {
                 type: 'POST',
-                data: list_of_tracks
-            }).done(function(response) {
-                // ToDo: check the response is JSON
-                if (response['@attributes'].status == 'ok') {
-                    // Send event
-                    if (typeof(ga) !== 'undefined') {
-                        ga('send', 'event', 'btn-scrobble', 'scrobble', 'manual scrobble', 1);
-                    }
-
-                    // Enable scrobbled tracks list
-                    var $scrobbled_tracks_list = $('#scrobbled-tracks ul');
-                    $('#scrobbling-form').removeClass('col-sm-push-3');
-                    $('#scrobbled-tracks').removeClass('hidden');
-
-                    // Here is the scrobbled track info
-                    var track = response.scrobbles.scrobble;
-
-                    // Build the list item
-                    var item = '<li>';
-                    if (track.ignoredMessage['@attributes'].code == '0') {
-                        item += '<span class="glyphicon glyphicon-ok"></span>';
-                    } else {
-                        item += '<span class="glyphicon glyphicon-remove"></span>';
-                    }
-                    item += ' ' + track.artist + ' - ' + track.track;
-                    item += '</li>';
-
-                    // Clear the form if it went ok
+                dataType: 'json',
+                data: list_of_tracks,
+                success: function(response) {
                     if (response['@attributes'].status == 'ok') {
-                        $('input.form-control').val('').first().focus();
+                        // Send event
+                        if (typeof(ga) !== 'undefined') {
+                            ga('send', 'event', 'btn-scrobble', 'scrobble', 'manual scrobble', 1);
+                        }
+
+                        // Enable scrobbled tracks list
+                        var $scrobbled_tracks_list = $('#scrobbled-tracks ul');
+                        $('#scrobbling-form').removeClass('col-sm-push-3');
+                        $('#scrobbled-tracks').removeClass('hidden');
+
+                        // Here is the scrobbled track info
+                        var track = response.scrobbles.scrobble;
+
+                        // Build the list item
+                        var item = '<li>';
+                        if (track.ignoredMessage['@attributes'].code == '0') {
+                            item += '<span class="glyphicon glyphicon-ok"></span>';
+                        } else {
+                            item += '<span class="glyphicon glyphicon-remove"></span>';
+                        }
+                        item += ' ' + track.artist + ' - ' + track.track;
+                        item += '</li>';
+
+                        // Clear the form if it went ok
+                        if (response['@attributes'].status == 'ok') {
+                            $('input.form-control').val('').first().focus();
+                        }
+
+                        // And add it to the list
+                        $scrobbled_tracks_list.append(item);
                     }
-
-                    // And add it to the list
-                    $scrobbled_tracks_list.append(item);
-
-                }
-
-                callback && callback();
-            });
+                    callback && callback();
+                }, // function
+            error: function(response) {
+                    // ToDo: tell the user there was an error!
+                    // ToDo: keep an eye on the callback here, it may lead to problems
+                    console.log(response);
+                    callback && callback();
+                } // function
+            }); // ajax
         }
     });
 
