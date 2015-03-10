@@ -27,6 +27,11 @@ h2.welcome {
 	}
 }
 
+.form-group.required label:before { 
+   content: "* ";
+   color: #B00000;
+}
+
 .github-icon {
 	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAGFBMVEUAAAD///////////////////////////8jfp1fAAAACHRSTlMA/pk63sAZbNp+KAgAAABsSURBVAjXHc0xFsIgEITh3+CjdmGxDnqBYGHtHoEqLR6C+yebKeZ9b5oBPqZvgEXOrEB3lHMoU23vKy0xIjVTE+BtT8dfkZ/jLsjDcRMsO5pSbYNgifbSLXTJLHmOcH30L1HKdTqiDzBH3OEATR0MWtvXvhUAAAAASUVORK5CYII=);
 	background-repeat: no-repeat;
