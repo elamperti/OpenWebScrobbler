@@ -47,18 +47,21 @@
             $('input.form-control').first().focus();
         }
 
-        var login_button = document.getElementById('btn-login');        
-        if (login_button && typeof(ga) !== 'undefined') {
+        var login_button = document.getElementById('btn-login');
+        if (login_button) {
             $(login_button).on('click', function(ev) {
-                var dest_url = ev.target.href;
-                
-                ev.preventDefault();
+                // Thanks Dom Sammut! http://dsam.co/13MBWpD
+                if (window.ga.hasOwnProperty('loaded') && window.ga.loaded === true) {
+                    var dest_url = ev.target.href;
+                    
+                    ev.preventDefault();
 
-                ga('send', 'event', 'btn-login', 'click', 'login', {
-                    'hitCallback': function() {
-                        document.location = dest_url;
-                    }
-                });
+                    ga('send', 'event', 'btn-login', 'click', 'login', {
+                        'hitCallback': function() {
+                            document.location = dest_url;
+                        }
+                    });
+                }                
             });
         }
 
