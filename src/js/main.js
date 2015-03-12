@@ -134,7 +134,7 @@
                     }
                     callback && callback();
                 }, // function
-            error: function(response) {
+                error: function(response) {
                     // ToDo: tell the user there was an error!
                     // ToDo: keep an eye on the callback here, it may lead to problems
                     console.log(response);

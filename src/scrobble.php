@@ -11,8 +11,14 @@
 	}
 
 	function check_timestamp($timestamp) {
-		// ToDo: check it's in the last two weeks
-		return strtotime($timestamp) ?: time();
+		$timestamp = strtotime($timestamp);
+		$current_time = time();
+		$min = $current_time - 14*24*3600;
+		$max = $current_time + 14*24*3600;
+		if(!$timestamp || $timestamp < $min || $max < $timestamp) {
+			$timestamp = $current_time;
+		}
+		return $timestamp;
 	}
 
 	if (isset($_SESSION['key'])) {
