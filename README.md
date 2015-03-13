@@ -32,6 +32,8 @@ Or host your own instance at your server following the setup instructions.
   * You may add a Google Analytics tracking code to `config.php` to track pageviews.
   * Modify `Gruntfile.js` so the *rsync* task points to your server (`dest` should be something like `user@host:public_html/ows/`)
 
+## Contributing
+Contributions are welcome, check the [issues](https://github.com/elamperti/OpenWebScrobbler/issues) or make a pull request. Suggestions are welcome too :)
 
 ### Motivation
 I was an occasional user of *Universal Scrobbler*, which was a nice service offered at no cost. ~~But everything changed when the fire nation attacked.~~
