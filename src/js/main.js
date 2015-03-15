@@ -44,10 +44,19 @@
                     }
                 })
                 .find('.timestamp-checkbox').on('click', function (ev) {
-                    var $this = $(this);
+                    var $this = $(this),
+                        $timestamp = $this.next().children('.timestamp'),
+                        $checkbox = $this.find('input'),
+                        now;
 
-                    $this.next().children('.timestamp')
-                        .prop('disabled', !$this.find('input').prop('checked'));
+                    if ($checkbox.prop('checked')) {
+                        now = new Date();
+                        $timestamp
+                            .val(now.getFullYear() + '-' + now.getUTCMonth() + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes())
+                            .prop('disabled', false);
+                    } else {
+                        $timestamp.val('').prop('disabled', true);
+                    }
                 });
 
             // Focus the first field so users can get scrobbling fast
@@ -79,7 +88,12 @@
             var album  = $(".album", fieldset).val();
             var timestamp = $(".timestamp", fieldset);
 
-            timestamp = timestamp.is(":disabled") ? '' : timestamp.val();
+            if (timestamp.is(':enabled')) {
+                timestamp = new Date(timestamp.val());
+                timestamp = timestamp ? timestamp.toUTCString() : '';
+            } else {
+                timestamp = '';
+            }
 
             if (artist.trim() !== '' && track.trim() !== '') {
                 return {
