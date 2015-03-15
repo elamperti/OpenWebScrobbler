@@ -8,6 +8,9 @@
     // Composer autoload
     require('vendor/autoload.php');
 
+    // TimeZone config
+    date_default_timezone_set('Etc/UCT');
+
     // Twig setup
     $loader = new Twig_Loader_Filesystem('views');
     $twig = new Twig_Environment($loader, array(
