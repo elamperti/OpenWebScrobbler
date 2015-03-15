@@ -24,7 +24,17 @@ module.exports = function(grunt) {
                 expand: true,
                 cwd: 'src/',
                 dot: true,
-                src: ['**', '.htaccess', '!**/*.js', '!**/*.css', '!**/*.scss', '!css/bootstrap*'],
+                src: [
+                    '**',
+                    '.htaccess',
+
+                    '!**/*.js',
+                    '!**/*.css',
+                    '!**/*.scss',
+                    '!css/bootstrap*',
+                    '!css/bootstrap/**/*',
+                    '!inc/config.sample.php'
+                ],
                 dest: 'dist'
             },
 
@@ -35,7 +45,7 @@ module.exports = function(grunt) {
                 files: {
                     'dist/js/main.min.js': ['src/js/main.js'],
                     'dist/js/lib/bootstrap.min.js': ['src/js/lib/bootstrap.js'],
-                }               
+                }
             }
         },
 
@@ -55,6 +65,36 @@ module.exports = function(grunt) {
         },
 
 
+        hashres : {
+            options: {
+                encoding: 'utf8',
+                fileNameFormat: '${name}.${hash}.${ext}',
+                renameFiles: true
+            },
+
+            prod: {
+                src: [
+                    'dist/js/*.js',
+                    'dist/css/*.css',
+                ],
+                dest: [
+                    'dist/**/*.twig',
+                ]
+            }
+        },
+
+
+        htmlclean : {
+            dist: {
+                expand: true,     
+                cwd: 'dist/',   
+                src: ['**/*.twig'],
+                dest: 'dist/',
+                unprotect: /<script>[\s\S]+?<\/script>/ig
+            }
+        },
+
+
         sass : {
             dist: {
                 options : {
@@ -62,19 +102,10 @@ module.exports = function(grunt) {
                     sourcemap: "none"
                 },
                 files : {
-                    'dist/css/style.min.css': 'src/css/style.scss', 
+                    'dist/css/style.min.css': 'src/css/style.scss',
                 }
             }
         },
-
-
-        // uncss : {
-        //     dist: {
-        //         files: {
-        //             'dist/css/style.min.css': ['**/*.twig', '**/*.php']
-        //         }
-        //     }
-        // },
 
 
         uglify : {
@@ -93,6 +124,20 @@ module.exports = function(grunt) {
         },
 
 
+        uncss : { // If this gives you a weird error, try installing version 0.10.0
+            dist: {
+                options: {
+                    csspath: '../../dist/css/',
+                    stylesheets: ['style.min.css'],
+                    htmlroot: 'dist/',
+                },
+                files: {
+                    'dist/css/style.min.css': ['dist/views/**/*.twig'],
+                }
+            }
+        },
+
+
         rsync : {
             options: {
                 args: ["--chmod=u=rwX,go=rX"], // this is what works for my server, YMMV.
@@ -107,6 +152,7 @@ module.exports = function(grunt) {
             }
         },
 
+
         watch : {
             scripts: {
                 files: ['src/js/*.js'],
@@ -117,7 +163,7 @@ module.exports = function(grunt) {
                     livereload: true
                 }
             },
-            
+
             css: {
                 files: ['src/css/*.scss'],
                 tasks: ['sass', 'cmq', 'cssmin'],
@@ -127,7 +173,7 @@ module.exports = function(grunt) {
                     livereload: true
                 },
             },
-            
+
             views: {
                 files : ['src/**/*.twig'],
                 tasks : [ 'copy' ],
@@ -159,20 +205,24 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-combine-media-queries');
+    grunt.loadNpmTasks('grunt-hashres');
+    grunt.loadNpmTasks('grunt-htmlclean');
     grunt.loadNpmTasks("grunt-rsync");
-    // grunt.loadNpmTasks('grunt-uncss');
-    
+    grunt.loadNpmTasks('grunt-uncss');
+
     // Tasks
     grunt.registerTask(
         'default',
         [
             'clean:all',
             'copy:dist',
+            'htmlclean',
             'sass',
-            // 'uncss',
+            'uncss',
             'cmq',
             'cssmin',
             'uglify',
+            'hashres'
         ]
     );
 
