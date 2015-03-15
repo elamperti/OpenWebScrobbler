@@ -156,7 +156,7 @@ module.exports = function(grunt) {
         watch : {
             scripts: {
                 files: ['src/js/*.js'],
-                tasks: ['uglify'],
+                tasks: ['copy:debug'],
                 options: {
                     spawn : false,
                     interrupt: true,
@@ -166,7 +166,7 @@ module.exports = function(grunt) {
 
             css: {
                 files: ['src/css/*.scss'],
-                tasks: ['sass', 'cmq', 'cssmin'],
+                tasks: ['sass', 'uncss', 'cmq', 'cssmin'],
                 options: {
                     spawn : false,
                     interrupt: true,
@@ -176,7 +176,7 @@ module.exports = function(grunt) {
 
             views: {
                 files : ['src/**/*.twig'],
-                tasks : [ 'copy' ],
+                tasks : [ 'copy:dist', 'htmlclean' ],
                 options : {
                     spawn : false,
                     interrupt: false,
