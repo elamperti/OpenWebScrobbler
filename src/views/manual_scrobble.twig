@@ -1,55 +1,55 @@
 <div class="row">
-	<div id="scrobbling-form" class="col-sm-6 col-sm-push-3 col-lg-4 col-lg-push-0">
-		<form action="scrobble.php" id="form-manual-scrobble" class="form-scrobble form-horizontal" role="form" method="POST">
-			<fieldset>
-				<div class="form-group required">
-					<div class="col-xs-3 col-sm-4 text-right">
-						<label for="artist">Artist</label>
-					</div>
-					<div class="col-xs-9 col-sm-8">
-						<input class="form-control artist" type="text" name="artist[]" aria-label="Artist" required autofocus>
-					</div>
-				</div>
+    <div id="scrobbling-form" class="col-sm-6 col-sm-push-3 col-lg-4 col-lg-push-0">
+        <form action="scrobble.php" id="form-manual-scrobble" class="form-scrobble form-horizontal" role="form" method="POST">
+            <fieldset>
+                <div class="form-group required">
+                    <div class="col-xs-3 col-sm-4 text-right">
+                        <label for="artist">Artist</label>
+                    </div>
+                    <div class="col-xs-9 col-sm-8">
+                        <input class="form-control artist" type="text" name="artist[]" aria-label="Artist" required autofocus>
+                    </div>
+                </div>
 
-				<div class="form-group required">
-					<div class="col-xs-3 col-sm-4 text-right">
-						<label for="track">Track</label>
-					</div>
-					<div class="col-xs-9 col-sm-8">
-						<input class="form-control track" type="text" name="track[]" aria-label="Track" required>
-					</div>
-				</div>
+                <div class="form-group required">
+                    <div class="col-xs-3 col-sm-4 text-right">
+                        <label for="track">Track</label>
+                    </div>
+                    <div class="col-xs-9 col-sm-8">
+                        <input class="form-control track" type="text" name="track[]" aria-label="Track" required>
+                    </div>
+                </div>
 
-				<div class="form-group">
-					<div class="col-xs-3 col-sm-4 text-right">
-						<label for="album">Album</label>
-					</div>
-					<div class="col-xs-9 col-sm-8">
-						<input class="form-control album" type="text" name="album[]" aria-label="Album">
-					</div>
-				</div>
+                <div class="form-group">
+                    <div class="col-xs-3 col-sm-4 text-right">
+                        <label for="album">Album</label>
+                    </div>
+                    <div class="col-xs-9 col-sm-8">
+                        <input class="form-control album" type="text" name="album[]" aria-label="Album">
+                    </div>
+                </div>
 
-				<div class="form-group">
-					<div class="col-xs-3 col-sm-4 text-right timestamp-checkbox">
-						<label>
-							Timestamp
-							<input class="custom-timestamp" type="checkbox" name="custom-timestamp" aria-label="Custom timestamp" />
-						</label>
-					</div>
-					<div class="col-xs-9 col-sm-8">
-						<input class="form-control timestamp" type="text" name="timestamp[]" value="{{ 'now'|date('Y-m-d H:i') }}" aria-label="Date" placeholder="YYYY-MM-DD HH:MM" pattern="\d{4}-?\d{2}-?\d{2} \d{2}:\d{2}" disabled/>
-					</div>
-				</div>
-			</fieldset>
+                <div class="form-group">
+                    <div class="col-xs-3 col-sm-4 text-right timestamp-checkbox">
+                        <label>
+                            <input class="custom-timestamp" type="checkbox" name="custom-timestamp" aria-label="Custom timestamp" />
+                            Timestamp
+                        </label>
+                    </div>
+                    <div class="col-xs-9 col-sm-8">
+                        <input class="form-control timestamp" type="text" name="timestamp[]" value="{{ 'now'|date('Y-m-d H:i') }}" aria-label="Date" placeholder="YYYY-MM-DD HH:MM" pattern="\d{4}-?\d{2}-?\d{2} \d{2}:\d{2}" disabled/>
+                    </div>
+                </div>
+            </fieldset>
 
-			<div>
-				<button type="submit" class="btn btn-md btn-success btn-scrobble pull-right col-xs-12 col-md-4" name="scrobble" aria-label="Scrobble">Scrobble!</button>
-			</div>
-		</form>
-	</div>
-	<div id="scrobbled-tracks" class="well col-sm-6 col-lg-4 col-lg-offset-1 hidden">
-		<h3 class="h4">Scrobbled tracks</h3>
-		<ul>
-		</ul>
-	</div>
+            <div>
+                <button type="submit" class="btn btn-md btn-success btn-scrobble pull-right col-xs-12 col-md-4" name="scrobble" aria-label="Scrobble">Scrobble!</button>
+            </div>
+        </form>
+    </div>
+    <div id="scrobbled-tracks" class="well col-sm-6 col-lg-4 col-lg-offset-1 hidden">
+        <h3 class="h4">Scrobbled tracks</h3>
+        <ul>
+        </ul>
+    </div>
 </div>
