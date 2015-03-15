@@ -6,25 +6,25 @@ $icon-font-path: '/css/fonts/';
 @import "bootstrap";
 
 body {
-	min-height: 100%;
+    min-height: 100%;
 }
 
 footer {
-	text-align: center;
+    text-align: center;
 }
 
 h2.welcome {
-	margin-top: 0;
+    margin-top: 0;
 }
 
 .btn-login {
-	margin-top: 1em;
+    margin-top: 1em;
 }
 
 .form-scrobble {
-	label {
-		line-height: 2.5em;
-	}
+    label {
+        line-height: 2.5em;
+    }
 }
 
 .form-group.required label:before { 
@@ -33,31 +33,31 @@ h2.welcome {
 }
 
 .github-icon {
-	background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAGFBMVEUAAAD///////////////////////////8jfp1fAAAACHRSTlMA/pk63sAZbNp+KAgAAABsSURBVAjXHc0xFsIgEITh3+CjdmGxDnqBYGHtHoEqLR6C+yebKeZ9b5oBPqZvgEXOrEB3lHMoU23vKy0xIjVTE+BtT8dfkZ/jLsjDcRMsO5pSbYNgifbSLXTJLHmOcH30L1HKdTqiDzBH3OEATR0MWtvXvhUAAAAASUVORK5CYII=);
-	background-repeat: no-repeat;
-	display: inline-block;
-	height: 16px;
-	overflow: hidden;
-	text-indent: 16px;
-	vertical-align: middle;
-	width: 16px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAGFBMVEUAAAD///////////////////////////8jfp1fAAAACHRSTlMA/pk63sAZbNp+KAgAAABsSURBVAjXHc0xFsIgEITh3+CjdmGxDnqBYGHtHoEqLR6C+yebKeZ9b5oBPqZvgEXOrEB3lHMoU23vKy0xIjVTE+BtT8dfkZ/jLsjDcRMsO5pSbYNgifbSLXTJLHmOcH30L1HKdTqiDzBH3OEATR0MWtvXvhUAAAAASUVORK5CYII=);
+    background-repeat: no-repeat;
+    display: inline-block;
+    height: 16px;
+    overflow: hidden;
+    text-indent: 16px;
+    vertical-align: middle;
+    width: 16px;
 }
 
 #scrobbled-tracks {
-	h3 {
-		margin-top: 0;
-	}
+    h3 {
+        margin-top: 0;
+    }
 
-	ul {
-		list-style-type: none;
-	}
+    ul {
+        list-style-type: none;
+    }
 }
 
 #scrobbling-form {
-	transition: all 0.5s ease;
+    transition: all 0.5s ease;
 }
 
 .user-avatar {
-	max-height: 20px;
-	margin-right: 0.4em;
+    max-height: 20px;
+    margin-right: 0.4em;
 }
