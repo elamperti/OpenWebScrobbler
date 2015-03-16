@@ -1,55 +1,63 @@
 <div class="row">
-    <div id="scrobbling-form" class="col-sm-6 col-sm-push-3 col-lg-4 col-lg-push-0">
+    <div id="scrobbling-form" class="col-sm-6 col-lg-4 col-lg-offset-1">
         <form action="scrobble.php" id="form-manual-scrobble" class="form-scrobble form-horizontal" role="form" method="POST">
             <fieldset>
                 <div class="form-group required">
-                    <div class="col-xs-3 col-sm-4 text-right">
+                    <div class="col-xs-2 col-sm-3 text-right">
                         <label for="artist">Artist</label>
                     </div>
-                    <div class="col-xs-9 col-sm-8">
+                    <div class="col-xs-10 col-sm-9">
                         <input class="form-control artist" type="text" name="artist[]" aria-label="Artist" required autofocus>
                     </div>
                 </div>
 
                 <div class="form-group required">
-                    <div class="col-xs-3 col-sm-4 text-right">
+                    <div class="col-xs-2 col-sm-3 text-right">
                         <label for="track">Track</label>
                     </div>
-                    <div class="col-xs-9 col-sm-8">
+                    <div class="col-xs-10 col-sm-9">
                         <input class="form-control track" type="text" name="track[]" aria-label="Track" required>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-xs-3 col-sm-4 text-right">
+                    <div class="col-xs-2 col-sm-3 text-right">
                         <label for="album">Album</label>
                     </div>
-                    <div class="col-xs-9 col-sm-8">
+                    <div class="col-xs-10 col-sm-9">
                         <input class="form-control album" type="text" name="album[]" aria-label="Album">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <div class="col-xs-3 col-sm-4 text-right timestamp-checkbox">
-                        <label>
-                            <input class="custom-timestamp" type="checkbox" name="custom-timestamp" aria-label="Custom timestamp" />
+                    <div class="col-xs-2 col-sm-3 text-right">
+                        <label for="timestamp">
                             Timestamp
                         </label>
                     </div>
-                    <div class="col-xs-9 col-sm-8">
-                        <input class="form-control timestamp" type="text" name="timestamp[]" aria-label="Date" placeholder="YYYY-MM-DD HH:MM" pattern="\d{4}-?\d{1,2}-?\d{2} \d{1,2}:\d{2}" disabled/>
+                    <div class="col-xs-10 col-sm-9 form-inline hidden">{# not ready for prime time #}
+                        <input class="timestamp-checkbox form-control" type="checkbox" name="timestamp-checkbox" aria-label="Custom timestamp" />
+                        <input class="form-control timestamp pull-right" type="text" name="timestamp[]" aria-label="Date" placeholder="yyyy-mm-dd HH:mm" pattern="\d{4}-?\d{1,2}-?\d{1,2} \d{1,2}:\d{2}" disabled/>
                     </div>
                 </div>
             </fieldset>
 
             <div>
-                <button type="submit" class="btn btn-md btn-success btn-scrobble pull-right col-xs-12 col-md-4" name="scrobble" aria-label="Scrobble">Scrobble!</button>
+                <button type="submit" class="btn btn-md btn-success btn-scrobble col-xs-12" name="scrobble" aria-label="Scrobble">Scrobble!</button>
             </div>
         </form>
     </div>
-    <div id="scrobbled-tracks" class="well col-sm-6 col-lg-4 col-lg-offset-1 hidden">
-        <h3 class="h4">Scrobbled tracks</h3>
-        <ul>
-        </ul>
+    <div id="scrobbled-tracks" class="well col-sm-6 col-lg-6">
+        <div class="placeholder text-center">
+            <span class="glyphicon glyphicon-headphones"></span>
+            <br>
+            You haven't scrobbled any tracks yet!
+        </div>
+
+        <div class="list hidden">
+            <h3 class="h4">Scrobbled tracks</h3>
+            <ul>
+            </ul>
+        </div>
     </div>
 </div>

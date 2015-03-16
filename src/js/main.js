@@ -2,11 +2,9 @@
     'use strict';
 
     $(document).ready(function(e) {
-        var scrobble_form = document.getElementById('form-manual-scrobble'),
-            $scrobble_button;
+        var scrobble_form = document.getElementById('form-manual-scrobble');
 
         if (scrobble_form) {
-
             $(scrobble_form)
                 .on('submit', function(ev) {
                     var $fieldsets = $('fieldset', scrobble_form);
@@ -35,21 +33,19 @@
                     });
 
                     if (do_scrobble) {
-                        $scrobble_button = $('button.btn-scrobble', scrobble_form).text('Scrobbling...').prop('disabled', true);
-
-                        scrobble(list_of_tracks, function(){
-                            // ToDo: optimize
-                            $scrobble_button.text('Scrobble!').prop('disabled', false);
-                        });
+                        scrobble(list_of_tracks);
+                        $('input.form-control').val('').first().focus();
                     }
+                })
+                .one('submit', function() {
+                    showScrobbleList();
                 })
                 .find('.timestamp-checkbox').on('click', function (ev) {
                     var $this = $(this),
-                        $timestamp = $this.next().children('.timestamp'),
-                        $checkbox = $this.find('input'),
+                        $timestamp = $this.siblings('.timestamp'),
                         now;
 
-                    if ($checkbox.prop('checked')) {
+                    if ($this.prop('checked')) {
                         now = new Date();
                         $timestamp
                             .val(now.getFullYear() + '-' + now.getUTCMonth() + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes())
@@ -82,10 +78,18 @@
             });
         }
 
+        function showScrobbleList() {
+            var $scrobbled_tracks = $('#scrobbled-tracks');
+
+            $scrobbled_tracks.find('.placeholder').fadeOut(200, function() {
+                $scrobbled_tracks.find('.list').hide().removeClass('hidden').fadeIn();
+            });
+        }
+
         function checkFieldData(fieldset) {
-            var artist = $(".artist", fieldset).val();
-            var track  = $(".track", fieldset).val();
-            var album  = $(".album", fieldset).val();
+            var artist = $(".artist", fieldset).val().trim();
+            var track = $(".track", fieldset).val().trim();
+            var album = $(".album", fieldset).val().trim();
             var timestamp = $(".timestamp", fieldset);
 
             if (timestamp.is(':enabled')) {
@@ -95,7 +99,7 @@
                 timestamp = '';
             }
 
-            if (artist.trim() !== '' && track.trim() !== '') {
+            if (artist !== '' && track !== '') {
                 return {
                     'artist': artist,
                     'track' : track,
@@ -109,51 +113,82 @@
         }
 
         function scrobble(list_of_tracks, callback) {
+            var $scrobbled_tracks_list = $('#scrobbled-tracks ul'),
+                list_item = '',
+                appended_items = [];
+
+            for (var i=0; i < list_of_tracks.track.length; i++) {
+                list_item = '<li';
+                list_item += ' data-artist="' + list_of_tracks.artist[i] + '"';
+                list_item += ' data-track="' + list_of_tracks.track[i] + '"';
+                list_item += ' data-album="' + list_of_tracks.album[i] + '"';
+                list_item += ' data-timestamp="' + list_of_tracks.timestamp[i] + '"';
+                list_item += '>';
+
+                list_item += '<span class="status"><span class="glyphicon glyphicon-cd"></span></span>';
+
+                list_item += list_of_tracks.artist[i] + ' - ' + list_of_tracks.track[i];
+                if (list_of_tracks.album[i]) {
+                    list_item += ' <span class="text-muted">(' + list_of_tracks.album[i] + ')</span>';
+                }
+
+                list_item += '</li>';
+
+                appended_items.push($(list_item).appendTo($scrobbled_tracks_list));
+            }
+
             $.ajax(scrobble_form.getAttribute('action'), {
                 type: 'POST',
                 dataType: 'json',
                 data: list_of_tracks,
+
                 success: function(response) {
-                    if (response['@attributes'].status == 'ok') {
-                        // Send event
-                        if (typeof(ga) !== 'undefined') {
-                            ga('send', 'event', 'btn-scrobble', 'scrobble', 'manual scrobble', 1);
-                        }
+                    f(response, appended_items);
 
-                        // Enable scrobbled tracks list
-                        var $scrobbled_tracks_list = $('#scrobbled-tracks ul');
-                        $('#scrobbling-form').removeClass('col-sm-push-3');
-                        $('#scrobbled-tracks').removeClass('hidden');
-
-                        // Here is the scrobbled track info
-                        var track = response.scrobbles.scrobble;
-
-                        // Build the list item
-                        var item = '<li>';
-                        if (track.ignoredMessage['@attributes'].code == '0') {
-                            item += '<span class="glyphicon glyphicon-ok"></span>';
-                        } else {
-                            item += '<span class="glyphicon glyphicon-remove"></span>';
-                        }
-                        item += ' ' + track.artist + ' - ' + track.track;
-                        item += '</li>';
-
-                        // Clear the form if it went ok
+                    function f(response, list_items){
                         if (response['@attributes'].status == 'ok') {
-                            $('input.form-control').val('').first().focus();
-                        }
+                            // Send event
+                            if (typeof(ga) !== 'undefined') {
+                                ga('send', 'event', 'btn-scrobble', 'scrobble', 'manual scrobble', 1);
+                            }
 
-                        // And add it to the list
-                        $scrobbled_tracks_list.append(item);
+                            // Here is the scrobbled track info
+                            // ToDo: this works for ONLY ONE track!
+                            var track = response.scrobbles.scrobble;
+
+                            if (track.ignoredMessage['@attributes'].code == '0') {
+                                $.each(list_items, function(i, item) {
+                                    item.find('.status').html('<span class="glyphicon glyphicon-ok"></span>');
+                                });
+                            } else {
+                                $.each(list_items, function(i, item) {
+                                    item.find('.status').html('<span class="glyphicon text-warning glyphicon-exclamation-sign"></span>');
+                                });
+                            }
+                            //item += ' ' + track.artist + ' - ' + track.track;
+
+                            // Clear the form if it went ok
+                            // if (response['@attributes'].status == 'ok') {
+                            //     $('input.form-control').val('').first().focus();
+                            // }
+                        }
+                        callback && callback();
                     }
-                    callback && callback();
-                }, // function
+                }, // success function
+
                 error: function(response) {
-                    // ToDo: tell the user there was an error!
-                    // ToDo: keep an eye on the callback here, it may lead to problems
-                    console.log(response);
-                    callback && callback();
-                } // function
+                    f(response, appended_items);
+
+                    function f(response, list_items){
+                        $.each(list_items, function(i, item) {
+                            item.find('.status').html('<span class="glyphicon text-danger glyphicon-remove"></span>');
+                        });
+                        // ToDo: tell the user there was an error!
+                        // ToDo: keep an eye on the callback here, it may lead to problems
+                        console.log(response);
+                        callback && callback();
+                    }
+                } // error function
             }); // ajax
         }
     });
