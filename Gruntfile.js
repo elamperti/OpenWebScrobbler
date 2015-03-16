@@ -86,8 +86,8 @@ module.exports = function(grunt) {
 
         htmlclean : {
             dist: {
-                expand: true,     
-                cwd: 'dist/',   
+                expand: true,
+                cwd: 'dist/',
                 src: ['**/*.twig'],
                 dest: 'dist/',
                 unprotect: /<script>[\s\S]+?<\/script>/ig
@@ -130,6 +130,14 @@ module.exports = function(grunt) {
                     csspath: '../../dist/css/',
                     stylesheets: ['style.min.css'],
                     htmlroot: 'dist/',
+                    ignore: [
+                        'text-muted',
+                        'text-warning',
+                        'text-danger',
+                        'glyphicon-cd',
+                        'glyphicon-ok',
+                        'glyphicon-remove',
+                    ]
                 },
                 files: {
                     'dist/css/style.min.css': ['dist/views/**/*.twig'],
