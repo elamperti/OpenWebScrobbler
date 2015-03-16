@@ -85,7 +85,7 @@
                     <div class="alert alert-{{ alert.type.level }}">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         <span class="glyphicon glyphicon-{{ alert.type.icon }}"></span>
-                        {{ alert.message }}
+                        {{ alert.message|raw }}
                     </div>
                     {% endfor %}
                 {% endif %}
