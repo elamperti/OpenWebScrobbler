@@ -131,12 +131,12 @@ module.exports = function(grunt) {
                     stylesheets: ['style.min.css'],
                     htmlroot: 'dist/',
                     ignore: [
-                        'text-muted',
-                        'text-warning',
-                        'text-danger',
-                        'glyphicon-cd',
-                        'glyphicon-ok',
-                        'glyphicon-remove',
+                        '.text-muted',
+                        '.text-warning',
+                        '.text-danger',
+                        '.glyphicon-cd',
+                        '.glyphicon-ok',
+                        '.glyphicon-remove',
                     ]
                 },
                 files: {
