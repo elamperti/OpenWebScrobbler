@@ -2,6 +2,8 @@
     'use strict';
 
     $(document).ready(function(e) {
+        $('[data-toggle="tooltip"]').tooltip();
+
         var scrobble_form = document.getElementById('form-manual-scrobble');
 
         if (scrobble_form) {
