@@ -96,6 +96,10 @@ h2.welcome {
 	min-height: 12em;
 	transition: all 0.4s cubic-bezier(0, 0.98, 0.57, 1);
 
+    // Maybe limit its max height on large screens? (keep h3 always visible!)
+    // max-height: 30em;
+    // overflow-y: auto;
+
     h3 {
         margin-top: 0;
     }
@@ -112,6 +116,7 @@ h2.welcome {
     .placeholder {
     	color: mix($text-color, $well-bg, 25%);
     	font-weight: bold;
+        margin-top: 1em;
 
         .glyphicon-headphones {
             font-size: 5em;
