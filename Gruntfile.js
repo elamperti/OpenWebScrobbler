@@ -137,6 +137,7 @@ module.exports = function(grunt) {
                         '.glyphicon-cd',
                         '.glyphicon-ok',
                         '.glyphicon-remove',
+                        '#scrobbled-tracks ul .status',
                     ]
                 },
                 files: {
