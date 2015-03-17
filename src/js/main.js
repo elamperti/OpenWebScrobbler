@@ -66,7 +66,7 @@
                 // Thanks Dom Sammut! http://dsam.co/13MBWpD
                 if (window.ga.hasOwnProperty('loaded') && window.ga.loaded === true) {
                     var dest_url = ev.target.href;
-                    
+
                     ev.preventDefault();
 
                     ga('send', 'event', 'btn-login', 'click', 'login', {
@@ -74,7 +74,7 @@
                             document.location = dest_url;
                         }
                     });
-                }                
+                }
             });
         }
 
@@ -134,7 +134,7 @@
 
                 list_item += '</li>';
 
-                appended_items.push($(list_item).appendTo($scrobbled_tracks_list));
+                appended_items.push($(list_item).prependTo($scrobbled_tracks_list));
             }
 
             $.ajax(scrobble_form.getAttribute('action'), {
