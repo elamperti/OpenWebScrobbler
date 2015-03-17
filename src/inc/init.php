@@ -48,6 +48,9 @@
     }
 
     // Start session
+    $session_duration = 3600 * 24 * 7; // Sessions will (hopefully) last for a week
+    ini_set('session.gc_maxlifetime', $session_duration);
+    session_set_cookie_params($session_duration);
     session_start();
 
     // Create alert list if it doesn't exist
