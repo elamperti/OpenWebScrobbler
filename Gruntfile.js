@@ -131,13 +131,15 @@ module.exports = function(grunt) {
                     stylesheets: ['style.min.css'],
                     htmlroot: 'dist/',
                     ignore: [
+                        /scrobble/,
+                        /btn.*/,
                         '.text-muted',
                         '.text-warning',
                         '.text-danger',
                         '.glyphicon-cd',
                         '.glyphicon-ok',
                         '.glyphicon-remove',
-                        '#scrobbled-tracks ul .status',
+                        '.glyphicon-repeat',
                     ]
                 },
                 files: {
