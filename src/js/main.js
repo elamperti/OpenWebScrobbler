@@ -56,10 +56,6 @@
                         $timestamp.val('').prop('disabled', true);
                     }
                 });
-
-            // Focus the first field so users can get scrobbling fast
-            // FixMe: autofocus property on the input should do the trick ;)
-            $('input.form-control').first().focus();
         }
 
         var login_button = document.getElementById('btn-login');
@@ -117,7 +113,8 @@
         function scrobble(list_of_tracks, callback) {
             var $scrobbled_tracks_list = $('#scrobbled-tracks ul'),
                 list_item = '',
-                appended_items = [];
+                list_items = [],
+                item;
 
             for (var i=0; i < list_of_tracks.track.length; i++) {
                 list_item = '<li';
@@ -127,16 +124,37 @@
                 list_item += ' data-timestamp="' + list_of_tracks.timestamp[i] + '"';
                 list_item += '>';
 
+                // Status icon
                 list_item += '<span class="status"><span class="glyphicon glyphicon-cd"></span></span>';
 
+                // Item text (artist + track)
                 list_item += list_of_tracks.artist[i] + ' - ' + list_of_tracks.track[i];
                 if (list_of_tracks.album[i]) {
                     list_item += ' <span class="text-muted">(' + list_of_tracks.album[i] + ')</span>';
                 }
 
+                // Toolbox
+                list_item += '<span class="toolbox pull-right">';
+                list_item += '<a href="#" class="repeat btn btn-xs btn-default">';
+                list_item += '<span class="glyphicon glyphicon-repeat"></span>';
+                list_item += ' Scrobble again';
+                list_item += '</a>';
+                list_item += '</span>';
+
                 list_item += '</li>';
 
-                appended_items.push($(list_item).prependTo($scrobbled_tracks_list));
+                list_items.push($(list_item).prependTo($scrobbled_tracks_list).on('click', function(e) {
+                    var $item = $(e.target).parent(/*.toolbox*/).parent(/*li*/);
+                    e.preventDefault();
+
+                    scrobble({
+                        'format': 'json',
+                        'artist': [$item.attr('data-artist')],
+                        'track' : [$item.attr('data-track')],
+                        'album' : [$item.attr('data-album')],
+                        'timestamp' : ['']
+                    });
+                }));
             }
 
             $.ajax(scrobble_form.getAttribute('action'), {
@@ -145,52 +163,53 @@
                 data: list_of_tracks,
 
                 success: function(response) {
-                    f(response, appended_items);
-
-                    function f(response, list_items){
-                        if (response['@attributes'].status == 'ok') {
-                            // Send event
-                            if (typeof(ga) !== 'undefined') {
-                                ga('send', 'event', 'btn-scrobble', 'scrobble', 'manual scrobble', 1);
-                            }
-
-                            // Here is the scrobbled track info
-                            // ToDo: this works for ONLY ONE track!
-                            var track = response.scrobbles.scrobble;
-
-                            if (track.ignoredMessage['@attributes'].code == '0') {
-                                $.each(list_items, function(i, item) {
-                                    item.find('.status').html('<span class="glyphicon glyphicon-ok"></span>');
-                                });
-                            } else {
-                                $.each(list_items, function(i, item) {
-                                    item.find('.status').html('<span class="glyphicon text-warning glyphicon-exclamation-sign"></span>');
-                                });
-                            }
-                            //item += ' ' + track.artist + ' - ' + track.track;
-
-                            // Clear the form if it went ok
-                            // if (response['@attributes'].status == 'ok') {
-                            //     $('input.form-control').val('').first().focus();
-                            // }
+                    if (response['@attributes'].status == 'ok') {
+                        // Send event
+                        if (typeof(ga) !== 'undefined') {
+                            ga('send', 'event', 'btn-scrobble', 'scrobble', 'manual scrobble', 1);
                         }
-                        callback && callback();
+
+                        // Process the array of scrobbles
+                        $(response.scrobbles.scrobble).each(function(i, scrobbled_track) {
+                            var item = list_items.pop();
+                            if (scrobbled_track.ignoredMessage['@attributes'].code == '0') {
+                                item.find('.status').html('<span class="glyphicon glyphicon-ok"></span>');
+                            } else {
+                                item.find('.status').html('<span class="glyphicon text-warning glyphicon-exclamation-sign"></span>');
+                            }
+                        });
+
+                    } else if (response['@attributes'].status == 'failed') {
+                        console.log('Error ' + response.error['@attributes'].code);
+                        switch (response.error['@attributes'].code) {
+                            case '11': // Service Offline - This service is temporarily offline. Try again later.
+                            case '16': // There was a temporary error processing your request. Please try again.
+                                // Wait and try again?
+                                break;
+
+                            case '9':  // Invalid session key - Please re-authenticate
+                            case '29': // Rate limit exceeded - Your IP has made too many requests in a short period
+                                // Log out the user
+                                break;
+
+                            default:
+                                // Log error?
+                                break;
+                        }
                     }
-                }, // success function
+
+                    callback && callback();
+                },
 
                 error: function(response) {
-                    f(response, appended_items);
-
-                    function f(response, list_items){
-                        $.each(list_items, function(i, item) {
-                            item.find('.status').html('<span class="glyphicon text-danger glyphicon-remove"></span>');
-                        });
-                        // ToDo: tell the user there was an error!
-                        // ToDo: keep an eye on the callback here, it may lead to problems
-                        console.log(response);
-                        callback && callback();
-                    }
-                } // error function
+                    $.each(list_items, function(i, item) {
+                        item.find('.status').html('<span class="glyphicon text-danger glyphicon-remove"></span>');
+                    });
+                    // ToDo: tell the user there was an error!
+                    // ToDo: keep an eye on the callback here, it may lead to problems
+                    console.log(response);
+                    callback && callback();
+                }
             }); // ajax
         }
     });

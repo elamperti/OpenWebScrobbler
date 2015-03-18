@@ -108,6 +108,21 @@ h2.welcome {
         list-style-type: none;
         padding-left: 0;
 
+        li {
+            line-height: 1.8em;
+
+            .toolbox {
+                transition: all 0.4s ease-in-out;
+                opacity: 0.6;
+            }
+        }
+
+        li:hover {
+            .toolbox {
+                opacity: 1;
+            }
+        }
+
         .status {
         	margin-right: 0.5em;
         }
