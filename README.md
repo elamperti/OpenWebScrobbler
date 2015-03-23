@@ -14,8 +14,8 @@ Or host your own instance at your server following the setup instructions.
 
 ### Requirements
 #### Server
-  * PHP enabled server 
-  * PHP *libcurl* and *SimpleXML* extensions
+  * mod_rewrite
+  * PHP, with *libcurl* and *SimpleXML* extensions
   * Optional: SSH access if you plan to use rsync (via Grunt)
 
 #### Local
