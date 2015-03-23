@@ -24,7 +24,7 @@
     $dest = 'home'; // default
 
     if (isset($_GET['dest'])) {
-        $request = array_map(strtolower, explode('/', $_GET['dest']));
+        $request = array_map('strtolower', explode('/', $_GET['dest']));
         switch ($request[0]) {
             // case 'home':
             //     $dest = 'home';
