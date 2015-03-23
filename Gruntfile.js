@@ -133,6 +133,8 @@ module.exports = function(grunt) {
                     ignore: [
                         /scrobble/,
                         /btn.*/,
+                        /alert.*/,
+                        /tooltip.*/,
                         '.text-muted',
                         '.text-warning',
                         '.text-danger',
