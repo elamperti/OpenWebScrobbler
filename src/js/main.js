@@ -112,49 +112,38 @@
 
         function scrobble(list_of_tracks, callback) {
             var $scrobbled_tracks_list = $('#scrobbled-tracks ul'),
-                list_item = '',
+                item_content = '',
                 list_items = [],
-                item;
+                list_item;
 
             for (var i=0; i < list_of_tracks.track.length; i++) {
-                list_item = '<li';
-                list_item += ' data-artist="' + list_of_tracks.artist[i] + '"';
-                list_item += ' data-track="' + list_of_tracks.track[i] + '"';
-                list_item += ' data-album="' + list_of_tracks.album[i] + '"';
-                list_item += ' data-timestamp="' + list_of_tracks.timestamp[i] + '"';
-                list_item += '>';
+                item_content = '<li';
+                item_content += ' data-artist="' + list_of_tracks.artist[i] + '"';
+                item_content += ' data-track="' + list_of_tracks.track[i] + '"';
+                item_content += ' data-album="' + list_of_tracks.album[i] + '"';
+                item_content += ' data-timestamp="' + list_of_tracks.timestamp[i] + '"';
+                item_content += '>';
 
                 // Status icon
-                list_item += '<span class="status"><span class="glyphicon glyphicon-cd"></span></span>';
+                item_content += '<span class="status"><span class="glyphicon glyphicon-cd"></span></span>';
 
                 // Item text (artist + track)
-                list_item += list_of_tracks.artist[i] + ' - ' + list_of_tracks.track[i];
+                item_content += list_of_tracks.artist[i] + ' - ' + list_of_tracks.track[i];
                 if (list_of_tracks.album[i]) {
-                    list_item += ' <span class="text-muted">(' + list_of_tracks.album[i] + ')</span>';
+                    item_content += ' <span class="text-muted">(' + list_of_tracks.album[i] + ')</span>';
                 }
 
                 // Toolbox
-                list_item += '<span class="toolbox pull-right">';
-                list_item += '<a href="#" class="repeat btn btn-xs btn-default">';
-                list_item += '<span class="glyphicon glyphicon-repeat"></span>';
-                list_item += ' Scrobble again';
-                list_item += '</a>';
-                list_item += '</span>';
+                item_content += '<span class="toolbox pull-right">';
+                item_content += '<a href="#" class="repeat btn btn-xs btn-default">';
+                item_content += '<span class="glyphicon glyphicon-repeat"></span>';
+                item_content += ' Scrobble again';
+                item_content += '</a>';
+                item_content += '</span>';
 
-                list_item += '</li>';
+                item_content += '</li>';
 
-                list_items.push($(list_item).prependTo($scrobbled_tracks_list).on('click', function(e) {
-                    var $item = $(e.target).parent(/*.toolbox*/).parent(/*li*/);
-                    e.preventDefault();
-
-                    scrobble({
-                        'format': 'json',
-                        'artist': [$item.attr('data-artist')],
-                        'track' : [$item.attr('data-track')],
-                        'album' : [$item.attr('data-album')],
-                        'timestamp' : ['']
-                    });
-                }));
+                list_items.push($(item_content).prependTo($scrobbled_tracks_list));
             }
 
             $.ajax(scrobble_form.getAttribute('action'), {
@@ -172,11 +161,24 @@
                         // Process the array of scrobbles
                         $(response.scrobbles.scrobble).each(function(i, scrobbled_track) {
                             var item = list_items.pop();
+
                             if (scrobbled_track.ignoredMessage['@attributes'].code == '0') {
                                 item.find('.status').html('<span class="glyphicon glyphicon-ok"></span>');
                             } else {
                                 item.find('.status').html('<span class="glyphicon text-warning glyphicon-exclamation-sign"></span>');
                             }
+                            item.find('.repeat').on('click', function(e) {
+                                var $item = $(e.target).parent(/*.toolbox*/).parent(/*li*/);
+                                e.preventDefault();
+
+                                scrobble({
+                                    'format': 'json',
+                                    'artist': [$item.attr('data-artist')],
+                                    'track' : [$item.attr('data-track')],
+                                    'album' : [$item.attr('data-album')],
+                                    'timestamp' : ['']
+                                });
+                            });
                         });
 
                     } else if (response['@attributes'].status == 'failed') {
