@@ -64,7 +64,6 @@ module.exports = function(grunt) {
                 cwd: 'src/',
                 dot: true,
                 files: {
-                    'dist/js/main.min.js': ['src/js/main.js'],
                     'dist/js/lib/bootstrap.min.js': ['src/js/lib/bootstrap.js'],
                 }
             }
@@ -135,7 +134,7 @@ module.exports = function(grunt) {
                 mangle: true
             },
             main: {
-                src:  'src/js/main.js',
+                src:  ['src/js/main.js', 'src/js/lib/bootstrap-*'],
                 dest: 'dist/js/main.min.js',
             },
             bootstrap: {
@@ -150,19 +149,23 @@ module.exports = function(grunt) {
                 options: {
                     csspath: '../../dist/css/',
                     stylesheets: ['style.min.css'],
-                    htmlroot: 'dist/',
+                    //htmlroot: 'dist/',
                     ignore: [
                         /scrobble/,
                         /btn.*/,
                         /alert.*/,
                         /tooltip.*/,
+                        /popover.*/,
+                        '.dropdown-menu',
                         '.text-muted',
                         '.text-warning',
                         '.text-danger',
                         '.glyphicon-cd',
+                        '.glyphicon-calendar',
                         '.glyphicon-ok',
                         '.glyphicon-remove',
                         '.glyphicon-repeat',
+                        '.glyphicon-time',
                     ]
                 },
                 files: {
