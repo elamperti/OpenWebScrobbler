@@ -8,6 +8,7 @@
         "grunt-contrib-uglify": "*",
         "grunt-contrib-watch": "*",
         "grunt-contrib-sass": "*",
+        "grunt-concat": "*",
         "grunt-combine-media-queries": "*",
         "grunt-hashres": "*",
         "grunt-htmlclean": "*",
