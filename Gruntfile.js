@@ -19,6 +19,27 @@ module.exports = function(grunt) {
         },
 
 
+        concat : {
+            css: {
+                files: {
+                    'dist/css/style.min.css': [
+                        'dist/css/style.min.css',
+                        'src/css/lib/bootstrap-clockpicker.min.css',
+                        'src/css/lib/bootstrap-datepicker3.min.css',
+                    ],
+                }
+            },
+            js_debug: {
+                files: {
+                    'dist/js/main.min.js': [
+                        'src/js/main.js',
+                        'src/js/lib/bootstrap-*'
+                    ],
+                }
+            }
+        },
+
+
         copy: {
             dist: {
                 expand: true,
@@ -43,7 +64,6 @@ module.exports = function(grunt) {
                 cwd: 'src/',
                 dot: true,
                 files: {
-                    'dist/js/main.min.js': ['src/js/main.js'],
                     'dist/js/lib/bootstrap.min.js': ['src/js/lib/bootstrap.js'],
                 }
             }
@@ -114,7 +134,7 @@ module.exports = function(grunt) {
                 mangle: true
             },
             main: {
-                src:  'src/js/main.js',
+                src:  ['src/js/main.js', 'src/js/lib/bootstrap-*'],
                 dest: 'dist/js/main.min.js',
             },
             bootstrap: {
@@ -129,19 +149,23 @@ module.exports = function(grunt) {
                 options: {
                     csspath: '../../dist/css/',
                     stylesheets: ['style.min.css'],
-                    htmlroot: 'dist/',
+                    //htmlroot: 'dist/',
                     ignore: [
                         /scrobble/,
                         /btn.*/,
                         /alert.*/,
                         /tooltip.*/,
+                        /popover.*/,
+                        '.dropdown-menu',
                         '.text-muted',
                         '.text-warning',
                         '.text-danger',
                         '.glyphicon-cd',
+                        '.glyphicon-calendar',
                         '.glyphicon-ok',
                         '.glyphicon-remove',
                         '.glyphicon-repeat',
+                        '.glyphicon-time',
                     ]
                 },
                 files: {
@@ -212,6 +236,7 @@ module.exports = function(grunt) {
 
     // Load plugins
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-concat');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-cssmin');
     grunt.loadNpmTasks('grunt-contrib-sass');
@@ -232,6 +257,7 @@ module.exports = function(grunt) {
             'htmlclean',
             'sass',
             'uncss',
+            'concat:css',
             'cmq',
             'cssmin',
             'uglify',
@@ -245,7 +271,9 @@ module.exports = function(grunt) {
             'clean:all',
             'copy:dist',
             'copy:debug',
+            'concat:js',
             'sass',
+            'concat:css',
             // 'uncss',
             'cmq',
         ]
