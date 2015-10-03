@@ -45,20 +45,6 @@
                 .one('submit', function() {
                     showScrobbleList();
                 });
-                // .find('#custom-timestamp').on('click', function (ev) {
-                //     var $this = $(this),
-                //         $timestamp = $this.siblings('.timestamp'),
-                //         now;
-
-                //     if ($this.prop('checked')) {
-                //         now = new Date();
-                //         $timestamp
-                //             .val(now.getFullYear() + '-' + now.getUTCMonth() + '-' + now.getDate() + ' ' + now.getHours() + ':' + now.getMinutes())
-                //             .prop('disabled', false);
-                //     } else {
-                //         $timestamp.val('').prop('disabled', true);
-                //     }
-                //});
 
             $('.clockpicker').clockpicker();
             $('.date.input-group').datepicker({
@@ -73,7 +59,7 @@
                 if (e.target.id == 'custom-timestamp') {
                     $('#timestamp-picker').slideDown();
                     $('.clockpicker input').val(now.getHours() + ':' + ('0' + now.getMinutes()).substr(-2));
-                    $('.date input').val( now.getDate() + '/' + ('0' + (now.getUTCMonth() + 1)).substr(-2) + '/' + now.getFullYear());
+                    $('.date input').val( now.getDate() + '/' + ('0' + (now.getMonth() + 1)).substr(-2) + '/' + now.getFullYear());
                     $('.date.input-group').datepicker('setDate', new Date());
                     $('.date.input-group').datepicker('update');
                 } else {
@@ -117,6 +103,10 @@
                 timestamp = $(".date.input-group").data('datepicker').getFormattedDate('yyyy-mm-dd');
                 timestamp += ' ' + $(".clockpicker input").val() + ':00';
                 newTimestamp = new Date(timestamp);
+
+                // Convert timestamp string to UTC
+                timestamp = newTimestamp.toISOString();
+
                 newTimestamp.setMinutes(newTimestamp.getMinutes() + 3); // Adds 3 min to current time
                 // Updates controls
                 $('.date.input-group').datepicker('setDate', newTimestamp);
