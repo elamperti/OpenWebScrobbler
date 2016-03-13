@@ -29,6 +29,7 @@ Or host your own instance at your server following the setup instructions.
   * [Create a Last.fm API account](http://www.last.fm/api/account/create) 
     * Point your API account's **callback URL** to your ows `callback.php`
     * Copy your API key and secret to `config.sample.php` and save it as `config.php`
+    * Copy your API key to `config.sample.js` and save it as `config.js`
   * You may add a Google Analytics tracking code to `config.php` to track pageviews.
   * Modify `Gruntfile.js` so the *rsync* task points to your server (`dest` should be something like `user@host:public_html/ows/`)
 
