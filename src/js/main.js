@@ -66,6 +66,26 @@
                     $('#timestamp-picker').slideUp();
                 }
             });
+
+            var acOptions = {
+                callback: function (e, ui) {
+                    if (
+                        'undefined' !== typeof ui.item &&
+                        'undefined' !== typeof ui.item.artist &&
+                        'undefined' !== typeof ui.item.musicTitle
+                    ) {
+                        $($('.artist')[0]).val(ui.item.artist);
+                        $($('.track')[0]).val(ui.item.musicTitle);
+                    }
+                },
+                modules: [],
+                apiKey: $.lastfm.key
+            };
+
+            if ($('.search').length) {
+                acOptions.modules = ['track'];
+                $($('.search')[0]).lfmComplete(acOptions);
+            }
         }
 
         if (login_button) {

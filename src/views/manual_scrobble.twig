@@ -4,23 +4,33 @@
             <fieldset>
                 <div class="form-group required">
                     <div class="col-sm-3">
-                        <label for="artist">Artist</label>
+                        <label for="search">Track</label>
                     </div>
                     <div class="col-sm-9">
-                        <input class="form-control artist" type="text" name="artist[]" aria-label="Artist" required autofocus>
+                        <input class="form-control search" type="text" name="search[]" aria-label="Search" required autofocus>
                     </div>
                 </div>
 
-                <div class="form-group required">
+
+                <div class="form-group hidden" novalidate>
+                    <div class="col-sm-3">
+                        <label for="artist">Artist</label>
+                    </div>
+                    <div class="col-sm-9">
+                        <input class="form-control artist" type="text" name="artist[]" aria-label="Artist">
+                    </div>
+                </div>
+
+                <div class="form-group hidden" novalidate>
                     <div class="col-sm-3">
                         <label for="track">Track</label>
                     </div>
                     <div class="col-sm-9">
-                        <input class="form-control track" type="text" name="track[]" aria-label="Track" required>
+                        <input class="form-control track" type="text" name="track[]" aria-label="Track">
                     </div>
                 </div>
 
-                <div class="form-group">
+                <div class="form-group hidden" novalidate>
                     <div class="col-sm-3">
                         <label for="album">Album</label>
                     </div>

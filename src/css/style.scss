@@ -100,7 +100,8 @@ h2.welcome {
 }
 
 #scrobbled-tracks {
-	min-height: 12em;
+    // make it aligned with the left div.
+	min-height: 146px;
 	transition: all 0.4s cubic-bezier(0, 0.98, 0.57, 1);
 
     // Maybe limit its max height on large screens? (keep h3 always visible!)

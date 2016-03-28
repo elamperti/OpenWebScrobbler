@@ -26,14 +26,17 @@ module.exports = function(grunt) {
                         'dist/css/style.min.css',
                         'src/css/lib/bootstrap-clockpicker.min.css',
                         'src/css/lib/bootstrap-datepicker3.min.css',
+                        'src/css/lib/lastfm-autocomplete.css',
                     ],
                 }
             },
-            js_debug: {
+            js: {
                 files: {
                     'dist/js/main.min.js': [
+                        'src/js/lib/bootstrap-*',
+                        'src/js/config.js',
+                        'src/js/lib/lastfm-autocomplete.js',
                         'src/js/main.js',
-                        'src/js/lib/bootstrap-*'
                     ],
                 }
             }
@@ -134,13 +137,18 @@ module.exports = function(grunt) {
                 mangle: true
             },
             main: {
-                src:  ['src/js/main.js', 'src/js/lib/bootstrap-*'],
+                src: [
+                    'src/js/lib/bootstrap-*',
+                    'src/js/config.js',
+                    'src/js/lib/lastfm-autocomplete.js',
+                    'src/js/main.js'
+                ],
                 dest: 'dist/js/main.min.js',
             },
             bootstrap: {
                 src:  'src/js/lib/bootstrap.js',
                 dest: 'dist/js/lib/bootstrap.min.js',
-            },
+            }
         },
 
 

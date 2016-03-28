@@ -1,0 +1,72 @@
+ul.ui-autocomplete {
+    list-style: none;
+    background-color: white;
+    width: 378px !important;
+
+    --moz-border-radius: 5px;
+    --moz-border-top-left-radius: 0px;
+    --moz-border-top-right-radius: 0px;
+    border-radius: 5px;
+    border-top-right-radius: 0px;
+    border-top-left-radius: 0px;
+    box-shadow: 0px 1px 5px #3a3e41;
+    border: 0px;
+
+    z-index: 30 !important;
+
+    position: absolute !important;
+    width: 305px !important;
+    padding-left: 10px;
+}
+
+ul.ui-autocomplete a {
+    color: black;
+}
+
+ul.ui-autocomplete li {
+    -webkit-transition: background 300ms ease-in 0ms;
+    -moz-transition: background 300ms ease-in 0ms;
+    -o-transition: background 300ms ease-in 0ms;
+    transition: background 300ms ease-in 0ms;
+}
+
+ul.ui-autocomplete li small {
+    font-size: 10px;
+    font-weight: bold;
+}
+
+ul.ui-autocomplete li div.description {
+    min-height: 50px;
+    margin-top: -50px;
+    margin-left: 54px;
+    width: 246px;
+}
+
+ul.ui-autocomplete li.ui-menu-item:hover {
+    cursor: pointer;
+    background-color: #F40C42;
+}
+
+ul.ui-autocomplete li.ui-autocomplete-category {
+    font-size: 1.3em;
+    font-weight: bold;
+    text-align: center;
+}
+
+ul.ui-autocomplete li a {
+    text-decoration: none;
+}
+
+ul.ui-autocomplete li a img {
+    max-width: 50px;
+    max-height: 50px;
+}
+
+ul.ui-autocomplete li .cover {
+    width: 50px;
+    height: 50px;
+}
+
+.ui-helper-hidden-accessible {
+    display: none;
+}

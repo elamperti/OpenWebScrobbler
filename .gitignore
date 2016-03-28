@@ -1,5 +1,6 @@
 dist/*
 src/inc/config.php
+src/js/config.js
 
 .sass-cache
 
@@ -11,3 +12,6 @@ src/inc/config.php
 #NPM
 /npm-debug.log
 /node_modules
+
+#VIM
+*.swp
