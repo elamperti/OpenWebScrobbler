@@ -5,7 +5,7 @@ This tool lets you scrobble songs you heard on the radio, vinyl or at some place
 
 
 ## Usage
-You may use it directly from here: [http://ows.elamperti.com/](http://ows.elamperti.com/)
+You may use it directly from here: [https://ows.elamperti.com/](https://ows.elamperti.com/)
 
 Or host your own instance at your server following the setup instructions.
 
@@ -16,6 +16,7 @@ Or host your own instance at your server following the setup instructions.
 #### Server
   * mod_rewrite
   * PHP, with *libcurl* and *SimpleXML* extensions
+  * Recommended: SSL (using [let's encrypt](https://letsencrypt.org/) should be enough)
   * Optional: SSH access if you plan to use rsync (via Grunt)
 
 #### Local
@@ -26,7 +27,7 @@ Or host your own instance at your server following the setup instructions.
 ### Setup
   * Run `npm install` to download the required Grunt plugins.
   * Run `composer install` to download Composer dependencies.
-  * [Create a Last.fm API account](http://www.last.fm/api/account/create) 
+  * [Create a Last.fm API account](https://www.last.fm/api/account/create) 
     * Point your API account's **callback URL** to your ows `callback.php`
     * Copy your API key and secret to `config.sample.php` and save it as `config.php`
   * You may add a Google Analytics tracking code to `config.php` to track pageviews.
