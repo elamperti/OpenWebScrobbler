@@ -1,0 +1,36 @@
+{
+    "name": "Open Scrobbler",
+    "short_name": "Scrobbler",
+    "description": "Scrobble songs and albums you heard on the radio, vinyl or at some place where you need to manually scrobble.",
+    "icons": [
+        {
+            "src": "/android-chrome-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/android-chrome-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "/apple-touch-icon.png",
+            "sizes": "180x180",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon-32x32.png",
+            "sizes": "32x32",
+            "type": "image/png"
+        },
+        {
+            "src": "/favicon-16x16.png",
+            "sizes": "16x16",
+            "type": "image/png"
+        }
+    ],
+    "theme_color": "#16191e",
+    "background_color": "#16191e",
+    "start_url": "https://openscrobbler.com/",
+    "display": "standalone"
+}

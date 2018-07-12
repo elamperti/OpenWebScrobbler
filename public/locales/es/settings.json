@@ -1,0 +1,8 @@
+{
+  "settingsFor": "Configuración para",
+  "saveSettings": "Guardar cambios",
+  "defaultLanguage": "Idioma por defecto",
+  "availableLanguages": "Idiomas disponibles",
+  "use12HoursFormat": "Usar formato de 12 horas (AM/PM)",
+  "splitPastedText": "Dividir texto al pegar en los campos de artista o título"
+}

@@ -1,0 +1,23 @@
+version: "3"
+services:
+  api:
+    image: php:7-apache
+    ports:
+      - "3274:80"
+    env_file:
+      - ./.env.development.local
+    volumes:
+      - ./public/api:/var/www/html/api
+      - database:/var/www/html/database
+
+  sqlite-web:
+    image: coleifer/sqlite-web
+    ports:
+      - "8080:8080"
+    volumes:
+      - database:/data
+      - ./assets/db/openscrobbler.sql:/tmp/setup.sql
+    entrypoint: sh -c "sqlite3 /data/development.db < /tmp/setup.sql && sqlite_web -H 0.0.0.0 -x development.db"
+
+volumes:
+  database: {}
