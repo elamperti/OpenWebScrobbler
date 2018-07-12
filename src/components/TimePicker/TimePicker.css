@@ -1,0 +1,5 @@
+.TimePicker-caret:hover {
+  cursor: pointer;
+  background-color: var(--gray);
+  color: var(--white);
+}

@@ -1,0 +1,111 @@
+html, body {
+  height: 100%;
+}
+
+body {
+  background-color: #272B30;
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+body.with-shadow {
+    background: #272B30 linear-gradient(#0c0c0c, #272B30);
+    background-repeat: no-repeat;
+}
+
+.ows-color {
+  color: #85ba36 !important;
+}
+
+.ows-title {
+  color: white;
+}
+
+.app-version {
+  cursor: default;
+  opacity: 0.5;
+  transition: 0.5s;
+}
+
+.app-version:hover {
+  opacity: 1;
+}
+
+.alert-link, .nav-link {
+  cursor: pointer;
+}
+
+/* Use a prettier red for the danger button hover */
+.btn-danger:not([disabled]):not(.disabled):hover,
+.btn-danger:not([disabled]):not(.disabled):focus,
+.btn-danger:not([disabled]):not(.disabled):active,
+.btn-danger:not([disabled]):not(.disabled).active {
+  background-image: linear-gradient(#cb4141, #b90000 40%, #890000) !important;
+}
+
+.buttonize {
+  padding-left: 0.2rem;
+  padding-right: 0.2rem;
+  background-color: rgba(255,255,255,0.1);
+}
+
+.donation-cta {
+  color: var(--gray);
+  font-size: 0.9em;
+  margin-bottom: 1em;
+  text-align: center;
+}
+
+.donation-cta a {
+  color: var(--gray);
+  text-decoration: underline;
+}
+
+.donation-cta .fa-patreon {
+  font-size: 0.8em;
+  margin-left: 0.5em;
+}
+
+.jumbotron.alternative-content {
+  padding: 1.2rem 1rem 1rem;
+}
+
+.jumbotron.alternative-content.discord .btn:hover,
+.jumbotron.alternative-content.discord .btn:active {
+  /* box-shadow: 0px 0px 20px  rgba(114, 137, 218, 0.4); */
+  background: #454b64;
+  color: white;
+}
+
+.jumbotron.alternative-content.discord .btn:focus,
+.jumbotron.alternative-content.discord .btn:focus:active {
+  box-shadow: 0 0 0 0.2rem rgba(122, 144, 239, 0.5);
+}
+
+.jumbotron.alternative-content.patreon .btn:hover,
+.jumbotron.alternative-content.patreon .btn:active {
+  /* box-shadow: 0px 0px 20px rgba(249, 104, 84, 0.3); */
+  background: #ad8148;
+  color: white;
+}
+
+.jumbotron.alternative-content.patreon .btn:focus,
+.jumbotron.alternative-content.patreon .btn:focus:active {
+  box-shadow: 0 0 0 0.2rem rgba(154, 87, 39, 0.5);
+}
+
+.jumbotron.alternative-content .logo {
+  margin-top: 0.5rem;
+}
+.navbar.navbar-dark {
+  box-shadow: 0 3px 4px rgba(0,0,0,0.3);
+  margin-bottom: 1.5em;
+}
+
+@media (min-width: 768px) {
+  .ScrobbleList-container {
+    max-height: 80vh;
+    overflow-y: auto;
+  }
+}

@@ -1,18 +1,62 @@
 {
-    "private": true,
-    "dependencies": {
-        "grunt": "*",
-        "grunt-contrib-clean": "*",
-        "grunt-contrib-copy": "*",
-        "grunt-contrib-cssmin": "*",
-        "grunt-contrib-uglify": "*",
-        "grunt-contrib-watch": "*",
-        "grunt-contrib-sass": "*",
-        "grunt-contrib-concat": "*",
-        "grunt-combine-media-queries": "*",
-        "grunt-hashres": "*",
-        "grunt-htmlclean": "*",
-        "grunt-rsync": "*",
-        "grunt-uncss": "*"
-    }
+  "name": "openscrobbler",
+  "version": "2.0.6",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.8",
+    "@fortawesome/fontawesome-free-brands": "^5.0",
+    "@fortawesome/fontawesome-free-regular": "^5.0",
+    "@fortawesome/fontawesome-free-solid": "^5.0",
+    "@fortawesome/fontawesome-svg-core": "^1.2.0-14",
+    "@fortawesome/react-fontawesome": "^0.1",
+    "axios": "^0.18.0",
+    "bootswatch": "^4.1.1",
+    "concurrently": "^4.0.0",
+    "date-fns": "^1.29.0",
+    "dynamic-cdn-webpack-plugin": "^4.0.0-rc.1",
+    "i18next": "^11.3.3",
+    "i18next-browser-languagedetector": "^2.2.0",
+    "i18next-xhr-backend": "^1.5.1",
+    "lodash": "^4.17.10",
+    "module-to-cdn": "^3.1.2",
+    "prop-types": "^15.6.2",
+    "qs": "^6.5.2",
+    "raven-js": "^3.26.4",
+    "react": "^16.4.1",
+    "react-app-rewired": "^1.5.2",
+    "react-day-picker": "^7.1.10",
+    "react-dom": "^16.4.1",
+    "react-ga": "^2.5.3",
+    "react-i18next": "^7.7.0",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "react-scripts": "2.0.0-next.3e165448",
+    "reactstrap": "^6.1.0",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
+    "redux-promise-middleware": "^5.1.1",
+    "redux-thunk": "^2.3.0",
+    "shortid": "^2.2.8",
+    "webpack-bundle-analyzer": "^2.13.1"
+  },
+  "scripts": {
+    "start": "concurrently -r --kill-others 'react-app-rewired start' 'docker-compose up'",
+    "build": "REACT_APP_VERSION=$npm_package_version react-app-rewired build",
+    "test": "react-scripts test --env=jsdom",
+    "patch": "yarn version --no-git-tag-version --patch",
+    "eject": "react-app-rewired eject"
+  },
+  "browserslist": {
+    "development": [
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 edge versions"
+    ],
+    "production": [
+      ">0.25%",
+      "not op_mini all",
+      "ie 11"
+    ]
+  },
+  "proxy": "http://localhost:3274"
 }

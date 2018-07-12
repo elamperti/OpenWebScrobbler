@@ -1,0 +1,16 @@
+{
+  "authFailed": "Fallo de autenticación",
+  "loginAgain": "Debes iniciar sesión nuevamente!",
+  "serviceUnavailable": "El servicio no está disponible",
+  "unexpectedError": "Error inesperado",
+  "lastfmUnavailable": "Last.fm no está respondiendo, intenta de nuevo más tarde.",
+  "settingsSavedSuccessfully": "Tu configuración fue guardada exitosamente!",
+  "loginError": {
+    "title": "Error al iniciar sesión",
+    "message": "Hubo un error inesperado al iniciar sesión. Lo lamento!"
+  },
+  "logoutInfo": {
+    "title": "Hasta pronto!",
+    "message": "Haz cerrado sesión correctamente."
+  }
+}

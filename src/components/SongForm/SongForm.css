@@ -1,0 +1,127 @@
+Label.required::after {
+  content: " *";
+  color: #B00;
+}
+
+@media (max-width: 575.98px) {
+  .SongForm {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+.scrobble-button {
+  width: 100%;
+  width: calc(100% + 15px);
+}
+
+input.hasLock {
+  padding-right: 2em;
+}
+
+.lock-button {
+  position: absolute;
+  height: 1.6rem;
+  top: 0.1rem;
+  right: 0.15rem;
+  padding: 0.1rem 0.4rem;
+  cursor: pointer;
+}
+
+.fa-thumbtack {
+  color: #aaaaaa;
+  transition: 0.2s;
+}
+
+.fa-thumbtack.active {
+  color: #333333;
+  position: relative;
+  top: 0.1rem;
+  left: -0.1rem;
+  transform: rotate(30deg);
+}
+
+.swaptool-top, .swaptool-bottom {
+  height: 1em;
+  position: relative;
+  top: 0.25rem;
+}
+
+#btn-swap {
+  left: -0.15em;
+  padding: 0.1em 0.2em !important;
+  position: relative;
+  z-index: 999; /* for mobile */
+}
+
+@media (max-width: 575.98px) {
+  #btn-swap {
+    /* padding: 0 !important; */
+    top: 1em;
+  }
+}
+
+.rc-time-picker-panel-narrow {
+  max-width: inherit;
+}
+
+.rc-time-picker-panel-select {
+  width: 50%;
+}
+
+.rc-time-picker-panel-select ul {
+  overflow-x: hidden;
+}
+
+.rc-time-picker-panel-select li {
+  padding: 0;
+  text-align: center;
+  color: var(--primary);
+}
+
+.DayPicker-Day {
+  padding: 0.3rem;
+}
+
+.DayPickerInput {
+  width: 100%;
+}
+
+.DayPickerInput-Overlay {
+  background: var(--gray-dark);
+  border-radius: 0.2rem;
+}
+
+.DayPicker-Weekday {
+  color: var(--gray);
+}
+
+.DayPicker-Day--today {
+  color: var(--white);
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  color: var(--white);
+  background-color: var( --gray);
+}
+
+.DayPicker-Day--disabled {
+  color: var(--dark);
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
+  background-color: var(--white);
+  color: var(--dark);
+}
+
+.DayPickerInput-Overlay {
+  top: 10px;
+}
+
+.timestamp input[readonly] {
+  background-color: #fff;
+}
+
+.timestamp input:focus {
+  box-shadow: none;
+}

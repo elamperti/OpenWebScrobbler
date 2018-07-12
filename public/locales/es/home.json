@@ -1,0 +1,17 @@
+{
+  "welcomeToTheScrobbler": "Bienvenidos al <1>Open Scrobbler</1>!",
+  "purpose": "Esta herramienta permite scrobblear canciones y álbums que hayas escuchado en la radio, en vinilos, o de alguna otra forma que requiera scrobblear manualmente.",
+  "authNeeded": "Autoriza la aplicación para empezar!",
+  "logInWithLastFm": "Ingresar con Last.fm",
+  "logInIsSafe": "Esto se hace de forma segura en Last.fm",
+  "support": {
+    "title": "Colabora con el proyecto",
+    "copy": "Por favor considera hacer un aporte para mantener este sitio en funcionamiento y soportar su desarrollo!",
+    "CTA": "Hacer un aporte"
+  },
+  "discord": {
+    "title": "Únete a Discord!",
+    "copy": "Conéctate con otros fanáticos de la música y entérate cuando haya novedades!",
+    "CTA": "Ir a Discord"
+  }
+}
