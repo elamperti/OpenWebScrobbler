@@ -11,6 +11,7 @@ body {
 
 footer {
     text-align: center;
+    padding: 0 15px 15px 15px;
 }
 
 h2.welcome {
@@ -97,6 +98,12 @@ h2.welcome {
     .col-clockpicker {
         padding-left: 0;
     }
+}
+
+@media (min-width: $screen-sm-min) {
+	.scrobbled-tracks-container {
+		padding-left: 0;
+	}
 }
 
 #scrobbled-tracks {
