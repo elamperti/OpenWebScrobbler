@@ -77,6 +77,13 @@
     border-radius: 4px;
     padding: 15px;
 }
+
+@include media-breakpoint-up(md) {
+    .scrobbled-tracks-container {
+        padding-left: 0;
+    }
+}
+
 #scrobbled-tracks {
     min-height: 12em;
     transition: all 0.4s cubic-bezier(0, 0.98, 0.57, 1);
