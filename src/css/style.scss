@@ -63,6 +63,12 @@
     }
 }
 
+.well {
+	background-color: #1c1e22;
+	border: 1px solid #0c0d0e;
+	border-radius: 4px;
+	padding: 15px;
+}
 #scrobbled-tracks {
 	min-height: 12em;
 	transition: all 0.4s cubic-bezier(0, 0.98, 0.57, 1);
@@ -70,6 +76,7 @@
 	border: 1px solid #0c0d0e;
 	border-radius: 4px;
 	margin-bottom: 20px;
+	padding: 15px;
 
     // Maybe limit its max height on large screens? (keep h3 always visible!)
     // max-height: 30em;
