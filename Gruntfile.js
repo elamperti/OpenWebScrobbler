@@ -24,8 +24,8 @@ module.exports = function(grunt) {
                 files: {
                     'dist/css/style.min.css': [
                         'dist/css/style.min.css',
-                        'src/css/lib/bootstrap-clockpicker.min.css',
-                        'src/css/lib/bootstrap-datepicker3.min.css',
+                        'src/css/lib/bootstrap-clockpicker.css',
+                        'src/css/lib/bootstrap-datepicker3.css',
                     ],
                 }
             },

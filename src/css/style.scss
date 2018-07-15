@@ -57,7 +57,7 @@
     // cubic-bezier(0.19, 0.61, 0.73, 0.19)
 }
 
-@include media-breakpoint-up(sm) {
+@include media-breakpoint-up(lg) {
     .col-clockpicker {
         padding-left: 0;
     }
@@ -113,7 +113,7 @@
     .placeholder {
     	color: mix($body-color, #1c1e22, 25%);
     	font-weight: bold;
-        margin-top: 1em;
+        margin-top: -0.4em;
 
         .icon-headphones {
             font-size: 5em;
@@ -132,9 +132,12 @@
 }
 
 .btn-scrobble {
-	margin: -8px 15px 0 15px;
+	margin: 0 15px 0 15px;
 }
 
+label[for="timestamp"] {
+	padding-bottom: 0;
+}
 #defer {
 	width: 100%;
     input[type="radio"] {
@@ -142,22 +145,22 @@
     }
     label {
     	width: 50%;
-    }
-}
-
-@include media-breakpoint-only(xs) {
-    .col-xs-12.timestamp-choser {
-        float: none;
+    	margin-bottom: 0;
     }
 }
 
 #timestamp-picker {
      > div {
-        margin-top: 0.8em;
+        margin-top: 0.5em;
     }
 
     .form-control[readonly] {
-        cursor: pointer;
-        background-color: white;
+    	cursor: pointer;
+        background-color: $input-bg;
+    }
+
+    .input-group-text {
+    	padding-right: 8px;
+    	padding-left: 8px;
     }
 }

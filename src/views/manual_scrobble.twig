@@ -34,21 +34,20 @@
                                 <label class="btn btn-secondary"><input type="radio" name="defer" id="custom-timestamp" autocomplete="off" value="1">Custom…</label>
                             </div>
                         </div>
-                        <div id="timestamp-picker" style="display: none">
-                            huj
-                            <div class="col-sm-7">
+                        <div id="timestamp-picker" class="row" style="display: none">
+                            <div class="col-lg-7">
                                 <div class="date input-group">
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-calendar"></span>
-                                    </span>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="icon-calendar"></i></span>
+                                    </div>
                                     <input type="text" name="day" placeholder="Date" class="form-control" readonly>
                                 </div>
                             </div>
-                            <div class="col-sm-5 col-clockpicker">
+                            <div class="col-lg-5 col-clockpicker">
                                 <div class="input-group clockpicker" data-align="top" data-autoclose="true">
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-time"></span>
-                                    </span>
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="icon-clock"></i></span>
+                                    </div>
                                     <input type="text" name="time" class="form-control" placeholder="Time" value="" readonly>
                                 </div>
                             </div>
