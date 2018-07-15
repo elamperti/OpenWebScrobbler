@@ -1,7 +1,4 @@
 @import "bootstrap";
-@import "fontello/animation";
-@import "fontello/fontello";
-@import "fontello/fontello-codes";
 
 .form-group.required label:after {
    content: " *";
@@ -93,32 +90,11 @@
     // max-height: 30em;
     // overflow-y: auto;
 
-    h3 {
+    h4 {
         margin-top: 0;
     }
 
-    ul {
-        list-style-type: none;
-        padding-left: 0;
-
-        li {
-            line-height: 1.8em;
-
-            .toolbox {
-                transition: all 0.4s ease-in-out;
-                opacity: 0.6;
-            }
-        }
-
-        li:hover {
-            .toolbox {
-                opacity: 1;
-            }
-        }
-
-        .status {
-            margin-right: 0.5em;
-        }
+    .list {
     }
 
     .placeholder {
@@ -129,6 +105,24 @@
         .icon-headphones {
             font-size: 5em;
             margin-bottom: 8px;
+        }
+    }
+}
+
+#scrobbled-tracks-list {
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .details {
+            flex: 0 1 auto;
+            .status {
+                margin-right: 10px;
+            }
+        }
+        .toolbox {
+            flex: 0 0 auto;
+            margin-left: 10px;
         }
     }
 }

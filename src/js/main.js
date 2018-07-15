@@ -89,7 +89,7 @@
             var $scrobbled_tracks = $('#scrobbled-tracks');
 
             $scrobbled_tracks.find('.placeholder').fadeOut(200, function() {
-                $scrobbled_tracks.find('.list').hide().removeClass('hidden').fadeIn();
+                $scrobbled_tracks.find('.list').hide().removeClass('d-none').fadeIn();
             });
         }
 
@@ -130,13 +130,13 @@
         }
 
         function scrobble(list_of_tracks, callback) {
-            var $scrobbled_tracks_list = $('#scrobbled-tracks ul'),
+            var $scrobbled_tracks_list = $('#scrobbled-tracks-list'),
                 item_content = '',
                 list_items = [],
                 list_item;
 
             for (var i=0; i < list_of_tracks.track.length; i++) {
-                item_content = '<li';
+                item_content = '<div';
                 item_content += ' data-artist="' + list_of_tracks.artist[i] + '"';
                 item_content += ' data-track="' + list_of_tracks.track[i] + '"';
                 item_content += ' data-album="' + list_of_tracks.album[i] + '"';
@@ -144,23 +144,25 @@
                 item_content += '>';
 
                 // Status icon
-                item_content += '<span class="status"><span class="glyphicon glyphicon-cd"></span></span>';
+                item_content += '<div class="details"><span class="status"><i class="icon-cd animate-spin"></i></span><span>';
 
                 // Item text (artist + track)
                 item_content += list_of_tracks.artist[i] + ' - ' + list_of_tracks.track[i];
                 if (list_of_tracks.album[i]) {
-                    item_content += ' <span class="text-muted">(' + list_of_tracks.album[i] + ')</span>';
+                    item_content += ' <span class="text-muted">(' + list_of_tracks.album[i] + ')</span></span>';
                 }
 
+                item_content += '</div>';
+
                 // Toolbox
-                item_content += '<span class="toolbox pull-right">';
-                item_content += '<a href="#" class="repeat btn btn-xs btn-default">';
-                item_content += '<span class="glyphicon glyphicon-repeat"></span>';
+                item_content += '<div class="toolbox">';
+                item_content += '<a href="#" class="repeat btn btn-xs btn-secondary">';
+                item_content += '<span class="icon-cw"></span>';
                 item_content += ' Scrobble again';
                 item_content += '</a>';
-                item_content += '</span>';
+                item_content += '</div>';
 
-                item_content += '</li>';
+                item_content += '</div>';
 
                 list_items.push($(item_content).prependTo($scrobbled_tracks_list));
             }
@@ -182,9 +184,9 @@
                             var item = list_items.pop();
 
                             if (scrobbled_track.ignoredMessage['@attributes'].code == '0') {
-                                item.find('.status').html('<span class="glyphicon glyphicon-ok"></span>');
+                                item.find('.status').html('<i class="icon-ok"></i>');
                             } else {
-                                item.find('.status').html('<span class="glyphicon text-warning glyphicon-exclamation-sign"></span>');
+                                item.find('.status').html('<i class="icon-cancel"></i>');
                             }
                             item.find('.repeat').on('click', function(e) {
                                 var $item = $(e.target).parent(/*.toolbox*/).parent(/*li*/);
@@ -224,7 +226,7 @@
 
                 error: function(response) {
                     $.each(list_items, function(i, item) {
-                        item.find('.status').html('<span class="glyphicon text-danger glyphicon-remove"></span>');
+                        item.find('.status').html('<i class="icon-cancel"></i>');
                     });
                     // ToDo: tell the user there was an error!
                     // ToDo: keep an eye on the callback here, it may lead to problems
