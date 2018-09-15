@@ -1,47 +1,8 @@
-@import "bootstrap/themes/slate/_variables.scss";
-$alert-danger-bg:      #9B4745;
-$alert-danger-border:  #9B4745;
-
-$icon-font-path: '/css/fonts/';
 @import "bootstrap";
-
-body {
-    min-height: 100%;
-}
-
-footer {
-    text-align: center;
-    padding: 0 15px 15px 15px;
-}
-
-h2.welcome {
-    margin-top: 0;
-}
-
-.btn-login {
-    margin-top: 1em;
-}
-
-.form-scrobble {
-    label {
-        line-height: 2.5em;
-    }
-}
 
 .form-group.required label:after {
    content: " *";
    color: #B00000;
-}
-
-.github-icon {
-    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQBAMAAADt3eJSAAAAGFBMVEUAAAD///////////////////////////8jfp1fAAAACHRSTlMA/pk63sAZbNp+KAgAAABsSURBVAjXHc0xFsIgEITh3+CjdmGxDnqBYGHtHoEqLR6C+yebKeZ9b5oBPqZvgEXOrEB3lHMoU23vKy0xIjVTE+BtT8dfkZ/jLsjDcRMsO5pSbYNgifbSLXTJLHmOcH30L1HKdTqiDzBH3OEATR0MWtvXvhUAAAAASUVORK5CYII=);
-    background-repeat: no-repeat;
-    display: inline-block;
-    height: 16px;
-    overflow: hidden;
-    text-indent: 16px;
-    vertical-align: middle;
-    width: 16px;
 }
 
 @-webkit-keyframes rotatedisc {
@@ -54,15 +15,15 @@ h2.welcome {
 }
 
 @keyframes rotatedisc {
-	0% {
+    0% {
         transform: rotate(0deg);
     }
-	100% {
+    100% {
         transform: rotate(360deg);
     }
 }
 
-.glyphicon-cd {
+.icon-cd {
     display: inline-block;
     -webkit-animation: rotatedisc .75s infinite linear;
     animation: rotatedisc .75s infinite linear;
@@ -87,69 +48,88 @@ h2.welcome {
     }
 }
 
-.glyphicon-ok {
+.icon-ok {
     -webkit-animation: appearFromTop .5s ease-in;
     animation: rotatedisc .75s ease-in;
     // cubic-bezier(0.19, 0.61, 0.73, 0.19)
 }
 
-
-@media (min-width: $screen-sm-min) {
+@include media-breakpoint-up(lg) {
     .col-clockpicker {
         padding-left: 0;
     }
 }
 
-@media (min-width: $screen-sm-min) {
-	.scrobbled-tracks-container {
-		padding-left: 0;
-	}
+.clockpicker-popover {
+    .popover-header {
+        //background-color: #fff;
+        //color: #999;
+        font-size: 24px;
+        font-weight: 700;
+        line-height: 30px;
+        text-align: center;
+    }
+}
+
+.well {
+    background-color: #1c1e22;
+    border: 1px solid #0c0d0e;
+    border-radius: 4px;
+    padding: 15px;
+}
+
+@include media-breakpoint-up(md) {
+    .scrobbled-tracks-container {
+        padding-left: 0;
+    }
 }
 
 #scrobbled-tracks {
-	min-height: 12em;
-	transition: all 0.4s cubic-bezier(0, 0.98, 0.57, 1);
+    min-height: 12em;
+    transition: all 0.4s cubic-bezier(0, 0.98, 0.57, 1);
+    background-color: #1c1e22;
+    border: 1px solid #0c0d0e;
+    border-radius: 4px;
+    margin-bottom: 20px;
+    padding: 15px;
 
     // Maybe limit its max height on large screens? (keep h3 always visible!)
     // max-height: 30em;
     // overflow-y: auto;
 
-    h3 {
+    h4 {
         margin-top: 0;
     }
 
-    ul {
-        list-style-type: none;
-        padding-left: 0;
-
-        li {
-            line-height: 1.8em;
-
-            .toolbox {
-                transition: all 0.4s ease-in-out;
-                opacity: 0.6;
-            }
-        }
-
-        li:hover {
-            .toolbox {
-                opacity: 1;
-            }
-        }
-
-        .status {
-        	margin-right: 0.5em;
-        }
+    .list {
     }
 
     .placeholder {
-    	color: mix($text-color, $well-bg, 25%);
-    	font-weight: bold;
-        margin-top: 1em;
+        color: mix($body-color, #1c1e22, 25%);
+        font-weight: bold;
+        margin-top: -0.4em;
 
-        .glyphicon-headphones {
+        .icon-headphones {
             font-size: 5em;
             margin-bottom: 8px;
+        }
+    }
+}
+
+#scrobbled-tracks-list {
+    div {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .details {
+            flex: 0 1 auto;
+            .status {
+                margin-right: 10px;
+            }
+        }
+        .toolbox {
+            flex: 0 0 auto;
+            margin-left: 10px;
         }
     }
 }
@@ -161,27 +141,39 @@ h2.welcome {
 .user-avatar {
     max-height: 20px;
     margin-right: 0.4em;
+    border-radius: 50%;
 }
 
+.btn-scrobble {
+    margin: 0 15px 0 15px;
+}
+
+label[for="timestamp"] {
+    padding-bottom: 0;
+}
 #defer {
+    width: 100%;
     input[type="radio"] {
         display: none;
     }
-}
-
-@media (max-width: $screen-xs-max) {
-    .col-xs-12.timestamp-choser {
-        float: none;
+    label {
+        width: 50%;
+        margin-bottom: 0;
     }
 }
 
 #timestamp-picker {
      > div {
-        margin-top: 0.8em;
+        margin-top: 0.5em;
     }
 
     .form-control[readonly] {
         cursor: pointer;
-        background-color: white;
+        background-color: $input-bg;
+    }
+
+    .input-group-text {
+        padding-right: 8px;
+        padding-left: 8px;
     }
 }
