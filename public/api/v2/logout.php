@@ -8,7 +8,6 @@
   echo json_encode(array(
     'status' => 'ok'
   ));
-  ob_end_flush();
 
   // Track event
   require_once('inc/analytics.php');
