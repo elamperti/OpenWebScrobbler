@@ -127,8 +127,10 @@ class App extends Component {
           { process.env.REACT_APP_ANALYTICS_CODE ? <AnalyticsListener /> : null }
           <Navigation />
 
-          <main className="container mt-3 d-lg-flex flex-grow-1">
+          <div className="container mt-3">
             <AlertZone />
+          </div>
+          <main className="container d-lg-flex flex-grow-1">
             <Switch>
               <PrivateRoute exact path="/scrobble/song" component={ScrobbleSong} />
               <Route exact path="/" component={Home} />
