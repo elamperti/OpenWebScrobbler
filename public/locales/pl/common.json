@@ -18,25 +18,25 @@
   "scrobbleAgain": "Scrobbluj ponownie",
   "swapArtistTitle": "Zamień wykonawcę z utworem",
   "viewProfile": "Pokaż mój profil Last.fm",
-  "lockArtist": "Lock artist field",
-  "lockAlbum": "Lock album field",
-  "pasteIntercepted": "The pasted text was automatically split!",
-  "considerDonating": "Please support this project on Patreon!",
-  "moreComingSoon": "More options coming soon!",
+  "lockArtist": "Zablokuj pole wykonawcy",
+  "lockAlbum": "Zablokuj pole płyty",
+  "pasteIntercepted": "Wklejony tekst został automatycznie rozdzielony!",
+  "considerDonating": "Wesprzyj ten projekt na Patreonie!",
+  "moreComingSoon": "Więcej opcji wkrótce!",
   "footer": {
-    "joinCommunity": "You are welcome to join our community <1>on Discord</1>!",
-    "supportThisProject": "Please <1>support this project</1> on Patreon :)",
-    "specialThanks": "Special thanks to all the donors, translators and <1>the contributors</1>"
+    "joinCommunity": "Dołącz do naszej społeczności <1>na Discordzie</1>!",
+    "supportThisProject": "<1>Wesprzyj ten projekt</1> na Patreonie. :)",
+    "specialThanks": "Specjalnie podziękowania dla wszystkich darczyńców, tłumaczy and <1>i współtwórców.</1>"
   },
-  "settings": "Settings",
-  "cancel": "Cancel",
+  "settings": "Ustawienia",
+  "cancel": "Anuluj",
   "dates": {
     "format": {
       "short": "MMM Do"
     },
     "months": {
-      "short": ["Jan","Feb","Mar","Apr","Jun","Jaul","Aug","Sep","Oct","Nov","Dec"],
-      "long": ["January","February","March","April","June","July","August","September","October","November","December"]
+      "short": ["Sty","Lut","Mar","Kwi","Cze","Lip","Sie","Wrz","Paź","Lis","Gru"],
+      "long": ["Styczeń","Luty","Marzec","Kwiecień","Czerwiec","Lipiec","Sierpień","Wrzesień","Październik","Listopad","Grudzień"]
     }
   }
 }
