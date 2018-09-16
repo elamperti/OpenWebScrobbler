@@ -1,11 +1,10 @@
 <?php
   session_start();
 
-  header('Content-Type: application/json');
-
   // Wipe session
   session_destroy();
 
+  header('Content-Type: application/json');
   echo json_encode(array(
     'status' => 'ok'
   ));
