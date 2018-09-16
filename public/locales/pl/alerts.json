@@ -1,16 +1,16 @@
 {
-  "authFailed": "Authentication failed",
-  "loginAgain": "You must log in again!",
-  "serviceUnavailable": "Service unavailable",
-  "unexpectedError": "Unexpected error",
-  "lastfmUnavailable": "Last.fm isn't responding, please try again later.",
-  "settingsSavedSuccessfully": "Your settings were saved successfully!",
+  "authFailed": "Błąd uwierzytelnienia",
+  "loginAgain": "Zaloguj się ponownie!",
+  "serviceUnavailable": "Usługa niedostępna",
+  "unexpectedError": "Nieoczekiwany błąd",
+  "lastfmUnavailable": "Last.fm nie odpowiada, spróbuj ponownie później.",
+  "settingsSavedSuccessfully": "Twoje ustawienia zostały zapisane z powodzeniem!",
   "loginError": {
-    "title": "Error logging in",
-    "message": "There was an unexpected error logging in. Sorry about that!"
+    "title": "Błąd logowania",
+    "message": "Wystąpił nieoczekiwany błąd podczas logowania. Przepraszamy!"
   },
   "logoutInfo": {
-    "title": "See you soon!",
-    "message": "Successfully logged out."
+    "title": "Do zobaczenia!",
+    "message": "Wylogowano z powodzeniem."
   }
 }
