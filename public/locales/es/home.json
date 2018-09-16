@@ -4,6 +4,10 @@
   "authNeeded": "Autoriza la aplicación para empezar!",
   "logInWithLastFm": "Ingresar con Last.fm",
   "logInIsSafe": "Esto se hace de forma segura en Last.fm",
+  "about": {
+    "title": "Qué es esto?",
+    "description": "Un scrobbler de código abierto para la web que te permitirá agregar canciones manualmente en tu perfil de Last.fm."
+  },
   "support": {
     "title": "Colabora con el proyecto",
     "copy": "Por favor considera hacer un aporte para mantener este sitio en funcionamiento y soportar su desarrollo!",

@@ -20,6 +20,7 @@ body.with-shadow {
 
 .ows-title {
   color: white;
+  display: inline-block;
 }
 
 .app-version {

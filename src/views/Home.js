@@ -5,7 +5,12 @@ import { translate, Trans } from 'react-i18next';
 import qs from 'qs';
 
 import { Link } from 'react-router-dom';
-import { Jumbotron, Button, Row, Col } from 'reactstrap';
+import {
+  Jumbotron,
+  Button,
+  Row,
+  Col,
+} from 'reactstrap';
 
 import { logIn, authUserWithToken } from 'store/actions/userActions';
 
@@ -21,10 +26,12 @@ class Home extends Component {
   constructor(props) {
     super(props);
     if (this.props.location.search) {
-      let token = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).token || null;
-      if (token) {
-        this.props.authUserWithToken(token);
-        this.props.history.push('/');
+      if (!this.props.user.isLoggedIn) {
+        let token = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).token || null;
+        if (token) {
+          this.props.authUserWithToken(token);
+          this.props.history.push('/'); // Clear the URL
+        }
       }
 
       if (this.props.lang === 'auto') {
@@ -57,10 +64,11 @@ class Home extends Component {
 
   render() {
     const t = this.props.t; // Translations
+    const isLoggedIn = this.props.user.isLoggedIn;
 
     let homeContent;
 
-    if (this.props.user.isLoggedIn) {
+    if (isLoggedIn) {
       homeContent = (
         <div>
           <p className="lead text-center">
@@ -89,18 +97,39 @@ class Home extends Component {
 
     return (
       <div>
-        <Jumbotron>
-          <h1 className="display-4">
-            <Trans i18nKey="welcomeToTheScrobbler">
-              Welcome to the <span className="ows-title">Open Scrobbler</span>!
-            </Trans>
-          </h1>
-          <p className="lead">
-            {t('purpose')}
-          </p>
-          <br />
-          {homeContent}
-        </Jumbotron>
+        <Row>
+          <Col lg={ isLoggedIn ? 12 : 7 }>
+            <Jumbotron>
+              <h1 className="display-5">
+                <Trans i18nKey="welcomeToTheScrobbler">
+                  Welcome to the <span className="ows-title">Open Scrobbler</span>!
+                </Trans>
+              </h1>
+              <p className="lead">
+                {t('purpose')}
+              </p>
+              <br />
+              {homeContent}
+            </Jumbotron>
+          </Col>
+          <Col lg="5" className={ isLoggedIn ? 'd-none' : '' }>
+            <Jumbotron className="alternative-content discord">
+              <Row>
+                <Col>
+                  <h4>
+                    <Trans i18nKey="about.title">What is this?</Trans>
+                  </h4>
+                  <p>
+                    <Trans i18nKey="about.description">
+                      An open source scrobbler for the web, which allows you to manually input songs and add them to your Last.fm profile.
+                    </Trans>
+                  </p>
+                  <img src="/img/screenshot-180915-sm.webp" alt="Application screenshot" className="img-fluid d-none d-lg-block img-thumbnail mx-auto mb-2" />
+                </Col>
+              </Row>
+            </Jumbotron>
+          </Col>
+        </Row>
         <Row>
             <Col sm="6">
               <Jumbotron className="alternative-content discord">

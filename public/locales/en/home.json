@@ -4,6 +4,10 @@
   "authNeeded": "Authorize the application to get started!",
   "logInWithLastFm": "Log in with Last.fm",
   "logInIsSafe": "This is safely done over at Last.fm",
+  "about": {
+    "title": "What is this?",
+    "description": "An open source scrobbler for the web, which allows you to manually input songs and add them to your Last.fm profile."
+  },
   "support": {
     "title": "Support this project",
     "copy": "Please consider becoming a patron to keep this site up and support development!",
