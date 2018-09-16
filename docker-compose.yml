@@ -17,7 +17,7 @@ services:
     volumes:
       - database:/data
       - ./assets/db/openscrobbler.sql:/tmp/setup.sql
-    entrypoint: sh -c "sqlite3 /data/development.db < /tmp/setup.sql && sqlite_web -H 0.0.0.0 -x development.db"
+    entrypoint: sh -c "sqlite3 /data/development.db </tmp/setup.sql && sqlite_web -H 0.0.0.0 -x development.db"
 
 volumes:
   database: {}
