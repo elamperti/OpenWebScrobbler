@@ -4,12 +4,15 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import { reactI18nextModule } from 'react-i18next';
 
 export const languageList = [
+  {code: 'ca', name: 'Català'},
   {code: 'en', name: 'English'},
   {code: 'es', name: 'Español'},
   // {code: 'pt', name: 'Português'},
 ];
 
 export const fallbackLng = {
+  'ca-ES': ['ca'],
+  'ca-AD': ['ca'],
   'en-US': ['en'],
   'en-UK': ['en'],
   'es-AR': ['es'],

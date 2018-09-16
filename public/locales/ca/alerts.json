@@ -1,0 +1,16 @@
+{
+  "authFailed": "Ha fallat l’autenticació",
+  "loginAgain": "Heu d’iniciar la sessió novament.",
+  "serviceUnavailable": "Servei no disponible",
+  "unexpectedError": "Error inesperat",
+  "lastfmUnavailable": "El Last.fm no respon. Torneu-ho a intentar més tard.",
+  "settingsSavedSuccessfully": "S’han desat els paràmetres correctament.",
+  "loginError": {
+    "title": "S’ha produït un error en iniciar la sessió",
+    "message": "Hi ha hagut un error inesperat en iniciar la sessió. Disculpeu!"
+  },
+  "logoutInfo": {
+    "title": "Fins aviat!",
+    "message": "La sessió ha finalitzat correctament."
+  }
+}
