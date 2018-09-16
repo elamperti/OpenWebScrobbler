@@ -35,8 +35,8 @@
       "short": "MMM Do"
     },
     "months": {
-      "short": ["Jan","Feb","Mar","Apr","Jun","Jaul","Aug","Sep","Oct","Nov","Dec"],
-      "long": ["January","February","March","April","June","July","August","September","October","November","December"]
+      "short": ["Jan","Feb","Mar","Apr","May","Jun","Jaul","Aug","Sep","Oct","Nov","Dec"],
+      "long": ["January","February","March","April","May","June","July","August","September","October","November","December"]
     }
   }
 }
