@@ -1,0 +1,21 @@
+{
+  "welcomeToTheScrobbler": "Witamy w <1>Open Scrobbler</1>!",
+  "purpose": "To narzędzie pozwala na scrobblowanie piosenek i płyt, które usłyszałeś w radiu, na płycie gramofonowej lub w jakimś miejscu, w tórym zaszła potrzeba ręcznego scrobblowania.",
+  "authNeeded": "Zautoryzuj aplikację, żeby zacząć!",
+  "logInWithLastFm": "Zaloguj się w Last.fm",
+  "logInIsSafe": "Można to przeprowadzić bezpiecznie w Last.fm",
+  "about": {
+    "title": "Co to jest?",
+    "description": "Scrobbler w otwartym oprogramowaniu, który pozwala na ręczne wpisywanie utworów i dodawanie ich na twój profil Last.fm."
+  },
+  "support": {
+    "title": "Wesprzyj ten projekt",
+    "copy": "Rozważ zostanie patronem, aby utrzymywać tę stronę i wspierać rozwój!",
+    "CTA": "Zostań patronem"
+  },
+  "discord": {
+    "title": "Dołącz do nas na Discordzie!",
+    "copy": "Bądź w kontakcie z innymi miłośnikami muzyki i bądź na bieżąco z nowościami!",
+    "CTA": "Dołącz do Discorda"
+  }
+}

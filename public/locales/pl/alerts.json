@@ -1,0 +1,16 @@
+{
+  "authFailed": "Błąd uwierzytelnienia",
+  "loginAgain": "Zaloguj się ponownie!",
+  "serviceUnavailable": "Usługa niedostępna",
+  "unexpectedError": "Nieoczekiwany błąd",
+  "lastfmUnavailable": "Last.fm nie odpowiada, spróbuj ponownie później.",
+  "settingsSavedSuccessfully": "Twoje ustawienia zostały zapisane z powodzeniem!",
+  "loginError": {
+    "title": "Błąd logowania",
+    "message": "Wystąpił nieoczekiwany błąd podczas logowania. Przepraszamy!"
+  },
+  "logoutInfo": {
+    "title": "Do zobaczenia!",
+    "message": "Wylogowano z powodzeniem."
+  }
+}

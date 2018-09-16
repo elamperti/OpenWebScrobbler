@@ -1,0 +1,42 @@
+{
+  "scrobble": "Scrobbluj",
+  "getScrobbling": "Zacznij scrobblowanie",
+  "artist": "Wykonawca",
+  "song": "Utwór",
+  "title": "Tytuł",
+  "album": "Płyta",
+  "language": "Język",
+  "translateYourLanguage": "Chcesz dodać swój język?",
+  "logIn": "Zaloguj",
+  "logOut": "Wyloguj",
+  "now": "Teraz",
+  "custom": "Ustaw...",
+  "timestamp": "Data i czas",
+  "lastfmWillRejectOldTimestamps": "Last.fm odrzuci scrooble starsze niż dwa tygodnie.",
+  "noSongsScrobbled": "Na razie nic nie przescrobllowałeś!",
+  "songsWillAppearHere": "Utwory pojawią się tutaj, kiedy je przescrobblujesz.",
+  "scrobbleAgain": "Scrobbluj ponownie",
+  "swapArtistTitle": "Zamień wykonawcę z utworem",
+  "viewProfile": "Pokaż mój profil Last.fm",
+  "lockArtist": "Zablokuj pole wykonawcy",
+  "lockAlbum": "Zablokuj pole płyty",
+  "pasteIntercepted": "Wklejony tekst został automatycznie rozdzielony!",
+  "considerDonating": "Wesprzyj ten projekt na Patreonie!",
+  "moreComingSoon": "Więcej opcji wkrótce!",
+  "footer": {
+    "joinCommunity": "Dołącz do naszej społeczności <1>na Discordzie</1>!",
+    "supportThisProject": "<1>Wesprzyj ten projekt</1> na Patreonie. :)",
+    "specialThanks": "Specjalnie podziękowania dla wszystkich darczyńców, tłumaczy and <1>i współtwórców.</1>"
+  },
+  "settings": "Ustawienia",
+  "cancel": "Anuluj",
+  "dates": {
+    "format": {
+      "short": "MMM Do"
+    },
+    "months": {
+      "short": ["Sty","Lut","Mar","Kwi","Maj","Cze","Lip","Sie","Wrz","Paź","Lis","Gru"],
+      "long": ["Styczeń","Luty","Marzec","Kwiecień","Maj","Czerwiec","Lipiec","Sierpień","Wrzesień","Październik","Listopad","Grudzień"]
+    }
+  }
+}
