@@ -1,0 +1,21 @@
+{
+  "welcomeToTheScrobbler": "Us donem la benvinguda a l’<1>Open Scrobbler</1>!",
+  "purpose": "Aquesta eina us permet registrar al Last.fm les cançons i els àlbums que sentiu a la ràdio, als vinils o a altres mitjans on calgui registrar-los-hi manualment.",
+  "authNeeded": "Autoritzeu l’aplicació per a començar!",
+  "logInWithLastFm": "Inicia la sessió amb el Last.fm",
+  "logInIsSafe": "Això es fa de manera segura al Last.fm",
+  "about": {
+    "title": "Què és això?",
+    "description": "Un «scrobbler» de codi obert per al Web que us permet introduïr cançons manualment per a afegir-les al vostre perfil del Last.fm."
+  },
+  "support": {
+    "title": "Doneu suport al projecte",
+    "copy": "Considereu esdevenir mecenes per a mantenir el lloc en línia i sostenir-ne el desenvolupament.",
+    "CTA": "Feu-vos mecenes"
+  },
+  "discord": {
+    "title": "Uniu-vos a nosaltres al Discord!",
+    "copy": "Mantingueu-vos al tant de les notícies i connecteu-vos amb altres fanàtics de la música!",
+    "CTA": "Visita el Discord"
+  }
+}

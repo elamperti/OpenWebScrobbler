@@ -1,0 +1,42 @@
+{
+  "scrobble": "Envia",
+  "getScrobbling": "Comenceu a registrar la vostra música",
+  "artist": "Artista",
+  "song": "Cançó",
+  "title": "Peça",
+  "album": "Àlbum",
+  "language": "Llengua",
+  "translateYourLanguage": "Voleu afegir-hi la vostra llengua?",
+  "logIn": "Inicia la sessió",
+  "logOut": "Finalitza la sessió",
+  "now": "Ara",
+  "custom": "Personalitzat…",
+  "timestamp": "Data i hora",
+  "lastfmWillRejectOldTimestamps": "El Last.fm rebutjarà els enviaments anteriors a dues setmanes.",
+  "noSongsScrobbled": "Encara no heu enviat cap cançó",
+  "songsWillAppearHere": "Les peces apareixeran aquí quan les hàgiu registrat.",
+  "scrobbleAgain": "Envia-la novament",
+  "swapArtistTitle": "Intercanvia l’artista i la peça",
+  "viewProfile": "Mostra el meu perfil del Last.fm",
+  "lockArtist": "Bloca el camp Artista",
+  "lockAlbum": "Bloca el camp Àlbum",
+  "pasteIntercepted": "S’ha dividit automàticament el text enganxat!",
+  "considerDonating": "Doneu-nos el vostre suport al Patreon!",
+  "moreComingSoon": "Hi haurà més opcions ben aviat!",
+  "footer": {
+    "joinCommunity": "Us invitem a unir-vos a la nostra comunitat <1>al Discord</1>!",
+    "supportThisProject": "Si us plau, <1>doneu-nos suport</1> al Patreon :)",
+    "specialThanks": "Agraïm especialment els donants, els traductors i <1>els col·laboradors</1>"
+  },
+  "settings": "Paràmetres",
+  "cancel": "Cancel·la",
+  "dates": {
+    "format": {
+      "short": "Do MMM"
+    },
+    "months": {
+      "short": ["gen.","febr.","març","abr.","maig","juny","jul.","ag.","set.","oct.","nov.","des."],
+      "long": ["gener","febrer","març","abril","maig","juny","juliol","agost","setembre","octubre","novembre","desembre"]
+    }
+  }
+}
