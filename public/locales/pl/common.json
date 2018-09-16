@@ -35,8 +35,8 @@
       "short": "MMM Do"
     },
     "months": {
-      "short": ["Sty","Lut","Mar","Kwi","Cze","Lip","Sie","Wrz","Paź","Lis","Gru"],
-      "long": ["Styczeń","Luty","Marzec","Kwiecień","Czerwiec","Lipiec","Sierpień","Wrzesień","Październik","Listopad","Grudzień"]
+      "short": ["Sty","Lut","Mar","Kwi","Maj","Cze","Lip","Sie","Wrz","Paź","Lis","Gru"],
+      "long": ["Styczeń","Luty","Marzec","Kwiecień","Maj","Czerwiec","Lipiec","Sierpień","Wrzesień","Październik","Listopad","Grudzień"]
     }
   }
 }
