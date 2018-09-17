@@ -12,8 +12,8 @@
   "now": "Teraz",
   "custom": "Ustaw...",
   "timestamp": "Data i czas",
-  "lastfmWillRejectOldTimestamps": "Last.fm odrzuci scrooble starsze niż dwa tygodnie.",
-  "noSongsScrobbled": "Na razie nic nie przescrobllowałeś!",
+  "lastfmWillRejectOldTimestamps": "Last.fm odrzuci scrobble starsze niż dwa tygodnie.",
+  "noSongsScrobbled": "Na razie nic nie przescrobblowałeś!",
   "songsWillAppearHere": "Utwory pojawią się tutaj, kiedy je przescrobblujesz.",
   "scrobbleAgain": "Scrobbluj ponownie",
   "swapArtistTitle": "Zamień wykonawcę z utworem",
@@ -26,7 +26,7 @@
   "footer": {
     "joinCommunity": "Dołącz do naszej społeczności <1>na Discordzie</1>!",
     "supportThisProject": "<1>Wesprzyj ten projekt</1> na Patreonie. :)",
-    "specialThanks": "Specjalnie podziękowania dla wszystkich darczyńców, tłumaczy and <1>i współtwórców.</1>"
+    "specialThanks": "Specjalnie podziękowania dla wszystkich darczyńców, tłumaczy <1>i współtwórców.</1>"
   },
   "settings": "Ustawienia",
   "cancel": "Anuluj",

@@ -7,7 +7,7 @@ export const languageList = [
   {code: 'ca', name: 'Català'},
   {code: 'en', name: 'English'},
   {code: 'es', name: 'Español'},
-  {code: 'pl', name: 'Polski'},
+  {code: 'pl', name: 'polski'},
   // {code: 'pt', name: 'Português'},
 ];
 
