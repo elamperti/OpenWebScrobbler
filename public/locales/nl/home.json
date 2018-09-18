@@ -1,0 +1,21 @@
+{
+  "welcomeToTheScrobbler": "Welkom bij de <1>Open Scrobbler</1>!",
+  "purpose": "Deze tool laat je nummers en albums scrobbelen die je hoorde op de radio, op vinyl, of ergens anders waar je manueel moet scrobbelen.",
+  "authNeeded": "Geef de applicatie toegang tot je Last.fm om te beginnen!",
+  "logInWithLastFm": "Log in met Last.fm",
+  "logInIsSafe": "Dit wordt veilig gedaan via Last.fm",
+  "about": {
+    "title": "Wat is dit?",
+    "description": "Een open source scrobbeler voor het internet, die je manueel nummers laat invoeren om ze aan je Last.fm-profiel toe te voegen."
+  },
+  "support": {
+    "title": "Steun dit project",
+    "copy": "Het zou fijn zijn mocht je overwegen om dit project te steunen op Patreon! Zo help je deze site om online te blijven en steun je de ontwikkeling ervan :)",
+    "CTA": "Word een patron"
+  },
+  "discord": {
+    "title": "Word lid van onze Discord!",
+    "copy": "Praat met andere muziekfans, en ontdek wanneer er nieuwe ontwikkelingen zijn!",
+    "CTA": "Naar Discord"
+  }
+}
