@@ -1,0 +1,16 @@
+{
+  "authFailed": "Authenticatie mislukt",
+  "loginAgain": "Je moet opnieuw inloggen!",
+  "serviceUnavailable": "Service niet beschikbaar",
+  "unexpectedError": "Onverwachte fout",
+  "lastfmUnavailable": "Last.fm reageert niet. Probeer het later opnieuw.",
+  "settingsSavedSuccessfully": "Je instellingen zijn opgeslagen!",
+  "loginError": {
+    "title": "Fout bij het inloggen",
+    "message": "Er trad een onverwachte fout op bij het inloggen. Sorry!"
+  },
+  "logoutInfo": {
+    "title": "Tot later!",
+    "message": "Succesvol uitgelogd."
+  }
+}

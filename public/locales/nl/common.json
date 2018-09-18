@@ -1,0 +1,42 @@
+{
+  "scrobble": "Scrobble",
+  "getScrobbling": "Begin met scrobbelen",
+  "artist": "Artiest",
+  "song": "Nummer",
+  "title": "Nummer",
+  "album": "Album",
+  "language": "Taal",
+  "translateYourLanguage": "Wil je jouw taal toevoegen?",
+  "logIn": "Log in",
+  "logOut": "Log uit",
+  "now": "Nu",
+  "custom": "Handmatig…",
+  "timestamp": "Tijdstip",
+  "lastfmWillRejectOldTimestamps": "Last.fm zal je scrobbles ouder dan twee weken weigeren.",
+  "noSongsScrobbled": "Je hebt nog geen nummers gescrobbeld!",
+  "songsWillAppearHere": "Na het scrobbelen zullen nummers hier verschijnen.",
+  "scrobbleAgain": "Scrobble opnieuw",
+  "swapArtistTitle": "Artiest en nummer omdraaien",
+  "viewProfile": "Mijn Last.fm-profiel bekijken",
+  "lockArtist": "Artiest vastzetten",
+  "lockAlbum": "Album vastzetten",
+  "pasteIntercepted": "De tekst die je plakte werd automatisch gesplitst!",
+  "considerDonating": "Steun dit project alsjeblieft op Patreon!",
+  "moreComingSoon": "Binnenkort komen er meer opties!",
+  "footer": {
+    "joinCommunity": "Kom gerust een kijkje nemen op <1>onze Discord</1>!",
+    "supportThisProject": "<1>Steun dit project</1> alsjeblieft op Patreon :)",
+    "specialThanks": "Speciale dank aan alle donors, vertalers, en <1>de bijdragers</1>"
+  },
+  "settings": "Instellingen",
+  "cancel": "Annuleren",
+  "dates": {
+    "format": {
+      "short": "Do MMM"
+    },
+    "months": {
+      "short": ["Jan","Feb","Maa","Apr","Mei","Jun","Jul","Aug","Sep","Okt","Nov","Dec"],
+      "long": ["Januari","Februari","Maart","April","Mei","Juni","Juli","Augustus","September","Oktober","November","December"]
+    }
+  }
+}
