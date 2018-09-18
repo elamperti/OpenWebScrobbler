@@ -59,7 +59,7 @@
 }
 
 .scrobbled-item .status-icon .fa-check {
-  color: var(--green);
+  color: #1D8E56;
 }
 
 .scrobbled-item .status-icon .fa-circle, .fa-times {
