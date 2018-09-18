@@ -8,7 +8,7 @@ export const languageList = [
   {code: 'en', name: 'English'},
   {code: 'es', name: 'Español'},
   {code: 'pl', name: 'polski'},
-  // {code: 'pt', name: 'Português'},
+  {code: 'pt', name: 'Português'},
 ];
 
 export const fallbackLng = {
@@ -18,7 +18,7 @@ export const fallbackLng = {
   'en-UK': ['en'],
   'es-AR': ['es'],
   'es-ES': ['es'],
-  // 'pt-BR': ['pt'],
+  'pt-BR': ['pt'],
   // 'pt-PT': ['pt'],
   'default': ['en']
 };
