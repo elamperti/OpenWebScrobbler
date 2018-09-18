@@ -1,6 +1,7 @@
 import axios from 'axios';
 import createHistory from 'history/createBrowserHistory';
 import ReactGA from 'react-ga';
+import md5 from 'md5';
 
 import { saveToLocalStorage } from 'localstorage';
 import { createAlert } from './alertActions';
@@ -41,10 +42,11 @@ export function getUserInfo(dispatch) {
           payload: response
         });
         if (response.data.user) {
+          let hashedUserId = md5(response.data.user.name);
           ReactGA.set({
-            userId: response.data.user.name
+            userId: hashedUserId
           });
-          saveToLocalStorage('userId', response.data.user.name);
+          saveToLocalStorage('hashedUID', hashedUserId);
         }
         if (response.data.settings) {
           setSettings(dispatch)(response.data.settings, false);
@@ -79,7 +81,7 @@ export function logOut(dispatch) {
         ReactGA.set({
           userId: undefined,
         });
-        localStorage.removeItem('userId');
+        localStorage.removeItem('hashedUID');
         history.push('/');
         createAlert(dispatch)({
           type: 'info',

@@ -21,7 +21,7 @@ import ReactGA from 'react-ga';
 
 if (process.env.REACT_APP_ANALYTICS_CODE) {
   const appVersion = process.env.REACT_APP_VERSION;
-  const userId = localStorage.getItem('userId');
+  const userId = localStorage.getItem('hashedUID');
   let clientId = localStorage.getItem('GA_LOCAL_STORAGE_KEY');
 
   if (!clientId) {
