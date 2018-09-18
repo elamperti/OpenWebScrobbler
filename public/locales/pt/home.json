@@ -1,0 +1,21 @@
+{
+  "welcomeToTheScrobbler": "Bem vindo ao <1>Open Scrobbler</1>!",
+  "purpose": "Esta ferramenta permite que você scrobble sons e álbuns que você ouviu no rádio, vinil ou em algum lugar onde você precisa scrobblar manualmente.",
+  "authNeeded": "Autorize a aplicação para começar!",
+  "logInWithLastFm": "Acessar com a Last.fm",
+  "logInIsSafe": "Isto é seguramente feito na Last.fm",
+  "about": {
+    "title": "O que é isto?",
+    "description": "um scrobbler de código aberto para a web, que permite a você inserir sons manualmente e adicioná-los ao seu perfil da Last.fm."
+  },
+  "support": {
+    "title": "Suporte este projeto",
+    "copy": " Por favor considere se tornar um patrão para manter este site no ar e ajudar o desenvolvimento!",
+    "CTA": "Torne-se um patrão"
+  },
+  "discord": {
+    "title": "Junte-se a nós no Discord!",
+    "copy": "Continue conectado com outros fãs de música e encontre-os quando houver novidades!",
+    "CTA": "conecte ao Discord"
+  }
+}
