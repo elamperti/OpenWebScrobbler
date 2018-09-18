@@ -29,8 +29,11 @@ class Home extends Component {
       if (!this.props.user.isLoggedIn) {
         let token = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).token || null;
         if (token) {
-          this.props.authUserWithToken(token);
-          this.props.history.push('/'); // Clear the URL
+          let history = this.props.history;
+          this.props.authUserWithToken(token, () => {
+            history.push('/scrobble/song');
+          });
+          history.push('/'); // Clear the URL
         }
       }
 
