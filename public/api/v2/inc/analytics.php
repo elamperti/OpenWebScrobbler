@@ -16,6 +16,8 @@
         $payload['v'] = 1;
         $payload['tid'] = $analytics_tracking_code;
         $payload['cid'] = session_id();
+        $payload['uid'] = isset($_SESSION['uidHash']) ? $_SESSION['uidHash'] : '';
+        $payload['uip'] = $_SERVER['REMOTE_ADDR'];
         $payload['t'] = $type;
 
         curl_setopt_array($curl, array(

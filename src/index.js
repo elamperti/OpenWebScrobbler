@@ -38,7 +38,9 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
       userId,
     }
   });
+
   ReactGA.set({
+    appName: 'Open Scrobbler',
     appVersion,
   });
 }

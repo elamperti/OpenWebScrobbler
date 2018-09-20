@@ -32,6 +32,8 @@
         }
       }
     }
+
+    $_SESSION['uidHash'] = md5($_SESSION['userInfo']->name);
   }
   $userdata['user'] = $_SESSION['userInfo'];
 
