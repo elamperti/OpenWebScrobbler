@@ -205,7 +205,7 @@ class Navigation extends Component {
     return (
       <div>
         <Navbar color="dark" dark expand="md" className={this.props.settings.isDonor ? 'donor' : ''}>
-          <NavbarBrand tag={Link} to="/" className="ows-color flex-grow-1 flex-md-grow-0">
+          <NavbarBrand tag={Link} to="/" className="flex-grow-1 flex-md-grow-0">
             <FontAwesomeIcon icon={faHeadphones} className="d-none d-sm-inline" />
             Open Scrobbler
           </NavbarBrand>
