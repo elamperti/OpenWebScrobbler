@@ -67,21 +67,25 @@ const scrobbleReducer = (state=initialState, action) => {
       });
 
     case 'SCROBBLE_COVER_SEARCH_FULFILLED':
-      if (action.payload.data.track && action.payload.data.track.album && action.payload.data.track.album.image) {
-        let trackUUID = action.payload.config.params.ows_scrobbleUUID;
-        let cover = action.payload.data.track.album.image[1]['#text'];
-        return {
-          ...state,
-          list: state.list.map((item) => {
-            if (item.id !== trackUUID) {
-              return item;
-            } else {
-              return {
-                ...item,
-                cover
+      let trackUUID = action.payload.config.params.ows_scrobbleUUID;
+      let albumData;
+      if ((action.payload.data.track && action.payload.data.track.album) || action.payload.data.album) {
+        albumData = action.payload.data.album || action.payload.data.track.album;
+        if (albumData.image) {
+          let cover = albumData.image[1]['#text'];
+          return {
+            ...state,
+            list: state.list.map((item) => {
+              if (item.id !== trackUUID) {
+                return item;
+              } else {
+                return {
+                  ...item,
+                  cover
+                }
               }
-            }
-          }),
+            })
+          };
         }
       }
       return state;

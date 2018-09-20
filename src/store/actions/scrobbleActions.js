@@ -11,6 +11,7 @@ export function enqueueScrobble(dispatch) {
 
     // Normalize and add metadata
     scrobbles = scrobbles.map((scrobble) => {
+      let coverSearchEndpoint;
       scrobble.id = shortid.generate();
 
       if (!scrobble.timestamp) {
@@ -18,7 +19,10 @@ export function enqueueScrobble(dispatch) {
       }
       // scrobble.unixTimestamp = Math.trunc((scrobble.timestamp || new Date()).getTime() / 1000);
 
-      if (!scrobble.album) {
+      if (scrobble.album) {
+        coverSearchEndpoint = 'album.getInfo';
+      } else {
+        coverSearchEndpoint = 'track.getInfo';
         scrobble.album = '';
       }
 
@@ -28,10 +32,11 @@ export function enqueueScrobble(dispatch) {
           type: "SCROBBLE_COVER_SEARCH",
           payload: axios.get(`https://ws.audioscrobbler.com/2.0/`, {
             params: {
-              method: 'track.getInfo',
+              method: coverSearchEndpoint,
               api_key: process.env.REACT_APP_LASTFM_API_KEY,
               artist: scrobble.artist,
               track: scrobble.title,
+              album: scrobble.album,
               ows_scrobbleUUID: scrobble.id,
               format: 'json'
             },
