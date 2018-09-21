@@ -1,42 +1,42 @@
 {
-  "scrobble": "Scrobble",
-  "getScrobbling": "Start scrobbling",
-  "artist": "Artist",
-  "song": "Song",
-  "title": "Track",
-  "album": "Album",
-  "language": "Language",
-  "translateYourLanguage": "Want to add your language?",
-  "logIn": "Log in",
-  "logOut": "Log out",
-  "now": "Now",
-  "custom": "Custom...",
-  "timestamp": "Timestamp",
-  "lastfmWillRejectOldTimestamps": "Last.fm will reject scrobbles older than two weeks.",
-  "noSongsScrobbled": "No songs scrobbled yet!",
-  "songsWillAppearHere": "Tracks will appear here once you scrobble them.",
-  "scrobbleAgain": "Scrobble Again",
-  "swapArtistTitle": "Swap artist and track",
-  "viewProfile": "View my last.fm profile",
-  "lockArtist": "Lock artist field",
-  "lockAlbum": "Lock album field",
-  "pasteIntercepted": "The pasted text was automatically split!",
-  "considerDonating": "Please support this project on Patreon!",
-  "moreComingSoon": "More options coming soon!",
+  "scrobble": "Скробблить",
+  "getScrobbling": "Начать скробблинг",
+  "artist": "Исполнитель",
+  "song": "Трек",
+  "title": "Название",
+  "album": "Альбом",
+  "language": "Язык",
+  "translateYourLanguage": "Хотите добавить свой язык?",
+  "logIn": "Войти",
+  "logOut": "Выйти",
+  "now": "Сейчас",
+  "custom": "Задать...",
+  "timestamp": "Временная метка",
+  "lastfmWillRejectOldTimestamps": "Last.fm не примет скробблы более чем двухнедельной давности.",
+  "noSongsScrobbled": "Ещё ничего не заскробблено!",
+  "songsWillAppearHere": "Заскробленные композиции появятся здесь.",
+  "scrobbleAgain": "Заскробблить еще раз",
+  "swapArtistTitle": "Поменять местами исполнителя и название",
+  "viewProfile": "Просмотреть свой профиль last.fm",
+  "lockArtist": "Не стирать имя исполнителя",
+  "lockAlbum": "Не стирать название альбома",
+  "pasteIntercepted": "Вставленный текст был автоматически разбит на поля!",
+  "considerDonating": "Пожалуйста, поддержите этот проект на Patreon!",
+  "moreComingSoon": "Скоро появятся новые опции!",
   "footer": {
-    "joinCommunity": "You are welcome to join our community <1>on Discord</1>!",
-    "supportThisProject": "Please <1>support this project</1> on Patreon :)",
-    "specialThanks": "Special thanks to all the donors, translators and <1>the contributors</1>"
+    "joinCommunity": "Приглашаем присоединиться к нашему сообществу <1>в Discord</1>!",
+    "supportThisProject": "Пожалуйста, <1>поддержите этот проект</1> на Patreon :)",
+    "specialThanks": "Особая благодарность всем поддержавшим проект, переводчикам и <1>соучастникам проекта</1>"
   },
-  "settings": "Settings",
-  "cancel": "Cancel",
+  "settings": "Настройки",
+  "cancel": "Отмена",
   "dates": {
     "format": {
       "short": "MMM Do"
     },
     "months": {
-      "short": ["Jan","Feb","Mar","Apr","May","Jun","Jaul","Aug","Sep","Oct","Nov","Dec"],
-      "long": ["January","February","March","April","May","June","July","August","September","October","November","December"]
+      "short": ["Янв","Фев","Март","Апр","Май","Июнь","Июль","Aвг","Сен","Окт","Ноя","Дек"],
+      "long": ["Январь","Февраль","Март","Апрель","Май","Июнь","Июль","Август","Сентябрь","Октябрь","Ноябрь","Декабрь"]
     }
   }
 }
