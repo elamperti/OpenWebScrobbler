@@ -1,21 +1,21 @@
 {
-  "welcomeToTheScrobbler": "Welcome to the <1>Open Scrobbler</1>!",
-  "purpose": "This tool lets you scrobble songs and albums you heard on the radio, vinyl or at some place where you need to manually scrobble.",
-  "authNeeded": "Authorize the application to get started!",
-  "logInWithLastFm": "Log in with Last.fm",
-  "logInIsSafe": "This is safely done over at Last.fm",
+  "welcomeToTheScrobbler": "Добро пожаловать в <1>Open Scrobbler</1>!",
+  "purpose": "Этот сервис позволяет вручную скробблить композиции и альбомы, которые вы услышали на радио, пластинках или из другого источника, где авто-скробблинг невозможен.",
+  "authNeeded": "Авторизуйтесь в приложении чтобы начать!",
+  "logInWithLastFm": "Войдите в Last.fm",
+  "logInIsSafe": "Эта процедура происходит на сайте Last.fm и абсолютно безопасна",
   "about": {
-    "title": "What is this?",
-    "description": "An open source scrobbler for the web, which allows you to manually input songs and add them to your Last.fm profile."
+    "title": "Что это?",
+    "description": "Это веб-скробблер с открытым исходным кодом, позволяющий вручную вводить данные о композициях и добавлять их в свой профиль Last.fm."
   },
   "support": {
-    "title": "Support this project",
-    "copy": "Please consider becoming a patron to keep this site up and support development!",
-    "CTA": "Become a patron"
+    "title": "Поддержите этот проект",
+    "copy": "Станьте спонсором, чтобы поддержать работу сайта и его развитие!",
+    "CTA": "Стать спонсором"
   },
   "discord": {
-    "title": "Join us on Discord!",
-    "copy": "Stay connected with other music fans and find out when there's something new!",
-    "CTA": "Join Discord"
+    "title": "Присоединяйтесь к нам на Discord!",
+    "copy": "Поддерживайте связь с другими любителями музыки и будьте в курсе всех нововведений!",
+    "CTA": "Присоединиться к Discord"
   }
 }
