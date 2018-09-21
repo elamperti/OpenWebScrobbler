@@ -1,0 +1,21 @@
+{
+  "welcomeToTheScrobbler": "Welcome to the <1>Open Scrobbler</1>!",
+  "purpose": "This tool lets you scrobble songs and albums you heard on the radio, vinyl or at some place where you need to manually scrobble.",
+  "authNeeded": "Authorize the application to get started!",
+  "logInWithLastFm": "Log in with Last.fm",
+  "logInIsSafe": "This is safely done over at Last.fm",
+  "about": {
+    "title": "What is this?",
+    "description": "An open source scrobbler for the web, which allows you to manually input songs and add them to your Last.fm profile."
+  },
+  "support": {
+    "title": "Support this project",
+    "copy": "Please consider becoming a patron to keep this site up and support development!",
+    "CTA": "Become a patron"
+  },
+  "discord": {
+    "title": "Join us on Discord!",
+    "copy": "Stay connected with other music fans and find out when there's something new!",
+    "CTA": "Join Discord"
+  }
+}
