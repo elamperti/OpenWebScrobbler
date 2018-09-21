@@ -1,0 +1,8 @@
+{
+  "settingsFor": "Настройки",
+  "saveSettings": "Сохранить настройки",
+  "defaultLanguage": "Язык по умолчанию",
+  "availableLanguages": "Доступные языки",
+  "use12HoursFormat": "Использовать 12-часовой формат времени (AM/PM)",
+  "splitPastedText": "Разбивать вставленный текст на поля исполнитель/название"
+}
