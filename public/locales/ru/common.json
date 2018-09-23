@@ -15,6 +15,7 @@
   "lastfmWillRejectOldTimestamps": "Last.fm не примет скробблы более чем двухнедельной давности.",
   "noSongsScrobbled": "Ещё ничего не заскробблено!",
   "songsWillAppearHere": "Заскробленные композиции появятся здесь.",
+  "clearHistory": "Clear history",
   "scrobbleAgain": "Заскробблить еще раз",
   "swapArtistTitle": "Поменять местами исполнителя и название",
   "viewProfile": "Просмотреть свой профиль last.fm",

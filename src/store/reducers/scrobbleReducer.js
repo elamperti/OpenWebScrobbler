@@ -44,6 +44,12 @@ const scrobbleReducer = (state=initialState, action) => {
     case 'USER_LOGGED_OUT':
       return initialState;
 
+    case 'CLEAR_SCROBBLES_LIST':
+      return {
+        ...state,
+        list: [],
+      };
+
     case 'SCROBBLE_FULFILLED':
       if (action.payload.data.scrobbles && action.payload.data.scrobbles.hasOwnProperty('@attr')) {
         status = action.payload.data.scrobbles['@attr'].ignored ? 'error' : 'success';

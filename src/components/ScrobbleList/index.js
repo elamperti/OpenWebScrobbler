@@ -1,21 +1,24 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { translate } from 'react-i18next';
+import { translate, Trans } from 'react-i18next';
 
-import ScrobbleItem from 'components/ScrobbleItem';
+import { Button, Jumbotron } from 'reactstrap';
 
-import { Jumbotron } from 'reactstrap';
-
-import { connect } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import faUserAstronaut from '@fortawesome/fontawesome-free-solid/faUserAstronaut';
 import faQuestion from '@fortawesome/fontawesome-free-solid/faQuestion';
+import faBroom from '@fortawesome/fontawesome-free-solid/faBroom';
 // import faPatreon from '@fortawesome/fontawesome-free-brands/faPatreon';
+
+import ScrobbleItem from 'components/ScrobbleItem';
+
+import './ScrobbleList.css';
 
 class ScrobbleList extends React.Component {
   render() {
     const t = this.props.t; // Translations
     let ScrobbleListContent;
+    let clearListButton;
     // let donationCTA;
     // donationCTA = (
     //   <div className="donation-cta">
@@ -45,10 +48,24 @@ class ScrobbleList extends React.Component {
       );
     }
 
+    if (this.props.clearList && this.props.scrobbles.length > 0) {
+      clearListButton = (
+        <div className="mb-2 text-right">
+          <Button className="btn-clear" size="sm" color="secondary" onClick={this.props.clearList}>
+            <FontAwesomeIcon icon={faBroom} className="mr-1" />
+              <Trans i18nKey="clearHistory">Clear history</Trans>
+          </Button>
+        </div>
+      );
+    }
+
     return (
-      <div className="ScrobbleList d-flex flex-column-reverse">
-        {ScrobbleListContent}
-        {/* {this.props.user.isDonor ? null : donationCTA} */}
+      <div className="ScrobbleList">
+        { clearListButton }
+        <div className="d-flex flex-column-reverse">
+          {ScrobbleListContent}
+          {/* {this.props.user.isDonor ? null : donationCTA} */}
+        </div>
       </div>
     );
   }
@@ -56,21 +73,12 @@ class ScrobbleList extends React.Component {
 
 ScrobbleList.propTypes = {
   scrobbles: PropTypes.array,
+  clearList: PropTypes.func,
 };
 
-const mapStateToProps = (state) => {
-  return {
-    user: state.user,
-    scrobbles: state.scrobbles.list,
-  }
+ScrobbleList.defaultProps = {
+  scrobbles: [],
+  clearList: null,
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(
-  translate(['common'])(ScrobbleList)
-);
+export default translate(['common'])(ScrobbleList);

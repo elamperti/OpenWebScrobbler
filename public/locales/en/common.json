@@ -15,6 +15,7 @@
   "lastfmWillRejectOldTimestamps": "Last.fm will reject scrobbles older than two weeks.",
   "noSongsScrobbled": "No songs scrobbled yet!",
   "songsWillAppearHere": "Tracks will appear here once you scrobble them.",
+  "clearHistory": "Clear history",
   "scrobbleAgain": "Scrobble Again",
   "swapArtistTitle": "Swap artist and track",
   "viewProfile": "View my last.fm profile",

@@ -87,8 +87,10 @@ export function enqueueScrobble(dispatch) {
   };
 }
 
-export function findAlbumCover(dispatch) {
-  return (scrobble) => {
-
-  }
+export function clearListOfScrobbles(dispatch) {
+  return () => {
+    dispatch({
+      type: "CLEAR_SCROBBLES_LIST",
+    });
+  };
 }
