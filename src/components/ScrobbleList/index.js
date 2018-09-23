@@ -5,10 +5,14 @@ import { translate, Trans } from 'react-i18next';
 import { Button, Jumbotron } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import faUserAstronaut from '@fortawesome/fontawesome-free-solid/faUserAstronaut';
-import faQuestion from '@fortawesome/fontawesome-free-solid/faQuestion';
-import faBroom from '@fortawesome/fontawesome-free-solid/faBroom';
-// import faPatreon from '@fortawesome/fontawesome-free-brands/faPatreon';
+import {
+  faUserAstronaut,
+  faQuestion,
+  faBroom,
+} from '@fortawesome/free-solid-svg-icons';
+// import {
+//   faPatreon,
+// } from '@fortawesome/free-brands-svg-icons';
 
 import ScrobbleItem from 'components/ScrobbleItem';
 

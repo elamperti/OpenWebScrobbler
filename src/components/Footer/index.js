@@ -2,9 +2,11 @@ import React from 'react';
 import { translate, Trans } from 'react-i18next';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import faTwitter from '@fortawesome/fontawesome-free-brands/faTwitter';
-import faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook';
-import faGithub from '@fortawesome/fontawesome-free-brands/faGithub';
+import {
+  faTwitter,
+  faFacebook,
+  faGithub,
+} from '@fortawesome/free-brands-svg-icons';
 
 import './Footer.css';
 

@@ -21,15 +21,18 @@ import {
 } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import faHeadphones from '@fortawesome/fontawesome-free-solid/faHeadphones';
-import faCog from '@fortawesome/fontawesome-free-solid/faCog';
-import faExternalLinkAlt from '@fortawesome/fontawesome-free-solid/faExternalLinkAlt';
-import faSignInAlt from '@fortawesome/fontawesome-free-solid/faSignInAlt';
-import faSignOutAlt from '@fortawesome/fontawesome-free-solid/faSignInAlt';
-import faGlobe from '@fortawesome/fontawesome-free-solid/faGlobe';
-import faUserAstronaut from '@fortawesome/fontawesome-free-solid/faUserAstronaut';
-import faPlayCircle from '@fortawesome/fontawesome-free-regular/faPlayCircle';
-// import faCompactDisc from '@fortawesome/fontawesome-free-solid/faCompactDisc';
+import {
+  faHeadphonesAlt,
+  faCog,
+  faExternalLinkAlt,
+  faSignInAlt,
+  faSignOutAlt,
+  faGlobe,
+  faUserAstronaut,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlayCircle,
+} from '@fortawesome/free-regular-svg-icons';
 
 import { logOut } from 'store/actions/userActions';
 import { dismissAlert } from 'store/actions/alertActions';
@@ -206,7 +209,7 @@ class Navigation extends Component {
       <div>
         <Navbar color="dark" dark expand="md" className={this.props.settings.isDonor ? 'donor' : ''}>
           <NavbarBrand tag={Link} to="/" className="flex-grow-1 flex-md-grow-0">
-            <FontAwesomeIcon icon={faHeadphones} className="d-none d-sm-inline" />
+            <FontAwesomeIcon icon={faHeadphonesAlt} className="d-none d-sm-inline" />
             Open Scrobbler
           </NavbarBrand>
           <ul className="m-auto">

@@ -15,10 +15,14 @@ import {
 import { logIn, authUserWithToken } from 'store/actions/userActions';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import faLock from '@fortawesome/fontawesome-free-solid/faLock';
-import faLastfm from '@fortawesome/fontawesome-free-brands/faLastfm';
-import faDiscord from '@fortawesome/fontawesome-free-brands/faDiscord';
-import faPatreon from '@fortawesome/fontawesome-free-brands/faPatreon';
+import {
+  faLock,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faLastfm,
+  faDiscord,
+  faPatreon,
+} from '@fortawesome/free-brands-svg-icons';
 
 const bodyDecoration = 'with-shadow';
 

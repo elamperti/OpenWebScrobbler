@@ -26,12 +26,18 @@ import TimePicker from 'components/TimePicker';
 import Tooltip from 'components/Tooltip';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import faThumbtack from '@fortawesome/fontawesome-free-solid/faThumbtack';
-import faExchangeAlt from '@fortawesome/fontawesome-free-solid/faExchangeAlt';
-import faCalendarAlt from '@fortawesome/fontawesome-free-regular/faCalendarAlt';
-import faLightbulb from '@fortawesome/fontawesome-free-regular/faLightbulb';
-import faClock from '@fortawesome/fontawesome-free-regular/faClock';
-import faPatreon from '@fortawesome/fontawesome-free-brands/faPatreon';
+import {
+  faThumbtack,
+  faExchangeAlt,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faCalendarAlt,
+  faLightbulb,
+  faClock,
+} from '@fortawesome/free-regular-svg-icons';
+import {
+  faPatreon,
+} from '@fortawesome/free-brands-svg-icons';
 
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 import { createAlert, dismissAlert } from 'store/actions/alertActions';

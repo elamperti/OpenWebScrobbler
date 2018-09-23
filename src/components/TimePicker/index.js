@@ -12,8 +12,10 @@ import {
 } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import faCaretUp from '@fortawesome/fontawesome-free-solid/faCaretUp';
-import faCaretDown from '@fortawesome/fontawesome-free-solid/faCaretDown';
+import {
+  faCaretUp,
+  faCaretDown,
+} from '@fortawesome/free-solid-svg-icons';
 
 import './TimePicker.css';
 

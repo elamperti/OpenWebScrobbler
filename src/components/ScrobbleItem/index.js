@@ -18,14 +18,18 @@ import {
 } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import faClock from '@fortawesome/fontawesome-free-regular/faClock';
-import faCheck from '@fortawesome/fontawesome-free-solid/faCheck';
-import faInbox from '@fortawesome/fontawesome-free-solid/faInbox';
-import faTimes from '@fortawesome/fontawesome-free-solid/faTimes';
-import faCompactDisc from '@fortawesome/fontawesome-free-solid/faCompactDisc';
-import faSquare from '@fortawesome/fontawesome-free-solid/faSquare';
-import faSync from '@fortawesome/fontawesome-free-solid/faSync';
-import faEllipsisH from '@fortawesome/fontawesome-free-solid/faEllipsisH';
+import {
+  faCheck,
+  faInbox,
+  faTimes,
+  faCompactDisc,
+  faSquare,
+  faSync,
+  faEllipsisH,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faClock,
+} from '@fortawesome/free-regular-svg-icons';
 
 import './ScrobbleItem.css';
 

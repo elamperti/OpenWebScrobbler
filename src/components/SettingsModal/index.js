@@ -16,8 +16,12 @@ import {
 } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import faCog from '@fortawesome/fontawesome-free-solid/faCog';
-import faSave from '@fortawesome/fontawesome-free-regular/faSave';
+import {
+  faCog,
+} from '@fortawesome/free-solid-svg-icons';
+import {
+  faSave,
+} from '@fortawesome/free-regular-svg-icons';
 
 import { dismissAlert } from 'store/actions/alertActions';
 import { setSettings } from 'store/actions/settingsActions';
