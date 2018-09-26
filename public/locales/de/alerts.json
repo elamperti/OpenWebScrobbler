@@ -1,0 +1,16 @@
+{
+  "authFailed": "Authentifizierung fehlgeschlagen",
+  "loginAgain": "Sie müssen sich erneut anmelden!",
+  "serviceUnavailable": "Service nicht verfügbar",
+  "unexpectedError": "Unerwarteter Fehler",
+  "lastfmUnavailable": "Last.fm antwortet im Moment nicht, bitte versuchen Sie es zu einem späteren Zeitpunkt erneut.",
+  "settingsSavedSuccessfully": "Ihre Einstellungen wurden erfolgreich gespeichert!",
+  "loginError": {
+    "title": "Fehler beim Anmelden",
+    "message": "Es trat ein unerwarteter Fehler beim Anmelden auf. Entschuldigen Sie bitte!"
+  },
+  "logoutInfo": {
+    "title": "Bis bald!",
+    "message": "Abmeldung erfolgreich."
+  }
+}
