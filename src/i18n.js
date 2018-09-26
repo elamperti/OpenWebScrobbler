@@ -6,6 +6,7 @@ import { reactI18nextModule } from 'react-i18next';
 export const languageList = [
   {code: 'ca', name: 'Català'},
   {code: 'en', name: 'English'},
+  {code: 'de', name: 'Deutsch'},
   {code: 'es', name: 'Español'},
   {code: 'nl', name: 'Nederlands'},
   {code: 'pl', name: 'polski'},
