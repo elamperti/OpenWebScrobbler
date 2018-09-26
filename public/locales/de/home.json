@@ -1,0 +1,21 @@
+{
+  "welcomeToTheScrobbler": "Willkommen beim <1>Open Scrobbler</1>!",
+  "purpose": "Dieses Seite lässt Sie Titel und Alben, die Sie im Radio, auf Vinyl oder wo anders hörten, wo sie manuell scrobblen wollen.",
+  "authNeeded": "Authorisieren Sie bitte die App um zu starten!",
+  "logInWithLastFm": "Mit Last.fm einloggen",
+  "logInIsSafe": "Dies geschieht sicher über Last.fm",
+  "about": {
+    "title": "Was ist das?",
+    "description": "Ein freier Scrobbler für das Internet, der dir erlaubt, Titel manuell einzugeben und sie deinem Last.fm Profile zuzufügen."
+  },
+  "support": {
+    "title": "Das Projekt unterstützen",
+    "copy": "Bitte überlegen Sie sich ein Pate zu werden, um die Seite am Leben zu halten und zu ünterstüzten!",
+    "CTA": "Werde ein Pate"
+  },
+  "discord": {
+    "title": "Treten Sie uns bei Discord bei!",
+    "copy": "Bleiben Sie mit anderen Musik-Fans in Verbindung und finden Sie heraus, was es Neues gibt!",
+    "CTA": "Trete Discord bei"
+  }
+}
