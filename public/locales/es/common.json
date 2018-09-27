@@ -5,6 +5,7 @@
   "song": "Canción",
   "title": "Título",
   "album": "Álbum",
+  "albumArtist": "Artista del álbum",
   "language": "Idioma",
   "translateYourLanguage": "Quieres sumar tu idioma?",
   "logIn": "Ingresar",

@@ -5,6 +5,7 @@
   "song": "Song",
   "title": "Track",
   "album": "Album",
+  "albumArtist": "Album artist",
   "language": "Language",
   "translateYourLanguage": "Want to add your language?",
   "logIn": "Log in",

@@ -3,10 +3,11 @@ import shortid from 'shortid';
 
 export function enqueueScrobble(dispatch) {
   return (scrobbles=[]) => {
-    let artist=[];
-    let track=[];
-    let album=[];
-    let timestamp=[];
+    let artist = [];
+    let track = [];
+    let album = [];
+    let albumArtist = [];
+    let timestamp = [];
     let scrobbleUUID = shortid.generate();
 
     // Normalize and add metadata
@@ -37,6 +38,7 @@ export function enqueueScrobble(dispatch) {
               artist: scrobble.artist,
               track: scrobble.title,
               album: scrobble.album,
+              albumArtist: scrobble.albumArtist,
               ows_scrobbleUUID: scrobble.id,
               format: 'json'
             },
@@ -64,6 +66,7 @@ export function enqueueScrobble(dispatch) {
       artist.push(scrobble.artist);
       track.push(scrobble.title);
       album.push(scrobble.album);
+      albumArtist.push(scrobble.albumArtist);
     };
 
     // Dispatch axios promise
@@ -75,6 +78,7 @@ export function enqueueScrobble(dispatch) {
           artist,
           track,
           album,
+          albumArtist,
           timestamp,
         },
         {

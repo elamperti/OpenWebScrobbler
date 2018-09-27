@@ -31,6 +31,11 @@
         $track_info['album'] = array_map('trim', $_POST['album']);
       }
 
+      if (isset($_POST['albumArtist'])) {
+        $track_info['albumArtist'] = array_map('trim', $_POST['albumArtist']);
+      }
+
+
       // All ready, call the API
       $response = $api->call('track.scrobble', $track_info, true);
 

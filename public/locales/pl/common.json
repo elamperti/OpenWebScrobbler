@@ -5,6 +5,7 @@
   "song": "Utwór",
   "title": "Tytuł",
   "album": "Płyta",
+  "albumArtist": "Wykonawca płyty",
   "language": "Język",
   "translateYourLanguage": "Chcesz dodać swój język?",
   "logIn": "Zaloguj",

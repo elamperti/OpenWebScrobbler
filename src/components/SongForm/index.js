@@ -70,6 +70,7 @@ class SongForm extends React.Component {
       albumLocked: false,
       artist: '',
       artistLocked: false,
+      albumArtist: '',
       canScrobble: false,
       timestamp: new Date(),
       title: '',
@@ -153,6 +154,7 @@ class SongForm extends React.Component {
         artist: this.state.artist,
         title: this.state.title,
         album: this.state.album,
+        albumArtist: this.state.albumArtist,
       };
       prevState[event.target.id] = event.clipboardData.getData('Text');
 
@@ -217,6 +219,7 @@ class SongForm extends React.Component {
       artist: '',
       title: '',
       album: '',
+      albumArtist: '',
       undo: null,
     };
 
@@ -224,11 +227,15 @@ class SongForm extends React.Component {
       artist: this.state.artist,
       title: this.state.title,
       album: this.state.album,
+      albumArtist: this.state.albumArtist,
       timestamp: this.state.useCustomDate ? this.state.timestamp : new Date(),
     }]);
 
     if (this.state.artistLocked) delete newState.artist;
-    if (this.state.albumLocked) delete newState.album;
+    if (this.state.albumLocked) {
+      delete newState.album;
+      delete newState.albumArtist;
+    };
 
     if (this.state.useCustomDate) {
       newState.timestamp = addMinutes(this.state.timestamp, 3);
@@ -397,6 +404,23 @@ class SongForm extends React.Component {
             <Tooltip target="lock-album">
               {t('lockAlbum')}
             </Tooltip>
+          </div>
+        </FormGroup>
+        <FormGroup className="row">
+          <Label for="album" className="col-sm-3">{t('albumArtist')}</Label>
+          <div className="col-sm-9 p-0">
+            <Input
+              bsSize="sm"
+              type="text"
+              name="albumArtist"
+              id="albumArtist"
+              tabIndex="3"
+              className="hasLock"
+              value={this.state.albumArtist}
+              onInput={this.updateField('albumArtist')}
+              onKeyUp={this.catchKeys}
+              data-lpignore="true"
+            />
           </div>
         </FormGroup>
         <FormGroup className="row">

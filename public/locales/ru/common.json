@@ -5,6 +5,7 @@
   "song": "Трек",
   "title": "Название",
   "album": "Альбом",
+  "albumArtist": "Исполнитель альбома",
   "language": "Язык",
   "translateYourLanguage": "Хотите добавить свой язык?",
   "logIn": "Войти",

@@ -83,6 +83,7 @@ class ScrobbleItem extends Component {
         <span>
           <FontAwesomeIcon className="mr-1" icon={faCompactDisc} transform="shrink-4" mask={faSquare} />
           {this.properCase(scrobble.album, true)}
+          {scrobble.albumArtist ? ` - ${this.properCase(scrobble.albumArtist, true)}` : ''}
         </span>
       );
     }
