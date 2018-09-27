@@ -17,6 +17,7 @@ import AlertZone from './components/AlertZone';
 import Home from './views/Home';
 import ScrobbleSong from './views/ScrobbleSong';
 import AnalyticsListener from './components/AnalyticsListener';
+import UpdateToast from './components/UpdateToast';
 
 class App extends Component {
   constructor(props) {
@@ -126,6 +127,7 @@ class App extends Component {
         <div className="d-flex flex-column h-100">
           { process.env.REACT_APP_ANALYTICS_CODE ? <AnalyticsListener /> : null }
           <Navigation />
+          { this.props.updates.newVersionReady ? <UpdateToast /> : null }
 
           <div className="container mt-3">
             <AlertZone />
@@ -144,6 +146,12 @@ class App extends Component {
   }
 }
 
+const mapStateToProps = (state) => {
+  return {
+    updates: state.updates,
+  }
+};
+
 const mapDispatchToProps = (dispatch) => {
   return {
     getUserInfo: getUserInfo(dispatch),
@@ -151,6 +159,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(() => {return {}}, mapDispatchToProps)(
+export default connect(mapStateToProps, mapDispatchToProps)(
   translate(['common', 'alerts'])(App)
 );

@@ -39,5 +39,8 @@
       "short": ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Nov","Dic"],
       "long": ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Noviembre","Diciembre"]
     }
+  },
+  "updates": {
+    "newVersionAvailable": "Hay una nueva versión disponible! Por favor <1>recarga la página</1>"
   }
 }

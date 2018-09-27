@@ -39,5 +39,8 @@
       "short": ["gen.","febr.","març","abr.","maig","juny","jul.","ag.","set.","oct.","nov.","des."],
       "long": ["gener","febrer","març","abril","maig","juny","juliol","agost","setembre","octubre","novembre","desembre"]
     }
+  },
+  "updates": {
+    "newVersionAvailable": "Hi ha una nova versió disponible. Torna a <1>carregar la pàgina</1>"
   }
 }

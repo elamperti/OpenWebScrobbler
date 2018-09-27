@@ -39,5 +39,8 @@
       "short": ["Sty","Lut","Mar","Kwi","Maj","Cze","Lip","Sie","Wrz","Paź","Lis","Gru"],
       "long": ["Styczeń","Luty","Marzec","Kwiecień","Maj","Czerwiec","Lipiec","Sierpień","Wrzesień","Październik","Listopad","Grudzień"]
     }
+  },
+  "updates": {
+    "newVersionAvailable": "Dostępna jest nowa wersja! Proszę <1>odświeżyć stronę</1>"
   }
 }

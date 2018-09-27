@@ -53,4 +53,4 @@ ReactDOM.render(
   </ReduxProvider>,
   document.getElementById('root')
 );
-registerServiceWorker();
+registerServiceWorker(store);

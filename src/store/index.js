@@ -9,6 +9,7 @@ import scrobbleReducer from './reducers/scrobbleReducer';
 import userReducer from './reducers/userReducer';
 import alertReducer from './reducers/alertReducer';
 import settingsReducer from './reducers/settingsReducer';
+import updatesReducer from './reducers/updatesReducer';
 
 const middlewares = [
   thunk,
@@ -28,6 +29,7 @@ const store = createStore(
     alerts: alertReducer,
     user: userReducer,
     settings: settingsReducer,
+    updates: updatesReducer,
   }),
   persistedState,
   applyMiddleware(...middlewares)

@@ -39,5 +39,8 @@
       "short": ["Jan","Feb","Maa","Apr","Mei","Jun","Jul","Aug","Sep","Okt","Nov","Dec"],
       "long": ["Januari","Februari","Maart","April","Mei","Juni","Juli","Augustus","September","Oktober","November","December"]
     }
+  },
+  "updates": {
+    "newVersionAvailable": "Er is een nieuwe versie beschikbaar! <1>Laad de site opnieuw</1>"
   }
 }
