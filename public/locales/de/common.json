@@ -1,0 +1,43 @@
+{
+  "scrobble": "Scrobble",
+  "getScrobbling": "Starte Scrobblen",
+  "artist": "Künstler",
+  "song": "Lied",
+  "title": "Titel",
+  "album": "Album",
+  "language": "Sprache",
+  "translateYourLanguage": "Wollen Sie Ihre Sprache ergänzen?",
+  "logIn": "Einloggen",
+  "logOut": "Ausloggen",
+  "now": "Jetzt",
+  "custom": "Eigene...",
+  "timestamp": "Zeitstempel",
+  "lastfmWillRejectOldTimestamps": "Last.fm wird Scroobles verwerfen, die älter als 2 Wochen sind.",
+  "noSongsScrobbled": "Noch keine Lieder gescrobblet!",
+  "songsWillAppearHere":  "Titel werden hier erscheinen, sobald Sie diese scrobblen.",
+  "clearHistory": "Verlauf löschen",
+  "scrobbleAgain": "Erneut scrobblen",
+  "swapArtistTitle": "Künstler und Lied vertauschen",
+  "viewProfile": "My Last.fm Profil",
+  "lockArtist": "Sperre Künstler-Feld",
+  "lockAlbum": "Sperre Album-Feld",
+  "pasteIntercepted": "Der eingefügte Text wurde automatisch geteilt!",
+  "considerDonating": "Bitte unterstützen Sie das Projekt bei Patreon!",
+  "moreComingSoon": "Mehr Optionen kommen bald!",
+  "footer": {
+    "joinCommunity": "Sie können gerne unserer Community beitreten <1>on Discord</1>!",
+    "supportThisProject": "Bitte <1>unterstützen Sie dieses Projekt</1> bei Patreon :)",
+    "specialThanks": "Besonderer Dank gilt all den Sponsoren, Übersetzern und <1>the Veröffentlichern</1>"
+  },
+  "settings": "Einstellungen",
+  "cancel": "Abbruch",
+  "dates": {
+    "format": {
+      "short": "MMM Do"
+    },
+    "months": {
+      "short": ["Jan","Feb","Mar","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"],
+      "long": ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"]
+    }
+  }
+}
