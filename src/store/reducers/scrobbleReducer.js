@@ -1,3 +1,5 @@
+import hasIn from 'lodash/hasIn';
+
 const initialState = {
   list: []
 };
@@ -51,7 +53,7 @@ const scrobbleReducer = (state=initialState, action) => {
       };
 
     case 'SCROBBLE_FULFILLED':
-      if (action.payload.data.scrobbles && action.payload.data.scrobbles.hasOwnProperty('@attr')) {
+      if (hasIn(action.payload, 'data.scrobbles[@attr]')) {
         status = action.payload.data.scrobbles['@attr'].ignored ? 'error' : 'success';
         errorDescription = status === 'error' ? 'errors.lastfmRejected' : null;
         return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
@@ -75,7 +77,7 @@ const scrobbleReducer = (state=initialState, action) => {
     case 'SCROBBLE_COVER_SEARCH_FULFILLED':
       let trackUUID = action.payload.config.params.ows_scrobbleUUID;
       let albumData;
-      if ((action.payload.data.track && action.payload.data.track.album) || action.payload.data.album) {
+      if (hasIn(action.payload, 'data.track.album') || hasIn(action.payload, 'data.album')) {
         albumData = action.payload.data.album || action.payload.data.track.album;
         if (albumData.image) {
           let cover = albumData.image[1]['#text'];

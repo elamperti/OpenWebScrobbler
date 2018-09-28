@@ -3,6 +3,7 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import ReactGA from 'react-ga';
+import get from 'lodash/get';
 
 import axios from 'axios';
 import qs from 'qs';
@@ -25,7 +26,7 @@ class App extends Component {
     this.props.getUserInfo();
 
     let axiosErrorHandler = (payload) => {
-      let errorNumber = payload.data && payload.data.error ? payload.data.error : payload.status;
+      let errorNumber = payload ? get(payload, 'data.error', payload.status) : -1;
       let newError = {
         type: 'danger',
         persistent: false,

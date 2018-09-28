@@ -2,6 +2,7 @@ import axios from 'axios';
 import createHistory from 'history/createBrowserHistory';
 import ReactGA from 'react-ga';
 import md5 from 'md5';
+import get from 'lodash/get';
 
 import { saveToLocalStorage } from 'localstorage';
 import { createAlert } from './alertActions';
@@ -15,7 +16,7 @@ export function authUserWithToken(dispatch) {
   return (token, onSuccessCallback=null) => {
     axios.post('/api/v2/callback.php', { token: token })
       .then(response => {
-        if (response.data.status && response.data.status === 'ok') {
+        if (get(response, 'data.status') === 'ok') {
           dispatch({
             type: 'USER_LOGGED_IN'
           });
