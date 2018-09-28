@@ -1,6 +1,6 @@
 {
   "name": "openscrobbler",
-  "version": "2.0.14",
+  "version": "2.1.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
@@ -9,6 +9,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.1",
     "@fortawesome/free-solid-svg-icons": "^5.1",
     "@fortawesome/react-fontawesome": "^0.1",
+    "@sentry/browser": "^4.0.5",
     "axios": "^0.18.0",
     "bootswatch": "^4.1.1",
     "concurrently": "^4.0.0",
@@ -22,7 +23,6 @@
     "module-to-cdn": "^3.1.2",
     "prop-types": "^15.6.2",
     "qs": "^6.5.2",
-    "raven-js": "^3.26.4",
     "react": "^16.4.1",
     "react-app-rewired": "^1.5.2",
     "react-day-picker": "^7.1.10",

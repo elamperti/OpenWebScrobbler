@@ -15,12 +15,12 @@ module.exports = function override(config, env) {
   config.plugins = [
     ...config.plugins,
     new DynamicCdnWebpackPlugin({
-      // verbose: true,
-      // resolver(moduleName, version) {
-      //   var url;
-      //   var subModuleName;
+      verbose: !!process.env.LIST_CDN_BUNDLES,
+      resolver(moduleName, version) {
+        var url;
+        var subModuleName;
 
-      //   switch (moduleName) {
+        switch (moduleName) {
       //     // case 'reactstrap':
       //     //   url = `https://cdnjs.cloudflare.com/ajax/libs/reactstrap/${version}/reactstrap.min.js`;
       //     //   return createDynamicCdnObject(moduleName, version, 'reactstrap', url);
@@ -38,9 +38,9 @@ module.exports = function override(config, env) {
       //       url = `https://unpkg.com/bootswatch@${version}/dist/slate/bootstrap.min.css`;
       //       return createDynamicCdnObject(moduleName, version, null, url);
 
-      //     case 'raven-js':
-      //       url = `https://cdn.ravenjs.com/${version}/raven.min.js`
-      //       return createDynamicCdnObject(moduleName, version, 'Raven', url);
+          case '@sentry/browser':
+            url = `https://browser.sentry-cdn.com/${version}/bundle.min.js`;
+            return createDynamicCdnObject(moduleName, version, 'Sentry', url);
 
       //     // Probably a bad idea:
       //     // case (moduleName.match(/^date-fns\//) || {}).input:
@@ -48,10 +48,10 @@ module.exports = function override(config, env) {
       //     //   url = `https://unpkg.com/date-fns@${version}/${subModuleName}/index.js`;
       //     //   return createDynamicCdnObject(moduleName, version, null, url);
 
-      //     default:
-      //       return moduleToCdn(moduleName, version);
-      //   }
-      // },
+          default:
+            return moduleToCdn(moduleName, version);
+        };
+      },
     }),
   ];
 

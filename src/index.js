@@ -13,11 +13,17 @@ import { Provider as ReduxProvider } from 'react-redux';
 import store from './store';
 
 import ReactGA from 'react-ga';
-// import Raven from 'raven-js';
+import * as Sentry from '@sentry/browser';
 
-// if (process.env.REACT_APP_SENTRY_DSN) {
-//   Raven.config(process.env.REACT_APP_SENTRY_DSN).install();
-// }
+if (process.env.REACT_APP_SENTRY_DSN) {
+  Sentry.init({
+    dsn: process.env.REACT_APP_SENTRY_DSN,
+    debug: process.env.NODE_ENV === 'development',
+    release: process.env.REACT_APP_VERSION,
+    environment: process.env.NODE_ENV,
+    sanitizeKeys: [/token/],
+  });
+}
 
 if (process.env.REACT_APP_ANALYTICS_CODE) {
   const appVersion = process.env.REACT_APP_VERSION;
