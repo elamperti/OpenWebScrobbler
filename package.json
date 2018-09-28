@@ -23,7 +23,7 @@
     "module-to-cdn": "^3.1.2",
     "prop-types": "^15.6.2",
     "qs": "^6.5.2",
-    "react": "^16.4.1",
+    "react": "^16.5.2",
     "react-app-rewired": "^1.5.2",
     "react-day-picker": "^7.1.10",
     "react-dom": "^16.4.1",
