@@ -25,7 +25,7 @@ class App extends Component {
     this.props.getUserInfo();
 
     let axiosErrorHandler = (payload) => {
-      let errorNumber = payload.data.error || payload.status;
+      let errorNumber = payload.data && payload.data.error ? payload.data.error : payload.status;
       let newError = {
         type: 'danger',
         persistent: false,
@@ -35,33 +35,33 @@ class App extends Component {
       };
       let showErrorNumber = false;
 
-        switch (errorNumber) {
-          case 4: // Authentication Failed
-            newError.type = 'danger';
-            newError.message = 'authFailed';
-            break;
-          case 9: // Invalid session key
-          case 17: // User must be logged in
-            newError.type = 'warning';
-            newError.message = 'loginAgain';
-            newError.persistent = true;
-            showErrorNumber = true;
-            // ToDo: log out and redirect home
-            break;
-          case 11: // Service offline
-          case 16: // Service temporarily unavailable
-            newError.title = 'serviceUnavailable';
-            newError.message = 'lastfmUnavailable';
-            showErrorNumber = true;
-            break;
-          case 13: // Invalid method signature supplied
-          case 26: // API key suspended
-          case 29: // Rate limit exceeded
-          default:
-            newError.title = 'unexpectedError';
-            newError.rawMessage = payload.data ? payload.data.message : null;
-            showErrorNumber = true;
-        }
+      switch (errorNumber) {
+        case 4: // Authentication Failed
+          newError.type = 'danger';
+          newError.message = 'authFailed';
+          break;
+        case 9: // Invalid session key
+        case 17: // User must be logged in
+          newError.type = 'warning';
+          newError.message = 'loginAgain';
+          newError.persistent = true;
+          showErrorNumber = true;
+          // ToDo: log out and redirect home
+          break;
+        case 11: // Service offline
+        case 16: // Service temporarily unavailable
+          newError.title = 'serviceUnavailable';
+          newError.message = 'lastfmUnavailable';
+          showErrorNumber = true;
+          break;
+        case 13: // Invalid method signature supplied
+        case 26: // API key suspended
+        case 29: // Rate limit exceeded
+        default:
+          newError.title = 'unexpectedError';
+          newError.rawMessage = payload.data ? payload.data.message : null;
+          showErrorNumber = true;
+      }
 
       this.props.createAlert({
         ...newError,
