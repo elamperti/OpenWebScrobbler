@@ -43,5 +43,10 @@
   },
   "updates": {
     "newVersionAvailable": "Hi ha una nova versió disponible. Torna a <1>carregar la pàgina</1>"
+  },
+  "errors": {
+    "lastfmRejected": "Last.fm rejected this scrobble",
+    "unexpectedResponse": "Unexpected response",
+    "apiCallFailed": "Call to API failed"
   }
 }

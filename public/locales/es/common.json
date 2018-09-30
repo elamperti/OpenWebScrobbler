@@ -43,5 +43,10 @@
   },
   "updates": {
     "newVersionAvailable": "Hay una nueva versión disponible! Por favor <1>recarga la página</1>"
+  },
+  "errors": {
+    "lastfmRejected": "Last.fm rechazó este scrobble",
+    "unexpectedResponse": "Respuesta inesperada",
+    "apiCallFailed": "Fallo en la llamada a la API"
   }
 }
