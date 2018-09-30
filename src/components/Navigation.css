@@ -1,3 +1,9 @@
+@media (max-width: 576px) {
+  .navbar {
+    padding-left: 0 !important;
+  }
+}
+
 .navbar .svg-inline--fa {
   margin-right: 0.5em;
 }

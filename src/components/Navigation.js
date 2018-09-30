@@ -207,12 +207,12 @@ class Navigation extends Component {
 
     return (
       <div>
-        <Navbar color="dark" dark expand="md" className={this.props.settings.isDonor ? 'donor' : ''}>
+        <Navbar color="dark" dark expand="md" className={`${this.props.settings.isDonor ? 'donor' : ''}`}>
           <NavbarBrand tag={Link} to="/" className="flex-grow-1 flex-md-grow-0">
             <FontAwesomeIcon icon={faHeadphonesAlt} className="d-none d-sm-inline" />
             Open Scrobbler
           </NavbarBrand>
-          <ul className="m-auto">
+          <ul className="m-auto pl-0">
             {getLanguageSelector('d-md-none text-right')}
           </ul>
           <NavbarToggler title="Menu" onClick={this.toggle} />
