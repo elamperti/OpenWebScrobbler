@@ -69,10 +69,13 @@ const scrobbleReducer = (state=initialState, action) => {
       }
 
     case 'SCROBBLE_REJECTED':
-      return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
-        status: 'error',
-        errorDescription: 'errors.apiCallFailed',
-      });
+      if (hasIn(action.payload, 'config.headers.scrobbleUUID')) {
+        return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
+          status: 'error',
+          errorDescription: 'errors.apiCallFailed',
+        });
+      }
+      return state;
 
     case 'SCROBBLE_COVER_SEARCH_FULFILLED':
       let trackUUID = action.payload.config.params.ows_scrobbleUUID;
