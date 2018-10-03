@@ -155,10 +155,8 @@ class TimePicker extends React.Component {
     let isAM = null;
 
     if (props.use12Hours) {
-      isAM = (hours > 0 && hours < 13);
-      if (!isAM) {
-        hours = hours === 0 ? 12 : hours % 12;
-      }
+      isAM = hours < 12;
+      hours = (hours % 12) || 12;
     }
 
     return {
@@ -184,13 +182,19 @@ class TimePicker extends React.Component {
       } else {
         state[fieldname] = value;
       }
-      this.setState(state, () => {
-        if (this.props.use12Hours && !this.state.isAM) {
-          newTimestamp.setHours(parseInt((this.state.hours) + 12) % 24);
-        } else {
-          newTimestamp.setHours(parseInt(this.state.hours));
-        }
 
+      this.setState(state, () => {
+        let newHours = parseInt(this.state.hours);
+
+        if (this.props.use12Hours) {
+          if (newHours === 12) {
+            newHours = 0;
+          }
+          if (!this.state.isAM) {
+            newHours = newHours + 12;
+          }
+        }
+        newTimestamp.setHours(newHours);
         newTimestamp.setMinutes(parseInt(this.state.minutes));
 
         this.props.onChange(newTimestamp);
@@ -277,6 +281,7 @@ TimePicker.defaultProps = {
 
 TimePicker.propTypes = {
   icon: PropTypes.element,
+  onChange: PropTypes.func.isRequired,
   value: PropTypes.instanceOf(Date).isRequired,
   use12Hours: PropTypes.bool
 }
