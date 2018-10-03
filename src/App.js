@@ -60,7 +60,7 @@ class App extends Component {
         case 29: // Rate limit exceeded
         default:
           newError.title = 'unexpectedError';
-          newError.rawMessage = payload.data ? payload.data.message : null;
+          newError.rawMessage = get(payload, 'data.message', null);
           showErrorNumber = true;
       }
 
