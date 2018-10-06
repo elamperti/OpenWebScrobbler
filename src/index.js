@@ -27,10 +27,13 @@ if (process.env.REACT_APP_SENTRY_DSN) {
 
 if (process.env.REACT_APP_ANALYTICS_CODE) {
   const appVersion = process.env.REACT_APP_VERSION;
-  const userId = localStorage.getItem('hashedUID');
-  let clientId = localStorage.getItem('GA_LOCAL_STORAGE_KEY');
+  let userId;
+  let clientId;
 
-  if (!clientId) {
+  try {
+    userId = localStorage.getItem('hashedUID');
+    clientId = localStorage.getItem('GA_LOCAL_STORAGE_KEY');
+  } catch (err) {
     let cookieID = document.cookie.match(/PHPSESSID=([^;]*)/);
     if (cookieID) {
       clientId = cookieID[1];
