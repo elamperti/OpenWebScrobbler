@@ -26,7 +26,7 @@
     "react": "^16.5.2",
     "react-app-rewired": "^1.5.2",
     "react-day-picker": "^7.1.10",
-    "react-dom": "^16.4.1",
+    "react-dom": "^16.5.2",
     "react-ga": "^2.5.3",
     "react-i18next": "^7.7.0",
     "react-redux": "^5.0.7",
