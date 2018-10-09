@@ -147,7 +147,7 @@ class Home extends Component {
                   <Col xs="9" sm="9">
                     <h4>{t('discord.title')}</h4>
                     <p>{t('discord.copy')}</p>
-                    <Button outline type="secondary" size="sm" href="https://discord.gg/SEDp6Zy" className="float-right col-12 col-md-8 col-lg-6 col-xl-4">
+                    <Button outline type="secondary" size="sm" href="https://discord.gg/SEDp6Zy" className="float-right col-12 col-lg-6">
                       {t('discord.CTA')}
                     </Button>
                   </Col>
@@ -163,7 +163,7 @@ class Home extends Component {
                   <Col xs="9" sm="9">
                     <h4>{t('support.title')}</h4>
                     <p>{t('support.copy')}</p>
-                    <Button outline type="secondary" size="sm" href="https://www.patreon.com/OpenScrobbler" className="float-right col-12 col-md-8 col-lg-6 col-xl-4">
+                    <Button outline type="secondary" size="sm" href="https://www.patreon.com/OpenScrobbler" className="float-right col-12 col-lg-6">
                       {t('support.CTA')}
                     </Button>
                   </Col>
