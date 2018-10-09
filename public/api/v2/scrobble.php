@@ -20,6 +20,8 @@
 
   if (isset($_SESSION['key'])) {
     if (isset($_POST['artist']) && isset($_POST['track'])) {
+      require_once('inc/analytics.php');
+      $ga = new Analytics();
 
       $track_info = array(
         'artist'  => array_map('trim', $_POST['artist']),
@@ -33,6 +35,9 @@
 
       if (isset($_POST['albumArtist'])) {
         $track_info['albumArtist'] = array_map('trim', $_POST['albumArtist']);
+        $ga->event('Song form', 'Used albumArtist', 1);
+      } else if (isset($_POST['album'])) {
+        $ga->event('Song form', 'Used album', 1);
       }
 
 
@@ -44,8 +49,6 @@
       ob_end_flush();
 
       // Track event
-      require_once('inc/analytics.php');
-      $ga = new Analytics();
       $ga->event('Scrobbles', 'Manual', sizeof($_POST['track']));
 
       die();
