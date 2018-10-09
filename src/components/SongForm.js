@@ -211,7 +211,7 @@ class SongForm extends React.Component {
     this.props.dismissAlert({
       category: 'paste',
     });
-  };
+  }
 
   scrobbleSong() {
     let newState = {
@@ -235,7 +235,7 @@ class SongForm extends React.Component {
     if (this.state.albumLocked) {
       delete newState.album;
       delete newState.albumArtist;
-    };
+    }
 
     if (this.state.useCustomDate) {
       newState.timestamp = addMinutes(this.state.timestamp, 3);

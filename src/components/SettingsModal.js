@@ -48,7 +48,7 @@ class SettingsModal extends React.Component {
     return {
       name,
       checked: this.state.settings[name],
-      onChange: (event) => {
+      onChange: (/*event*/) => {
         this.setState({
           settings: {
             ...this.state.settings,

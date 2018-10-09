@@ -11,13 +11,17 @@
     "@fortawesome/react-fontawesome": "^0.1",
     "@sentry/browser": "^4.0.5",
     "axios": "^0.18.0",
+    "babel-eslint": "^10.0.1",
     "bootswatch": "^4.1.1",
     "concurrently": "^4.0.0",
     "date-fns": "^1.29.0",
     "dynamic-cdn-webpack-plugin": "^4.0.0-rc.1",
+    "eslint-plugin-react": "^7.11.1",
+    "husky": "^1.1.1",
     "i18next": "^11.3.3",
     "i18next-browser-languagedetector": "^2.2.0",
     "i18next-xhr-backend": "^1.5.1",
+    "lint-staged": "^7.3.0",
     "lodash": "^4.17.10",
     "md5": "^2.2.1",
     "module-to-cdn": "^3.1.2",
@@ -43,9 +47,23 @@
   "scripts": {
     "start": "concurrently -r --kill-others 'react-app-rewired start' 'docker-compose up'",
     "build": "REACT_APP_VERSION=$npm_package_version react-app-rewired build",
+    "lint": "node_modules/.bin/eslint -c .eslintrc src/**/*.js",
     "test": "react-scripts test --env=jsdom",
     "patch": "yarn version --no-git-tag-version --patch",
     "eject": "react-app-rewired eject"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "concurrent": false,
+    "linters": {
+      "src/**/*.{js,jsx}": [
+        "node_modules/.bin/eslint"
+      ]
+    }
   },
   "browserslist": {
     "development": [
