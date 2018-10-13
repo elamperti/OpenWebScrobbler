@@ -5,7 +5,7 @@
   "song": "Cançó",
   "title": "Peça",
   "album": "Àlbum",
-  "albumArtist": "Artista de l'àlbum",
+  "albumArtist": "Artista de l’àlbum",
   "language": "Llengua",
   "translateYourLanguage": "Voleu afegir-hi la vostra llengua?",
   "logIn": "Inicia la sessió",
@@ -16,7 +16,7 @@
   "lastfmWillRejectOldTimestamps": "El Last.fm rebutjarà els enviaments anteriors a dues setmanes.",
   "noSongsScrobbled": "Encara no heu enviat cap cançó",
   "songsWillAppearHere": "Les peces apareixeran aquí quan les hàgiu registrat.",
-  "clearHistory": "Clear history",
+  "clearHistory": "Buida l’historial",
   "scrobbleAgain": "Envia-la novament",
   "swapArtistTitle": "Intercanvia l’artista i la peça",
   "viewProfile": "Mostra el meu perfil del Last.fm",
@@ -42,11 +42,11 @@
     }
   },
   "updates": {
-    "newVersionAvailable": "Hi ha una nova versió disponible. Torna a <1>carregar la pàgina</1>"
+    "newVersionAvailable": "Hi ha una versió nova disponible. Torneu a <1>carregar la pàgina</1>"
   },
   "errors": {
-    "lastfmRejected": "Last.fm rejected this scrobble",
-    "unexpectedResponse": "Unexpected response",
-    "apiCallFailed": "Call to API failed"
+    "lastfmRejected": "El Last.fm ha rebutjat aquest enviament",
+    "unexpectedResponse": "Resposta inesperada",
+    "apiCallFailed": "La trucada a l’API ha fallat"
   }
 }
