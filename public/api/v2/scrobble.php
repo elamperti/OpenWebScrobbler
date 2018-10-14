@@ -35,11 +35,14 @@
 
       if (isset($_POST['albumArtist'])) {
         $track_info['albumArtist'] = array_map('trim', $_POST['albumArtist']);
-        $ga->event('Song form', 'Used albumArtist', 1);
-      } else if (isset($_POST['album'])) {
-        $ga->event('Song form', 'Used album', 1);
       }
 
+      // ToDo: remove this experiment
+      if (isset($track_info['albumArtist']) && strlen($track_info['albumArtist'][0]) > 0) {
+          $ga->event('Song form', 'Used albumArtist', 1);
+      } else if (isset($_POST['album']) && strlen($track_info['album'][0]) > 0) {
+        $ga->event('Song form', 'Used album', 1);
+      }
 
       // All ready, call the API
       $response = $api->call('track.scrobble', $track_info, true);
