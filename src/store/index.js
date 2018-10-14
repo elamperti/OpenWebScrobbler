@@ -42,7 +42,12 @@ store.subscribe(throttle(() => {
       ...state.scrobbles,
       list: state.scrobbles.list.slice(-50),
     },
-    user: state.user,
+    user: {
+      isLoggedIn: state.user.isLoggedIn,
+      name: state.user.name,
+      url: state.user.url,
+      avatarURL: state.user.avatarURL,
+    },
     settings: state.settings,
   });
 }, 2000));

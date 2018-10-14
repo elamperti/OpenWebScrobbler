@@ -34,6 +34,7 @@
   /* background: linear-gradient(#32383e 10%, #262A2F); */
   border: 1px solid rgba(0,0,0,0.3);
   box-shadow: 0px 2px 8px rgba(0,0,0,0.2);
+  margin-left: 0.5rem;
 }
 
 .scrobbled-item.card.status-error {
@@ -44,6 +45,18 @@
 .scrobbled-item .albumArt.fa-compact {
   color: var(--gray);
   /* opacity: 0.8; */
+}
+
+.scrobbled-item.compact {
+  border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+
+.ScrobbleList.compact:last-child {
+  border-bottom: none !important;
+}
+
+.scrobbled-item.compact .song {
+  color: white;
 }
 
 .scrobbled-item .error {

@@ -1,39 +1,172 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
+import { translate, Trans } from 'react-i18next';
+import get from 'lodash/get';
+import hasIn from 'lodash/hasIn';
 
-import { clearListOfScrobbles } from 'store/actions/scrobbleActions';
+import {
+  Badge,
+  Button,
+  Jumbotron,
+  Nav,
+  NavItem,
+  NavLink,
+  TabContent,
+  TabPane,
+} from 'reactstrap';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faBroom,
+  faHistory,
+  faQuestion,
+  faUserAstronaut,
+} from '@fortawesome/free-solid-svg-icons';
+
+import { clearListOfScrobbles, useScrobbleCounter } from 'store/actions/scrobbleActions';
+import { fetchLastfmProfileHistory } from 'store/actions/userActions';
 
 import ScrobbleList from 'components/ScrobbleList';
 import SongForm from 'components/SongForm';
 
+const CONSIDER_STALE_AFTER = 5 * 60 * 1000; // 5 minutes
+
 class ScrobbleSong extends Component {
+  constructor(props) {
+    super(props);
+
+    this.goToHistoryTab = this.goToHistoryTab.bind(this);
+    this.goToProfileTab = this.goToProfileTab.bind(this);
+    this.state = {
+      activeTab: 'history',
+      lastHistoryFetch: null,
+    };
+  }
+
+  goToHistoryTab() {
+    if (this.state.activeTab !== 'history') {
+      this.props.useScrobbleCounter(false);
+    }
+    this.setState({
+      activeTab: 'history',
+    });
+  }
+
+  goToProfileTab() {
+    if (!this.props.user.profileScrobblesLoading) {
+      let listIsProbablyStale = this.state.lastHistoryFetch ? this.state.lastHistoryFetch < new Date(new Date() - CONSIDER_STALE_AFTER) : true;
+      if (this.state.activeTab === 'userProfile' || !hasIn(this.props.user, `profileScrobbles[${this.props.user.name}]`) || listIsProbablyStale) {
+        this.props.fetchLastfmProfileHistory(this.props.user.name);
+        this.setState({
+          lastHistoryFetch: new Date(),
+        });
+      }
+    }
+    if (this.state.activeTab !== 'userProfile') {
+      this.props.useScrobbleCounter(true);
+      this.setState({
+        activeTab: 'userProfile',
+      });
+    }
+  }
+
   render() {
+    let clearListButton;
+
+    if (this.state.activeTab === 'history') {
+      if (this.props.localScrobbles.length > 0) {
+        clearListButton = (
+          <div className="ml-auto d-flex my-auto">
+            <Button className="btn-clear" size="sm" color="secondary" onClick={this.props.clearUserList}>
+              <FontAwesomeIcon icon={faBroom} className="mr-1" />
+                <Trans i18nKey="clearHistory">Clear history</Trans>
+            </Button>
+          </div>
+        );
+      }
+    }
+
     return (
       <div className="row flex-lg-grow-1">
         <div className="col-md-6 mb-4">
           <SongForm />
         </div>
         <div className="col-md-6 ScrobbleList-container">
-          <ScrobbleList
-            scrobbles={this.props.userScrobbles}
-            clearList={this.props.clearUserList}
-          />
+          <Nav tabs>
+            <NavItem>
+              <NavLink className={this.state.activeTab === 'history' ? 'active' : '' } onClick={this.goToHistoryTab}>
+                <FontAwesomeIcon icon={faHistory}/>
+                <span className="pl-1 px-2">
+                  <Trans i18nKey="history">History</Trans>
+                </span>
+                { this.props.unreadScrobbles > 0 ? <Badge color="secondary">{this.props.unreadScrobbles}</Badge> : null }
+              </NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink className={this.state.activeTab === 'userProfile' ? 'active' : '' } onClick={this.goToProfileTab}>
+                <FontAwesomeIcon icon={faUserAstronaut}/>
+                <span className="pl-2">
+                  <Trans i18nKey="yourProfile">Your profile</Trans>
+                </span>
+              </NavLink>
+            </NavItem>
+            { clearListButton }
+          </Nav>
+          <TabContent className="mt-2" activeTab={this.state.activeTab}>
+            <TabPane tabId="history">
+              <ScrobbleList scrobbles={this.props.localScrobbles}>
+                <Jumbotron className="text-center">
+                  <div className="d-flex align-items-start justify-content-center mb-2">
+                    <FontAwesomeIcon icon={faUserAstronaut} color="var(--gray-dark)" size="6x" />
+                    <FontAwesomeIcon icon={faQuestion} color="var(--gray-dark)" size="2x" transform="shrink-4" />
+                  </div>
+                  <strong><Trans i18nKey="noSongsScrobbled">No songs scrobbled yet!</Trans></strong><br />
+                  <Trans i18nKey="songsWillAppearHere">Tracks will appear here once you scrobble them.</Trans>
+                </Jumbotron>
+              </ScrobbleList>
+            </TabPane>
+            <TabPane tabId="userProfile">
+              <ScrobbleList
+                compact
+                scrobbles={get(this.props.user, `profileScrobbles[${this.props.user.name}]`, [])}
+                loading={!!this.props.user.profileScrobblesLoading}
+              >
+                No scrobbles yet.
+              </ScrobbleList>
+            </TabPane>
+          </TabContent>
         </div>
       </div>
     );
   }
 }
 
+ScrobbleSong.propTypes = {
+  fetchLastfmProfileHistory: PropTypes.func,
+  clearUserList: PropTypes.func,
+  useScrobbleCounter: PropTypes.func,
+  localScrobbles: PropTypes.array,
+  unreadScrobbles: PropTypes.number,
+  user: PropTypes.object,
+};
+
 const mapStateToProps = (state) => {
   return {
-    userScrobbles: state.scrobbles.list,
+    localScrobbles: state.scrobbles.list,
+    unreadScrobbles: state.scrobbles.unreadCount,
+    user: state.user,
   }
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    fetchLastfmProfileHistory: fetchLastfmProfileHistory(dispatch),
     clearUserList: clearListOfScrobbles(dispatch),
+    useScrobbleCounter: useScrobbleCounter(dispatch),
   };
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(ScrobbleSong);
+export default connect(mapStateToProps, mapDispatchToProps)(
+  translate(['common'])(ScrobbleSong)
+);

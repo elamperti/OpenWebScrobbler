@@ -37,6 +37,10 @@ body.with-shadow {
   cursor: pointer;
 }
 
+.btn-clear {
+  height: 1.8rem;
+}
+
 /* Use a prettier red for the danger button hover */
 .btn-danger:not([disabled]):not(.disabled):hover,
 .btn-danger:not([disabled]):not(.disabled):focus,
@@ -104,9 +108,33 @@ body.with-shadow {
   margin-bottom: 1.5em;
 }
 
+.ScrobbleList-container .nav-tabs {
+  border-color: rgba(11, 14, 17, 0.55);
+}
+
+.ScrobbleList-container .nav-tabs .nav-item {
+  margin-right: 2px;
+}
+
+.ScrobbleList-container .nav-tabs .nav-link.active,
+.ScrobbleList-container .nav-tabs .nav-item.show .nav-link {
+  background-color: #181b1f;
+  border-color: rgba(11, 14, 17, 0.55);
+}
+
+.ScrobbleList-container .nav-tabs .nav-link:hover,
+.ScrobbleList-container .nav-tabs .nav-link:focus {
+  color: white;
+  border-color: rgba(11, 14, 17, 0.55);
+}
+
 @media (min-width: 768px) {
   .ScrobbleList-container {
-    max-height: 80vh;
+    margin-top: -1rem;
+  }
+  .ScrobbleList-container .tab-pane {
+    padding-right: 0.5rem;
+    max-height: 70vh;
     overflow-y: auto;
   }
 }

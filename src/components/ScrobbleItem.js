@@ -75,7 +75,8 @@ class ScrobbleItem extends Component {
   render() {
     const t = this.props.t; // Translations
     const scrobble = this.props.scrobble;
-    let albumInfo, albumArt, statusIcon, errorMessage;
+    let scrobbleItemClasses;
+    let songInfo, albumInfo, albumArt, statusIcon, errorMessage;
     let theTimestamp, timestampFormat='';
 
     if (scrobble.album) {
@@ -89,9 +90,13 @@ class ScrobbleItem extends Component {
     }
 
     if (!scrobble.cover) {
-      albumArt = (
-        <FontAwesomeIcon size="3x" icon={faCompactDisc} />
-      );
+      if (this.props.compact) {
+        albumArt = null;
+      } else {
+        albumArt = (
+          <FontAwesomeIcon size="3x" icon={faCompactDisc} />
+        );
+      }
     } else {
       albumArt = (
         <img
@@ -115,10 +120,11 @@ class ScrobbleItem extends Component {
       case 'pending':
         statusIcon = (<FontAwesomeIcon size="xs" spin icon={faCompactDisc} />);
         break;
-      default:
       case 'queued':
         statusIcon = (<FontAwesomeIcon size="xs" icon={faInbox} />);
         break;
+      default:
+        statusIcon = null;
     }
 
     if (scrobble.status === 'error' && scrobble.errorDescription) {
@@ -135,26 +141,48 @@ class ScrobbleItem extends Component {
     timestampFormat += this.props.settings.use12Hours ? 'h:mm A' : 'H:mm';
     theTimestamp = format(scrobble.timestamp, timestampFormat);
 
-    return (
-      <div className={`scrobbled-item card mb-2 status-${scrobble.status}`}>
-        <div className="d-flex flex-row p-2">
-          <div className="albumArt align-self-center pr-2">
-            {albumArt}
-          </div>
-          <div className="flex-grow-1 truncate">
-            <span className="song">
+    if (this.props.compact) {
+      // COMPACT view
+      songInfo = (
+        <div className="flex-grow-1 truncate">
+          <div className="d-flex align-items-center">
+            <span className="song flex-grow-1 pr-2 truncate">
               {this.properCase(scrobble.artist)} - {this.properCase(scrobble.title, true)}
             </span>
-            <div className="d-flex">
-              <small className="text-muted flex-grow-1 truncate album">
-                {albumInfo}
-              </small>
-              <small className="text-right timestamp">
-                {theTimestamp}&nbsp;
-                <FontAwesomeIcon icon={faClock} />
-              </small>
-            </div>
+            <small className="text-right timestamp">
+              <FontAwesomeIcon icon={faClock} />&nbsp;
+              {theTimestamp}
+            </small>
           </div>
+        </div>
+      );
+    } else {
+      // FULL view
+      songInfo = (
+        <div className="flex-grow-1 truncate">
+          <span className="song">
+            {this.properCase(scrobble.artist)} - {this.properCase(scrobble.title, true)}
+          </span>
+          <div className="d-flex">
+            <small className="text-muted flex-grow-1 truncate album">
+              {albumInfo}
+            </small>
+            <small className="text-right timestamp">
+              {theTimestamp}&nbsp;
+              <FontAwesomeIcon icon={faClock} />
+            </small>
+          </div>
+        </div>
+      );
+    }
+
+    scrobbleItemClasses = `scrobbled-item status-${scrobble.status} ` + (this.props.compact ? 'compact' : 'card mb-2');
+
+    return (
+      <div className={scrobbleItemClasses}>
+        <div className="d-flex flex-row p-2">
+          { albumArt ? <div className="albumArt align-self-center pr-2">{albumArt}</div> : null }
+          { songInfo }
 
           <div className="ml-auto pl-2">
           <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleMoreMenu}>
@@ -184,7 +212,12 @@ class ScrobbleItem extends Component {
 }
 
 ScrobbleItem.propTypes = {
+  compact: PropTypes.bool,
   scrobble: PropTypes.object.isRequired,
+}
+
+ScrobbleItem.defaultProps = {
+  compact: false,
 }
 
 const mapStateToProps = (state) => {

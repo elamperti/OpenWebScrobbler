@@ -1,6 +1,8 @@
 import hasIn from 'lodash/hasIn';
 
 const initialState = {
+  countNewScrobbles: false,
+  unreadCount: 0,
   list: []
 };
 
@@ -23,11 +25,12 @@ function updateScrobbleProps(state, scrobbleUUID, newProps) {
 
 const scrobbleReducer = (state=initialState, action) => {
   let status, errorDescription;
+  let newScrobbles = [];
+  let trackUUID;
+  let albumData;
 
   switch (action.type) {
     case 'ENQUEUE_NEW':
-      let newScrobbles = [];
-
       for (let scrobble of action.payload.scrobbles) {
         newScrobbles.push({
           ...scrobble,
@@ -37,10 +40,25 @@ const scrobbleReducer = (state=initialState, action) => {
       }
 
       return {
+        ...state,
+        unreadCount: (state.unreadCount || 0) + newScrobbles.length,
         list: [
           ...state.list,
           ...newScrobbles,
         ]
+      };
+
+    case 'COUNT_SCROBBLES_ENABLE':
+      return {
+        ...state,
+        countNewScrobbles: true
+      };
+
+    case 'COUNT_SCROBBLES_DISABLE':
+      return {
+        ...state,
+        unreadCount: 0,
+        countNewScrobbles: false
       };
 
     case 'USER_LOGGED_OUT':
@@ -49,6 +67,7 @@ const scrobbleReducer = (state=initialState, action) => {
     case 'CLEAR_SCROBBLES_LIST':
       return {
         ...state,
+        unreadCount: 0,
         list: [],
       };
 
@@ -61,6 +80,7 @@ const scrobbleReducer = (state=initialState, action) => {
           errorDescription,
         });
       } else {
+        /* eslint-disable no-console */
         console.error('Unexpected scrobble response', action.payload.data);
         return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           status: 'error',
@@ -78,8 +98,7 @@ const scrobbleReducer = (state=initialState, action) => {
       return state;
 
     case 'SCROBBLE_COVER_SEARCH_FULFILLED':
-      let trackUUID = action.payload.config.params.ows_scrobbleUUID;
-      let albumData;
+      trackUUID = action.payload.config.params.ows_scrobbleUUID;
       if (hasIn(action.payload, 'data.track.album') || hasIn(action.payload, 'data.album')) {
         albumData = action.payload.data.album || action.payload.data.track.album;
         if (albumData.image) {

@@ -32,6 +32,7 @@ export function authUserWithToken(dispatch) {
           title: 'loginError.title',
           message: 'loginError.message'
         });
+        /* eslint-disable no-console */
         console.error('Error logging in', response);
       })
   }
@@ -59,7 +60,7 @@ export function getUserInfo(dispatch) {
   }
 }
 
-export function logIn(dispatch) {
+export function logIn(/*dispatch*/) {
   return () => {
     ReactGA.outboundLink({
       label: 'Login intent',
@@ -96,3 +97,18 @@ export function logOut(dispatch) {
   };
 }
 
+export function fetchLastfmProfileHistory(dispatch) {
+  return (username) => {
+    dispatch({
+      type: "FETCH_LASTFM_USER_HISTORY",
+      payload: axios.get('https://ws.audioscrobbler.com/2.0/', {
+        params: {
+          method: 'user.getRecentTracks',
+          user: username,
+          api_key: process.env.REACT_APP_LASTFM_API_KEY,
+          format: 'json'
+        },
+      })
+    });
+  };
+}

@@ -31,7 +31,7 @@ export function enqueueScrobble(dispatch) {
         // ToDo: possible race condition (response arrives before scrobble is added to store)
         dispatch({
           type: "SCROBBLE_COVER_SEARCH",
-          payload: axios.get(`https://ws.audioscrobbler.com/2.0/`, {
+          payload: axios.get('https://ws.audioscrobbler.com/2.0/', {
             params: {
               method: coverSearchEndpoint,
               api_key: process.env.REACT_APP_LASTFM_API_KEY,
@@ -67,7 +67,7 @@ export function enqueueScrobble(dispatch) {
       track.push(scrobble.title);
       album.push(scrobble.album);
       albumArtist.push(scrobble.albumArtist);
-    };
+    }
 
     // Dispatch axios promise
     dispatch({
@@ -98,3 +98,12 @@ export function clearListOfScrobbles(dispatch) {
     });
   };
 }
+
+export function useScrobbleCounter(dispatch) {
+  return (newValue) => {
+    dispatch({
+      type: newValue ? 'COUNT_SCROBBLES_ENABLE' : 'COUNT_SCROBBLES_DISABLE'
+    });
+  };
+}
+
