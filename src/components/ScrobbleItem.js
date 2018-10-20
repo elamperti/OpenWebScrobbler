@@ -37,11 +37,21 @@ class ScrobbleItem extends Component {
   constructor(props) {
     super(props);
 
-    this.toggleMoreMenu = this.toggleMoreMenu.bind(this);
+    this.cloneScrobble = this.cloneScrobble.bind(this);
     this.scrobbleAgain = this.scrobbleAgain.bind(this);
+    this.toggleMoreMenu = this.toggleMoreMenu.bind(this);
+
     this.state = {
       dropdownOpen: false
     };
+  }
+
+  cloneScrobble() {
+    ReactGA.event({
+      category: 'Interactions',
+      action: 'Clone track'
+    });
+    this.props.cloneScrobbleTo(this.props.scrobble);
   }
 
   toggleMoreMenu() {
@@ -78,6 +88,7 @@ class ScrobbleItem extends Component {
     let scrobbleItemClasses;
     let songInfo, albumInfo, albumArt, statusIcon, errorMessage;
     let theTimestamp, timestampFormat='';
+    let cloneOption;
 
     if (scrobble.album) {
       albumInfo = (
@@ -133,6 +144,13 @@ class ScrobbleItem extends Component {
           {t(scrobble.errorDescription)}
         </div>
       );
+    }
+
+    if (this.props.cloneScrobbleTo) {
+      cloneOption = [
+        <DropdownItem key="cloneDivider" divider />,
+        <DropdownItem key="clone" onClick={this.cloneScrobble}>{t('copyToEditor')}</DropdownItem>,
+      ];
     }
 
     if (!isToday(scrobble.timestamp)) {
@@ -195,9 +213,8 @@ class ScrobbleItem extends Component {
               </Button>
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem onClick={this.scrobbleAgain}>
-                {t('scrobbleAgain')}
-              </DropdownItem>
+              <DropdownItem onClick={this.scrobbleAgain}>{t('scrobbleAgain')}</DropdownItem>
+              { cloneOption }
             </DropdownMenu>
           </Dropdown>
           <span className="status-icon">
@@ -214,6 +231,7 @@ class ScrobbleItem extends Component {
 ScrobbleItem.propTypes = {
   compact: PropTypes.bool,
   scrobble: PropTypes.object.isRequired,
+  cloneScrobbleTo: PropTypes.func,
 }
 
 ScrobbleItem.defaultProps = {

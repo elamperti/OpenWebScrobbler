@@ -28,6 +28,7 @@ class ScrobbleList extends React.Component {
       let ScrobbleListContent = this.props.scrobbles.map((scrobble, index) => {
         return <ScrobbleItem
           scrobble={scrobble}
+          cloneScrobbleTo={this.props.cloneScrobblesTo}
           compact={this.props.compact}
           key={index}
         />;
@@ -50,6 +51,7 @@ ScrobbleList.propTypes = {
   children: PropTypes.node.isRequired,
   loading: PropTypes.bool,
   scrobbles: PropTypes.array,
+  cloneScrobblesTo: PropTypes.func,
 };
 
 ScrobbleList.defaultProps = {

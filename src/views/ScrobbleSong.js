@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { translate, Trans } from 'react-i18next';
+import ReactGA from 'react-ga';
 import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';
 
@@ -38,6 +39,8 @@ class ScrobbleSong extends Component {
 
     this.goToHistoryTab = this.goToHistoryTab.bind(this);
     this.goToProfileTab = this.goToProfileTab.bind(this);
+    this.setCloneReceiver = this.setCloneReceiver.bind(this);
+
     this.state = {
       activeTab: 'history',
       lastHistoryFetch: null,
@@ -47,10 +50,14 @@ class ScrobbleSong extends Component {
   goToHistoryTab() {
     if (this.state.activeTab !== 'history') {
       this.props.useScrobbleCounter(false);
+      this.setState({
+        activeTab: 'history',
+      });
+      ReactGA.event({
+        category: 'Tabs',
+        action: 'History'
+      });
     }
-    this.setState({
-      activeTab: 'history',
-    });
   }
 
   goToProfileTab() {
@@ -61,6 +68,10 @@ class ScrobbleSong extends Component {
         this.setState({
           lastHistoryFetch: new Date(),
         });
+        ReactGA.event({
+          category: 'Interactions',
+          action: 'Reload profile history'
+        });
       }
     }
     if (this.state.activeTab !== 'userProfile') {
@@ -68,7 +79,17 @@ class ScrobbleSong extends Component {
       this.setState({
         activeTab: 'userProfile',
       });
+      ReactGA.event({
+        category: 'Tabs',
+        action: 'My profile'
+      });
     }
+  }
+
+  setCloneReceiver(func) {
+    this.setState({
+      cloneReceiver: func
+    });
   }
 
   render() {
@@ -90,7 +111,7 @@ class ScrobbleSong extends Component {
     return (
       <div className="row flex-lg-grow-1">
         <div className="col-md-6 mb-4">
-          <SongForm />
+          <SongForm exportCloneReceiver={this.setCloneReceiver} />
         </div>
         <div className="col-md-6 ScrobbleList-container">
           <Nav tabs>
@@ -115,7 +136,10 @@ class ScrobbleSong extends Component {
           </Nav>
           <TabContent className="mt-2" activeTab={this.state.activeTab}>
             <TabPane tabId="history">
-              <ScrobbleList scrobbles={this.props.localScrobbles}>
+              <ScrobbleList
+                scrobbles={this.props.localScrobbles}
+                cloneScrobblesTo={this.state.cloneReceiver}
+              >
                 <Jumbotron className="text-center">
                   <div className="d-flex align-items-start justify-content-center mb-2">
                     <FontAwesomeIcon icon={faUserAstronaut} color="var(--gray-dark)" size="6x" />
@@ -130,6 +154,7 @@ class ScrobbleSong extends Component {
               <ScrobbleList
                 compact
                 scrobbles={get(this.props.user, `profileScrobbles[${this.props.user.name}]`, [])}
+                cloneScrobblesTo={this.state.cloneReceiver}
                 loading={!!this.props.user.profileScrobblesLoading}
               >
                 No scrobbles yet.

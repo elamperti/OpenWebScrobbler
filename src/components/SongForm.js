@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import ReactGA from 'react-ga';
@@ -82,12 +83,17 @@ class SongForm extends React.Component {
     this.catchPaste = this.catchPaste.bind(this);
     this.handleDateChange = this.handleDateChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
+    this.insertData = this.insertData.bind(this);
     this.revertPaste = this.revertPaste.bind(this);
     this.scrobbleSong = this.scrobbleSong.bind(this);
     this.swapArtistTitle = this.swapArtistTitle.bind(this);
     this.toggleLock = this.toggleLock.bind(this);
     this.toggleTimestampMode = this.toggleTimestampMode.bind(this);
     this.validateForm = this.validateForm.bind(this);
+
+    if (this.props.exportCloneReceiver) {
+      this.props.exportCloneReceiver(this.insertData);
+    }
   }
 
   componentDidMount() {
@@ -201,13 +207,24 @@ class SongForm extends React.Component {
     });
   }
 
+  insertData(data) {
+    this.setState({
+      album: '',
+      albumLocked: false,
+      artist: '',
+      artistLocked: false,
+      albumArtist: '',
+      title: '',
+      ...data,
+      timestamp: this.state.timestamp
+    }, () => this.validateForm());
+  }
+
   revertPaste() {
     this.setState({
       ...this.state.undo,
       undo: null,
-    }, () => {
-      this.validateForm();
-    });
+    }, () => this.validateForm());
     this.props.dismissAlert({
       category: 'paste',
     });
@@ -500,6 +517,10 @@ class SongForm extends React.Component {
     );
   }
 }
+
+SongForm.propTypes = {
+  exportCloneReceiver: PropTypes.func,
+};
 
 const mapStateToProps = (state) => {
   return {

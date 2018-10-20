@@ -134,6 +134,7 @@ body.with-shadow {
   }
   .ScrobbleList-container .tab-pane {
     padding-right: 0.5rem;
+    min-height: 10rem;
     max-height: 70vh;
     overflow-y: auto;
   }

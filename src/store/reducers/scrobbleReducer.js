@@ -41,7 +41,7 @@ const scrobbleReducer = (state=initialState, action) => {
 
       return {
         ...state,
-        unreadCount: (state.unreadCount || 0) + newScrobbles.length,
+        unreadCount: state.countNewScrobbles ? (state.unreadCount || 0) + newScrobbles.length : 0,
         list: [
           ...state.list,
           ...newScrobbles,
