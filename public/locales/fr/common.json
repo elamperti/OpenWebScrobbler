@@ -1,0 +1,56 @@
+{
+  "scrobble": "Scrobble",
+  "getScrobbling": "Début du scrobbling",
+  "loading": "Chargement...",
+  "artist": "Artiste",
+  "song": "Chanson",
+  "title": "Titre",
+  "album": "Album",
+  "albumArtist": "Artiste de l'album",
+  "history": "Historique",
+  "yourProfile": "Votre profil",
+  "language": "Langage",
+  "translateYourLanguage": "Vous voulez ajouter votre langage?",
+  "logIn": "Se connecter",
+  "logOut": "Se déconnecter",
+  "now": "Maintenant",
+  "custom": "Personnaliser...",
+  "timestamp": "Timestamp",
+  "lastfmWillRejectOldTimestamps": "Last.fm rejecte les scrobbles datant de plus de deux semaines.",
+  "noSongsScrobbled": "Aucune musique n'a été scrobblé !",
+  "songsWillAppearHere": "Les pistes apparaîtront ici une fois que vous les aurez scrobblés.",
+  "clearHistory": "Nettoyer l'historique",
+  "scrobbleAgain": "Scrobbler encore",
+  "copyToEditor": "Le copier à l'éditeur",
+  "swapArtistTitle": "Échanger l'artiste et le titre",
+  "viewProfile": "Voir mon profil Last.fm",
+  "lockArtist": "Verrouiller le champ de l'artiste",
+  "lockAlbum": "Verrouiller le champ de l'album",
+  "pasteIntercepted": "Le texte collé a été divisé automatiquement !",
+  "considerDonating": "S'il vous plait supportez le projet sur Patreon !",
+  "moreComingSoon": "Plus d'options prochainement !",
+  "footer": {
+    "joinCommunity": "Vous êtes le bienvenue à rejoindre la communauté <1>sur Discord</1>!",
+    "supportThisProject": "S'il vous plait, <1>supporte ce projet</1> sur Patreon :)",
+    "specialThanks": "Merci à tout les donateurs et les traducteurs ainsi qu'aux <1>contributeurs</1>"
+  },
+  "settings": "Paramêtres",
+  "cancel": "Annuler",
+  "dates": {
+    "format": {
+      "short": "Do MMM"
+    },
+    "months": {
+      "short": ["Jan","Fev","Mar","Avr","Mai","Jui","Jui","Aou","Sep","Oct","Nov","Dec"],
+      "long": ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Decembre"]
+    }
+  },
+  "updates": {
+    "newVersionAvailable": "Une nouvelle version est disponible ! S'il vous plaît <1>rechargez la page</1>"
+  },
+  "errors": {
+    "lastfmRejected": "Last.fm a rejeté ce scrobble",
+    "unexpectedResponse": "Réponse inconnu",
+    "apiCallFailed": "L'appel à l'API a échoué"
+  }
+}

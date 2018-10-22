@@ -1,0 +1,16 @@
+{
+  "authFailed": "Echec d'authentification",
+  "loginAgain": "Vous devez vous reconnecter !",
+  "serviceUnavailable": "Service indisponible",
+  "unexpectedError": "Erreur inconnu",
+  "lastfmUnavailable": "Last.fm ne réponds pas, essayez encore.",
+  "settingsSavedSuccessfully": "Vos paramêtres sont bien sauvegardé !",
+  "loginError": {
+    "title": "Erreur de connexion",
+    "message": "Il y a un soucis avec la connexion. Désolé !"
+  },
+  "logoutInfo": {
+    "title": "À bientôt !",
+    "message": "Déconnexion réussi."
+  }
+}
