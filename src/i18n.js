@@ -8,11 +8,11 @@ export const languageList = [
   {code: 'de', name: 'Deutsch'},
   {code: 'en', name: 'English'},
   {code: 'es', name: 'Español'},
+  {code: 'fr', name: 'French'},
   {code: 'nl', name: 'Nederlands'},
   {code: 'pl', name: 'polski'},
   {code: 'pt', name: 'Português'},
   {code: 'ru', name: 'Русский'},
-  {code: 'fr', name: 'French'}
 ];
 
 export const fallbackLng = {
