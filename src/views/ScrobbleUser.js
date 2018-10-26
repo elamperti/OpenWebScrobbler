@@ -1,0 +1,328 @@
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
+import { translate, Trans } from 'react-i18next';
+import ReactGA from 'react-ga';
+import get from 'lodash/get';
+import hasIn from 'lodash/hasIn';
+
+import {
+  Button,
+  FormFeedback,
+  FormGroup,
+  Input,
+  Jumbotron,
+  Label,
+  Row,
+} from 'reactstrap';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+  faChevronLeft,
+  faHistory,
+  faQuestion,
+  faUserAstronaut,
+  faUserFriends,
+} from '@fortawesome/free-solid-svg-icons';
+
+import { fetchLastfmProfileHistory, fetchLastfmProfileInfo } from 'store/actions/userActions';
+
+import UserCard from 'components/UserCard';
+import ScrobbleList from 'components/ScrobbleList';
+import Avatar from 'components/Avatar';
+import Spinner from 'components/Spinner';
+
+class ScrobbleSong extends Component {
+  constructor(props) {
+    super(props);
+
+    const proposedUser = get(this.props, 'match.params.username', '');
+
+    this.state = {
+      userToSearch: proposedUser.substring(0,15),
+      userToDisplay: null,
+      isLoading: false,
+      searchFormView: true,
+      inputInvalid: false,
+      justFailedSearch: false,
+      searchEnabled: proposedUser.length > 1,
+    };
+
+    if (proposedUser) {
+      if (proposedUser.length < 16) {
+        this.search();
+      } else {
+        this.props.history.push('/scrobble/user');
+      }
+    }
+
+    this.catchEnter = this.catchEnter.bind(this);
+    this.goBackToSearch = this.goBackToSearch.bind(this);
+    this.search = this.search.bind(this);
+    this.updateFriendUsername = this.updateFriendUsername.bind(this);
+  }
+
+  componentDidMount() {
+    this.focusSearchInput();
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    if (!state.searchFormView && !state.isLoading && !props.match.params.username && !!state.userToDisplay) {
+        return {
+          ...state,
+          userToDisplay: null,
+          userToSearch: '',
+          searchFormView: true,
+        };
+    }
+    return null;
+  }
+
+  catchEnter(event) {
+    if (event.keyCode === 13 && !this.state.inputInvalid) {
+      this.search();
+    }
+  }
+
+  focusSearchInput() {
+    const searchInput = document.getElementById('userToSearch');
+    searchInput.focus();
+    searchInput.setSelectionRange(0, searchInput.value.length);
+  }
+
+  goBackToSearch() {
+    this.setState({
+      userToSearch: '',
+      searchFormView: true,
+      searchEnabled: false,
+    }, () => {
+      this.props.history.push('/scrobble/user');
+    });
+  }
+
+  search() {
+    this.setState({
+      searchEnabled: false,
+      isLoading: true,
+    });
+    if (!this.usernameIsValid(this.state.userToSearch)) return false;
+    ReactGA.event({
+      category: 'Search',
+      action: 'User'
+    });
+    this.props.fetchLastfmProfileHistory(this.state.userToSearch, null, (res) => {
+      if (get(res, 'value.data.error') === 6) { // User not found
+        this.setState({
+          inputInvalid: true,
+          justFailedSearch: true,
+          isLoading: false,
+        });
+        this.focusSearchInput();
+      } else {
+        let userToDisplay = get(res, 'value.data.recenttracks[@attr].user', this.state.userToSearch);
+        this.props.history.push(`/scrobble/user/${userToDisplay}`);
+        this.setState({
+          searchFormView: false,
+          isLoading: false,
+          userToSearch: '',
+          userToDisplay,
+        }, () => {
+          if (!hasIn(this.props.user, `profiles[${this.state.userToDisplay}].avatar`)) {
+            this.props.fetchLastfmProfileInfo(this.state.userToDisplay);
+          }
+        });
+      }
+    });
+  }
+
+  searchUser(username) {
+    return () => {
+      this.setState({
+        userToSearch: username,
+      }, () => {
+        this.search();
+      });
+    };
+  }
+
+  updateFriendUsername(event) {
+    const isValid = this.usernameIsValid(event.target.value);
+
+    this.setState({
+      userToSearch: event.target.value,
+      justFailedSearch: false,
+      inputInvalid: event.target.value.length > 1 ? !isValid : false,
+      searchEnabled: event.target.value.length > 1 ? isValid : false,
+    });
+  }
+
+  usernameIsValid(str) {
+    // Should be between 2 and 15 characters, begin with a letter and contain only letters, numbers, '_' or '-'
+    return !!str.match(/^(?=[a-zA-Z])[a-zA-Z0-9_-]{2,15}$/);
+  }
+
+  render() {
+    const t = this.props.t; // Translations
+    const sectionHeading = (
+      <h2 className={`w-100 ${this.state.searchFormView ? 'mb-3' : 'm-0 d-inline'}`}>
+        <FontAwesomeIcon icon={faUserFriends} />{' '}
+        <Trans i18nKey="scrobbleFromOtherUser">Scrobble from another user</Trans>
+      </h2>
+    );
+    const searchForm = (
+      <Row noGutters className="mt-2">
+        <div className="col-7 col-sm-9 pr-3">
+          <FormGroup>
+            <Label for="title" className="required sr-only">Username</Label>
+            <Input
+              type="text"
+              name="userToSearch"
+              id="userToSearch"
+              bsSize={this.state.searchFormView ? 'lg' : 'sm'}
+              value={this.state.userToSearch}
+              invalid={this.state.inputInvalid}
+              readOnly={this.state.isLoading}
+              onKeyDown={this.catchEnter}
+              onChange={this.updateFriendUsername}
+              maxLength="15"
+              data-lpignore="true"
+            />
+            <FormFeedback valid={!this.state.inputInvalid}>
+              {t(this.state.justFailedSearch ? 'userNotFound' : 'invalidUsername')}
+            </FormFeedback>
+          </FormGroup>
+        </div>
+        <div className="col-5 col-sm-3">
+          <Button
+            size={this.state.searchFormView ? 'lg' : 'sm'}
+            block
+            color="success"
+            onClick={this.search}
+            disabled={!this.state.searchEnabled}
+          >
+            {t('search')}
+          </Button>
+        </div>
+      </Row>
+    );
+
+    let recentUsers;
+
+    if (get(this.props.user, 'recentProfiles', []).length > 0) {
+      let recentUsersList = [];
+      for (let recentUser of this.props.user.recentProfiles) {
+        // ToDo: convert <li> to <a> so users can copy a permalink to a recent search
+        recentUsersList.push(
+          <li key={recentUser} className="list-group-item" onClick={this.searchUser(recentUser)}>
+            <Avatar user={get(this.props.user, `profiles[${recentUser}]`)} size="sm" className="mr-2" />
+            {recentUser}
+          </li>
+        );
+      }
+      recentUsers = (
+        <div>
+          <h4>{t('recentlySearchedUsers')}</h4>
+          <ul className="list-group mx-2 recent-users">
+            {recentUsersList}
+          </ul>
+        </div>
+      )
+    }
+
+    if (this.state.searchFormView) {
+      return (
+        <Row className="flex-lg-grow-1 mt-3">
+          <div className="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
+            { sectionHeading }
+            <Trans i18nKey="findFriendCopy">Enter a last.fm username to see their last tracks</Trans>:
+            { searchForm }
+            { this.state.isLoading ? <Spinner /> : recentUsers }
+          </div>
+        </Row>
+      );
+    } else {
+      let friendScrobbles = (
+        <React.Fragment>
+          <UserCard user={get(this.props.user, `profiles[${this.state.userToDisplay}]`)} name={this.state.userToDisplay} isHeading withLinkToProfile />
+          <div className="ScrobbleList-container with-gradient">
+            <ScrobbleList
+              compact noMenu
+              scrobbles={get(this.props.user, `profiles[${this.state.userToDisplay}].scrobbles`, [])}
+              loading={this.state.profileScrobblesLoading}
+            >
+              <div className="mt-3 text-center">
+                <Trans i18nKey="noSongsScrobbled">This user hasn&apos;t scrobbled anything yet!</Trans>
+              </div>
+            </ScrobbleList>
+          </div>
+        </React.Fragment>
+      );
+
+      return (
+        <div className="flex-lg-grow-1">
+          <div className="row mb-3">
+            <div className="col-sm-8 d-flex align-items-center">
+              <Button onClick={this.goBackToSearch} size="sm" className="mr-3">
+                <FontAwesomeIcon icon={faChevronLeft} />
+              </Button>
+              { sectionHeading }
+            </div>
+            <div className="col-sm-4 d-flex align-items-center justify-content-end">
+              { searchForm }
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-md-7 mb-4">
+              { this.state.isLoading ? <Spinner /> : friendScrobbles }
+            </div>
+            <div className="col-md-5">
+              <h4 className="">
+                <FontAwesomeIcon icon={faHistory} />{' '}
+                <Trans i18nKey="yourHistory">Your history</Trans>
+              </h4>
+              {/* <UserCard user={this.props.user} name={'You'} /> */}
+              <div className="ScrobbleList-container">
+                <ScrobbleList scrobbles={this.props.localScrobbles}>
+                  <Jumbotron className="text-center">
+                    <div className="d-flex align-items-start justify-content-center mb-2">
+                      <FontAwesomeIcon icon={faUserAstronaut} color="var(--gray-dark)" size="6x" />
+                      <FontAwesomeIcon icon={faQuestion} color="var(--gray-dark)" size="2x" transform="shrink-4" />
+                    </div>
+                    <strong><Trans i18nKey="noSongsScrobbled">No songs scrobbled yet!</Trans></strong><br />
+                    <Trans i18nKey="songsWillAppearHere">Tracks will appear here once you scrobble them.</Trans>
+                  </Jumbotron>
+                </ScrobbleList>
+              </div>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
+  }
+}
+
+ScrobbleSong.propTypes = {
+  fetchLastfmProfileHistory: PropTypes.func,
+  fetchLastfmProfileInfo: PropTypes.func,
+  localScrobbles: PropTypes.array,
+  user: PropTypes.object,
+};
+
+const mapStateToProps = (state) => {
+  return {
+    localScrobbles: state.scrobbles.list,
+    user: state.user,
+  }
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    fetchLastfmProfileHistory: fetchLastfmProfileHistory(dispatch),
+    fetchLastfmProfileInfo: fetchLastfmProfileInfo(dispatch),
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  translate(['common'])(ScrobbleSong)
+);

@@ -7722,6 +7722,10 @@ react-app-rewired@^1.5.2:
     cross-spawn "^5.1.0"
     dotenv "^4.0.0"
 
+react-cache@^2.0.0-alpha.0:
+  version "2.0.0-alpha.0"
+  resolved "https://registry.yarnpkg.com/react-cache/-/react-cache-2.0.0-alpha.0.tgz#d02d16a4565fd9f12478a2a41e980ba4fcbab4d5"
+
 react-day-picker@^7.1.10:
   version "7.1.10"
   resolved "https://registry.yarnpkg.com/react-day-picker/-/react-day-picker-7.1.10.tgz#c763b1acb141ce960e25654b7033c2207f0fc1c3"

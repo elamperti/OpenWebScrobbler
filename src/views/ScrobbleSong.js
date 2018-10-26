@@ -44,6 +44,7 @@ class ScrobbleSong extends Component {
     this.state = {
       activeTab: 'history',
       lastHistoryFetch: null,
+      profileScrobblesLoading: false,
     };
   }
 
@@ -61,12 +62,18 @@ class ScrobbleSong extends Component {
   }
 
   goToProfileTab() {
-    if (!this.props.user.profileScrobblesLoading) {
+    if (!this.state.profileScrobblesLoading) {
       let listIsProbablyStale = this.state.lastHistoryFetch ? this.state.lastHistoryFetch < new Date(new Date() - CONSIDER_STALE_AFTER) : true;
-      if (this.state.activeTab === 'userProfile' || !hasIn(this.props.user, `profileScrobbles[${this.props.user.name}]`) || listIsProbablyStale) {
-        this.props.fetchLastfmProfileHistory(this.props.user.name);
+      if (this.state.activeTab === 'userProfile' || !hasIn(this.props.user, `profiles[${this.props.user.name}].scrobbles`) || listIsProbablyStale) {
         this.setState({
-          lastHistoryFetch: new Date(),
+          profileScrobblesLoading: true,
+        }, () => {
+          this.props.fetchLastfmProfileHistory(this.props.user.name, null, () => {
+            this.setState({
+              profileScrobblesLoading: false,
+              lastHistoryFetch: new Date(),
+            });
+          });
         });
         ReactGA.event({
           category: 'Interactions',
@@ -109,11 +116,11 @@ class ScrobbleSong extends Component {
     }
 
     return (
-      <div className="row flex-lg-grow-1">
+      <div className="row flex-lg-grow-1 mt-3">
         <div className="col-md-6 mb-4">
           <SongForm exportCloneReceiver={this.setCloneReceiver} />
         </div>
-        <div className="col-md-6 ScrobbleList-container">
+        <div className="col-md-6 SongFormLists-container">
           <Nav tabs>
             <NavItem>
               <NavLink className={this.state.activeTab === 'history' ? 'active' : '' } onClick={this.goToHistoryTab}>
@@ -135,7 +142,7 @@ class ScrobbleSong extends Component {
             { clearListButton }
           </Nav>
           <TabContent className="mt-2" activeTab={this.state.activeTab}>
-            <TabPane tabId="history">
+            <TabPane className="ScrobbleList-container" tabId="history">
               <ScrobbleList
                 scrobbles={this.props.localScrobbles}
                 cloneScrobblesTo={this.state.cloneReceiver}
@@ -150,12 +157,12 @@ class ScrobbleSong extends Component {
                 </Jumbotron>
               </ScrobbleList>
             </TabPane>
-            <TabPane tabId="userProfile">
+            <TabPane className="ScrobbleList-container" tabId="userProfile">
               <ScrobbleList
                 compact
-                scrobbles={get(this.props.user, `profileScrobbles[${this.props.user.name}]`, [])}
+                scrobbles={get(this.props.user, `profiles[${this.props.user.name}].scrobbles`, [])}
                 cloneScrobblesTo={this.state.cloneReceiver}
-                loading={!!this.props.user.profileScrobblesLoading}
+                loading={this.state.profileScrobblesLoading}
               >
                 No scrobbles yet.
               </ScrobbleList>

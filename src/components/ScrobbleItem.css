@@ -51,7 +51,7 @@
   border-bottom: 1px solid rgba(0,0,0,0.3);
 }
 
-.ScrobbleList.compact:last-child {
+.scrobbled-item.compact:first-child { /* It's actually the last one, the list is reversed */
   border-bottom: none !important;
 }
 

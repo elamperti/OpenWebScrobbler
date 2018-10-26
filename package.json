@@ -1,6 +1,6 @@
 {
   "name": "openscrobbler",
-  "version": "2.2.4",
+  "version": "2.3.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
@@ -29,6 +29,7 @@
     "qs": "^6.5.2",
     "react": "^16.6.0",
     "react-app-rewired": "^1.5.2",
+    "react-cache": "^2.0.0-alpha.0",
     "react-day-picker": "^7.1.10",
     "react-dom": "^16.6.0",
     "react-ga": "^2.5.3",

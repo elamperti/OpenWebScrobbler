@@ -43,10 +43,8 @@ store.subscribe(throttle(() => {
       list: state.scrobbles.list.slice(-50),
     },
     user: {
-      isLoggedIn: state.user.isLoggedIn,
-      name: state.user.name,
-      url: state.user.url,
-      avatarURL: state.user.avatarURL,
+      ...state.user,
+      userSettingsLoading: false,
     },
     settings: state.settings,
   });

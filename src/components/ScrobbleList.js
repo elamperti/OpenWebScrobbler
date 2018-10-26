@@ -1,26 +1,15 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { translate, Trans } from 'react-i18next';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCompactDisc,
-} from '@fortawesome/free-solid-svg-icons';
 
 import ScrobbleItem from 'components/ScrobbleItem';
+import Spinner from 'components/Spinner';
 
 // ToDo: make stateless
 class ScrobbleList extends React.Component {
   render() {
     if (this.props.loading) {
       return(
-        <div className="text-center mt-5">
-          <FontAwesomeIcon icon={faCompactDisc} color="var(--gray-light)" size="4x" spin />
-          <br />
-          <p className="mt-1">
-            <Trans i18nKey="loading">Loading...</Trans>
-          </p>
-        </div>
+        <Spinner />
       );
     }
 
@@ -30,6 +19,7 @@ class ScrobbleList extends React.Component {
           scrobble={scrobble}
           cloneScrobbleTo={this.props.cloneScrobblesTo}
           compact={this.props.compact}
+          noMenu={this.props.noMenu}
           key={index}
         />;
       });
@@ -50,6 +40,7 @@ ScrobbleList.propTypes = {
   compact: PropTypes.bool,
   children: PropTypes.node.isRequired,
   loading: PropTypes.bool,
+  noMenu: PropTypes.bool,
   scrobbles: PropTypes.array,
   cloneScrobblesTo: PropTypes.func,
 };
@@ -57,7 +48,8 @@ ScrobbleList.propTypes = {
 ScrobbleList.defaultProps = {
   compact: false,
   loading: false,
+  noMenu: false,
   scrobbles: [],
 };
 
-export default translate(['common'])(ScrobbleList);
+export default ScrobbleList;

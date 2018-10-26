@@ -15,10 +15,12 @@ import PrivateRoute from './components/PrivateRoute';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import AlertZone from './components/AlertZone';
-import Home from './views/Home';
-import ScrobbleSong from './views/ScrobbleSong';
 import AnalyticsListener from './components/AnalyticsListener';
 import UpdateToast from './components/UpdateToast';
+
+import Home from './views/Home';
+import ScrobbleSong from './views/ScrobbleSong';
+import ScrobbleUser from './views/ScrobbleUser';
 
 class App extends Component {
   constructor(props) {
@@ -130,12 +132,13 @@ class App extends Component {
           <Navigation />
           { this.props.updates.newVersionReady ? <UpdateToast /> : null }
 
-          <div className="container mt-3">
+          <div className="container">
             <AlertZone />
           </div>
-          <main className="container d-lg-flex flex-grow-1">
+          <main className="container d-lg-flex flex-wrap flex-grow-1">
             <Switch>
               <PrivateRoute exact path="/scrobble/song" component={ScrobbleSong} />
+              <PrivateRoute exact path="/scrobble/user/:username?" component={ScrobbleUser} />
               <Route exact path="/" component={Home} />
               <Redirect to="/" />
             </Switch>

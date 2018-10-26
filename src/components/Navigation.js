@@ -28,7 +28,7 @@ import {
   faSignInAlt,
   faSignOutAlt,
   faGlobe,
-  faUserAstronaut,
+  faUserFriends,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faPlayCircle,
@@ -37,6 +37,7 @@ import {
 import { logOut } from 'store/actions/userActions';
 import { dismissAlert } from 'store/actions/alertActions';
 
+import Avatar from 'components/Avatar';
 import SettingsModal from 'components/SettingsModal';
 
 import './Navigation.css';
@@ -86,7 +87,7 @@ class Navigation extends Component {
       return {
         tag: Link,
         to: dest,
-        className: this.props.location.pathname === dest ? 'active' : '',
+        className: this.props.location.pathname.startsWith(dest) ? 'active' : '',
       };
     }
 
@@ -142,8 +143,9 @@ class Navigation extends Component {
             </NavLink>
           </NavItem>
           <NavItem>
-            <NavLink disabled href="#">
-              {t('moreComingSoon')}
+            <NavLink {...generateLinkParams("/scrobble/user")}>
+              <FontAwesomeIcon icon={faUserFriends} />
+              {t('otherUser')}
             </NavLink>
           </NavItem>
         </Nav>
@@ -154,15 +156,7 @@ class Navigation extends Component {
           {getLanguageSelector('d-none d-md-block')}
           <UncontrolledDropdown nav inNavbar>
             <DropdownToggle nav caret>
-              { !this.props.user.avatarURL ? (
-                <FontAwesomeIcon icon={faUserAstronaut} color={ this.props.settings.isDonor ? '#ffd161' : 'white' } />
-              ) : (
-                <img
-                  src={this.props.user.avatarURL}
-                  alt={this.props.user.name}
-                  className="user-avatar rounded-circle"
-                />
-              )}
+              <Avatar user={this.props.user} alt={this.props.user.name} size="sm" />
               <span className="username">
                 {this.props.user.name}
               </span>

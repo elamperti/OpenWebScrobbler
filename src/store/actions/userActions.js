@@ -97,9 +97,31 @@ export function logOut(dispatch) {
   };
 }
 
+export function fetchLastfmProfileInfo(dispatch) {
+  return (username, callback) => {
+    const response = dispatch({
+      type: "FETCH_LASTFM_USER_INFO",
+      payload: axios.get('https://ws.audioscrobbler.com/2.0/', {
+        params: {
+          method: 'user.getInfo',
+          user: username,
+          api_key: process.env.REACT_APP_LASTFM_API_KEY,
+          format: 'json'
+        },
+      })
+    });
+
+    if (typeof callback === 'function') {
+      response.then((res) => {
+        callback(res);
+      });
+    }
+  };
+}
+
 export function fetchLastfmProfileHistory(dispatch) {
-  return (username) => {
-    dispatch({
+  return (username, options, callback) => {
+    const response = dispatch({
       type: "FETCH_LASTFM_USER_HISTORY",
       payload: axios.get('https://ws.audioscrobbler.com/2.0/', {
         params: {
@@ -110,5 +132,11 @@ export function fetchLastfmProfileHistory(dispatch) {
         },
       })
     });
+
+    if (typeof callback === 'function') {
+      response.then((res) => {
+        callback(res);
+      });
+    }
   };
 }
