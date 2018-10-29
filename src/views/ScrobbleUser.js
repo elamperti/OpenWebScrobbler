@@ -127,7 +127,7 @@ class ScrobbleSong extends Component {
           userToSearch: '',
           userToDisplay,
         }, () => {
-          if (!hasIn(this.props.user, `profiles[${this.state.userToDisplay}].avatar`)) {
+          if (!hasIn(this.props.user, `profiles['${this.state.userToDisplay}'].avatar`)) {
             this.props.fetchLastfmProfileInfo(this.state.userToDisplay);
           }
         });
@@ -158,7 +158,7 @@ class ScrobbleSong extends Component {
 
   usernameIsValid(str) {
     // Should be between 2 and 15 characters, begin with a letter and contain only letters, numbers, '_' or '-'
-    return !!str.match(/^(?=[a-zA-Z])[a-zA-Z0-9_-]{2,15}$/);
+    return !!str.match(/^(?=[a-zA-Z])[a-zA-Z0-9_.-]{2,15}$/);
   }
 
   render() {
@@ -214,7 +214,7 @@ class ScrobbleSong extends Component {
         // ToDo: convert <li> to <a> so users can copy a permalink to a recent search
         recentUsersList.push(
           <li key={recentUser} className="list-group-item" onClick={this.searchUser(recentUser)}>
-            <Avatar user={get(this.props.user, `profiles[${recentUser}]`)} size="sm" className="mr-2" />
+            <Avatar user={get(this.props.user, `profiles['${recentUser}']`)} size="sm" className="mr-2" />
             {recentUser}
           </li>
         );
@@ -243,11 +243,11 @@ class ScrobbleSong extends Component {
     } else {
       let friendScrobbles = (
         <React.Fragment>
-          <UserCard user={get(this.props.user, `profiles[${this.state.userToDisplay}]`)} name={this.state.userToDisplay} isHeading withLinkToProfile />
+          <UserCard user={get(this.props.user, `profiles['${this.state.userToDisplay}']`)} name={this.state.userToDisplay} isHeading withLinkToProfile />
           <div className="ScrobbleList-container with-gradient">
             <ScrobbleList
               compact noMenu
-              scrobbles={get(this.props.user, `profiles[${this.state.userToDisplay}].scrobbles`, [])}
+              scrobbles={get(this.props.user, `profiles['${this.state.userToDisplay}'].scrobbles`, [])}
               loading={this.state.profileScrobblesLoading}
             >
               <div className="mt-3 text-center">
