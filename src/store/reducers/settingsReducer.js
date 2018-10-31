@@ -1,3 +1,8 @@
+import {
+  SETTINGS_UPDATE,
+  USER_LOGGED_OUT,
+} from 'Constants';
+
 const initialState = {
   lang: 'auto',
   use12Hours: false,
@@ -7,7 +12,7 @@ const initialState = {
 
 const settingsReducer = (state=initialState, action) => {
   switch (action.type) {
-    case 'SETTINGS_UPDATE':
+    case SETTINGS_UPDATE:
       return {
         ...state,
         lang: action.payload.lang || initialState.lang,
@@ -16,7 +21,7 @@ const settingsReducer = (state=initialState, action) => {
         isDonor: !!action.payload.isDonor || initialState.isDonor,
       };
 
-    case 'USER_LOGGED_OUT':
+    case USER_LOGGED_OUT:
       return {
         ...initialState,
         lang: state.lang,

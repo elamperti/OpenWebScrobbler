@@ -1,7 +1,14 @@
 import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';
 
-const MAX_RECENT_USERS = 6;
+import {
+  USER_LOGGED_IN,
+  USER_LOGGED_OUT,
+  USER_GET_INFO,
+  FETCH_LASTFM_USER_INFO,
+  FETCH_LASTFM_USER_HISTORY,
+  MAX_RECENT_USERS,
+} from 'Constants';
 
 const initialState = {
   isLoggedIn: null,
@@ -17,32 +24,32 @@ const userReducer = (state=initialState, action) => {
   let recentProfiles = state.recentProfiles || [];
 
   switch (action.type) {
-    case 'USER_LOGGED_IN':
+    case USER_LOGGED_IN:
       return {
         ...state,
         isLoggedIn: true,
       }
 
-    case 'USER_LOGGED_OUT':
+    case USER_LOGGED_OUT:
       return {
           ...initialState,
           isLoggedIn: false,
       }
 
-    case 'USER_GET_INFO_PENDING':
+    case `${USER_GET_INFO}_PENDING`:
       return {
         ...state,
         userSettingsLoading: true,
       }
 
-    case 'USER_GET_INFO_REJECTED':
+    case `${USER_GET_INFO}_REJECTED`:
       // ToDo: Handle this failure
       return {
         ...state,
         userSettingsLoading: false,
       }
 
-    case 'USER_GET_INFO_FULFILLED':
+    case `${USER_GET_INFO}_FULFILLED`:
       if (action.payload.data.user) {
         let userData = action.payload.data.user;
         return {
@@ -62,7 +69,7 @@ const userReducer = (state=initialState, action) => {
         return state;
       }
 
-    case 'FETCH_LASTFM_USER_INFO_FULFILLED':
+    case `${FETCH_LASTFM_USER_INFO}_FULFILLED`:
       if (hasIn(action.payload, 'data.user')) {
         let username = action.payload.data.user.name;
         let avatars = {};
@@ -98,7 +105,7 @@ const userReducer = (state=initialState, action) => {
         return state;
       }
 
-    case 'FETCH_LASTFM_USER_HISTORY_FULFILLED':
+    case `${FETCH_LASTFM_USER_HISTORY}_FULFILLED`:
       if (hasIn(action.payload, 'data.recenttracks.track')) {
         let newScrobbles = [];
         let username = get(action.payload, 'data.recenttracks[@attr].user', '');

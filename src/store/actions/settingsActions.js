@@ -3,11 +3,16 @@ import { createAlert } from './alertActions';
 import i18n, { fallbackLng } from 'i18n';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
+import {
+  OPENSCROBBLER_API_URL,
+  SETTINGS_UPDATE,
+} from 'Constants';
+
 export function setSettings(dispatch) {
   return (newSettings, pushToServer=true) => {
     if (pushToServer) {
-      axios.post('/api/v2/settings.php', newSettings)
-        .then(response => {
+      axios.post(`${OPENSCROBBLER_API_URL}/settings.php`, newSettings)
+        .then(() => {
           createAlert(dispatch)({
             type: 'success',
             category: 'settings',
@@ -28,7 +33,7 @@ export function setSettings(dispatch) {
     }
 
     dispatch({
-      type: 'SETTINGS_UPDATE',
+      type: SETTINGS_UPDATE,
       payload: newSettings
     });
   };

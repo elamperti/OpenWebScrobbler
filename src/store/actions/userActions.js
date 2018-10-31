@@ -4,6 +4,16 @@ import ReactGA from 'react-ga';
 import md5 from 'md5';
 import get from 'lodash/get';
 
+import {
+  AUDIOSCROBBLER_API_URL,
+  OPENSCROBBLER_API_URL,
+  USER_LOGGED_IN,
+  USER_LOGGED_OUT,
+  USER_GET_INFO,
+  FETCH_LASTFM_USER_INFO,
+  FETCH_LASTFM_USER_HISTORY,
+} from 'Constants';
+
 import { saveToLocalStorage } from 'localstorage';
 import { createAlert } from './alertActions';
 import { setSettings } from './settingsActions';
@@ -14,11 +24,11 @@ const lastfmAuthURL = `https://www.last.fm/api/auth/?api_key=${process.env.REACT
 
 export function authUserWithToken(dispatch) {
   return (token, onSuccessCallback=null) => {
-    axios.post('/api/v2/callback.php', { token: token })
+    axios.post(`${OPENSCROBBLER_API_URL}/callback.php`, { token: token })
       .then(response => {
         if (get(response, 'data.status') === 'ok') {
           dispatch({
-            type: 'USER_LOGGED_IN'
+            type: USER_LOGGED_IN
           });
           getUserInfo(dispatch)();
           if (onSuccessCallback) {
@@ -40,10 +50,10 @@ export function authUserWithToken(dispatch) {
 
 export function getUserInfo(dispatch) {
   return () => {
-    axios.post('/api/v2/user.php')
+    axios.post(`${OPENSCROBBLER_API_URL}/user.php`)
       .then((response) => {
         dispatch({
-          type: 'USER_GET_INFO_FULFILLED',
+          type: `${USER_GET_INFO}_FULFILLED`,
           payload: response
         });
         if (response.data.user) {
@@ -78,10 +88,10 @@ export function logOut(dispatch) {
       action: 'Logout',
       label: 'Intent',
     }); // ToDo: add nonInteraction prop when logout is not manual
-    axios.post('/api/v2/logout.php')
+    axios.post(`${OPENSCROBBLER_API_URL}/logout.php`)
       .then(() => {
         dispatch({
-          type: 'USER_LOGGED_OUT'
+          type: USER_LOGGED_OUT
         });
         ReactGA.set({
           userId: undefined,
@@ -100,8 +110,8 @@ export function logOut(dispatch) {
 export function fetchLastfmProfileInfo(dispatch) {
   return (username, callback) => {
     const response = dispatch({
-      type: "FETCH_LASTFM_USER_INFO",
-      payload: axios.get('https://ws.audioscrobbler.com/2.0/', {
+      type: FETCH_LASTFM_USER_INFO,
+      payload: axios.get(AUDIOSCROBBLER_API_URL, {
         params: {
           method: 'user.getInfo',
           user: username,
@@ -122,8 +132,8 @@ export function fetchLastfmProfileInfo(dispatch) {
 export function fetchLastfmProfileHistory(dispatch) {
   return (username, options, callback) => {
     const response = dispatch({
-      type: "FETCH_LASTFM_USER_HISTORY",
-      payload: axios.get('https://ws.audioscrobbler.com/2.0/', {
+      type: FETCH_LASTFM_USER_HISTORY,
+      payload: axios.get(AUDIOSCROBBLER_API_URL, {
         params: {
           method: 'user.getRecentTracks',
           user: username,
