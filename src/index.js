@@ -15,6 +15,19 @@ import store from './store';
 import ReactGA from 'react-ga';
 import * as Sentry from '@sentry/browser';
 
+// Avoid proxies that may interfer with the site
+if (document.location.host !== process.env.REACT_APP_HOST) {
+  // eslint-disable-next-line no-restricted-globals
+  parent.window.location.href = `https://${process.env.REACT_APP_HOST}/`;
+}
+
+// Break out of frames
+// eslint-disable-next-line no-restricted-globals
+if (top.location !== self.location) {
+  // eslint-disable-next-line no-restricted-globals
+  top.location = self.location.href;
+}
+
 if (process.env.REACT_APP_SENTRY_DSN) {
   Sentry.init({
     dsn: process.env.REACT_APP_SENTRY_DSN,
