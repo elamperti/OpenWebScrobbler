@@ -90,14 +90,7 @@ class SettingsModal extends React.Component {
   render() {
     const t = this.props.t; // Translations
 
-    let languageOptions = [];
-    for (let lang of languageList) {
-      languageOptions.push(
-        <option key={lang.code} value={lang.code}>
-          {lang.name}
-        </option>
-      );
-    }
+
 
     return (
       <Modal
@@ -119,7 +112,7 @@ class SettingsModal extends React.Component {
                   <Input type="select" bsSize="sm" {...this.createPropsForInput('lang')}>
                     <option value="auto">({t('defaultLanguage')})</option>
                     <optgroup label={t('availableLanguages')}>
-                      {languageOptions}
+                      { languageList.map(lang => <option key={lang.code} value={lang.code}>{lang.name}</option>) }
                     </optgroup>
                   </Input>
                   <a className="d-none d-sm-block text-right translationCTA"
