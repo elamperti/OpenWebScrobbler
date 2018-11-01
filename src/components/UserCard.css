@@ -1,15 +1,18 @@
-.user-card {
+.UserCard-container {
   background-color: #161619;
   border: 1px solid rgba(0,0,0,0.5);
   border-radius: 4px;
-  padding: 0.75em 0.5rem !important;
 }
 
-.user-card.rect {
+.UserCard-container.rect {
   border-bottom: 0;
   border-bottom-left-radius: 0;
   border-bottom-right-radius: 0;
   margin-bottom: 0 !important;
+}
+
+.user-card {
+  padding: 0.75em 0.5rem !important;
 }
 
 .user-card h3 {

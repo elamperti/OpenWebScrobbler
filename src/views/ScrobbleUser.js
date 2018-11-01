@@ -21,6 +21,7 @@ import {
   faChevronLeft,
   faHistory,
   faQuestion,
+  faSync,
   faUserAstronaut,
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons';
@@ -59,6 +60,7 @@ class ScrobbleSong extends Component {
     this.catchEnter = this.catchEnter.bind(this);
     this.goBackToSearch = this.goBackToSearch.bind(this);
     this.search = this.search.bind(this);
+    this.searchUser = this.searchUser.bind(this);
     this.updateFriendUsername = this.updateFriendUsername.bind(this);
   }
 
@@ -243,7 +245,17 @@ class ScrobbleSong extends Component {
     } else {
       let friendScrobbles = (
         <React.Fragment>
-          <UserCard user={get(this.props.user, `profiles['${this.state.userToDisplay}']`)} name={this.state.userToDisplay} isHeading withLinkToProfile />
+          <div className="UserCard-container rect row no-gutters">
+            <div className="col-8 d-flex align-items-middle">
+              <UserCard user={get(this.props.user, `profiles['${this.state.userToDisplay}']`)} name={this.state.userToDisplay} isHeading withLinkToProfile />
+            </div>
+            <div className="col-4 d-flex pr-3 justify-content-end">
+              <Button className="align-self-center" onClick={this.searchUser(this.state.userToDisplay)}>
+                <FontAwesomeIcon icon={faSync} />{' '}
+                {t('refresh')}
+              </Button>
+            </div>
+          </div>
           <div className="ScrobbleList-container with-gradient">
             <ScrobbleList
               compact noMenu

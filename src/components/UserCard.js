@@ -29,7 +29,7 @@ const UserCard = props => {
   );
 
   return (
-    <div className={`user-card d-flex w-100 mb-3 px-3 no-gutters align-items-center ${props.isHeading ? 'rect py-3' : ''}`}>
+    <div className={`user-card d-flex w-100 mb-3 px-3 no-gutters align-items-center ${props.isHeading ? 'py-3' : ''}`}>
       <div className="text-center">
         <Avatar user={props.user} alt={props.name} size="md" />
       </div>
