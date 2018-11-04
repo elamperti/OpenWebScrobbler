@@ -41,6 +41,7 @@ import Avatar from 'components/Avatar';
 import SettingsModal from 'components/SettingsModal';
 
 import './Navigation.css';
+import { setSettings } from 'store/actions/settingsActions';
 
 class Navigation extends Component {
   constructor(props) {
@@ -99,7 +100,10 @@ class Navigation extends Component {
           action: 'Change',
           label: langCode,
         });
-        i18n.changeLanguage(langCode);
+        this.props.setSettings({
+          ...this.props.settings,
+          lang: langCode,
+        }, this.props.user.isLoggedIn, true);
       };
     };
 
@@ -232,6 +236,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     dismissAlert: dismissAlert(dispatch),
     logOut: logOut(dispatch),
+    setSettings: setSettings(dispatch),
   };
 }
 
