@@ -6,19 +6,31 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 import {
   OPENSCROBBLER_API_URL,
   SETTINGS_UPDATE,
+  SETTINGS_SAVE,
+  DEBOUNCE_PERIOD,
 } from 'Constants';
 
 export function setSettings(dispatch) {
-  return (newSettings, pushToServer=true) => {
+  return (newSettings, pushToServer=true, silent=false) => {
     if (pushToServer) {
-      axios.post(`${OPENSCROBBLER_API_URL}/settings.php`, newSettings)
-        .then(() => {
-          createAlert(dispatch)({
-            type: 'success',
-            category: 'settings',
-            message: 'settingsSavedSuccessfully'
-          });
-        });
+      dispatch({
+        type: SETTINGS_SAVE,
+        meta: {
+          debounce: {time: silent ? DEBOUNCE_PERIOD : 1},
+        },
+        payload: () => {
+          axios.post(`${OPENSCROBBLER_API_URL}/settings.php`, newSettings)
+            .then(() => {
+              if (!silent) {
+                createAlert(dispatch)({
+                  type: 'success',
+                  category: 'settings',
+                  message: 'settingsSavedSuccessfully'
+                });
+              }
+            })
+        },
+      });
     }
 
     if (newSettings.lang) {

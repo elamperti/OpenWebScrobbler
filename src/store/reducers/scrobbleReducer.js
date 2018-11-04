@@ -88,6 +88,7 @@ const scrobbleReducer = (state=initialState, action) => {
         return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           status,
           errorDescription,
+          timestamp: new Date(action.payload.data.scrobbles.scrobble.timestamp * 1000),
         });
       } else {
         /* eslint-disable no-console */

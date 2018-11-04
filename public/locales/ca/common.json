@@ -30,6 +30,7 @@
   "custom": "Personalitzat…",
   "timestamp": "Data i hora",
   "lastfmWillRejectOldTimestamps": "El Last.fm rebutjarà els enviaments anteriors a dues setmanes.",
+  "keepOriginalTimestamp": "Scrobble using original date and time",
   "noSongsScrobbled": "Encara no heu enviat cap cançó",
   "songsWillAppearHere": "Les peces apareixeran aquí quan les hàgiu registrat.",
   "clearHistory": "Buida l’historial",

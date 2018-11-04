@@ -30,6 +30,7 @@
   "custom": "Handmatig…",
   "timestamp": "Tijdstip",
   "lastfmWillRejectOldTimestamps": "Last.fm zal je scrobbles ouder dan twee weken weigeren.",
+  "keepOriginalTimestamp": "Scrobble using original date and time",
   "noSongsScrobbled": "Je hebt nog geen nummers gescrobbeld!",
   "songsWillAppearHere": "Na het scrobbelen zullen nummers hier verschijnen.",
   "clearHistory": "Clear history",

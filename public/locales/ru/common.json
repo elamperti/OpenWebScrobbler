@@ -30,6 +30,7 @@
   "custom": "Задать...",
   "timestamp": "Временная метка",
   "lastfmWillRejectOldTimestamps": "Last.fm не примет скробблы более чем двухнедельной давности.",
+  "keepOriginalTimestamp": "Scrobble using original date and time",
   "noSongsScrobbled": "Ещё ничего не заскробблено!",
   "songsWillAppearHere": "Заскробленные композиции появятся здесь.",
   "clearHistory": "Удалить историю",

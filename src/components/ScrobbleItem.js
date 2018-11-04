@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import ReactGA from 'react-ga';
+import get from 'lodash/get';
 
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
@@ -64,11 +65,11 @@ class ScrobbleItem extends Component {
   scrobbleAgain() {
     ReactGA.event({
       category: 'Interactions',
-      action: this.props.noMenu ? 'Scrobble From User' : 'Scrobble Again',
+      action: this.props.noMenu ? 'Scrobble From User' : 'Scrobble Again', // ToDo: refactor this dirty implementation
     });
     this.props.enqueueScrobble([{
       ...this.props.scrobble,
-      timestamp: new Date(),
+      timestamp: get(this.props.settings, 'keepOriginalTimestamp') ? this.props.scrobble.timestamp : new Date(),
     }]);
     this.setState({
       hasScrobbledAgain: true,

@@ -30,6 +30,7 @@
   "custom": "Eigener...",
   "timestamp": "Zeitstempel",
   "lastfmWillRejectOldTimestamps": "Last.fm wird Scroobles verwerfen, die älter als 2 Wochen sind.",
+  "keepOriginalTimestamp": "Scrobble using original date and time",
   "noSongsScrobbled": "Noch keine Lieder gescrobblet!",
   "songsWillAppearHere":  "Titel werden hier erscheinen, sobald Sie diese scrobblen.",
   "clearHistory": "Verlauf löschen",

@@ -30,6 +30,7 @@
   "custom": "Customizar...",
   "timestamp": "Horário",
   "lastfmWillRejectOldTimestamps": "Last.fm vai rejeitar scrobbles mais antigos que duas semanas.",
+  "keepOriginalTimestamp": "Scrobble using original date and time",
   "noSongsScrobbled": "nenhum som scrobblado ainda!",
   "songsWillAppearHere": "Faixas irão aparecer aqui uma vez que você fizer scrobbles.",
   "clearHistory": "Clear history",

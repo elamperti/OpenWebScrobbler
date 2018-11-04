@@ -8,6 +8,7 @@ import hasIn from 'lodash/hasIn';
 
 import {
   Button,
+  CustomInput,
   FormFeedback,
   FormGroup,
   Input,
@@ -27,6 +28,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 
 import { fetchLastfmProfileHistory, fetchLastfmProfileInfo } from 'store/actions/userActions';
+import { setSettings } from 'store/actions/settingsActions';
 
 import UserCard from 'components/UserCard';
 import ScrobbleList from 'components/ScrobbleList';
@@ -37,6 +39,7 @@ class ScrobbleSong extends Component {
   constructor(props) {
     super(props);
 
+    // ToDo: move this to componentDidMount
     const proposedUser = get(this.props, 'match.params.username', '');
 
     this.state = {
@@ -61,6 +64,7 @@ class ScrobbleSong extends Component {
     this.goBackToSearch = this.goBackToSearch.bind(this);
     this.search = this.search.bind(this);
     this.searchUser = this.searchUser.bind(this);
+    this.toggleOriginalTimestamp = this.toggleOriginalTimestamp.bind(this);
     this.updateFriendUsername = this.updateFriendUsername.bind(this);
   }
 
@@ -147,6 +151,13 @@ class ScrobbleSong extends Component {
     };
   }
 
+  toggleOriginalTimestamp() {
+    this.props.setSettings({
+      ...this.props.settings,
+      keepOriginalTimestamp: !this.props.settings.keepOriginalTimestamp,
+    }, true, true);
+  }
+
   updateFriendUsername(event) {
     const isValid = this.usernameIsValid(event.target.value);
 
@@ -222,12 +233,12 @@ class ScrobbleSong extends Component {
         );
       }
       recentUsers = (
-        <div>
+        <React.Fragment>
           <h4>{t('recentlySearchedUsers')}</h4>
           <ul className="list-group mx-2 recent-users">
             {recentUsersList}
           </ul>
-        </div>
+        </React.Fragment>
       )
     }
 
@@ -245,15 +256,25 @@ class ScrobbleSong extends Component {
     } else {
       let friendScrobbles = (
         <React.Fragment>
-          <div className="UserCard-container rect row no-gutters">
-            <div className="col-8 d-flex align-items-middle">
+          <div className="UserCard-container rect row no-gutters pb-3">
+            <div className="col-sm-8 d-flex align-items-middle">
               <UserCard user={get(this.props.user, `profiles['${this.state.userToDisplay}']`)} name={this.state.userToDisplay} isHeading withLinkToProfile />
             </div>
-            <div className="col-4 d-flex pr-3 justify-content-end">
-              <Button className="align-self-center" onClick={this.searchUser(this.state.userToDisplay)}>
+            <div className="col-sm-4 d-flex px-3 mb-2 flex-fill justify-content-sm-end">
+              <Button className="align-self-center w-100" onClick={this.searchUser(this.state.userToDisplay)}>
                 <FontAwesomeIcon icon={faSync} />{' '}
                 {t('refresh')}
               </Button>
+            </div>
+            <div className="col-12 px-3">
+              <CustomInput
+                type="checkbox"
+                id="keepOriginalTimestamp"
+                label={t('keepOriginalTimestamp')}
+                checked={this.props.settings.keepOriginalTimestamp}
+                onChange={this.toggleOriginalTimestamp}
+                inline
+              />
             </div>
           </div>
           <div className="ScrobbleList-container with-gradient">
@@ -273,13 +294,13 @@ class ScrobbleSong extends Component {
       return (
         <div className="flex-lg-grow-1">
           <div className="row mb-3">
-            <div className="col-sm-8 d-flex align-items-center">
+            <div className="col-md-8 d-flex align-items-center">
               <Button onClick={this.goBackToSearch} size="sm" className="mr-3">
                 <FontAwesomeIcon icon={faChevronLeft} />
               </Button>
               { sectionHeading }
             </div>
-            <div className="col-sm-4 d-flex align-items-center justify-content-end">
+            <div className="col-md-4 d-flex align-items-center justify-content-end">
               { searchForm }
             </div>
           </div>
@@ -288,11 +309,10 @@ class ScrobbleSong extends Component {
               { this.state.isLoading ? <Spinner /> : friendScrobbles }
             </div>
             <div className="col-md-5">
-              <h4 className="">
+              <h4>
                 <FontAwesomeIcon icon={faHistory} />{' '}
                 <Trans i18nKey="yourHistory">Your history</Trans>
               </h4>
-              {/* <UserCard user={this.props.user} name={'You'} /> */}
               <div className="ScrobbleList-container">
                 <ScrobbleList scrobbles={this.props.localScrobbles}>
                   <Jumbotron className="text-center">
@@ -325,6 +345,7 @@ const mapStateToProps = (state) => {
   return {
     localScrobbles: state.scrobbles.list,
     user: state.user,
+    settings: state.settings,
   }
 };
 
@@ -332,6 +353,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     fetchLastfmProfileHistory: fetchLastfmProfileHistory(dispatch),
     fetchLastfmProfileInfo: fetchLastfmProfileInfo(dispatch),
+    setSettings: setSettings(dispatch),
   };
 }
 

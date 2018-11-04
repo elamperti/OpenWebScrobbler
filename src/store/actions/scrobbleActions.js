@@ -73,7 +73,7 @@ export function enqueueScrobble(dispatch) {
 
     // transform content for OWS API
     for (let scrobble of scrobbles) {
-      timestamp.push(scrobble.timestamp.toISOString());
+      timestamp.push(new Date(scrobble.timestamp).toISOString());
       artist.push(scrobble.artist);
       track.push(scrobble.title);
       album.push(scrobble.album);
