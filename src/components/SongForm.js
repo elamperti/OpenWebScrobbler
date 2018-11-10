@@ -216,7 +216,7 @@ class SongForm extends React.Component {
       albumArtist: '',
       title: '',
       ...data,
-      timestamp: this.state.timestamp
+      timestamp: this.state.useCustomDate ? data.timestamp : this.state.timestamp
     }, () => this.validateForm());
   }
 
