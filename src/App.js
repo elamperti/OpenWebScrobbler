@@ -103,11 +103,28 @@ class App extends Component {
       (response) => {
         axiosTiming(response);
         if (response.config.url.match(/^\/api/)) {
-          if (response.status === 503) {
-            ReactGA.exception({
-              description: 'Rate limit hit',
-              fatal: false
-            });
+          switch (response.status) {
+            case 503:
+              ReactGA.exception({
+                description: 'Rate limit hit',
+                fatal: false
+              });
+              break;
+            case 401:
+              ReactGA.exception({
+                description: 'Invalid session key',
+                fatal: true
+              });
+              this.props.logOut({
+                type: 'warning',
+                message: 'loginAgain',
+                persistent: true,
+                showErrorNumber: true,
+                errorNumber: 401,
+              });
+              break;
+            default:
+              break;
           }
           if (response.config.timing) {
             ReactGA.timing({
