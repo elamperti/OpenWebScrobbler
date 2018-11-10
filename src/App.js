@@ -8,7 +8,10 @@ import get from 'lodash/get';
 import axios from 'axios';
 import qs from 'qs';
 
-import { getUserInfo } from './store/actions/userActions';
+import {
+  getUserInfo,
+  logOut,
+} from './store/actions/userActions';
 import { createAlert } from './store/actions/alertActions';
 
 import PrivateRoute from './components/PrivateRoute';
@@ -49,7 +52,7 @@ class App extends Component {
           newError.message = 'loginAgain';
           newError.persistent = true;
           showErrorNumber = true;
-          // ToDo: log out and redirect home
+          this.props.logOut(newError);
           break;
         case 11: // Service offline
         case 16: // Service temporarily unavailable
@@ -66,10 +69,12 @@ class App extends Component {
           showErrorNumber = true;
       }
 
-      this.props.createAlert({
-        ...newError,
-        errorNumber: showErrorNumber ? errorNumber : null,
-      });
+      if (newError.message !== 'loginAgain') { // errors 9 and 17 already trigger an alert
+        this.props.createAlert({
+          ...newError,
+          errorNumber: showErrorNumber ? errorNumber : null,
+        });
+      }
     }
 
     let axiosTiming = (response) => {
@@ -160,6 +165,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getUserInfo: getUserInfo(dispatch),
     createAlert: createAlert(dispatch),
+    logOut: logOut(dispatch),
   };
 };
 

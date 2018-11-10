@@ -82,7 +82,7 @@ export function logIn(/*dispatch*/) {
 }
 
 export function logOut(dispatch) {
-  return () => {
+  return (alertObject) => {
     ReactGA.event({
       category: 'Session',
       action: 'Logout',
@@ -98,7 +98,7 @@ export function logOut(dispatch) {
         });
         localStorage.removeItem('hashedUID');
         history.push('/');
-        createAlert(dispatch)({
+        createAlert(dispatch)(alertObject || {
           type: 'info',
           title: 'logoutInfo.title',
           message: 'logoutInfo.message'
