@@ -4,35 +4,32 @@ import { PropTypes } from 'prop-types';
 import ScrobbleItem from 'components/ScrobbleItem';
 import Spinner from 'components/Spinner';
 
-// ToDo: make stateless
-class ScrobbleList extends React.Component {
-  render() {
-    if (this.props.loading) {
-      return(
-        <Spinner />
-      );
-    }
+function ScrobbleList(props) {
+  if (props.loading) {
+    return(
+      <Spinner />
+    );
+  }
 
-    if (this.props.scrobbles.length > 0) {
-      let ScrobbleListContent = this.props.scrobbles.map((scrobble, index) => {
-        return <ScrobbleItem
-          scrobble={scrobble}
-          cloneScrobbleTo={this.props.cloneScrobblesTo}
-          compact={this.props.compact}
-          noMenu={this.props.noMenu}
-          key={index}
-        />;
-      });
-      return (
-        <div className="ScrobbleList">
-          <div className="d-flex flex-column-reverse">
-            {ScrobbleListContent}
-          </div>
+  if (props.scrobbles.length > 0) {
+    let ScrobbleListContent = props.scrobbles.map((scrobble, index) => {
+      return <ScrobbleItem
+        scrobble={scrobble}
+        cloneScrobbleTo={props.cloneScrobblesTo}
+        compact={props.compact}
+        noMenu={props.noMenu}
+        key={index}
+      />;
+    });
+    return (
+      <div className="ScrobbleList">
+        <div className="d-flex flex-column-reverse">
+          {ScrobbleListContent}
         </div>
-      );
-    } else {
-      return this.props.children;
-    }
+      </div>
+    );
+  } else {
+    return props.children;
   }
 }
 
