@@ -9,7 +9,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.1",
     "@fortawesome/free-solid-svg-icons": "^5.1",
     "@fortawesome/react-fontawesome": "^0.1",
-    "@sentry/browser": "^4.0.5",
+    "@sentry/browser": "^4.3.0",
     "axios": "^0.18.0",
     "babel-eslint": "^10.0.1",
     "bootswatch": "^4.1.1",
