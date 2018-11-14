@@ -216,7 +216,7 @@ class SongForm extends React.Component {
       albumArtist: '',
       title: '',
       ...data,
-      timestamp: this.state.timestamp
+      timestamp: this.state.useCustomDate ? data.timestamp : this.state.timestamp
     }, () => this.validateForm());
   }
 
@@ -353,6 +353,7 @@ class SongForm extends React.Component {
               tabIndex="1"
               className="hasLock"
               value={this.state.artist}
+              onChange={function() {}}
               onInput={this.updateField('artist')}
               onKeyUp={this.catchKeys}
               onPaste={this.catchPaste}
@@ -388,6 +389,7 @@ class SongForm extends React.Component {
             id="title"
             tabIndex="2"
             value={this.state.title}
+            onChange={function() {}}
             onInput={this.updateField('title')}
             onKeyUp={this.catchKeys}
             onPaste={this.catchPaste}
@@ -408,6 +410,7 @@ class SongForm extends React.Component {
               tabIndex="3"
               className="hasLock"
               value={this.state.album}
+              onChange={function() {}}
               onInput={this.updateField('album')}
               onKeyUp={this.catchKeys}
               data-lpignore="true"
@@ -434,6 +437,7 @@ class SongForm extends React.Component {
               tabIndex="3"
               className="hasLock"
               value={this.state.albumArtist}
+              onChange={function() {}}
               onInput={this.updateField('albumArtist')}
               onKeyUp={this.catchKeys}
               data-lpignore="true"

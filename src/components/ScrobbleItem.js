@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { translate } from 'react-i18next';
 import ReactGA from 'react-ga';
+import get from 'lodash/get';
 
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
@@ -42,7 +43,8 @@ class ScrobbleItem extends Component {
     this.toggleMoreMenu = this.toggleMoreMenu.bind(this);
 
     this.state = {
-      dropdownOpen: false
+      hasScrobbledAgain: false,
+      dropdownOpen: false,
     };
   }
 
@@ -63,12 +65,15 @@ class ScrobbleItem extends Component {
   scrobbleAgain() {
     ReactGA.event({
       category: 'Interactions',
-      action: 'Scrobble Again'
+      action: this.props.noMenu ? 'Scrobble From User' : 'Scrobble Again', // ToDo: refactor this dirty implementation
     });
     this.props.enqueueScrobble([{
       ...this.props.scrobble,
-      timestamp: new Date(),
+      timestamp: get(this.props.settings, 'keepOriginalTimestamp') ? this.props.scrobble.timestamp : new Date(),
     }]);
+    this.setState({
+      hasScrobbledAgain: true,
+    });
   }
 
   properCase(str, forceUcfirstMode=false) {
@@ -85,10 +90,16 @@ class ScrobbleItem extends Component {
   render() {
     const t = this.props.t; // Translations
     const scrobble = this.props.scrobble;
-    let scrobbleItemClasses;
-    let songInfo, albumInfo, albumArt, statusIcon, errorMessage;
-    let theTimestamp, timestampFormat='';
+    let albumArt;
+    let albumInfo;
     let cloneOption;
+    let errorMessage;
+    let rightSideContent;
+    let scrobbleItemClasses;
+    let songInfo;
+    let statusIcon;
+    let theTimestamp
+    let timestampFormat='';
 
     if (scrobble.album) {
       albumInfo = (
@@ -196,13 +207,15 @@ class ScrobbleItem extends Component {
 
     scrobbleItemClasses = `scrobbled-item status-${scrobble.status} ` + (this.props.compact ? 'compact' : 'card mb-2');
 
-    return (
-      <div className={scrobbleItemClasses}>
-        <div className="d-flex flex-row p-2">
-          { albumArt ? <div className="albumArt align-self-center pr-2">{albumArt}</div> : null }
-          { songInfo }
-
-          <div className="ml-auto pl-2">
+    if (this.props.noMenu) {
+      rightSideContent = (
+        <Button onClick={this.scrobbleAgain} size="sm" color="success" outline disabled={this.state.hasScrobbledAgain}>
+          {this.state.hasScrobbledAgain ? <FontAwesomeIcon icon={faCheck} /> : t('scrobble')}
+        </Button>
+      );
+    } else {
+      rightSideContent = (
+        <div>
           <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleMoreMenu}>
             <DropdownToggle tag="div"
               onClick={this.toggleMoreMenu}
@@ -220,6 +233,18 @@ class ScrobbleItem extends Component {
           <span className="status-icon">
             {statusIcon}
           </span>
+        </div>
+      );
+    }
+
+    return (
+      <div className={scrobbleItemClasses}>
+        <div className={`d-flex flex-row p-2 ${ this.props.compact ? 'flex-wrap' : ''}`}>
+          { albumArt ? <div className="albumArt align-self-center pr-2">{albumArt}</div> : null }
+          { songInfo }
+
+          <div className="ml-auto pl-2">
+            { rightSideContent }
           </div>
         </div>
         {errorMessage}
@@ -229,13 +254,15 @@ class ScrobbleItem extends Component {
 }
 
 ScrobbleItem.propTypes = {
-  compact: PropTypes.bool,
-  scrobble: PropTypes.object.isRequired,
   cloneScrobbleTo: PropTypes.func,
+  compact: PropTypes.bool,
+  noMenu: PropTypes.bool,
+  scrobble: PropTypes.object.isRequired,
 }
 
 ScrobbleItem.defaultProps = {
   compact: false,
+  noMenu: false,
 }
 
 const mapStateToProps = (state) => {

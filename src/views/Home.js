@@ -77,12 +77,18 @@ class Home extends Component {
 
     if (isLoggedIn) {
       homeContent = (
-        <div>
-          <p className="lead text-center">
-            <Button tag={Link} to="/scrobble/song" size="lg" color="success">
+        <div className="row">
+          <div className="col-10 offset-1 col-sm-8 offset-2 col-md-6 offset-md-3 col-xl-4 offset-xl-4">
+            <Button tag={Link} to="/scrobble/song" size="lg" color="success" block className="mb-1">
               {t('getScrobbling')}
             </Button>
-          </p>
+            <div className="my-1 text-center">
+              &mdash; {t('or')} &mdash;
+            </div>
+            <Button tag={Link} to="/scrobble/user" size="lg" color="secondary" block>
+              {t('scrobbleFromOtherUser')}
+            </Button>
+          </div>
         </div>
       )
     } else {

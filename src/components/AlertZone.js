@@ -71,11 +71,11 @@ class AlertZone extends React.Component {
       );
     }
 
-    return (
-      <div className="AlertZone">
+    return alerts.length > 0 ? (
+      <div className="AlertZone mt-3">
         {alerts}
       </div>
-    );
+    ) : null;
   }
 }
 

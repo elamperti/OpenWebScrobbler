@@ -108,34 +108,49 @@ body.with-shadow {
   margin-bottom: 1.5em;
 }
 
-.ScrobbleList-container .nav-tabs {
+.SongFormLists-container .nav-tabs {
   border-color: rgba(11, 14, 17, 0.55);
 }
 
-.ScrobbleList-container .nav-tabs .nav-item {
+.SongFormLists-container .nav-tabs .nav-item {
   margin-right: 2px;
 }
 
-.ScrobbleList-container .nav-tabs .nav-link.active,
-.ScrobbleList-container .nav-tabs .nav-item.show .nav-link {
+.SongFormLists-container .nav-tabs .nav-link.active,
+.SongFormLists-container .nav-tabs .nav-item.show .nav-link {
   background-color: #181b1f;
   border-color: rgba(11, 14, 17, 0.55);
 }
 
-.ScrobbleList-container .nav-tabs .nav-link:hover,
-.ScrobbleList-container .nav-tabs .nav-link:focus {
+.SongFormLists-container .nav-tabs .nav-link:hover,
+.SongFormLists-container .nav-tabs .nav-link:focus {
   color: white;
   border-color: rgba(11, 14, 17, 0.55);
 }
 
 @media (min-width: 768px) {
-  .ScrobbleList-container {
+  .SongFormLists-container {
     margin-top: -1rem;
   }
-  .ScrobbleList-container .tab-pane {
+  .ScrobbleList-container {
     padding-right: 0.5rem;
     min-height: 10rem;
     max-height: 70vh;
     overflow-y: auto;
   }
+
+  .ScrobbleList-container.with-gradient {
+    max-height: 62vh;
+  }
+}
+
+.ScrobbleList-container.with-gradient {
+  background: linear-gradient(#161619, transparent 40%);
+  border: 1px solid rgba(0,0,0,0.2);
+  border-bottom-left-radius: 4px;
+  border-top: none;
+}
+
+.recent-users li {
+  cursor: pointer;
 }

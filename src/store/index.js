@@ -1,6 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
 import promise from 'redux-promise-middleware';
+import createDebounce from 'redux-debounced';
 import throttle from 'lodash/throttle';
 
 import { loadState, saveState } from 'localstorage';
@@ -12,7 +12,7 @@ import settingsReducer from './reducers/settingsReducer';
 import updatesReducer from './reducers/updatesReducer';
 
 const middlewares = [
-  thunk,
+  createDebounce(),
   promise(),
 ];
 
@@ -40,13 +40,11 @@ store.subscribe(throttle(() => {
   saveState({
     scrobbles: {
       ...state.scrobbles,
-      list: state.scrobbles.list.slice(-50),
+      list: state.scrobbles.list.filter(scrobble => scrobble.status !== 'pending').slice(-50),
     },
     user: {
-      isLoggedIn: state.user.isLoggedIn,
-      name: state.user.name,
-      url: state.user.url,
-      avatarURL: state.user.avatarURL,
+      ...state.user,
+      userSettingsLoading: false,
     },
     settings: state.settings,
   });

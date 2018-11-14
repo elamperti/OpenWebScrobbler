@@ -1,6 +1,17 @@
 import axios from 'axios';
 import shortid from 'shortid';
 
+import {
+  AUDIOSCROBBLER_API_URL,
+  OPENSCROBBLER_API_URL,
+  ENQUEUE_NEW,
+  COUNT_SCROBBLES_ENABLE,
+  COUNT_SCROBBLES_DISABLE,
+  CLEAR_SCROBBLES_LIST,
+  SCROBBLE,
+  SCROBBLE_COVER_SEARCH,
+} from 'Constants';
+
 export function enqueueScrobble(dispatch) {
   return (scrobbles=[]) => {
     let artist = [];
@@ -30,8 +41,8 @@ export function enqueueScrobble(dispatch) {
       if (!scrobble.cover) {
         // ToDo: possible race condition (response arrives before scrobble is added to store)
         dispatch({
-          type: "SCROBBLE_COVER_SEARCH",
-          payload: axios.get('https://ws.audioscrobbler.com/2.0/', {
+          type: SCROBBLE_COVER_SEARCH,
+          payload: axios.get(AUDIOSCROBBLER_API_URL, {
             params: {
               method: coverSearchEndpoint,
               api_key: process.env.REACT_APP_LASTFM_API_KEY,
@@ -51,7 +62,7 @@ export function enqueueScrobble(dispatch) {
 
     // Enqueue
     dispatch({
-      type: "ENQUEUE_NEW",
+      type: ENQUEUE_NEW,
       payload: {
         scrobbles,
         scrobbleUUID
@@ -62,7 +73,7 @@ export function enqueueScrobble(dispatch) {
 
     // transform content for OWS API
     for (let scrobble of scrobbles) {
-      timestamp.push(scrobble.timestamp.toISOString());
+      timestamp.push(new Date(scrobble.timestamp).toISOString());
       artist.push(scrobble.artist);
       track.push(scrobble.title);
       album.push(scrobble.album);
@@ -71,9 +82,9 @@ export function enqueueScrobble(dispatch) {
 
     // Dispatch axios promise
     dispatch({
-      type: "SCROBBLE",
+      type: SCROBBLE,
       payload: axios.post(
-        `/api/v2/scrobble.php`,
+        `${OPENSCROBBLER_API_URL}/scrobble.php`,
         {
           artist,
           track,
@@ -94,7 +105,7 @@ export function enqueueScrobble(dispatch) {
 export function clearListOfScrobbles(dispatch) {
   return () => {
     dispatch({
-      type: "CLEAR_SCROBBLES_LIST",
+      type: CLEAR_SCROBBLES_LIST,
     });
   };
 }
@@ -102,7 +113,7 @@ export function clearListOfScrobbles(dispatch) {
 export function useScrobbleCounter(dispatch) {
   return (newValue) => {
     dispatch({
-      type: newValue ? 'COUNT_SCROBBLES_ENABLE' : 'COUNT_SCROBBLES_DISABLE'
+      type: newValue ? COUNT_SCROBBLES_ENABLE : COUNT_SCROBBLES_DISABLE,
     });
   };
 }

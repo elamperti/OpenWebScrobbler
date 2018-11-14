@@ -1,0 +1,24 @@
+.user-avatar.without-img {
+  display: inline-block;
+  background-color: rgba(0,0,0,0.3);
+}
+
+.user-avatar-sm.without-img {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+
+.user-avatar-md.without-img {
+  height: 4rem;
+  width: 4rem;
+}
+
+.user-avatar-sm {
+  max-height: 1.5rem;
+  max-width: 1.5rem;
+}
+
+.user-avatar-md {
+  max-height: 4rem;
+  max-width: 4rem;
+}

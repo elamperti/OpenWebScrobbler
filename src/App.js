@@ -8,17 +8,22 @@ import get from 'lodash/get';
 import axios from 'axios';
 import qs from 'qs';
 
-import { getUserInfo } from './store/actions/userActions';
+import {
+  getUserInfo,
+  logOut,
+} from './store/actions/userActions';
 import { createAlert } from './store/actions/alertActions';
 
 import PrivateRoute from './components/PrivateRoute';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 import AlertZone from './components/AlertZone';
-import Home from './views/Home';
-import ScrobbleSong from './views/ScrobbleSong';
 import AnalyticsListener from './components/AnalyticsListener';
 import UpdateToast from './components/UpdateToast';
+
+import Home from './views/Home';
+import ScrobbleSong from './views/ScrobbleSong';
+import ScrobbleUser from './views/ScrobbleUser';
 
 class App extends Component {
   constructor(props) {
@@ -47,7 +52,7 @@ class App extends Component {
           newError.message = 'loginAgain';
           newError.persistent = true;
           showErrorNumber = true;
-          // ToDo: log out and redirect home
+          this.props.logOut(newError);
           break;
         case 11: // Service offline
         case 16: // Service temporarily unavailable
@@ -64,10 +69,12 @@ class App extends Component {
           showErrorNumber = true;
       }
 
-      this.props.createAlert({
-        ...newError,
-        errorNumber: showErrorNumber ? errorNumber : null,
-      });
+      if (newError.message !== 'loginAgain') { // errors 9 and 17 already trigger an alert
+        this.props.createAlert({
+          ...newError,
+          errorNumber: showErrorNumber ? errorNumber : null,
+        });
+      }
     }
 
     let axiosTiming = (response) => {
@@ -96,11 +103,28 @@ class App extends Component {
       (response) => {
         axiosTiming(response);
         if (response.config.url.match(/^\/api/)) {
-          if (response.status === 503) {
-            ReactGA.exception({
-              description: 'Rate limit hit',
-              fatal: false
-            });
+          switch (response.status) {
+            case 503:
+              ReactGA.exception({
+                description: 'Rate limit hit',
+                fatal: false
+              });
+              break;
+            case 401:
+              ReactGA.exception({
+                description: 'Invalid session key',
+                fatal: true
+              });
+              this.props.logOut({
+                type: 'warning',
+                message: 'loginAgain',
+                persistent: true,
+                showErrorNumber: true,
+                errorNumber: 401,
+              });
+              break;
+            default:
+              break;
           }
           if (response.config.timing) {
             ReactGA.timing({
@@ -130,12 +154,13 @@ class App extends Component {
           <Navigation />
           { this.props.updates.newVersionReady ? <UpdateToast /> : null }
 
-          <div className="container mt-3">
+          <div className="container">
             <AlertZone />
           </div>
-          <main className="container d-lg-flex flex-grow-1">
+          <main className="container d-lg-flex flex-wrap flex-grow-1">
             <Switch>
               <PrivateRoute exact path="/scrobble/song" component={ScrobbleSong} />
+              <PrivateRoute exact path="/scrobble/user/:username?" component={ScrobbleUser} />
               <Route exact path="/" component={Home} />
               <Redirect to="/" />
             </Switch>
@@ -157,6 +182,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     getUserInfo: getUserInfo(dispatch),
     createAlert: createAlert(dispatch),
+    logOut: logOut(dispatch),
   };
 };
 

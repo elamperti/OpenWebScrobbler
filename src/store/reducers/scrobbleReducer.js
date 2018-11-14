@@ -1,5 +1,15 @@
 import hasIn from 'lodash/hasIn';
 
+import {
+  ENQUEUE_NEW,
+  COUNT_SCROBBLES_ENABLE,
+  COUNT_SCROBBLES_DISABLE,
+  USER_LOGGED_OUT,
+  CLEAR_SCROBBLES_LIST,
+  SCROBBLE,
+  SCROBBLE_COVER_SEARCH,
+} from 'Constants';
+
 const initialState = {
   countNewScrobbles: false,
   unreadCount: 0,
@@ -30,7 +40,7 @@ const scrobbleReducer = (state=initialState, action) => {
   let albumData;
 
   switch (action.type) {
-    case 'ENQUEUE_NEW':
+    case ENQUEUE_NEW:
       for (let scrobble of action.payload.scrobbles) {
         newScrobbles.push({
           ...scrobble,
@@ -48,36 +58,37 @@ const scrobbleReducer = (state=initialState, action) => {
         ]
       };
 
-    case 'COUNT_SCROBBLES_ENABLE':
+    case COUNT_SCROBBLES_ENABLE:
       return {
         ...state,
         countNewScrobbles: true
       };
 
-    case 'COUNT_SCROBBLES_DISABLE':
+    case COUNT_SCROBBLES_DISABLE:
       return {
         ...state,
         unreadCount: 0,
         countNewScrobbles: false
       };
 
-    case 'USER_LOGGED_OUT':
+    case USER_LOGGED_OUT:
       return initialState;
 
-    case 'CLEAR_SCROBBLES_LIST':
+    case CLEAR_SCROBBLES_LIST:
       return {
         ...state,
         unreadCount: 0,
         list: [],
       };
 
-    case 'SCROBBLE_FULFILLED':
+    case `${SCROBBLE}_FULFILLED`:
       if (hasIn(action.payload, 'data.scrobbles[@attr]')) {
         status = action.payload.data.scrobbles['@attr'].ignored ? 'error' : 'success';
         errorDescription = status === 'error' ? 'errors.lastfmRejected' : null;
         return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           status,
           errorDescription,
+          timestamp: new Date(action.payload.data.scrobbles.scrobble.timestamp * 1000),
         });
       } else {
         /* eslint-disable no-console */
@@ -88,7 +99,7 @@ const scrobbleReducer = (state=initialState, action) => {
         });
       }
 
-    case 'SCROBBLE_REJECTED':
+    case `${SCROBBLE}_REJECTED`:
       if (hasIn(action.payload, 'config.headers.scrobbleUUID')) {
         return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           status: 'error',
@@ -97,7 +108,7 @@ const scrobbleReducer = (state=initialState, action) => {
       }
       return state;
 
-    case 'SCROBBLE_COVER_SEARCH_FULFILLED':
+    case `${SCROBBLE_COVER_SEARCH}_FULFILLED`:
       trackUUID = action.payload.config.params.ows_scrobbleUUID;
       if (hasIn(action.payload, 'data.track.album') || hasIn(action.payload, 'data.album')) {
         albumData = action.payload.data.album || action.payload.data.track.album;

@@ -1,4 +1,9 @@
 import shortid from 'shortid';
+import {
+  ALERT_CREATE,
+  ALERT_DISMISS,
+  ALERT_CLEAR_ALL,
+} from 'Constants';
 
 const initialState = [];
 
@@ -14,12 +19,12 @@ const initialState = [];
 
 const alertReducer = (state=initialState, action) => {
   switch (action.type) {
-    case 'ALERT_CLEAR_ALL':
+    case ALERT_CLEAR_ALL:
       return state.filter((alert) => {
         return alert.persistent;
       });
 
-    case 'ALERT_CREATE':
+    case ALERT_CREATE:
       return [
         {
           id: shortid.generate(),
@@ -40,7 +45,7 @@ const alertReducer = (state=initialState, action) => {
         })
       ];
 
-    case 'ALERT_DISMISS':
+    case ALERT_DISMISS:
       return state.filter(alert => {
         for (let key in action.payload) {
           if (alert[key] !== action.payload[key]) {
