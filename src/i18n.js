@@ -20,7 +20,7 @@ export const fallbackLng = {
   'ca-ES': ['ca'],
   'ca-AD': ['ca'],
   'el-GR': ['el'],
-  'el-CY': ['en'],
+  'el-CY': ['el'],
   'en-US': ['en'],
   'en-UK': ['en'],
   'es-AR': ['es'],
