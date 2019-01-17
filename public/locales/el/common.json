@@ -1,0 +1,69 @@
+{
+  "scrobble": "Scrobble",
+  "getScrobbling": "Αρχίστε το scrobbling",
+  "loading": "Φόρτωση...",
+  "artist": "Καλλιτέχνης",
+  "song": "Τραγούδι",
+  "title": "Κομμάτι",
+  "album": "Άλμπου",
+  "albumArtist": "Καλλιτέχνης άλμπουμ",
+  "history": "Ιστορικο",
+  "yourProfile": "Το προφίλ σας",
+  "yourHistory": "Το ιστορικό σας",
+  "scrobbleManually": "Scrobble χειροκίνητα",
+  "scrobbleFromOtherUser": "Scrobble από άλλο χρήστη",
+  "otherUser": "Χρήστης",
+  "or": "ή",
+  "refresh": "Ανανέωση",
+  "findFriendCopy": "Εισάγετε το username ενός χρήστη του last.fm  για να δείτε τα τελευταία τους κομμάτια",
+  "visitProfile": "Προβολή προφίλ",
+  "search": "Αναζήτηση",
+  "backToSearch": "Πίσω στην αναζήτηση",
+  "userNotFound": "Ο χρήστης δεν βρέθηκε",
+  "invalidUsername": "Λάθος username",
+  "recentlySearchedUsers": "Αναζητήθηκαν πρόσφατα",
+  "language": "Γλώσσα",
+  "translateYourLanguage": "Θέλετε να προσθέσετε τη γλώσσα σας;",
+  "logIn": "Σύνδεση",
+  "logOut": "Αποσύνδεση",
+  "now": "Τώρα",
+  "custom": "Προσαρμοσμένο...",
+  "timestamp": "Timestamp",
+  "lastfmWillRejectOldTimestamps": "Το Last.fm θα απορρίψει scrobbles παλαιότερα από 2 εβδομάδες.",
+  "keepOriginalTimestamp": "Scrobble χρησιμοποιώντας την αρχική ημερομηνία και ώρα",
+  "noSongsScrobbled": "Δεν έχουν γίνει scrobble τραγούδια ακόμα!",
+  "songsWillAppearHere": "Τα τραγούδια θα εμφανιστούν εδώ αφού τα κάνετε scrobble.",
+  "clearHistory": "Καθαρισμός ιστορικού",
+  "scrobbleAgain": "Scrobble ξανά",
+  "copyToEditor": "Αντιγραφή στον editor",
+  "swapArtistTitle": "Ανταλλαγή καλλιτέχνη και κομματιού",
+  "viewProfile": "Προβολή του προφίλ μου στο last.fm",
+  "lockArtist": "Κλείδωμα του πεδίου καλλιτέχνη",
+  "lockAlbum": "Κλείδωμα του πεδίου άλμπουμ",
+  "pasteIntercepted": "Το κείμενο που επικολλήθηκε χωρίστηκε αυτόματα!",
+  "considerDonating": "Παρακαλούμε υποστηρίξτε αυτό το έργο στο Patreon!",
+  "footer": {
+    "joinCommunity": "Είστε ευπρόσδεκτος στην κοινότητά μας <1>στο Discord</1>!",
+    "supportThisProject": "Παρακαλούμε <1>υποστηρίξτε αυτό το έργο</1> στο Patreon :)",
+    "specialThanks": "Ένα μεγάλο ευχαριστώ σε όλους τους δωρητές, μεταφραστές και <1>στους συνεισφέροντες</1>"
+  },
+  "settings": "Ρυθμίσεις",
+  "cancel": "Άκυρο",
+  "dates": {
+    "format": {
+      "short": "MMM Do"
+    },
+    "months": {
+      "short": ["Ιαν","Φεβ","Μαρ","Απρ","Μάι","Ιουν","Ιουλ","Αυγ","Σεπ","Οκτ","Νοε","Δεκ"],
+      "long": ["Ιανουάριος","Φεβρουάριος","Μάρτιος","Απρίλιος","Μάιος","Ιούνιος","Ιούλιος","Άυγουστος","Σεπτέμβριος","Οκτώβριος","Νοέμβριος","Δεκέμβριος"]
+    }
+  },
+  "updates": {
+    "newVersionAvailable": "Υπάρχει μια νέα έκδοση διαθέσιμη! Παρακαλώ <1>ανανεώστε τη σελίδα</1>"
+  },
+  "errors": {
+    "lastfmRejected": "Το Last.fm απόρριψε αυτό το scrobble",
+    "unexpectedResponse": "Απροσδόκητη απάντηση",
+    "apiCallFailed": "Η κλήση στο API απέτυχε"
+  }
+}

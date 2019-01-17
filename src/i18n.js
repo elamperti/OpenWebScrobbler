@@ -6,6 +6,7 @@ import { reactI18nextModule } from 'react-i18next';
 export const languageList = [
   {code: 'ca', name: 'Català'},
   {code: 'de', name: 'Deutsch'},
+  {code: 'el', name: 'Ελληνικά'},
   {code: 'en', name: 'English'},
   {code: 'es', name: 'Español'},
   {code: 'fr', name: 'French'},
@@ -18,6 +19,8 @@ export const languageList = [
 export const fallbackLng = {
   'ca-ES': ['ca'],
   'ca-AD': ['ca'],
+  'el-GR': ['el'],
+  'el-CY': ['el'],
   'en-US': ['en'],
   'en-UK': ['en'],
   'es-AR': ['es'],
