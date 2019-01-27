@@ -1,4 +1,4 @@
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import promise from 'redux-promise-middleware';
 import createDebounce from 'redux-debounced';
 import throttle from 'lodash/throttle';
@@ -16,9 +16,16 @@ const middlewares = [
   promise(),
 ];
 
+let composeEnhancer;
+
 if (process.env.NODE_ENV === 'development') {
-  const { logger } = require('redux-logger');
-  middlewares.push(logger);
+  if (typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
+    composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
+  } else {
+    const { logger } = require('redux-logger');
+    middlewares.push(logger);
+    composeEnhancer = compose;
+  }
 }
 
 const persistedState = loadState();
@@ -32,7 +39,7 @@ const store = createStore(
     updates: updatesReducer,
   }),
   persistedState,
-  applyMiddleware(...middlewares)
+  composeEnhancer(applyMiddleware(...middlewares))
 );
 
 store.subscribe(throttle(() => {
