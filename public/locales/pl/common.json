@@ -1,6 +1,6 @@
 {
   "scrobble": "Scrobbluj",
-  "getScrobbling": "Zacznij Scrobblować",
+  "getScrobbling": "Zacznij scrobblować",
   "loading": "Ładowanie...",
   "artist": "Wykonawca",
   "song": "Utwór",
@@ -64,6 +64,6 @@
   "errors": {
     "lastfmRejected": "Last.fm odrzuciło ten scrobble.",
     "unexpectedResponse": "Nieoczekiwana odpowiedź.",
-    "apiCallFailed": "Połączenie z API przerwane."
+    "apiCallFailed": "Wywołanie API zakończone niepowodzeniem."
   }
 }
