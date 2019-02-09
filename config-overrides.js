@@ -22,7 +22,6 @@ module.exports = function override(config, env) {
         },
         resolver(moduleName, version) {
           var url;
-          var subModuleName;
 
           switch (moduleName) {
             case '@sentry/browser':
