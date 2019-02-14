@@ -29,6 +29,8 @@
         'timestamp' => array_map('check_timestamp', $_POST['timestamp'])
       );
 
+      $number_of_tracks = sizeof($_POST['track']);
+
       if (isset($_POST['album'])) {
         $track_info['album'] = array_map('trim', $_POST['album']);
       }
@@ -38,10 +40,12 @@
       }
 
       // ToDo: remove this experiment
-      if (isset($track_info['albumArtist']) && strlen($track_info['albumArtist'][0]) > 0) {
-          $ga->event('Song form', 'Used albumArtist', 1);
-      } else if (isset($_POST['album']) && strlen($track_info['album'][0]) > 0) {
-        $ga->event('Song form', 'Used album', 1);
+      if ($number_of_tracks == 1) {
+        if (isset($track_info['albumArtist']) && strlen($track_info['albumArtist'][0]) > 0) {
+            $ga->event('Song form', 'Used albumArtist', 1);
+        } else if (isset($_POST['album']) && strlen($track_info['album'][0]) > 0) {
+          $ga->event('Song form', 'Used album', 1);
+        }
       }
 
       // All ready, call the API
@@ -52,7 +56,11 @@
       ob_end_flush();
 
       // Track event
-      $ga->event('Scrobbles', 'Manual', sizeof($_POST['track']));
+      if ($number_of_tracks > 1) {
+        $ga->event('Scrobbles', 'Album', $number_of_tracks);
+      } else {
+        $ga->event('Scrobbles', 'Manual', 1);
+      }
 
       die();
 

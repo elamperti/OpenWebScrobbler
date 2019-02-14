@@ -24,6 +24,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHeadphonesAlt,
   faCog,
+  faCompactDisc,
   faExternalLinkAlt,
   faSignInAlt,
   faSignOutAlt,
@@ -144,6 +145,12 @@ class Navigation extends Component {
             <NavLink {...generateLinkParams("/scrobble/song")}>
               <FontAwesomeIcon icon={faPlayCircle} />
               {t('song')}
+            </NavLink>
+          </NavItem>
+          <NavItem>
+            <NavLink {...generateLinkParams("/scrobble/album")}>
+              <FontAwesomeIcon icon={faCompactDisc} />
+              {t('album')}
             </NavLink>
           </NavItem>
           <NavItem>

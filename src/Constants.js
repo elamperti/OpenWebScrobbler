@@ -3,7 +3,23 @@ export const AUDIOSCROBBLER_API_URL = 'https://ws.audioscrobbler.com/2.0/';
 export const OPENSCROBBLER_API_URL = `//${process.env.REACT_APP_HOST}/api/v2`;
 export const CONSIDER_HISTORY_STALE_AFTER = 5 * 60 * 1000; // 5 minutes
 export const DEBOUNCE_PERIOD = 3 * 1000; // 3 seconds
+export const LASTFM_API_RATE_LIMIT = 0; // At this moment is 5 rq/s over 5m per originating IP
 export const MAX_RECENT_USERS = 6;
+// export const DEFAULT_SONG_DURATION = 3; // ToDo: use this value when skipping time forward after scrobble
+
+// Albums view steps
+export const ALBUM_VIEW_STEP_SEARCH = 0;
+export const ALBUM_VIEW_STEP_SRP = 1;
+export const ALBUM_VIEW_STEP_ARTIST = 2;
+export const ALBUM_VIEW_STEP_TRACKLIST = 3;
+
+// Albums store
+export const GET_ALBUM_INFO_LASTFM = 'GET_ALBUM_INFO_LASTFM';
+export const SEARCH_ALBUM_LASTFM = 'SEARCH_ALBUM_LASTFM';
+
+// Artists store
+export const SEARCH_ARTIST_LASTFM = 'SEARCH_ARTIST_LASTFM';
+export const SEARCH_ARTIST_TOP_ALBUMS_LASTFM = 'SEARCH_ARTIST_TOP_ALBUMS_LASTFM';
 
 // Alerts store
 export const ALERT_CREATE = 'ALERT_CREATE';

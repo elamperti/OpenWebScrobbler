@@ -1,3 +1,5 @@
+/* Looking for the localstorage save filter? See `store/index.js` */
+
 export function loadState() {
   const serializedState = loadFromLocalStorage('state');
   if (serializedState === null) return undefined;
@@ -13,11 +15,12 @@ export function saveToLocalStorage(key, value) {
   try {
     localStorage.setItem(key, value);
   } catch (err) {
+    // eslint-disable-next-line no-console
     console.warn(`Saving to local storage failed (${key})`);
   }
 }
 
-export function loadFromLocalStorage(key) {
+export function loadFromLocalStorage() {
   try {
     return localStorage.getItem('state');
   } catch (err) {

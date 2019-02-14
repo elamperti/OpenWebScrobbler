@@ -7,6 +7,8 @@ import { loadState, saveState } from 'localstorage';
 
 import scrobbleReducer from './reducers/scrobbleReducer';
 import userReducer from './reducers/userReducer';
+import albumReducer from './reducers/albumReducer';
+import artistReducer from './reducers/artistReducer';
 import alertReducer from './reducers/alertReducer';
 import settingsReducer from './reducers/settingsReducer';
 import updatesReducer from './reducers/updatesReducer';
@@ -34,6 +36,8 @@ const store = createStore(
   combineReducers({
     scrobbles: scrobbleReducer,
     alerts: alertReducer,
+    album: albumReducer,
+    artist: artistReducer,
     user: userReducer,
     settings: settingsReducer,
     updates: updatesReducer,
