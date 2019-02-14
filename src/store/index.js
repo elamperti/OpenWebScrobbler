@@ -18,7 +18,7 @@ const middlewares = [
   promise(),
 ];
 
-let composeEnhancer;
+let composeEnhancer = compose;
 
 if (process.env.NODE_ENV === 'development') {
   if (typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
@@ -26,7 +26,6 @@ if (process.env.NODE_ENV === 'development') {
   } else {
     const { logger } = require('redux-logger');
     middlewares.push(logger);
-    composeEnhancer = compose;
   }
 }
 
