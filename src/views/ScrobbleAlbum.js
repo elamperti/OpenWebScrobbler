@@ -374,7 +374,7 @@ class ScrobbleAlbum extends Component {
 
     const goBackLink = (toStep) => {
       return (
-        <a href="/scrobble/album" onClick={() => this.resetState(toStep)} className="my-2">
+        <a href="/scrobble/album" onClick={(e) => {e.preventDefault();this.resetState(toStep)}} className="my-2">
           <FontAwesomeIcon icon={faArrowLeft} />{' '}
           <Trans i18nKey="goBack">Go back</Trans>
         </a>
@@ -421,7 +421,6 @@ class ScrobbleAlbum extends Component {
                 onSearch={this.search}
                 ariaLabel="Album or artist"
                 inputId="albumOrArtistToSearch"
-                maxLength={15}
                 size="lg"
                 value={this.state.albumOrArtist}
                 readOnly={this.state.isLoading}
@@ -440,7 +439,7 @@ class ScrobbleAlbum extends Component {
         } else {
           const isHalfColumn = this.state.searchOptions.byArtist && !topAlbumsMode;
           const albumColSize = isHalfColumn ? 'col-md-6 col-xl-4' : 'col-sm-6 col-md-4 col-xl-3';
-          const albumsSource = topAlbumsMode ? get(this.props.artists.topAlbums, `[${this.state.mbid.artist}]`, []) : get(this.props.albums.searchCache, `[${this.state.albumOrArtist}]`, []);
+          const albumsSource = topAlbumsMode ? get(this.props.artists.topAlbums, `[${this.state.mbid.artist}]`, []) : get(this.props.albums.searchCache, `[${this.state.albumOrArtist.toLowerCase()}]`, []);
           let listOfAlbums = [];
           let i = 0;
 
@@ -479,7 +478,7 @@ class ScrobbleAlbum extends Component {
           artistSRP = boringSpinnerBlock;
         } else {
           const artistColSize = this.state.searchOptions.byAlbum ? 'col-xl-6' : 'col-md-6 col-lg-4 col-xl-3';
-          const artistsSource = get(this.props.artists.cache, `[${this.state.albumOrArtist}]`, []);
+          const artistsSource = get(this.props.artists.cache, `[${this.state.albumOrArtist.toLowerCase()}]`, []);
           let listOfArtists = [];
           let i = 0;
 

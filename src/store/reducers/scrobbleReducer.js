@@ -19,7 +19,7 @@ const initialState = {
 
 function updateScrobbleProps(state, scrobbleUUID, newProps) {
   if (!scrobbleUUID || !newProps) return state;
-  if (newProps.timestamp.valueOf() === 0) {
+  if (newProps.timestamp && newProps.timestamp.valueOf() === 0) {
     // ToDo: update timestamp with response value for multiple scrobbles
     delete newProps.timestamp;
   }
