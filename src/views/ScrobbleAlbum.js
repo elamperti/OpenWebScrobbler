@@ -233,6 +233,7 @@ class ScrobbleAlbum extends Component {
   // ToDo: Try to use the cached info before firing new searches
   search() {
     this.setState({
+      albumOrArtist: this.state.albumOrArtist.trim(),
       artistListIsLoading: true,
       albumListIsLoading: true,
       currentView: ALBUM_VIEW_STEP_SRP,
