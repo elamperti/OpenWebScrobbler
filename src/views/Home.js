@@ -16,7 +16,10 @@ import { logIn, authUserWithToken } from 'store/actions/userActions';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+  faCompactDisc,
   faLock,
+  faPencilAlt,
+  faUserFriends,
 } from '@fortawesome/free-solid-svg-icons';
 import {
   faLastfm,
@@ -75,9 +78,7 @@ class Home extends Component {
 
     let homeContent;
 
-    if (isLoggedIn) {
-      homeContent = (
-        <div className="row">
+/* <div className="row">
           <div className="col-10 offset-1 col-sm-8 offset-2 col-md-6 offset-md-3 col-xl-4 offset-xl-4">
             <Button tag={Link} to="/scrobble/song" size="lg" color="success" block className="mb-1">
               {t('getScrobbling')}
@@ -85,7 +86,29 @@ class Home extends Component {
             <div className="my-1 text-center">
               &mdash; {t('or')} &mdash;
             </div>
-            <Button tag={Link} to="/scrobble/user" size="lg" color="secondary" block>
+
+          </div>
+        </div>
+         */
+
+    if (isLoggedIn) {
+      homeContent = (
+        <div className="HomeButtons flex-row d-block d-md-flex">
+          <div className="col-12 col-md-4 mb-4 mb-md-0">
+            <Button tag={Link} to="/scrobble/song" size="lg" color="secondary" block className="py-3 px-2">
+              <FontAwesomeIcon icon={faPencilAlt} size="3x" className="d-block mb-3 mx-auto" />
+              {t('scrobbleManually')}
+            </Button>
+          </div>
+          <div className="col-12 col-md-4 mb-4 mb-md-0">
+            <Button tag={Link} to="/scrobble/album" size="lg" color="secondary" block className="py-3 px-2">
+              <FontAwesomeIcon icon={faCompactDisc} size="3x" className="d-block mb-3 mx-auto" />
+              {t('scrobbleFromAlbum')}
+            </Button>
+          </div>
+          <div className="col-12 col-md-4 mb-4 mb-md-0">
+            <Button tag={Link} to="/scrobble/user" size="lg" color="secondary" block className="py-3 px-2">
+              <FontAwesomeIcon icon={faUserFriends} size="3x" className="d-block mb-3 mx-auto" />
               {t('scrobbleFromOtherUser')}
             </Button>
           </div>

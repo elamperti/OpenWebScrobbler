@@ -9,11 +9,6 @@ import hasIn from 'lodash/hasIn';
 import {
   Button,
   CustomInput,
-  FormFeedback,
-  FormGroup,
-  Input,
-  Jumbotron,
-  Label,
   Row,
 } from 'reactstrap';
 
@@ -21,9 +16,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronLeft,
   faHistory,
-  faQuestion,
   faSync,
-  faUserAstronaut,
   faUserFriends,
 } from '@fortawesome/free-solid-svg-icons';
 
@@ -34,6 +27,8 @@ import UserCard from 'components/UserCard';
 import ScrobbleList from 'components/ScrobbleList';
 import Avatar from 'components/Avatar';
 import Spinner from 'components/Spinner';
+import SearchForm from 'components/SearchForm';
+import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 
 class ScrobbleSong extends Component {
   constructor(props) {
@@ -183,42 +178,20 @@ class ScrobbleSong extends Component {
       </h2>
     );
     const searchForm = (
-      <Row noGutters className="mt-2">
-        <div className="col-7 col-sm-9 pr-3">
-          <FormGroup>
-            <Label for="title" className="required sr-only">Username</Label>
-            <Input
-              type="text"
-              name="userToSearch"
-              id="userToSearch"
-              bsSize={this.state.searchFormView ? 'lg' : 'sm'}
-              value={this.state.userToSearch}
-              invalid={this.state.inputInvalid}
-              readOnly={this.state.isLoading}
-              onKeyDown={this.catchEnter}
-              onChange={this.updateFriendUsername}
-              maxLength="15"
-              data-lpignore="true"
-            />
-            <FormFeedback valid={!this.state.inputInvalid}>
-              {t(this.state.justFailedSearch ? 'userNotFound' : 'invalidUsername')}
-            </FormFeedback>
-          </FormGroup>
-        </div>
-        <div className="col-5 col-sm-3">
-          <Button
-            size={this.state.searchFormView ? 'lg' : 'sm'}
-            block
-            color="success"
-            onClick={this.search}
-            disabled={!this.state.searchEnabled}
-          >
-            {t('search')}
-          </Button>
-        </div>
-      </Row>
+      <SearchForm
+        onChange={this.updateFriendUsername}
+        onSearch={this.search}
+        ariaLabel="Username"
+        inputId="userToSearch"
+        maxLength={15}
+        size={this.state.searchFormView ? 'lg' : 'sm'}
+        value={this.state.userToSearch}
+        readOnly={this.state.isLoading}
+        disableSearch={!this.state.searchEnabled}
+        invalid={this.state.inputInvalid}
+        feedbackMessage={t(this.state.justFailedSearch ? 'userNotFound' : 'invalidUsername')}
+      />
     );
-
     let recentUsers;
 
     if (get(this.props.user, 'recentProfiles', []).length > 0) {
@@ -280,6 +253,7 @@ class ScrobbleSong extends Component {
           <div className="ScrobbleList-container with-gradient">
             <ScrobbleList
               compact noMenu
+              analyticsEventForScrobbles="Scrobble from user"
               scrobbles={get(this.props.user, `profiles['${this.state.userToDisplay}'].scrobbles`, [])}
               loading={this.state.profileScrobblesLoading}
             >
@@ -315,14 +289,7 @@ class ScrobbleSong extends Component {
               </h4>
               <div className="ScrobbleList-container">
                 <ScrobbleList scrobbles={this.props.localScrobbles}>
-                  <Jumbotron className="text-center">
-                    <div className="d-flex align-items-start justify-content-center mb-2">
-                      <FontAwesomeIcon icon={faUserAstronaut} color="var(--gray-dark)" size="6x" />
-                      <FontAwesomeIcon icon={faQuestion} color="var(--gray-dark)" size="2x" transform="shrink-4" />
-                    </div>
-                    <strong><Trans i18nKey="noSongsScrobbled">No songs scrobbled yet!</Trans></strong><br />
-                    <Trans i18nKey="songsWillAppearHere">Tracks will appear here once you scrobble them.</Trans>
-                  </Jumbotron>
+                  <EmptyScrobbleListFiller />
                 </ScrobbleList>
               </div>
             </div>

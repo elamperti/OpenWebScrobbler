@@ -23,6 +23,7 @@ import UpdateToast from './components/UpdateToast';
 
 import Home from './views/Home';
 import ScrobbleSong from './views/ScrobbleSong';
+import ScrobbleAlbum from './views/ScrobbleAlbum';
 import ScrobbleUser from './views/ScrobbleUser';
 
 class App extends Component {
@@ -157,9 +158,10 @@ class App extends Component {
           <div className="container">
             <AlertZone />
           </div>
-          <main className="container d-lg-flex flex-wrap flex-grow-1">
+          <main className="container d-lg-flex flex-wrap flex-column flex-grow-1">
             <Switch>
               <PrivateRoute exact path="/scrobble/song" component={ScrobbleSong} />
+              <PrivateRoute exact path="/scrobble/album" component={ScrobbleAlbum} />
               <PrivateRoute exact path="/scrobble/user/:username?" component={ScrobbleUser} />
               <Route exact path="/" component={Home} />
               <Redirect to="/" />

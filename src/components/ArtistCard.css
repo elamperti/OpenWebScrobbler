@@ -1,0 +1,18 @@
+.artistCard a:hover {
+  text-decoration: none;
+}
+
+.artistCard .artistCard-name {
+  color: var(--light);
+  font-size: 1.15em;
+  max-height: 5em;
+  overflow: hidden;
+}
+
+.artistCard:hover {
+  background-color: rgba(255,255,255,0.1);
+}
+
+.artistCard:hover .artistCard-name {
+  color: var(--white);
+}
