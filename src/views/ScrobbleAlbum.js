@@ -170,7 +170,7 @@ class ScrobbleAlbum extends Component {
 
       case ALBUM_VIEW_STEP_TRACKLIST:
         newState.canScrobble = initialState.canScrobble;
-        newState.selectedTracks = initialState.selectedTracks;
+        newState.selectedTracks = [];
         newState.useCustomTimestamp = initialState.useCustomTimestamp;
         newState.timestampCopyVisible = initialState.timestampCopyVisible;
     }
@@ -366,7 +366,7 @@ class ScrobbleAlbum extends Component {
       }
 
       return (
-        <Breadcrumb className="mt-3">
+        <Breadcrumb className="my-3">
           {itemList}
         </Breadcrumb>
       );
@@ -374,7 +374,7 @@ class ScrobbleAlbum extends Component {
 
     const goBackLink = (toStep) => {
       return (
-        <a href="#" onClick={() => this.resetState(toStep)} className="my-2">
+        <a href="/scrobble/album" onClick={() => this.resetState(toStep)} className="my-2">
           <FontAwesomeIcon icon={faArrowLeft} />{' '}
           <Trans i18nKey="goBack">Go back</Trans>
         </a>
