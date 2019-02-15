@@ -4,6 +4,7 @@ import { translate } from 'react-i18next';
 import i18n, { languageList } from 'i18n'; // just for the lang switcher
 import { connect } from 'react-redux';
 import ReactGA from 'react-ga';
+import get from 'lodash/get';
 
 import { Link } from 'react-router-dom';
 import {
@@ -89,7 +90,7 @@ class Navigation extends Component {
       return {
         tag: Link,
         to: dest,
-        className: this.props.location.pathname.startsWith(dest) ? 'active' : '',
+        className: get(this.props.location, 'pathname', '').startsWith(dest) ? 'active' : '',
       };
     }
 
