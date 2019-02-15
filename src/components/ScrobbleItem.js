@@ -64,13 +64,15 @@ class ScrobbleItem extends Component {
   }
 
   scrobbleAgain() {
+    const useOriginalTimestamp = this.props.noMenu ? get(this.props.settings, 'keepOriginalTimestamp') : false;
+
     ReactGA.event({
       category: 'Interactions',
       action: this.props.analyticsEvent,
     });
     this.props.enqueueScrobble([{
       ...this.props.scrobble,
-      timestamp: get(this.props.settings, 'keepOriginalTimestamp') ? this.props.scrobble.timestamp : new Date(),
+      timestamp: useOriginalTimestamp ? this.props.scrobble.timestamp : new Date(),
     }]);
     this.setState({
       hasScrobbledAgain: true,
