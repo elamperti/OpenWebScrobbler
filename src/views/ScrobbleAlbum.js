@@ -541,6 +541,8 @@ class ScrobbleAlbum extends Component {
           albumPane = <Spinner />;
         } else {
           const album = get(this.props.albums, `albumsCache['${this.state.mbid.album}']`, {});
+          const albumIsEmpty = get(album, 'tracks', []).length === 0;
+
           albumPane = (
             <React.Fragment>
               <div className="album-heading row my-2">
@@ -553,8 +555,8 @@ class ScrobbleAlbum extends Component {
                     <div className="album-heading-artist-name">{album.info.artist}</div>
                   </div>
                   <FormGroup className="align-self-end mb-0">
-                    <CustomInput inline type="radio" id="useNowTimestamp" name="useCustomTimestamp" label={t('now')} checked={!this.state.useCustomTimestamp} onChange={this.toggleCustomTimestamp} />
-                    <CustomInput inline type="radio" id="useCustomTimestamp" name="useCustomTimestamp" label={t('customTimestamp')} checked={this.state.useCustomTimestamp} onChange={this.toggleCustomTimestamp} />
+                    <CustomInput inline type="radio" id="useNowTimestamp" name="useCustomTimestamp" label={t('now')} checked={!this.state.useCustomTimestamp} onChange={this.toggleCustomTimestamp} disabled={albumIsEmpty} />
+                    <CustomInput inline type="radio" id="useCustomTimestamp" name="useCustomTimestamp" label={t('customTimestamp')} checked={this.state.useCustomTimestamp} onChange={this.toggleCustomTimestamp} disabled={albumIsEmpty} />
                     <FontAwesomeIcon id="timestampInfoIcon" icon={faQuestionCircle} color="var(--gray)" onClick={this.toggleTimestampCopy} />
                   </FormGroup>
                 </div>
