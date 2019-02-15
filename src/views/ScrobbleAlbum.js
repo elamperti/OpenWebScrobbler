@@ -90,6 +90,7 @@ class ScrobbleAlbum extends Component {
 
     this.state = initialState;
 
+    this.focusSearchInput = this.focusSearchInput.bind(this);
     this.getAlbum = this.getAlbum.bind(this);
     this.handleTimestampChange = this.handleTimestampChange.bind(this);
     this.resetState = this.resetState.bind(this);
@@ -100,6 +101,19 @@ class ScrobbleAlbum extends Component {
     this.toggleCustomTimestamp = this.toggleCustomTimestamp.bind(this);
     this.toggleSelectedTrack = this.toggleSelectedTrack.bind(this);
     this.updateAlbumOrArtist = this.updateAlbumOrArtist.bind(this);
+  }
+
+  focusSearchInput() {
+    // ToDo: move this logic to component using hooks w/React 16.8+
+    const searchInput = document.getElementById('albumOrArtistToSearch');
+    if (searchInput) {
+      searchInput.focus();
+      searchInput.setSelectionRange(0, searchInput.value.length);
+    }
+  }
+
+  componentDidMount() {
+    this.focusSearchInput();
   }
 
   // ToDo: Refactor this so all calls use the same function
@@ -177,7 +191,11 @@ class ScrobbleAlbum extends Component {
     /* eslint-enable no-fallthrough */
 
     newState.currentView = backToStep;
-    this.setState(newState);
+    this.setState(newState, () => {
+      if (backToStep === ALBUM_VIEW_STEP_SEARCH) {
+        this.focusSearchInput();
+      }
+    });
 
     ReactGA.event({
       category: 'Interactions',
