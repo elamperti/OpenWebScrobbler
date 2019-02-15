@@ -87,8 +87,10 @@ class ScrobbleSong extends Component {
 
   focusSearchInput() {
     const searchInput = document.getElementById('userToSearch');
-    searchInput.focus();
-    searchInput.setSelectionRange(0, searchInput.value.length);
+    if (searchInput) {
+      searchInput.focus();
+      searchInput.setSelectionRange(0, searchInput.value.length);
+    }
   }
 
   goBackToSearch() {
@@ -98,6 +100,7 @@ class ScrobbleSong extends Component {
       searchEnabled: false,
     }, () => {
       this.props.history.push('/scrobble/user');
+      this.focusSearchInput();
     });
   }
 
