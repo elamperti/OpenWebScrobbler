@@ -23,7 +23,7 @@ const SearchForm = props => {
   return (
     <div>
       <Row noGutters className="mt-2">
-        <div className="col-7 col-sm-9 pr-3">
+        <div className="col-12 col-sm-9 pr-sm-3">
           <FormGroup>
             <Label for="title" className="required sr-only">{props.ariaLabel}</Label>
             <Input
@@ -44,7 +44,7 @@ const SearchForm = props => {
             </FormFeedback>
           </FormGroup>
         </div>
-        <div className="col-5 col-sm-3">
+        <div className="col-6 offset-6 col-sm-3 offset-sm-0">
           <Button
             size={props.size}
             block

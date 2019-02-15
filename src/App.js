@@ -158,7 +158,7 @@ class App extends Component {
           <div className="container">
             <AlertZone />
           </div>
-          <main className="container d-lg-flex flex-wrap flex-column flex-grow-1">
+          <main className="container flex-wrap flex-grow-1">
             <Switch>
               <PrivateRoute exact path="/scrobble/song" component={ScrobbleSong} />
               <PrivateRoute exact path="/scrobble/album" component={ScrobbleAlbum} />

@@ -383,7 +383,7 @@ class ScrobbleAlbum extends Component {
     };
 
     const sectionHeading = (
-      <React.Fragment>
+      <header>
         <div className="d-flex align-items-center">
           {this.state.currentView !== ALBUM_VIEW_STEP_SEARCH && (
             <Button onClick={() => this.resetState(ALBUM_VIEW_STEP_SEARCH)} size="sm" className="mr-3">
@@ -396,7 +396,7 @@ class ScrobbleAlbum extends Component {
           </h2>
         </div>
         { this.state.currentView !== ALBUM_VIEW_STEP_SEARCH && renderBreadcrumbNavigation() }
-      </React.Fragment>
+      </header>
     );
 
     const boringSpinnerBlock = (
@@ -439,7 +439,7 @@ class ScrobbleAlbum extends Component {
           albumSRP = boringSpinnerBlock;
         } else {
           const isHalfColumn = this.state.searchOptions.byArtist && !topAlbumsMode;
-          const albumColSize = isHalfColumn ? 'col-md-6 col-xl-4' : 'col-sm-6 col-md-4 col-xl-3';
+          const albumColSize = isHalfColumn ? 'col-sm-6 col-xl-4' : 'col-sm-6 col-sm-4 col-xl-3';
           const albumsSource = topAlbumsMode ? get(this.props.artists.topAlbums, `[${this.state.mbid.artist}]`, []) : get(this.props.albums.searchCache, `[${this.state.albumOrArtist.toLowerCase()}]`, []);
           let listOfAlbums = [];
           let i = 0;
