@@ -122,7 +122,7 @@ class ScrobbleSong extends Component {
         <div className="col-md-6 mb-4 SongForm-container">
           <h2 className="mb-sm-4 mb-md-3">
             <FontAwesomeIcon icon={faPlayCircle} />{' '}
-            <Trans key="scrobbleSongs">Scrobble songs</Trans>
+            <Trans i18nKey="scrobbleSongs">Scrobble songs</Trans>
           </h2>
           <SongForm exportCloneReceiver={this.setCloneReceiver} />
         </div>
