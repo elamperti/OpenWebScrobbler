@@ -9,7 +9,7 @@ const AlbumCard = props => {
   let albumCardStyle = {};
 
   if (props.background) {
-    albumCardStyle.backgroundImage = `url("${props.background}")`;
+    albumCardStyle.backgroundColor = `#A0A0A0`;
   } else {
     albumCardStyle.backgroundColor = `hsl(${random(0, 359)},50%,30%)`;
   }
@@ -24,6 +24,7 @@ const AlbumCard = props => {
 
   return (
     <div className={`albumCard ${props.className} ${props.interactive && 'interactive'}`} style={albumCardStyle}>
+      { props.background && <img src={props.background} alt={props.name} /> }
       {albumCaption}
     </div>
   );
