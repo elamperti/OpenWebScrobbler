@@ -23,6 +23,12 @@
   /* filter: brightness(1.1); */
 }
 
+.albumCard img {
+  top: 0;
+  position: absolute;
+  width: 100%;
+}
+
 .albumCard-caption {
   background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
   border-radius: 2px;
