@@ -5,7 +5,7 @@
   "artist": "Wykonawca",
   "song": "Utwór",
   "title": "Tytuł",
-  "album": "Album",
+  "album": "Płyta",
   "scrobbleFromAlbum": "Scrobbluj z albumów",
   "scrobbleAlbum": "Scrobbluj album",
   "album_plural": "Albumy",
@@ -52,7 +52,7 @@
   "swapArtistTitle": "Zamień wykonawcę z utworem",
   "viewProfile": "Pokaż mój profil Last.fm",
   "lockArtist": "Zablokuj pole wykonawcy",
-  "lockAlbum": "Zablokuj pole albumu",
+  "lockAlbum": "Zablokuj pole płyty",
   "pasteIntercepted": "Wklejony tekst został automatycznie rozdzielony!",
   "considerDonating": "Wesprzyj ten projekt na Patreonie!",
   "footer": {

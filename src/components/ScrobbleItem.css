@@ -51,7 +51,8 @@
   border-bottom: 1px solid rgba(0,0,0,0.3);
 }
 
-.scrobbled-item.compact:first-child { /* It's actually the last one, the list is reversed */
+.flex-column .scrobbled-item.compact:last-child,
+.flex-column-reverse .scrobbled-item.compact:first-child {
   border-bottom: none !important;
 }
 
@@ -81,4 +82,8 @@
 
 .scrobbled-item .status-icon .fa-compact {
   color: var(--light);
+}
+
+.scrobbled-item .quick-scrobble-button {
+  min-width: 80px;
 }

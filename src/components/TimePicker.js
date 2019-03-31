@@ -13,6 +13,9 @@ import {
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+  faClock,
+} from '@fortawesome/free-regular-svg-icons';
+import {
   faCaretUp,
   faCaretDown,
 } from '@fortawesome/free-solid-svg-icons';
@@ -149,7 +152,7 @@ class TimePicker extends React.Component {
     this.setState(this.getTimeFromValue(nextProps));
   }
 
-
+  // ToDo: handle null value gracefully
   getTimeFromValue(props) {
     let hours = props.value.getHours();
     let isAM = null;
@@ -172,6 +175,7 @@ class TimePicker extends React.Component {
     });
   }
 
+  // ToDo: refactor to avoid creating multiple functions
   updateField(fieldname) {
     return (value) => {
       let state = {};
@@ -210,40 +214,27 @@ class TimePicker extends React.Component {
   }
 
   render() {
-    let possibleHours = this.props.use12Hours ? this.range(1, 12) : this.range(0, 23);
-    let possibleMinutes = this.range(0, 59);
-    let timeFormat = this.props.use12Hours ? 'h:mm A' : 'H:mm';
-
-    let timePickerInput = (
-      <Input
-        id="TimePicker"
-        bsSize="sm"
-        onClick={this.toggle}
-        value={format(this.props.value, timeFormat)}
-        readOnly
-      />
-    );
-
-    if (this.props.icon) {
-      timePickerInput = (
-        <InputGroup id="TimePickerInputGroup">
-          <InputGroupAddon addonType="prepend">
-            {this.props.icon}
-          </InputGroupAddon>
-          {timePickerInput}
-        </InputGroup>
-      );
-    }
+    const possibleHours = this.props.use12Hours ? this.range(1, 12) : this.range(0, 23);
+    const possibleMinutes = this.range(0, 59);
+    const timeFormat = this.props.use12Hours ? 'h:mm A' : 'H:mm';
 
     return (
       <div>
-        {timePickerInput}
-        <Popover
-          placement="bottom"
-          isOpen={this.state.popoverOpen}
-          target={ this.props.icon ? 'TimePickerInputGroup' : 'TimePicker'}
-          toggle={this.toggle}
-        >
+        <InputGroup id="TimePickerInputGroup">
+          <InputGroupAddon addonType="prepend">
+            <span className="input-group-text">
+              <FontAwesomeIcon icon={faClock} />
+            </span>
+          </InputGroupAddon>
+          <Input
+            id="TimePicker"
+            bsSize="sm"
+            onClick={this.toggle}
+            value={format(this.props.value, timeFormat)}
+            readOnly
+          />
+        </InputGroup>
+        <Popover placement="bottom" isOpen={this.state.popoverOpen} toggle={this.toggle} target={this.props.icon ? 'TimePickerInputGroup' : 'TimePicker'}>
           <PopoverBody className="d-flex">
             <TimePickerPicker
               value={this.state.hours}
@@ -258,14 +249,14 @@ class TimePicker extends React.Component {
               fixedNumberLength={2}
               onChange={this.updateField('minutes')}
             />
-            { !this.props.use12Hours ? null : (
+            { this.props.use12Hours &&
               <TimePickerPicker
                 value={this.state.isAM ? 'AM' : 'PM'}
                 options={['AM', 'PM']}
                 readOnly
                 onChange={this.updateField('isAM')}
               />
-            )}
+            }
           </PopoverBody>
         </Popover>
       </div>
@@ -274,16 +265,14 @@ class TimePicker extends React.Component {
 }
 
 TimePicker.defaultProps = {
-  icon: null,
   value: new Date(),
   use12Hours: false,
 }
 
 TimePicker.propTypes = {
-  icon: PropTypes.element,
   onChange: PropTypes.func.isRequired,
   value: PropTypes.instanceOf(Date).isRequired,
-  use12Hours: PropTypes.bool
+  use12Hours: PropTypes.bool // ToDo: Connect to settings directly and avoid passing through this prop
 }
 
 export default TimePicker;

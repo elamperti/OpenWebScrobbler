@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';
 
 import {
@@ -18,6 +19,10 @@ const initialState = {
 
 function updateScrobbleProps(state, scrobbleUUID, newProps) {
   if (!scrobbleUUID || !newProps) return state;
+  if (newProps.timestamp && newProps.timestamp.valueOf() === 0) {
+    // ToDo: update timestamp with response value for multiple scrobbles
+    delete newProps.timestamp;
+  }
   return {
     ...state,
     list: state.list.map((item) => {
@@ -88,7 +93,7 @@ const scrobbleReducer = (state=initialState, action) => {
         return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           status,
           errorDescription,
-          timestamp: new Date(action.payload.data.scrobbles.scrobble.timestamp * 1000),
+          timestamp: new Date(get(action.payload.data.scrobbles.scrobble, 'timestamp', 0) * 1000),
         });
       } else {
         /* eslint-disable no-console */

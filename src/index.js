@@ -35,6 +35,11 @@ if (process.env.REACT_APP_SENTRY_DSN) {
     release: process.env.REACT_APP_VERSION,
     environment: process.env.NODE_ENV,
     sanitizeKeys: [/token/],
+    ignoreUrls: [
+      // Avoid browser extensions reporting errors
+      /extensions\//i,
+      /^chrome:\/\//i,
+    ]
   });
 }
 

@@ -1,0 +1,46 @@
+.albumCard {
+  background-position: center;
+  background-size: cover;
+  border-radius: 2px;
+  box-shadow: -2px 2px 4px rgba(0,0,0,0.3);
+  overflow: hidden;
+  position: relative;
+  top: 0;
+  transition: 0.2s ease-out all;
+}
+
+.albumCard:before {
+  content: "";
+  display: block;
+  padding-top: 100%;
+}
+
+.albumCard.interactive:hover {
+  background-size: 102%; /* This may result annoying? */
+  box-shadow: -4px 0.5rem 0.5rem rgba(0,0,0,0.3);
+  cursor: pointer;
+  top: -0.5rem;
+  /* filter: brightness(1.1); */
+}
+
+.albumCard-caption {
+  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+  border-radius: 2px;
+  bottom: 0;
+  color: #EFEFEF;
+  left: 0;
+  /* margin-left: 1em;
+  margin-right: 1em; */
+  padding-top: 2em;
+  position: absolute;
+  right: 0;
+  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+}
+
+.albumCard-title {
+  font-size: 1.2rem;
+}
+
+.albumCard-artist {
+  font-size: 0.9rem;
+}

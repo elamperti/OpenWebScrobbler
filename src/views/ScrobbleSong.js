@@ -9,7 +9,6 @@ import hasIn from 'lodash/hasIn';
 import {
   Badge,
   Button,
-  Jumbotron,
   Nav,
   NavItem,
   NavLink,
@@ -21,15 +20,18 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBroom,
   faHistory,
-  faQuestion,
   faUserAstronaut,
 } from '@fortawesome/free-solid-svg-icons';
+import {
+  faPlayCircle,
+} from '@fortawesome/free-regular-svg-icons';
 
 import { clearListOfScrobbles, useScrobbleCounter } from 'store/actions/scrobbleActions';
 import { fetchLastfmProfileHistory } from 'store/actions/userActions';
 
 import ScrobbleList from 'components/ScrobbleList';
 import SongForm from 'components/SongForm';
+import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 
 const CONSIDER_STALE_AFTER = 5 * 60 * 1000; // 5 minutes
 
@@ -117,7 +119,11 @@ class ScrobbleSong extends Component {
 
     return (
       <div className="row flex-lg-grow-1 mt-3">
-        <div className="col-md-6 mb-4">
+        <div className="col-md-6 mb-4 SongForm-container">
+          <h2 className="mb-sm-4 mb-md-3">
+            <FontAwesomeIcon icon={faPlayCircle} />{' '}
+            <Trans key="scrobbleSongs">Scrobble songs</Trans>
+          </h2>
           <SongForm exportCloneReceiver={this.setCloneReceiver} />
         </div>
         <div className="col-md-6 SongFormLists-container">
@@ -143,18 +149,8 @@ class ScrobbleSong extends Component {
           </Nav>
           <TabContent className="mt-2" activeTab={this.state.activeTab}>
             <TabPane className="ScrobbleList-container" tabId="history">
-              <ScrobbleList
-                scrobbles={this.props.localScrobbles}
-                cloneScrobblesTo={this.state.cloneReceiver}
-              >
-                <Jumbotron className="text-center">
-                  <div className="d-flex align-items-start justify-content-center mb-2">
-                    <FontAwesomeIcon icon={faUserAstronaut} color="var(--gray-dark)" size="6x" />
-                    <FontAwesomeIcon icon={faQuestion} color="var(--gray-dark)" size="2x" transform="shrink-4" />
-                  </div>
-                  <strong><Trans i18nKey="noSongsScrobbled">No songs scrobbled yet!</Trans></strong><br />
-                  <Trans i18nKey="songsWillAppearHere">Tracks will appear here once you scrobble them.</Trans>
-                </Jumbotron>
+              <ScrobbleList scrobbles={this.props.localScrobbles} cloneScrobblesTo={this.state.cloneReceiver}>
+                <EmptyScrobbleListFiller />
               </ScrobbleList>
             </TabPane>
             <TabPane className="ScrobbleList-container" tabId="userProfile">

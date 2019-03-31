@@ -34,7 +34,6 @@ import {
 import {
   faCalendarAlt,
   faLightbulb,
-  faClock,
 } from '@fortawesome/free-regular-svg-icons';
 import {
   faPatreon,
@@ -216,7 +215,7 @@ class SongForm extends React.Component {
       albumArtist: '',
       title: '',
       ...data,
-      timestamp: this.state.useCustomDate ? data.timestamp : this.state.timestamp
+      timestamp: this.state.useCustomDate ? new Date(data.timestamp) : this.state.timestamp
     }, () => this.validateForm());
   }
 
@@ -302,6 +301,14 @@ class SongForm extends React.Component {
   }
 
   toggleTimestampMode() {
+    if (!this.state.useCustomDate) {
+      ReactGA.event({
+        category: 'Interactions',
+        action: 'Use custom timestamp',
+        label: 'Song'
+      });
+    }
+
     this.setState({
       useCustomDate: !this.state.useCustomDate,
       timestamp: new Date(),
@@ -488,12 +495,7 @@ class SongForm extends React.Component {
               </div>
               <div className="col-sm-6 mt-3">
                 <TimePicker
-                  use12Hours={this.props.settings.use12Hours}
-                  icon={(
-                    <span className="input-group-text">
-                      <FontAwesomeIcon icon={faClock} />
-                    </span>
-                  )}
+                  use12Hours={!!this.props.settings.use12Hours}
                   onChange={this.handleTimeChange}
                   value={this.state.timestamp}
                   format={this.props.settings.use12Hours ? 'hh:mm a' : 'HH:mm'}
