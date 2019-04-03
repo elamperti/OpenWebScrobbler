@@ -2,6 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { translate } from 'react-i18next';
 import random from 'lodash/random';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 import './AlbumCard.css';
 
@@ -22,9 +24,11 @@ const AlbumCard = props => {
     </div>
   );
 
+  const albumArt = props.background && <LazyLoadImage className='albumArt' src={props.background} alt={props.name} />;
+
   return (
     <div className={`albumCard ${props.className} ${props.interactive && 'interactive'}`} style={albumCardStyle}>
-      { props.background && <img src={props.background} alt={props.name} /> }
+      {albumArt}
       {albumCaption}
     </div>
   );

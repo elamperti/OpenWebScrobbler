@@ -23,11 +23,22 @@
   /* filter: brightness(1.1); */
 }
 
-.albumCard img {
+.albumCard .albumArt {
   top: 0;
   position: absolute;
   width: 100%;
 }
+
+.albumCard .lazy-load-image-background {
+  background-image: none !important;
+  opacity: 0;
+}
+
+.albumCard .lazy-load-image-background.lazy-load-image-loaded {
+  opacity: 1;
+  transition: opacity .3s;
+}
+
 
 .albumCard-caption {
   background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
