@@ -19,6 +19,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBroom,
+  faCompactDisc,
   faHistory,
   faUserAstronaut,
 } from '@fortawesome/free-solid-svg-icons';
@@ -103,6 +104,7 @@ class ScrobbleSong extends Component {
 
   render() {
     let clearListButton;
+    const hasUsername = !!this.props.user.name;
 
     if (this.state.activeTab === 'history') {
       if (this.props.localScrobbles.length > 0) {
@@ -138,8 +140,8 @@ class ScrobbleSong extends Component {
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink className={this.state.activeTab === 'userProfile' ? 'active' : '' } onClick={this.goToProfileTab}>
-                <FontAwesomeIcon icon={faUserAstronaut}/>
+              <NavLink disabled={!hasUsername} className={this.state.activeTab === 'userProfile' ? 'active' : '' } onClick={this.goToProfileTab}>
+                <FontAwesomeIcon icon={hasUsername ? faUserAstronaut : faCompactDisc} spin={!hasUsername} />
                 <span className="pl-2">
                   <Trans i18nKey="yourProfile">Your profile</Trans>
                 </span>
