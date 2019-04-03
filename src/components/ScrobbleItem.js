@@ -148,10 +148,11 @@ class ScrobbleItem extends Component {
           statusIcon = null;
       }
 
-      if (scrobble.status === 'error' && scrobble.errorDescription) {
+      if (scrobble.status === 'error') {
         errorMessage = (
           <div className="error px-2">
-            {t(scrobble.errorDescription)}
+            {scrobble.errorDescription && !scrobble.errorMessage ? t(scrobble.errorDescription) : null}
+            {get(scrobble, 'errorMessage')}
           </div>
         );
       }

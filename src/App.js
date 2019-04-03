@@ -103,7 +103,8 @@ class App extends Component {
     axios.interceptors.response.use(
       (response) => {
         axiosTiming(response);
-        if (response.config.url.match(/^\/api/)) {
+        // ToDo: improve this match to avoid collisions or problems with future API versions
+        if (response.config.url.match(/\/api\/v2\//)) {
           switch (response.status) {
             case 503:
               ReactGA.exception({

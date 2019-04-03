@@ -100,6 +100,7 @@ const scrobbleReducer = (state=initialState, action) => {
         console.error('Unexpected scrobble response', action.payload.data);
         return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           status: 'error',
+          errorMessage: get(action.payload, 'data.message'),
           errorDescription: 'errors.unexpectedResponse',
         });
       }
