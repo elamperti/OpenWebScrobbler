@@ -3,6 +3,7 @@ import createHistory from 'history/createBrowserHistory';
 import ReactGA from 'react-ga';
 import md5 from 'md5';
 import get from 'lodash/get';
+import hasIn from 'lodash/hasIn';
 
 import {
   AUDIOSCROBBLER_API_URL,
@@ -98,7 +99,7 @@ export function logOut(dispatch) {
         });
         localStorage.removeItem('hashedUID');
         history.push('/');
-        createAlert(dispatch)(alertObject || {
+        createAlert(dispatch)(hasIn(alertObject, 'message') ? alertObject : {
           type: 'info',
           title: 'logoutInfo.title',
           message: 'logoutInfo.message'
