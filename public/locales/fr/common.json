@@ -18,7 +18,7 @@
   "scrobbleSelected": "Scrobble sélectionné",
   "findAlbumCopy": "Entrez le nom d'un album ou d'un artiste",
   "customTimestamp": "Date personnalisée",
-  "albumTimestampLogicDescription": "Scrobbler \"maintenant\", aura pour but d'ajouter l'album dans vos scrobbles en définissant la fin de l'écoute à maintenant. La date personnalisée vous permet de choisir quand vous avez écouté le permier titre d'un album et de définir l'heure des écoutes suivantes en fonction de la durée des chansons de celui-ci.",
+  "albumTimestampLogicDescription": "Scrobbler \"maintenant\", aura pour but d'ajouter l'album dans vos scrobbles en définissant la fin de l'écoute à maintenant. La date personnalisée vous permet de choisir quand vous avez écouté le premier titre d'un album et de définir l'heure des écoutes suivantes en fonction de la durée des chansons de celui-ci.",
   "albumArtist": "Artiste de l'album",
   "history": "Historique",
   "yourProfile": "Votre profil",
