@@ -23,6 +23,10 @@
   /* filter: brightness(1.1); */
 }
 
+.albumCard > span {
+  display: block !important; /* Override arbritrary rule introduced by LazyLoadImage component */
+}
+
 .albumCard .albumArt {
   top: 0;
   position: absolute;
