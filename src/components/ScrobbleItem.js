@@ -18,6 +18,7 @@ import {
   DropdownMenu,
   DropdownItem,
 } from 'reactstrap';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -120,11 +121,20 @@ class ScrobbleItem extends Component {
     if (this.props.noCover || this.props.compact) {
       albumArt = null;
     } else {
-      if (scrobble.cover) {
-        albumArt = <img className="cover rounded" src={scrobble.cover} alt={scrobble.album} />;
-      } else {
-        albumArt = <FontAwesomeIcon size="3x" icon={faCompactDisc} />;
-      }
+      const placeholderCDIcon = <FontAwesomeIcon size="3x" icon={faCompactDisc} />;
+      albumArt = !scrobble.cover ? placeholderCDIcon : (
+        <LazyLoadImage
+          className="cover rounded"
+          src={scrobble.cover}
+          alt={scrobble.album}
+          placeholder={placeholderCDIcon}
+          scrollPosition={this.props.lazyScrollPosition}
+          width="45"
+          height="45"
+          effect="opacity"
+          async
+        />
+      );
     }
 
     if (scrobble.status) {
@@ -286,6 +296,7 @@ ScrobbleItem.propTypes = {
   compact: PropTypes.bool,
   hideArtist: PropTypes.bool,
   uuid: PropTypes.string,
+  lazyScrollPosition: PropTypes.object,
   muteArtist: PropTypes.bool,
   onSelect: PropTypes.func,
   noCover: PropTypes.bool,
@@ -298,6 +309,7 @@ ScrobbleItem.defaultProps = {
   analyticsEvent: 'Scrobble again',
   compact: false,
   hideArtist: false,
+  lazyScrollPosition: null,
   muteArtist: false,
   noCover: false,
   noMenu: false,

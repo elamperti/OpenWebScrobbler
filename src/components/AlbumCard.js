@@ -23,7 +23,7 @@ const AlbumCard = props => {
     </div>
   );
 
-  const albumArt = props.background && <LazyLoadImage className='albumArt' src={props.background} alt={props.name} />;
+  const albumArt = props.background && <LazyLoadImage className='albumArt' src={props.background} alt={props.name} effect="opacity" />;
 
   return (
     <div className={`albumCard ${props.className} ${props.interactive && 'interactive'}`} style={albumCardStyle}>

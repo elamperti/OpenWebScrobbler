@@ -3,6 +3,8 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import get from 'lodash/get';
 
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faUserAstronaut,
@@ -14,6 +16,7 @@ import './Avatar.css';
 const Avatar = props => {
   const avatarURL = get(props.user, `avatar[${props.size}]`);
   let iconSize;
+  let imgSize;
   let placeholderIcon;
 
   // const ImageResource = unstable_createResource(source => new Promise(resolve => {
@@ -33,15 +36,19 @@ const Avatar = props => {
     //   break;
     case 'lg':
       iconSize = '5x';
+      imgSize  = 128;
       break;
     case 'md':
       iconSize = '3x';
+      imgSize  = 64;
       break;
     case 'sm':
     default:
       iconSize = '1x';
+      imgSize  = 24;
       break;
   }
+
   placeholderIcon = (
     <div className={`user-avatar user-avatar-${props.size} rounded-circle d-inline-flex justify-content-center align-items-center without-img ${props.className}`}>
       <FontAwesomeIcon icon={faUserAstronaut} size={iconSize} color="white" className="d-block" />
@@ -51,10 +58,14 @@ const Avatar = props => {
   if (avatarURL) {
     return (
       // <React.Suspense fallback={placeholderIcon}>
-        <img
+        <LazyLoadImage
           src={avatarURL}
           alt={props.alt}
+          placeholder={placeholderIcon}
           className={`user-avatar user-avatar-${props.size} rounded-circle ${props.className}`}
+          width={imgSize}
+          height={imgSize}
+          // ToDo: implement scrollPosition
         />
       // </React.Suspense>
     );
