@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { translate, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import ReactGA from 'react-ga';
 import get from 'lodash/get';
 import md5 from 'md5';
@@ -351,7 +351,7 @@ class ScrobbleAlbum extends Component {
   }
 
   render() {
-    const t = this.props.t; // Translations
+    const t = this.props.t;
     const topAlbumsMode = this.state.currentView === ALBUM_VIEW_STEP_ARTIST;
 
     const renderBreadcrumbNavigation = () => {
@@ -645,5 +645,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  translate(['common'])(ScrobbleAlbum)
+  withTranslation()(ScrobbleAlbum)
 );

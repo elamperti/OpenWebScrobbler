@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { translate, Trans } from 'react-i18next';
+import { Trans } from 'react-i18next';
 import ReactGA from 'react-ga';
 import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';
@@ -198,5 +198,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  translate(['common'])(ScrobbleSong)
+  ScrobbleSong
 );

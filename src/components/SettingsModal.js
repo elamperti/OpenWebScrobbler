@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import { PropTypes } from 'prop-types';
 
 import {
@@ -88,9 +88,7 @@ class SettingsModal extends React.Component {
   }
 
   render() {
-    const t = this.props.t; // Translations
-
-
+    const t = this.props.t;
 
     return (
       <Modal
@@ -170,5 +168,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  translate(['settings'])(SettingsModal)
+  withTranslation()(SettingsModal)
 );

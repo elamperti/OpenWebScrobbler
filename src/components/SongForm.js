@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import ReactGA from 'react-ga';
 
 import addDays from 'date-fns/add_days';
@@ -172,13 +172,9 @@ class SongForm extends React.Component {
           category: 'paste',
           rawMessage: (
             <div>
-              {this.props.t('pasteIntercepted')} ✨
-              <span
-                href="#"
-                onClick={this.revertPaste}
-                className="ml-2 alert-link"
-              >
-                {this.props.t('undo')}
+              <Trans i18nKey="pasteIntercepted">Paste intercepted!</Trans> ✨
+              <span href="#" onClick={this.revertPaste} className="ml-2 alert-link">
+                <Trans i18nKey="undo">Undo</Trans>
               </span>
             </div>
           ),
@@ -336,7 +332,7 @@ class SongForm extends React.Component {
   }
 
   render() {
-    const t = this.props.t; // Translations
+    const t = this.props.t;
     const minDate = subDays(new Date(), 14);
     const maxDate = addDays(new Date(), 14);
 
@@ -543,5 +539,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  translate(['common'])(SongForm)
+  withTranslation()(SongForm)
 );

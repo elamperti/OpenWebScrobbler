@@ -1,5 +1,5 @@
 import React from 'react';
-import { translate, Trans } from 'react-i18next';
+import { Trans } from 'react-i18next';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -14,11 +14,6 @@ function Footer() {
   return (
     <footer>
       <div className="container mt-3 mb-2">
-        {/* <div className="row">
-          <div className="col-sm-4">a</div>
-          <div className="col-sm-4">x</div>
-          <div className="col-sm-4">c</div>
-        </div> */}
         <div className="social text-center my-2">
           <a title="Facebook" className="mx-2" href="https://facebook.com/OpenScrobbler">
             <FontAwesomeIcon icon={faFacebook} size="2x" />
@@ -48,4 +43,4 @@ function Footer() {
   );
 }
 
-export default translate(['common'])(Footer);
+export default Footer;

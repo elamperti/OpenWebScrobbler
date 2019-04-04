@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { translate, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import ReactGA from 'react-ga';
 import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';
@@ -173,7 +173,7 @@ class ScrobbleSong extends Component {
   }
 
   render() {
-    const t = this.props.t; // Translations
+    const t = this.props.t;
     const sectionHeading = (
       <h2 className={`w-100 ${this.state.searchFormView ? 'mb-3' : 'm-0 d-inline'}`}>
         <FontAwesomeIcon icon={faUserFriends} />{' '}
@@ -328,5 +328,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  translate(['common'])(ScrobbleSong)
+  withTranslation()(ScrobbleSong)
 );

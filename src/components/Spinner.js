@@ -1,5 +1,5 @@
 import React from 'react';
-import { translate, Trans } from 'react-i18next';
+import { Trans } from 'react-i18next';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -18,4 +18,4 @@ const Spinner = () => {
   );
 };
 
-export default translate(['common'])(Spinner);
+export default Spinner;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -12,6 +12,7 @@ import Avatar from 'components/Avatar';
 import './UserCard.css';
 
 const UserCard = props => {
+  const { t } = useTranslation();
   // ToDo: use URL from user.info endpoint
   let externalLink = (
     <div>
@@ -21,7 +22,7 @@ const UserCard = props => {
         target="_blank"
         rel="noopener"
       >
-        {props.t('visitProfile')}
+        {t('visitProfile')}
       </a>
       {' '}
       <FontAwesomeIcon icon={faExternalLinkAlt} />
@@ -53,4 +54,4 @@ UserCard.defaultProps = {
   withLinkToProfile: false,
 }
 
-export default translate(['common'])(UserCard);
+export default UserCard;

@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { translate } from 'react-i18next';
+import { useTranslation } from 'react-i18next';
 
 import {
   Button,
@@ -20,6 +20,7 @@ function catchEnter(props) {
 }
 
 const SearchForm = props => {
+  const { t } = useTranslation();
   return (
     <div>
       <Row noGutters className="mt-2">
@@ -45,14 +46,8 @@ const SearchForm = props => {
           </FormGroup>
         </div>
         <div className="col-6 offset-6 col-sm-3 offset-sm-0">
-          <Button
-            size={props.size}
-            block
-            color="success"
-            onClick={props.onSearch}
-            disabled={props.disableSearch}
-          >
-            {props.t('search')}
+          <Button block size={props.size} color="success" onClick={props.onSearch} disabled={props.disableSearch}>
+            {t('search')}
           </Button>
         </div>
       </Row>
@@ -81,4 +76,4 @@ SearchForm.propTypes = {
   feedbackMessage: PropTypes.string,
 };
 
-export default translate(['common'])(SearchForm);
+export default SearchForm;
