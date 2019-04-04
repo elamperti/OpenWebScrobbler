@@ -1,24 +1,24 @@
 {
   "scrobble": "Scrobble",
   "getScrobbling": "Début du scrobbling",
-  "loading": "Chargement...",
+  "loading": "Chargement ...",
   "artist": "Artiste",
   "song": "Chanson",
   "title": "Titre",
   "album": "Album",
-  "scrobbleFromAlbum": "Scrobble albums",
-  "scrobbleAlbum": "Scrobble album",
+  "scrobbleFromAlbum": "Scrobbler des albums",
+  "scrobbleAlbum": "Scrobbler l'album",
   "album_plural": "Albums",
-  "goBack": "Go back",
-  "topAlbumsBy": "Albums by {{nameOfArtist}}",
-  "noAlbumsFound": "No albums found for <1>{{albumOrArtist}}</1>",
-  "noArtistsFound": "No artists found for <1>{{albumOrArtist}}</1>",
-  "emptyAlbum": "This album appears to be empty.",
-  "scrobbleSongs": "Scrobble songs",
-  "scrobbleSelected": "Scrobble selected",
-  "findAlbumCopy": "Enter an album or artist name",
-  "customTimestamp": "Custom timestamp",
-  "albumTimestampLogicDescription": "Scrobbling tracks \"now\" will scrobble the last track at the current time, backdating the previous ones accordingly (as if you had just finished listening). The \"custom timestamp\" will define the timestamp of the first track and add time to the following tracks from there (i.e. you specify the time you started listening to this album)",
+  "goBack": "Retour en arrière",
+  "topAlbumsBy": "Albums par {{nameOfArtist}}",
+  "noAlbumsFound": "Pas d'album trouvé pour <1>{{albumOrArtist}}</1>",
+  "noArtistsFound": "Pas d'artiste trouvé pour <1>{{albumOrArtist}}</1>",
+  "emptyAlbum": "Cet album semble être vide.",
+  "scrobbleSongs": "Scrobbler des chansons",
+  "scrobbleSelected": "Scrobble sélectionné",
+  "findAlbumCopy": "Entrez le nom d'un album ou d'un artiste",
+  "customTimestamp": "Date personnalisée",
+  "albumTimestampLogicDescription": "Scrobbler \"maintenant\", aura pour but d'ajouter l'album dans vos scrobbles en définissant la fin de l'écoute à maintenant. La date personnalisée vous permet de choisir quand vous avez écouté le permier titre d'un album et de définir l'heure des écoutes suivantes en fonction de la durée des chansons de celui-ci.",
   "albumArtist": "Artiste de l'album",
   "history": "Historique",
   "yourProfile": "Votre profil",
@@ -26,7 +26,7 @@
   "scrobbleManually": "Scrobbler manuellement",
   "scrobbleFromOtherUser": "Scrobbler depuis un autre utilisateur",
   "otherUser": "Utilisateur",
-  "or": "ou",
+  "or": "où",
   "refresh": "Actualiser",
   "findFriendCopy": "Entrez un nom d'utilisateur last.fm pour voir leurs dernières pistes",
   "visitProfile": "Voir le profil",
@@ -34,14 +34,14 @@
   "backToSearch": "Retourner sur la recherche",
   "userNotFound": "Aucun utilisateur trouvé",
   "invalidUsername": "Nom d'utilisateur invalide",
-  "recentlySearchedUsers": "Récemment recherchés",
+  "recentlySearchedUsers": "Récemment recherché",
   "language": "Langage",
   "translateYourLanguage": "Vous voulez ajouter votre langage?",
   "logIn": "Se connecter",
   "logOut": "Se déconnecter",
   "now": "Maintenant",
   "custom": "Personnaliser...",
-  "timestamp": "Timestamp",
+  "timestamp": "Date",
   "lastfmWillRejectOldTimestamps": "Last.fm rejecte les scrobbles datant de plus de deux semaines.",
   "keepOriginalTimestamp": "Scrobbler en utilisant la date et l'heure d'origine",
   "noSongsScrobbled": "Aucune musique n'a été scrobblé !",
@@ -54,13 +54,13 @@
   "lockArtist": "Verrouiller le champ de l'artiste",
   "lockAlbum": "Verrouiller le champ de l'album",
   "pasteIntercepted": "Le texte collé a été divisé automatiquement !",
-  "considerDonating": "S'il vous plait supportez le projet sur Patreon !",
+  "considerDonating": "Supportez le projet sur Patreon !",
   "footer": {
-    "joinCommunity": "Vous êtes le bienvenu à <1>rejoindre la communauté</1> sur Discord !",
-    "supportThisProject": "Veuillez envisager de <1>soutenir ce projet</1> sur Patreon :)",
-    "specialThanks": "Merci à tous les donateurs et les traducteurs ainsi qu'aux <1>contributeurs</1>"
+    "joinCommunity": "N'hésitez pas à <1>rejoindre la communauté</1> sur Discord, vous êtes le bienvenu !",
+    "supportThisProject": "N'hésitez pas à <1>soutenir ce projet</1> sur Patreon :)",
+    "specialThanks": "Merci aux donateurs, traducteurs et <1>contributeurs</1>"
   },
-  "settings": "Paramêtres",
+  "settings": "Paramètres",
   "cancel": "Annuler",
   "dates": {
     "format": {
@@ -68,11 +68,11 @@
     },
     "months": {
       "short": ["Jan","Fev","Mar","Avr","Mai","Jui","Jui","Aou","Sep","Oct","Nov","Dec"],
-      "long": ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Decembre"]
+      "long": ["Janvier","Février","Mars","Avril","Mai","Juin","Juillet","Août","Septembre","Octobre","Novembre","Décembre"]
     }
   },
   "updates": {
-    "newVersionAvailable": "Une nouvelle version est disponible ! S'il vous plaît <1>rechargez la page</1>"
+    "newVersionAvailable": "Une nouvelle version est disponible ! Veuillez <1>recharger la page</1>."
   },
   "errors": {
     "lastfmRejected": "Last.fm a rejeté ce scrobble",
