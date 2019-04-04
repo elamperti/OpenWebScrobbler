@@ -49,6 +49,10 @@ class ScrobbleSong extends Component {
       lastHistoryFetch: null,
       profileScrobblesLoading: false,
     };
+
+    if (this.props.unreadScrobbles > 0) {
+      this.props.useScrobbleCounter(false);
+    }
   }
 
   goToHistoryTab() {
