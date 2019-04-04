@@ -1,0 +1,16 @@
+{
+  "authFailed": "Autenticazione fallita",
+  "loginAgain": "Devi autenticarti di nuovo!",
+  "serviceUnavailable": "Servizio non disponibile",
+  "unexpectedError": "Errore inatteso",
+  "lastfmUnavailable": "Last.fm non sta rispondendo, riprovare più tardi.",
+  "settingsSavedSuccessfully": "Le tue impostazioni sono state salvate con successo!",
+  "loginError": {
+    "title": "Errore durante il login",
+    "message": "Si è verificato un errore durante il login. Siamo spiacenti!"
+  },
+  "logoutInfo": {
+    "title": "A presto!",
+    "message": "Ti sei disconnesso correttamente"
+  }
+}
