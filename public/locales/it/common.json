@@ -1,0 +1,82 @@
+{
+  "scrobble": "Scrobbla",
+  "getScrobbling": "Comincia a scrobblare",
+  "loading": "Caricamento...",
+  "artist": "Artista",
+  "song": "Canzone",
+  "title": "Titolo",
+  "album": "Album",
+  "scrobbleFromAlbum": "Scrobbla dall'album",
+  "scrobbleAlbum": "Scrobbla album",
+  "album_plural": "Album",
+  "goBack": "Indietro",
+  "topAlbumsBy": "Album di {{nameOfArtist}}",
+  "noAlbumsFound": "Nessun album trovato per <1>{{albumOrArtist}}</1>",
+  "noArtistsFound": "Nessun artista trovato per <1>{{albumOrArtist}}</1>",
+  "emptyAlbum": "Questo album sembra vuoto.",
+  "scrobbleSongs": "Scrobbla canzoni",
+  "scrobbleSelected": "Scrobbla la canzone selezionata",
+  "findAlbumCopy": "Scrivi il nome di un album o di un artista",
+  "customTimestamp": "Timestamp personalizzato",
+  "albumTimestampLogicDescription": "Scrobblando le canzoni \"adesso\" scrobblerà l'ultima canzone in questo momento, anticipando relativamente le precedenti (come se avessi appena finito di ascoltarle). Il \"timestamp personalizzato\" definirà il timestamp di ascolto della prima traccia ed agginguerà il relativo tempo alle canzoni successive (come se avessi iniziato ad ascoltare l'album nel timestamp selezionato)",
+  "albumArtist": "Artista di un Album",
+  "history": "Storico",
+  "yourProfile": "Tuo profile",
+  "yourHistory": "Tuo storico",
+  "scrobbleManually": "Scrobbla manualmente",
+  "scrobbleFromOtherUser": "Scrobbla da un altro utente",
+  "otherUser": "Utente",
+  "or": "o",
+  "refresh": "Ricarica",
+  "findFriendCopy": "Immetti un utente Last.fm per vederne le sue ultime canzoni",
+  "visitProfile": "Vedi profilo",
+  "search": "Cerca",
+  "backToSearch": "Indietro all ricerca",
+  "userNotFound": "Utente non trovato",
+  "invalidUsername": "Usernme utente non valido",
+  "recentlySearchedUsers": "Cercati recentemente",
+  "language": "Lingua",
+  "translateYourLanguage": "Vuoi aggiungere la tua lingua?",
+  "logIn": "Login",
+  "logOut": "Logout",
+  "now": "Adesso",
+  "custom": "Personalizzato...",
+  "timestamp": "Timestamp",
+  "lastfmWillRejectOldTimestamps": "Last.fm will rifiuterà di scrobblare canzoni datate più di due settimane fa.",
+  "keepOriginalTimestamp": "Scrobbla usando data e ora originali",
+  "noSongsScrobbled": "Ancora nessuna canzone scrobblata!",
+  "songsWillAppearHere": "Le canzoni appariranno qui una volta scrobblate.",
+  "clearHistory": "Svuota lo storico",
+  "scrobbleAgain": "Scrobbla Ancora",
+  "copyToEditor": "Copia nell'editor di sistema",
+  "swapArtistTitle": "Inverti artista e titolo canzone",
+  "viewProfile": "Vedi il mio profilo Last.fm",
+  "lockArtist": "Blocca il campo artista",
+  "lockAlbum": "Blocca il campo album",
+  "pasteIntercepted": "Il testo copiato è stato automaticamente suddiviso!",
+  "considerDonating": "Per favore finanzia questo progetto su Patreon!",
+  "footer": {
+    "joinCommunity": "Sei il benvenuto ad unirti alla nostra community <1>su Discord</1>!",
+    "supportThisProject": "Per favore <1>finanzia questo progetto</1> su Patreon :)",
+    "specialThanks": "Uno speciale ringraziamento a tutti i donatori, traduttori e <1>collaboratori</1>"
+  },
+  "settings": "Impostazioni",
+  "cancel": "Annulla",
+  "dates": {
+    "format": {
+      "short": "MMM Do"
+    },
+    "months": {
+      "short": ["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"],
+      "long": ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosts","Settembre","Ottobre","Novembre","Dicembre"]
+    }
+  },
+  "updates": {
+    "newVersionAvailable": "C'è una nuova versione disponibile! Per favore <1>ricarica la pagina</1>"
+  },
+  "errors": {
+    "lastfmRejected": "Last.fm ha rifiutato di scrobblare",
+    "unexpectedResponse": "Risposta inattesa",
+    "apiCallFailed": "Chiamata alle API fallita"
+  }
+}
