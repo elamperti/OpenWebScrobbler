@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
 import addDays from 'date-fns/add_days';
@@ -61,6 +61,7 @@ class DateTimePicker extends React.Component {
   }
 
   render() {
+    const t = this.props.t;
     const minDate = subDays(new Date(), 14);
     const maxDate = addDays(new Date(), 14);
 
@@ -76,7 +77,7 @@ class DateTimePicker extends React.Component {
                 after: maxDate,
               }
             }}
-            format={this.props.t('dates.format.short')}
+            format={t('dates.format.short')}
             formatDate={format}
             component={DatePickerInput}
             onDayChange={this.handleDateChange}
@@ -119,5 +120,5 @@ DateTimePicker.defaultProps = {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  translate(['common'])(DateTimePicker)
+  withTranslation()(DateTimePicker)
 );

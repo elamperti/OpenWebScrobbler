@@ -1,5 +1,5 @@
 import React from 'react';
-import { translate, Trans } from 'react-i18next';
+import { Trans } from 'react-i18next';
 
 import {
   Jumbotron,
@@ -23,4 +23,4 @@ const EmptyScrobbleListFiller = () => {
   );
 };
 
-export default translate(['common'])(EmptyScrobbleListFiller);
+export default EmptyScrobbleListFiller;

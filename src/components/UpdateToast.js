@@ -1,5 +1,5 @@
 import React from 'react';
-import { translate, Trans } from 'react-i18next';
+import { Trans } from 'react-i18next';
 
 import { Alert, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -32,4 +32,4 @@ class UpdateToast extends React.Component {
   }
 }
 
-export default translate(['common'])(UpdateToast);
+export default UpdateToast;

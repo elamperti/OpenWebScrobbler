@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
 import ReactGA from 'react-ga';
 import get from 'lodash/get';
 
@@ -190,5 +189,5 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  translate(['common', 'alerts'])(App)
+  App
 );

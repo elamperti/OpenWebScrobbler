@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { withRouter } from 'react-router';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import i18n, { languageList } from 'i18n'; // just for the lang switcher
 import { connect } from 'react-redux';
 import ReactGA from 'react-ga';
@@ -79,7 +79,7 @@ class Navigation extends Component {
   }
 
   render() {
-    const t = this.props.t; // Translations
+    const t = this.props.t;
     const lastfmAuthURL = `https://www.last.fm/api/auth/?api_key=${process.env.REACT_APP_LASTFM_API_KEY}` +
                           `&cb=${window.location.protocol}//${window.location.host}/`;
 
@@ -249,5 +249,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(
-  translate(['common'])(Navigation)
+  withTranslation()(Navigation)
 ));

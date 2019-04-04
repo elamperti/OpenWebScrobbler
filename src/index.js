@@ -6,9 +6,6 @@ import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 import 'bootswatch/dist/slate/bootstrap.min.css';
 
-import { I18nextProvider } from 'react-i18next';
-import i18n from './i18n';
-
 import { Provider as ReduxProvider } from 'react-redux';
 import store from './store';
 
@@ -74,9 +71,7 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
 
 ReactDOM.render(
   <ReduxProvider store={store}>
-    <I18nextProvider i18n={i18n}>
-      <App />
-    </I18nextProvider>
+    <App />
   </ReduxProvider>,
   document.getElementById('root')
 );

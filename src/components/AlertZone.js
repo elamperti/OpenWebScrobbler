@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 
 import {
   Alert,
@@ -43,7 +43,7 @@ class AlertZone extends React.Component {
   }
 
   render() {
-    const t = this.props.t; // Translations
+    const t = this.props.t;
     let alerts = [];
 
     for (let individualAlert of this.props.alerts) {
@@ -93,5 +93,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(
-  translate(['alerts'])(AlertZone)
+  withTranslation()(AlertZone)
 ));

@@ -1,7 +1,7 @@
 import i18n from 'i18next';
 import Backend from 'i18next-xhr-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
-import { reactI18nextModule } from 'react-i18next';
+import { initReactI18next } from 'react-i18next';
 
 export const languageList = [
   {code: 'ca', name: 'Català'},
@@ -36,7 +36,7 @@ export const fallbackLng = {
 i18n
   .use(Backend)
   .use(LanguageDetector)
-  .use(reactI18nextModule)
+  .use(initReactI18next)
   .init({
     load: 'languageOnly', // 'en-US' becomes 'en'
     backend: {
@@ -46,9 +46,9 @@ i18n
     fallbackLng,
 
     // have a common namespace used around the full app
-    ns: ['common'],
+    ns: ['common', 'settings', 'home', 'alerts'],
     defaultNS: 'common',
-    fallbackNS: 'common',
+    fallbackNS: ['settings', 'home', 'alerts'],
 
     debug: process.env.NODE_ENV === 'development',
 
@@ -57,11 +57,13 @@ i18n
     },
 
     react: {
-      wait: true
+      useSuspense: false, // ToDo: make this work
+      wait: true,
     }
-  })
-  .on('languageChanged', (newLang) => {
-    document.documentElement.lang = newLang;
   });
+
+i18n.on('languageChanged', (newLang) => {
+  document.documentElement.lang = newLang;
+});
 
 export default i18n;

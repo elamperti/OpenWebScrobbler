@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import i18n, { languageList, fallbackLng } from '../i18n'; // to handle hl parameter
-import { translate, Trans } from 'react-i18next';
+import { withTranslation, Trans } from 'react-i18next';
 import qs from 'qs';
 
 import { Link } from 'react-router-dom';
@@ -73,23 +73,10 @@ class Home extends Component {
   }
 
   render() {
-    const t = this.props.t; // Translations
+    const t = this.props.t;
     const isLoggedIn = this.props.user.isLoggedIn;
 
     let homeContent;
-
-/* <div className="row">
-          <div className="col-10 offset-1 col-sm-8 offset-2 col-md-6 offset-md-3 col-xl-4 offset-xl-4">
-            <Button tag={Link} to="/scrobble/song" size="lg" color="success" block className="mb-1">
-              {t('getScrobbling')}
-            </Button>
-            <div className="my-1 text-center">
-              &mdash; {t('or')} &mdash;
-            </div>
-
-          </div>
-        </div>
-         */
 
     if (isLoggedIn) {
       homeContent = (
@@ -113,7 +100,7 @@ class Home extends Component {
             </Button>
           </div>
         </div>
-      )
+      );
     } else {
       homeContent = (
         <div>
@@ -128,7 +115,7 @@ class Home extends Component {
               </small>
             </p>
         </div>
-      )
+      );
     }
 
     return (
@@ -220,5 +207,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  translate(['home'])(Home)
+  withTranslation()(Home)
 );

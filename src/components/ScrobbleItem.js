@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { translate } from 'react-i18next';
+import { withTranslation } from 'react-i18next';
 import ReactGA from 'react-ga';
 import get from 'lodash/get';
 
@@ -91,7 +91,7 @@ class ScrobbleItem extends Component {
   }
 
   render() {
-    const t = this.props.t; // Translations
+    const t = this.props.t;
     const scrobble = this.props.scrobble;
     let albumArt;
     let albumInfo;
@@ -317,5 +317,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  translate(['common'])(ScrobbleItem)
+  withTranslation()(ScrobbleItem)
 );
