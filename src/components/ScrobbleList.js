@@ -3,6 +3,7 @@ import { PropTypes } from 'prop-types';
 
 import ScrobbleItem from 'components/ScrobbleItem';
 import Spinner from 'components/Spinner';
+import Pagination from 'components/Pagination';
 
 function ScrobbleList(props) {
   let albumHasVariousArtists = !props.isAlbum;
@@ -46,6 +47,7 @@ function ScrobbleList(props) {
         <div className={`d-flex ${props.isAlbum ? 'flex-column' : 'flex-column-reverse'}`}>
           {ScrobbleListContent}
         </div>
+        {props.totalPages > 1 && <Pagination userToDisplay={props.userToDisplay}/>}
       </div>
     );
   } else {
@@ -64,6 +66,7 @@ ScrobbleList.propTypes = {
   onSelect: PropTypes.func,
   selected: PropTypes.array,
   scrobbles: PropTypes.array,
+  userToDisplay: PropTypes.string,
 };
 
 ScrobbleList.defaultProps = {
