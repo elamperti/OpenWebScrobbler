@@ -55,6 +55,8 @@ class ScrobbleSong extends Component {
       }
     }
 
+    this.listRef = React.createRef()
+
     this.catchEnter = this.catchEnter.bind(this);
     this.goBackToSearch = this.goBackToSearch.bind(this);
     this.search = this.search.bind(this);
@@ -65,6 +67,10 @@ class ScrobbleSong extends Component {
 
   componentDidMount() {
     this.focusSearchInput();
+  }
+
+  componentDidUpdate() {
+    this.listRef.current && this.listRef.current.scrollTo(0,0)
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -114,7 +120,7 @@ class ScrobbleSong extends Component {
       category: 'Search',
       action: 'User'
     });
-    this.props.fetchLastfmProfileHistory(this.state.userToSearch, null, (res) => {
+    this.props.fetchLastfmProfileHistory(this.state.userToSearch, {page: 1}, (res) => {
       if (get(res, 'value.data.error') === 6) { // User not found
         this.setState({
           inputInvalid: true,
@@ -253,11 +259,13 @@ class ScrobbleSong extends Component {
               />
             </div>
           </div>
-          <div className="ScrobbleList-container with-gradient">
+          <div ref={this.listRef} className="ScrobbleList-container with-gradient">
             <ScrobbleList
               compact noMenu
               analyticsEventForScrobbles="Scrobble from user"
               scrobbles={get(this.props.user, `profiles['${this.state.userToDisplay}'].scrobbles`, [])}
+              totalPages={get(this.props.user, `profiles['${this.state.userToDisplay}'].totalPages`, '')}
+              userToDisplay={this.state.userToDisplay}
               loading={this.state.profileScrobblesLoading}
             >
               <div className="mt-3 text-center">
