@@ -109,6 +109,7 @@ const userReducer = (state=initialState, action) => {
       if (hasIn(action.payload, 'data.recenttracks.track')) {
         let newScrobbles = [];
         let username = get(action.payload, 'data.recenttracks[@attr].user', '');
+        const totalPages = get(action.payload, 'data.recenttracks[@attr].totalPages', '');
 
         for (let item of action.payload.data.recenttracks.track) {
           if (!get(item, '[@attr].nowplaying', false)) {
@@ -125,6 +126,7 @@ const userReducer = (state=initialState, action) => {
         profiles[username] = {
           ...get(profiles, username, {}),
           scrobbles: newScrobbles,
+          totalPages
         };
 
         let i = recentProfiles.indexOf(username);
