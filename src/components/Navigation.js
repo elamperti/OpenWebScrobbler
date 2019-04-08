@@ -90,7 +90,7 @@ class Navigation extends Component {
       return {
         tag: Link,
         to: dest,
-        className: get(this.props.location, 'pathname', '').startsWith(dest) ? 'active' : '',
+        className: get(this.props.location, 'pathname', '').indexOf(dest) === 0 ? 'active' : '',
       };
     }
 
