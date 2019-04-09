@@ -30,7 +30,7 @@ const artistReducer = (state=initialState, action) => {
       return state;
 
     case `${SEARCH_ARTIST_TOP_ALBUMS_LASTFM}_FULFILLED`:
-      state.topAlbums[action.payload.config.params.mbid] = fetchTopAlbums(get(action.payload, 'data', {}));
+      state.topAlbums[action.payload.config.params.mbid || action.payload.config.params.artist] = fetchTopAlbums(get(action.payload, 'data', {}));
       return state;
 
     default:
