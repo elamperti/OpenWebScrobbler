@@ -35,7 +35,7 @@ import {
 } from 'store/actions/albumActions';
 import {
   searchArtists,
-  searchArtistTopAlbums
+  searchArtistTopAlbums,
 } from 'store/actions/artistActions';
 import {
   enqueueScrobble,
@@ -285,7 +285,7 @@ class ScrobbleAlbum extends Component {
           selectedArtist: artist.name,
           mbid: {
             ...this.state.mbid,
-            artist: artist.mbid,
+            artist: artist.mbid || artist.name,
           },
         }, () => {
           this.props.searchArtistTopAlbums(artist, () => {
@@ -458,7 +458,7 @@ class ScrobbleAlbum extends Component {
         } else {
           const isHalfColumn = this.state.searchOptions.byArtist && !topAlbumsMode;
           const albumColSize = isHalfColumn ? 'col-sm-6 col-xl-4' : 'col-sm-6 col-sm-4 col-xl-3';
-          const albumsSource = topAlbumsMode ? get(this.props.artists.topAlbums, `[${this.state.mbid.artist}]`, []) : get(this.props.albums.searchCache, `[${this.state.albumOrArtist.toLowerCase()}]`, []);
+          const albumsSource = topAlbumsMode ? get(this.props.artists.topAlbums, `['${this.state.mbid.artist}']`, []) : get(this.props.albums.searchCache, `['${this.state.albumOrArtist.toLowerCase()}']`, []);
           let listOfAlbums = [];
           let i = 0;
 
@@ -497,7 +497,7 @@ class ScrobbleAlbum extends Component {
           artistSRP = boringSpinnerBlock;
         } else {
           const artistColSize = this.state.searchOptions.byAlbum ? 'col-xl-6' : 'col-md-6 col-lg-4 col-xl-3';
-          const artistsSource = get(this.props.artists.cache, `[${this.state.albumOrArtist.toLowerCase()}]`, []);
+          const artistsSource = get(this.props.artists.cache, `['${this.state.albumOrArtist.toLowerCase()}']`, []);
           let listOfArtists = [];
           let i = 0;
 
