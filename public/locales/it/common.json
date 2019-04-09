@@ -68,7 +68,7 @@
     },
     "months": {
       "short": ["Gen","Feb","Mar","Apr","Mag","Giu","Lug","Ago","Set","Ott","Nov","Dic"],
-      "long": ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosts","Settembre","Ottobre","Novembre","Dicembre"]
+      "long": ["Gennaio","Febbraio","Marzo","Aprile","Maggio","Giugno","Luglio","Agosto","Settembre","Ottobre","Novembre","Dicembre"]
     }
   },
   "updates": {
