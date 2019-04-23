@@ -5,7 +5,7 @@
   "artist": "Καλλιτέχνης",
   "song": "Τραγούδι",
   "title": "Κομμάτι",
-  "album": "Άλμπου",
+  "album": "Άλμπουμ",
   "albumArtist": "Καλλιτέχνης άλμπουμ",
   "history": "Ιστορικο",
   "yourProfile": "Το προφίλ σας",
@@ -15,7 +15,7 @@
   "otherUser": "Χρήστης",
   "or": "ή",
   "refresh": "Ανανέωση",
-  "findFriendCopy": "Εισάγετε το username ενός χρήστη του last.fm  για να δείτε τα τελευταία τους κομμάτια",
+  "findFriendCopy": "Εισάγετε το username ενός χρήστη του last.fm  για να δείτε τα τελευταία του κομμάτια",
   "visitProfile": "Προβολή προφίλ",
   "search": "Αναζήτηση",
   "backToSearch": "Πίσω στην αναζήτηση",
@@ -37,7 +37,7 @@
   "scrobbleAgain": "Scrobble ξανά",
   "copyToEditor": "Αντιγραφή στον editor",
   "swapArtistTitle": "Ανταλλαγή καλλιτέχνη και κομματιού",
-  "viewProfile": "Προβολή του προφίλ μου στο last.fm",
+  "viewProfile": "Προβολή του προφίλ μου στο Last.fm",
   "lockArtist": "Κλείδωμα του πεδίου καλλιτέχνη",
   "lockAlbum": "Κλείδωμα του πεδίου άλμπουμ",
   "pasteIntercepted": "Το κείμενο που επικολλήθηκε χωρίστηκε αυτόματα!",
@@ -62,7 +62,7 @@
     "newVersionAvailable": "Υπάρχει μια νέα έκδοση διαθέσιμη! Παρακαλώ <1>ανανεώστε τη σελίδα</1>"
   },
   "errors": {
-    "lastfmRejected": "Το Last.fm απόρριψε αυτό το scrobble",
+    "lastfmRejected": "Το Last.fm απέρριψε αυτό το scrobble",
     "unexpectedResponse": "Απροσδόκητη απάντηση",
     "apiCallFailed": "Η κλήση στο API απέτυχε"
   }
