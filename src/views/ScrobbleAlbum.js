@@ -547,7 +547,7 @@ class ScrobbleAlbum extends Component {
             <React.Fragment>
               <div className="album-heading row my-2">
                 <div className="col-3">
-                  <AlbumCard background={album.info.cover} />
+                  <AlbumCard background={get(album, 'info.cover')} />
                 </div>
                 <div className="col-9 d-flex flex-column">
                   <div className="album-heading-info flex-grow-1">

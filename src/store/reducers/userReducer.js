@@ -110,7 +110,7 @@ const userReducer = (state=initialState, action) => {
         let newScrobbles = [];
         let username = get(action.payload, 'data.recenttracks[@attr].user', '');
 
-        for (let item of action.payload.data.recenttracks.track) {
+        for (let item of get(action.payload, 'data.recenttracks.track', [])) {
           if (!get(item, '[@attr].nowplaying', false)) {
             newScrobbles.unshift({
               artist: item.artist['#text'],
