@@ -1,65 +1,67 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
-import { connect } from 'react-redux';
 import { Button } from 'reactstrap';
-import get from 'lodash/get';
 import { translate, Trans } from 'react-i18next';
 
-import { fetchLastfmProfileHistory } from 'store/actions/userActions';
-
 class Pagination extends React.Component {
-  state = {
-    page: 1
+  constructor(props) {
+    super(props)
+
+    this.updatePage = this.updatePage.bind(this);
+    this.nextPage = this.nextPage.bind(this);
+    this.prevPage = this.prevPage.bind(this);
+
+    this.state = {
+      page: 1
+    }
   }
 
-  navigateToPage = (page) => {
-    this.setState({page}, () => {
-      this.props.fetchLastfmProfileHistory(this.props.userToDisplay, {page: this.state.page})
+  updatePage(page) {
+    this.setState({ page }, () => {
+      this.props.navigateToPage(page)
     })
-  };
+  }
 
-  nextPage = () => {
+  nextPage() {
     const page = this.state.page + 1
-    this.navigateToPage(page)
-  };
+    this.updatePage(page)
+  }
 
-  prevPage = () => {
+  prevPage() {
     const page = this.state.page - 1
-    this.navigateToPage(page)
-  };
+    this.updatePage(page)
+  }
 
   render () {
-    const totalPages = get(this.props.user, `profiles['${this.props.userToDisplay}'].totalPages`, '')
-
     return (
       <div className="d-flex justify-content-between m-2">
-        <Button  size="sm" onClick={this.prevPage} disabled={this.state.page <= 1}>
-          <Trans i18nKey="previous">Previous</Trans>
-        </Button>
-        <Button size="sm" onClick={this.nextPage} disabled={this.state.page === totalPages}>
-          <Trans i18nKey="next">Next</Trans>
-        </Button>
-      </div>
+      <Button
+        size="sm"
+        onClick={this.prevPage}
+        disabled={this.state.page <= 1}
+      >
+        <Trans i18nKey="previous">Previous</Trans>
+      </Button>
+      <Button
+        size="sm"
+        onClick={this.nextPage}
+        disabled={this.state.page >= this.props.totalPages}
+      >
+        <Trans i18nKey="next">Next</Trans>
+      </Button>
+    </div>
     )
   }
 }
 
 
 Pagination.propTypes = {
-  totalPages: PropTypes.string,
-  fetchLastfmProfileHistory: PropTypes.func,
-  user: PropTypes.object,
-  userToDisplay: PropTypes.string,
+  totalPages: PropTypes.string.isRequired,
+  navigateToPage: PropTypes.func
 };
 
-const mapStateToProps = (state) => ({
-  user: state.user,
-});
+Pagination.defaultProps = {
+  navigateToPage: () => {}
+};
 
-const mapDispatchToProps = (dispatch) => ({
-  fetchLastfmProfileHistory: fetchLastfmProfileHistory(dispatch)
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(
-  translate(['common'])(Pagination)
-);
+export default translate(['common'])(Pagination)

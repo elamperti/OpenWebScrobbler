@@ -1,12 +1,21 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
+import get from 'lodash/get';
+import { translate } from 'react-i18next';
 
 import ScrobbleItem from 'components/ScrobbleItem';
 import Spinner from 'components/Spinner';
 import Pagination from 'components/Pagination';
+import { fetchLastfmProfileHistory } from 'store/actions/userActions';
 
 function ScrobbleList(props) {
   let albumHasVariousArtists = !props.isAlbum;
+  const totalPages = get(props.user, `profiles['${props.userToDisplay}'].totalPages`, '')
+
+  function navigateToPage(page) {
+    props.fetchLastfmProfileHistory(props.userToDisplay, {page})
+  }
 
   if (props.loading) {
     return(
@@ -47,7 +56,9 @@ function ScrobbleList(props) {
         <div className={`d-flex ${props.isAlbum ? 'flex-column' : 'flex-column-reverse'}`}>
           {ScrobbleListContent}
         </div>
-        {props.totalPages > 1 && <Pagination userToDisplay={props.userToDisplay}/>}
+        {props.totalPages > 1 && (
+          <Pagination navigateToPage={navigateToPage} totalPages={totalPages} />
+        )}
       </div>
     );
   } else {
@@ -67,6 +78,8 @@ ScrobbleList.propTypes = {
   selected: PropTypes.array,
   scrobbles: PropTypes.array,
   userToDisplay: PropTypes.string,
+  fetchLastfmProfileHistory: PropTypes.func,
+  user: PropTypes.object
 };
 
 ScrobbleList.defaultProps = {
@@ -75,6 +88,19 @@ ScrobbleList.defaultProps = {
   loading: false,
   noMenu: false,
   scrobbles: [],
+  fetchLastfmProfileHistory: () => {},
+  user: {}
 };
 
-export default ScrobbleList;
+const mapStateToProps = (state) => ({
+  user: state.user,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  fetchLastfmProfileHistory: fetchLastfmProfileHistory(dispatch)
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(
+  translate(['common'])(ScrobbleList)
+);
+
