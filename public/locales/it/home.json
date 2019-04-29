@@ -5,7 +5,7 @@
   "logInWithLastFm": "Autenticati via Last.fm",
   "logInIsSafe": "Questo processo avverrà in maniera sicura tramite at Last.fm",
   "about": {
-    "title": "Che cosa è questo?",
+    "title": "Che cos'è?",
     "description": "Uno scrobbler open source per il web che ti consente di scrobblare manualmente canzoni ed aggiungerle al tuo profilo Last.fm."
   },
   "support": {
