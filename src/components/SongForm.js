@@ -132,7 +132,7 @@ class SongForm extends React.Component {
   catchPaste(event) {
     if (!this.props.settings.catchPaste || this.state.artist || this.state.title) return;
 
-    let splittedValues = /(.+) [-—] (.+)/.exec(event.clipboardData.getData('Text').trim());
+    let splittedValues = /(.+) [-–—] (.+)/.exec(event.clipboardData.getData('Text').trim());
     let prevState;
     let pasteData;
 
