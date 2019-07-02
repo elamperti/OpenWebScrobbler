@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { Trans } from 'react-i18next';
+import { Translation, Trans } from 'react-i18next';
 import ReactGA from 'react-ga';
 import get from 'lodash/get';
 import md5 from 'md5';
@@ -556,12 +556,17 @@ class ScrobbleAlbum extends Component {
                     <div className="album-heading-artist-name">{album.info.artist}</div>
                   </div>
                   <FormGroup className="align-self-end mb-0">
-                    <CustomInput inline type="radio" id="useNowTimestamp" name="useCustomTimestamp" checked={!this.state.useCustomTimestamp} onChange={this.toggleCustomTimestamp} disabled={albumIsEmpty}>
-                      <Trans i18nKey="now"></Trans>
-                    </CustomInput>
-                    <CustomInput inline type="radio" id="useCustomTimestamp" name="useCustomTimestamp" checked={this.state.useCustomTimestamp} onChange={this.toggleCustomTimestamp} disabled={albumIsEmpty}>
-                      <Trans i18nKey="customTimestamp"></Trans>
-                    </CustomInput>
+                    <Translation>{
+                      // This mess is required to translate the `label` properties using t(), otherwise label wouldn't be clickable
+                      (t) => {
+                        return (
+                          <React.Fragment>
+                            <CustomInput inline type="radio" id="useNowTimestamp" label={t('now')} name="useCustomTimestamp" checked={!this.state.useCustomTimestamp} onChange={this.toggleCustomTimestamp} disabled={albumIsEmpty}></CustomInput>
+                            <CustomInput inline type="radio" id="useCustomTimestamp" label={t('customTimestamp')} name="useCustomTimestamp" checked={this.state.useCustomTimestamp} onChange={this.toggleCustomTimestamp} disabled={albumIsEmpty}></CustomInput>
+                          </React.Fragment>
+                        );
+                      }
+                    }</Translation>
                     <FontAwesomeIcon id="timestampInfoIcon" icon={faQuestionCircle} color="var(--gray)" onClick={this.toggleTimestampCopy} />
                   </FormGroup>
                 </div>
