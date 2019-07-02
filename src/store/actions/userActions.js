@@ -131,7 +131,7 @@ export function fetchLastfmProfileInfo(dispatch) {
 }
 
 export function fetchLastfmProfileHistory(dispatch) {
-  return (username, options, callback) => {
+  return (username, options = {}, callback) => {
     const response = dispatch({
       type: FETCH_LASTFM_USER_HISTORY,
       payload: axios.get(AUDIOSCROBBLER_API_URL, {
@@ -139,7 +139,8 @@ export function fetchLastfmProfileHistory(dispatch) {
           method: 'user.getRecentTracks',
           user: username,
           api_key: process.env.REACT_APP_LASTFM_API_KEY,
-          format: 'json'
+          format: 'json',
+          ...options
         },
       })
     });
