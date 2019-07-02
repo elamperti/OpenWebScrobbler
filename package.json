@@ -44,7 +44,7 @@
     "redux-logger": "^3.0.6",
     "redux-promise-middleware": "^5.1.1",
     "shortid": "^2.2.8",
-    "webpack-bundle-analyzer": "^2.13.1"
+    "webpack-bundle-analyzer": "^3.3.2"
   },
   "scripts": {
     "start": "concurrently -r --kill-others 'react-app-rewired start' 'docker-compose up'",
