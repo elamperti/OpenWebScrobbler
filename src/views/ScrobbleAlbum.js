@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
-import { withTranslation, Trans } from 'react-i18next';
+import { Trans } from 'react-i18next';
 import ReactGA from 'react-ga';
 import get from 'lodash/get';
 import md5 from 'md5';
@@ -351,12 +351,13 @@ class ScrobbleAlbum extends Component {
   }
 
   render() {
-    const t = this.props.t;
     const topAlbumsMode = this.state.currentView === ALBUM_VIEW_STEP_ARTIST;
 
     const renderBreadcrumbNavigation = () => {
       let itemList = [
-        <BreadcrumbItem tag="a" href="#" onClick={() => this.resetState(ALBUM_VIEW_STEP_SEARCH)} key={ALBUM_VIEW_STEP_SEARCH}>{t('search')}</BreadcrumbItem>
+        <BreadcrumbItem tag="a" href="#" onClick={() => this.resetState(ALBUM_VIEW_STEP_SEARCH)} key={ALBUM_VIEW_STEP_SEARCH}>
+          <Trans i18nKey="search">Search</Trans>
+        </BreadcrumbItem>
       ];
 
       if (this.state.currentView !== ALBUM_VIEW_STEP_SEARCH) {
@@ -485,7 +486,7 @@ class ScrobbleAlbum extends Component {
 
           albumSRP = (
             <div className={isHalfColumn ? 'col-md-6' : ''}>
-              <h3 className="mt-3 mb-0">{topAlbumsMode ? t('topAlbumsBy', {nameOfArtist: this.state.selectedArtist}) : t('album', {count: 2})}</h3>
+          <h3 className="mt-3 mb-0">{topAlbumsMode ? <Trans i18nKey="topAlbumsBy" values={{nameOfArtist: this.state.selectedArtist}}>Albums</Trans> : <Trans i18nKey="album" count="2">Albums</Trans>}</h3>
               <Row>
                 {listOfAlbums}
               </Row>
@@ -518,7 +519,7 @@ class ScrobbleAlbum extends Component {
 
           artistSRP = (
             <div className={this.state.searchOptions.byAlbum ? 'col-md-6' : 'col-12'}>
-              <h3 className="mt-3 mb-0">{t('artist', {count: 2})}</h3>
+              <h3 className="mt-3 mb-0"><Trans i18nKey="artist" count="2">Artists</Trans></h3>
               <Row>
                 {listOfArtists}
               </Row>
@@ -555,8 +556,12 @@ class ScrobbleAlbum extends Component {
                     <div className="album-heading-artist-name">{album.info.artist}</div>
                   </div>
                   <FormGroup className="align-self-end mb-0">
-                    <CustomInput inline type="radio" id="useNowTimestamp" name="useCustomTimestamp" label={t('now')} checked={!this.state.useCustomTimestamp} onChange={this.toggleCustomTimestamp} disabled={albumIsEmpty} />
-                    <CustomInput inline type="radio" id="useCustomTimestamp" name="useCustomTimestamp" label={t('customTimestamp')} checked={this.state.useCustomTimestamp} onChange={this.toggleCustomTimestamp} disabled={albumIsEmpty} />
+                    <CustomInput inline type="radio" id="useNowTimestamp" name="useCustomTimestamp" checked={!this.state.useCustomTimestamp} onChange={this.toggleCustomTimestamp} disabled={albumIsEmpty}>
+                      <Trans i18nKey="now"></Trans>
+                    </CustomInput>
+                    <CustomInput inline type="radio" id="useCustomTimestamp" name="useCustomTimestamp" checked={this.state.useCustomTimestamp} onChange={this.toggleCustomTimestamp} disabled={albumIsEmpty}>
+                      <Trans i18nKey="customTimestamp"></Trans>
+                    </CustomInput>
                     <FontAwesomeIcon id="timestampInfoIcon" icon={faQuestionCircle} color="var(--gray)" onClick={this.toggleTimestampCopy} />
                   </FormGroup>
                 </div>
@@ -568,7 +573,7 @@ class ScrobbleAlbum extends Component {
               <div className="row">
                 <div className="my-2 col-12 col-sm-9 offset-sm-3 col-lg-6 offset-lg-6">
                   <Button className="w-100 mr-3" color="success" onClick={this.scrobbleSelectedTracks} disabled={!this.state.canScrobble}>
-                    {t(this.state.selectedTracks.length > 0 ? 'scrobbleSelected' : 'scrobbleAlbum')}
+                    <Trans i18nKey={this.state.selectedTracks.length > 0 ? 'scrobbleSelected' : 'scrobbleAlbum'}>Scrobble it</Trans>
                   </Button>
                 </div>
               </div>
@@ -645,5 +650,5 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  withTranslation()(ScrobbleAlbum)
+  ScrobbleAlbum
 );

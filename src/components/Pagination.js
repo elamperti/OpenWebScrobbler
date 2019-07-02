@@ -1,7 +1,7 @@
 import React from 'react';
 import { PropTypes } from 'prop-types';
 import { Button } from 'reactstrap';
-import { translate, Trans } from 'react-i18next';
+import { Trans } from 'react-i18next';
 
 class Pagination extends React.Component {
   constructor(props) {
@@ -64,4 +64,4 @@ Pagination.defaultProps = {
   navigateToPage: () => {}
 };
 
-export default translate(['common'])(Pagination)
+export default Pagination;

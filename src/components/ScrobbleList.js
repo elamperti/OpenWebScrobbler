@@ -2,7 +2,6 @@ import React from 'react';
 import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
-import { translate } from 'react-i18next';
 
 import ScrobbleItem from 'components/ScrobbleItem';
 import Spinner from 'components/Spinner';
@@ -101,6 +100,6 @@ const mapDispatchToProps = (dispatch) => ({
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(
-  translate(['common'])(ScrobbleList)
+  ScrobbleList
 );
 
