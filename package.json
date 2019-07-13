@@ -22,7 +22,7 @@
     "i18next-browser-languagedetector": "^3.0.1",
     "i18next-xhr-backend": "^2.0.1",
     "lint-staged": "^7.3.0",
-    "lodash": "^4.17.10",
+    "lodash": "^4.17.13",
     "md5": "^2.2.1",
     "module-to-cdn": "^3.1.2",
     "prop-types": "^15.6.2",
