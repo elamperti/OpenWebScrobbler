@@ -5,6 +5,7 @@ services:
     ports:
       - "3274:80"
     env_file:
+      - ./.env
       - ./.env.development.local
     volumes:
       - ./public/api:/var/www/html/api
