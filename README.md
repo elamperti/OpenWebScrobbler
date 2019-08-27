@@ -28,7 +28,7 @@ Translating is very easy. Here's a short guide (if you get stuck let me know [on
   3. Translate all the values in the JSON files (for example, in a line that says `"foo": "bar",` you should translate only the `bar` part).
   4. Add you language to the language list in [`src/i18n.js`](./src/i18n.js)
   5. Duplicate one hreflang tag in the [index.html](./public/index.html) and modify it to fit your language.
-  6. Once you are done, the only thing left is creating a pull request so it can be merged with the current code. :confetti:
+  6. Once you are done, the only thing left is creating a pull request so it can be merged with the current code. :confetti_ball:
 
 #### Improve an existing language
 
