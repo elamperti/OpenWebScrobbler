@@ -10,10 +10,10 @@ import { fetchLastfmProfileHistory } from 'store/actions/userActions';
 
 function ScrobbleList(props) {
   let albumHasVariousArtists = !props.isAlbum;
-  const totalPages = get(props.user, `profiles['${props.userToDisplay}'].totalPages`, '')
+  const totalPages = get(props.user, `profiles['${props.userToDisplay}'].totalPages`, '');
 
   function navigateToPage(page) {
-    props.fetchLastfmProfileHistory(props.userToDisplay, {page})
+    props.fetchLastfmProfileHistory(props.userToDisplay, {page});
   }
 
   if (props.loading) {
@@ -34,7 +34,7 @@ function ScrobbleList(props) {
       }
     }
 
-    let ScrobbleListContent = props.scrobbles.map((scrobble, index) => {
+    let ScrobbleListContent = props.scrobbles.map((scrobble, i) => {
       return <ScrobbleItem
         scrobble={scrobble}
         analyticsEvent={props.analyticsEventForScrobbles}
@@ -44,7 +44,7 @@ function ScrobbleList(props) {
         noCover={props.isAlbum}
         onSelect={props.onSelect}
         selected={props.selected && props.selected.indexOf(scrobble.uuid) > -1}
-        key={index}
+        key={scrobble.timestamp + i}
         uuid={scrobble.uuid}
         muteArtist={props.isAlbum}
         hideArtist={!albumHasVariousArtists}
@@ -56,7 +56,7 @@ function ScrobbleList(props) {
           {ScrobbleListContent}
         </div>
         {props.totalPages > 1 && (
-          <Pagination navigateToPage={navigateToPage} totalPages={totalPages} />
+          <Pagination onPageChange={navigateToPage} totalPages={totalPages} />
         )}
       </div>
     );

@@ -138,9 +138,9 @@ export function fetchLastfmProfileHistory(dispatch) {
         params: {
           method: 'user.getRecentTracks',
           user: username,
+          ...options,
           api_key: process.env.REACT_APP_LASTFM_API_KEY,
-          format: 'json',
-          ...options
+          format: 'json'
         },
       })
     });

@@ -266,7 +266,6 @@ class ScrobbleSong extends Component {
               scrobbles={get(this.props.user, `profiles['${this.state.userToDisplay}'].scrobbles`, [])}
               totalPages={get(this.props.user, `profiles['${this.state.userToDisplay}'].totalPages`, '')}
               userToDisplay={this.state.userToDisplay}
-              loading={this.state.profileScrobblesLoading}
             >
               <div className="mt-3 text-center">
                 <Trans i18nKey="noSongsScrobbled">This user hasn&apos;t scrobbled anything yet!</Trans>
