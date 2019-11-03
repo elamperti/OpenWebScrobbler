@@ -34,11 +34,12 @@
     }
 
     function save_settings($username, $settings) {
-      $q = $this->db->prepare('REPLACE INTO "settings" (username, catchPaste, use12Hours, lang)
-                                VALUES (:username, :catchPaste, :use12Hours, :lang);');
+      $q = $this->db->prepare('REPLACE INTO "settings" (username, catchPaste, isDonor, use12Hours, lang)
+                                VALUES (:username, :catchPaste, :isDonor, :use12Hours, :lang);');
 
       $q->bindValue(':username', $username);
       $q->bindValue(':lang', $settings['lang'], SQLITE3_TEXT);
+      $q->bindValue(':isDonor', $settings['isDonor'], SQLITE3_INTEGER);
       $q->bindValue(':catchPaste', $settings['catchPaste'], SQLITE3_INTEGER);
       $q->bindValue(':use12Hours', $settings['use12Hours'], SQLITE3_INTEGER);
 
