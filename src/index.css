@@ -185,6 +185,7 @@ body.with-shadow {
 
   .ScrobbleList-container.with-gradient {
     max-height: 62vh;
+    max-height: calc(100vh - 420px); /* Experimental */
   }
 }
 
