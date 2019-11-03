@@ -55,7 +55,7 @@ class ScrobbleSong extends Component {
       }
     }
 
-    this.listRef = React.createRef()
+    this.listRef = React.createRef();
 
     this.catchEnter = this.catchEnter.bind(this);
     this.goBackToSearch = this.goBackToSearch.bind(this);
@@ -67,10 +67,6 @@ class ScrobbleSong extends Component {
 
   componentDidMount() {
     this.focusSearchInput();
-  }
-
-  componentDidUpdate() {
-    this.listRef.current && this.listRef.current.scrollTo(0,0)
   }
 
   static getDerivedStateFromProps(props, state) {
@@ -263,8 +259,8 @@ class ScrobbleSong extends Component {
             <ScrobbleList
               compact noMenu
               analyticsEventForScrobbles="Scrobble from user"
+              containerRef={this.listRef}
               scrobbles={get(this.props.user, `profiles['${this.state.userToDisplay}'].scrobbles`, [])}
-              totalPages={get(this.props.user, `profiles['${this.state.userToDisplay}'].totalPages`, '')}
               userToDisplay={this.state.userToDisplay}
             >
               <div className="mt-3 text-center">

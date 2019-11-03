@@ -10,10 +10,14 @@ import { fetchLastfmProfileHistory } from 'store/actions/userActions';
 
 function ScrobbleList(props) {
   let albumHasVariousArtists = !props.isAlbum;
-  const totalPages = get(props.user, `profiles['${props.userToDisplay}'].totalPages`, '');
+  const totalPages = parseInt(get(props.user, `profiles['${props.userToDisplay}'].totalPages`, 0));
 
   function navigateToPage(page) {
-    props.fetchLastfmProfileHistory(props.userToDisplay, {page});
+    props.fetchLastfmProfileHistory(props.userToDisplay, {page}, () => {
+      if (props.containerRef) {
+        props.containerRef.current.scrollTo(0, 0);
+      }
+    });
   }
 
   if (props.loading) {
@@ -55,7 +59,7 @@ function ScrobbleList(props) {
         <div className={`d-flex ${props.isAlbum ? 'flex-column' : 'flex-column-reverse'}`}>
           {ScrobbleListContent}
         </div>
-        {props.totalPages > 1 && (
+        {totalPages > 1 && (
           <Pagination onPageChange={navigateToPage} totalPages={totalPages} />
         )}
       </div>
@@ -70,6 +74,7 @@ ScrobbleList.propTypes = {
   children: PropTypes.node.isRequired,
   cloneScrobblesTo: PropTypes.func,
   compact: PropTypes.bool,
+  containerRef: PropTypes.object,
   isAlbum: PropTypes.bool,
   loading: PropTypes.bool,
   noMenu: PropTypes.bool,
