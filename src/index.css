@@ -145,6 +145,7 @@ body.with-shadow {
 
 .navbar.navbar-dark {
   box-shadow: 0 3px 4px rgba(0,0,0,0.3);
+  border-width: 0 0 1px;
   margin-bottom: 1.5em;
 }
 

@@ -212,7 +212,7 @@ class Navigation extends Component {
     }
 
     return (
-      <div>
+      <React.Fragment>
         <Navbar color="dark" dark expand="md" className={`${this.props.settings.isDonor ? 'donor' : ''}`}>
           <NavbarBrand tag={Link} to="/" className="flex-grow-1 flex-md-grow-0">
             <FontAwesomeIcon icon={faHeadphonesAlt} className="d-none d-sm-inline" />
@@ -228,7 +228,7 @@ class Navigation extends Component {
           </Collapse>
         </Navbar>
         <SettingsModal isOpen={this.state.settingsModalOpen} toggle={this.toggleSettingsModal} />
-      </div>
+      </React.Fragment>
     );
   }
 }
