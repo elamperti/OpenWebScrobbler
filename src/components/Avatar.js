@@ -62,7 +62,7 @@ const Avatar = props => {
           src={avatarURL}
           alt={props.alt}
           placeholder={placeholderIcon}
-          className={`user-avatar user-avatar-${props.size} rounded-circle ${props.className}`}
+          className={`user-avatar user-avatar-${props.size} rounded-circle${props.className ? ' ' + props.className : ''}`}
           width={imgSize}
           height={imgSize}
           // ToDo: implement scrollPosition
