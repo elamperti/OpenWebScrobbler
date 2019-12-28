@@ -52,7 +52,7 @@
     "lint": "node_modules/.bin/eslint -c .eslintrc src/**/*.js",
     "test": "react-scripts test --env=jsdom",
     "patch": "yarn version --no-git-tag-version --patch",
-    "eject": "react-app-rewired eject"
+    "eject": "react-scripts eject"
   },
   "husky": {
     "hooks": {
