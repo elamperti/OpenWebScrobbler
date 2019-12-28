@@ -48,7 +48,7 @@ function ScrobbleList(props) {
         noCover={props.isAlbum}
         onSelect={props.onSelect}
         selected={props.selected && props.selected.indexOf(scrobble.uuid) > -1}
-        key={scrobble.timestamp + i}
+        key={(scrobble.timestamp || 0) + i}
         uuid={scrobble.uuid}
         muteArtist={props.isAlbum}
         hideArtist={!albumHasVariousArtists}
