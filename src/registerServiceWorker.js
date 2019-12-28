@@ -7,6 +7,8 @@
 
 // To learn more about the benefits of this model, read https://goo.gl/KwvDNy.
 // This link also includes instructions on opting out of this behavior.
+
+/* eslint-disable no-console */
 import {
   NEW_VERSION_READY,
 } from 'Constants';
