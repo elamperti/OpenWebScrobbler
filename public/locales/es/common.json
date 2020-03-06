@@ -36,13 +36,13 @@
   "invalidUsername": "Usuario inválido",
   "recentlySearchedUsers": "Búsquedas recientes",
   "language": "Idioma",
-  "translateYourLanguage": "Quieres sumar tu idioma?",
+  "translateYourLanguage": "¿Quieres sumar tu idioma?",
   "logIn": "Ingresar",
   "logOut": "Cerrar sesión",
   "now": "Ahora",
   "custom": "Otra...",
   "timestamp": "Fecha",
-  "noSongsScrobbled": "No haz scrobbleado canciones aún!",
+  "noSongsScrobbled": "¡No has scrobbleado canciones aún!",
   "lastfmWillRejectOldTimestamps": "Last.fm rechazará scrobbles anteriores a las últimas dos semanas.",
   "keepOriginalTimestamp": "Conservar fecha y hora originales",
   "songsWillAppearHere": "Tus canciones aparecerán aquí una vez que las hayas scrobbleado.",
@@ -53,10 +53,10 @@
   "viewProfile": "Ver mi perfil en last.fm",
   "lockArtist": "Conservar nombre de artista",
   "lockAlbum": "Conservar datos del álbum",
-  "pasteIntercepted": "El texto pegado fue separado automáticamente!",
-  "considerDonating": "Por favor colabora con el proyecto en Patreon!",
+  "pasteIntercepted": "¡El texto pegado fue separado automáticamente!",
+  "considerDonating": "Por favor, ¡Colabora con el proyecto en Patreon!",
   "footer": {
-    "joinCommunity": "Eres bienvenid@ en nuestra comundidad <1>de Discord</1>!",
+    "joinCommunity": "¡Eres bienvenid@ en nuestra comundidad <1>de Discord</1>!",
     "supportThisProject": "Te agradeceremos tu apoyo <1>en Patreon</1> :)",
     "specialThanks": "Este sitio existe gracias a donantes, traductores y a <1>quienes contribuyen</1> en el código"
   },
@@ -72,7 +72,7 @@
     }
   },
   "updates": {
-    "newVersionAvailable": "Hay una nueva versión disponible! Por favor <1>recarga la página</1>"
+    "newVersionAvailable": "¡Hay una nueva versión disponible! Por favor <1>recarga la página</1>"
   },
   "errors": {
     "lastfmRejected": "Last.fm rechazó este scrobble",
