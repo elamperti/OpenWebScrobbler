@@ -593,6 +593,8 @@ class ScrobbleAlbum extends Component {
                     <FontAwesomeIcon icon={faBolt} transform="shrink-8 up-3 right-4 rotate-30" mask={faCompactDisc} size="4x" />
                     <p className="mt-2">
                       <Trans i18nKey="emptyAlbum">This album appears to be empty.</Trans>
+                      <br/>
+                      <a href="https://getsatisfaction.com/lastfm/topics/popular-albums-return-empty-track-lists" rel="noopener noreferrer" target="_blank">Report it here!</a>
                     </p>
                     { goBackLink(ALBUM_VIEW_STEP_SRP) }
                   </div>
