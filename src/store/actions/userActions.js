@@ -1,5 +1,5 @@
 import axios from 'axios';
-import createHistory from 'history/createBrowserHistory';
+import { createBrowserHistory as createHistory } from 'history'
 import ReactGA from 'react-ga';
 import md5 from 'md5';
 import get from 'lodash/get';
