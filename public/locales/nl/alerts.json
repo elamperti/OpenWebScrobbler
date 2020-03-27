@@ -3,6 +3,7 @@
   "loginAgain": "Je moet opnieuw inloggen!",
   "serviceUnavailable": "Service niet beschikbaar",
   "unexpectedError": "Onverwachte fout",
+  "unexpectedErrorMessage": "Your ad blocker may be blocking API calls to last.fm, try disabling it or adding an exception for ws.audioscrobbler.com",
   "lastfmUnavailable": "Last.fm reageert niet. Probeer het later opnieuw.",
   "settingsSavedSuccessfully": "Je instellingen zijn opgeslagen!",
   "loginError": {

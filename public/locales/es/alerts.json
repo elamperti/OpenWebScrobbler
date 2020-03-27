@@ -3,6 +3,7 @@
   "loginAgain": "¡Debes iniciar sesión nuevamente!",
   "serviceUnavailable": "El servicio no está disponible",
   "unexpectedError": "Error inesperado",
+  "unexpectedErrorMessage": "Tu ad blocker podría estar bloqueando llamadas a la API de last.fm, intenta desactivarlo o agrega una excepción para ws.audioscrobbler.com",
   "lastfmUnavailable": "Last.fm no está respondiendo, intenta de nuevo más tarde.",
   "settingsSavedSuccessfully": "Tu configuración fue guardada exitosamente!",
   "loginError": {

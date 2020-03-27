@@ -50,7 +50,7 @@ class AlertZone extends React.Component {
       alerts.push(
         <Alert
           isOpen={this.state.isOpen[individualAlert.id]}
-          fade="false"
+          fade={false}
           color={individualAlert.type}
           key={individualAlert.id}
           toggle={() => this.toggleAlert(individualAlert.id)}
