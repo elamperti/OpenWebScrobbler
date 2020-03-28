@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import i18n, { languageList, fallbackLng } from '../i18n'; // to handle hl parameter
 import { withTranslation, Trans } from 'react-i18next';
@@ -205,6 +206,20 @@ const mapDispatchToProps = (dispatch) => {
     authUserWithToken: authUserWithToken(dispatch),
   };
 }
+
+Home.propTypes = {
+  authUserWithToken: PropTypes.func,
+  history: PropTypes.object,
+  lang: PropTypes.string,
+  location: PropTypes.shape({
+    search: PropTypes.string,
+  }),
+  logIn: PropTypes.func,
+  t: PropTypes.func,
+  user: PropTypes.shape({
+    isLoggedIn: PropTypes.bool,
+  }),
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withTranslation()(Home)

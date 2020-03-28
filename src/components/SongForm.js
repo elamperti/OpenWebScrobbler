@@ -520,10 +520,6 @@ class SongForm extends React.Component {
   }
 }
 
-SongForm.propTypes = {
-  exportCloneReceiver: PropTypes.func,
-};
-
 const mapStateToProps = (state) => {
   return {
     settings: state.settings,
@@ -532,11 +528,24 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    enqueueScrobble: enqueueScrobble(dispatch),
     createAlert: createAlert(dispatch),
     dismissAlert: dismissAlert(dispatch),
+    enqueueScrobble: enqueueScrobble(dispatch),
   };
 }
+
+SongForm.propTypes = {
+  createAlert: PropTypes.func,
+  dismissAlert: PropTypes.func,
+  enqueueScrobble: PropTypes.func,
+  exportCloneReceiver: PropTypes.func,
+  settings: PropTypes.shape({
+    catchPaste: PropTypes.bool,
+    isDonor: PropTypes.bool,
+    use12Hours: PropTypes.bool,
+  }),
+  t: PropTypes.func,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withTranslation()(SongForm)

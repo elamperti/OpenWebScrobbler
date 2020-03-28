@@ -446,7 +446,7 @@ class ScrobbleAlbum extends Component {
                 readOnly={this.state.isLoading}
                 disableSearch={!this.state.searchEnabled}
                 invalid={this.state.inputInvalid}
-                feedbackMessage={'Generic error'}
+                feedbackMessage=""
               />
             </div>
           </Row>
@@ -629,13 +629,6 @@ class ScrobbleAlbum extends Component {
   }
 }
 
-ScrobbleAlbum.propTypes = {
-  fetchLastfmProfileHistory: PropTypes.func,
-  fetchLastfmProfileInfo: PropTypes.func,
-  localScrobbles: PropTypes.array,
-  user: PropTypes.object,
-};
-
 const mapStateToProps = (state) => {
   return {
     localScrobbles: state.scrobbles.list,
@@ -655,6 +648,25 @@ const mapDispatchToProps = (dispatch) => {
     searchArtistTopAlbums: searchArtistTopAlbums(dispatch),
   };
 }
+
+ScrobbleAlbum.propTypes = {
+  albums: PropTypes.shape({
+    searchCache: PropTypes.object,
+  }),
+  artists: PropTypes.shape({
+    cache: PropTypes.object,
+    topAlbums: PropTypes.object,
+  }),
+  enqueueScrobble: PropTypes.func,
+  fetchLastfmProfileHistory: PropTypes.func,
+  fetchLastfmProfileInfo: PropTypes.func,
+  localScrobbles: PropTypes.array,
+  getAlbum: PropTypes.func,
+  searchAlbums: PropTypes.func,
+  searchArtists: PropTypes.func,
+  searchArtistTopAlbums: PropTypes.func,
+  user: PropTypes.object,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   ScrobbleAlbum

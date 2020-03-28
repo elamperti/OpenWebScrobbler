@@ -119,6 +119,14 @@ DateTimePicker.defaultProps = {
   visible: false,
 };
 
+DateTimePicker.propTypes = {
+  onChange: PropTypes.func,
+  t: PropTypes.func,
+  settings: PropTypes.shape({
+    use12Hours: PropTypes.bool,
+  }),
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(
   withTranslation()(DateTimePicker)
 );

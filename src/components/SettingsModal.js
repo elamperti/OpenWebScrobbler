@@ -1,7 +1,7 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
-import { PropTypes } from 'prop-types';
 
 import {
   Button,
@@ -148,11 +148,6 @@ class SettingsModal extends React.Component {
   }
 }
 
-SettingsModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
-  toggle: PropTypes.func.isRequired,
-};
-
 const mapStateToProps = (state) => {
   return {
     user: state.user,
@@ -166,6 +161,18 @@ const mapDispatchToProps = (dispatch) => {
     setSettings: setSettings(dispatch),
   };
 }
+
+SettingsModal.propTypes = {
+  isOpen: PropTypes.bool.isRequired,
+  dismissAlert: PropTypes.func.isRequired,
+  setSettings: PropTypes.func.isRequired,
+  settings: PropTypes.object.isRequired,
+  t: PropTypes.func,
+  toggle: PropTypes.func.isRequired,
+  user: PropTypes.shape({
+    name: PropTypes.string,
+  }).isRequired,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withTranslation()(SettingsModal)

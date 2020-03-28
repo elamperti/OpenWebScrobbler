@@ -146,9 +146,13 @@ export function fetchLastfmProfileHistory(dispatch) {
     });
 
     if (typeof callback === 'function') {
-      response.then((res) => {
-        callback(res);
-      });
+      response
+        .then((res) => {
+          callback(res);
+        })
+        .catch((err) => {
+          callback(null, err);
+        });
     }
   };
 }

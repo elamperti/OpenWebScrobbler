@@ -1,7 +1,8 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
-import { withTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 
 import {
   Alert,
@@ -43,7 +44,6 @@ class AlertZone extends React.Component {
   }
 
   render() {
-    const t = this.props.t;
     let alerts = [];
 
     for (let individualAlert of this.props.alerts) {
@@ -62,9 +62,9 @@ class AlertZone extends React.Component {
               </div>
             ) }
             <div>
-              { individualAlert.title ? <span><strong>{t(individualAlert.title)}</strong><br /></span> : null }
+              { individualAlert.title ? <span><strong><Trans i18nKey={individualAlert.title} /></strong><br /></span> : null }
               { individualAlert.errorNumber ? `(${individualAlert.errorNumber}) ` : null }
-              { individualAlert.rawMessage || t(individualAlert.message) }
+              { individualAlert.rawMessage || <Trans i18nKey={individualAlert.message} /> }
             </div>
           </div>
         </Alert>
@@ -92,6 +92,13 @@ const mapDispatchToProps = (dispatch) => {
   };
 }
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(
-  withTranslation()(AlertZone)
-));
+AlertZone.propTypes = {
+  alerts: PropTypes.array,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
+  clearAlerts: PropTypes.func,
+  dismissAlert: PropTypes.func,
+};
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AlertZone));

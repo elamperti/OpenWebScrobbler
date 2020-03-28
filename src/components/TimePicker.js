@@ -128,11 +128,12 @@ TimePickerPicker.defaultProps = {
 }
 
 TimePickerPicker.propTypes = {
-  options: PropTypes.array.isRequired,
-  onChange: PropTypes.func.isRequired,
   fixedNumberLength: PropTypes.number,
+  onChange: PropTypes.func.isRequired,
+  options: PropTypes.array.isRequired,
   readOnly: PropTypes.bool,
   type: PropTypes.string,
+  value: PropTypes.instanceOf(Date).isRequired,
 }
 
 class TimePicker extends React.Component {
@@ -234,7 +235,7 @@ class TimePicker extends React.Component {
             readOnly
           />
         </InputGroup>
-        <Popover placement="bottom" isOpen={this.state.popoverOpen} toggle={this.toggle} target={this.props.icon ? 'TimePickerInputGroup' : 'TimePicker'}>
+        <Popover placement="bottom" isOpen={this.state.popoverOpen} toggle={this.toggle} target="TimePicker">
           <PopoverBody className="d-flex">
             <TimePickerPicker
               value={this.state.hours}
@@ -271,8 +272,8 @@ TimePicker.defaultProps = {
 
 TimePicker.propTypes = {
   onChange: PropTypes.func.isRequired,
-  value: PropTypes.instanceOf(Date).isRequired,
-  use12Hours: PropTypes.bool // ToDo: Connect to settings directly and avoid passing through this prop
+  use12Hours: PropTypes.bool,
+  value: PropTypes.instanceOf(Date).isRequired, // ToDo: Connect to settings directly and avoid passing through this prop
 }
 
 export default TimePicker;

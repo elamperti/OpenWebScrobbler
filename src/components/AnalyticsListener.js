@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { withRouter } from 'react-router';
 import ReactGA from 'react-ga';
 
@@ -23,5 +24,11 @@ class AnalyticsListener extends React.Component {
     return null;
   }
 }
+
+AnalyticsListener.propTypes = {
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
+};
 
 export default withRouter(AnalyticsListener);

@@ -30,7 +30,7 @@ import Spinner from 'components/Spinner';
 import SearchForm from 'components/SearchForm';
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 
-class ScrobbleSong extends Component {
+class ScrobbleUser extends Component {
   constructor(props) {
     super(props);
 
@@ -176,7 +176,6 @@ class ScrobbleSong extends Component {
   }
 
   render() {
-    const t = this.props.t;
     const sectionHeading = (
       <h2 className={`w-100 ${this.state.searchFormView ? 'mb-3' : 'm-0 d-inline'}`}>
         <FontAwesomeIcon icon={faUserFriends} />{' '}
@@ -195,7 +194,7 @@ class ScrobbleSong extends Component {
         readOnly={this.state.isLoading}
         disableSearch={!this.state.searchEnabled}
         invalid={this.state.inputInvalid}
-        feedbackMessage={t(this.state.justFailedSearch ? 'userNotFound' : 'invalidUsername')}
+        feedbackMessage={this.state.justFailedSearch ? 'userNotFound' : 'invalidUsername'}
       />
     );
     let recentUsers;
@@ -213,7 +212,7 @@ class ScrobbleSong extends Component {
       }
       recentUsers = (
         <React.Fragment>
-          <h4>{t('recentlySearchedUsers')}</h4>
+          <h4><Trans i18nKey="recentlySearchedUsers">Searched recently</Trans></h4>
           <ul className="list-group mx-2 recent-users">
             {recentUsersList}
           </ul>
@@ -242,14 +241,14 @@ class ScrobbleSong extends Component {
             <div className="col-sm-4 d-flex px-3 mb-2 flex-fill justify-content-sm-end">
               <Button className="align-self-center w-100" onClick={this.searchUser(this.state.userToDisplay)}>
                 <FontAwesomeIcon icon={faSync} />{' '}
-                {t('refresh')}
+                <Trans i18nKey="refresh">Refresh</Trans>
               </Button>
             </div>
             <div className="col-12 px-3">
               <CustomInput
                 type="checkbox"
                 id="keepOriginalTimestamp"
-                label={t('keepOriginalTimestamp')}
+                label={<Trans i18nKey="keepOriginalTimestamp" />}
                 checked={this.props.settings.keepOriginalTimestamp}
                 onChange={this.toggleOriginalTimestamp}
                 inline
@@ -308,13 +307,6 @@ class ScrobbleSong extends Component {
   }
 }
 
-ScrobbleSong.propTypes = {
-  fetchLastfmProfileHistory: PropTypes.func,
-  fetchLastfmProfileInfo: PropTypes.func,
-  localScrobbles: PropTypes.array,
-  user: PropTypes.object,
-};
-
 const mapStateToProps = (state) => {
   return {
     localScrobbles: state.scrobbles.list,
@@ -331,6 +323,18 @@ const mapDispatchToProps = (dispatch) => {
   };
 }
 
+ScrobbleUser.propTypes = {
+  fetchLastfmProfileHistory: PropTypes.func,
+  fetchLastfmProfileInfo: PropTypes.func,
+  history: PropTypes.object,
+  localScrobbles: PropTypes.array,
+  setSettings: PropTypes.func,
+  settings: PropTypes.shape({
+    keepOriginalTimestamp: PropTypes.bool,
+  }),
+  user: PropTypes.object,
+};
+
 export default connect(mapStateToProps, mapDispatchToProps)(
-  withTranslation()(ScrobbleSong)
+  withTranslation()(ScrobbleUser)
 );

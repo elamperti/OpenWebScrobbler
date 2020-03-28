@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 
 import {
   Button,
@@ -20,7 +20,6 @@ function catchEnter(props) {
 }
 
 const SearchForm = props => {
-  const { t } = useTranslation();
   return (
     <div>
       <Row noGutters className="mt-2">
@@ -41,13 +40,13 @@ const SearchForm = props => {
               data-lpignore="true"
             />
             <FormFeedback valid={!props.invalid}>
-              {props.feedbackMessage}
+              {props.feedbackMessage ? <Trans i18nKey={props.feedbackMessage} /> : 'Generic error'}
             </FormFeedback>
           </FormGroup>
         </div>
         <div className="col-6 offset-6 col-sm-3 offset-sm-0">
           <Button block size={props.size} color="success" onClick={props.onSearch} disabled={props.disableSearch}>
-            {t('search')}
+            <Trans i18nKey="search">Search</Trans>
           </Button>
         </div>
       </Row>

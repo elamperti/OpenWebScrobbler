@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { withRouter } from 'react-router';
 import { withTranslation } from 'react-i18next';
 import i18n, { languageList } from 'i18n'; // just for the lang switcher
@@ -247,6 +248,24 @@ const mapDispatchToProps = (dispatch) => {
     setSettings: setSettings(dispatch),
   };
 }
+
+Navigation.propTypes = {
+  dismissAlert: PropTypes.func,
+  location: PropTypes.shape({
+    pathname: PropTypes.string,
+  }),
+  logOut: PropTypes.func,
+  t: PropTypes.func,
+  setSettings: PropTypes.func,
+  settings: PropTypes.shape({
+    isDonor: PropTypes.bool,
+  }),
+  user: PropTypes.shape({
+    isLoggedIn: PropTypes.bool,
+    name: PropTypes.string,
+    url: PropTypes.string,
+  }).isRequired,
+};
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(
   withTranslation()(Navigation)

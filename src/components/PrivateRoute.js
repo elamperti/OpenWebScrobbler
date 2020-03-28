@@ -1,4 +1,5 @@
 import React from 'react';
+import { PropTypes } from 'prop-types';
 import { connect } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
@@ -22,6 +23,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = () => {
   return {};
+};
+
+PrivateRoute.propTypes = {
+  user: PropTypes.shape({
+    isLoggedIn: PropTypes.bool,
+  }).isRequired,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PrivateRoute);

@@ -290,21 +290,6 @@ class ScrobbleItem extends Component {
   }
 }
 
-ScrobbleItem.propTypes = {
-  analyticsEvent: PropTypes.string,
-  cloneScrobbleTo: PropTypes.func,
-  compact: PropTypes.bool,
-  hideArtist: PropTypes.bool,
-  uuid: PropTypes.string,
-  lazyScrollPosition: PropTypes.object,
-  muteArtist: PropTypes.bool,
-  onSelect: PropTypes.func,
-  noCover: PropTypes.bool,
-  noMenu: PropTypes.bool,
-  selected: PropTypes.bool,
-  scrobble: PropTypes.object.isRequired,
-}
-
 ScrobbleItem.defaultProps = {
   analyticsEvent: 'Scrobble again',
   compact: false,
@@ -327,6 +312,26 @@ const mapDispatchToProps = (dispatch) => {
     enqueueScrobble: enqueueScrobble(dispatch),
   };
 }
+
+ScrobbleItem.propTypes = {
+  analyticsEvent: PropTypes.string,
+  cloneScrobbleTo: PropTypes.func,
+  compact: PropTypes.bool,
+  enqueueScrobble: PropTypes.func,
+  hideArtist: PropTypes.bool,
+  lazyScrollPosition: PropTypes.object,
+  muteArtist: PropTypes.bool,
+  noCover: PropTypes.bool,
+  noMenu: PropTypes.bool,
+  onSelect: PropTypes.func,
+  scrobble: PropTypes.object.isRequired,
+  selected: PropTypes.bool,
+  settings: PropTypes.shape({
+    use12Hours: PropTypes.bool,
+  }),
+  t: PropTypes.func,
+  uuid: PropTypes.string,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withTranslation()(ScrobbleItem)

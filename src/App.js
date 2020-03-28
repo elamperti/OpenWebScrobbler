@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
 import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 import ReactGA from 'react-ga';
@@ -196,6 +197,15 @@ const mapDispatchToProps = (dispatch) => {
     logOut: logOut(dispatch),
   };
 };
+
+App.propTypes = {
+  getUserInfo: PropTypes.func,
+  createAlert: PropTypes.func,
+  logOut: PropTypes.func,
+  updates: PropTypes.shape({
+    newVersionReady: PropTypes.bool,
+  }),
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   App

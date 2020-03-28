@@ -30,6 +30,7 @@ class Tooltip extends React.Component {
 
 Tooltip.propTypes = {
   target: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };
 
 export default Tooltip;
