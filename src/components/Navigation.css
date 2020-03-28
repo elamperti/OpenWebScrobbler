@@ -15,12 +15,16 @@
 
 .navbar .username {
   color: white;
+  vertical-align: middle;
   /* font-weight: bold; */
 }
-
 .navbar .user-avatar {
-  max-height: 1.2em;
+  max-height: 1.6em;
   margin-right: 0.5rem;
+}
+
+.dropdown-user::after {
+  vertical-align: middle !important;
 }
 
 .navbar .language-selector {

@@ -151,25 +151,27 @@ class App extends Component {
   render() {
     return (
       <BrowserRouter>
-        <div className="d-flex flex-column h-100">
-          { process.env.REACT_APP_ANALYTICS_CODE ? <AnalyticsListener /> : null }
+        <React.Fragment>
           <Navigation />
-          { this.props.updates.newVersionReady ? <UpdateToast /> : null }
+          <div className="d-flex flex-column" style={{height: 'calc(100vh - 78px)'}}>
+            { process.env.REACT_APP_ANALYTICS_CODE ? <AnalyticsListener /> : null }
+            { this.props.updates.newVersionReady ? <UpdateToast /> : null }
 
-          <div className="container">
-            <AlertZone />
+            <div className="container">
+              <AlertZone />
+            </div>
+            <main className="container flex-wrap flex-grow-1">
+              <Switch>
+                <PrivateRoute exact path="/scrobble/song" component={ScrobbleSong} />
+                <PrivateRoute exact path="/scrobble/album" component={ScrobbleAlbum} />
+                <PrivateRoute exact path="/scrobble/user/:username?" component={ScrobbleUser} />
+                <Route exact path="/" component={Home} />
+                <Redirect to="/" />
+              </Switch>
+            </main>
+            <Footer />
           </div>
-          <main className="container flex-wrap flex-grow-1">
-            <Switch>
-              <PrivateRoute exact path="/scrobble/song" component={ScrobbleSong} />
-              <PrivateRoute exact path="/scrobble/album" component={ScrobbleAlbum} />
-              <PrivateRoute exact path="/scrobble/user/:username?" component={ScrobbleUser} />
-              <Route exact path="/" component={Home} />
-              <Redirect to="/" />
-            </Switch>
-          </main>
-          <Footer />
-        </div>
+        </React.Fragment>
       </BrowserRouter>
     );
   }

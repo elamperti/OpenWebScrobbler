@@ -167,7 +167,7 @@ class Navigation extends Component {
         <Nav className="ml-auto" navbar>
           {getLanguageSelector('d-none d-md-block')}
           <UncontrolledDropdown nav inNavbar>
-            <DropdownToggle nav caret>
+            <DropdownToggle nav caret className="dropdown-user">
               <Avatar user={this.props.user} alt={this.props.user.name} size="sm" />
               <span className="username">
                 {this.props.user.name}

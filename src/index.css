@@ -20,7 +20,6 @@ body.with-shadow {
 
 .ows-title {
   color: white;
-  display: inline-block;
 }
 
 .album-heading-album-name {
@@ -95,6 +94,10 @@ body.with-shadow {
 }
 
 .HomeButtons a {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
   white-space: normal;
 }
 
