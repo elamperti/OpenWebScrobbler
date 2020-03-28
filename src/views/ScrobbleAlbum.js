@@ -485,7 +485,7 @@ class ScrobbleAlbum extends Component {
           }
 
           albumSRP = (
-            <div className={isHalfColumn ? 'col-md-6' : ''}>
+            <div className={isHalfColumn ? 'col-md-8' : ''}>
           <h3 className="mt-3 mb-0">{topAlbumsMode ? <Trans i18nKey="topAlbumsBy" values={{nameOfArtist: this.state.selectedArtist}}>Albums</Trans> : <Trans i18nKey="album" count="2">Albums</Trans>}</h3>
               <Row>
                 {listOfAlbums}
@@ -497,7 +497,7 @@ class ScrobbleAlbum extends Component {
         if (this.state.artistListIsLoading || topAlbumsMode) {
           artistSRP = boringSpinnerBlock;
         } else {
-          const artistColSize = this.state.searchOptions.byAlbum ? 'col-xl-6' : 'col-md-6 col-lg-4 col-xl-3';
+          const artistColSize = this.state.searchOptions.byAlbum ? 'col-12' : 'col-md-6 col-lg-4 col-xl-3';
           const artistsSource = get(this.props.artists.cache, `['${this.state.albumOrArtist.toLowerCase()}']`, []);
           let listOfArtists = [];
           let i = 0;
@@ -518,7 +518,7 @@ class ScrobbleAlbum extends Component {
           }
 
           artistSRP = (
-            <div className={this.state.searchOptions.byAlbum ? 'col-md-6' : 'col-12'}>
+            <div className={this.state.searchOptions.byAlbum ? 'col-md-4' : 'col-12'}>
               <h3 className="mt-3 mb-0"><Trans i18nKey="artist" count="2">Artists</Trans></h3>
               <Row>
                 {listOfArtists}

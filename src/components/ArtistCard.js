@@ -8,13 +8,9 @@ import './ArtistCard.css';
 const ArtistCard = props => {
   return (
     <div className={`artistCard ${props.className} my-2 py-2 rounded`}>
-      <a href={props.artist.url} onClick={props.onClick} className="row h-100 align-items-center">
-        <div className="col-3">
-          <Avatar user={props.artist} size="md" alt={props.artist.name} />
-        </div>
-        <div className="col-9 artistCard-name pl-4">
-          {props.artist.name}
-        </div>
+      <a href={props.artist.url} onClick={props.onClick} className="ml-2 row h-100 align-items-center">
+        <Avatar user={props.artist} size="sm" alt={props.artist.name} isArtist />
+        <span className="artistCard-name pl-3">{props.artist.name}</span>
       </a>
     </div>
   );

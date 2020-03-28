@@ -16,3 +16,7 @@
 .artistCard:hover .artistCard-name {
   color: var(--white);
 }
+
+.artistCard .user-avatar {
+  padding: 18px;
+}

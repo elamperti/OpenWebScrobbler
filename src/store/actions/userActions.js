@@ -43,8 +43,10 @@ export function authUserWithToken(dispatch) {
           title: 'loginError.title',
           message: 'loginError.message'
         });
-        /* eslint-disable no-console */
-        console.error('Error logging in', response);
+        if (response) {  // Avoid issue OPENSCROBBLER-47
+          /* eslint-disable no-console */
+          console.error('Error logging in', response);
+        }
       })
   }
 }
