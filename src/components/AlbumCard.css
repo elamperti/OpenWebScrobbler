@@ -31,6 +31,8 @@
   top: 0;
   position: absolute;
   width: 100%;
+  min-height: 32px; /* Required for react-lazy-load-image-component library */
+  min-width: 32px;
 }
 
 .albumCard .lazy-load-image-background {
