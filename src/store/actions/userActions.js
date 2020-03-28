@@ -77,7 +77,7 @@ export function logIn(/*dispatch*/) {
       label: 'Login intent',
       to: lastfmAuthURL
     }, () => {
-      window.location = lastfmAuthURL;
+      window.location.href = lastfmAuthURL;
     });
   };
 }
