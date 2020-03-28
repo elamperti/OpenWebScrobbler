@@ -116,8 +116,9 @@ class ScrobbleSong extends Component {
       category: 'Search',
       action: 'User'
     });
-    this.props.fetchLastfmProfileHistory(this.state.userToSearch, {page: 1}, (res) => {
-      if (get(res, 'value.data.error') === 6) { // User not found
+    this.props.fetchLastfmProfileHistory(this.state.userToSearch, {page: 1}, (res, err) => {
+      const errNumber = get(err, 'data.error');
+      if (errNumber === 6 || errNumber === 17) { // 6: User not found - 17: User has a private profile
         this.setState({
           inputInvalid: true,
           justFailedSearch: true,

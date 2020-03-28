@@ -46,13 +46,19 @@ class App extends Component {
           newError.type = 'danger';
           newError.message = 'authFailed';
           break;
+        case 6:
+          newError.message = 'userNotFound';
+          break;
         case 9: // Invalid session key
         case 17: // User must be logged in
           newError.type = 'warning';
           newError.message = 'loginAgain';
           newError.persistent = true;
           showErrorNumber = true;
-          this.props.logOut(newError);
+
+          if (get(payload, 'config.params.method') !== 'user.getRecentTracks') {
+            this.props.logOut(newError);
+          }
           break;
         case 11: // Service offline
         case 16: // Service temporarily unavailable
@@ -70,7 +76,7 @@ class App extends Component {
           showErrorNumber = true;
       }
 
-      if (newError.message !== 'loginAgain') { // errors 9 and 17 already trigger an alert
+      if (newError.message !== 'loginAgain' && newError.message !== 'userNotFound') {
         this.props.createAlert({
           ...newError,
           errorNumber: showErrorNumber ? errorNumber : null,
