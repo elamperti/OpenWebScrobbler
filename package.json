@@ -11,7 +11,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.1",
     "@fortawesome/free-solid-svg-icons": "^5.1",
     "@fortawesome/react-fontawesome": "^0.1",
-    "@sentry/browser": "^4.3.0",
+    "@sentry/browser": "^5.15.4",
     "autoprefixer": "8.5.0",
     "axios": "^0.18.0",
     "babel-core": "7.0.0-bridge.0",
