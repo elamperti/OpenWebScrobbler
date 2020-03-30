@@ -5,7 +5,7 @@
 
   if (!isset($_SESSION['key'])) {
     require('inc/error.php');
-    raiseOWSError('Invalid session key', 401);
+    raiseOWSError('Invalid session key', 401, 9);
   }
 
   function filter_and_assign($var, &$ref, $filter, $options, $custom_filter=NULL) {

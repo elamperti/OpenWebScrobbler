@@ -70,5 +70,5 @@
     }
   } else {
     require('inc/error.php');
-    raiseOWSError('Invalid session key', 401);
+    raiseOWSError('Invalid session key', 401, 9);
   }
