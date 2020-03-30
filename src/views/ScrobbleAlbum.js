@@ -77,7 +77,7 @@ const initialState = {
     byAlbum: true,
     byArtist: true,
   },
-  canScrobble: true,
+  canScrobble: false,
   selectedTracks: [],
   useCustomTimestamp: false,
   customTimestamp: new Date(),
