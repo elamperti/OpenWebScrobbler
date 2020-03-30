@@ -1,6 +1,6 @@
 {
   "name": "openscrobbler",
-  "version": "2.4.11",
+  "version": "2.4.12",
   "private": true,
   "dependencies": {
     "@babel/core": "7.0.0-beta.46",
@@ -13,7 +13,7 @@
     "@fortawesome/react-fontawesome": "^0.1",
     "@sentry/browser": "^5.15.4",
     "autoprefixer": "8.5.0",
-    "axios": "^0.18.0",
+    "axios": "^0.19.2",
     "babel-core": "7.0.0-bridge.0",
     "babel-eslint": "8.2.3",
     "babel-jest": "22.4.3",
