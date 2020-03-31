@@ -3,7 +3,7 @@
   "loginAgain": "Heu d’iniciar la sessió novament.",
   "serviceUnavailable": "Servei no disponible",
   "unexpectedError": "Error inesperat",
-  "unexpectedErrorMessage": "Your ad blocker may be blocking API calls to last.fm, try disabling it or adding an exception for ws.audioscrobbler.com",
+  "unexpectedErrorMessage": "El vostre blocador d’anuncis potser ha impedit les crides a l’API del Last.fm. Proveu de desactivar-lo o afegir-ne una excepció per a ws.audioscrobbler.com",
   "lastfmUnavailable": "El Last.fm no respon. Torneu-ho a intentar més tard.",
   "settingsSavedSuccessfully": "S’han desat els paràmetres correctament.",
   "loginError": {
