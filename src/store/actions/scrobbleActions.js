@@ -110,7 +110,7 @@ export function clearListOfScrobbles(dispatch) {
   };
 }
 
-export function useScrobbleCounter(dispatch) {
+export function scrobbleCounterEnabled(dispatch) {
   return (newValue) => {
     dispatch({
       type: newValue ? COUNT_SCROBBLES_ENABLE : COUNT_SCROBBLES_DISABLE,
