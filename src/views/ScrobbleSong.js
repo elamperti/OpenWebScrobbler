@@ -27,7 +27,7 @@ import {
   faPlayCircle,
 } from '@fortawesome/free-regular-svg-icons';
 
-import { clearListOfScrobbles, useScrobbleCounter } from 'store/actions/scrobbleActions';
+import { clearListOfScrobbles, scrobbleCounterEnabled } from 'store/actions/scrobbleActions';
 import { fetchLastfmProfileHistory } from 'store/actions/userActions';
 
 import ScrobbleList from 'components/ScrobbleList';
@@ -51,13 +51,13 @@ class ScrobbleSong extends Component {
     };
 
     if (this.props.unreadScrobbles > 0) {
-      this.props.useScrobbleCounter(false);
+      this.props.scrobbleCounterEnabled(false);
     }
   }
 
   goToHistoryTab() {
     if (this.state.activeTab !== 'history') {
-      this.props.useScrobbleCounter(false);
+      this.props.scrobbleCounterEnabled(false);
       this.setState({
         activeTab: 'history',
       });
@@ -89,7 +89,7 @@ class ScrobbleSong extends Component {
       }
     }
     if (this.state.activeTab !== 'userProfile') {
-      this.props.useScrobbleCounter(true);
+      this.props.scrobbleCounterEnabled(true);
       this.setState({
         activeTab: 'userProfile',
       });
@@ -179,7 +179,7 @@ class ScrobbleSong extends Component {
 ScrobbleSong.propTypes = {
   fetchLastfmProfileHistory: PropTypes.func,
   clearUserList: PropTypes.func,
-  useScrobbleCounter: PropTypes.func,
+  scrobbleCounterEnabled: PropTypes.func,
   localScrobbles: PropTypes.array,
   unreadScrobbles: PropTypes.number,
   user: PropTypes.object,
@@ -196,8 +196,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchLastfmProfileHistory: fetchLastfmProfileHistory(dispatch),
+    scrobbleCounterEnabled: scrobbleCounterEnabled(dispatch),
     clearUserList: clearListOfScrobbles(dispatch),
-    useScrobbleCounter: useScrobbleCounter(dispatch),
   };
 }
 
