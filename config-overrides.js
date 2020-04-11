@@ -1,6 +1,11 @@
+
 const DynamicCdnWebpackPlugin = require('dynamic-cdn-webpack-plugin');
 const moduleToCdn = require('module-to-cdn');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const {
+  override,
+  addWebpackPlugin,
+} = require("customize-cra");
 
 function createDynamicCdnObject(moduleName, version, globalVarName, url) {
   return {
@@ -11,34 +16,26 @@ function createDynamicCdnObject(moduleName, version, globalVarName, url) {
   };
 }
 
-module.exports = function override(config, env) {
-  if (process.env.NODE_ENV !== 'development') {
-    config.plugins = [
-      ...config.plugins,
-      new DynamicCdnWebpackPlugin({
-        verbose: !!process.env.LIST_CDN_BUNDLES,
-        options: {
+module.exports = override(
+  process.env.NODE_ENV !== 'development' && addWebpackPlugin(
+    new DynamicCdnWebpackPlugin({
+      verbose: !!process.env.LIST_CDN_BUNDLES,
+      options: {
 
-        },
-        resolver(moduleName, version) {
-          var url;
+      },
+      resolver(moduleName, version) {
+        var url;
 
-          switch (moduleName) {
-            case '@sentry/browser':
-              url = `https://browser.sentry-cdn.com/${version}/bundle.min.js`;
-              return createDynamicCdnObject(moduleName, version, 'Sentry', url);
+        switch (moduleName) {
+          case '@sentry/browser':
+            url = `https://browser.sentry-cdn.com/${version}/bundle.min.js`;
+            return createDynamicCdnObject(moduleName, version, 'Sentry', url);
 
-            default:
-              return moduleToCdn(moduleName, version, {env: 'production'});
-          };
-        },
-      }),
-    ];
-  }
-
-  if (process.env.ANALYZE_BUNDLE) {
-    config.plugins.push(new BundleAnalyzerPlugin());
-  }
-
-  return config;
-}
+          default:
+            return moduleToCdn(moduleName, version, {env: 'production'});
+        }
+      },
+    })
+  ),
+  process.env.ANALYZE_BUNDLE && addWebpackPlugin(new BundleAnalyzerPlugin()),
+);
