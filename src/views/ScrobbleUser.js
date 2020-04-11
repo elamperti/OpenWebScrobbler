@@ -328,6 +328,7 @@ ScrobbleUser.propTypes = {
   fetchLastfmProfileInfo: PropTypes.func,
   history: PropTypes.object,
   localScrobbles: PropTypes.array,
+  match: PropTypes.object,
   setSettings: PropTypes.func,
   settings: PropTypes.shape({
     keepOriginalTimestamp: PropTypes.bool,
