@@ -57,7 +57,7 @@ class Home extends Component {
             }
           }
 
-          if (langFound || fallbackLng.hasOwnProperty(suggestedLang)) {
+          if (langFound || Object.prototype.hasOwnProperty.call(fallbackLng, suggestedLang)) {
             i18n.changeLanguage(suggestedLang);
           }
         }
