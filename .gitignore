@@ -11,6 +11,7 @@
 /cypress/screenshots
 /cypress/videos
 /cypress/config/*
+!/cypress/config/cypress.test.json
 !/cypress/config/cypress.example.json
 
 # production

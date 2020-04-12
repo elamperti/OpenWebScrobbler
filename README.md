@@ -1,4 +1,4 @@
-# Open Scrobbler [![Discord](https://img.shields.io/badge/Discord-online-green.svg?logo=discord)](https://discord.gg/vcbprTz) [![Patreon](https://img.shields.io/badge/Patreon-donate-orange.svg)](https://www.patreon.com/OpenScrobbler)
+# Open Scrobbler [![CircleCI](https://circleci.com/gh/elamperti/OpenWebScrobbler.svg?style=svg)](https://circleci.com/gh/elamperti/OpenWebScrobbler) [![Discord](https://img.shields.io/badge/Discord-online-green.svg?logo=discord)](https://discord.gg/vcbprTz) [![Patreon](https://img.shields.io/badge/Patreon-donate-orange.svg)](https://www.patreon.com/OpenScrobbler)
 
 ![Screenshot](https://user-images.githubusercontent.com/910672/45590262-55333c00-b90b-11e8-9f95-c360d35ced5f.jpg)
 

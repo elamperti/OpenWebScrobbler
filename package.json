@@ -38,7 +38,7 @@
   "devDependencies": {
     "@cypress/code-coverage": "^3.1.0",
     "@cypress/instrument-cra": "^1.1.0",
-    "babel-eslint": "^10.0.1",
+    "babel-eslint": "~10.0.3",
     "babel-plugin-jsx-remove-data-test-id": "^2.1.3",
     "concurrently": "^4.0.0",
     "customize-cra": "^0.9.1",
@@ -51,16 +51,19 @@
     "module-to-cdn": "^3.1.2",
     "nyc": "^15.0.1",
     "react-app-rewired": "^2.1.5",
-    "react-scripts": "3.4.1",
+    "react-scripts": "3.4.0",
+    "start-server-and-test": "^1.10.11",
     "webpack-bundle-analyzer": "^3.3.2"
   },
   "scripts": {
-    "start": "concurrently -r --kill-others 'react-app-rewired -r @cypress/instrument-cra start' 'docker-compose up'",
+    "start": "concurrently -r --kill-others 'yarn start:server' 'yarn start:services'",
+    "start:server": "react-app-rewired -r @cypress/instrument-cra start",
+    "start:services": "docker-compose up",
     "build": "REACT_APP_VERSION=$npm_package_version react-app-rewired build",
     "lint": "node_modules/.bin/eslint -c .eslintrc src/**/*.js",
     "patch": "yarn version --no-git-tag-version --patch",
     "eject": "react-scripts eject",
-    "test": "cypress run",
+    "test": "BROWSER=none start-test 'yarn start:server' 3000 'cypress run'",
     "cypress": "cypress open"
   },
   "husky": {

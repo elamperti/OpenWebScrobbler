@@ -1,0 +1,69 @@
+version: 2.1
+
+orbs:
+  cypress: cypress-io/cypress@1
+
+references:
+  defaults: &defaults
+    docker:
+      - image: circleci/node:lts
+
+commands:
+  prepare:
+    description: 'Prepare job'
+    steps:
+      - attach_workspace:
+          at: '~'
+
+jobs:
+  setup:
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          name: Restore Yarn package cache
+          keys:
+            - yarn-packages-{{ checksum "yarn.lock" }}
+      - run:
+          name: Install dependencies
+          command: yarn install --frozen-lockfile
+      - save_cache:
+          name: Save Yarn package cache
+          key: yarn-packages-{{ checksum "yarn.lock" }}
+          paths:
+            - ~/.cache/yarn
+            - ~/.cache/Cypress
+      - persist_to_workspace:
+          root: '~'
+          paths:
+            - project
+
+  lint:
+    <<: *defaults
+    steps:
+      - prepare
+      - run:
+          name: ESLint
+          command: yarn lint
+
+workflows:
+  version: 2
+  ows:
+    jobs:
+      - setup
+      - lint:
+          requires:
+            - setup
+      - cypress/install:
+          requires:
+            - lint
+          yarn: true
+      - cypress/run:
+          requires:
+            - cypress/install
+          attach-workspace: true
+          yarn: true
+          start: 'yarn start:server'
+          wait-on: 'http://localhost:3000'
+          no-workspace: true
+          store_artifacts: true
