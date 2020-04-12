@@ -1,0 +1,6 @@
+{
+  "env": {
+    "LASTFM_USER": "test_username",
+    "LASTFM_PASS": "password here"
+  }
+}

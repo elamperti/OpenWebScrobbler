@@ -7,6 +7,11 @@
 
 # testing
 /coverage
+/.nyc_output
+/cypress/screenshots
+/cypress/videos
+/cypress/config/*
+!/cypress/config/cypress.example.json
 
 # production
 deploy.sh

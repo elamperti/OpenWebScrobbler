@@ -4,6 +4,7 @@ const moduleToCdn = require('module-to-cdn');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const {
   override,
+  addBabelPlugin,
   addWebpackPlugin,
 } = require("customize-cra");
 
@@ -17,12 +18,15 @@ function createDynamicCdnObject(moduleName, version, globalVarName, url) {
 }
 
 module.exports = override(
+  process.env.NODE_ENV !== 'development' && addBabelPlugin([
+    'babel-plugin-jsx-remove-data-test-id', {
+      attributes: "data-cy"
+    }
+  ]),
   process.env.NODE_ENV !== 'development' && addWebpackPlugin(
     new DynamicCdnWebpackPlugin({
       verbose: !!process.env.LIST_CDN_BUNDLES,
-      options: {
-
-      },
+      options: {},
       resolver(moduleName, version) {
         var url;
 
