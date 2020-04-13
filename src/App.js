@@ -21,7 +21,7 @@ import AlertZone from './components/AlertZone'
 import AnalyticsListener from './components/AnalyticsListener'
 import UpdateToast from './components/UpdateToast'
 
-import Home from './views/Home'
+import Home from 'domains/home'
 import ScrobbleSong from './views/ScrobbleSong'
 import ScrobbleAlbum from './views/ScrobbleAlbum'
 import ScrobbleUser from './views/ScrobbleUser'

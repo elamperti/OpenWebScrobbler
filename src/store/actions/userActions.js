@@ -73,7 +73,7 @@ export function getUserInfo(dispatch) {
   }
 }
 
-export function logIn(/*dispatch*/) {
+export function logIn() {
   return () => {
     ReactGA.outboundLink({
       label: 'Login intent',
