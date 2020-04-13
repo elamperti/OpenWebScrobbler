@@ -1,0 +1,35 @@
+.ows-SocialNetworkBlock .jumbotron {
+  padding: 1.2rem 1rem 1rem;
+
+  .ows-logo {
+    margin-top: 0.5rem;
+  }
+
+  &.ows-social-discord {
+    .btn:hover,
+    .btn:active {
+      /* box-shadow: 0px 0px 20px  rgba(114, 137, 218, 0.4); */
+      background: #454b64;
+      color: white;
+    }
+
+    .btn:focus,
+    .btn:focus:active {
+      box-shadow: 0 0 0 0.2rem rgba(122, 144, 239, 0.5);
+    }
+  }
+
+  &.ows-social-patreon {
+    .btn:hover,
+    .btn:active {
+      /* box-shadow: 0px 0px 20px rgba(249, 104, 84, 0.3); */
+      background: #ad8148;
+      color: white;
+    }
+
+    .btn:focus,
+    .btn:focus:active {
+      box-shadow: 0 0 0 0.2rem rgba(154, 87, 39, 0.5);
+    }
+  }
+}

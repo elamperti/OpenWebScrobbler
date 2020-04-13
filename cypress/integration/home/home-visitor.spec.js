@@ -3,7 +3,11 @@ describe("Home", function() {
     cy.visit("/")
   })
 
-  it("renders the name in the navbar", function() {
-    cy.get(".navbar-brand").should("contain", "Open Scrobbler")
+  it("shows the visitor version of the home page", function() {
+    cy.get('[data-cy="HomeVisitor"]')
+  })
+
+  it("is using translations", function() {
+    cy.get('[data-cy="HomeVisitor-about"] p').should("not.contain", "about.description")
   })
 })
