@@ -1,39 +1,39 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
-import { connect } from 'react-redux';
-import get from 'lodash/get';
+import React from 'react'
+import { PropTypes } from 'prop-types'
+import { connect } from 'react-redux'
+import get from 'lodash/get'
 
-import ScrobbleItem from 'components/ScrobbleItem';
-import Spinner from 'components/Spinner';
-import Pagination from 'components/Pagination';
-import { fetchLastfmProfileHistory } from 'store/actions/userActions';
+import ScrobbleItem from 'components/ScrobbleItem'
+import Spinner from 'components/Spinner'
+import Pagination from 'components/Pagination'
+import { fetchLastfmProfileHistory } from 'store/actions/userActions'
 
 function ScrobbleList(props) {
-  let albumHasVariousArtists = !props.isAlbum;
-  const totalPages = parseInt(get(props.user, `profiles['${props.userToDisplay}'].totalPages`, 0));
+  let albumHasVariousArtists = !props.isAlbum
+  const totalPages = parseInt(get(props.user, `profiles['${props.userToDisplay}'].totalPages`, 0))
 
   function navigateToPage(page) {
     props.fetchLastfmProfileHistory(props.userToDisplay, {page}, () => {
       if (props.containerRef) {
-        props.containerRef.current.scrollTo(0, 0);
+        props.containerRef.current.scrollTo(0, 0)
       }
-    });
+    })
   }
 
   if (props.loading) {
     return(
       <Spinner />
-    );
+    )
   }
 
   if (props.scrobbles.length > 0) {
     if (props.isAlbum) {
-      let albumArtistName = props.scrobbles[0].artist;
+      let albumArtistName = props.scrobbles[0].artist
 
       for (let i=1; i < props.scrobbles.length; i++) {
         if (props.scrobbles[i].artist !== albumArtistName) {
-          albumHasVariousArtists = true;
-          break;
+          albumHasVariousArtists = true
+          break
         }
       }
     }
@@ -52,8 +52,8 @@ function ScrobbleList(props) {
         uuid={scrobble.uuid}
         muteArtist={props.isAlbum}
         hideArtist={!albumHasVariousArtists}
-      />;
-    });
+      />
+    })
     return (
       <div className="ScrobbleList">
         <div className={`d-flex ${props.isAlbum ? 'flex-column' : 'flex-column-reverse'}`}>
@@ -63,9 +63,9 @@ function ScrobbleList(props) {
           <Pagination onPageChange={navigateToPage} totalPages={totalPages} />
         )}
       </div>
-    );
+    )
   } else {
-    return props.children;
+    return props.children
   }
 }
 
@@ -84,7 +84,7 @@ ScrobbleList.propTypes = {
   userToDisplay: PropTypes.string,
   fetchLastfmProfileHistory: PropTypes.func,
   user: PropTypes.object
-};
+}
 
 ScrobbleList.defaultProps = {
   compact: false,
@@ -94,17 +94,17 @@ ScrobbleList.defaultProps = {
   scrobbles: [],
   fetchLastfmProfileHistory: () => {},
   user: {}
-};
+}
 
 const mapStateToProps = (state) => ({
   user: state.user,
-});
+})
 
 const mapDispatchToProps = (dispatch) => ({
   fetchLastfmProfileHistory: fetchLastfmProfileHistory(dispatch)
-});
+})
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   ScrobbleList
-);
+)
 

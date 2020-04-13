@@ -1,64 +1,64 @@
-import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
-import { connect } from 'react-redux';
-import i18n, { languageList, fallbackLng } from '../i18n'; // to handle hl parameter
-import { withTranslation, Trans } from 'react-i18next';
-import qs from 'qs';
+import React, { Component } from 'react'
+import { PropTypes } from 'prop-types'
+import { connect } from 'react-redux'
+import i18n, { languageList, fallbackLng } from '../i18n' // to handle hl parameter
+import { withTranslation, Trans } from 'react-i18next'
+import qs from 'qs'
 
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import {
   Jumbotron,
   Button,
   Row,
   Col,
-} from 'reactstrap';
+} from 'reactstrap'
 
-import { logIn, authUserWithToken } from 'store/actions/userActions';
+import { logIn, authUserWithToken } from 'store/actions/userActions'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCompactDisc,
   faLock,
   faPencilAlt,
   faUserFriends,
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/free-solid-svg-icons'
 import {
   faLastfm,
   faDiscord,
   faPatreon,
-} from '@fortawesome/free-brands-svg-icons';
+} from '@fortawesome/free-brands-svg-icons'
 
-const bodyDecoration = 'with-shadow';
+const bodyDecoration = 'with-shadow'
 
 class Home extends Component {
   constructor(props) {
-    super(props);
+    super(props)
     if (this.props.location.search) {
       if (!this.props.user.isLoggedIn) {
-        let token = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).token || null;
+        let token = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).token || null
         if (token) {
-          let history = this.props.history;
+          let history = this.props.history
           this.props.authUserWithToken(token, () => {
-            history.push('/scrobble/song');
-          });
-          history.push('/'); // Clear the URL
+            history.push('/scrobble/song')
+          })
+          history.push('/') // Clear the URL
         }
       }
 
       if (this.props.lang === 'auto') {
-        let suggestedLang = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).hl || null;
+        let suggestedLang = qs.parse(this.props.location.search, { ignoreQueryPrefix: true }).hl || null
         if (suggestedLang) {
-          let langFound;
+          let langFound
 
           for (let lang of languageList) {
             if (suggestedLang === lang.code) {
-              langFound = true;
-              break;
+              langFound = true
+              break
             }
           }
 
           if (langFound || Object.prototype.hasOwnProperty.call(fallbackLng, suggestedLang)) {
-            i18n.changeLanguage(suggestedLang);
+            i18n.changeLanguage(suggestedLang)
           }
         }
       }
@@ -66,18 +66,18 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    document.body.classList.add(bodyDecoration);
+    document.body.classList.add(bodyDecoration)
   }
 
   componentWillUnmount() {
-    document.body.classList.remove(bodyDecoration);
+    document.body.classList.remove(bodyDecoration)
   }
 
   render() {
-    const t = this.props.t;
-    const isLoggedIn = this.props.user.isLoggedIn;
+    const t = this.props.t
+    const isLoggedIn = this.props.user.isLoggedIn
 
-    let homeContent;
+    let homeContent
 
     if (isLoggedIn) {
       homeContent = (
@@ -101,7 +101,7 @@ class Home extends Component {
             </Button>
           </div>
         </div>
-      );
+      )
     } else {
       homeContent = (
         <div>
@@ -116,7 +116,7 @@ class Home extends Component {
               </small>
             </p>
         </div>
-      );
+      )
     }
 
     return (
@@ -189,7 +189,7 @@ class Home extends Component {
             </Col>
         </Row>
       </div>
-    );
+    )
   }
 }
 
@@ -198,13 +198,13 @@ const mapStateToProps = (state) => {
     user: state.user,
     lang: state.settings.lang,
   }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     logIn: logIn(dispatch),
     authUserWithToken: authUserWithToken(dispatch),
-  };
+  }
 }
 
 Home.propTypes = {
@@ -219,8 +219,8 @@ Home.propTypes = {
   user: PropTypes.shape({
     isLoggedIn: PropTypes.bool,
   }),
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withTranslation()(Home)
-);
+)

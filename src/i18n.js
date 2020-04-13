@@ -1,7 +1,7 @@
-import i18n from 'i18next';
-import Backend from 'i18next-xhr-backend';
-import LanguageDetector from 'i18next-browser-languagedetector';
-import { initReactI18next } from 'react-i18next';
+import i18n from 'i18next'
+import Backend from 'i18next-xhr-backend'
+import LanguageDetector from 'i18next-browser-languagedetector'
+import { initReactI18next } from 'react-i18next'
 
 export const languageList = [
   {code: 'ca', name: 'Català'},
@@ -15,7 +15,7 @@ export const languageList = [
   {code: 'pl', name: 'polski'},
   {code: 'pt', name: 'Português'},
   {code: 'ru', name: 'Русский'},
-];
+]
 
 export const fallbackLng = {
   'ca-ES': ['ca'],
@@ -31,7 +31,7 @@ export const fallbackLng = {
   'pt-PT': ['pt'],
   'fr-FR': ['fr'],
   'default': ['en']
-};
+}
 
 i18n
   .use(Backend)
@@ -60,10 +60,10 @@ i18n
       useSuspense: false, // ToDo: make this work
       wait: true,
     }
-  });
+  })
 
 i18n.on('languageChanged', (newLang) => {
-  document.documentElement.lang = newLang;
-});
+  document.documentElement.lang = newLang
+})
 
-export default i18n;
+export default i18n

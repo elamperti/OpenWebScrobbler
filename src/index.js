@@ -1,28 +1,28 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from 'react'
+import ReactDOM from 'react-dom'
 
-import './index.css';
-import App from './App';
-import registerServiceWorker from './registerServiceWorker';
-import 'bootswatch/dist/slate/bootstrap.min.css';
+import './index.css'
+import App from './App'
+import registerServiceWorker from './registerServiceWorker'
+import 'bootswatch/dist/slate/bootstrap.min.css'
 
-import { Provider as ReduxProvider } from 'react-redux';
-import store from './store';
+import { Provider as ReduxProvider } from 'react-redux'
+import store from './store'
 
-import ReactGA from 'react-ga';
-import * as Sentry from '@sentry/browser';
+import ReactGA from 'react-ga'
+import * as Sentry from '@sentry/browser'
 
 // Avoid proxies that may interfer with the site
 if (document.location.host !== process.env.REACT_APP_HOST) {
   // eslint-disable-next-line no-restricted-globals
-  parent.window.location.href = `https://${process.env.REACT_APP_HOST}/`;
+  parent.window.location.href = `//${process.env.REACT_APP_HOST}/`
 }
 
 // Break out of frames
 // eslint-disable-next-line no-restricted-globals
 if (top.location !== self.location) {
   // eslint-disable-next-line no-restricted-globals
-  top.location = self.location.href;
+  top.location = self.location.href
 }
 
 if (process.env.REACT_APP_SENTRY_DSN) {
@@ -37,21 +37,21 @@ if (process.env.REACT_APP_SENTRY_DSN) {
       /extensions\//i,
       /^chrome:\/\//i,
     ]
-  });
+  })
 }
 
 if (process.env.REACT_APP_ANALYTICS_CODE) {
-  const appVersion = process.env.REACT_APP_VERSION;
-  let userId;
-  let clientId;
+  const appVersion = process.env.REACT_APP_VERSION
+  let userId
+  let clientId
 
   try {
-    userId = localStorage.getItem('hashedUID');
-    clientId = localStorage.getItem('GA_LOCAL_STORAGE_KEY');
+    userId = localStorage.getItem('hashedUID')
+    clientId = localStorage.getItem('GA_LOCAL_STORAGE_KEY')
   } catch (err) {
-    let cookieID = document.cookie.match(/PHPSESSID=([^;]*)/);
+    let cookieID = document.cookie.match(/PHPSESSID=([^;]*)/)
     if (cookieID) {
-      clientId = cookieID[1];
+      clientId = cookieID[1]
     }
   }
 
@@ -61,12 +61,12 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
       clientId,
       userId,
     }
-  });
+  })
 
   ReactGA.set({
     appName: 'Open Scrobbler',
     appVersion,
-  });
+  })
 }
 
 ReactDOM.render(
@@ -74,5 +74,5 @@ ReactDOM.render(
     <App />
   </ReduxProvider>,
   document.getElementById('root')
-);
-registerServiceWorker(store);
+)
+registerServiceWorker(store)

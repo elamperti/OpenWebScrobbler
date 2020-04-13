@@ -23,6 +23,7 @@
   "plugins": ["react"],
   "rules": {
     "no-console": 2,
-    "react/prop-types": 1
+    "react/prop-types": 1,
+    "semi": [2, "never"]
   }
 }

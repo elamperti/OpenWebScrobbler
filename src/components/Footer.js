@@ -1,14 +1,14 @@
-import React from 'react';
-import { Trans } from 'react-i18next';
+import React from 'react'
+import { Trans } from 'react-i18next'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faTwitter,
   faFacebook,
   faGithub,
-} from '@fortawesome/free-brands-svg-icons';
+} from '@fortawesome/free-brands-svg-icons'
 
-import './Footer.css';
+import './Footer.css'
 
 function Footer() {
   return (
@@ -40,7 +40,7 @@ function Footer() {
         </p>
       </div>
     </footer>
-  );
+  )
 }
 
-export default Footer;
+export default Footer

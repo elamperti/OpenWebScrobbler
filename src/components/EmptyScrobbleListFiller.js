@@ -1,14 +1,14 @@
-import React from 'react';
-import { Trans } from 'react-i18next';
+import React from 'react'
+import { Trans } from 'react-i18next'
 
 import {
   Jumbotron,
-} from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+} from 'reactstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faQuestion,
   faUserAstronaut,
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/free-solid-svg-icons'
 
 const EmptyScrobbleListFiller = () => {
   return (
@@ -20,7 +20,7 @@ const EmptyScrobbleListFiller = () => {
       <strong><Trans i18nKey="noSongsScrobbled">No songs scrobbled yet!</Trans></strong><br />
       <Trans i18nKey="songsWillAppearHere">Tracks will appear here once you scrobble them.</Trans>
     </Jumbotron>
-  );
-};
+  )
+}
 
-export default EmptyScrobbleListFiller;
+export default EmptyScrobbleListFiller

@@ -1,35 +1,35 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
-import { Button } from 'reactstrap';
-import { Trans } from 'react-i18next';
+import React from 'react'
+import { PropTypes } from 'prop-types'
+import { Button } from 'reactstrap'
+import { Trans } from 'react-i18next'
 
 class Pagination extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.updatePage = this.updatePage.bind(this);
-    this.nextPage = this.nextPage.bind(this);
-    this.prevPage = this.prevPage.bind(this);
+    this.updatePage = this.updatePage.bind(this)
+    this.nextPage = this.nextPage.bind(this)
+    this.prevPage = this.prevPage.bind(this)
 
     this.state = {
       page: props.currentPage || 1
-    };
+    }
   }
 
   updatePage(page) {
     this.setState({ page }, () => {
-      this.props.onPageChange(page);
+      this.props.onPageChange(page)
     })
   }
 
   nextPage() {
-    const page = this.state.page + 1;
-    this.updatePage(page);
+    const page = this.state.page + 1
+    this.updatePage(page)
   }
 
   prevPage() {
-    const page = this.state.page - 1;
-    this.updatePage(page);
+    const page = this.state.page - 1
+    this.updatePage(page)
   }
 
   render () {
@@ -51,10 +51,10 @@ Pagination.propTypes = {
   currentPage: PropTypes.number,
   onPageChange: PropTypes.func.isRequired,
   totalPages: PropTypes.number.isRequired
-};
+}
 
 Pagination.defaultProps = {
   onPageChange: () => {}
-};
+}
 
-export default Pagination;
+export default Pagination

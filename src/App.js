@@ -1,93 +1,93 @@
-import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom';
-import { connect } from 'react-redux';
-import ReactGA from 'react-ga';
-import get from 'lodash/get';
+import React, { Component } from 'react'
+import { PropTypes } from 'prop-types'
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
+import { connect } from 'react-redux'
+import ReactGA from 'react-ga'
+import get from 'lodash/get'
 
-import axios from 'axios';
-import qs from 'qs';
+import axios from 'axios'
+import qs from 'qs'
 
 import {
   getUserInfo,
   logOut,
-} from './store/actions/userActions';
-import { createAlert } from './store/actions/alertActions';
+} from './store/actions/userActions'
+import { createAlert } from './store/actions/alertActions'
 
-import PrivateRoute from './components/PrivateRoute';
-import Navigation from './components/Navigation';
-import Footer from './components/Footer';
-import AlertZone from './components/AlertZone';
-import AnalyticsListener from './components/AnalyticsListener';
-import UpdateToast from './components/UpdateToast';
+import PrivateRoute from './components/PrivateRoute'
+import Navigation from './components/Navigation'
+import Footer from './components/Footer'
+import AlertZone from './components/AlertZone'
+import AnalyticsListener from './components/AnalyticsListener'
+import UpdateToast from './components/UpdateToast'
 
-import Home from './views/Home';
-import ScrobbleSong from './views/ScrobbleSong';
-import ScrobbleAlbum from './views/ScrobbleAlbum';
-import ScrobbleUser from './views/ScrobbleUser';
+import Home from './views/Home'
+import ScrobbleSong from './views/ScrobbleSong'
+import ScrobbleAlbum from './views/ScrobbleAlbum'
+import ScrobbleUser from './views/ScrobbleUser'
 
 class App extends Component {
   constructor(props) {
-    super(props);
-    this.props.getUserInfo();
+    super(props)
+    this.props.getUserInfo()
 
     let axiosErrorHandler = (payload) => {
-      let errorNumber = payload ? get(payload, 'data.error', payload.status) : -1;
+      let errorNumber = payload ? get(payload, 'data.error', payload.status) : -1
       let newError = {
         type: 'danger',
         persistent: false,
         title: '',
         message: null,
         rawMessage: null,
-      };
-      let showErrorNumber = false;
+      }
+      let showErrorNumber = false
 
       switch (errorNumber) {
         case 4: // Authentication Failed
-          newError.type = 'danger';
-          newError.message = 'authFailed';
-          break;
+          newError.type = 'danger'
+          newError.message = 'authFailed'
+          break
         case 6:
-          newError.message = 'userNotFound';
-          break;
+          newError.message = 'userNotFound'
+          break
         case 9: // Invalid session key
         case 17: // User must be logged in
-          newError.type = 'warning';
-          newError.message = 'loginAgain';
-          newError.persistent = true;
-          showErrorNumber = true;
+          newError.type = 'warning'
+          newError.message = 'loginAgain'
+          newError.persistent = true
+          showErrorNumber = true
 
           if (get(payload, 'config.params.method') !== 'user.getRecentTracks') {
-            this.props.logOut(newError);
+            this.props.logOut(newError)
           }
-          break;
+          break
         case 11: // Service offline
         case 16: // Service temporarily unavailable
-          newError.title = 'serviceUnavailable';
-          newError.message = 'lastfmUnavailable';
-          showErrorNumber = true;
-          break;
+          newError.title = 'serviceUnavailable'
+          newError.message = 'lastfmUnavailable'
+          showErrorNumber = true
+          break
         case 13: // Invalid method signature supplied
         case 26: // API key suspended
         case 29: // Rate limit exceeded
         default:
-          newError.title = 'unexpectedError';
-          newError.message = 'unexpectedErrorMessage';
-          newError.rawMessage = get(payload, 'data.message', null);
-          showErrorNumber = true;
+          newError.title = 'unexpectedError'
+          newError.message = 'unexpectedErrorMessage'
+          newError.rawMessage = get(payload, 'data.message', null)
+          showErrorNumber = true
       }
 
       if (newError.message !== 'loginAgain' && newError.message !== 'userNotFound') {
         this.props.createAlert({
           ...newError,
           errorNumber: showErrorNumber ? errorNumber : null,
-        });
+        })
       }
     }
 
     let axiosTiming = (response) => {
       if (response.config.timing) {
-        response.config.timing.elapsedTime = performance.now() - response.config.timing.start;
+        response.config.timing.elapsedTime = performance.now() - response.config.timing.start
       }
     }
 
@@ -97,19 +97,19 @@ class App extends Component {
           start: performance.now(),
         }
         if (request.method === 'post') { // PHP doesn't understand JSON payloads
-          request.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-          request.data = qs.stringify(request.data);
+          request.headers['Content-Type'] = 'application/x-www-form-urlencoded'
+          request.data = qs.stringify(request.data)
         }
-        return request;
+        return request
       },
       (error) => {
-        return Promise.reject(error);
+        return Promise.reject(error)
       }
-    );
+    )
 
     axios.interceptors.response.use(
       (response) => {
-        axiosTiming(response);
+        axiosTiming(response)
         // ToDo: improve this match to avoid collisions or problems with future API versions
         if (response.config.url.match(/\/api\/v2\//)) {
           switch (response.status) {
@@ -117,42 +117,42 @@ class App extends Component {
               ReactGA.exception({
                 description: 'Rate limit hit',
                 fatal: false
-              });
-              break;
+              })
+              break
             case 401:
               ReactGA.exception({
                 description: 'Invalid session key',
                 fatal: true
-              });
+              })
               this.props.logOut({
                 type: 'warning',
                 message: 'loginAgain',
                 persistent: true,
                 showErrorNumber: true,
                 errorNumber: 401,
-              });
-              break;
+              })
+              break
             default:
-              break;
+              break
           }
           if (response.config.timing) {
             ReactGA.timing({
               category: 'Client response time',
               variable: response.config.url,
               value: Math.round(response.config.timing.elapsedTime)
-            });
+            })
           }
           if (response.data.error) {
-            axiosErrorHandler(response);
+            axiosErrorHandler(response)
           }
         }
-        return response;
+        return response
       },
       (error) => {
-        axiosErrorHandler(error.response);
-        return Promise.reject(error.response);
+        axiosErrorHandler(error.response)
+        return Promise.reject(error.response)
       }
-    );
+    )
   }
 
   render() {
@@ -180,7 +180,7 @@ class App extends Component {
           </div>
         </React.Fragment>
       </BrowserRouter>
-    );
+    )
   }
 }
 
@@ -188,15 +188,15 @@ const mapStateToProps = (state) => {
   return {
     updates: state.updates,
   }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     getUserInfo: getUserInfo(dispatch),
     createAlert: createAlert(dispatch),
     logOut: logOut(dispatch),
-  };
-};
+  }
+}
 
 App.propTypes = {
   getUserInfo: PropTypes.func,
@@ -209,4 +209,4 @@ App.propTypes = {
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   App
-);
+)

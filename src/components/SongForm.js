@@ -1,14 +1,14 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
-import { connect } from 'react-redux';
-import { withTranslation, Trans } from 'react-i18next';
-import ReactGA from 'react-ga';
+import React from 'react'
+import { PropTypes } from 'prop-types'
+import { connect } from 'react-redux'
+import { withTranslation, Trans } from 'react-i18next'
+import ReactGA from 'react-ga'
 
-import addDays from 'date-fns/add_days';
-import addMinutes from 'date-fns/add_minutes';
+import addDays from 'date-fns/add_days'
+import addMinutes from 'date-fns/add_minutes'
 // import isFuture from 'date-fns/is_future';
-import subDays from 'date-fns/sub_days';
-import format from 'date-fns/format';
+import subDays from 'date-fns/sub_days'
+import format from 'date-fns/format'
 
 import {
   Button,
@@ -19,32 +19,32 @@ import {
   InputGroup,
   InputGroupAddon,
   Label,
-} from 'reactstrap';
+} from 'reactstrap'
 
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
-import TimePicker from 'components/TimePicker';
-import Tooltip from 'components/Tooltip';
+import DayPickerInput from 'react-day-picker/DayPickerInput'
+import 'react-day-picker/lib/style.css'
+import TimePicker from 'components/TimePicker'
+import Tooltip from 'components/Tooltip'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faThumbtack,
   faExchangeAlt,
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/free-solid-svg-icons'
 import {
   faCalendarAlt,
   faLightbulb,
-} from '@fortawesome/free-regular-svg-icons';
+} from '@fortawesome/free-regular-svg-icons'
 import {
   faPatreon,
-} from '@fortawesome/free-brands-svg-icons';
+} from '@fortawesome/free-brands-svg-icons'
 
-import { enqueueScrobble } from 'store/actions/scrobbleActions';
-import { createAlert, dismissAlert } from 'store/actions/alertActions';
+import { enqueueScrobble } from 'store/actions/scrobbleActions'
+import { createAlert, dismissAlert } from 'store/actions/alertActions'
 
-import './SongForm.css';
+import './SongForm.css'
 
-const controlOrder = ['artist', 'title', 'album']; // Used for arrow navigation
+const controlOrder = ['artist', 'title', 'album'] // Used for arrow navigation
 
 class InputForDatePicker extends React.Component {
   render() {
@@ -57,13 +57,13 @@ class InputForDatePicker extends React.Component {
         </InputGroupAddon>
         <Input bsSize="sm" {...this.props} />
       </InputGroup>
-    );
+    )
   }
 }
 
 class SongForm extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       album: '',
@@ -78,25 +78,25 @@ class SongForm extends React.Component {
       useCustomDate: false,
     }
 
-    this.catchKeys = this.catchKeys.bind(this);
-    this.catchPaste = this.catchPaste.bind(this);
-    this.handleDateChange = this.handleDateChange.bind(this);
-    this.handleTimeChange = this.handleTimeChange.bind(this);
-    this.insertData = this.insertData.bind(this);
-    this.revertPaste = this.revertPaste.bind(this);
-    this.scrobbleSong = this.scrobbleSong.bind(this);
-    this.swapArtistTitle = this.swapArtistTitle.bind(this);
-    this.toggleLock = this.toggleLock.bind(this);
-    this.toggleTimestampMode = this.toggleTimestampMode.bind(this);
-    this.validateForm = this.validateForm.bind(this);
+    this.catchKeys = this.catchKeys.bind(this)
+    this.catchPaste = this.catchPaste.bind(this)
+    this.handleDateChange = this.handleDateChange.bind(this)
+    this.handleTimeChange = this.handleTimeChange.bind(this)
+    this.insertData = this.insertData.bind(this)
+    this.revertPaste = this.revertPaste.bind(this)
+    this.scrobbleSong = this.scrobbleSong.bind(this)
+    this.swapArtistTitle = this.swapArtistTitle.bind(this)
+    this.toggleLock = this.toggleLock.bind(this)
+    this.toggleTimestampMode = this.toggleTimestampMode.bind(this)
+    this.validateForm = this.validateForm.bind(this)
 
     if (this.props.exportCloneReceiver) {
-      this.props.exportCloneReceiver(this.insertData);
+      this.props.exportCloneReceiver(this.insertData)
     }
   }
 
   componentDidMount() {
-    document.getElementById('artist').focus();
+    document.getElementById('artist').focus()
   }
 
   /*
@@ -109,32 +109,32 @@ class SongForm extends React.Component {
     switch(event.keyCode) {
       case 38: // Up arrow
         {
-          let prevControl = controlOrder[(controlOrder.indexOf(event.target.id) + 2) % 3];
-          document.getElementById(prevControl).focus();
+          let prevControl = controlOrder[(controlOrder.indexOf(event.target.id) + 2) % 3]
+          document.getElementById(prevControl).focus()
         }
-        break;
+        break
       case 40: // Down arrow
         {
-          let nextControl = controlOrder[(controlOrder.indexOf(event.target.id) + 1) % 3];
-          document.getElementById(nextControl).focus();
+          let nextControl = controlOrder[(controlOrder.indexOf(event.target.id) + 1) % 3]
+          document.getElementById(nextControl).focus()
         }
-        break;
+        break
       case 13: // Enter key
         if (this.state.canScrobble) {
-          this.scrobbleSong();
+          this.scrobbleSong()
         } else if (event.target.id === 'artist') {
-          document.getElementById('title').focus();
+          document.getElementById('title').focus()
         }
-        break;
+        break
     }
   }
 
   catchPaste(event) {
-    if (!this.props.settings.catchPaste || this.state.artist || this.state.title) return;
+    if (!this.props.settings.catchPaste || this.state.artist || this.state.title) return
 
-    let splittedValues = /(.+) [-–—] (.+)/.exec(event.clipboardData.getData('Text').trim());
-    let prevState;
-    let pasteData;
+    let splittedValues = /(.+) [-–—] (.+)/.exec(event.clipboardData.getData('Text').trim())
+    let prevState
+    let pasteData
 
     if (splittedValues) {
       // Assigns values depending on which field they were pasted on
@@ -144,14 +144,14 @@ class SongForm extends React.Component {
           pasteData = {
             artist: splittedValues[1],
             title: splittedValues[2],
-          };
-          break;
+          }
+          break
         case 'title':
           pasteData = {
             artist: splittedValues[2],
             title: splittedValues[1],
-          };
-          break;
+          }
+          break
       }
 
       // Save previous state to allow undoing the change
@@ -160,8 +160,8 @@ class SongForm extends React.Component {
         title: this.state.title,
         album: this.state.album,
         albumArtist: this.state.albumArtist,
-      };
-      prevState[event.target.id] = event.clipboardData.getData('Text');
+      }
+      prevState[event.target.id] = event.clipboardData.getData('Text')
 
       this.setState({
         ...pasteData,
@@ -178,28 +178,28 @@ class SongForm extends React.Component {
               </span>
             </div>
           ),
-        });
-        this.validateForm();
-      });
-      event.preventDefault(); // avoids the call to onChange handler
+        })
+        this.validateForm()
+      })
+      event.preventDefault() // avoids the call to onChange handler
     }
   }
 
   handleDateChange(newDate) {
-    if (!this.state.useCustomDate) return;
-    newDate.setHours(this.state.timestamp.getHours());
-    newDate.setMinutes(this.state.timestamp.getMinutes());
+    if (!this.state.useCustomDate) return
+    newDate.setHours(this.state.timestamp.getHours())
+    newDate.setMinutes(this.state.timestamp.getMinutes())
 
     this.setState({
       timestamp: newDate,
-    });
+    })
   }
 
   handleTimeChange(newDate) {
-    if (!this.state.useCustomDate) return;
+    if (!this.state.useCustomDate) return
     this.setState({
       timestamp: newDate,
-    });
+    })
   }
 
   insertData(data) {
@@ -212,17 +212,17 @@ class SongForm extends React.Component {
       title: '',
       ...data,
       timestamp: this.state.useCustomDate ? new Date(data.timestamp) : this.state.timestamp
-    }, () => this.validateForm());
+    }, () => this.validateForm())
   }
 
   revertPaste() {
     this.setState({
       ...this.state.undo,
       undo: null,
-    }, () => this.validateForm());
+    }, () => this.validateForm())
     this.props.dismissAlert({
       category: 'paste',
-    });
+    })
   }
 
   scrobbleSong() {
@@ -233,7 +233,7 @@ class SongForm extends React.Component {
       album: '',
       albumArtist: '',
       undo: null,
-    };
+    }
 
     this.props.enqueueScrobble([{
       artist: this.state.artist,
@@ -241,16 +241,16 @@ class SongForm extends React.Component {
       album: this.state.album,
       albumArtist: this.state.albumArtist,
       timestamp: this.state.useCustomDate ? this.state.timestamp : new Date(),
-    }]);
+    }])
 
-    if (this.state.artistLocked) delete newState.artist;
+    if (this.state.artistLocked) delete newState.artist
     if (this.state.albumLocked) {
-      delete newState.album;
-      delete newState.albumArtist;
+      delete newState.album
+      delete newState.albumArtist
     }
 
     if (this.state.useCustomDate) {
-      newState.timestamp = addMinutes(this.state.timestamp, 3);
+      newState.timestamp = addMinutes(this.state.timestamp, 3)
 
       // if time goes into the future disable custom timestamp
       // ToDo: make this a setting, maybe?
@@ -263,36 +263,36 @@ class SongForm extends React.Component {
     if (this.state.undo) {
       this.props.dismissAlert({
         category: 'paste',
-      });
+      })
     }
 
-    this.setState(newState);
+    this.setState(newState)
 
-    document.getElementById(this.state.artistLocked ? 'title' : 'artist').focus();
+    document.getElementById(this.state.artistLocked ? 'title' : 'artist').focus()
   }
 
   swapArtistTitle() {
     this.setState({
       artist: this.state.title,
       title: this.state.artist,
-    });
+    })
     ReactGA.event({
       category: 'Interactions',
       action: 'Swap'
-    });
+    })
   }
 
   toggleLock(field) {
-    const fieldName = `${field}Locked`;
+    const fieldName = `${field}Locked`
     return () => {
       this.setState({
         [fieldName]: !this.state[fieldName]
-      });
+      })
       ReactGA.event({
         category: 'Interactions',
         action: 'Lock',
         label: field
-      });
+      })
     }
   }
 
@@ -302,28 +302,28 @@ class SongForm extends React.Component {
         category: 'Interactions',
         action: 'Use custom timestamp',
         label: 'Song'
-      });
+      })
     }
 
     this.setState({
       useCustomDate: !this.state.useCustomDate,
       timestamp: new Date(),
-    });
+    })
   }
 
   updateField(fieldname) {
     return (event) => {
-      let state = {};
-      state[fieldname] = event.target.value;
-      this.setState(state, this.validateForm);
-    };
+      let state = {}
+      state[fieldname] = event.target.value
+      this.setState(state, this.validateForm)
+    }
   }
 
   validateForm() {
-    let formIsValid = false;
+    let formIsValid = false
 
     if (this.state.artist.trim().length > 0 && this.state.title.trim().length > 0) {
-      formIsValid = true;
+      formIsValid = true
     }
 
     this.setState({
@@ -332,16 +332,16 @@ class SongForm extends React.Component {
   }
 
   render() {
-    const t = this.props.t;
-    const minDate = subDays(new Date(), 14);
-    const maxDate = addDays(new Date(), 14);
+    const t = this.props.t
+    const minDate = subDays(new Date(), 14)
+    const maxDate = addDays(new Date(), 14)
 
     const donationCTA = this.props.settings.isDonor ? null : (
       <div className="donation-cta mt-2">
         <a href="https://www.patreon.com/OpenScrobbler" rel="noopener">{t('considerDonating')}</a>
         <FontAwesomeIcon icon={faPatreon} />
       </div>
-    );
+    )
 
     return (
       <Form className="SongForm">
@@ -516,7 +516,7 @@ class SongForm extends React.Component {
 
         {donationCTA}
       </Form>
-    );
+    )
   }
 }
 
@@ -524,14 +524,14 @@ const mapStateToProps = (state) => {
   return {
     settings: state.settings,
   }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     createAlert: createAlert(dispatch),
     dismissAlert: dismissAlert(dispatch),
     enqueueScrobble: enqueueScrobble(dispatch),
-  };
+  }
 }
 
 SongForm.propTypes = {
@@ -545,8 +545,8 @@ SongForm.propTypes = {
     use12Hours: PropTypes.bool,
   }),
   t: PropTypes.func,
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withTranslation()(SongForm)
-);
+)

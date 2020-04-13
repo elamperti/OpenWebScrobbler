@@ -1,9 +1,9 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React from 'react'
+import PropTypes from 'prop-types'
 
-import Avatar from 'components/Avatar';
+import Avatar from 'components/Avatar'
 
-import './ArtistCard.css';
+import './ArtistCard.css'
 
 const ArtistCard = props => {
   return (
@@ -13,17 +13,17 @@ const ArtistCard = props => {
         <span className="artistCard-name pl-3">{props.artist.name}</span>
       </a>
     </div>
-  );
-};
+  )
+}
 
 ArtistCard.propTypes = {
   artist: PropTypes.object.isRequired,
   className: PropTypes.string,
   onClick: PropTypes.func,
-};
+}
 
 ArtistCard.defaultProps = {
   className: '',
-};
+}
 
-export default ArtistCard;
+export default ArtistCard

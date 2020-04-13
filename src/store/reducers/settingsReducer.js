@@ -1,7 +1,7 @@
 import {
   SETTINGS_UPDATE,
   USER_LOGGED_OUT,
-} from 'Constants';
+} from 'Constants'
 
 const initialState = {
   lang: 'auto',
@@ -9,7 +9,7 @@ const initialState = {
   catchPaste: true,
   isDonor: false,
   keepOriginalTimestamp: true,
-};
+}
 
 const settingsReducer = (state=initialState, action) => {
   switch (action.type) {
@@ -18,17 +18,17 @@ const settingsReducer = (state=initialState, action) => {
         ...initialState,
         ...state,
         ...action.payload,
-      };
+      }
 
     case USER_LOGGED_OUT:
       return {
         ...initialState,
         lang: state.lang,
-      };
+      }
 
     default:
-      return state;
+      return state
   }
-};
+}
 
-export default settingsReducer;
+export default settingsReducer

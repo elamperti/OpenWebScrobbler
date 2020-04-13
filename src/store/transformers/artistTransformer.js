@@ -1,8 +1,8 @@
-import get from 'lodash/get';
+import get from 'lodash/get'
 
 export function fetchArtists(response) {
-  let artists = [];
-  const rawArtistList = get(response, 'results.artistmatches.artist', []);
+  let artists = []
+  const rawArtistList = get(response, 'results.artistmatches.artist', [])
 
   for (let artist of rawArtistList) {
     artists.push({
@@ -15,7 +15,7 @@ export function fetchArtists(response) {
         'lg': get(artist, 'image[3][#text]'),
         'xl': get(artist, 'image[4][#text]'),
       }
-    });
+    })
   }
-  return artists;
+  return artists
 }

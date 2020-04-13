@@ -1,34 +1,34 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
-import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
-import { Trans } from 'react-i18next';
+import React from 'react'
+import { PropTypes } from 'prop-types'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
+import { Trans } from 'react-i18next'
 
 import {
   Alert,
-} from 'reactstrap';
+} from 'reactstrap'
 
-import { dismissAlert, clearAlerts } from 'store/actions/alertActions';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { dismissAlert, clearAlerts } from 'store/actions/alertActions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 class AlertZone extends React.Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.toggleAlert = this.toggleAlert.bind(this);
+    this.toggleAlert = this.toggleAlert.bind(this)
 
     this.state = {
       isOpen: {},
-    };
+    }
 
     for (let individualAlert of this.props.alerts) {
-      this.state.isOpen[individualAlert.id] = true;
+      this.state.isOpen[individualAlert.id] = true
     }
   }
 
   componentDidUpdate(prevProps) {
     if (this.props.location.pathname !== prevProps.location.pathname) {
-      this.props.clearAlerts();
+      this.props.clearAlerts()
     }
   }
 
@@ -39,12 +39,12 @@ class AlertZone extends React.Component {
         [alertId]: false,
       },
     }, () => {
-      setTimeout(() => this.props.dismissAlert({ id: alertId }), 1000);
-    });
+      setTimeout(() => this.props.dismissAlert({ id: alertId }), 1000)
+    })
   }
 
   render() {
-    let alerts = [];
+    let alerts = []
 
     for (let individualAlert of this.props.alerts) {
       alerts.push(
@@ -68,14 +68,14 @@ class AlertZone extends React.Component {
             </div>
           </div>
         </Alert>
-      );
+      )
     }
 
     return alerts.length > 0 ? (
       <div className="AlertZone mt-3">
         {alerts}
       </div>
-    ) : null;
+    ) : null
   }
 }
 
@@ -83,13 +83,13 @@ const mapStateToProps = (state) => {
   return {
     alerts: state.alerts,
   }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     dismissAlert: dismissAlert(dispatch),
     clearAlerts: () => dispatch(clearAlerts()),
-  };
+  }
 }
 
 AlertZone.propTypes = {
@@ -99,6 +99,6 @@ AlertZone.propTypes = {
   }),
   clearAlerts: PropTypes.func,
   dismissAlert: PropTypes.func,
-};
+}
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AlertZone));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(AlertZone))

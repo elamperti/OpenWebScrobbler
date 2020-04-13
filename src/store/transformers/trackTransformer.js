@@ -1,9 +1,9 @@
-import get from 'lodash/get';
-import hasIn from 'lodash/hasIn';
-import shortid from 'shortid';
+import get from 'lodash/get'
+import hasIn from 'lodash/hasIn'
+import shortid from 'shortid'
 
 export function fetchTracks(rawTrackList, opts) {
-  let tracks = [];
+  let tracks = []
 
   for (let track of rawTrackList) {
     let transformedTrack = {
@@ -12,13 +12,13 @@ export function fetchTracks(rawTrackList, opts) {
       album: get(opts, 'album'),
       duration: track.duration || 1,
       uuid: shortid.generate(),
-    };
-
-    if (hasIn(opts, 'cover')) {
-      transformedTrack.cover = opts.cover;
     }
 
-    tracks.push(transformedTrack);
+    if (hasIn(opts, 'cover')) {
+      transformedTrack.cover = opts.cover
+    }
+
+    tracks.push(transformedTrack)
   }
-  return tracks;
+  return tracks
 }

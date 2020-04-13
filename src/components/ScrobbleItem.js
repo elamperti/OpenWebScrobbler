@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
-import { connect } from 'react-redux';
-import { withTranslation } from 'react-i18next';
-import ReactGA from 'react-ga';
-import get from 'lodash/get';
+import React, { Component } from 'react'
+import { PropTypes } from 'prop-types'
+import { connect } from 'react-redux'
+import { withTranslation } from 'react-i18next'
+import ReactGA from 'react-ga'
+import get from 'lodash/get'
 
-import { enqueueScrobble } from 'store/actions/scrobbleActions';
+import { enqueueScrobble } from 'store/actions/scrobbleActions'
 
-import format from 'date-fns/format';
-import isToday from 'date-fns/is_today';
+import format from 'date-fns/format'
+import isToday from 'date-fns/is_today'
 
 import {
   Button,
@@ -17,10 +17,10 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-} from 'reactstrap';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
+} from 'reactstrap'
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faCheck,
   faInbox,
@@ -29,84 +29,84 @@ import {
   faSquare,
   faSync,
   faEllipsisH,
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/free-solid-svg-icons'
 import {
   faClock,
-} from '@fortawesome/free-regular-svg-icons';
+} from '@fortawesome/free-regular-svg-icons'
 
-import './ScrobbleItem.css';
+import './ScrobbleItem.css'
 
 class ScrobbleItem extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.cloneScrobble = this.cloneScrobble.bind(this);
-    this.scrobbleAgain = this.scrobbleAgain.bind(this);
-    this.toggleMoreMenu = this.toggleMoreMenu.bind(this);
+    this.cloneScrobble = this.cloneScrobble.bind(this)
+    this.scrobbleAgain = this.scrobbleAgain.bind(this)
+    this.toggleMoreMenu = this.toggleMoreMenu.bind(this)
 
     this.state = {
       hasScrobbledAgain: false,
       dropdownOpen: false,
-    };
+    }
   }
 
   cloneScrobble() {
     ReactGA.event({
       category: 'Interactions',
       action: 'Clone track'
-    });
-    this.props.cloneScrobbleTo(this.props.scrobble);
+    })
+    this.props.cloneScrobbleTo(this.props.scrobble)
   }
 
   toggleMoreMenu() {
     this.setState({
       dropdownOpen: !this.state.dropdownOpen
-    });
+    })
   }
 
   scrobbleAgain() {
-    const useOriginalTimestamp = this.props.noMenu ? get(this.props.settings, 'keepOriginalTimestamp') : false;
+    const useOriginalTimestamp = this.props.noMenu ? get(this.props.settings, 'keepOriginalTimestamp') : false
 
     ReactGA.event({
       category: 'Interactions',
       action: this.props.analyticsEvent,
-    });
+    })
     this.props.enqueueScrobble([{
       ...this.props.scrobble,
       timestamp: useOriginalTimestamp ? this.props.scrobble.timestamp : new Date(),
-    }]);
+    }])
     this.setState({
       hasScrobbledAgain: true,
-    });
+    })
   }
 
   properCase(str, forceUcfirstMode=false) {
     if (str.match(/[A-Z]/u)) { // ToDo: use \p{Uppercase} once it can be compiled #future
-      return str;
+      return str
     } else if (forceUcfirstMode) {
-      return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
+      return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase()
     }
     return str.replace(/\w+\b/g, (word) => {
-      return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
-    });
+      return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase()
+    })
   }
 
   render() {
-    const t = this.props.t;
-    const scrobble = this.props.scrobble;
-    let albumArt;
-    let albumInfo;
-    let cloneOption;
-    let errorMessage;
-    let rightSideContent;
-    let scrobbleItemClasses;
-    let selectionCheckbox;
-    let songInfo;
-    let songFullTitle;
-    let statusIcon;
-    let theTimestamp;
-    let timeOrDuration;
-    let timestampFormat='';
+    const t = this.props.t
+    const scrobble = this.props.scrobble
+    let albumArt
+    let albumInfo
+    let cloneOption
+    let errorMessage
+    let rightSideContent
+    let scrobbleItemClasses
+    let selectionCheckbox
+    let songInfo
+    let songFullTitle
+    let statusIcon
+    let theTimestamp
+    let timeOrDuration
+    let timestampFormat=''
 
     if (scrobble.album) {
       albumInfo = (
@@ -115,13 +115,13 @@ class ScrobbleItem extends Component {
           {this.properCase(scrobble.album, true)}
           {scrobble.albumArtist ? ` - ${this.properCase(scrobble.albumArtist, true)}` : ''}
         </span>
-      );
+      )
     }
 
     if (this.props.noCover || this.props.compact) {
-      albumArt = null;
+      albumArt = null
     } else {
-      const placeholderCDIcon = <FontAwesomeIcon size="3x" icon={faCompactDisc} />;
+      const placeholderCDIcon = <FontAwesomeIcon size="3x" icon={faCompactDisc} />
       albumArt = !scrobble.cover ? placeholderCDIcon : (
         <LazyLoadImage
           className="cover rounded"
@@ -134,28 +134,28 @@ class ScrobbleItem extends Component {
           effect="opacity"
           async
         />
-      );
+      )
     }
 
     if (scrobble.status) {
       switch (scrobble.status) {
         case 'success':
-          statusIcon = (<FontAwesomeIcon size="xs" icon={faCheck} />);
-          break;
+          statusIcon = (<FontAwesomeIcon size="xs" icon={faCheck} />)
+          break
         case 'retry':
-          statusIcon = (<FontAwesomeIcon size="xs" icon={faSync} />);
-          break;
+          statusIcon = (<FontAwesomeIcon size="xs" icon={faSync} />)
+          break
         case 'error':
-          statusIcon = (<FontAwesomeIcon size="xs" icon={faTimes} />);
-          break;
+          statusIcon = (<FontAwesomeIcon size="xs" icon={faTimes} />)
+          break
         case 'pending':
-          statusIcon = (<FontAwesomeIcon size="xs" spin icon={faCompactDisc} />);
-          break;
+          statusIcon = (<FontAwesomeIcon size="xs" spin icon={faCompactDisc} />)
+          break
         case 'queued':
-          statusIcon = (<FontAwesomeIcon size="xs" icon={faInbox} />);
-          break;
+          statusIcon = (<FontAwesomeIcon size="xs" icon={faInbox} />)
+          break
         default:
-          statusIcon = null;
+          statusIcon = null
       }
 
       if (scrobble.status === 'error') {
@@ -164,7 +164,7 @@ class ScrobbleItem extends Component {
             {scrobble.errorDescription && !scrobble.errorMessage ? t(scrobble.errorDescription) : null}
             {get(scrobble, 'errorMessage')}
           </div>
-        );
+        )
       }
     }
 
@@ -172,27 +172,27 @@ class ScrobbleItem extends Component {
       cloneOption = [
         <DropdownItem key="cloneDivider" divider />,
         <DropdownItem key="clone" onClick={this.cloneScrobble}>{t('copyToEditor')}</DropdownItem>,
-      ];
+      ]
     }
 
     if (scrobble.timestamp) {
       if (!isToday(scrobble.timestamp)) {
-        timestampFormat = 'D/MM ';
+        timestampFormat = 'D/MM '
       }
-      timestampFormat += this.props.settings.use12Hours ? 'h:mm A' : 'H:mm';
-      theTimestamp = format(scrobble.timestamp, timestampFormat);
+      timestampFormat += this.props.settings.use12Hours ? 'h:mm A' : 'H:mm'
+      theTimestamp = format(scrobble.timestamp, timestampFormat)
     } else {
       // Yes, there are songs over one hour. Is it worth making this more complex for those? (no, it isn't)
-      let minutes = Math.floor(scrobble.duration / 60);
-      let seconds = `0${scrobble.duration % 60}`.slice(-2);
-      theTimestamp = `${minutes}:${seconds}`;
+      let minutes = Math.floor(scrobble.duration / 60)
+      let seconds = `0${scrobble.duration % 60}`.slice(-2)
+      theTimestamp = `${minutes}:${seconds}`
     }
     timeOrDuration = (
       <small className={`text-right timestamp d-flex align-items-center ${this.props.compact ? 'flex-row' : 'flex-row-reverse'} ${!scrobble.timestamp && 'duration text-muted'}`}>
         {scrobble.timestamp && <FontAwesomeIcon className={`${this.props.compact ? 'mr-2' : 'ml-2'}`} icon={faClock} />}
         {theTimestamp}
       </small>
-    );
+    )
 
     if (!this.props.hideArtist) {
       if (this.props.muteArtist) {
@@ -201,12 +201,12 @@ class ScrobbleItem extends Component {
             {this.properCase(scrobble.title, true)}
             {' '}<span className="text-muted">{this.properCase(scrobble.artist)}</span>
           </React.Fragment>
-        );
+        )
       } else {
-        songFullTitle = `${this.properCase(scrobble.artist)} - ${this.properCase(scrobble.title, true)}`;
+        songFullTitle = `${this.properCase(scrobble.artist)} - ${this.properCase(scrobble.title, true)}`
       }
     } else {
-      songFullTitle = this.properCase(scrobble.title, true);
+      songFullTitle = this.properCase(scrobble.title, true)
     }
 
     if (this.props.compact) {
@@ -218,7 +218,7 @@ class ScrobbleItem extends Component {
           </span>
           {timeOrDuration}
         </div>
-      );
+      )
     } else {
       // FULL view
       songInfo = (
@@ -233,17 +233,17 @@ class ScrobbleItem extends Component {
             {timeOrDuration}
           </div>
         </React.Fragment>
-      );
+      )
     }
 
-    scrobbleItemClasses = `scrobbled-item status-${scrobble.status} ` + (this.props.compact ? 'compact' : 'card mb-2');
+    scrobbleItemClasses = `scrobbled-item status-${scrobble.status} ` + (this.props.compact ? 'compact' : 'card mb-2')
 
     if (this.props.noMenu) {
       rightSideContent = (
         <Button onClick={this.scrobbleAgain} size="sm" color="success" className="quick-scrobble-button" outline disabled={this.state.hasScrobbledAgain}>
           {this.state.hasScrobbledAgain ? <FontAwesomeIcon icon={faCheck} /> : t('scrobble')}
         </Button>
-      );
+      )
     } else {
       rightSideContent = (
         <div>
@@ -262,13 +262,13 @@ class ScrobbleItem extends Component {
             {statusIcon}
           </span>
         </div>
-      );
+      )
     }
 
     if (this.props.onSelect) {
       selectionCheckbox = (
         <CustomInput inline type="checkbox" className="mr-1" checked={this.props.selected} onChange={() => this.props.onSelect(this.props.uuid, this.props.selected)} id={`ScrobbleItem-checkbox-${this.props.uuid}`} />
-      );
+      )
     }
 
     // ToDo: evaluate using flex-nowrap instead of flex-wrap
@@ -286,7 +286,7 @@ class ScrobbleItem extends Component {
         </div>
         {errorMessage}
       </div>
-    );
+    )
   }
 }
 
@@ -305,12 +305,12 @@ const mapStateToProps = (state) => {
   return {
     settings: state.settings,
   }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     enqueueScrobble: enqueueScrobble(dispatch),
-  };
+  }
 }
 
 ScrobbleItem.propTypes = {
@@ -331,8 +331,8 @@ ScrobbleItem.propTypes = {
   }),
   t: PropTypes.func,
   uuid: PropTypes.string,
-};
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withTranslation()(ScrobbleItem)
-);
+)

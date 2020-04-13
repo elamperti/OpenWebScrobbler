@@ -1,13 +1,13 @@
-import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
-import { withRouter } from 'react-router';
-import { withTranslation } from 'react-i18next';
-import i18n, { languageList } from 'i18n'; // just for the lang switcher
-import { connect } from 'react-redux';
-import ReactGA from 'react-ga';
-import get from 'lodash/get';
+import React, { Component } from 'react'
+import { PropTypes } from 'prop-types'
+import { withRouter } from 'react-router'
+import { withTranslation } from 'react-i18next'
+import i18n, { languageList } from 'i18n' // just for the lang switcher
+import { connect } from 'react-redux'
+import ReactGA from 'react-ga'
+import get from 'lodash/get'
 
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'
 import {
   Collapse,
   DropdownItem,
@@ -20,9 +20,9 @@ import {
   NavItem,
   NavLink,
   UncontrolledDropdown,
-} from 'reactstrap';
+} from 'reactstrap'
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faHeadphonesAlt,
   faCog,
@@ -32,83 +32,83 @@ import {
   faSignOutAlt,
   faGlobe,
   faUserFriends,
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/free-solid-svg-icons'
 import {
   faPlayCircle,
-} from '@fortawesome/free-regular-svg-icons';
+} from '@fortawesome/free-regular-svg-icons'
 
-import { logOut } from 'store/actions/userActions';
-import { dismissAlert } from 'store/actions/alertActions';
+import { logOut } from 'store/actions/userActions'
+import { dismissAlert } from 'store/actions/alertActions'
 
-import Avatar from 'components/Avatar';
-import SettingsModal from 'components/SettingsModal';
+import Avatar from 'components/Avatar'
+import SettingsModal from 'components/SettingsModal'
 
-import './Navigation.css';
-import { setSettings } from 'store/actions/settingsActions';
+import './Navigation.css'
+import { setSettings } from 'store/actions/settingsActions'
 
 class Navigation extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
-    this.toggle = this.toggle.bind(this);
-    this.toggleSettingsModal = this.toggleSettingsModal.bind(this);
-    this.openSettingsModal = this.openSettingsModal.bind(this);
+    this.toggle = this.toggle.bind(this)
+    this.toggleSettingsModal = this.toggleSettingsModal.bind(this)
+    this.openSettingsModal = this.openSettingsModal.bind(this)
     this.state = {
       menuIsOpen: false,
       settingsModalOpen: false,
-    };
+    }
   }
 
   openSettingsModal() {
     ReactGA.modalview('/settings')
     this.props.dismissAlert({
       category: 'settings'
-    });
-    this.toggleSettingsModal();
+    })
+    this.toggleSettingsModal()
   }
 
   toggleSettingsModal() {
     this.setState({
       settingsModalOpen: !this.state.settingsModalOpen,
-    });
+    })
   }
 
   toggle() {
     this.setState({
       menuIsOpen: !this.state.menuIsOpen
-    });
+    })
   }
 
   render() {
-    const t = this.props.t;
+    const t = this.props.t
     const lastfmAuthURL = `https://www.last.fm/api/auth/?api_key=${process.env.REACT_APP_LASTFM_API_KEY}` +
-                          `&cb=${window.location.protocol}//${window.location.host}/`;
+                          `&cb=${window.location.protocol}//${window.location.host}/`
 
-    let appMenuItems;
-    let userMenuItems;
+    let appMenuItems
+    let userMenuItems
 
     let generateLinkParams = (dest) => {
       return {
         tag: Link,
         to: dest,
         className: get(this.props.location, 'pathname', '').indexOf(dest) === 0 ? 'active' : '',
-      };
+      }
     }
 
-    let availableLanguageItems = [];
+    let availableLanguageItems = []
     let changeLanguage = (langCode) => {
       return () => {
         ReactGA.event({
           category: 'Language',
           action: 'Change',
           label: langCode,
-        });
+        })
         this.props.setSettings({
           ...this.props.settings,
           lang: langCode,
-        }, this.props.user.isLoggedIn, true);
-      };
-    };
+        }, this.props.user.isLoggedIn, true)
+      }
+    }
 
     for (let lang of languageList) {
       // The language names are not translated because they must remain in their original language
@@ -120,7 +120,7 @@ class Navigation extends Component {
         >
           {lang.name}
         </DropdownItem>
-      );
+      )
     }
 
     let getLanguageSelector = (extraClassNames='') => {
@@ -137,8 +137,8 @@ class Navigation extends Component {
             </a>
           </DropdownMenu>
         </UncontrolledDropdown>
-      );
-    };
+      )
+    }
 
     if (this.props.user.isLoggedIn) {
       appMenuItems = (
@@ -162,7 +162,7 @@ class Navigation extends Component {
             </NavLink>
           </NavItem>
         </Nav>
-      );
+      )
 
       userMenuItems = (
         <Nav className="ml-auto" navbar>
@@ -197,7 +197,7 @@ class Navigation extends Component {
             </NavLink>
           </NavItem>
         </Nav>
-      );
+      )
     } else {
       userMenuItems = (
         <Nav className="ml-auto" navbar>
@@ -209,7 +209,7 @@ class Navigation extends Component {
             </NavLink>
           </NavItem>
         </Nav>
-      );
+      )
     }
 
     return (
@@ -230,7 +230,7 @@ class Navigation extends Component {
         </Navbar>
         <SettingsModal isOpen={this.state.settingsModalOpen} toggle={this.toggleSettingsModal} />
       </React.Fragment>
-    );
+    )
   }
 }
 
@@ -239,14 +239,14 @@ const mapStateToProps = (state) => {
     user: state.user,
     settings: state.settings,
   }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
   return {
     dismissAlert: dismissAlert(dispatch),
     logOut: logOut(dispatch),
     setSettings: setSettings(dispatch),
-  };
+  }
 }
 
 Navigation.propTypes = {
@@ -265,8 +265,8 @@ Navigation.propTypes = {
     name: PropTypes.string,
     url: PropTypes.string,
   }).isRequired,
-};
+}
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(
   withTranslation()(Navigation)
-));
+))

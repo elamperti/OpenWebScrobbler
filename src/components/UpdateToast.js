@@ -1,23 +1,23 @@
-import React from 'react';
-import { Trans } from 'react-i18next';
+import React from 'react'
+import { Trans } from 'react-i18next'
 
-import { Alert, Button } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Alert, Button } from 'reactstrap'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import {
   faComment,
   faExclamation,
-} from '@fortawesome/free-solid-svg-icons';
+} from '@fortawesome/free-solid-svg-icons'
 
-import './UpdateToast.css';
+import './UpdateToast.css'
 
 class UpdateToast extends React.Component {
   constructor(props) {
-    super(props);
-    this.reloadPage = this.reloadPage.bind(this);
+    super(props)
+    this.reloadPage = this.reloadPage.bind(this)
   }
 
   reloadPage() {
-    window.location.reload();
+    window.location.reload()
   }
 
   render() {
@@ -28,8 +28,8 @@ class UpdateToast extends React.Component {
           There&apos;s a new version available! Please <Button size="sm" color="info" onClick={this.reloadPage}>reload the page</Button>
         </Trans>
       </Alert>
-    );
+    )
   }
 }
 
-export default UpdateToast;
+export default UpdateToast

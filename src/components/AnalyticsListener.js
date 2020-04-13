@@ -1,11 +1,11 @@
-import React from 'react';
-import { PropTypes } from 'prop-types';
-import { withRouter } from 'react-router';
-import ReactGA from 'react-ga';
+import React from 'react'
+import { PropTypes } from 'prop-types'
+import { withRouter } from 'react-router'
+import ReactGA from 'react-ga'
 
 class AnalyticsListener extends React.Component {
   componentDidMount() {
-    this.sendPageChange(window.location.pathname);
+    this.sendPageChange(window.location.pathname)
   }
 
   componentDidUpdate(prevProps) {
@@ -15,13 +15,13 @@ class AnalyticsListener extends React.Component {
   }
 
   sendPageChange(path, search='') {
-    let page = path + search;
-    ReactGA.set({page});
-    ReactGA.pageview(page);
+    let page = path + search
+    ReactGA.set({page})
+    ReactGA.pageview(page)
   }
 
   render() {
-    return null;
+    return null
   }
 }
 
@@ -29,6 +29,6 @@ AnalyticsListener.propTypes = {
   location: PropTypes.shape({
     pathname: PropTypes.string,
   }),
-};
+}
 
-export default withRouter(AnalyticsListener);
+export default withRouter(AnalyticsListener)

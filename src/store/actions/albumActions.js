@@ -1,10 +1,10 @@
-import axios from 'axios';
+import axios from 'axios'
 
 import {
   AUDIOSCROBBLER_API_URL,
   GET_ALBUM_INFO_LASTFM,
   SEARCH_ALBUM_LASTFM,
-} from 'Constants';
+} from 'Constants'
 
 export function searchAlbums(dispatch) {
   return (album, options, callback) => {
@@ -18,24 +18,24 @@ export function searchAlbums(dispatch) {
           format: 'json'
         },
       })
-    });
+    })
 
     if (typeof callback === 'function') {
       response.then((res) => {
-        callback(res);
-      });
+        callback(res)
+      })
     }
-  };
+  }
 }
 
 export function getAlbum(dispatch) {
   return (album, callback) => {
-    let searchParams = {};
+    let searchParams = {}
     if (album.mbid) {
-      searchParams.mbid = album.mbid;
+      searchParams.mbid = album.mbid
     } else {
-      searchParams.artist = album.artist;
-      searchParams.album = album.name;
+      searchParams.artist = album.artist
+      searchParams.album = album.name
     }
 
     const response = dispatch({
@@ -48,12 +48,12 @@ export function getAlbum(dispatch) {
           format: 'json'
         },
       })
-    });
+    })
 
     if (typeof callback === 'function') {
       response.then((res) => {
-        callback(res);
-      });
+        callback(res)
+      })
     }
-  };
+  }
 }
