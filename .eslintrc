@@ -5,7 +5,13 @@
     "jest": true,
     "node": true
   },
-  "extends": ["eslint:recommended", "plugin:react/recommended"],
+  "extends": [
+    "standard",
+    "react-app",
+    "prettier/standard",
+    "plugin:prettier/recommended",
+  ],
+  "plugins": [],
   "parser": "babel-eslint",
   "parserOptions": {
     "allowImportExportEverywhere": false,
@@ -20,10 +26,15 @@
       "version": "16.5"
     }
   },
-  "plugins": ["react"],
   "rules": {
     "no-console": 2,
     "react/prop-types": 1,
-    "semi": [2, "never"]
+    "semi": [2, "never"],
+    "no-extra-semi": 2,
+    "strict": [
+      "error",
+      "global"
+    ],
+    "no-unused-vars": "error"
   }
 }
