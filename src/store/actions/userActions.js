@@ -24,7 +24,7 @@ const lastfmAuthURL = `https://www.last.fm/api/auth/?api_key=${process.env.REACT
                       `&cb=${window.location.protocol}//${window.location.host}/`
 
 export function authUserWithToken(dispatch) {
-  return (token, onSuccessCallback=null) => {
+  return (token) => {
     axios.post(`${OPENSCROBBLER_API_URL}/callback.php`, { token: token })
       .then(response => {
         if (get(response, 'data.status') === 'ok') {
@@ -32,9 +32,7 @@ export function authUserWithToken(dispatch) {
             type: USER_LOGGED_IN
           })
           getUserInfo(dispatch)()
-          if (onSuccessCallback) {
-            onSuccessCallback()
-          }
+          history.push('/scrobble/song')
         }
       })
       .catch(response => {
