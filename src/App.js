@@ -21,6 +21,7 @@ import Home from 'domains/home'
 import ScrobbleSong from './views/ScrobbleSong'
 import ScrobbleAlbum from './views/ScrobbleAlbum'
 import ScrobbleUser from './views/ScrobbleUser'
+import Spinner from 'components/Spinner'
 
 
 function App() {
@@ -54,9 +55,14 @@ function App() {
     }
   })
 
+  const loadingSpinner = (
+    <div id="ows-loading">
+      <Spinner />
+    </div>
+  )
+
   return (
-    // ToDo: Create a "loading" spinner
-    <Suspense fallback={(<div>LOADING...</div>)}>
+    <Suspense fallback={loadingSpinner}>
       <Navigation />
       <div className="d-flex flex-column" style={{height: 'calc(100vh - 78px)'}}>
         { process.env.REACT_APP_ANALYTICS_CODE ? <AnalyticsListener /> : null }
