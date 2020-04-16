@@ -1,18 +1,14 @@
-import React, { Component } from 'react'
-import { PropTypes } from 'prop-types'
-import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
-import { connect } from 'react-redux'
-import ReactGA from 'react-ga'
-import get from 'lodash/get'
-
-import axios from 'axios'
+import React, { Suspense, useEffect } from 'react'
+import { Route, Redirect, Switch, useLocation, useHistory } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
+import { changeLanguage } from 'i18next'
 import qs from 'qs'
+import find from 'lodash/find'
 
-import {
-  getUserInfo,
-  logOut,
-} from './store/actions/userActions'
-import { createAlert } from './store/actions/alertActions'
+import { interceptAxios } from 'utils/axios'
+import {languageList, fallbackLng} from 'utils/i18n'
+
+import { authUserWithToken, getUserInfo } from 'store/actions/userActions'
 
 import PrivateRoute from './components/PrivateRoute'
 import Navigation from './components/Navigation'
@@ -26,187 +22,62 @@ import ScrobbleSong from './views/ScrobbleSong'
 import ScrobbleAlbum from './views/ScrobbleAlbum'
 import ScrobbleUser from './views/ScrobbleUser'
 
-class App extends Component {
-  constructor(props) {
-    super(props)
-    this.props.getUserInfo()
 
-    let axiosErrorHandler = (payload) => {
-      let errorNumber = payload ? get(payload, 'data.error', payload.status) : -1
-      let newError = {
-        type: 'danger',
-        persistent: false,
-        title: '',
-        message: null,
-        rawMessage: null,
+function App() {
+  const dispatch = useDispatch()
+  const location = useLocation()
+  const history = useHistory()
+
+  const versionUpdateReady = useSelector(state => state.updates.newVersionReady)
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn)
+
+  useEffect(() => {
+    const queryString = qs.parse(location.search, { ignoreQueryPrefix: true })
+
+    interceptAxios(dispatch)
+
+    if (location.search && !isLoggedIn) {
+      const token = queryString.token || null
+      if (token) {
+        history.push('/') // Clear the URL
+        authUserWithToken(dispatch)(token)
       }
-      let showErrorNumber = false
-
-      switch (errorNumber) {
-        case 4: // Authentication Failed
-          newError.type = 'danger'
-          newError.message = 'authFailed'
-          break
-        case 6:
-          newError.message = 'userNotFound'
-          break
-        case 9: // Invalid session key
-        case 17: // User must be logged in
-          newError.type = 'warning'
-          newError.message = 'loginAgain'
-          newError.persistent = true
-          showErrorNumber = true
-
-          if (get(payload, 'config.params.method') !== 'user.getRecentTracks') {
-            this.props.logOut(newError)
-          }
-          break
-        case 11: // Service offline
-        case 16: // Service temporarily unavailable
-          newError.title = 'serviceUnavailable'
-          newError.message = 'lastfmUnavailable'
-          showErrorNumber = true
-          break
-        case 13: // Invalid method signature supplied
-        case 26: // API key suspended
-        case 29: // Rate limit exceeded
-        default:
-          newError.title = 'unexpectedError'
-          newError.message = 'unexpectedErrorMessage'
-          newError.rawMessage = get(payload, 'data.message', null)
-          showErrorNumber = true
-      }
-
-      if (newError.message !== 'loginAgain' && newError.message !== 'userNotFound') {
-        this.props.createAlert({
-          ...newError,
-          errorNumber: showErrorNumber ? errorNumber : null,
-        })
-      }
+    } else {
+      getUserInfo(dispatch)()
     }
 
-    let axiosTiming = (response) => {
-      if (response.config.timing) {
-        response.config.timing.elapsedTime = performance.now() - response.config.timing.start
+    // ToDo: Move this to a better place
+    if (queryString.hl) {
+      if ((find(languageList, {code: queryString.hl}) || Object.prototype.hasOwnProperty.call(fallbackLng, queryString.hl))) {
+        changeLanguage(queryString.hl)
       }
     }
+  })
 
-    axios.interceptors.request.use(
-      (request) => {
-        request.timing = {
-          start: performance.now(),
-        }
-        if (request.method === 'post') { // PHP doesn't understand JSON payloads
-          request.headers['Content-Type'] = 'application/x-www-form-urlencoded'
-          request.data = qs.stringify(request.data)
-        }
-        return request
-      },
-      (error) => {
-        return Promise.reject(error)
-      }
-    )
+  return (
+    // ToDo: Create a "loading" spinner
+    <Suspense fallback={(<div>LOADING...</div>)}>
+      <Navigation />
+      <div className="d-flex flex-column" style={{height: 'calc(100vh - 78px)'}}>
+        { process.env.REACT_APP_ANALYTICS_CODE ? <AnalyticsListener /> : null }
+        { versionUpdateReady ? <UpdateToast /> : null }
 
-    axios.interceptors.response.use(
-      (response) => {
-        axiosTiming(response)
-        // ToDo: improve this match to avoid collisions or problems with future API versions
-        if (response.config.url.match(/\/api\/v2\//)) {
-          switch (response.status) {
-            case 503:
-              ReactGA.exception({
-                description: 'Rate limit hit',
-                fatal: false
-              })
-              break
-            case 401:
-              ReactGA.exception({
-                description: 'Invalid session key',
-                fatal: true
-              })
-              this.props.logOut({
-                type: 'warning',
-                message: 'loginAgain',
-                persistent: true,
-                showErrorNumber: true,
-                errorNumber: 401,
-              })
-              break
-            default:
-              break
-          }
-          if (response.config.timing) {
-            ReactGA.timing({
-              category: 'Client response time',
-              variable: response.config.url,
-              value: Math.round(response.config.timing.elapsedTime)
-            })
-          }
-          if (response.data.error) {
-            axiosErrorHandler(response)
-          }
-        }
-        return response
-      },
-      (error) => {
-        axiosErrorHandler(error.response)
-        return Promise.reject(error.response)
-      }
-    )
-  }
-
-  render() {
-    return (
-      <BrowserRouter>
-        <React.Fragment>
-          <Navigation />
-          <div className="d-flex flex-column" style={{height: 'calc(100vh - 78px)'}}>
-            { process.env.REACT_APP_ANALYTICS_CODE ? <AnalyticsListener /> : null }
-            { this.props.updates.newVersionReady ? <UpdateToast /> : null }
-
-            <div className="container">
-              <AlertZone />
-            </div>
-            <main className="container flex-wrap flex-grow-1">
-              <Switch>
-                <PrivateRoute exact path="/scrobble/song" component={ScrobbleSong} />
-                <PrivateRoute exact path="/scrobble/album" component={ScrobbleAlbum} />
-                <PrivateRoute exact path="/scrobble/user/:username?" component={ScrobbleUser} />
-                <Route exact path="/" component={Home} />
-                <Redirect to="/" />
-              </Switch>
-            </main>
-            <Footer />
-          </div>
-        </React.Fragment>
-      </BrowserRouter>
-    )
-  }
+        <div className="container">
+          <AlertZone />
+        </div>
+        <main className="container flex-wrap flex-grow-1">
+          <Switch>
+            <PrivateRoute exact path="/scrobble/song" component={ScrobbleSong} />
+            <PrivateRoute exact path="/scrobble/album" component={ScrobbleAlbum} />
+            <PrivateRoute exact path="/scrobble/user/:username?" component={ScrobbleUser} />
+            <Route exact path="/" component={Home} />
+            <Redirect to="/" />
+          </Switch>
+        </main>
+        <Footer />
+      </div>
+    </Suspense>
+  )
 }
 
-const mapStateToProps = (state) => {
-  return {
-    updates: state.updates,
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    getUserInfo: getUserInfo(dispatch),
-    createAlert: createAlert(dispatch),
-    logOut: logOut(dispatch),
-  }
-}
-
-App.propTypes = {
-  getUserInfo: PropTypes.func,
-  createAlert: PropTypes.func,
-  logOut: PropTypes.func,
-  updates: PropTypes.shape({
-    newVersionReady: PropTypes.bool,
-  }),
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(
-  App
-)
+export default App

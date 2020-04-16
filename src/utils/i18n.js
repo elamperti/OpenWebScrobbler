@@ -45,6 +45,7 @@ i18n
     },
     fallbackLng,
 
+    // ToDo: get all these together
     // have a common namespace used around the full app
     ns: ['common', 'settings', 'home', 'alerts'],
     defaultNS: 'common',
@@ -57,7 +58,7 @@ i18n
     },
 
     react: {
-      useSuspense: false, // ToDo: make this work
+      useSuspense: true,
       wait: true,
     }
   })

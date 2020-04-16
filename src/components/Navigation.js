@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { PropTypes } from 'prop-types'
 import { withRouter } from 'react-router'
 import { withTranslation } from 'react-i18next'
-import i18n, { languageList } from 'i18n' // just for the lang switcher
+import i18n, { languageList } from 'utils/i18n' // just for the lang switcher
 import { connect } from 'react-redux'
 import ReactGA from 'react-ga'
 import get from 'lodash/get'

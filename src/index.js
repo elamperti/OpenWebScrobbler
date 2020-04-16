@@ -1,16 +1,20 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
+import { BrowserRouter } from 'react-router-dom'
+
 
 import './index.css'
-import App from './App'
-import registerServiceWorker from './registerServiceWorker'
+import App from 'App'
+import registerServiceWorker from 'utils/registerServiceWorker'
 import 'bootswatch/dist/slate/bootstrap.min.css'
 
 import { Provider as ReduxProvider } from 'react-redux'
-import store from './store'
+import store from 'store'
 
 import ReactGA from 'react-ga'
 import * as Sentry from '@sentry/browser'
+
+import 'utils/i18n'
 
 // Avoid proxies that may interfer with the site
 if (document.location.host !== process.env.REACT_APP_HOST) {
@@ -71,7 +75,9 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
 
 ReactDOM.render(
   <ReduxProvider store={store}>
-    <App />
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
   </ReduxProvider>,
   document.getElementById('root')
 )

@@ -25,7 +25,7 @@ import {
 
 import { dismissAlert } from 'store/actions/alertActions'
 import { setSettings } from 'store/actions/settingsActions'
-import { languageList } from 'i18n'
+import { languageList } from 'utils/i18n'
 
 // import './SettingsModal.css';
 

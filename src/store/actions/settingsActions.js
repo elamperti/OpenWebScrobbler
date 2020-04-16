@@ -1,7 +1,9 @@
 import axios from 'axios'
-import { createAlert } from './alertActions'
-import i18n, { fallbackLng } from 'i18n'
+import i18n from 'i18next'
 import LanguageDetector from 'i18next-browser-languagedetector'
+import { fallbackLng } from 'utils/i18n'
+
+import { createAlert } from 'store/actions/alertActions'
 
 import {
   OPENSCROBBLER_API_URL,
