@@ -7,7 +7,7 @@ import { logOut } from 'store/actions/userActions'
 import { createAlert } from 'store/actions/alertActions'
 
 function axiosErrorHandler(payload, dispatch) {
-  let errorNumber = payload.data ? get(payload, 'data.error', payload.status) : -1
+  let errorNumber = payload ? get(payload, 'data.error', payload.status) : -1
   let newError = {
     type: 'danger',
     persistent: false,
