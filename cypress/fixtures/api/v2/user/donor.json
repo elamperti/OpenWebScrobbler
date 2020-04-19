@@ -1,0 +1,40 @@
+{
+  "user": {
+    "playlists": "0",
+    "playcount": "456",
+    "gender": "n",
+    "name": "cypress",
+    "subscriber": "0",
+    "url": "https:\/\/www.last.fm\/user\/cypress",
+    "country": "None",
+    "image": [{
+      "size": "small",
+      "#text": "https:\/\/lastfm.freetls.fastly.net\/i\/u\/34s\/3f5ce28d50075b4692e9ae5aa98182cd.png"
+    }, {
+      "size": "medium",
+      "#text": "https:\/\/lastfm.freetls.fastly.net\/i\/u\/64s\/3f5ce28d50075b4692e9ae5aa98182cd.png"
+    }, {
+      "size": "large",
+      "#text": "https:\/\/lastfm.freetls.fastly.net\/i\/u\/174s\/3f5ce28d50075b4692e9ae5aa98182cd.png"
+    }, {
+      "size": "extralarge",
+      "#text": "https:\/\/lastfm.freetls.fastly.net\/i\/u\/300x300\/3f5ce28d50075b4692e9ae5aa98182cd.png"
+    }],
+    "registered": {
+      "unixtime": "1425001265",
+      "#text": 1425001265
+    },
+    "type": "user",
+    "age": "0",
+    "bootstrap": "0",
+    "realname": ""
+  },
+  "settings": {
+    "username": "cypress",
+    "catchPaste": 1,
+    "use12Hours": 0,
+    "lang": "auto",
+    "isDonor": 1,
+    "keepOriginalTimestamp": 1
+  }
+}
