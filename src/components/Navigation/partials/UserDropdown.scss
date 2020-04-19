@@ -1,0 +1,32 @@
+.ows-dropdown-user {
+  &::after {
+    vertical-align: middle !important;
+  }
+
+  .ows-username {
+    color: white;
+    vertical-align: middle;
+    /* font-weight: bold; */
+  }
+
+  .user-avatar {
+    max-height: 1.6em;
+    margin-right: 0.5rem;
+
+    @media (min-width: 768px) {
+      max-height: 1.8em;
+      margin-top: -0.6em;
+      margin-bottom: -0.6em;
+    }
+  }
+}
+
+.ows-donor .ows-dropdown-user {
+  .ows-username {
+    color: #ffd161;
+  }
+
+  .user-avatar {
+    border: 1px solid #ffd161;
+  }
+}

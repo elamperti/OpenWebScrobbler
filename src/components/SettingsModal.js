@@ -24,7 +24,7 @@ import {
 } from '@fortawesome/free-regular-svg-icons'
 
 import { dismissAlert } from 'store/actions/alertActions'
-import { setSettings } from 'store/actions/settingsActions'
+import { setSettings, closeSettingsModal } from 'store/actions/settingsActions'
 import { languageList } from 'utils/i18n'
 
 // import './SettingsModal.css';
@@ -84,7 +84,7 @@ class SettingsModal extends React.Component {
 
   saveSettings() {
     this.props.setSettings(this.state.settings)
-    this.props.toggle()
+    this.props.close()
   }
 
   render() {
@@ -94,10 +94,10 @@ class SettingsModal extends React.Component {
       <Modal
         id="SettingsModal"
         onOpened={this.getLatestSettings}
-        isOpen={this.props.isOpen}
-        toggle={this.props.toggle}
+        isOpen={this.props.settings.modalIsOpen}
+        toggle={this.props.close}
       >
-        <ModalHeader toggle={this.props.toggle}>
+        <ModalHeader toggle={this.props.close}>
           <FontAwesomeIcon className="mr-2" icon={faCog} />
           {t('settingsFor')} {this.props.user.name}
         </ModalHeader>
@@ -135,7 +135,7 @@ class SettingsModal extends React.Component {
           </Form>
         </ModalBody>
         <ModalFooter>
-          <Button className="btn-cancel" color="secondary" onClick={this.props.toggle}>
+          <Button className="btn-cancel" color="secondary" onClick={this.props.close}>
             {t('cancel')}
           </Button>
           <Button className="btn-save" color="success" onClick={this.saveSettings}>
@@ -159,6 +159,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     dismissAlert: dismissAlert(dispatch),
     setSettings: setSettings(dispatch),
+    close: closeSettingsModal(dispatch),
   }
 }
 
@@ -166,9 +167,9 @@ SettingsModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
   dismissAlert: PropTypes.func.isRequired,
   setSettings: PropTypes.func.isRequired,
+  close: PropTypes.func.isRequired,
   settings: PropTypes.object.isRequired,
   t: PropTypes.func,
-  toggle: PropTypes.func.isRequired,
   user: PropTypes.shape({
     name: PropTypes.string,
   }).isRequired,

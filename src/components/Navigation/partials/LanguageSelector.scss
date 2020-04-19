@@ -1,0 +1,12 @@
+.ows-LanguageSelector {
+  list-style-type: none;
+
+  .ows-translateCTA {
+    color: rgba(255, 255, 255, 0.5);
+    font-size: 0.65rem;
+
+    &:hover {
+      color: white;
+    }
+  }
+}
