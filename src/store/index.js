@@ -56,7 +56,10 @@ store.subscribe(throttle(() => {
       ...state.user,
       userSettingsLoading: false,
     },
-    settings: state.settings,
+    settings: {
+      ...state.settings,
+      modalIsOpen: false,
+    },
   })
 }, 2000))
 

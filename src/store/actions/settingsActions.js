@@ -10,6 +10,8 @@ import {
   SETTINGS_UPDATE,
   SETTINGS_SAVE,
   DEBOUNCE_PERIOD,
+  SETTINGS_MODAL_OPEN,
+  SETTINGS_MODAL_CLOSE,
 } from 'Constants'
 
 export function setSettings(dispatch) {
@@ -49,6 +51,22 @@ export function setSettings(dispatch) {
     dispatch({
       type: SETTINGS_UPDATE,
       payload: newSettings
+    })
+  }
+}
+
+export function openSettingsModal(dispatch) {
+  return () => {
+    dispatch({
+      type: SETTINGS_MODAL_OPEN,
+    })
+  }
+}
+
+export function closeSettingsModal(dispatch) {
+  return () => {
+    dispatch({
+      type: SETTINGS_MODAL_CLOSE,
     })
   }
 }

@@ -11,7 +11,7 @@ import {languageList, fallbackLng} from 'utils/i18n'
 import { authUserWithToken, getUserInfo } from 'store/actions/userActions'
 
 import PrivateRoute from './components/PrivateRoute'
-import Navigation from './components/Navigation'
+import Navigation from 'components/Navigation'
 import Footer from './components/Footer'
 import AlertZone from './components/AlertZone'
 import AnalyticsListener from './components/AnalyticsListener'
@@ -22,6 +22,7 @@ import ScrobbleSong from './views/ScrobbleSong'
 import ScrobbleAlbum from './views/ScrobbleAlbum'
 import ScrobbleUser from './views/ScrobbleUser'
 import Spinner from 'components/Spinner'
+import SettingsModal from 'components/SettingsModal'
 
 
 function App() {
@@ -64,6 +65,7 @@ function App() {
   return (
     <Suspense fallback={loadingSpinner}>
       <Navigation />
+      <SettingsModal />
       <div className="d-flex flex-column" style={{height: 'calc(100vh - 78px)'}}>
         { process.env.REACT_APP_ANALYTICS_CODE ? <AnalyticsListener /> : null }
         { versionUpdateReady ? <UpdateToast /> : null }

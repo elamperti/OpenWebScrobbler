@@ -101,12 +101,6 @@ body {
     outline: none;
 }
 
-.navbar.navbar-dark {
-  box-shadow: 0 3px 4px rgba(0,0,0,0.3);
-  border-width: 0 0 1px;
-  margin-bottom: 1.5em;
-}
-
 .SongFormLists-container .nav-tabs {
   border-color: rgba(11, 14, 17, 0.55);
 }
