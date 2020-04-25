@@ -3,13 +3,13 @@
     "browser": true,
     "es6": true,
     "jest": true,
-    "node": true
+    "node": true,
+    "cypress/globals": true
   },
   "extends": [
     "standard",
     "react-app"
   ],
-  "plugins": [],
   "parser": "babel-eslint",
   "parserOptions": {
     "allowImportExportEverywhere": false,
@@ -24,6 +24,12 @@
       "version": "16.5"
     }
   },
+  "plugins": [
+    "cypress",
+    "node",
+    "promise",
+    "react"
+  ],
   "rules": {
     "comma-dangle": ["warn", {
       "arrays": "always-multiline",
@@ -33,16 +39,15 @@
       "functions": "never"
     }],
     "no-console": 2,
+    "no-unused-vars": "error",
+    "prefer-const": "warn",
     "react/prop-types": 1,
     "semi": [2, "never"],
-    "no-extra-semi": 2,
     "space-infix-ops": 1,
     "space-before-function-paren": [2, "never"],
     "strict": [
       "error",
       "global"
-    ],
-    "no-unused-vars": "error",
-    "prefer-const": "warn"
+    ]
   }
 }
