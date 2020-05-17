@@ -48,7 +48,7 @@ export default function Navigation() {
           <LanguageSelector className="d-none d-md-block" />
           {isLoggedIn
             ? <UserDropdown />
-            : <NavigationItem href={LASTFM_AUTH_URL} i18nKey="logIn" icon={faSignInAlt} />
+            : <NavigationItem external href={LASTFM_AUTH_URL} i18nKey="logIn" icon={faSignInAlt} />
           }
         </Nav>
       </Collapse>
