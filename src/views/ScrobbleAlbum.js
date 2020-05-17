@@ -1,12 +1,12 @@
-import React, { Component } from 'react'
-import { PropTypes } from 'prop-types'
-import { connect } from 'react-redux'
-import { Translation, Trans } from 'react-i18next'
-import ReactGA from 'react-ga'
-import get from 'lodash/get'
-import md5 from 'md5'
-import addSeconds from 'date-fns/add_seconds'
-import subSeconds from 'date-fns/sub_seconds'
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
+import { Translation, Trans } from 'react-i18next';
+import ReactGA from 'react-ga';
+import get from 'lodash/get';
+import md5 from 'md5';
+import addSeconds from 'date-fns/add_seconds';
+import subSeconds from 'date-fns/sub_seconds';
 
 import {
   Alert,
@@ -16,9 +16,9 @@ import {
   CustomInput,
   FormGroup,
   Row,
-} from 'reactstrap'
+} from 'reactstrap';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faArrowLeft,
   faBolt,
@@ -27,27 +27,27 @@ import {
   faHistory,
   faQuestionCircle,
   faUser,
-} from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-solid-svg-icons';
 
 import {
   getAlbum,
   searchAlbums,
-} from 'store/actions/albumActions'
+} from 'store/actions/albumActions';
 import {
   searchArtists,
   searchArtistTopAlbums,
-} from 'store/actions/artistActions'
+} from 'store/actions/artistActions';
 import {
   enqueueScrobble,
-} from 'store/actions/scrobbleActions'
+} from 'store/actions/scrobbleActions';
 
-import AlbumCard from 'components/AlbumCard'
-import SearchForm from 'components/SearchForm'
-import Spinner from 'components/Spinner'
-import ScrobbleList from 'components/ScrobbleList'
-import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller'
-import ArtistCard from 'components/ArtistCard'
-import DateTimePicker from 'components/DateTimePicker'
+import AlbumCard from 'components/AlbumCard';
+import SearchForm from 'components/SearchForm';
+import Spinner from 'components/Spinner';
+import ScrobbleList from 'components/ScrobbleList';
+import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
+import ArtistCard from 'components/ArtistCard';
+import DateTimePicker from 'components/DateTimePicker';
 
 import {
   ALBUM_VIEW_STEP_SEARCH,
@@ -55,7 +55,7 @@ import {
   ALBUM_VIEW_STEP_ARTIST,
   ALBUM_VIEW_STEP_TRACKLIST,
   LASTFM_API_RATE_LIMIT,
-} from 'Constants'
+} from 'Constants';
 
 // Important: if a new property needs to be reset on new searches, map it in resetState()
 const initialState = {
@@ -82,46 +82,46 @@ const initialState = {
   useCustomTimestamp: false,
   customTimestamp: new Date(),
   timestampCopyVisible: false,
-}
+};
 
 class ScrobbleAlbum extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.state = initialState
+    this.state = initialState;
 
-    this.focusSearchInput = this.focusSearchInput.bind(this)
-    this.getAlbum = this.getAlbum.bind(this)
-    this.handleTimestampChange = this.handleTimestampChange.bind(this)
-    this.resetState = this.resetState.bind(this)
-    this.scrobbleSelectedTracks = this.scrobbleSelectedTracks.bind(this)
-    this.search = this.search.bind(this)
-    this.searchAlbumsByArtist = this.searchAlbumsByArtist.bind(this)
-    this.toggleTimestampCopy = this.toggleTimestampCopy.bind(this)
-    this.toggleCustomTimestamp = this.toggleCustomTimestamp.bind(this)
-    this.toggleSelectedTrack = this.toggleSelectedTrack.bind(this)
-    this.updateAlbumOrArtist = this.updateAlbumOrArtist.bind(this)
+    this.focusSearchInput = this.focusSearchInput.bind(this);
+    this.getAlbum = this.getAlbum.bind(this);
+    this.handleTimestampChange = this.handleTimestampChange.bind(this);
+    this.resetState = this.resetState.bind(this);
+    this.scrobbleSelectedTracks = this.scrobbleSelectedTracks.bind(this);
+    this.search = this.search.bind(this);
+    this.searchAlbumsByArtist = this.searchAlbumsByArtist.bind(this);
+    this.toggleTimestampCopy = this.toggleTimestampCopy.bind(this);
+    this.toggleCustomTimestamp = this.toggleCustomTimestamp.bind(this);
+    this.toggleSelectedTrack = this.toggleSelectedTrack.bind(this);
+    this.updateAlbumOrArtist = this.updateAlbumOrArtist.bind(this);
   }
 
   focusSearchInput() {
     // ToDo: move this logic to component using hooks w/React 16.8+
-    const searchInput = document.getElementById('albumOrArtistToSearch')
+    const searchInput = document.getElementById('albumOrArtistToSearch');
     if (searchInput) {
-      searchInput.focus()
-      searchInput.setSelectionRange(0, searchInput.value.length)
+      searchInput.focus();
+      searchInput.setSelectionRange(0, searchInput.value.length);
     }
   }
 
   componentDidMount() {
-    this.focusSearchInput()
+    this.focusSearchInput();
   }
 
   // ToDo: Refactor this so all calls use the same function
   getAlbum(album) {
-    const albumId = album.mbid || md5(`${album.artist} - ${album.name}`)
+    const albumId = album.mbid || md5(`${album.artist} - ${album.name}`);
     return (e) => {
-      if( e.button !== 1 ) { // let middle-click go through
-        e.preventDefault()
+      if (e.button !== 1) { // let middle-click go through
+        e.preventDefault();
         this.setState({
           albumIsLoading: true,
           selectedAlbum: album.name,
@@ -130,122 +130,122 @@ class ScrobbleAlbum extends Component {
             ...this.state.mbid,
             album: albumId,
             canScrobble: true,
-          }
+          },
         }, () => {
           this.props.getAlbum(album, () => {
             this.setState({
               albumIsLoading: false,
               canScrobble: get(this.props.albums, `albumsCache['${albumId}'].tracks`, []).length > 0,
-            })
-          })
+            });
+          });
           ReactGA.event({
             category: 'Interactions',
-            action: 'Click album'
-          })
-        })
+            action: 'Click album',
+          });
+        });
       }
-    }
+    };
   }
 
   handleTimestampChange(newTimestamp) {
     this.setState({
       customTimestamp: newTimestamp,
       canScrobble: true,
-    })
+    });
   }
 
   resetState(backToStep) {
-    let newState = {
+    const newState = {
       mbid: this.state.mbid,
-    }
+    };
 
     // ToDo: refactor initalState to have step1, step2, ... objects and just spread them here (and in constructor)
 
     /* eslint-disable no-fallthrough */
-    switch(backToStep) {
+    switch (backToStep) {
       default:
       case ALBUM_VIEW_STEP_SEARCH:
-        newState.albumOrArtist = initialState.albumOrArtist
-        newState.albumListIsLoading = initialState.albumListIsLoading
-        newState.artistListIsLoading = initialState.artistListIsLoading
-        newState.inputInvalid = initialState.inputInvalid
-        newState.justFailedSearch = initialState.justFailedSearch
-        newState.searchEnabled = initialState.searchEnabled
-        newState.searchOptions = initialState.searchOptions
+        newState.albumOrArtist = initialState.albumOrArtist;
+        newState.albumListIsLoading = initialState.albumListIsLoading;
+        newState.artistListIsLoading = initialState.artistListIsLoading;
+        newState.inputInvalid = initialState.inputInvalid;
+        newState.justFailedSearch = initialState.justFailedSearch;
+        newState.searchEnabled = initialState.searchEnabled;
+        newState.searchOptions = initialState.searchOptions;
 
       case ALBUM_VIEW_STEP_SRP:
-        newState.mbid.artist = initialState.mbid.artist
-        newState.selectedArtist = initialState.selectedArtist
+        newState.mbid.artist = initialState.mbid.artist;
+        newState.selectedArtist = initialState.selectedArtist;
 
       case ALBUM_VIEW_STEP_ARTIST:
-        newState.albumIsLoading = initialState.albumIsLoading
-        newState.mbid.album = initialState.mbid.album
-        newState.selectedAlbum = initialState.selectedAlbum
+        newState.albumIsLoading = initialState.albumIsLoading;
+        newState.mbid.album = initialState.mbid.album;
+        newState.selectedAlbum = initialState.selectedAlbum;
 
       case ALBUM_VIEW_STEP_TRACKLIST:
-        newState.canScrobble = initialState.canScrobble
-        newState.selectedTracks = []
-        newState.useCustomTimestamp = initialState.useCustomTimestamp
-        newState.timestampCopyVisible = initialState.timestampCopyVisible
+        newState.canScrobble = initialState.canScrobble;
+        newState.selectedTracks = [];
+        newState.useCustomTimestamp = initialState.useCustomTimestamp;
+        newState.timestampCopyVisible = initialState.timestampCopyVisible;
     }
     /* eslint-enable no-fallthrough */
 
-    newState.currentView = backToStep
+    newState.currentView = backToStep;
     this.setState(newState, () => {
       if (backToStep === ALBUM_VIEW_STEP_SEARCH) {
-        this.focusSearchInput()
+        this.focusSearchInput();
       }
-    })
+    });
 
     ReactGA.event({
       category: 'Interactions',
       action: 'Album breadcrumb',
       label: `Step ${backToStep + 1}`,
-    })
+    });
   }
 
   scrobbleSelectedTracks() {
-    const userHasNotSelectedTracks = this.state.selectedTracks.length < 1
-    const timestampCalculationSubstractsTime = !this.state.useCustomTimestamp
-    const albumName = get(this.props.albums, `albumsCache['${this.state.mbid.album}'].info.name`, '')
-    let tracks = get(this.props.albums, `albumsCache['${this.state.mbid.album}'].tracks`, []).slice(0)
-    let rollingTimestamp = this.state.useCustomTimestamp ? this.state.customTimestamp : new Date()
-    let tracksToScrobble = []
+    const userHasNotSelectedTracks = this.state.selectedTracks.length < 1;
+    const timestampCalculationSubstractsTime = !this.state.useCustomTimestamp;
+    const albumName = get(this.props.albums, `albumsCache['${this.state.mbid.album}'].info.name`, '');
+    const tracks = get(this.props.albums, `albumsCache['${this.state.mbid.album}'].tracks`, []).slice(0);
+    let rollingTimestamp = this.state.useCustomTimestamp ? this.state.customTimestamp : new Date();
+    const tracksToScrobble = [];
 
     if (timestampCalculationSubstractsTime) {
       // When the user specifies a custom timestamp it will be the one of the first track,
       // so we'll be adding track.duration to that starting timestamp. In the other case,
       // when the timestamp is `now`, you've just listened to all those tracks, so the most
       // recent track for you is the last one of the album/selection.
-      tracks.reverse()
+      tracks.reverse();
     }
 
-    for (let track of tracks) {
+    for (const track of tracks) {
       if (userHasNotSelectedTracks || this.state.selectedTracks.indexOf(track.uuid) > -1) {
-        let newTrack = {
+        const newTrack = {
           ...track,
           album: albumName,
           timestamp: rollingTimestamp,
-        }
+        };
 
         // Adds the track to the array keeping timestamps chronological
         if (timestampCalculationSubstractsTime) {
-          tracksToScrobble.unshift(newTrack)
+          tracksToScrobble.unshift(newTrack);
         } else {
-          tracksToScrobble.push(newTrack)
+          tracksToScrobble.push(newTrack);
         }
 
         // Prepare timestamp for next track
-        rollingTimestamp = timestampCalculationSubstractsTime ? subSeconds(rollingTimestamp, track.duration) : addSeconds(rollingTimestamp, track.duration)
+        rollingTimestamp = timestampCalculationSubstractsTime ? subSeconds(rollingTimestamp, track.duration) : addSeconds(rollingTimestamp, track.duration);
       }
     }
 
-    this.props.enqueueScrobble(tracksToScrobble)
+    this.props.enqueueScrobble(tracksToScrobble);
     this.setState({
       selectedTracks: [],
       canScrobble: this.state.selectedTracks.length > 0,
       timestampCopyVisible: false,
-    })
+    });
   }
 
   // ToDo: Try to use the cached info before firing new searches
@@ -259,26 +259,26 @@ class ScrobbleAlbum extends Component {
       this.props.searchAlbums(this.state.albumOrArtist.trim(), null, () => {
         this.setState({
           albumListIsLoading: false,
-        })
-      })
+        });
+      });
       setTimeout(() => {
         this.props.searchArtists(this.state.albumOrArtist.trim(), null, () => {
           this.setState({
             artistListIsLoading: false,
-          })
-        })
-      }, LASTFM_API_RATE_LIMIT) // Decouple from searchAlbums if required
+          });
+        });
+      }, LASTFM_API_RATE_LIMIT); // Decouple from searchAlbums if required
       ReactGA.event({
         category: 'Interactions',
-        action: 'Search album'
-      })
-    })
+        action: 'Search album',
+      });
+    });
   }
 
   searchAlbumsByArtist(artist) { // ToDo: Accept/use the artist name as alternative
     return (e) => {
-      if( e.button !== 1 ) { // let middle-click go through
-        e.preventDefault()
+      if (e.button !== 1) { // let middle-click go through
+        e.preventDefault();
         this.setState({
           albumListIsLoading: true,
           currentView: ALBUM_VIEW_STEP_ARTIST,
@@ -291,15 +291,15 @@ class ScrobbleAlbum extends Component {
           this.props.searchArtistTopAlbums(artist, () => {
             this.setState({
               albumListIsLoading: false,
-            })
-          })
+            });
+          });
           ReactGA.event({
             category: 'Interactions',
-            action: 'Search artist'
-          })
-        })
+            action: 'Search artist',
+          });
+        });
       }
-    }
+    };
   }
 
   toggleCustomTimestamp() {
@@ -307,65 +307,65 @@ class ScrobbleAlbum extends Component {
       ReactGA.event({
         category: 'Interactions',
         action: 'Use custom timestamp',
-        label: 'Album'
-      })
+        label: 'Album',
+      });
     }
 
     this.setState({
       canScrobble: true,
       customTimestamp: new Date(),
       useCustomTimestamp: !this.state.useCustomTimestamp,
-    })
+    });
   }
 
   toggleSelectedTrack(trackUUID, wasCheckedBefore) {
-    let selectedTracks = this.state.selectedTracks
+    let selectedTracks = this.state.selectedTracks;
 
     if (wasCheckedBefore) {
-      selectedTracks = selectedTracks.filter(item => item !== trackUUID)
+      selectedTracks = selectedTracks.filter(item => item !== trackUUID);
     } else {
-      selectedTracks.push(trackUUID)
+      selectedTracks.push(trackUUID);
     }
 
     this.setState({
       selectedTracks,
       canScrobble: true,
-    })
+    });
   }
 
   toggleTimestampCopy() {
     this.setState({
       timestampCopyVisible: !this.state.timestampCopyVisible,
-    })
+    });
   }
 
   updateAlbumOrArtist(event) {
-    const isValid = true
+    const isValid = true;
 
     this.setState({
       albumOrArtist: event.target.value,
       justFailedSearch: false,
       inputInvalid: event.target.value.length > 1 ? !isValid : false,
       searchEnabled: event.target.value.length > 1 ? isValid : false,
-    })
+    });
   }
 
   render() {
-    const topAlbumsMode = this.state.currentView === ALBUM_VIEW_STEP_ARTIST
+    const topAlbumsMode = this.state.currentView === ALBUM_VIEW_STEP_ARTIST;
 
     const renderBreadcrumbNavigation = () => {
-      let itemList = [
+      const itemList = [
         <BreadcrumbItem tag="a" href="#" onClick={() => this.resetState(ALBUM_VIEW_STEP_SEARCH)} key={ALBUM_VIEW_STEP_SEARCH}>
           <Trans i18nKey="search">Search</Trans>
-        </BreadcrumbItem>
-      ]
+        </BreadcrumbItem>,
+      ];
 
       if (this.state.currentView !== ALBUM_VIEW_STEP_SEARCH) {
         itemList.push(
           <BreadcrumbItem tag="a" href="#" onClick={() => this.resetState(ALBUM_VIEW_STEP_SRP)} key={ALBUM_VIEW_STEP_SRP}>
             &quot;{this.state.albumOrArtist}&quot;
           </BreadcrumbItem>
-        )
+        );
       }
 
       if (this.state.selectedArtist) {
@@ -373,7 +373,7 @@ class ScrobbleAlbum extends Component {
           <BreadcrumbItem tag="a" href="#" onClick={() => this.resetState(ALBUM_VIEW_STEP_ARTIST)} key={ALBUM_VIEW_STEP_ARTIST}>
             <FontAwesomeIcon icon={faUser} /> {this.state.selectedArtist}
           </BreadcrumbItem>
-        )
+        );
       }
 
       if (this.state.currentView === ALBUM_VIEW_STEP_TRACKLIST) {
@@ -382,24 +382,24 @@ class ScrobbleAlbum extends Component {
             <FontAwesomeIcon icon={faCompactDisc} /> {this.state.selectedAlbum}
             {/* ToDo: add a link to the album's URL */}
           </BreadcrumbItem>
-        )
+        );
       }
 
       return (
         <Breadcrumb className="my-3">
           {itemList}
         </Breadcrumb>
-      )
-    }
+      );
+    };
 
     const goBackLink = (toStep) => {
       return (
-        <a href="/scrobble/album" onClick={(e) => {e.preventDefault();this.resetState(toStep)}} className="my-2">
+        <a href="/scrobble/album" onClick={(e) => { e.preventDefault(); this.resetState(toStep); }} className="my-2">
           <FontAwesomeIcon icon={faArrowLeft} />{' '}
           <Trans i18nKey="goBack">Go back</Trans>
         </a>
-      )
-    }
+      );
+    };
 
     const sectionHeading = (
       <header>
@@ -416,19 +416,19 @@ class ScrobbleAlbum extends Component {
         </div>
         { this.state.currentView !== ALBUM_VIEW_STEP_SEARCH && renderBreadcrumbNavigation() }
       </header>
-    )
+    );
 
     const boringSpinnerBlock = (
       <div className="col-md-6">
         <Spinner />
       </div>
-    )
+    );
 
-    let albumSRP
-    let artistSRP
-    let albumPane
+    let albumSRP;
+    let artistSRP;
+    let albumPane;
 
-    switch(this.state.currentView) {
+    switch (this.state.currentView) {
       default:
       case ALBUM_VIEW_STEP_SEARCH:
         return (
@@ -450,71 +450,71 @@ class ScrobbleAlbum extends Component {
               />
             </div>
           </Row>
-        )
+        );
 
       case ALBUM_VIEW_STEP_SRP:
       case ALBUM_VIEW_STEP_ARTIST:
         if (this.state.albumListIsLoading) {
-          albumSRP = boringSpinnerBlock
+          albumSRP = boringSpinnerBlock;
         } else {
-          const isHalfColumn = this.state.searchOptions.byArtist && !topAlbumsMode
-          const albumColSize = isHalfColumn ? 'col-sm-6 col-xl-4' : 'col-sm-6 col-sm-4 col-xl-3'
-          const albumsSource = topAlbumsMode ? get(this.props.artists.topAlbums, `['${this.state.mbid.artist}']`, []) : get(this.props.albums.searchCache, `['${this.state.albumOrArtist.toLowerCase()}']`, [])
-          let listOfAlbums = []
-          let i = 0
+          const isHalfColumn = this.state.searchOptions.byArtist && !topAlbumsMode;
+          const albumColSize = isHalfColumn ? 'col-sm-6 col-xl-4' : 'col-sm-6 col-sm-4 col-xl-3';
+          const albumsSource = topAlbumsMode ? get(this.props.artists.topAlbums, `['${this.state.mbid.artist}']`, []) : get(this.props.albums.searchCache, `['${this.state.albumOrArtist.toLowerCase()}']`, []);
+          let listOfAlbums = [];
+          let i = 0;
 
           if (albumsSource.length > 0) {
-            for (let album of albumsSource) {
+            for (const album of albumsSource) {
               listOfAlbums.push(
                 <div className={`listOfAlbums ${albumColSize}`} key={i}>
                   <a href={album.url} onClick={this.getAlbum(album)}>
                     <AlbumCard artist={album.artist} name={album.name} background={album.cover} className="mt-4" interactive />
                   </a>
                 </div>
-              )
-              i++
+              );
+              i++;
             }
           } else {
             listOfAlbums = (
               <div className="col-12 text-center my-4">
-                <Trans i18nKey="noAlbumsFound" values={{albumOrArtist: this.state.albumOrArtist}}>No albums found for <em>your search query</em></Trans>
+                <Trans i18nKey="noAlbumsFound" values={{ albumOrArtist: this.state.albumOrArtist }}>No albums found for <em>your search query</em></Trans>
                 <br />
                 { goBackLink(this.state.currentView - 1) }
               </div>
-            )
+            );
           }
 
           albumSRP = (
             <div className={isHalfColumn ? 'col-md-8' : ''}>
-          <h3 className="mt-3 mb-0">{topAlbumsMode ? <Trans i18nKey="topAlbumsBy" values={{nameOfArtist: this.state.selectedArtist}}>Albums</Trans> : <Trans i18nKey="album" count="2">Albums</Trans>}</h3>
+              <h3 className="mt-3 mb-0">{topAlbumsMode ? <Trans i18nKey="topAlbumsBy" values={{ nameOfArtist: this.state.selectedArtist }}>Albums</Trans> : <Trans i18nKey="album" count="2">Albums</Trans>}</h3>
               <Row>
                 {listOfAlbums}
               </Row>
             </div>
-          )
+          );
         }
 
         if (this.state.artistListIsLoading || topAlbumsMode) {
-          artistSRP = boringSpinnerBlock
+          artistSRP = boringSpinnerBlock;
         } else {
-          const artistColSize = this.state.searchOptions.byAlbum ? 'col-12' : 'col-md-6 col-lg-4 col-xl-3'
-          const artistsSource = get(this.props.artists.cache, `['${this.state.albumOrArtist.toLowerCase()}']`, [])
-          let listOfArtists = []
-          let i = 0
+          const artistColSize = this.state.searchOptions.byAlbum ? 'col-12' : 'col-md-6 col-lg-4 col-xl-3';
+          const artistsSource = get(this.props.artists.cache, `['${this.state.albumOrArtist.toLowerCase()}']`, []);
+          let listOfArtists = [];
+          let i = 0;
 
           if (artistsSource.length > 0) {
-            for (let artist of artistsSource) {
-              listOfArtists.push(<ArtistCard artist={artist} onClick={this.searchAlbumsByArtist(artist)} className={artistColSize} key={i} />)
-              i++
+            for (const artist of artistsSource) {
+              listOfArtists.push(<ArtistCard artist={artist} onClick={this.searchAlbumsByArtist(artist)} className={artistColSize} key={i} />);
+              i++;
             }
           } else {
             listOfArtists = (
               <div className="col-12 text-center my-4">
-                <Trans i18nKey="noArtistsFound" values={{albumOrArtist: this.state.albumOrArtist}}>No artists found for <em>your search query</em></Trans>
+                <Trans i18nKey="noArtistsFound" values={{ albumOrArtist: this.state.albumOrArtist }}>No artists found for <em>your search query</em></Trans>
                 <br />
                 { goBackLink(ALBUM_VIEW_STEP_SEARCH) }
               </div>
-            )
+            );
           }
 
           artistSRP = (
@@ -524,7 +524,7 @@ class ScrobbleAlbum extends Component {
                 {listOfArtists}
               </Row>
             </div>
-          )
+          );
         }
 
         return (
@@ -535,14 +535,14 @@ class ScrobbleAlbum extends Component {
               {topAlbumsMode || this.state.albumListIsLoading ? null : artistSRP}
             </Row>
           </React.Fragment>
-        )
+        );
 
       case ALBUM_VIEW_STEP_TRACKLIST:
         if (this.state.albumIsLoading) {
-          albumPane = <Spinner />
+          albumPane = <Spinner />;
         } else {
-          const album = get(this.props.albums, `albumsCache['${this.state.mbid.album}']`, {})
-          const albumIsEmpty = get(album, 'tracks', []).length === 0
+          const album = get(this.props.albums, `albumsCache['${this.state.mbid.album}']`, {});
+          const albumIsEmpty = get(album, 'tracks', []).length === 0;
 
           albumPane = (
             <React.Fragment>
@@ -564,7 +564,7 @@ class ScrobbleAlbum extends Component {
                             <CustomInput inline type="radio" id="useNowTimestamp" label={t('now')} name="useCustomTimestamp" checked={!this.state.useCustomTimestamp} onChange={this.toggleCustomTimestamp} disabled={albumIsEmpty}></CustomInput>
                             <CustomInput inline type="radio" id="useCustomTimestamp" label={t('customTimestamp')} name="useCustomTimestamp" checked={this.state.useCustomTimestamp} onChange={this.toggleCustomTimestamp} disabled={albumIsEmpty}></CustomInput>
                           </React.Fragment>
-                        )
+                        );
                       }
                     }</Translation>
                     <FontAwesomeIcon id="timestampInfoIcon" icon={faQuestionCircle} color="var(--gray)" onClick={this.toggleTimestampCopy} />
@@ -601,7 +601,7 @@ class ScrobbleAlbum extends Component {
                 </div>
               </ScrobbleList>
             </React.Fragment>
-          )
+          );
         }
 
         return (
@@ -624,7 +624,7 @@ class ScrobbleAlbum extends Component {
               </div>
             </div>
           </React.Fragment>
-        )
+        );
     }
   }
 }
@@ -636,8 +636,8 @@ const mapStateToProps = (state) => {
     artists: state.artist,
     albums: state.album,
     settings: state.settings,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -646,8 +646,8 @@ const mapDispatchToProps = (dispatch) => {
     searchAlbums: searchAlbums(dispatch),
     searchArtists: searchArtists(dispatch),
     searchArtistTopAlbums: searchArtistTopAlbums(dispatch),
-  }
-}
+  };
+};
 
 ScrobbleAlbum.propTypes = {
   albums: PropTypes.shape({
@@ -666,8 +666,8 @@ ScrobbleAlbum.propTypes = {
   searchArtists: PropTypes.func,
   searchArtistTopAlbums: PropTypes.func,
   user: PropTypes.object,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   ScrobbleAlbum
-)
+);

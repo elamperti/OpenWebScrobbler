@@ -1,8 +1,8 @@
-import React from 'react'
-import { Trans, useTranslation } from 'react-i18next'
+import React from 'react';
+import { Trans, useTranslation } from 'react-i18next';
 
 export default function WelcomeBlock() {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <React.Fragment>
@@ -15,5 +15,5 @@ export default function WelcomeBlock() {
         {t('purpose')}
       </p>
     </React.Fragment>
-  )
+  );
 }

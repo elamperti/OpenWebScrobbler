@@ -12,7 +12,7 @@
 
 import {
   NEW_VERSION_READY,
-} from 'Constants'
+} from 'Constants';
 
 const isLocalhost = Boolean(
   window.location.hostname === 'localhost' ||
@@ -22,38 +22,38 @@ const isLocalhost = Boolean(
     window.location.hostname.match(
       /^127(?:\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)){3}$/
     )
-)
+);
 
 export default function register(reduxStore) {
   if (process.env.NODE_ENV === 'production' && 'serviceWorker' in navigator) {
     // The URL constructor is available in all browsers that support SW.
-    const publicUrl = new URL(process.env.PUBLIC_URL, window.location)
+    const publicUrl = new URL(process.env.PUBLIC_URL, window.location);
     if (publicUrl.origin !== window.location.origin) {
       // Our service worker won't work if PUBLIC_URL is on a different origin
       // from what our page is served on. This might happen if a CDN is used to
       // serve assets; see https://github.com/facebookincubator/create-react-app/issues/2374
-      return
+      return;
     }
 
     window.addEventListener('load', () => {
-      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`
+      const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`;
 
       if (isLocalhost) {
         // This is running on localhost. Lets check if a service worker still exists or not.
-        checkValidServiceWorker(swUrl)
+        checkValidServiceWorker(swUrl);
 
         // Add some additional logging to localhost, pointing developers to the
         // service worker/PWA documentation.
         navigator.serviceWorker.ready.then(() => {
           console.log(
             'This web app is being served cache-first by a service worker.'
-          )
-        })
+          );
+        });
       } else {
         // Is not local host. Just register service worker
-        registerValidSW(swUrl, reduxStore)
+        registerValidSW(swUrl, reduxStore);
       }
-    })
+    });
   }
 }
 
@@ -62,7 +62,7 @@ function registerValidSW(swUrl, reduxStore) {
     .register(swUrl)
     .then(registration => {
       registration.onupdatefound = () => {
-        const installingWorker = registration.installing
+        const installingWorker = registration.installing;
         installingWorker.onstatechange = () => {
           if (installingWorker.state === 'installed') {
             if (navigator.serviceWorker.controller) {
@@ -70,23 +70,23 @@ function registerValidSW(swUrl, reduxStore) {
               // the fresh content will have been added to the cache.
               // It's the perfect time to display a "New content is
               // available; please refresh." message in your web app.
-              console.log('New content is available; please refresh.')
+              console.log('New content is available; please refresh.');
               reduxStore.dispatch({
                 type: NEW_VERSION_READY,
-              })
+              });
             } else {
               // At this point, everything has been precached.
               // It's the perfect time to display a
               // "Content is cached for offline use." message.
-              console.log('Content is cached for offline use.')
+              console.log('Content is cached for offline use.');
             }
           }
-        }
-      }
+        };
+      };
     })
     .catch(error => {
-      console.error('Error during service worker registration:', error)
-    })
+      console.error('Error during service worker registration:', error);
+    });
 }
 
 function checkValidServiceWorker(swUrl) {
@@ -101,25 +101,25 @@ function checkValidServiceWorker(swUrl) {
         // No service worker found. Probably a different app. Reload the page.
         navigator.serviceWorker.ready.then(registration => {
           registration.unregister().then(() => {
-            window.location.reload()
-          })
-        })
+            window.location.reload();
+          });
+        });
       } else {
         // Service worker found. Proceed as normal.
-        registerValidSW(swUrl)
+        registerValidSW(swUrl);
       }
     })
     .catch(() => {
       console.log(
         'No internet connection found. App is running in offline mode.'
-      )
-    })
+      );
+    });
 }
 
 export function unregister() {
   if ('serviceWorker' in navigator) {
     navigator.serviceWorker.ready.then(registration => {
-      registration.unregister()
-    })
+      registration.unregister();
+    });
   }
 }

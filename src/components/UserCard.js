@@ -1,20 +1,20 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { useTranslation } from 'react-i18next'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { useTranslation } from 'react-i18next';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faExternalLinkAlt,
-} from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-solid-svg-icons';
 
-import Avatar from 'components/Avatar'
+import Avatar from 'components/Avatar';
 
-import './UserCard.css'
+import './UserCard.css';
 
 const UserCard = props => {
-  const { t } = useTranslation()
+  const { t } = useTranslation();
   // ToDo: use URL from user.info endpoint
-  let externalLink = (
+  const externalLink = (
     <div>
       <a
         href={`https://last.fm/user/${props.name}`}
@@ -27,7 +27,7 @@ const UserCard = props => {
       {' '}
       <FontAwesomeIcon icon={faExternalLinkAlt} />
     </div>
-  )
+  );
 
   return (
     <div className={`user-card d-flex w-100 px-3 no-gutters align-items-center ${props.isHeading ? 'py-3' : ''}`}>
@@ -39,19 +39,19 @@ const UserCard = props => {
         { props.withLinkToProfile ? externalLink : null }
       </div>
     </div>
-  )
-}
+  );
+};
 
 UserCard.propTypes = {
   name: PropTypes.string.isRequired,
   user: PropTypes.object.isRequired,
   isHeading: PropTypes.bool,
   withLinkToProfile: PropTypes.bool,
-}
+};
 
 UserCard.defaultProps = {
   rect: false,
   withLinkToProfile: false,
-}
+};
 
-export default UserCard
+export default UserCard;

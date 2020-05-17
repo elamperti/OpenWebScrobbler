@@ -1,17 +1,17 @@
-import React from 'react'
-import { Trans, useTranslation } from 'react-i18next'
-import { Jumbotron, Button, Row, Col } from 'reactstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faLock } from '@fortawesome/free-solid-svg-icons'
-import { faLastfm } from '@fortawesome/free-brands-svg-icons'
-import { logIn } from 'store/actions/userActions'
-import SocialNetworksBlock from './partials/SocialNetworksBlock'
-import WelcomeBlock from './partials/WelcomeBlock'
+import React from 'react';
+import { Trans, useTranslation } from 'react-i18next';
+import { Jumbotron, Button, Row, Col } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
+import { faLastfm } from '@fortawesome/free-brands-svg-icons';
+import { logIn } from 'store/actions/userActions';
+import SocialNetworksBlock from './partials/SocialNetworksBlock';
+import WelcomeBlock from './partials/WelcomeBlock';
 
-import './HomeVisitor.scss'
+import './HomeVisitor.scss';
 
 export default function Home() {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <React.Fragment>
@@ -40,5 +40,5 @@ export default function Home() {
       </Row>
       <SocialNetworksBlock />
     </React.Fragment>
-  )
+  );
 }

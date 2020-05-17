@@ -1,97 +1,97 @@
-import React, { Component } from 'react'
-import { PropTypes } from 'prop-types'
-import { connect } from 'react-redux'
-import { withTranslation, Trans } from 'react-i18next'
-import ReactGA from 'react-ga'
-import get from 'lodash/get'
-import hasIn from 'lodash/hasIn'
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
+import { withTranslation, Trans } from 'react-i18next';
+import ReactGA from 'react-ga';
+import get from 'lodash/get';
+import hasIn from 'lodash/hasIn';
 
 import {
   Button,
   CustomInput,
   Row,
-} from 'reactstrap'
+} from 'reactstrap';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronLeft,
   faHistory,
   faSync,
   faUserFriends,
-} from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-solid-svg-icons';
 
-import { fetchLastfmProfileHistory, fetchLastfmProfileInfo } from 'store/actions/userActions'
-import { setSettings } from 'store/actions/settingsActions'
+import { fetchLastfmProfileHistory, fetchLastfmProfileInfo } from 'store/actions/userActions';
+import { setSettings } from 'store/actions/settingsActions';
 
-import UserCard from 'components/UserCard'
-import ScrobbleList from 'components/ScrobbleList'
-import Avatar from 'components/Avatar'
-import Spinner from 'components/Spinner'
-import SearchForm from 'components/SearchForm'
-import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller'
+import UserCard from 'components/UserCard';
+import ScrobbleList from 'components/ScrobbleList';
+import Avatar from 'components/Avatar';
+import Spinner from 'components/Spinner';
+import SearchForm from 'components/SearchForm';
+import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 
 class ScrobbleUser extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
     // ToDo: move this to componentDidMount
-    const proposedUser = get(this.props, 'match.params.username', '')
+    const proposedUser = get(this.props, 'match.params.username', '');
 
     this.state = {
-      userToSearch: proposedUser.substring(0,15),
+      userToSearch: proposedUser.substring(0, 15),
       userToDisplay: null,
       isLoading: false,
       searchFormView: true,
       inputInvalid: false,
       justFailedSearch: false,
       searchEnabled: proposedUser.length > 1,
-    }
+    };
 
     if (proposedUser) {
       if (proposedUser.length < 16) {
-        this.search()
+        this.search();
       } else {
-        this.props.history.push('/scrobble/user')
+        this.props.history.push('/scrobble/user');
       }
     }
 
-    this.listRef = React.createRef()
+    this.listRef = React.createRef();
 
-    this.catchEnter = this.catchEnter.bind(this)
-    this.goBackToSearch = this.goBackToSearch.bind(this)
-    this.search = this.search.bind(this)
-    this.searchUser = this.searchUser.bind(this)
-    this.toggleOriginalTimestamp = this.toggleOriginalTimestamp.bind(this)
-    this.updateFriendUsername = this.updateFriendUsername.bind(this)
+    this.catchEnter = this.catchEnter.bind(this);
+    this.goBackToSearch = this.goBackToSearch.bind(this);
+    this.search = this.search.bind(this);
+    this.searchUser = this.searchUser.bind(this);
+    this.toggleOriginalTimestamp = this.toggleOriginalTimestamp.bind(this);
+    this.updateFriendUsername = this.updateFriendUsername.bind(this);
   }
 
   componentDidMount() {
-    this.focusSearchInput()
+    this.focusSearchInput();
   }
 
   static getDerivedStateFromProps(props, state) {
     if (!state.searchFormView && !state.isLoading && !props.match.params.username && !!state.userToDisplay) {
-        return {
-          ...state,
-          userToDisplay: null,
-          userToSearch: '',
-          searchFormView: true,
-        }
+      return {
+        ...state,
+        userToDisplay: null,
+        userToSearch: '',
+        searchFormView: true,
+      };
     }
-    return null
+    return null;
   }
 
   catchEnter(event) {
     if (event.keyCode === 13 && !this.state.inputInvalid) {
-      this.search()
+      this.search();
     }
   }
 
   focusSearchInput() {
-    const searchInput = document.getElementById('userToSearch')
+    const searchInput = document.getElementById('userToSearch');
     if (searchInput) {
-      searchInput.focus()
-      searchInput.setSelectionRange(0, searchInput.value.length)
+      searchInput.focus();
+      searchInput.setSelectionRange(0, searchInput.value.length);
     }
   }
 
@@ -101,33 +101,33 @@ class ScrobbleUser extends Component {
       searchFormView: true,
       searchEnabled: false,
     }, () => {
-      this.props.history.push('/scrobble/user')
-      this.focusSearchInput()
-    })
+      this.props.history.push('/scrobble/user');
+      this.focusSearchInput();
+    });
   }
 
   search() {
     this.setState({
       searchEnabled: false,
       isLoading: true,
-    })
-    if (!this.usernameIsValid(this.state.userToSearch)) return false
+    });
+    if (!this.usernameIsValid(this.state.userToSearch)) return false;
     ReactGA.event({
       category: 'Search',
-      action: 'User'
-    })
-    this.props.fetchLastfmProfileHistory(this.state.userToSearch, {page: 1}, (res, err) => {
-      const errNumber = get(err, 'data.error')
+      action: 'User',
+    });
+    this.props.fetchLastfmProfileHistory(this.state.userToSearch, { page: 1 }, (res, err) => {
+      const errNumber = get(err, 'data.error');
       if (errNumber === 6 || errNumber === 17) { // 6: User not found - 17: User has a private profile
         this.setState({
           inputInvalid: true,
           justFailedSearch: true,
           isLoading: false,
-        })
-        this.focusSearchInput()
+        });
+        this.focusSearchInput();
       } else {
-        let userToDisplay = get(res, 'value.data.recenttracks[@attr].user', this.state.userToSearch)
-        this.props.history.push(`/scrobble/user/${userToDisplay}`)
+        const userToDisplay = get(res, 'value.data.recenttracks[@attr].user', this.state.userToSearch);
+        this.props.history.push(`/scrobble/user/${userToDisplay}`);
         this.setState({
           searchFormView: false,
           isLoading: false,
@@ -135,11 +135,11 @@ class ScrobbleUser extends Component {
           userToDisplay,
         }, () => {
           if (!hasIn(this.props.user, `profiles['${this.state.userToDisplay}'].avatar`)) {
-            this.props.fetchLastfmProfileInfo(this.state.userToDisplay)
+            this.props.fetchLastfmProfileInfo(this.state.userToDisplay);
           }
-        })
+        });
       }
-    })
+    });
   }
 
   searchUser(username) {
@@ -147,32 +147,32 @@ class ScrobbleUser extends Component {
       this.setState({
         userToSearch: username,
       }, () => {
-        this.search()
-      })
-    }
+        this.search();
+      });
+    };
   }
 
   toggleOriginalTimestamp() {
     this.props.setSettings({
       ...this.props.settings,
       keepOriginalTimestamp: !this.props.settings.keepOriginalTimestamp,
-    }, true, true)
+    }, true, true);
   }
 
   updateFriendUsername(event) {
-    const isValid = this.usernameIsValid(event.target.value)
+    const isValid = this.usernameIsValid(event.target.value);
 
     this.setState({
       userToSearch: event.target.value,
       justFailedSearch: false,
       inputInvalid: event.target.value.length > 1 ? !isValid : false,
       searchEnabled: event.target.value.length > 1 ? isValid : false,
-    })
+    });
   }
 
   usernameIsValid(str) {
     // Should be between 2 and 15 characters, begin with a letter and contain only letters, numbers, '_' or '-'
-    return !!str.match(/^(?=[a-zA-Z])[a-zA-Z0-9_.-]{2,15}$/)
+    return !!str.match(/^(?=[a-zA-Z])[a-zA-Z0-9_.-]{2,15}$/);
   }
 
   render() {
@@ -181,7 +181,7 @@ class ScrobbleUser extends Component {
         <FontAwesomeIcon icon={faUserFriends} />{' '}
         <Trans i18nKey="scrobbleFromOtherUser">Scrobble from another user</Trans>
       </h2>
-    )
+    );
     const searchForm = (
       <SearchForm
         onChange={this.updateFriendUsername}
@@ -196,19 +196,19 @@ class ScrobbleUser extends Component {
         invalid={this.state.inputInvalid}
         feedbackMessage={this.state.justFailedSearch ? 'userNotFound' : 'invalidUsername'}
       />
-    )
-    let recentUsers
+    );
+    let recentUsers;
 
     if (get(this.props.user, 'recentProfiles', []).length > 0) {
-      let recentUsersList = []
-      for (let recentUser of this.props.user.recentProfiles) {
+      const recentUsersList = [];
+      for (const recentUser of this.props.user.recentProfiles) {
         // ToDo: convert <li> to <a> so users can copy a permalink to a recent search
         recentUsersList.push(
           <li key={recentUser} className="list-group-item" onClick={this.searchUser(recentUser)}>
             <Avatar user={get(this.props.user, `profiles['${recentUser}']`)} size="sm" className="mr-2" />
             {recentUser}
           </li>
-        )
+        );
       }
       recentUsers = (
         <React.Fragment>
@@ -217,7 +217,7 @@ class ScrobbleUser extends Component {
             {recentUsersList}
           </ul>
         </React.Fragment>
-      )
+      );
     }
 
     if (this.state.searchFormView) {
@@ -230,9 +230,9 @@ class ScrobbleUser extends Component {
             { this.state.isLoading ? <Spinner /> : recentUsers }
           </div>
         </Row>
-      )
+      );
     } else {
-      let friendScrobbles = (
+      const friendScrobbles = (
         <React.Fragment>
           <div className="UserCard-container rect row no-gutters pb-3">
             <div className="col-sm-8 d-flex align-items-middle">
@@ -269,7 +269,7 @@ class ScrobbleUser extends Component {
             </ScrobbleList>
           </div>
         </React.Fragment>
-      )
+      );
 
       return (
         <div className="flex-lg-grow-1">
@@ -301,9 +301,8 @@ class ScrobbleUser extends Component {
             </div>
           </div>
         </div>
-      )
+      );
     }
-
   }
 }
 
@@ -312,16 +311,16 @@ const mapStateToProps = (state) => {
     localScrobbles: state.scrobbles.list,
     user: state.user,
     settings: state.settings,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchLastfmProfileHistory: fetchLastfmProfileHistory(dispatch),
     fetchLastfmProfileInfo: fetchLastfmProfileInfo(dispatch),
     setSettings: setSettings(dispatch),
-  }
-}
+  };
+};
 
 ScrobbleUser.propTypes = {
   fetchLastfmProfileHistory: PropTypes.func,
@@ -334,8 +333,8 @@ ScrobbleUser.propTypes = {
     keepOriginalTimestamp: PropTypes.bool,
   }),
   user: PropTypes.object,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withTranslation()(ScrobbleUser)
-)
+);

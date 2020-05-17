@@ -42,7 +42,7 @@
     "no-unused-vars": "error",
     "prefer-const": "warn",
     "react/prop-types": 1,
-    "semi": [2, "never"],
+    "semi": [2, "always"],
     "space-infix-ops": 1,
     "space-before-function-paren": [2, "never"],
     "strict": [

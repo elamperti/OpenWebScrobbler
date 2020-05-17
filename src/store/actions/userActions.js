@@ -1,9 +1,9 @@
-import axios from 'axios'
-import { createBrowserHistory as createHistory } from 'history'
-import ReactGA from 'react-ga'
-import md5 from 'md5'
-import get from 'lodash/get'
-import hasIn from 'lodash/hasIn'
+import axios from 'axios';
+import { createBrowserHistory as createHistory } from 'history';
+import ReactGA from 'react-ga';
+import md5 from 'md5';
+import get from 'lodash/get';
+import hasIn from 'lodash/hasIn';
 
 import {
   AUDIOSCROBBLER_API_URL,
@@ -13,15 +13,15 @@ import {
   USER_GET_INFO,
   FETCH_LASTFM_USER_INFO,
   FETCH_LASTFM_USER_HISTORY,
-} from 'Constants'
+} from 'Constants';
 
-import { saveToLocalStorage } from 'localstorage'
-import { createAlert } from './alertActions'
-import { setSettings } from './settingsActions'
+import { saveToLocalStorage } from 'localstorage';
+import { createAlert } from './alertActions';
+import { setSettings } from './settingsActions';
 
-const history = createHistory()
+const history = createHistory();
 const lastfmAuthURL = `https://www.last.fm/api/auth/?api_key=${process.env.REACT_APP_LASTFM_API_KEY}` +
-                      `&cb=${window.location.protocol}//${window.location.host}/`
+                      `&cb=${window.location.protocol}//${window.location.host}/`;
 
 export function authUserWithToken(dispatch) {
   return (token) => {
@@ -29,24 +29,24 @@ export function authUserWithToken(dispatch) {
       .then(response => {
         if (get(response, 'data.status') === 'ok') {
           dispatch({
-            type: USER_LOGGED_IN
-          })
-          getUserInfo(dispatch)()
-          history.push('/scrobble/song')
+            type: USER_LOGGED_IN,
+          });
+          getUserInfo(dispatch)();
+          history.push('/scrobble/song');
         }
       })
       .catch(response => {
         createAlert(dispatch)({
           type: 'danger',
           title: 'loginError.title',
-          message: 'loginError.message'
-        })
-        if (response) {  // Avoid issue OPENSCROBBLER-47
+          message: 'loginError.message',
+        });
+        if (response) { // Avoid issue OPENSCROBBLER-47
           /* eslint-disable no-console */
-          console.error('Error logging in', response)
+          console.error('Error logging in', response);
         }
-      })
-  }
+      });
+  };
 }
 
 export function getUserInfo(dispatch) {
@@ -55,31 +55,31 @@ export function getUserInfo(dispatch) {
       .then((response) => {
         dispatch({
           type: `${USER_GET_INFO}_FULFILLED`,
-          payload: response
-        })
+          payload: response,
+        });
         if (response.data.user) {
-          let hashedUserId = md5(response.data.user.name)
+          const hashedUserId = md5(response.data.user.name);
           ReactGA.set({
-            userId: hashedUserId
-          })
-          saveToLocalStorage('hashedUID', hashedUserId)
+            userId: hashedUserId,
+          });
+          saveToLocalStorage('hashedUID', hashedUserId);
         }
         if (response.data.settings) {
-          setSettings(dispatch)(response.data.settings, false)
+          setSettings(dispatch)(response.data.settings, false);
         }
-      })
-  }
+      });
+  };
 }
 
 export function logIn() {
   return () => {
     ReactGA.outboundLink({
       label: 'Login intent',
-      to: lastfmAuthURL
+      to: lastfmAuthURL,
     }, () => {
-      window.location.href = lastfmAuthURL
-    })
-  }
+      window.location.href = lastfmAuthURL;
+    });
+  };
 }
 
 export function logOut(dispatch) {
@@ -88,24 +88,24 @@ export function logOut(dispatch) {
       category: 'Session',
       action: 'Logout',
       label: 'Intent',
-    }) // ToDo: add nonInteraction prop when logout is not manual
+    }); // ToDo: add nonInteraction prop when logout is not manual
     axios.post(`${OPENSCROBBLER_API_URL}/logout.php`)
       .then(() => {
         dispatch({
-          type: USER_LOGGED_OUT
-        })
+          type: USER_LOGGED_OUT,
+        });
         ReactGA.set({
           userId: undefined,
-        })
-        localStorage.removeItem('hashedUID')
-        history.push('/')
+        });
+        localStorage.removeItem('hashedUID');
+        history.push('/');
         createAlert(dispatch)(hasIn(alertObject, 'message') ? alertObject : {
           type: 'info',
           title: 'logoutInfo.title',
-          message: 'logoutInfo.message'
-        })
-      })
-  }
+          message: 'logoutInfo.message',
+        });
+      });
+  };
 }
 
 export function fetchLastfmProfileInfo(dispatch) {
@@ -117,17 +117,17 @@ export function fetchLastfmProfileInfo(dispatch) {
           method: 'user.getInfo',
           user: username,
           api_key: process.env.REACT_APP_LASTFM_API_KEY,
-          format: 'json'
+          format: 'json',
         },
-      })
-    })
+      }),
+    });
 
     if (typeof callback === 'function') {
       response.then((res) => {
-        callback(res)
-      })
+        callback(res);
+      });
     }
-  }
+  };
 }
 
 export function fetchLastfmProfileHistory(dispatch) {
@@ -140,19 +140,19 @@ export function fetchLastfmProfileHistory(dispatch) {
           user: username,
           ...options,
           api_key: process.env.REACT_APP_LASTFM_API_KEY,
-          format: 'json'
+          format: 'json',
         },
-      })
-    })
+      }),
+    });
 
     if (typeof callback === 'function') {
       response
         .then((res) => {
-          callback(res)
+          callback(res);
         })
         .catch((err) => {
-          callback(null, err)
-        })
+          callback(null, err);
+        });
     }
-  }
+  };
 }
