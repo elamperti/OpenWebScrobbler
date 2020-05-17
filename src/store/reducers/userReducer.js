@@ -1,5 +1,5 @@
-import get from 'lodash/get'
-import hasIn from 'lodash/hasIn'
+import get from 'lodash/get';
+import hasIn from 'lodash/hasIn';
 
 import {
   USER_LOGGED_IN,
@@ -8,7 +8,7 @@ import {
   FETCH_LASTFM_USER_INFO,
   FETCH_LASTFM_USER_HISTORY,
   MAX_RECENT_USERS,
-} from 'Constants'
+} from 'Constants';
 
 const initialState = {
   isLoggedIn: null,
@@ -17,75 +17,75 @@ const initialState = {
   userSettingsLoading: false,
   profiles: {},
   recentProfiles: [],
-}
+};
 
-const userReducer = (state=initialState, action) => {
-  let profiles = state.profiles || {}
-  let recentProfiles = state.recentProfiles || []
+const userReducer = (state = initialState, action) => {
+  const profiles = state.profiles || {};
+  let recentProfiles = state.recentProfiles || [];
 
   switch (action.type) {
     case USER_LOGGED_IN:
       return {
         ...state,
         isLoggedIn: true,
-      }
+      };
 
     case USER_LOGGED_OUT:
       return {
-          ...initialState,
-          isLoggedIn: false,
-      }
+        ...initialState,
+        isLoggedIn: false,
+      };
 
     case `${USER_GET_INFO}_PENDING`:
       return {
         ...state,
         userSettingsLoading: true,
-      }
+      };
 
     case `${USER_GET_INFO}_REJECTED`:
       // ToDo: Handle this failure
       return {
         ...state,
         userSettingsLoading: false,
-      }
+      };
 
     case `${USER_GET_INFO}_FULFILLED`:
       if (action.payload.data.user) {
-        let userData = action.payload.data.user
+        const userData = action.payload.data.user;
         return {
           ...state,
           isLoggedIn: true,
           name: userData.name || '',
           url: userData.url || '',
           // country: userData.country || '',
-          avatar: userData.image ? {sm: userData.image[1]['#text']} : '',
-        }
+          avatar: userData.image ? { sm: userData.image[1]['#text'] } : '',
+        };
       } else if (Object.prototype.hasOwnProperty.call(action.payload.data, 'isLoggedIn')) {
         return {
           ...state,
           isLoggedIn: action.payload.data.isLoggedIn,
-        }
+        };
       } else {
-        return state
+        return state;
       }
 
     case `${FETCH_LASTFM_USER_INFO}_FULFILLED`:
       if (hasIn(action.payload, 'data.user')) {
-        let username = action.payload.data.user.name
-        let avatars = {}
+        const username = action.payload.data.user.name;
+        const avatars = {};
 
-        for (let avatar of get(action.payload.data.user, 'image')) {
+        for (const avatar of get(action.payload.data.user, 'image')) {
           switch (avatar.size) {
             case 'small':
-              avatars['sm'] = avatar['#text']
-              break
+              avatars.sm = avatar['#text'];
+              break;
             case 'medium':
-              avatars['md'] = avatar['#text']
-              break
+              avatars.md = avatar['#text'];
+              break;
             default:
             case 'large':
-              avatars['lg'] = avatar['#text']
-              break
+              avatars.lg = avatar['#text'];
+              break;
             // case 'extralarge':
             //   avatars['xl'] = avatar['#text'];
             //   break;
@@ -95,23 +95,23 @@ const userReducer = (state=initialState, action) => {
         profiles[username] = {
           ...get(profiles, username, {}),
           avatar: avatars,
-        }
+        };
         return {
           ...state,
           profiles,
-        }
+        };
       } else {
         // ToDo: the user wasn't found, do something?
-        return state
+        return state;
       }
 
     case `${FETCH_LASTFM_USER_HISTORY}_FULFILLED`:
       if (hasIn(action.payload, 'data.recenttracks.track')) {
-        let newScrobbles = []
-        let username = get(action.payload, 'data.recenttracks[@attr].user', '')
-        const totalPages = get(action.payload, 'data.recenttracks[@attr].totalPages', '')
+        const newScrobbles = [];
+        const username = get(action.payload, 'data.recenttracks[@attr].user', '');
+        const totalPages = get(action.payload, 'data.recenttracks[@attr].totalPages', '');
 
-        for (let item of get(action.payload, 'data.recenttracks.track', [])) {
+        for (const item of get(action.payload, 'data.recenttracks.track', [])) {
           if (!get(item, '[@attr].nowplaying', false)) {
             newScrobbles.unshift({
               artist: item.artist['#text'],
@@ -119,32 +119,32 @@ const userReducer = (state=initialState, action) => {
               album: item.album['#text'],
               albumArtist: null,
               timestamp: new Date(item.date.uts * 1000),
-            })
+            });
           }
         }
 
         profiles[username] = {
           ...get(profiles, username, {}),
           scrobbles: newScrobbles,
-          totalPages
-        }
+          totalPages,
+        };
 
-        let i = recentProfiles.indexOf(username)
+        const i = recentProfiles.indexOf(username);
         if (i > -1) {
-          recentProfiles.splice(i, 1)
+          recentProfiles.splice(i, 1);
         }
-        recentProfiles.unshift(username)
-        recentProfiles = recentProfiles.slice(0, MAX_RECENT_USERS)
+        recentProfiles.unshift(username);
+        recentProfiles = recentProfiles.slice(0, MAX_RECENT_USERS);
       }
       return {
         ...state,
         profiles,
         recentProfiles,
-      }
+      };
 
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default userReducer
+export default userReducer;

@@ -1,13 +1,13 @@
-import React from 'react'
-import { Jumbotron, Button, Row, Col } from 'reactstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faDiscord, faPatreon } from '@fortawesome/free-brands-svg-icons'
-import { useTranslation } from 'react-i18next'
+import React from 'react';
+import { Jumbotron, Button, Row, Col } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDiscord, faPatreon } from '@fortawesome/free-brands-svg-icons';
+import { useTranslation } from 'react-i18next';
 
-import './SocialNetworksBlock.scss'
+import './SocialNetworksBlock.scss';
 
 export default function SocialNetworksBlock() {
-  const {t} = useTranslation()
+  const { t } = useTranslation();
 
   return (
     <Row data-cy="SocialNetworkBlock" className="ows-SocialNetworkBlock">
@@ -44,5 +44,5 @@ export default function SocialNetworksBlock() {
         </Jumbotron>
       </Col>
     </Row>
-  )
+  );
 }

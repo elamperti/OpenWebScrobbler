@@ -1,5 +1,5 @@
-import get from 'lodash/get'
-import hasIn from 'lodash/hasIn'
+import get from 'lodash/get';
+import hasIn from 'lodash/hasIn';
 
 import {
   ENQUEUE_NEW,
@@ -9,49 +9,49 @@ import {
   CLEAR_SCROBBLES_LIST,
   SCROBBLE,
   SCROBBLE_COVER_SEARCH,
-} from 'Constants'
+} from 'Constants';
 
 const initialState = {
   countNewScrobbles: false,
   unreadCount: 0,
-  list: []
-}
+  list: [],
+};
 
 function updateScrobbleProps(state, scrobbleUUID, newProps) {
-  if (!scrobbleUUID || !newProps) return state
+  if (!scrobbleUUID || !newProps) return state;
   if (newProps.timestamp && newProps.timestamp.valueOf() === 0) {
     // ToDo: update timestamp with response value for multiple scrobbles
-    delete newProps.timestamp
+    delete newProps.timestamp;
   }
   return {
     ...state,
     list: state.list.map((item) => {
       if (item.scrobbleUUID !== scrobbleUUID) {
-        return item
+        return item;
       } else {
         return {
           ...item,
           ...newProps,
-        }
+        };
       }
     }),
-  }
+  };
 }
 
-const scrobbleReducer = (state=initialState, action) => {
-  let status, errorDescription
-  let newScrobbles = []
-  let trackUUID
-  let albumData
+const scrobbleReducer = (state = initialState, action) => {
+  let status, errorDescription;
+  const newScrobbles = [];
+  let trackUUID;
+  let albumData;
 
   switch (action.type) {
     case ENQUEUE_NEW:
-      for (let scrobble of action.payload.scrobbles) {
+      for (const scrobble of action.payload.scrobbles) {
         newScrobbles.push({
           ...scrobble,
           status: 'pending',
           scrobbleUUID: action.payload.scrobbleUUID,
-        })
+        });
       }
 
       return {
@@ -60,49 +60,49 @@ const scrobbleReducer = (state=initialState, action) => {
         list: [
           ...state.list,
           ...newScrobbles,
-        ]
-      }
+        ],
+      };
 
     case COUNT_SCROBBLES_ENABLE:
       return {
         ...state,
-        countNewScrobbles: true
-      }
+        countNewScrobbles: true,
+      };
 
     case COUNT_SCROBBLES_DISABLE:
       return {
         ...state,
         unreadCount: 0,
-        countNewScrobbles: false
-      }
+        countNewScrobbles: false,
+      };
 
     case USER_LOGGED_OUT:
-      return initialState
+      return initialState;
 
     case CLEAR_SCROBBLES_LIST:
       return {
         ...state,
         unreadCount: 0,
         list: [],
-      }
+      };
 
     case `${SCROBBLE}_FULFILLED`:
       if (hasIn(action.payload, 'data.scrobbles[@attr]')) {
-        status = action.payload.data.scrobbles['@attr'].ignored ? 'error' : 'success'
-        errorDescription = status === 'error' ? 'errors.lastfmRejected' : null
+        status = action.payload.data.scrobbles['@attr'].ignored ? 'error' : 'success';
+        errorDescription = status === 'error' ? 'errors.lastfmRejected' : null;
         return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           status,
           errorDescription,
           timestamp: new Date(get(action.payload.data.scrobbles.scrobble, 'timestamp', 0) * 1000),
-        })
+        });
       } else {
         /* eslint-disable no-console */
-        console.error('Unexpected scrobble response', action.payload.data)
+        console.error('Unexpected scrobble response', action.payload.data);
         return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           status: 'error',
           errorMessage: get(action.payload, 'data.message'),
           errorDescription: 'errors.unexpectedResponse',
-        })
+        });
       }
 
     case `${SCROBBLE}_REJECTED`:
@@ -110,36 +110,36 @@ const scrobbleReducer = (state=initialState, action) => {
         return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           status: 'error',
           errorDescription: 'errors.apiCallFailed',
-        })
+        });
       }
-      return state
+      return state;
 
     case `${SCROBBLE_COVER_SEARCH}_FULFILLED`:
-      trackUUID = action.payload.config.params.ows_scrobbleUUID
+      trackUUID = action.payload.config.params.ows_scrobbleUUID;
       if (hasIn(action.payload, 'data.track.album') || hasIn(action.payload, 'data.album')) {
-        albumData = action.payload.data.album || action.payload.data.track.album
+        albumData = action.payload.data.album || action.payload.data.track.album;
         if (albumData.image) {
-          let cover = albumData.image[1]['#text']
+          const cover = albumData.image[1]['#text'];
           return {
             ...state,
             list: state.list.map((item) => {
               if (item.id !== trackUUID) {
-                return item
+                return item;
               } else {
                 return {
                   ...item,
-                  cover
-                }
+                  cover,
+                };
               }
-            })
-          }
+            }),
+          };
         }
       }
-      return state
+      return state;
 
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default scrobbleReducer
+export default scrobbleReducer;

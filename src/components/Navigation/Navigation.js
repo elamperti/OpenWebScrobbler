@@ -1,28 +1,28 @@
-import React, {useState} from 'react'
-import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
-import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React, { useState } from 'react';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faHeadphonesAlt,
   faCompactDisc,
   faSignInAlt,
   faUserFriends,
-} from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-solid-svg-icons';
 import {
   faPlayCircle,
-} from '@fortawesome/free-regular-svg-icons'
+} from '@fortawesome/free-regular-svg-icons';
 
-import LanguageSelector from './partials/LanguageSelector'
-import NavigationItem from './partials/NavigationItem'
-import UserDropdown from './partials/UserDropdown'
-import { LASTFM_AUTH_URL } from 'Constants'
-import './Navigation.scss'
+import LanguageSelector from './partials/LanguageSelector';
+import NavigationItem from './partials/NavigationItem';
+import UserDropdown from './partials/UserDropdown';
+import { LASTFM_AUTH_URL } from 'Constants';
+import './Navigation.scss';
 
 export default function Navigation() {
-  const isLoggedIn = useSelector(state => state.user.isLoggedIn)
-  const isDonor = useSelector(state => state.settings.isDonor)
-  const [menuIsOpen, toggleMenu] = useState(false)
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+  const isDonor = useSelector(state => state.settings.isDonor);
+  const [menuIsOpen, toggleMenu] = useState(false);
 
   return (
     <Navbar color="dark" dark expand="md" data-cy="Navigation" id="ows-Navigation" className={`${isDonor ? 'ows-donor' : ''}`}>
@@ -46,12 +46,12 @@ export default function Navigation() {
         )}
         <Nav className="ml-auto" navbar>
           <LanguageSelector className="d-none d-md-block" />
-          {isLoggedIn ?
-            <UserDropdown /> :
-            <NavigationItem href={LASTFM_AUTH_URL} i18nKey="logIn" icon={faSignInAlt} />
+          {isLoggedIn
+            ? <UserDropdown />
+            : <NavigationItem href={LASTFM_AUTH_URL} i18nKey="logIn" icon={faSignInAlt} />
           }
         </Nav>
       </Collapse>
     </Navbar>
-  )
+  );
 }

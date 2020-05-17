@@ -1,38 +1,38 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { languageList } from 'utils/i18n' // ToDo: remove i18n and get current language from elsewhere
-import ReactGA from 'react-ga'
-import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { languageList } from 'utils/i18n'; // ToDo: remove i18n and get current language from elsewhere
+import ReactGA from 'react-ga';
+import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faGlobe,
-} from '@fortawesome/free-solid-svg-icons'
-import { useTranslation } from 'react-i18next'
-import { PropTypes } from 'prop-types'
+} from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
+import { PropTypes } from 'prop-types';
 
-import { setSettings } from 'store/actions/settingsActions'
+import { setSettings } from 'store/actions/settingsActions';
 
-import './LanguageSelector.scss'
+import './LanguageSelector.scss';
 
 export default function LanguageSelector({
   className,
 }) {
-  const {t, i18n} = useTranslation()
-  const dispatch = useDispatch()
-  const isLoggedIn = useSelector(state => state.user.isLoggedIn)
-  const settings = useSelector(state => state.settings)
+  const { t, i18n } = useTranslation();
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+  const settings = useSelector(state => state.settings);
 
   function changeLanguage(el) {
-    const langCode = el.target.dataset.lang
+    const langCode = el.target.dataset.lang;
     ReactGA.event({
       category: 'Language',
       action: 'Change',
       label: langCode,
-    })
+    });
     setSettings(dispatch)({
       ...settings, // ToDo: remove the need for this
       lang: langCode,
-    }, isLoggedIn, true)
+    }, isLoggedIn, true);
   }
 
   return (
@@ -52,7 +52,7 @@ export default function LanguageSelector({
         </a>
       </DropdownMenu>
     </UncontrolledDropdown>
-  )
+  );
 }
 
 LanguageSelector.propTypes = {
@@ -61,4 +61,4 @@ LanguageSelector.propTypes = {
   href: PropTypes.string.isRequired,
   i18nKey: PropTypes.string.isRequired,
   icon: PropTypes.node,
-}
+};

@@ -1,5 +1,5 @@
-import React from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   UncontrolledDropdown,
   DropdownToggle,
@@ -7,25 +7,25 @@ import {
   DropdownItem,
   NavItem,
   NavLink,
-} from 'reactstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+} from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCog,
   faExternalLinkAlt,
   faSignOutAlt,
-} from '@fortawesome/free-solid-svg-icons'
-import { useTranslation } from 'react-i18next'
+} from '@fortawesome/free-solid-svg-icons';
+import { useTranslation } from 'react-i18next';
 
-import Avatar from 'components/Avatar'
-import { openSettingsModal } from 'store/actions/settingsActions'
-import { logOut } from 'store/actions/userActions'
+import Avatar from 'components/Avatar';
+import { openSettingsModal } from 'store/actions/settingsActions';
+import { logOut } from 'store/actions/userActions';
 
-import './UserDropdown.scss'
+import './UserDropdown.scss';
 
 export default function UserDropdow() {
-  const {t} = useTranslation()
-  const dispatch = useDispatch()
-  const user = useSelector(state => state.user)
+  const { t } = useTranslation();
+  const dispatch = useDispatch();
+  const user = useSelector(state => state.user);
 
   return (
     <React.Fragment>
@@ -59,5 +59,5 @@ export default function UserDropdow() {
         </NavLink>
       </NavItem>
     </React.Fragment>
-  )
+  );
 }

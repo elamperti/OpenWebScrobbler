@@ -1,10 +1,10 @@
-import React, { Component } from 'react'
-import { PropTypes } from 'prop-types'
-import { connect } from 'react-redux'
-import { Trans } from 'react-i18next'
-import ReactGA from 'react-ga'
-import get from 'lodash/get'
-import hasIn from 'lodash/hasIn'
+import React, { Component } from 'react';
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
+import { Trans } from 'react-i18next';
+import ReactGA from 'react-ga';
+import get from 'lodash/get';
+import hasIn from 'lodash/hasIn';
 
 import {
   Badge,
@@ -14,63 +14,63 @@ import {
   NavLink,
   TabContent,
   TabPane,
-} from 'reactstrap'
+} from 'reactstrap';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faBroom,
   faCompactDisc,
   faHistory,
   faUserAstronaut,
-} from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-solid-svg-icons';
 import {
   faPlayCircle,
-} from '@fortawesome/free-regular-svg-icons'
+} from '@fortawesome/free-regular-svg-icons';
 
-import { clearListOfScrobbles, scrobbleCounterEnabled } from 'store/actions/scrobbleActions'
-import { fetchLastfmProfileHistory } from 'store/actions/userActions'
+import { clearListOfScrobbles, scrobbleCounterEnabled } from 'store/actions/scrobbleActions';
+import { fetchLastfmProfileHistory } from 'store/actions/userActions';
 
-import ScrobbleList from 'components/ScrobbleList'
-import SongForm from 'components/SongForm'
-import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller'
+import ScrobbleList from 'components/ScrobbleList';
+import SongForm from 'components/SongForm';
+import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 
-const CONSIDER_STALE_AFTER = 5 * 60 * 1000 // 5 minutes
+const CONSIDER_STALE_AFTER = 5 * 60 * 1000; // 5 minutes
 
 class ScrobbleSong extends Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.goToHistoryTab = this.goToHistoryTab.bind(this)
-    this.goToProfileTab = this.goToProfileTab.bind(this)
-    this.setCloneReceiver = this.setCloneReceiver.bind(this)
+    this.goToHistoryTab = this.goToHistoryTab.bind(this);
+    this.goToProfileTab = this.goToProfileTab.bind(this);
+    this.setCloneReceiver = this.setCloneReceiver.bind(this);
 
     this.state = {
       activeTab: 'history',
       lastHistoryFetch: null,
       profileScrobblesLoading: false,
-    }
+    };
 
     if (this.props.unreadScrobbles > 0) {
-      this.props.scrobbleCounterEnabled(false)
+      this.props.scrobbleCounterEnabled(false);
     }
   }
 
   goToHistoryTab() {
     if (this.state.activeTab !== 'history') {
-      this.props.scrobbleCounterEnabled(false)
+      this.props.scrobbleCounterEnabled(false);
       this.setState({
         activeTab: 'history',
-      })
+      });
       ReactGA.event({
         category: 'Tabs',
-        action: 'History'
-      })
+        action: 'History',
+      });
     }
   }
 
   goToProfileTab() {
     if (!this.state.profileScrobblesLoading) {
-      let listIsProbablyStale = this.state.lastHistoryFetch ? this.state.lastHistoryFetch < new Date(new Date() - CONSIDER_STALE_AFTER) : true
+      const listIsProbablyStale = this.state.lastHistoryFetch ? this.state.lastHistoryFetch < new Date(new Date() - CONSIDER_STALE_AFTER) : true;
       if (this.state.activeTab === 'userProfile' || !hasIn(this.props.user, `profiles[${this.props.user.name}].scrobbles`) || listIsProbablyStale) {
         this.setState({
           profileScrobblesLoading: true,
@@ -79,36 +79,36 @@ class ScrobbleSong extends Component {
             this.setState({
               profileScrobblesLoading: false,
               lastHistoryFetch: new Date(),
-            })
-          })
-        })
+            });
+          });
+        });
         ReactGA.event({
           category: 'Interactions',
-          action: 'Reload profile history'
-        })
+          action: 'Reload profile history',
+        });
       }
     }
     if (this.state.activeTab !== 'userProfile') {
-      this.props.scrobbleCounterEnabled(true)
+      this.props.scrobbleCounterEnabled(true);
       this.setState({
         activeTab: 'userProfile',
-      })
+      });
       ReactGA.event({
         category: 'Tabs',
-        action: 'My profile'
-      })
+        action: 'My profile',
+      });
     }
   }
 
   setCloneReceiver(func) {
     this.setState({
-      cloneReceiver: func
-    })
+      cloneReceiver: func,
+    });
   }
 
   render() {
-    let clearListButton
-    const hasUsername = !!this.props.user.name
+    let clearListButton;
+    const hasUsername = !!this.props.user.name;
 
     if (this.state.activeTab === 'history') {
       if (this.props.localScrobbles.length > 0) {
@@ -116,10 +116,10 @@ class ScrobbleSong extends Component {
           <div className="ml-auto d-flex my-auto">
             <Button className="btn-clear" size="sm" color="secondary" onClick={this.props.clearUserList}>
               <FontAwesomeIcon icon={faBroom} className="mr-1" />
-                <Trans i18nKey="clearHistory">Clear history</Trans>
+              <Trans i18nKey="clearHistory">Clear history</Trans>
             </Button>
           </div>
-        )
+        );
       }
     }
 
@@ -172,7 +172,7 @@ class ScrobbleSong extends Component {
           </TabContent>
         </div>
       </div>
-    )
+    );
   }
 }
 
@@ -183,24 +183,24 @@ ScrobbleSong.propTypes = {
   localScrobbles: PropTypes.array,
   unreadScrobbles: PropTypes.number,
   user: PropTypes.object,
-}
+};
 
 const mapStateToProps = (state) => {
   return {
     localScrobbles: state.scrobbles.list,
     unreadScrobbles: state.scrobbles.unreadCount,
     user: state.user,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchLastfmProfileHistory: fetchLastfmProfileHistory(dispatch),
     scrobbleCounterEnabled: scrobbleCounterEnabled(dispatch),
     clearUserList: clearListOfScrobbles(dispatch),
-  }
-}
+  };
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   ScrobbleSong
-)
+);

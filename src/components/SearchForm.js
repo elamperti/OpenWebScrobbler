@@ -1,6 +1,6 @@
-import React from 'react'
-import PropTypes from 'prop-types'
-import { Trans } from 'react-i18next'
+import React from 'react';
+import PropTypes from 'prop-types';
+import { Trans } from 'react-i18next';
 
 import {
   Button,
@@ -9,14 +9,14 @@ import {
   Input,
   Label,
   Row,
-} from 'reactstrap'
+} from 'reactstrap';
 
 function catchEnter(props) {
   return (event) => {
     if (event.keyCode === 13 && !props.invalid) {
-      props.onSearch()
+      props.onSearch();
     }
-  }
+  };
 }
 
 const SearchForm = props => {
@@ -51,15 +51,15 @@ const SearchForm = props => {
         </div>
       </Row>
     </div>
-  )
-}
+  );
+};
 
 SearchForm.defaultProps = {
   size: 'lg',
   disableSearch: false,
   readOnly: false,
   maxLength: null,
-}
+};
 
 SearchForm.propTypes = {
   onChange: PropTypes.func.isRequired,
@@ -73,6 +73,6 @@ SearchForm.propTypes = {
   disableSearch: PropTypes.bool,
   invalid: PropTypes.bool,
   feedbackMessage: PropTypes.string,
-}
+};
 
-export default SearchForm
+export default SearchForm;

@@ -1,11 +1,11 @@
-import shortid from 'shortid'
+import shortid from 'shortid';
 import {
   ALERT_CREATE,
   ALERT_DISMISS,
   ALERT_CLEAR_ALL,
-} from 'Constants'
+} from 'Constants';
 
-const initialState = []
+const initialState = [];
 
 /*
   Alert properties for humans:
@@ -17,12 +17,12 @@ const initialState = []
   The alerts marked with `persistent` won't be cleared after a route change.
 */
 
-const alertReducer = (state=initialState, action) => {
+const alertReducer = (state = initialState, action) => {
   switch (action.type) {
     case ALERT_CLEAR_ALL:
       return state.filter((alert) => {
-        return alert.persistent
-      })
+        return alert.persistent;
+      });
 
     case ALERT_CREATE:
       return [
@@ -39,25 +39,25 @@ const alertReducer = (state=initialState, action) => {
         },
         ...state.filter(alert => {
           if (action.payload.category && alert.category) {
-            return (alert.category !== action.payload.category)
+            return (alert.category !== action.payload.category);
           }
-          return true
-        })
-      ]
+          return true;
+        }),
+      ];
 
     case ALERT_DISMISS:
       return state.filter(alert => {
-        for (let key in action.payload) {
+        for (const key in action.payload) {
           if (alert[key] !== action.payload[key]) {
-            return true
+            return true;
           }
         }
-        return false
-      })
+        return false;
+      });
 
     default:
-      return state
+      return state;
   }
-}
+};
 
-export default alertReducer
+export default alertReducer;

@@ -1,7 +1,7 @@
-import React from 'react'
-import { PropTypes } from 'prop-types'
-import { connect } from 'react-redux'
-import { withTranslation } from 'react-i18next'
+import React from 'react';
+import { PropTypes } from 'prop-types';
+import { connect } from 'react-redux';
+import { withTranslation } from 'react-i18next';
 
 import {
   Button,
@@ -13,50 +13,50 @@ import {
   ModalHeader,
   ModalBody,
   ModalFooter,
-} from 'reactstrap'
+} from 'reactstrap';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCog,
-} from '@fortawesome/free-solid-svg-icons'
+} from '@fortawesome/free-solid-svg-icons';
 import {
   faSave,
-} from '@fortawesome/free-regular-svg-icons'
+} from '@fortawesome/free-regular-svg-icons';
 
-import { dismissAlert } from 'store/actions/alertActions'
-import { setSettings, closeSettingsModal } from 'store/actions/settingsActions'
-import { languageList } from 'utils/i18n'
+import { dismissAlert } from 'store/actions/alertActions';
+import { setSettings, closeSettingsModal } from 'store/actions/settingsActions';
+import { languageList } from 'utils/i18n';
 
 // import './SettingsModal.css';
 
 class SettingsModal extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
 
-    this.createPropsForCheckbox = this.createPropsForCheckbox.bind(this)
-    this.getLatestSettings = this.getLatestSettings.bind(this)
-    this.saveSettings = this.saveSettings.bind(this)
+    this.createPropsForCheckbox = this.createPropsForCheckbox.bind(this);
+    this.getLatestSettings = this.getLatestSettings.bind(this);
+    this.saveSettings = this.saveSettings.bind(this);
 
     this.state = {
       settings: {
         ...this.props.settings,
       },
-    }
+    };
   }
 
   createPropsForCheckbox(name) {
     return {
       name,
       checked: this.state.settings[name],
-      onChange: (/*event*/) => {
+      onChange: (/* event */) => {
         this.setState({
           settings: {
             ...this.state.settings,
-            [name]: !this.state.settings[name]
-          }
-        })
+            [name]: !this.state.settings[name],
+          },
+        });
       },
-    }
+    };
   }
 
   createPropsForInput(name) {
@@ -68,27 +68,27 @@ class SettingsModal extends React.Component {
           settings: {
             ...this.state.settings,
             [name]: event.target.value,
-          }
-        })
+          },
+        });
       },
-    }
+    };
   }
 
   getLatestSettings() {
     this.setState({
       settings: {
-        ...this.props.settings
+        ...this.props.settings,
       },
-    })
+    });
   }
 
   saveSettings() {
-    this.props.setSettings(this.state.settings)
-    this.props.close()
+    this.props.setSettings(this.state.settings);
+    this.props.close();
   }
 
   render() {
-    const t = this.props.t
+    const t = this.props.t;
 
     return (
       <Modal
@@ -114,8 +114,8 @@ class SettingsModal extends React.Component {
                     </optgroup>
                   </Input>
                   <a className="d-none d-sm-block text-right translationCTA"
-                     target="_blank" rel="noopener noreferrer"
-                     href="https://github.com/elamperti/OpenWebScrobbler/#translations"
+                    target="_blank" rel="noopener noreferrer"
+                    href="https://github.com/elamperti/OpenWebScrobbler/#translations"
                   >
                     {t('translateYourLanguage')}
                   </a>
@@ -144,7 +144,7 @@ class SettingsModal extends React.Component {
           </Button>
         </ModalFooter>
       </Modal>
-    )
+    );
   }
 }
 
@@ -152,16 +152,16 @@ const mapStateToProps = (state) => {
   return {
     user: state.user,
     settings: state.settings,
-  }
-}
+  };
+};
 
 const mapDispatchToProps = (dispatch) => {
   return {
     dismissAlert: dismissAlert(dispatch),
     setSettings: setSettings(dispatch),
     close: closeSettingsModal(dispatch),
-  }
-}
+  };
+};
 
 SettingsModal.propTypes = {
   isOpen: PropTypes.bool.isRequired,
@@ -173,8 +173,8 @@ SettingsModal.propTypes = {
   user: PropTypes.shape({
     name: PropTypes.string,
   }).isRequired,
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(
   withTranslation()(SettingsModal)
-)
+);

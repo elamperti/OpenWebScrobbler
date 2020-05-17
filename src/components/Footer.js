@@ -1,14 +1,14 @@
-import React from 'react'
-import { Trans } from 'react-i18next'
+import React from 'react';
+import { Trans } from 'react-i18next';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faTwitter,
   faFacebook,
   faGithub,
-} from '@fortawesome/free-brands-svg-icons'
+} from '@fortawesome/free-brands-svg-icons';
 
-import './Footer.css'
+import './Footer.css';
 
 function Footer() {
   return (
@@ -26,21 +26,21 @@ function Footer() {
           </a>
         </div>
         <p className="text-center">
-        <Trans i18nKey="footer.joinCommunity">
+          <Trans i18nKey="footer.joinCommunity">
           You are welcome to join our community <a href="https://discord.gg/vcbprTz">on Discord</a>!
-        </Trans>
+          </Trans>
         &nbsp;
-        <Trans i18nKey="footer.supportThisProject">
+          <Trans i18nKey="footer.supportThisProject">
           Please <a href="https://www.patreon.com/OpenScrobbler">support this project</a> on Patreon :)
-        </Trans>
-        <br />
-        <Trans i18nKey="footer.specialThanks">
+          </Trans>
+          <br />
+          <Trans i18nKey="footer.specialThanks">
           Special thanks to all our supporters, translators and <a href="https://github.com/elamperti/OpenWebScrobbler/graphs/contributors">contributors</a>
-        </Trans> ❤ <span className="app-version">v{process.env.REACT_APP_VERSION}</span>
+          </Trans> ❤ <span className="app-version">v{process.env.REACT_APP_VERSION}</span>
         </p>
       </div>
     </footer>
-  )
+  );
 }
 
-export default Footer
+export default Footer;
