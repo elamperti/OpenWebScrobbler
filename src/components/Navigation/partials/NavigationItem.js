@@ -6,15 +6,26 @@ import { NavItem, NavLink } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 export default function NavigationItem({
-  i18nKey,
+  external,
   href,
+  i18nKey,
   icon,
 }) {
   const { t } = useTranslation();
+  let navLinkProps = {
+    tag: RouterNavLink,
+    to: href,
+  };
+
+  if (external) {
+    navLinkProps = {
+      href,
+    };
+  }
 
   return (
     <NavItem data-cy={`NavigationItem-${i18nKey}`}>
-      <NavLink tag={RouterNavLink} to={href} activeClassName="active">
+      <NavLink {...navLinkProps} activeClassName="active">
         <FontAwesomeIcon icon={icon} />
         {t(i18nKey)}
       </NavLink>
@@ -23,7 +34,12 @@ export default function NavigationItem({
 }
 
 NavigationItem.propTypes = {
-  i18nKey: PropTypes.string.isRequired,
+  external: PropTypes.bool,
   href: PropTypes.string.isRequired,
+  i18nKey: PropTypes.string.isRequired,
   icon: PropTypes.node.isRequired,
+};
+
+NavigationItem.defaultProps = {
+  external: false,
 };

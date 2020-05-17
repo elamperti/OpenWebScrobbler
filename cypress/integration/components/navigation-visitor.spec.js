@@ -12,4 +12,10 @@ describe('Navigation (visitor)', function() {
   it('Shows the logo', function() {
     cy.get('[data-cy="Navigation-logo"]').should('exist');
   });
+
+  it('links to login page', function() {
+    cy.get('[data-cy="NavigationItem-logIn"]')
+      .should('have.attr', 'href')
+      .and('match', /^https:\/\/www.last.fm\/api\//);
+  });
 });
