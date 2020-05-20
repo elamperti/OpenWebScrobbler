@@ -10,7 +10,7 @@ import {
   faUserAstronaut,
 } from '@fortawesome/free-solid-svg-icons';
 
-const EmptyScrobbleListFiller = () => {
+export default function EmptyScrobbleListFiller() {
   return (
     <Jumbotron className="text-center">
       <div className="d-flex align-items-start justify-content-center mb-2">
@@ -22,5 +22,3 @@ const EmptyScrobbleListFiller = () => {
     </Jumbotron>
   );
 };
-
-export default EmptyScrobbleListFiller;

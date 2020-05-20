@@ -21,7 +21,7 @@ export function fetchAlbums(response) {
       artist: album.artist,
       mbid: album.mbid,
       name: album.name,
-      url: album.url,
+      url: album.url, // <--
       cover: get(album, 'image[2][#text]'),
     });
   }
@@ -36,7 +36,7 @@ export function fetchTopAlbums(response) {
   for (const album of rawAlbumList) {
     if (album.name === '(null)') continue;
     albums.push({
-      artist: album.artist.name,
+      artist: album.artist.name, // <--
       mbid: album.mbid,
       name: album.name,
       cover: get(album, 'image[2][#text]'),

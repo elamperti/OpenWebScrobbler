@@ -19,7 +19,12 @@ import UpdateToast from './components/UpdateToast';
 
 import Home from 'domains/home';
 import ScrobbleSong from './views/ScrobbleSong';
-import ScrobbleAlbum from './views/ScrobbleAlbum';
+import {
+  ScrobbleAlbumSearch,
+  ScrobbleArtistResults,
+  ScrobbleAlbumResults,
+  ScrobbleAlbumTracklist,
+} from 'domains/scrobbleAlbum';
 import ScrobbleUser from './views/ScrobbleUser';
 import Spinner from 'components/Spinner';
 import SettingsModal from 'components/SettingsModal';
@@ -33,9 +38,12 @@ function App() {
   const isLoggedIn = useSelector(state => state.user.isLoggedIn);
 
   useEffect(() => {
-    const queryString = qs.parse(location.search, { ignoreQueryPrefix: true });
-
+    // Things break if this interceptor is applied more than once!
     interceptAxios(dispatch);
+  }, [dispatch]);
+
+  useEffect(() => {
+    const queryString = qs.parse(location.search, { ignoreQueryPrefix: true });
 
     if (location.search && !isLoggedIn) {
       const token = queryString.token || null;
@@ -53,7 +61,7 @@ function App() {
         changeLanguage(queryString.hl);
       }
     }
-  });
+  }, [dispatch, history, isLoggedIn, location.search]);
 
   const loadingSpinner = (
     <div id="ows-loading">
@@ -75,7 +83,10 @@ function App() {
         <main className="container flex-wrap flex-grow-1">
           <Switch>
             <PrivateRoute exact path="/scrobble/song" component={ScrobbleSong} />
-            <PrivateRoute exact path="/scrobble/album" component={ScrobbleAlbum} />
+            <PrivateRoute exact path="/scrobble/album" component={ScrobbleAlbumSearch} />
+            <PrivateRoute exact path="/scrobble/album/search/:albumName" component={ScrobbleAlbumResults} />
+            <PrivateRoute exact path={['/scrobble/artist/:artistName', '/scrobble/artist/mbid/:mbid']} component={ScrobbleArtistResults} />
+            <PrivateRoute exact path={['/scrobble/album/view/mbid/:albumId', '/scrobble/album/view/:artist/:albumName']} component={ScrobbleAlbumTracklist} />
             <PrivateRoute exact path="/scrobble/user/:username?" component={ScrobbleUser} />
             <Route exact path="/" component={Home} />
             <Redirect to="/" />

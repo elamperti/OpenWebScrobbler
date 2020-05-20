@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 import ReactGA from 'react-ga';
@@ -66,7 +66,6 @@ class ScrobbleItem extends Component {
 
   scrobbleAgain() {
     const useOriginalTimestamp = this.props.noMenu ? get(this.props.settings, 'keepOriginalTimestamp') : false;
-
     ReactGA.event({
       category: 'Interactions',
       action: this.props.analyticsEvent,

@@ -1,5 +1,5 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { NavItem, NavLink } from 'reactstrap';
@@ -15,6 +15,7 @@ export default function NavigationItem({
   let navLinkProps = {
     tag: RouterNavLink,
     to: href,
+    activeClassName: 'active',
   };
 
   if (external) {
@@ -25,7 +26,7 @@ export default function NavigationItem({
 
   return (
     <NavItem data-cy={`NavigationItem-${i18nKey}`}>
-      <NavLink {...navLinkProps} activeClassName="active">
+      <NavLink {...navLinkProps}>
         <FontAwesomeIcon icon={icon} />
         {t(i18nKey)}
       </NavLink>

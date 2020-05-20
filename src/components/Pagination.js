@@ -1,5 +1,5 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import { Button } from 'reactstrap';
 import { Trans } from 'react-i18next';
 

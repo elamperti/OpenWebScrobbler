@@ -1,4 +1,5 @@
 /* Looking for the localstorage save filter? See `store/index.js` */
+// ToDo: use localforage? (as it's already needed for the adapters anyway)
 
 export function loadState() {
   const serializedState = loadFromLocalStorage('state');

@@ -5,19 +5,23 @@ import Avatar from 'components/Avatar';
 
 import './ArtistCard.css';
 
-const ArtistCard = props => {
-  return (
-    <div className={`artistCard ${props.className} my-2 py-2 rounded`}>
-      <a href={props.artist.url} onClick={props.onClick} className="ml-2 row h-100 align-items-center">
-        <Avatar user={props.artist} size="sm" alt={props.artist.name} isArtist />
-        <span className="artistCard-name pl-3">{props.artist.name}</span>
-      </a>
-    </div>
-  );
-};
+const ArtistCard = ({
+  artist,
+  artistId,
+  className,
+  onClick,
+}) => (
+  <div className={`artistCard ${className} my-2 py-2 rounded`}>
+    <a href={artist.url} className="ml-2 row h-100 align-items-center" data-artist-id={artistId} onClick={onClick}>
+      <Avatar user={artist} size="sm" alt={artist.name} isArtist />
+      <span className="artistCard-name pl-3">{artist.name}</span>
+    </a>
+  </div>
+);
 
 ArtistCard.propTypes = {
   artist: PropTypes.object.isRequired,
+  artistId: PropTypes.oneOf(PropTypes.number, PropTypes.string),
   className: PropTypes.string,
   onClick: PropTypes.func,
 };

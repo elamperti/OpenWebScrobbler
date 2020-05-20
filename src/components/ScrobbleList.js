@@ -1,5 +1,5 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import get from 'lodash/get';
 
@@ -47,7 +47,7 @@ function ScrobbleList(props) {
         noMenu={props.noMenu}
         noCover={props.isAlbum}
         onSelect={props.onSelect}
-        selected={props.selected && props.selected.indexOf(scrobble.uuid) > -1}
+        selected={props.selected && props.selected.has(scrobble.uuid)}
         key={(scrobble.timestamp || 0) + i}
         uuid={scrobble.uuid}
         muteArtist={props.isAlbum}
@@ -79,7 +79,7 @@ ScrobbleList.propTypes = {
   loading: PropTypes.bool,
   noMenu: PropTypes.bool,
   onSelect: PropTypes.func,
-  selected: PropTypes.array,
+  selected: PropTypes.instanceOf(Set),
   scrobbles: PropTypes.array,
   userToDisplay: PropTypes.string,
   fetchLastfmProfileHistory: PropTypes.func,
