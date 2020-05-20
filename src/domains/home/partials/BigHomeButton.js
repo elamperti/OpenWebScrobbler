@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Trans, useTranslation } from 'react-i18next';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 
 import './BigHomeButton.scss';
 

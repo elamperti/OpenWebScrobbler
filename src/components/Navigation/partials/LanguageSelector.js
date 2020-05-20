@@ -8,7 +8,7 @@ import {
   faGlobe,
 } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { setSettings } from 'store/actions/settingsActions';
 
@@ -56,9 +56,9 @@ export default function LanguageSelector({
 }
 
 LanguageSelector.propTypes = {
-  caption: PropTypes.string,
   className: PropTypes.string,
-  href: PropTypes.string.isRequired,
-  i18nKey: PropTypes.string.isRequired,
-  icon: PropTypes.node,
+};
+
+LanguageSelector.defaultProps = {
+  className: '',
 };

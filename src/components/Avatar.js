@@ -1,5 +1,5 @@
 import React from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import get from 'lodash/get';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';

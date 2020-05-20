@@ -8,7 +8,7 @@ export default function WelcomeBlock() {
     <React.Fragment>
       <h1 className="display-5">
         <Trans t={t} i18nKey="welcomeToTheScrobbler">
-          Welcome to the <span className="ows-title">Open Scrobbler</span>!
+          Welcome to the <span className="ows-Home-title">Open Scrobbler</span>!
         </Trans>
       </h1>
       <p className="lead mb-4">

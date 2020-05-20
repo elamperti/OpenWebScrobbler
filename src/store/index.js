@@ -5,13 +5,13 @@ import throttle from 'lodash/throttle';
 
 import { loadState, saveState } from 'localstorage';
 
-import scrobbleReducer from './reducers/scrobbleReducer';
-import userReducer from './reducers/userReducer';
 import albumReducer from './reducers/albumReducer';
-import artistReducer from './reducers/artistReducer';
 import alertReducer from './reducers/alertReducer';
+import artistReducer from './reducers/artistReducer';
+import scrobbleReducer from './reducers/scrobbleReducer';
 import settingsReducer from './reducers/settingsReducer';
 import updatesReducer from './reducers/updatesReducer';
+import userReducer from './reducers/userReducer';
 
 const middlewares = [
   createDebounce(),
@@ -33,13 +33,13 @@ const persistedState = loadState();
 
 const store = createStore(
   combineReducers({
-    scrobbles: scrobbleReducer,
-    alerts: alertReducer,
     album: albumReducer,
+    alerts: alertReducer,
     artist: artistReducer,
-    user: userReducer,
+    scrobbles: scrobbleReducer,
     settings: settingsReducer,
     updates: updatesReducer,
+    user: userReducer,
   }),
   persistedState,
   composeEnhancer(applyMiddleware(...middlewares))

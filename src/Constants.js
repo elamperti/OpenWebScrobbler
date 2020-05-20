@@ -9,19 +9,18 @@ export const LASTFM_API_RATE_LIMIT = 0; // At this moment is 5 rq/s over 5m per 
 export const MAX_RECENT_USERS = 6;
 // export const DEFAULT_SONG_DURATION = 3; // ToDo: use this value when skipping time forward after scrobble
 
-// Albums view steps
-export const ALBUM_VIEW_STEP_SEARCH = 0;
-export const ALBUM_VIEW_STEP_SRP = 1;
-export const ALBUM_VIEW_STEP_ARTIST = 2;
-export const ALBUM_VIEW_STEP_TRACKLIST = 3;
-
 // Albums store
 export const GET_ALBUM_INFO_LASTFM = 'GET_ALBUM_INFO_LASTFM';
 export const SEARCH_ALBUM_LASTFM = 'SEARCH_ALBUM_LASTFM';
+export const SEARCH_TOP_ALBUMS_LASTFM = 'SEARCH_TOP_ALBUMS_LASTFM';
+export const SET_ALBUM_QUERY = 'SET_ALBUM_QUERY';
+export const SET_ARTIST_QUERY = 'SET_ARTIST_QUERY';
+export const CLEAR_ALBUM_SEARCH = 'CLEAR_ALBUM_SEARCH';
+export const CLEAR_ALBUM_ARTIST_SEARCH = 'CLEAR_ALBUM_ARTIST_SEARCH';
+export const CLEAR_ALBUM_TRACKLIST = 'CLEAR_ALBUM_TRACKLIST';
 
 // Artists store
 export const SEARCH_ARTIST_LASTFM = 'SEARCH_ARTIST_LASTFM';
-export const SEARCH_ARTIST_TOP_ALBUMS_LASTFM = 'SEARCH_ARTIST_TOP_ALBUMS_LASTFM';
 
 // Alerts store
 export const ALERT_CREATE = 'ALERT_CREATE';

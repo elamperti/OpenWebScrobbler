@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { PropTypes } from 'prop-types';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withTranslation, Trans } from 'react-i18next';
 import ReactGA from 'react-ga';
@@ -106,17 +106,17 @@ class ScrobbleUser extends Component {
     });
   }
 
-  search() {
+  search(username) {
     this.setState({
       searchEnabled: false,
       isLoading: true,
     });
-    if (!this.usernameIsValid(this.state.userToSearch)) return false;
+
     ReactGA.event({
       category: 'Search',
       action: 'User',
     });
-    this.props.fetchLastfmProfileHistory(this.state.userToSearch, { page: 1 }, (res, err) => {
+    this.props.fetchLastfmProfileHistory(username, { page: 1 }, (res, err) => {
       const errNumber = get(err, 'data.error');
       if (errNumber === 6 || errNumber === 17) { // 6: User not found - 17: User has a private profile
         this.setState({
@@ -126,7 +126,7 @@ class ScrobbleUser extends Component {
         });
         this.focusSearchInput();
       } else {
-        const userToDisplay = get(res, 'value.data.recenttracks[@attr].user', this.state.userToSearch);
+        const userToDisplay = get(res, 'value.data.recenttracks[@attr].user', username);
         this.props.history.push(`/scrobble/user/${userToDisplay}`);
         this.setState({
           searchFormView: false,
@@ -147,7 +147,7 @@ class ScrobbleUser extends Component {
       this.setState({
         userToSearch: username,
       }, () => {
-        this.search();
+        this.search(username);
       });
     };
   }
@@ -159,14 +159,14 @@ class ScrobbleUser extends Component {
     }, true, true);
   }
 
-  updateFriendUsername(event) {
-    const isValid = this.usernameIsValid(event.target.value);
+  updateFriendUsername(username) {
+    const isValid = this.usernameIsValid(username);
 
     this.setState({
-      userToSearch: event.target.value,
+      userToSearch: username,
       justFailedSearch: false,
-      inputInvalid: event.target.value.length > 1 ? !isValid : false,
-      searchEnabled: event.target.value.length > 1 ? isValid : false,
+      inputInvalid: username.length > 1 ? !isValid : false,
+      searchEnabled: username.length > 1 ? isValid : false,
     });
   }
 
@@ -184,16 +184,15 @@ class ScrobbleUser extends Component {
     );
     const searchForm = (
       <SearchForm
-        onChange={this.updateFriendUsername}
         onSearch={this.search}
         ariaLabel="Username"
-        inputId="userToSearch"
+        id="userToSearch"
         maxLength={15}
         size={this.state.searchFormView ? 'lg' : 'sm'}
         value={this.state.userToSearch}
         readOnly={this.state.isLoading}
         disableSearch={!this.state.searchEnabled}
-        invalid={this.state.inputInvalid}
+        validator={this.usernameIsValid}
         feedbackMessage={this.state.justFailedSearch ? 'userNotFound' : 'invalidUsername'}
       />
     );

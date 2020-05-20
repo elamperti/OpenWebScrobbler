@@ -59,7 +59,7 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
   }
 
   ReactGA.initialize(process.env.REACT_APP_ANALYTICS_CODE, {
-    debug: process.env.NODE_ENV === 'development',
+    // debug: process.env.NODE_ENV === 'development',
     gaOptions: {
       clientId,
       userId,
