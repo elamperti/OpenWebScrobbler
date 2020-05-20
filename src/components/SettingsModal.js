@@ -164,7 +164,6 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 SettingsModal.propTypes = {
-  isOpen: PropTypes.bool.isRequired,
   dismissAlert: PropTypes.func.isRequired,
   setSettings: PropTypes.func.isRequired,
   close: PropTypes.func.isRequired,

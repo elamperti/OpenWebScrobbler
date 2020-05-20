@@ -236,7 +236,7 @@ class TimePicker extends React.Component {
             readOnly
           />
         </InputGroup>
-        <Popover placement="bottom" isOpen={this.state.popoverOpen} toggle={this.toggle} target="TimePicker">
+        <Popover placement="bottom" isOpen={this.state.popoverOpen} toggle={this.toggle} fade={false} target="TimePicker">
           <PopoverBody className="d-flex">
             <TimePickerPicker
               value={this.state.hours}
