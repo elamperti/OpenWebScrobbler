@@ -29,5 +29,5 @@ BigHomeButton.propTypes = {
   caption: PropTypes.string,
   href: PropTypes.string.isRequired,
   i18nKey: PropTypes.string.isRequired,
-  icon: PropTypes.node,
+  icon: PropTypes.object,
 };

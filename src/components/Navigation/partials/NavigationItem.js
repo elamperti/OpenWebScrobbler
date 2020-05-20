@@ -37,7 +37,7 @@ NavigationItem.propTypes = {
   external: PropTypes.bool,
   href: PropTypes.string.isRequired,
   i18nKey: PropTypes.string.isRequired,
-  icon: PropTypes.node.isRequired,
+  icon: PropTypes.object.isRequired,
 };
 
 NavigationItem.defaultProps = {
