@@ -78,5 +78,7 @@
     "lastfmRejected": "Last.fm odrzuciło ten scrobble.",
     "unexpectedResponse": "Nieoczekiwana odpowiedź.",
     "apiCallFailed": "Wywołanie API zakończone niepowodzeniem."
-  }
+  },
+  "next": "Następna strona",
+  "previous": "Poprzednia strona"
 }
