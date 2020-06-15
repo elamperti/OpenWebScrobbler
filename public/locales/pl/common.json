@@ -43,7 +43,7 @@
   "custom": "Ustaw...",
   "timestamp": "Data i czas",
   "lastfmWillRejectOldTimestamps": "Last.fm odrzuci scrobble starsze niż dwa tygodnie.",
-  "keepOriginalTimestamp": "Scrobbluj używając oryginalnej daty i godziny.",
+  "keepOriginalTimestamp": "Scrobbluj zachowując teraźniejszą datę i godzinę.",
   "noSongsScrobbled": "Na razie nic nie przescrobblowałeś!",
   "songsWillAppearHere": "Utwory pojawią się tutaj, kiedy je przescrobblujesz.",
   "clearHistory": "Wyczyść historię",
