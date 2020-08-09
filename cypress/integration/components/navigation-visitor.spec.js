@@ -14,7 +14,7 @@ describe('Navigation (visitor)', function() {
   });
 
   it('links to login page', function() {
-    cy.get('[data-cy="NavigationItem-logIn"]')
+    cy.get('[data-cy="NavigationItem-logIn"] a')
       .should('have.attr', 'href')
       .and('match', /^https:\/\/www.last.fm\/api\//);
   });
