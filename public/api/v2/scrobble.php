@@ -3,7 +3,7 @@
   require('inc/session.php');
   require('inc/api.php');
 
-  date_default_timezone_set('Etc/UCT');
+  date_default_timezone_set('Etc/UTC');
 
   header('Content-Type: application/json');
 
