@@ -26,8 +26,7 @@ import {
 import { dismissAlert } from 'store/actions/alertActions';
 import { setSettings, closeSettingsModal } from 'store/actions/settingsActions';
 import { languageList } from 'utils/i18n';
-
-// import './SettingsModal.css';
+import { PROVIDER_LASTFM, PROVIDER_DISCOGS } from 'Constants';
 
 class SettingsModal extends React.Component {
   constructor(props) {
@@ -103,6 +102,7 @@ class SettingsModal extends React.Component {
         </ModalHeader>
         <ModalBody>
           <Form>
+
             <FormGroup>
               <div className="row ml-0 ml-sm-auto mr-0">
                 <Label className="col-sm-4" htmlFor="lang">{t('language')}</Label>
@@ -122,6 +122,19 @@ class SettingsModal extends React.Component {
                 </div>
               </div>
             </FormGroup>
+
+            <FormGroup>
+              <div className="row ml-0 ml-sm-auto mr-0">
+                <Label className="col-sm-4" htmlFor="lang">{t('dataProvider')}</Label>
+                <div className="col-sm-8">
+                  <Input type="select" bsSize="sm" {...this.createPropsForInput('dataProvider')}>
+                    <option value={PROVIDER_LASTFM}>Last.fm</option>
+                    <option value={PROVIDER_DISCOGS}>Discogs</option>
+                  </Input>
+                </div>
+              </div>
+            </FormGroup>
+
             <FormGroup check>
               <Label className="d-block" check>
                 <Input type="checkbox" {...this.createPropsForCheckbox('use12Hours')} />
@@ -132,6 +145,7 @@ class SettingsModal extends React.Component {
                 {t('splitPastedText')}
               </Label>
             </FormGroup>
+
           </Form>
         </ModalBody>
         <ModalFooter>

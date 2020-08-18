@@ -1,8 +1,12 @@
 import get from 'lodash/get';
-import { fetchArtists } from 'store/transformers/artistTransformer';
+import {
+  fetchLastfmArtists,
+  fetchDiscogsArtists,
+} from 'store/transformers/artistTransformer';
 
 import {
   SEARCH_ARTIST_LASTFM,
+  SEARCH_ARTIST_DISCOGS,
   USER_LOGGED_OUT,
   CLEAR_ALBUM_SEARCH,
 } from 'Constants';
@@ -20,12 +24,21 @@ const artistReducer = (state = initialState, action) => {
       };
 
     case `${SEARCH_ARTIST_LASTFM}_REJECTED`:
+    case `${SEARCH_ARTIST_DISCOGS}_REJECTED`:
       // do something with action.payload
       return state;
 
     case `${SEARCH_ARTIST_LASTFM}_FULFILLED`:
-      state.list = fetchArtists(get(action.payload, 'data', {}));
-      return state;
+      return {
+        ...state,
+        list: fetchLastfmArtists(get(action.payload, 'data', {})),
+      };
+
+    case `${SEARCH_ARTIST_DISCOGS}_FULFILLED`:
+      return {
+        ...state,
+        list: fetchDiscogsArtists(get(action.payload, 'data', {})),
+      };
 
     default:
       return state;

@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-export function fetchArtists(response) {
+export function fetchLastfmArtists(response) {
   const artists = [];
   const rawArtistList = get(response, 'results.artistmatches.artist', []);
 
@@ -18,4 +18,18 @@ export function fetchArtists(response) {
     });
   }
   return artists;
+}
+
+export function fetchDiscogsArtists(response) {
+  return get(response, 'results', []).map(artist => ({
+    name: artist.title,
+    discogsId: artist.id,
+    url: '',
+    avatar: {
+      sm: artist.thumb,
+      md: artist.thumb,
+      lg: artist.cover_image,
+      xl: artist.cover_image,
+    },
+  }));
 }

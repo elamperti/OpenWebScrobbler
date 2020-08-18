@@ -5,18 +5,21 @@ import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
   USER_GET_INFO,
+  USER_SET_DATA_PROVIDER,
   FETCH_LASTFM_USER_INFO,
   FETCH_LASTFM_USER_HISTORY,
   MAX_RECENT_USERS,
+  PROVIDER_LASTFM,
 } from 'Constants';
 
 const initialState = {
+  dataProvider: PROVIDER_LASTFM,
   isLoggedIn: null,
   name: '',
-  url: '',
-  userSettingsLoading: false,
   profiles: {},
   recentProfiles: [],
+  url: '',
+  userSettingsLoading: false,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -34,6 +37,12 @@ const userReducer = (state = initialState, action) => {
       return {
         ...initialState,
         isLoggedIn: false,
+      };
+
+    case USER_SET_DATA_PROVIDER:
+      return {
+        ...state,
+        dataProvider: action.payload,
       };
 
     case `${USER_GET_INFO}_PENDING`:
@@ -57,10 +66,11 @@ const userReducer = (state = initialState, action) => {
           isLoggedIn: true,
           name: userData.name || '',
           url: userData.url || '',
+          dataProvider: userData.dataProvider || PROVIDER_LASTFM,
           // country: userData.country || '',
           avatar: userData.image ? { sm: userData.image[1]['#text'] } : '',
         };
-      } else if (Object.prototype.hasOwnProperty.call(action.payload.data, 'isLoggedIn')) {
+      } else if (hasIn(action.payload, 'data.isLoggedIn')) {
         return {
           ...state,
           isLoggedIn: action.payload.data.isLoggedIn,

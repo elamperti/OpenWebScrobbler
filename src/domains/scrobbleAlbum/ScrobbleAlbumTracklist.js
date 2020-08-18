@@ -30,11 +30,15 @@ export function ScrobbleAlbumTracklist({ match }) {
   }, [dispatch]);
 
   useEffect(() => {
-    const { albumId, albumName, artist } = match.params;
+    const { albumId, discogsId, albumName, artist } = match.params;
 
     if (albumId) {
       dispatch(getAlbum({
         mbid: decodeURIComponent(albumId),
+      }));
+    } else if (discogsId) {
+      dispatch(getAlbum({
+        discogsId: decodeURIComponent(discogsId),
       }));
     } else if (artist && albumName) {
       dispatch(getAlbum({

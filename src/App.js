@@ -85,8 +85,8 @@ function App() {
             <PrivateRoute exact path="/scrobble/song" component={ScrobbleSong} />
             <PrivateRoute exact path="/scrobble/album" component={ScrobbleAlbumSearch} />
             <PrivateRoute exact path="/scrobble/album/search/:albumName" component={ScrobbleAlbumResults} />
-            <PrivateRoute exact path={['/scrobble/artist/:artistName', '/scrobble/artist/mbid/:mbid']} component={ScrobbleArtistResults} />
-            <PrivateRoute exact path={['/scrobble/album/view/mbid/:albumId', '/scrobble/album/view/:artist/:albumName']} component={ScrobbleAlbumTracklist} />
+            <PrivateRoute exact path={['/scrobble/artist/:artistName', '/scrobble/artist/mbid/:mbid', '/scrobble/artist/dsid/:discogsId']} component={ScrobbleArtistResults} />
+            <PrivateRoute exact path={['/scrobble/album/view/mbid/:albumId', '/scrobble/album/view/dsid/:discogsId', '/scrobble/album/view/:artist/:albumName']} component={ScrobbleAlbumTracklist} />
             <PrivateRoute exact path="/scrobble/user/:username?" component={ScrobbleUser} />
             <Route exact path="/" component={Home} />
             <Redirect to="/" />
