@@ -1,19 +1,25 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import ReactGA from 'react-ga';
 
-import { Row } from 'reactstrap';
+import { Row, FormGroup, Label, Input } from 'reactstrap';
 import SearchForm from 'components/SearchForm';
 
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
+import { setDataProvider as setDataProviderAction } from 'store/actions/userActions';
+import { PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
 import './ScrobbleAlbumSearch.scss';
 
 export function ScrobbleAlbumSearch() {
   const history = useHistory();
   const { t } = useTranslation();
+  const dataProvider = useSelector(state => state.user.dataProvider);
+  const dispatch = useDispatch();
 
   const onSearch = (query) => {
     ReactGA.event({
@@ -22,6 +28,11 @@ export function ScrobbleAlbumSearch() {
     });
 
     history.push(`/scrobble/album/search/${encodeURIComponent(query.trim())}`);
+  };
+
+  const setDataProvider = (e) => {
+    const { provider } = e.currentTarget.dataset;
+    dispatch(setDataProviderAction(provider));
   };
 
   const validator = (str) => str.trim().length > 0;
@@ -58,6 +69,21 @@ export function ScrobbleAlbumSearch() {
             </FormGroup>
           </Col>
         </Row> */}
+        <div className="mt-3 mt-sm-0 justify-content-center">
+          <span className="mr-2">{t('source')}:</span>
+          <FormGroup inline check>
+            <Label check className="ows-ScrobbleAlbum-dataProvider">
+              <Input type="radio" name="dataProvider" checked={dataProvider === PROVIDER_LASTFM} data-provider={PROVIDER_LASTFM} onClick={setDataProvider} />
+              Last.fm
+            </Label>
+          </FormGroup>
+          <FormGroup inline check>
+            <Label check className="ows-ScrobbleAlbum-dataProvider">
+              <Input type="radio" name="dataProvider" checked={dataProvider === PROVIDER_DISCOGS} data-provider={PROVIDER_DISCOGS} onClick={setDataProvider} />
+              Discogs
+            </Label>
+          </FormGroup>
+        </div>
       </div>
     </Row>
   );

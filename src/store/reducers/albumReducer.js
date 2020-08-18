@@ -1,15 +1,24 @@
 import get from 'lodash/get';
 import {
-  fetchAlbums,
-  fetchAlbumInfo,
-  fetchTopAlbums,
+  fetchLastfmAlbums,
+  fetchDiscogAlbums,
+  fetchLastfmAlbumInfo,
+  fetchDiscogsAlbumInfo,
+  fetchLastfmTopAlbums,
+  fetchDiscogsTopAlbums,
 } from 'store/transformers/albumTransformer';
-import { fetchTracks } from 'store/transformers/trackTransformer';
+import {
+  fetchLastfmTracks,
+  fetchDiscogsTracks,
+} from 'store/transformers/trackTransformer';
 
 import {
   GET_ALBUM_INFO_LASTFM,
+  GET_ALBUM_INFO_DISCOGS,
   SEARCH_ALBUM_LASTFM,
+  SEARCH_ALBUM_DISCOGS,
   SEARCH_TOP_ALBUMS_LASTFM,
+  SEARCH_TOP_ALBUMS_DISCOGS,
   SET_ALBUM_QUERY,
   SET_ARTIST_QUERY,
   CLEAR_ALBUM_SEARCH,
@@ -76,7 +85,9 @@ const albumReducer = (state = initialState, action) => {
       };
 
     case `${SEARCH_ALBUM_LASTFM}_REJECTED`:
+    case `${SEARCH_ALBUM_DISCOGS}_REJECTED`:
     case `${SEARCH_TOP_ALBUMS_LASTFM}_REJECTED`:
+    case `${SEARCH_TOP_ALBUMS_DISCOGS}_REJECTED`:
       // do something with action.payload
       return {
         ...state,
@@ -86,22 +97,59 @@ const albumReducer = (state = initialState, action) => {
     case `${SEARCH_ALBUM_LASTFM}_FULFILLED`:
       return {
         ...state,
-        list: fetchAlbums(get(action.payload, 'data', {})),
+        list: fetchLastfmAlbums(get(action.payload, 'data', [])),
       };
 
-    case `${SEARCH_TOP_ALBUMS_LASTFM}_FULFILLED`:
+    case `${SEARCH_ALBUM_DISCOGS}_FULFILLED`:
       return {
         ...state,
-        list: fetchTopAlbums(get(action.payload, 'data', {})),
+        list: fetchDiscogAlbums(get(action.payload, 'data', [])),
       };
 
+    case `${SEARCH_TOP_ALBUMS_LASTFM}_FULFILLED`: {
+      const lastfmTopAlbums = fetchLastfmTopAlbums(get(action.payload, 'data', []));
+      return {
+        ...state,
+        queries: {
+          ...state.queries,
+          artist: lastfmTopAlbums ? lastfmTopAlbums[0].artist : state.queries.artist,
+        },
+        list: lastfmTopAlbums,
+      };
+    }
+
+    case `${SEARCH_TOP_ALBUMS_DISCOGS}_FULFILLED`: {
+      const discogsTopAlbums = fetchDiscogsTopAlbums(get(action.payload, 'data', []));
+      return {
+        ...state,
+        queries: {
+          ...state.queries,
+          artist: discogsTopAlbums ? discogsTopAlbums[0].artist : state.queries.artist,
+        },
+        list: discogsTopAlbums,
+      };
+    }
+
     case `${GET_ALBUM_INFO_LASTFM}_FULFILLED`:
-      info = fetchAlbumInfo(get(action.payload, 'data', {}));
+      info = fetchLastfmAlbumInfo(get(action.payload, 'data', {}));
 
       return {
         ...state,
         info,
-        tracks: fetchTracks(get(action.payload, 'data.album.tracks.track', []), {
+        tracks: fetchLastfmTracks(get(action.payload, 'data.album.tracks.track', []), {
+          album: info.name,
+          cover: info.cover,
+        }),
+      };
+
+    case `${GET_ALBUM_INFO_DISCOGS}_FULFILLED`:
+      info = fetchDiscogsAlbumInfo(get(action.payload, 'data', {}));
+
+      return {
+        ...state,
+        info,
+        tracks: fetchDiscogsTracks(get(action.payload, 'data.tracklist', []), {
+          artist: info.artist,
           album: info.name,
           cover: info.cover,
         }),

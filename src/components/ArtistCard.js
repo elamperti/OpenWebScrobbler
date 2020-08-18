@@ -21,7 +21,7 @@ const ArtistCard = ({
 
 ArtistCard.propTypes = {
   artist: PropTypes.object.isRequired,
-  artistId: PropTypes.oneOf(PropTypes.number, PropTypes.string),
+  artistId: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   className: PropTypes.string,
   onClick: PropTypes.func,
 };

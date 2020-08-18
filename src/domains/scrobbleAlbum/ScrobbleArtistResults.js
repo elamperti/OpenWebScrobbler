@@ -25,11 +25,12 @@ export function ScrobbleArtistResults({ match }) {
 
   useEffect(() => {
     // This extracts the search parameter from the URL
-    const { artistName, mbid } = match.params;
+    const { artistName, mbid, discogsId } = match.params;
 
     setArtist({
       name: decodeURIComponent(artistName || ''),
       mbid,
+      discogsId,
     });
   }, [match]);
 
@@ -48,7 +49,7 @@ export function ScrobbleArtistResults({ match }) {
       <h3 className="mt-3 mb-0">
         <Trans i18nKey="topAlbumsBy" t={t} values={{ nameOfArtist: searchQuery.artist }} />
       </h3>
-      <AlbumResults query={artist} useFullWidth={true} />
+      <AlbumResults query={artist} useFullWidth={true} topAlbums={true} />
     </React.Fragment>
   );
 }

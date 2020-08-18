@@ -1,5 +1,6 @@
 // Various settings
 export const AUDIOSCROBBLER_API_URL = 'https://ws.audioscrobbler.com/2.0/';
+export const DISCOGS_API_URL = `//${process.env.REACT_APP_HOST}/api/v2/discogs.php`;
 export const LASTFM_AUTH_URL = `https://www.last.fm/api/auth/?api_key=${process.env.REACT_APP_LASTFM_API_KEY}` +
                                `&cb=${window.location.protocol}//${window.location.host}/`;
 export const OPENSCROBBLER_API_URL = `//${process.env.REACT_APP_HOST}/api/v2`;
@@ -9,10 +10,16 @@ export const LASTFM_API_RATE_LIMIT = 0; // At this moment is 5 rq/s over 5m per 
 export const MAX_RECENT_USERS = 6;
 // export const DEFAULT_SONG_DURATION = 3; // ToDo: use this value when skipping time forward after scrobble
 
+export const PROVIDER_LASTFM = 'lastfm';
+export const PROVIDER_DISCOGS = 'discogs';
+
 // Albums store
 export const GET_ALBUM_INFO_LASTFM = 'GET_ALBUM_INFO_LASTFM';
+export const GET_ALBUM_INFO_DISCOGS = 'GET_ALBUM_INFO_DISCOGS';
 export const SEARCH_ALBUM_LASTFM = 'SEARCH_ALBUM_LASTFM';
+export const SEARCH_ALBUM_DISCOGS = 'SEARCH_ALBUM_DISCOGS';
 export const SEARCH_TOP_ALBUMS_LASTFM = 'SEARCH_TOP_ALBUMS_LASTFM';
+export const SEARCH_TOP_ALBUMS_DISCOGS = 'SEARCH_TOP_ALBUMS_DISCOGS';
 export const SET_ALBUM_QUERY = 'SET_ALBUM_QUERY';
 export const SET_ARTIST_QUERY = 'SET_ARTIST_QUERY';
 export const CLEAR_ALBUM_SEARCH = 'CLEAR_ALBUM_SEARCH';
@@ -21,6 +28,7 @@ export const CLEAR_ALBUM_TRACKLIST = 'CLEAR_ALBUM_TRACKLIST';
 
 // Artists store
 export const SEARCH_ARTIST_LASTFM = 'SEARCH_ARTIST_LASTFM';
+export const SEARCH_ARTIST_DISCOGS = 'SEARCH_ARTIST_DISCOGS';
 
 // Alerts store
 export const ALERT_CREATE = 'ALERT_CREATE';
@@ -45,6 +53,7 @@ export const SETTINGS_MODAL_CLOSE = 'SETTINGS_MODAL_CLOSE';
 export const USER_LOGGED_IN = 'USER_LOGGED_IN';
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
 export const USER_GET_INFO = 'USER_GET_INFO';
+export const USER_SET_DATA_PROVIDER = 'USER_SET_DATA_PROVIDER';
 export const FETCH_LASTFM_USER_INFO = 'FETCH_LASTFM_USER_INFO';
 export const FETCH_LASTFM_USER_HISTORY = 'FETCH_LASTFM_USER_HISTORY';
 

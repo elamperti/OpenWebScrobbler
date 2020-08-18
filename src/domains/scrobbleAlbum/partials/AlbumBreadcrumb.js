@@ -41,9 +41,14 @@ export default function AlbumBreadcrumb({
   }
 
   if (album.name) {
-    const targetPath = album.mbid
-      ? `/scrobble/album/view/mbid/${album.mbid}`
-      : `/scrobble/album/view/${encodeURIComponent(album.artist)}/${encodeURIComponent(album.name)}`;
+    let targetPath;
+    if (album.mbid) {
+      targetPath = `/scrobble/album/view/mbid/${album.mbid}`;
+    } else if (album.discogsId) {
+      targetPath = `/scrobble/album/view/dsid/${album.discogsId}`;
+    } else {
+      targetPath = `/scrobble/album/view/${encodeURIComponent(album.artist)}/${encodeURIComponent(album.name)}`;
+    }
 
     itemList.push(generateBreadcrumbItem(targetPath, album.name, faCompactDisc));
   }

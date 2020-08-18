@@ -16,12 +16,15 @@ export default function ArtistResults({ query }) {
   const { t } = useTranslation();
 
   const artists = useSelector(state => state.artist.list);
+  const dataProvider = useSelector(state => state.user.dataProvider);
 
   useEffect(() => {
     if (query && !artists) {
-      dispatch(searchArtists(query));
+      const opts = { provider: dataProvider };
+
+      dispatch(searchArtists(query, opts));
     }
-  }, [query, artists, dispatch]);
+  }, [query, artists, dataProvider, dispatch]);
 
   if (Array.isArray(artists)) {
     if (artists.length === 0) {
@@ -36,13 +39,20 @@ export default function ArtistResults({ query }) {
       const navigateToArtist = (e) => {
         e.preventDefault();
         const { artistId } = e.currentTarget.dataset;
+        const selectedArtist = artists[artistId];
 
         ReactGA.event({
           category: 'Interactions',
           action: 'Search artist',
         });
 
-        history.push(`/scrobble/artist/${encodeURIComponent(artists[artistId].name)}`);
+        if (selectedArtist.mbid) {
+          history.push(`/scrobble/artist/mbid/${encodeURIComponent(selectedArtist.mbid)}`);
+        } else if (selectedArtist.discogsId) {
+          history.push(`/scrobble/artist/dsid/${encodeURIComponent(selectedArtist.discogsId)}`);
+        } else {
+          history.push(`/scrobble/artist/${encodeURIComponent(selectedArtist.name)}`);
+        }
       };
 
       return <ArtistList artists={artists} onClick={navigateToArtist} />;
