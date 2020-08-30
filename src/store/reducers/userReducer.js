@@ -5,7 +5,6 @@ import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
   USER_GET_INFO,
-  USER_SET_DATA_PROVIDER,
   FETCH_LASTFM_USER_INFO,
   FETCH_LASTFM_USER_HISTORY,
   MAX_RECENT_USERS,
@@ -39,12 +38,6 @@ const userReducer = (state = initialState, action) => {
         isLoggedIn: false,
       };
 
-    case USER_SET_DATA_PROVIDER:
-      return {
-        ...state,
-        dataProvider: action.payload,
-      };
-
     case `${USER_GET_INFO}_PENDING`:
       return {
         ...state,
@@ -66,7 +59,6 @@ const userReducer = (state = initialState, action) => {
           isLoggedIn: true,
           name: userData.name || '',
           url: userData.url || '',
-          dataProvider: userData.dataProvider || PROVIDER_LASTFM,
           // country: userData.country || '',
           avatar: userData.image ? { sm: userData.image[1]['#text'] } : '',
         };

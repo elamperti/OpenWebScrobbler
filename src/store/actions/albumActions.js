@@ -42,13 +42,17 @@ export function searchAlbums(album, options = {}) {
 }
 
 export function searchTopAlbums(artist, options = {}) {
-  if (artist.discogsId && options.provider === PROVIDER_DISCOGS) {
+  if (artist.discogsId) {
     return {
-      method: 'artist.getTopAlbums',
       type: SEARCH_TOP_ALBUMS_DISCOGS,
-      artist_id: artist.discogsId,
-      // sort: 'year',
-      // sort_order: 'desc',
+      payload: discogsAPI.get('', {
+        params: {
+          method: 'artist.getTopAlbums',
+          artist_id: artist.discogsId,
+          // sort: 'year',
+          // sort_order: 'desc',
+        },
+      }),
     };
   } else {
     // Last.fm request
@@ -105,9 +109,23 @@ export function clearAlbumTracklist() {
   };
 }
 
-export function getAlbum(album, options = {}) {
-  const searchParams = {};
+export async function _discogsFindBestMatch(album) {
+  const { data } = await discogsAPI.get('', {
+    params: {
+      method: 'album.search',
+      type: 'master',
+      // toLowerCase dedupes case-sensitive cached queries
+      artist: album.artist.toLowerCase(),
+      title: album.name.toLowerCase(),
+    },
+  });
 
+  if (data.results && data.results.length > 0) {
+    return data.results[0].master_id || data.results[0].id;
+  }
+}
+
+export function getAlbum(album) {
   if (album.discogsId) {
     return {
       type: GET_ALBUM_INFO_DISCOGS,
@@ -119,6 +137,8 @@ export function getAlbum(album, options = {}) {
       }),
     };
   } else {
+    const searchParams = {};
+
     // Last.fm request
     if (album.mbid) {
       searchParams.mbid = album.mbid;

@@ -47,7 +47,7 @@ export function ScrobbleArtistResults({ match }) {
       </h2>
       <AlbumBreadcrumb artistQuery={searchQuery.artist} albumQuery={searchQuery.album} />
       <h3 className="mt-3 mb-0">
-        <Trans i18nKey="topAlbumsBy" t={t} values={{ nameOfArtist: searchQuery.artist }} />
+        {searchQuery.artist && <Trans i18nKey="topAlbumsBy" t={t} values={{ nameOfArtist: searchQuery.artist }} />}
       </h3>
       <AlbumResults query={artist} useFullWidth={true} topAlbums={true} />
     </React.Fragment>

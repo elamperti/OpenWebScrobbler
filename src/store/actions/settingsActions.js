@@ -12,6 +12,7 @@ import {
   DEBOUNCE_PERIOD,
   SETTINGS_MODAL_OPEN,
   SETTINGS_MODAL_CLOSE,
+  SETTINGS_SET_DATA_PROVIDER,
 } from 'Constants';
 
 export function setSettings(dispatch) {
@@ -70,3 +71,10 @@ export function closeSettingsModal(dispatch) {
     });
   };
 }
+
+export function setDataProvider(provider) {
+  return {
+    type: SETTINGS_SET_DATA_PROVIDER,
+    payload: provider,
+  };
+};
