@@ -11,7 +11,6 @@ import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
   USER_GET_INFO,
-  USER_SET_DATA_PROVIDER,
   FETCH_LASTFM_USER_INFO,
   FETCH_LASTFM_USER_HISTORY,
 } from 'Constants';
@@ -157,10 +156,3 @@ export function fetchLastfmProfileHistory(dispatch) {
     }
   };
 }
-
-export function setDataProvider(provider) {
-  return {
-    type: USER_SET_DATA_PROVIDER,
-    payload: provider,
-  };
-};

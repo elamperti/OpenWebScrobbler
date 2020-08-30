@@ -2,7 +2,9 @@ import {
   SETTINGS_UPDATE,
   SETTINGS_MODAL_OPEN,
   SETTINGS_MODAL_CLOSE,
+  SETTINGS_SET_DATA_PROVIDER,
   USER_LOGGED_OUT,
+  PROVIDER_LASTFM,
 } from 'Constants';
 
 const initialState = {
@@ -12,6 +14,7 @@ const initialState = {
   isDonor: false,
   keepOriginalTimestamp: true,
   modalIsOpen: false,
+  dataProvider: PROVIDER_LASTFM,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -25,13 +28,13 @@ const settingsReducer = (state = initialState, action) => {
 
     case SETTINGS_MODAL_OPEN:
       return {
-        ...initialState,
+        ...state,
         modalIsOpen: true,
       };
 
     case SETTINGS_MODAL_CLOSE:
       return {
-        ...initialState,
+        ...state,
         modalIsOpen: false,
       };
 
@@ -40,6 +43,12 @@ const settingsReducer = (state = initialState, action) => {
         ...initialState,
         lang: state.lang,
         isDonor: false,
+      };
+
+    case SETTINGS_SET_DATA_PROVIDER:
+      return {
+        ...state,
+        dataProvider: action.payload,
       };
 
     default:

@@ -16,7 +16,7 @@ export default function ArtistResults({ query }) {
   const { t } = useTranslation();
 
   const artists = useSelector(state => state.artist.list);
-  const dataProvider = useSelector(state => state.user.dataProvider);
+  const dataProvider = useSelector(state => state.settings.dataProvider);
 
   useEffect(() => {
     if (query && !artists) {

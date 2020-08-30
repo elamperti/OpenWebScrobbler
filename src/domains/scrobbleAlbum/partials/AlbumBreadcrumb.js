@@ -12,9 +12,11 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import './AlbumBreadcrumb.scss';
+
 function generateBreadcrumbItem(targetPath, caption, icon) {
   return (
-    <BreadcrumbItem tag={Link} to={targetPath} key={targetPath}>
+    <BreadcrumbItem className="ows-AlbumBreadcrumb-item" tag={Link} to={targetPath} key={targetPath}>
       {icon && <FontAwesomeIcon icon={icon} className="mr-2" />}
       {caption}
     </BreadcrumbItem>
@@ -25,6 +27,7 @@ export default function AlbumBreadcrumb({
   albumQuery,
   artistQuery,
   album,
+  dataProvider,
 }) {
   const { t } = useTranslation();
   const itemList = [
@@ -56,6 +59,9 @@ export default function AlbumBreadcrumb({
   return (
     <Breadcrumb className="my-3">
       {itemList}
+      {dataProvider && (
+        <div>{t('dataProvider')}: {dataProvider}</div>
+      )}
     </Breadcrumb>
   );
 }
@@ -64,6 +70,7 @@ AlbumBreadcrumb.propTypes = {
   albumQuery: PropTypes.string,
   artistQuery: PropTypes.string,
   album: PropTypes.object,
+  dataProvider: PropTypes.string,
 };
 
 AlbumBreadcrumb.defaultProps = {

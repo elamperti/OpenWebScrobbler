@@ -10,7 +10,7 @@ import SearchForm from 'components/SearchForm';
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { setDataProvider as setDataProviderAction } from 'store/actions/userActions';
+import { setDataProvider as setDataProviderAction } from 'store/actions/settingsActions';
 import { PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
 import './ScrobbleAlbumSearch.scss';
@@ -18,7 +18,7 @@ import './ScrobbleAlbumSearch.scss';
 export function ScrobbleAlbumSearch() {
   const history = useHistory();
   const { t } = useTranslation();
-  const dataProvider = useSelector(state => state.user.dataProvider);
+  const dataProvider = useSelector(state => state.settings.dataProvider);
   const dispatch = useDispatch();
 
   const onSearch = (query) => {
@@ -51,26 +51,8 @@ export function ScrobbleAlbumSearch() {
           validator={validator}
           feedbackMessageKey="emptyAlbum"
         />
-        {/* <Row className="mt-3 mt-sm-0">
-          <Col xs="6" sm="4">
-            <FormGroup check>
-              <Label check className="ows-ScrobbleAlbum-typeOfSearch">
-                <Input type="radio" name="typeOfSearch" />
-                <Trans i18nKey="album">Album</Trans>
-              </Label>
-            </FormGroup>
-          </Col>
-          <Col xs="6" sm="4">
-            <FormGroup check>
-              <Label check className="ows-ScrobbleAlbum-typeOfSearch">
-                <Input type="radio" name="typeOfSearch" />
-                <Trans i18nKey="artist">Artist</Trans>
-              </Label>
-            </FormGroup>
-          </Col>
-        </Row> */}
         <div className="mt-3 mt-sm-0 justify-content-center">
-          <span className="mr-2">{t('source')}:</span>
+          <span className="mr-2">{t('dataProvider')}:</span>
           <FormGroup inline check>
             <Label check className="ows-ScrobbleAlbum-dataProvider">
               <Input type="radio" name="dataProvider" checked={dataProvider === PROVIDER_LASTFM} data-provider={PROVIDER_LASTFM} onClick={setDataProvider} />

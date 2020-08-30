@@ -34,6 +34,16 @@
     if (!preg_match('/^(?:auto|[a-z]{2}(?:-[A-Z]{2})?)$/', $str)) return NULL;
     return $str;
   });
+  filter_and_assign('dataProvider', $new_settings, FILTER_SANITIZE_STRING, FILTER_FLAG_EMPTY_STRING_NULL, function($str) {
+    switch (strtolower($str)) {
+      case 'discogs':
+        return 'discogs';
+      case 'lastfm':
+        return 'lastfm';
+      default:
+        return NULL;
+    }
+  });
 
   $_SESSION['settings'] = $new_settings;
   session_write_close();
