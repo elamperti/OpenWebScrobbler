@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faExternalLinkAlt,
-} from '@fortawesome/free-solid-svg-icons';
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
 
 import Avatar from 'components/Avatar';
 
 import './UserCard.css';
 
-const UserCard = props => {
+const UserCard = (props) => {
   const { t } = useTranslation();
   // ToDo: use URL from user.info endpoint
   const externalLink = (
@@ -23,8 +21,7 @@ const UserCard = props => {
         rel="noopener"
       >
         {t('visitProfile')}
-      </a>
-      {' '}
+      </a>{' '}
       <FontAwesomeIcon icon={faExternalLinkAlt} />
     </div>
   );
@@ -36,7 +33,7 @@ const UserCard = props => {
       </div>
       <div className="d-flex-grow-1 pl-3">
         <h3>{props.name}</h3>
-        { props.withLinkToProfile ? externalLink : null }
+        {props.withLinkToProfile && externalLink}
       </div>
     </div>
   );

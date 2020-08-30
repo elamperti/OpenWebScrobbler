@@ -13,10 +13,7 @@ import settingsReducer from './reducers/settingsReducer';
 import updatesReducer from './reducers/updatesReducer';
 import userReducer from './reducers/userReducer';
 
-const middlewares = [
-  createDebounce(),
-  promise(),
-];
+const middlewares = [createDebounce(), promise()];
 
 let composeEnhancer = compose;
 
@@ -45,22 +42,24 @@ const store = createStore(
   composeEnhancer(applyMiddleware(...middlewares))
 );
 
-store.subscribe(throttle(() => {
-  const state = store.getState();
-  saveState({
-    scrobbles: {
-      ...state.scrobbles,
-      list: state.scrobbles.list.filter(scrobble => scrobble.status !== 'pending').slice(-50),
-    },
-    user: {
-      ...state.user,
-      userSettingsLoading: false,
-    },
-    settings: {
-      ...state.settings,
-      modalIsOpen: false,
-    },
-  });
-}, 2000));
+store.subscribe(
+  throttle(() => {
+    const state = store.getState();
+    saveState({
+      scrobbles: {
+        ...state.scrobbles,
+        list: state.scrobbles.list.filter((scrobble) => scrobble.status !== 'pending').slice(-50),
+      },
+      user: {
+        ...state.user,
+        userSettingsLoading: false,
+      },
+      settings: {
+        ...state.settings,
+        modalIsOpen: false,
+      },
+    });
+  }, 2000)
+);
 
 export default store;

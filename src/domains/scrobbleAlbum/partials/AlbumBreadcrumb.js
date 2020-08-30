@@ -6,10 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
-import {
-  faCompactDisc,
-  faUser,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCompactDisc, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import './AlbumBreadcrumb.scss';
@@ -23,24 +20,25 @@ function generateBreadcrumbItem(targetPath, caption, icon) {
   );
 }
 
-export default function AlbumBreadcrumb({
-  albumQuery,
-  artistQuery,
-  album,
-  dataProvider,
-}) {
+export default function AlbumBreadcrumb({ albumQuery, artistQuery, album, dataProvider }) {
   const { t } = useTranslation();
-  const itemList = [
-    generateBreadcrumbItem('/scrobble/album', t('search')),
-  ];
+  const itemList = [generateBreadcrumbItem('/scrobble/album', t('search'))];
 
   if (albumQuery) {
-    itemList.push(generateBreadcrumbItem(`/scrobble/album/search/${encodeURIComponent(albumQuery)}`, `"${albumQuery}"`));
+    itemList.push(
+      generateBreadcrumbItem(`/scrobble/album/search/${encodeURIComponent(albumQuery)}`, `"${albumQuery}"`)
+    );
   }
 
   const albumArtist = album.artist;
   if (artistQuery || albumArtist) {
-    itemList.push(generateBreadcrumbItem(`/scrobble/artist/${encodeURIComponent(albumArtist || artistQuery)}`, albumArtist || `"${artistQuery}"`, albumArtist ? faUser : undefined));
+    itemList.push(
+      generateBreadcrumbItem(
+        `/scrobble/artist/${encodeURIComponent(albumArtist || artistQuery)}`,
+        albumArtist || `"${artistQuery}"`,
+        albumArtist ? faUser : undefined
+      )
+    );
   }
 
   if (album.name) {
@@ -60,7 +58,9 @@ export default function AlbumBreadcrumb({
     <Breadcrumb className="my-3">
       {itemList}
       {dataProvider && (
-        <div>{t('dataProvider')}: {dataProvider}</div>
+        <div>
+          {t('dataProvider')}: {dataProvider}
+        </div>
       )}
     </Breadcrumb>
   );

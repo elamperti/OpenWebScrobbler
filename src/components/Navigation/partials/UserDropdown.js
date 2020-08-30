@@ -1,19 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  UncontrolledDropdown,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  NavItem,
-  NavLink,
-} from 'reactstrap';
+import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, NavLink } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCog,
-  faExternalLinkAlt,
-  faSignOutAlt,
-} from '@fortawesome/free-solid-svg-icons';
+import { faCog, faExternalLinkAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 
 import Avatar from 'components/Avatar';
@@ -25,7 +14,7 @@ import './UserDropdown.scss';
 export default function UserDropdow() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
-  const user = useSelector(state => state.user);
+  const user = useSelector((state) => state.user);
 
   return (
     <React.Fragment>

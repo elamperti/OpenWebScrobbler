@@ -21,9 +21,7 @@ function ScrobbleList(props) {
   }
 
   if (props.loading) {
-    return (
-      <Spinner />
-    );
+    return <Spinner />;
   }
 
   if (props.scrobbles.length > 0) {
@@ -39,29 +37,27 @@ function ScrobbleList(props) {
     }
 
     const ScrobbleListContent = props.scrobbles.map((scrobble, i) => {
-      return <ScrobbleItem
-        scrobble={scrobble}
-        analyticsEvent={props.analyticsEventForScrobbles}
-        cloneScrobbleTo={props.cloneScrobblesTo}
-        compact={props.compact}
-        noMenu={props.noMenu}
-        noCover={props.isAlbum}
-        onSelect={props.onSelect}
-        selected={props.selected && props.selected.has(scrobble.uuid)}
-        key={(scrobble.timestamp || 0) + i}
-        uuid={scrobble.uuid}
-        muteArtist={props.isAlbum}
-        hideArtist={!albumHasVariousArtists}
-      />;
+      return (
+        <ScrobbleItem
+          scrobble={scrobble}
+          analyticsEvent={props.analyticsEventForScrobbles}
+          cloneScrobbleTo={props.cloneScrobblesTo}
+          compact={props.compact}
+          noMenu={props.noMenu}
+          noCover={props.isAlbum}
+          onSelect={props.onSelect}
+          selected={props.selected && props.selected.has(scrobble.uuid)}
+          key={(scrobble.timestamp || 0) + i}
+          uuid={scrobble.uuid}
+          muteArtist={props.isAlbum}
+          hideArtist={!albumHasVariousArtists}
+        />
+      );
     });
     return (
       <div className="ScrobbleList">
-        <div className={`d-flex ${props.isAlbum ? 'flex-column' : 'flex-column-reverse'}`}>
-          {ScrobbleListContent}
-        </div>
-        {totalPages > 1 && (
-          <Pagination onPageChange={navigateToPage} totalPages={totalPages} />
-        )}
+        <div className={`d-flex ${props.isAlbum ? 'flex-column' : 'flex-column-reverse'}`}>{ScrobbleListContent}</div>
+        {totalPages > 1 && <Pagination onPageChange={navigateToPage} totalPages={totalPages} />}
       </div>
     );
   } else {
@@ -104,6 +100,4 @@ const mapDispatchToProps = (dispatch) => ({
   fetchLastfmProfileHistory: fetchLastfmProfileHistory(dispatch),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  ScrobbleList
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ScrobbleList);

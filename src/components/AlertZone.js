@@ -4,9 +4,7 @@ import { connect } from 'react-redux';
 import { withRouter } from 'react-router';
 import { Trans } from 'react-i18next';
 
-import {
-  Alert,
-} from 'reactstrap';
+import { Alert } from 'reactstrap';
 
 import { dismissAlert, clearAlerts } from 'store/actions/alertActions';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -33,14 +31,17 @@ class AlertZone extends React.Component {
   }
 
   toggleAlert(alertId) {
-    this.setState({
-      isOpen: {
-        ...this.state.isOpen,
-        [alertId]: false,
+    this.setState(
+      {
+        isOpen: {
+          ...this.state.isOpen,
+          [alertId]: false,
+        },
       },
-    }, () => {
-      setTimeout(() => this.props.dismissAlert({ id: alertId }), 1000);
-    });
+      () => {
+        setTimeout(() => this.props.dismissAlert({ id: alertId }), 1000);
+      }
+    );
   }
 
   render() {
@@ -56,26 +57,29 @@ class AlertZone extends React.Component {
           toggle={() => this.toggleAlert(individualAlert.id)}
         >
           <div className="d-flex">
-            { !individualAlert.icon ? null : (
+            {individualAlert.icon && (
               <div className="mr-4">
-                <FontAwesomeIcon size={ individualAlert.title ? '3x' : null } icon={individualAlert.icon} />
+                <FontAwesomeIcon size={individualAlert.title ? '3x' : null} icon={individualAlert.icon} />
               </div>
-            ) }
+            )}
             <div>
-              { individualAlert.title ? <span><strong><Trans i18nKey={individualAlert.title} /></strong><br /></span> : null }
-              { individualAlert.errorNumber ? `(${individualAlert.errorNumber}) ` : null }
-              { individualAlert.rawMessage || <Trans i18nKey={individualAlert.message} /> }
+              {individualAlert.title && (
+                <span>
+                  <strong>
+                    <Trans i18nKey={individualAlert.title} />
+                  </strong>
+                  <br />
+                </span>
+              )}
+              {individualAlert.errorNumber && `(${individualAlert.errorNumber}) `}
+              {individualAlert.rawMessage || <Trans i18nKey={individualAlert.message} />}
             </div>
           </div>
         </Alert>
       );
     }
 
-    return alerts.length > 0 ? (
-      <div className="AlertZone mt-3">
-        {alerts}
-      </div>
-    ) : null;
+    return alerts.length > 0 ? <div className="AlertZone mt-3">{alerts}</div> : null;
   }
 }
 

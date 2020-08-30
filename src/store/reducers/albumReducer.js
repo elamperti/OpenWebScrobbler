@@ -7,10 +7,7 @@ import {
   fetchLastfmTopAlbums,
   fetchDiscogsTopAlbums,
 } from 'store/transformers/albumTransformer';
-import {
-  fetchLastfmTracks,
-  fetchDiscogsTracks,
-} from 'store/transformers/trackTransformer';
+import { fetchLastfmTracks, fetchDiscogsTracks } from 'store/transformers/trackTransformer';
 
 import {
   GET_ALBUM_INFO_LASTFM,

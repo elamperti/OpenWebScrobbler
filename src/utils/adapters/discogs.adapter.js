@@ -18,10 +18,7 @@ export const discogsAPI = axios.create({
       query: false,
     },
     store: localforage.createInstance({
-      driver: [
-        localforage.INDEXEDDB,
-        localforage.LOCALSTORAGE,
-      ],
+      driver: [localforage.INDEXEDDB, localforage.LOCALSTORAGE],
       name: 'discogs-cache',
     }),
     limit: 50, // Max cached requests

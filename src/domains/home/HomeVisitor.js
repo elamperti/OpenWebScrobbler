@@ -32,9 +32,17 @@ export default function Home() {
         </Col>
         <Col lg="5">
           <Jumbotron data-cy="HomeVisitor-about" className="ows-Home-about">
-            <h4><Trans t={t} i18nKey="about.title">What is this?</Trans></h4>
+            <h4>
+              <Trans t={t} i18nKey="about.title">
+                What is this?
+              </Trans>
+            </h4>
             <p>{t('about.description')}</p>
-            <img src="/img/screenshot-180915-sm.webp" alt="Application screenshot" className="img-fluid d-none d-lg-block img-thumbnail mx-auto mb-2" />
+            <img
+              src="/img/screenshot-180915-sm.webp"
+              alt="Application screenshot"
+              className="img-fluid d-none d-lg-block img-thumbnail mx-auto mb-2"
+            />
           </Jumbotron>
         </Col>
       </Row>

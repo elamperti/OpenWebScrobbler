@@ -70,9 +70,9 @@ export function interceptAxios(dispatch) {
         start: performance.now(),
       };
       // ToDo: transform to form encoding only for last.fm
-      if (request.method === 'post') { // PHP doesn't understand JSON payloads
+      if (request.method === 'post') {
         request.headers['Content-Type'] = 'application/x-www-form-urlencoded';
-        request.data = qs.stringify(request.data);
+        request.data = qs.stringify(request.data); // PHP doesn't understand JSON payloads
       }
       return request;
     },

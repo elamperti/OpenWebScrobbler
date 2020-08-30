@@ -3,25 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
 
-import {
-  Button,
-  Form,
-  FormGroup,
-  Input,
-  Label,
-  Modal,
-  ModalHeader,
-  ModalBody,
-  ModalFooter,
-} from 'reactstrap';
+import { Button, Form, FormGroup, Input, Label, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCog,
-} from '@fortawesome/free-solid-svg-icons';
-import {
-  faSave,
-} from '@fortawesome/free-regular-svg-icons';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
+import { faSave } from '@fortawesome/free-regular-svg-icons';
 
 import { dismissAlert } from 'store/actions/alertActions';
 import { setSettings, closeSettingsModal } from 'store/actions/settingsActions';
@@ -102,19 +88,26 @@ class SettingsModal extends React.Component {
         </ModalHeader>
         <ModalBody>
           <Form>
-
             <FormGroup>
               <div className="row ml-0 ml-sm-auto mr-0">
-                <Label className="col-sm-4" htmlFor="lang">{t('language')}</Label>
+                <Label className="col-sm-4" htmlFor="lang">
+                  {t('language')}
+                </Label>
                 <div className="col-sm-8">
                   <Input type="select" bsSize="sm" {...this.createPropsForInput('lang')}>
                     <option value="auto">({t('defaultLanguage')})</option>
                     <optgroup label={t('availableLanguages')}>
-                      { languageList.map(lang => <option key={lang.code} value={lang.code}>{lang.name}</option>) }
+                      {languageList.map((lang) => (
+                        <option key={lang.code} value={lang.code}>
+                          {lang.name}
+                        </option>
+                      ))}
                     </optgroup>
                   </Input>
-                  <a className="d-none d-sm-block text-right translationCTA"
-                    target="_blank" rel="noopener noreferrer"
+                  <a
+                    className="d-none d-sm-block text-right translationCTA"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     href="https://github.com/elamperti/OpenWebScrobbler/#translations"
                   >
                     {t('translateYourLanguage')}
@@ -125,7 +118,9 @@ class SettingsModal extends React.Component {
 
             <FormGroup>
               <div className="row ml-0 ml-sm-auto mr-0">
-                <Label className="col-sm-4" htmlFor="lang">{t('dataProvider')}</Label>
+                <Label className="col-sm-4" htmlFor="lang">
+                  {t('dataProvider')}
+                </Label>
                 <div className="col-sm-8">
                   <Input type="select" bsSize="sm" {...this.createPropsForInput('dataProvider')}>
                     <option value={PROVIDER_LASTFM}>Last.fm</option>
@@ -145,7 +140,6 @@ class SettingsModal extends React.Component {
                 {t('splitPastedText')}
               </Label>
             </FormGroup>
-
           </Form>
         </ModalBody>
         <ModalFooter>
@@ -188,6 +182,4 @@ SettingsModal.propTypes = {
   }).isRequired,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withTranslation()(SettingsModal)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(SettingsModal));

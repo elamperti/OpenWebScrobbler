@@ -3,22 +3,11 @@ import PropTypes from 'prop-types';
 
 import format from 'date-fns/format';
 
-import {
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  Popover,
-  PopoverBody,
-} from 'reactstrap';
+import { Input, InputGroup, InputGroupAddon, Popover, PopoverBody } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faClock,
-} from '@fortawesome/free-regular-svg-icons';
-import {
-  faCaretUp,
-  faCaretDown,
-} from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { faCaretUp, faCaretDown } from '@fortawesome/free-solid-svg-icons';
 
 import './TimePicker.css';
 
@@ -69,7 +58,9 @@ class TimePickerPicker extends React.Component {
   }
 
   tryToUseManualInput(event) {
-    const newPick = this.state.options.indexOf(this.props.type === 'number' ? parseInt(event.target.value) : event.target.value);
+    const newPick = this.state.options.indexOf(
+      this.props.type === 'number' ? parseInt(event.target.value) : event.target.value
+    );
     const state = {
       focused: false,
     };
@@ -96,10 +87,7 @@ class TimePickerPicker extends React.Component {
   render() {
     return (
       <div className="d-flex flex-column ml-1 mr-1">
-        <div
-          className="TimePicker-caret text-center mb-1 rounded"
-          onClick={this.pick(1)}
-        >
+        <div className="TimePicker-caret text-center mb-1 rounded" onClick={this.pick(1)}>
           <FontAwesomeIcon size="2x" icon={faCaretUp} />
         </div>
         <Input
@@ -110,10 +98,7 @@ class TimePickerPicker extends React.Component {
           onBlur={this.tryToUseManualInput}
           readOnly={this.props.readOnly}
         />
-        <div
-          className="TimePicker-caret text-center mt-1 rounded"
-          onClick={this.pick(-1)}
-        >
+        <div className="TimePicker-caret text-center mt-1 rounded" onClick={this.pick(-1)}>
           <FontAwesomeIcon size="2x" icon={faCaretDown} />
         </div>
       </div>
@@ -161,7 +146,7 @@ class TimePicker extends React.Component {
 
     if (props.use12Hours) {
       isAM = hours < 12;
-      hours = (hours % 12) || 12;
+      hours = hours % 12 || 12;
     }
 
     return {
@@ -236,7 +221,13 @@ class TimePicker extends React.Component {
             readOnly
           />
         </InputGroup>
-        <Popover placement="bottom" isOpen={this.state.popoverOpen} toggle={this.toggle} fade={false} target="TimePicker">
+        <Popover
+          placement="bottom"
+          isOpen={this.state.popoverOpen}
+          toggle={this.toggle}
+          fade={false}
+          target="TimePicker"
+        >
           <PopoverBody className="d-flex">
             <TimePickerPicker
               value={this.state.hours}
@@ -251,14 +242,14 @@ class TimePicker extends React.Component {
               fixedNumberLength={2}
               onChange={this.updateField('minutes')}
             />
-            { this.props.use12Hours &&
+            {this.props.use12Hours && (
               <TimePickerPicker
                 value={this.state.isAM ? 'AM' : 'PM'}
                 options={['AM', 'PM']}
                 readOnly
                 onChange={this.updateField('isAM')}
               />
-            }
+            )}
           </PopoverBody>
         </Popover>
       </div>

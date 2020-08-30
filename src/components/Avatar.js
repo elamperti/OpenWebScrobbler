@@ -5,13 +5,11 @@ import get from 'lodash/get';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faUserAstronaut,
-} from '@fortawesome/free-solid-svg-icons';
+import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 
 import './Avatar.css';
 
-const Avatar = props => {
+const Avatar = (props) => {
   const avatarURL = get(props.user, `avatar[${props.size}]`);
   let iconSize;
   let imgSize;
@@ -42,7 +40,9 @@ const Avatar = props => {
         src={avatarURL}
         alt={props.alt}
         placeholder={placeholderIcon}
-        className={`user-avatar user-avatar-${props.size} rounded-circle${props.className ? ' ' + props.className : ''}`}
+        className={`user-avatar user-avatar-${props.size} rounded-circle${
+          props.className ? ' ' + props.className : ''
+        }`}
         width={imgSize}
         height={imgSize}
         // ToDo: implement scrollPosition
@@ -52,7 +52,6 @@ const Avatar = props => {
     return (
       <div
         className={`user-avatar user-avatar-${props.size} ${props.className} rounded-circle d-inline-flex justify-content-center align-items-center without-img`}
-
       >
         <FontAwesomeIcon icon={faUserAstronaut} size={iconSize} color="white" className="d-block" />
       </div>

@@ -31,11 +31,12 @@ export function fetchLastfmTracks(rawTrackList, options) {
  */
 const powersOf60LUT = [1, 60, 3600];
 function _HMSStrToSeconds(str) {
+  // prettier-ignore
   return str ? str.split(':', 3).reverse().reduce((acc, n, i) => acc + n * powersOf60LUT[i], 0) : 0;
 }
 
 export function fetchDiscogsTracks(rawTrackList, options) {
-  return rawTrackList.map(track => {
+  return rawTrackList.map((track) => {
     const transformedTrack = {
       artist: get(options, 'artist'),
       title: track.title,

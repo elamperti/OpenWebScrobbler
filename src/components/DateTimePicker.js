@@ -7,16 +7,10 @@ import addDays from 'date-fns/add_days';
 import subDays from 'date-fns/sub_days';
 import format from 'date-fns/format';
 
-import {
-  Input,
-  InputGroup,
-  InputGroupAddon,
-} from 'reactstrap';
+import { Input, InputGroup, InputGroupAddon } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCalendarAlt,
-} from '@fortawesome/free-regular-svg-icons';
+import { faCalendarAlt } from '@fortawesome/free-regular-svg-icons';
 
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
@@ -126,6 +120,4 @@ DateTimePicker.propTypes = {
   }),
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withTranslation()(DateTimePicker)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(DateTimePicker));

@@ -1,12 +1,7 @@
 import axios from 'axios';
 import { discogsAPI } from 'utils/adapters';
 
-import {
-  AUDIOSCROBBLER_API_URL,
-  SEARCH_ARTIST_LASTFM,
-  SEARCH_ARTIST_DISCOGS,
-  PROVIDER_DISCOGS,
-} from 'Constants';
+import { AUDIOSCROBBLER_API_URL, SEARCH_ARTIST_LASTFM, SEARCH_ARTIST_DISCOGS, PROVIDER_DISCOGS } from 'Constants';
 
 export function searchArtists(artist, options = {}) {
   if (options.provider === PROVIDER_DISCOGS) {

@@ -10,16 +10,7 @@ import addMinutes from 'date-fns/add_minutes';
 import subDays from 'date-fns/sub_days';
 import format from 'date-fns/format';
 
-import {
-  Button,
-  ButtonGroup,
-  Form,
-  FormGroup,
-  Input,
-  InputGroup,
-  InputGroupAddon,
-  Label,
-} from 'reactstrap';
+import { Button, ButtonGroup, Form, FormGroup, Input, InputGroup, InputGroupAddon, Label } from 'reactstrap';
 
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
@@ -27,17 +18,9 @@ import TimePicker from 'components/TimePicker';
 import Tooltip from 'components/Tooltip';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faThumbtack,
-  faExchangeAlt,
-} from '@fortawesome/free-solid-svg-icons';
-import {
-  faCalendarAlt,
-  faLightbulb,
-} from '@fortawesome/free-regular-svg-icons';
-import {
-  faPatreon,
-} from '@fortawesome/free-brands-svg-icons';
+import { faThumbtack, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCalendarAlt, faLightbulb } from '@fortawesome/free-regular-svg-icons';
+import { faPatreon } from '@fortawesome/free-brands-svg-icons';
 
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 import { createAlert, dismissAlert } from 'store/actions/alertActions';
@@ -163,24 +146,27 @@ class SongForm extends React.Component {
       };
       prevState[event.target.id] = event.clipboardData.getData('Text');
 
-      this.setState({
-        ...pasteData,
-        undo: prevState,
-      }, () => {
-        this.props.createAlert({
-          type: 'info',
-          category: 'paste',
-          rawMessage: (
-            <div>
-              <Trans i18nKey="pasteIntercepted">Paste intercepted!</Trans> ✨
-              <span href="#" onClick={this.revertPaste} className="ml-2 alert-link">
-                <Trans i18nKey="undo">Undo</Trans>
-              </span>
-            </div>
-          ),
-        });
-        this.validateForm();
-      });
+      this.setState(
+        {
+          ...pasteData,
+          undo: prevState,
+        },
+        () => {
+          this.props.createAlert({
+            type: 'info',
+            category: 'paste',
+            rawMessage: (
+              <div>
+                <Trans i18nKey="pasteIntercepted">Paste intercepted!</Trans> ✨
+                <span href="#" onClick={this.revertPaste} className="ml-2 alert-link">
+                  <Trans i18nKey="undo">Undo</Trans>
+                </span>
+              </div>
+            ),
+          });
+          this.validateForm();
+        }
+      );
       event.preventDefault(); // avoids the call to onChange handler
     }
   }
@@ -203,23 +189,29 @@ class SongForm extends React.Component {
   }
 
   insertData(data) {
-    this.setState({
-      album: '',
-      albumLocked: false,
-      artist: '',
-      artistLocked: false,
-      albumArtist: '',
-      title: '',
-      ...data,
-      timestamp: this.state.useCustomDate ? new Date(data.timestamp) : this.state.timestamp,
-    }, () => this.validateForm());
+    this.setState(
+      {
+        album: '',
+        albumLocked: false,
+        artist: '',
+        artistLocked: false,
+        albumArtist: '',
+        title: '',
+        ...data,
+        timestamp: this.state.useCustomDate ? new Date(data.timestamp) : this.state.timestamp,
+      },
+      () => this.validateForm()
+    );
   }
 
   revertPaste() {
-    this.setState({
-      ...this.state.undo,
-      undo: null,
-    }, () => this.validateForm());
+    this.setState(
+      {
+        ...this.state.undo,
+        undo: null,
+      },
+      () => this.validateForm()
+    );
     this.props.dismissAlert({
       category: 'paste',
     });
@@ -235,13 +227,15 @@ class SongForm extends React.Component {
       undo: null,
     };
 
-    this.props.enqueueScrobble([{
-      artist: this.state.artist,
-      title: this.state.title,
-      album: this.state.album,
-      albumArtist: this.state.albumArtist,
-      timestamp: this.state.useCustomDate ? this.state.timestamp : new Date(),
-    }]);
+    this.props.enqueueScrobble([
+      {
+        artist: this.state.artist,
+        title: this.state.title,
+        album: this.state.album,
+        albumArtist: this.state.albumArtist,
+        timestamp: this.state.useCustomDate ? this.state.timestamp : new Date(),
+      },
+    ]);
 
     if (this.state.artistLocked) delete newState.artist;
     if (this.state.albumLocked) {
@@ -338,7 +332,9 @@ class SongForm extends React.Component {
 
     const donationCTA = this.props.settings.isDonor ? null : (
       <div className="donation-cta mt-2">
-        <a href="https://www.patreon.com/OpenScrobbler" rel="noopener">{t('considerDonating')}</a>
+        <a href="https://www.patreon.com/OpenScrobbler" rel="noopener">
+          {t('considerDonating')}
+        </a>
         <FontAwesomeIcon icon={faPatreon} />
       </div>
     );
@@ -346,7 +342,9 @@ class SongForm extends React.Component {
     return (
       <Form className="SongForm">
         <FormGroup className="row">
-          <Label for="artist" className="col-sm-3 required">{t('artist')}</Label>
+          <Label for="artist" className="col-sm-3 required">
+            {t('artist')}
+          </Label>
           <div className="col-10 col-sm-8 p-0">
             <Input
               bsSize="sm"
@@ -363,14 +361,9 @@ class SongForm extends React.Component {
               data-lpignore="true"
             />
             <div className="lock-button rounded" id="lock-artist" onClick={this.toggleLock('artist')}>
-              <FontAwesomeIcon
-                className={this.state.artistLocked ? 'active' : ''}
-                icon={faThumbtack}
-              />
+              <FontAwesomeIcon className={this.state.artistLocked ? 'active' : ''} icon={faThumbtack} />
             </div>
-            <Tooltip target="lock-artist">
-              {t('lockArtist')}
-            </Tooltip>
+            <Tooltip target="lock-artist">{t('lockArtist')}</Tooltip>
           </div>
           <div className="col-1 swaptool-top">
             <span>⏋</span>
@@ -383,7 +376,9 @@ class SongForm extends React.Component {
           </Tooltip>
         </FormGroup>
         <FormGroup className="row">
-          <Label for="title" className="col-sm-3 required">{t('title')}</Label>
+          <Label for="title" className="col-sm-3 required">
+            {t('title')}
+          </Label>
           <Input
             bsSize="sm"
             className="col-10 col-sm-8"
@@ -403,7 +398,9 @@ class SongForm extends React.Component {
           </div>
         </FormGroup>
         <FormGroup className="row">
-          <Label for="album" className="col-sm-3">{t('album')}</Label>
+          <Label for="album" className="col-sm-3">
+            {t('album')}
+          </Label>
           <div className="col-sm-9 p-0">
             <Input
               bsSize="sm"
@@ -419,18 +416,15 @@ class SongForm extends React.Component {
               data-lpignore="true"
             />
             <div className="lock-button rounded" id="lock-album" onClick={this.toggleLock('album')}>
-              <FontAwesomeIcon
-                className={this.state.albumLocked ? 'active' : ''}
-                icon={faThumbtack}
-              />
+              <FontAwesomeIcon className={this.state.albumLocked ? 'active' : ''} icon={faThumbtack} />
             </div>
-            <Tooltip target="lock-album">
-              {t('lockAlbum')}
-            </Tooltip>
+            <Tooltip target="lock-album">{t('lockAlbum')}</Tooltip>
           </div>
         </FormGroup>
         <FormGroup className="row">
-          <Label for="album" className="col-sm-3">{t('albumArtist')}</Label>
+          <Label for="album" className="col-sm-3">
+            {t('albumArtist')}
+          </Label>
           <div className="col-sm-9 p-0">
             <Input
               bsSize="sm"
@@ -448,9 +442,7 @@ class SongForm extends React.Component {
           </div>
         </FormGroup>
         <FormGroup className="row">
-          <Label className="col-sm-3">
-            {t('timestamp')}
-          </Label>
+          <Label className="col-sm-3">{t('timestamp')}</Label>
           <div className="col-sm-9 p-0">
             <ButtonGroup className="w-100">
               <Button
@@ -547,6 +539,4 @@ SongForm.propTypes = {
   t: PropTypes.func,
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  withTranslation()(SongForm)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(withTranslation()(SongForm));

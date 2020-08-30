@@ -18,7 +18,7 @@ import './ScrobbleAlbumSearch.scss';
 export function ScrobbleAlbumSearch() {
   const history = useHistory();
   const { t } = useTranslation();
-  const dataProvider = useSelector(state => state.settings.dataProvider);
+  const dataProvider = useSelector((state) => state.settings.dataProvider);
   const dispatch = useDispatch();
 
   const onSearch = (query) => {
@@ -41,7 +41,8 @@ export function ScrobbleAlbumSearch() {
     <Row className="flex-lg-grow-1 mt-3">
       <div className="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
         <h2 className="mb-3">
-          <FontAwesomeIcon icon={faCompactDisc} className="mr-2" />{t('scrobbleAlbum')}
+          <FontAwesomeIcon icon={faCompactDisc} className="mr-2" />
+          {t('scrobbleAlbum')}
         </h2>
         {t('findAlbumCopy') + ':'}
         <SearchForm
@@ -55,13 +56,25 @@ export function ScrobbleAlbumSearch() {
           <span className="mr-2">{t('dataProvider')}:</span>
           <FormGroup inline check>
             <Label check className="ows-ScrobbleAlbum-dataProvider">
-              <Input type="radio" name="dataProvider" checked={dataProvider === PROVIDER_LASTFM} data-provider={PROVIDER_LASTFM} onClick={setDataProvider} />
+              <Input
+                type="radio"
+                name="dataProvider"
+                checked={dataProvider === PROVIDER_LASTFM}
+                data-provider={PROVIDER_LASTFM}
+                onClick={setDataProvider}
+              />
               Last.fm
             </Label>
           </FormGroup>
           <FormGroup inline check>
             <Label check className="ows-ScrobbleAlbum-dataProvider">
-              <Input type="radio" name="dataProvider" checked={dataProvider === PROVIDER_DISCOGS} data-provider={PROVIDER_DISCOGS} onClick={setDataProvider} />
+              <Input
+                type="radio"
+                name="dataProvider"
+                checked={dataProvider === PROVIDER_DISCOGS}
+                data-provider={PROVIDER_DISCOGS}
+                onClick={setDataProvider}
+              />
               Discogs
             </Label>
           </FormGroup>

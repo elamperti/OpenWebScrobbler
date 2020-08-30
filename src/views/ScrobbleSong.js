@@ -6,26 +6,11 @@ import ReactGA from 'react-ga';
 import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';
 
-import {
-  Badge,
-  Button,
-  Nav,
-  NavItem,
-  NavLink,
-  TabContent,
-  TabPane,
-} from 'reactstrap';
+import { Badge, Button, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faBroom,
-  faCompactDisc,
-  faHistory,
-  faUserAstronaut,
-} from '@fortawesome/free-solid-svg-icons';
-import {
-  faPlayCircle,
-} from '@fortawesome/free-regular-svg-icons';
+import { faBroom, faCompactDisc, faHistory, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
+import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
 
 import { clearListOfScrobbles, scrobbleCounterEnabled } from 'store/actions/scrobbleActions';
 import { fetchLastfmProfileHistory } from 'store/actions/userActions';
@@ -70,18 +55,27 @@ class ScrobbleSong extends Component {
 
   goToProfileTab() {
     if (!this.state.profileScrobblesLoading) {
-      const listIsProbablyStale = this.state.lastHistoryFetch ? this.state.lastHistoryFetch < new Date(new Date() - CONSIDER_STALE_AFTER) : true;
-      if (this.state.activeTab === 'userProfile' || !hasIn(this.props.user, `profiles[${this.props.user.name}].scrobbles`) || listIsProbablyStale) {
-        this.setState({
-          profileScrobblesLoading: true,
-        }, () => {
-          this.props.fetchLastfmProfileHistory(this.props.user.name, null, () => {
-            this.setState({
-              profileScrobblesLoading: false,
-              lastHistoryFetch: new Date(),
+      const listIsProbablyStale = this.state.lastHistoryFetch
+        ? this.state.lastHistoryFetch < new Date(new Date() - CONSIDER_STALE_AFTER)
+        : true;
+      if (
+        this.state.activeTab === 'userProfile' ||
+        !hasIn(this.props.user, `profiles[${this.props.user.name}].scrobbles`) ||
+        listIsProbablyStale
+      ) {
+        this.setState(
+          {
+            profileScrobblesLoading: true,
+          },
+          () => {
+            this.props.fetchLastfmProfileHistory(this.props.user.name, null, () => {
+              this.setState({
+                profileScrobblesLoading: false,
+                lastHistoryFetch: new Date(),
+              });
             });
-          });
-        });
+          }
+        );
         ReactGA.event({
           category: 'Interactions',
           action: 'Reload profile history',
@@ -127,31 +121,34 @@ class ScrobbleSong extends Component {
       <div className="row flex-lg-grow-1 mt-3">
         <div className="col-md-6 mb-4 SongForm-container">
           <h2 className="mb-sm-4 mb-md-3">
-            <FontAwesomeIcon icon={faPlayCircle} />{' '}
-            <Trans i18nKey="scrobbleSongs">Scrobble songs</Trans>
+            <FontAwesomeIcon icon={faPlayCircle} /> <Trans i18nKey="scrobbleSongs">Scrobble songs</Trans>
           </h2>
           <SongForm exportCloneReceiver={this.setCloneReceiver} />
         </div>
         <div className="col-md-6 SongFormLists-container">
           <Nav tabs>
             <NavItem>
-              <NavLink className={this.state.activeTab === 'history' ? 'active' : '' } onClick={this.goToHistoryTab}>
-                <FontAwesomeIcon icon={faHistory}/>
+              <NavLink className={this.state.activeTab === 'history' ? 'active' : ''} onClick={this.goToHistoryTab}>
+                <FontAwesomeIcon icon={faHistory} />
                 <span className="pl-1 px-2">
                   <Trans i18nKey="history">History</Trans>
                 </span>
-                { this.props.unreadScrobbles > 0 ? <Badge color="secondary">{this.props.unreadScrobbles}</Badge> : null }
+                {this.props.unreadScrobbles > 0 && <Badge color="secondary">{this.props.unreadScrobbles}</Badge>}
               </NavLink>
             </NavItem>
             <NavItem>
-              <NavLink disabled={!hasUsername} className={this.state.activeTab === 'userProfile' ? 'active' : '' } onClick={this.goToProfileTab}>
+              <NavLink
+                disabled={!hasUsername}
+                className={this.state.activeTab === 'userProfile' ? 'active' : ''}
+                onClick={this.goToProfileTab}
+              >
                 <FontAwesomeIcon icon={hasUsername ? faUserAstronaut : faCompactDisc} spin={!hasUsername} />
                 <span className="pl-2">
                   <Trans i18nKey="yourProfile">Your profile</Trans>
                 </span>
               </NavLink>
             </NavItem>
-            { clearListButton }
+            {clearListButton}
           </Nav>
           <TabContent className="mt-2" activeTab={this.state.activeTab}>
             <TabPane className="ScrobbleList-container" tabId="history">
@@ -201,6 +198,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(
-  ScrobbleSong
-);
+export default connect(mapStateToProps, mapDispatchToProps)(ScrobbleSong);

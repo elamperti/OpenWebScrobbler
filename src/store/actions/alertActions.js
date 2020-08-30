@@ -1,8 +1,4 @@
-import {
-  ALERT_CREATE,
-  ALERT_DISMISS,
-  ALERT_CLEAR_ALL,
-} from 'Constants';
+import { ALERT_CREATE, ALERT_DISMISS, ALERT_CLEAR_ALL } from 'Constants';
 
 export function dismissAlert(dispatch) {
   return (alertIdentifier) => {

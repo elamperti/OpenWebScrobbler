@@ -4,9 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
-import {
-  faHistory,
-} from '@fortawesome/free-solid-svg-icons';
+import { faHistory } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { clearAlbumTracklist, getAlbum, _discogsFindBestMatch } from 'store/actions/albumActions';
@@ -24,10 +22,10 @@ export function ScrobbleAlbumTracklist({ match }) {
   const [tracklistDataProvider, setTracklistDataProvider] = useState(null);
   const [triedAlternativeProvider, setTriedAlternativeProvider] = useState(false);
 
-  const albumInfo = useSelector(state => state.album.info);
-  const searchQuery = useSelector(state => state.album.queries);
-  const tracks = useSelector(state => state.album.tracks);
-  const scrobbles = useSelector(state => state.scrobbles.list);
+  const albumInfo = useSelector((state) => state.album.info);
+  const searchQuery = useSelector((state) => state.album.queries);
+  const tracks = useSelector((state) => state.album.tracks);
+  const scrobbles = useSelector((state) => state.scrobbles.list);
 
   useEffect(() => {
     // Clears any previous tracklist (this should be improved)
@@ -40,21 +38,27 @@ export function ScrobbleAlbumTracklist({ match }) {
     if (albumId) {
       setTracklistDataProvider(PROVIDER_LASTFM);
       setTriedAlternativeProvider(true);
-      dispatch(getAlbum({
-        mbid: decodeURIComponent(albumId),
-      }));
+      dispatch(
+        getAlbum({
+          mbid: decodeURIComponent(albumId),
+        })
+      );
     } else if (discogsId) {
       setTracklistDataProvider(PROVIDER_DISCOGS);
       setTriedAlternativeProvider(true);
-      dispatch(getAlbum({
-        discogsId: decodeURIComponent(discogsId),
-      }));
+      dispatch(
+        getAlbum({
+          discogsId: decodeURIComponent(discogsId),
+        })
+      );
     } else if (artist && albumName) {
       setTracklistDataProvider(PROVIDER_LASTFM);
-      dispatch(getAlbum({
-        artist: decodeURIComponent(artist),
-        name: decodeURIComponent(albumName),
-      }));
+      dispatch(
+        getAlbum({
+          artist: decodeURIComponent(artist),
+          name: decodeURIComponent(albumName),
+        })
+      );
     }
   }, [dispatch, match]);
 
@@ -83,14 +87,24 @@ export function ScrobbleAlbumTracklist({ match }) {
 
   return (
     <React.Fragment>
-      <AlbumBreadcrumb artistQuery={searchQuery.artist} albumQuery={searchQuery.album} album={albumInfo} dataProvider={tracklistDataProvider} />
+      <AlbumBreadcrumb
+        artistQuery={searchQuery.artist}
+        albumQuery={searchQuery.album}
+        album={albumInfo}
+        dataProvider={tracklistDataProvider}
+      />
       <div className="row mb-5">
         <div className="col-md-7 mb-4">
-          { Array.isArray(tracks) && triedAlternativeProvider ? <Tracklist tracks={tracks} albumInfo={albumInfo} /> : <Spinner /> }
+          {Array.isArray(tracks) && triedAlternativeProvider ? (
+            <Tracklist tracks={tracks} albumInfo={albumInfo} />
+          ) : (
+            <Spinner />
+          )}
         </div>
         <div className="col-md-5">
           <h4>
-            <FontAwesomeIcon icon={faHistory} />{` ${t('yourHistory')}`}
+            <FontAwesomeIcon icon={faHistory} />
+            {` ${t('yourHistory')}`}
           </h4>
           <div className="ScrobbleList-container">
             <ScrobbleList scrobbles={scrobbles}>

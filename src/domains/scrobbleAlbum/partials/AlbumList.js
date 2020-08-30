@@ -4,11 +4,7 @@ import PropTypes from 'prop-types';
 import { Row } from 'reactstrap';
 import AlbumCard from 'components/AlbumCard';
 
-export default function AlbumList({
-  albums = [],
-  className,
-  onClick,
-}) {
+export default function AlbumList({ albums = [], className, onClick }) {
   return (
     <Row className="mb-4">
       {albums.map((album, i) => (

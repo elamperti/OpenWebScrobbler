@@ -20,7 +20,14 @@ export default function SocialNetworksBlock() {
             <Col xs="9">
               <h4>{t('discord.title')}</h4>
               <p>{t('discord.copy')}</p>
-              <Button outline type="secondary" size="sm" href="https://discord.gg/SEDp6Zy" className="float-right col-12 col-lg-6" data-cy="SocialNetworkBlock-discord-button">
+              <Button
+                outline
+                type="secondary"
+                size="sm"
+                href="https://discord.gg/SEDp6Zy"
+                className="float-right col-12 col-lg-6"
+                data-cy="SocialNetworkBlock-discord-button"
+              >
                 {t('discord.CTA')}
               </Button>
             </Col>
@@ -36,7 +43,14 @@ export default function SocialNetworksBlock() {
             <Col xs="9">
               <h4>{t('support.title')}</h4>
               <p>{t('support.copy')}</p>
-              <Button outline type="secondary" size="sm" href="https://www.patreon.com/OpenScrobbler" className="float-right col-12 col-lg-6" data-cy="SocialNetworkBlock-patreon-button">
+              <Button
+                outline
+                type="secondary"
+                size="sm"
+                href="https://www.patreon.com/OpenScrobbler"
+                className="float-right col-12 col-lg-6"
+                data-cy="SocialNetworkBlock-patreon-button"
+              >
                 {t('support.CTA')}
               </Button>
             </Col>
