@@ -12,7 +12,7 @@ export function fetchLastfmAlbumInfo(response) {
 }
 
 export function fetchDiscogsAlbumInfo(response) {
-  const primaryImage = response.images.find(image => image.type === 'primary');
+  const primaryImage = response.images.find((image) => image.type === 'primary');
   return {
     name: response.title,
     artist: get(response, 'artists[0].name', ''), // + response.artists.length > 1 ? '+' : ''
@@ -40,7 +40,7 @@ export function fetchLastfmAlbums(response) {
 }
 
 export function fetchDiscogsAlbums(response) {
-  return get(response, 'results', []).map(album => {
+  return get(response, 'results', []).map((album) => {
     return {
       artist: '', // It's part of the name, impossible to tell
       discogsId: album.master_id,
@@ -69,7 +69,7 @@ export function fetchLastfmTopAlbums(response) {
 }
 
 export function fetchDiscogsTopAlbums(response) {
-  return get(response, 'releases', []).map(album => ({
+  return get(response, 'releases', []).map((album) => ({
     artist: album.artist,
     discogsId: album.id,
     name: album.title,

@@ -1,9 +1,5 @@
 import shortid from 'shortid';
-import {
-  ALERT_CREATE,
-  ALERT_DISMISS,
-  ALERT_CLEAR_ALL,
-} from 'Constants';
+import { ALERT_CREATE, ALERT_DISMISS, ALERT_CLEAR_ALL } from 'Constants';
 
 const initialState = [];
 
@@ -37,16 +33,16 @@ const alertReducer = (state = initialState, action) => {
           icon: action.payload.icon || null,
           persistent: action.payload.persistent || false,
         },
-        ...state.filter(alert => {
+        ...state.filter((alert) => {
           if (action.payload.category && alert.category) {
-            return (alert.category !== action.payload.category);
+            return alert.category !== action.payload.category;
           }
           return true;
         }),
       ];
 
     case ALERT_DISMISS:
-      return state.filter(alert => {
+      return state.filter((alert) => {
         for (const key in action.payload) {
           if (alert[key] !== action.payload[key]) {
             return true;

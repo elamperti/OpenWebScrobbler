@@ -24,16 +24,15 @@ export function setSettings(dispatch) {
           debounce: { time: silent ? DEBOUNCE_PERIOD : 1 },
         },
         payload: () => {
-          axios.post(`${OPENSCROBBLER_API_URL}/settings.php`, newSettings)
-            .then(() => {
-              if (!silent) {
-                createAlert(dispatch)({
-                  type: 'success',
-                  category: 'settings',
-                  message: 'settingsSavedSuccessfully',
-                });
-              }
-            });
+          axios.post(`${OPENSCROBBLER_API_URL}/settings.php`, newSettings).then(() => {
+            if (!silent) {
+              createAlert(dispatch)({
+                type: 'success',
+                category: 'settings',
+                message: 'settingsSavedSuccessfully',
+              });
+            }
+          });
         },
       });
     }
@@ -77,4 +76,4 @@ export function setDataProvider(provider) {
     type: SETTINGS_SET_DATA_PROVIDER,
     payload: provider,
   };
-};
+}

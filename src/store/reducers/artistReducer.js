@@ -1,15 +1,7 @@
 import get from 'lodash/get';
-import {
-  fetchLastfmArtists,
-  fetchDiscogsArtists,
-} from 'store/transformers/artistTransformer';
+import { fetchLastfmArtists, fetchDiscogsArtists } from 'store/transformers/artistTransformer';
 
-import {
-  SEARCH_ARTIST_LASTFM,
-  SEARCH_ARTIST_DISCOGS,
-  USER_LOGGED_OUT,
-  CLEAR_ALBUM_SEARCH,
-} from 'Constants';
+import { SEARCH_ARTIST_LASTFM, SEARCH_ARTIST_DISCOGS, USER_LOGGED_OUT, CLEAR_ALBUM_SEARCH } from 'Constants';
 
 const initialState = {
   list: null,

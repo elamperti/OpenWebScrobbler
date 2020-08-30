@@ -21,7 +21,7 @@ export function fetchLastfmArtists(response) {
 }
 
 export function fetchDiscogsArtists(response) {
-  return get(response, 'results', []).map(artist => ({
+  return get(response, 'results', []).map((artist) => ({
     name: artist.title,
     discogsId: artist.id,
     url: '',

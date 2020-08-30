@@ -11,9 +11,7 @@ export default function WelcomeBlock() {
           Welcome to the <span className="ows-Home-title">Open Scrobbler</span>!
         </Trans>
       </h1>
-      <p className="lead mb-4">
-        {t('purpose')}
-      </p>
+      <p className="lead mb-4">{t('purpose')}</p>
     </React.Fragment>
   );
 }

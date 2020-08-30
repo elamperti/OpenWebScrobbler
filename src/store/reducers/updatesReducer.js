@@ -1,6 +1,4 @@
-import {
-  NEW_VERSION_READY,
-} from 'Constants';
+import { NEW_VERSION_READY } from 'Constants';
 
 const initialState = {
   newVersionReady: false,

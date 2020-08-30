@@ -9,14 +9,15 @@ import './Home.scss';
 const bodyDecoration = 'with-shadow';
 
 export default function Home() {
-  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   useEffect(() => {
     // Add body class for special home background
     // ToDo: get rid of this unholy hack
     document.body.classList.add(bodyDecoration);
 
-    return () => { // unmount
+    return () => {
+      // unmount
       document.body.classList.remove(bodyDecoration);
     };
   });

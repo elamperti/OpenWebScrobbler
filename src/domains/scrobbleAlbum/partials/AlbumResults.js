@@ -13,17 +13,13 @@ import { searchAlbums, searchTopAlbums } from 'store/actions/albumActions';
 import Spinner from 'components/Spinner';
 import AlbumList from './AlbumList';
 
-export default function AlbumResults({
-  useFullWidth,
-  query,
-  topAlbums,
-}) {
+export default function AlbumResults({ useFullWidth, query, topAlbums }) {
   const history = useHistory();
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
-  const albums = useSelector(state => state.album.list);
-  const dataProvider = useSelector(state => state.settings.dataProvider);
+  const albums = useSelector((state) => state.album.list);
+  const dataProvider = useSelector((state) => state.settings.dataProvider);
 
   const colSizes = useFullWidth ? 'col-6 col-md-4 col-xl-3' : 'col-6 col-xl-4';
 
@@ -43,7 +39,8 @@ export default function AlbumResults({
           </Trans>
           <br />
           <a href={`/scrobble/album?q=${encodeURIComponent(query)}`} className="my-2">
-            <FontAwesomeIcon icon={faArrowLeft} />{` ${t('goBack')}`}
+            <FontAwesomeIcon icon={faArrowLeft} />
+            {` ${t('goBack')}`}
           </a>
         </div>
       );
@@ -64,7 +61,9 @@ export default function AlbumResults({
         } else if (targetAlbum.discogsId) {
           history.push(`/scrobble/album/view/dsid/${targetAlbum.discogsId}`);
         } else {
-          history.push(`/scrobble/album/view/${encodeURIComponent(targetAlbum.artist)}/${encodeURIComponent(targetAlbum.name)}`);
+          history.push(
+            `/scrobble/album/view/${encodeURIComponent(targetAlbum.artist)}/${encodeURIComponent(targetAlbum.name)}`
+          );
         }
       };
 

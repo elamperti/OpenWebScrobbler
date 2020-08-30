@@ -2,14 +2,7 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
 
-import {
-  Button,
-  FormFeedback,
-  FormGroup,
-  Input,
-  Label,
-  Row,
-} from 'reactstrap';
+import { Button, FormFeedback, FormGroup, Input, Label, Row } from 'reactstrap';
 
 export default function SearchForm({
   ariaLabel,
@@ -53,7 +46,9 @@ export default function SearchForm({
       <Row noGutters className="mt-2">
         <div className="col-12 col-sm-9 pr-sm-3">
           <FormGroup>
-            <Label for="title" className="required sr-only">{ariaLabel}</Label>
+            <Label for="title" className="required sr-only">
+              {ariaLabel}
+            </Label>
             <Input
               type="text"
               name={id}
@@ -80,7 +75,7 @@ export default function SearchForm({
       </Row>
     </div>
   );
-};
+}
 
 SearchForm.defaultProps = {
   disableSearch: false,

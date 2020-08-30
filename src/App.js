@@ -34,8 +34,8 @@ function App() {
   const location = useLocation();
   const history = useHistory();
 
-  const versionUpdateReady = useSelector(state => state.updates.newVersionReady);
-  const isLoggedIn = useSelector(state => state.user.isLoggedIn);
+  const versionUpdateReady = useSelector((state) => state.updates.newVersionReady);
+  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
 
   useEffect(() => {
     // Things break if this interceptor is applied more than once!
@@ -57,7 +57,10 @@ function App() {
 
     // ToDo: Move this to a better place
     if (queryString.hl) {
-      if ((find(languageList, { code: queryString.hl }) || Object.prototype.hasOwnProperty.call(fallbackLng, queryString.hl))) {
+      if (
+        find(languageList, { code: queryString.hl }) ||
+        Object.prototype.hasOwnProperty.call(fallbackLng, queryString.hl)
+      ) {
         changeLanguage(queryString.hl);
       }
     }
@@ -74,8 +77,8 @@ function App() {
       <Navigation />
       <SettingsModal />
       <div className="d-flex flex-column" style={{ height: 'calc(100vh - 78px)' }}>
-        { process.env.REACT_APP_ANALYTICS_CODE ? <AnalyticsListener /> : null }
-        { versionUpdateReady ? <UpdateToast /> : null }
+        {process.env.REACT_APP_ANALYTICS_CODE && <AnalyticsListener />}
+        {versionUpdateReady && <UpdateToast />}
 
         <div className="container">
           <AlertZone />
@@ -85,8 +88,20 @@ function App() {
             <PrivateRoute exact path="/scrobble/song" component={ScrobbleSong} />
             <PrivateRoute exact path="/scrobble/album" component={ScrobbleAlbumSearch} />
             <PrivateRoute exact path="/scrobble/album/search/:albumName" component={ScrobbleAlbumResults} />
-            <PrivateRoute exact path={['/scrobble/artist/:artistName', '/scrobble/artist/mbid/:mbid', '/scrobble/artist/dsid/:discogsId']} component={ScrobbleArtistResults} />
-            <PrivateRoute exact path={['/scrobble/album/view/mbid/:albumId', '/scrobble/album/view/dsid/:discogsId', '/scrobble/album/view/:artist/:albumName']} component={ScrobbleAlbumTracklist} />
+            <PrivateRoute
+              exact
+              path={['/scrobble/artist/:artistName', '/scrobble/artist/mbid/:mbid', '/scrobble/artist/dsid/:discogsId']}
+              component={ScrobbleArtistResults}
+            />
+            <PrivateRoute
+              exact
+              path={[
+                '/scrobble/album/view/mbid/:albumId',
+                '/scrobble/album/view/dsid/:discogsId',
+                '/scrobble/album/view/:artist/:albumName',
+              ]}
+              component={ScrobbleAlbumTracklist}
+            />
             <PrivateRoute exact path="/scrobble/user/:username?" component={ScrobbleUser} />
             <Route exact path="/" component={Home} />
             <Redirect to="/" />

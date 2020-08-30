@@ -4,10 +4,7 @@ import PropTypes from 'prop-types';
 import { Row } from 'reactstrap';
 import ArtistCard from 'components/ArtistCard';
 
-export default function ArtistList({
-  artists = [],
-  onClick,
-}) {
+export default function ArtistList({ artists = [], onClick }) {
   return (
     <Row>
       {artists.map((artist, i) => (

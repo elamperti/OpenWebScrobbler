@@ -5,12 +5,7 @@ import { useTranslation } from 'react-i18next';
 import { NavItem, NavLink } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-export default function NavigationItem({
-  external,
-  href,
-  i18nKey,
-  icon,
-}) {
+export default function NavigationItem({ external, href, i18nKey, icon }) {
   const { t } = useTranslation();
   let navLinkProps = {
     tag: RouterNavLink,

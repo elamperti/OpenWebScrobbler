@@ -7,19 +7,9 @@ import ReactGA from 'react-ga';
 import addSeconds from 'date-fns/add_seconds';
 import subSeconds from 'date-fns/sub_seconds';
 
-import {
-  Alert,
-  Button,
-  FormGroup,
-  CustomInput,
-} from 'reactstrap';
+import { Alert, Button, FormGroup, CustomInput } from 'reactstrap';
 
-import {
-  faArrowLeft,
-  faBolt,
-  faCompactDisc,
-  faQuestionCircle,
-} from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faBolt, faCompactDisc, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import AlbumCard from 'components/AlbumCard';
@@ -31,10 +21,7 @@ import { enqueueScrobble } from 'store/actions/scrobbleActions';
 // ToDo: refactor this component completely.
 // It's too complex and carries several blocks from old code.
 
-export default function Tracklist({
-  albumInfo,
-  tracks,
-}) {
+export default function Tracklist({ albumInfo, tracks }) {
   const dispatch = useDispatch();
   const history = useHistory();
   const { t } = useTranslation();
@@ -116,7 +103,9 @@ export default function Tracklist({
         }
 
         // Prepare timestamp for next track
-        rollingTimestamp = timestampCalculationSubstractsTime ? subSeconds(rollingTimestamp, track.duration) : addSeconds(rollingTimestamp, track.duration);
+        rollingTimestamp = timestampCalculationSubstractsTime
+          ? subSeconds(rollingTimestamp, track.duration)
+          : addSeconds(rollingTimestamp, track.duration);
       }
     }
 
@@ -138,24 +127,55 @@ export default function Tracklist({
             <div className="album-heading-artist-name">{albumInfo.artist}</div>
           </div>
           <FormGroup className="align-self-end mb-0">
-            <Translation>{
-              // This mess is required to translate the `label` properties using t(), otherwise label wouldn't be clickable
-              (t) => {
-                return (
-                  <React.Fragment>
-                    <CustomInput inline type="radio" id="useNowTimestamp" label={t('now')} name="useCustomTimestamp" checked={!useCustomTimestamp} onChange={toggleCustomTimestamp} disabled={albumIsEmpty}></CustomInput>
-                    <CustomInput inline type="radio" id="useCustomTimestamp" label={t('customTimestamp')} name="useCustomTimestamp" checked={useCustomTimestamp} onChange={toggleCustomTimestamp} disabled={albumIsEmpty}></CustomInput>
-                  </React.Fragment>
-                );
+            <Translation>
+              {
+                // This mess is required to translate the `label` properties using t(), otherwise label wouldn't be clickable
+                (t) => {
+                  return (
+                    <React.Fragment>
+                      <CustomInput
+                        inline
+                        type="radio"
+                        id="useNowTimestamp"
+                        label={t('now')}
+                        name="useCustomTimestamp"
+                        checked={!useCustomTimestamp}
+                        onChange={toggleCustomTimestamp}
+                        disabled={albumIsEmpty}
+                      ></CustomInput>
+                      <CustomInput
+                        inline
+                        type="radio"
+                        id="useCustomTimestamp"
+                        label={t('customTimestamp')}
+                        name="useCustomTimestamp"
+                        checked={useCustomTimestamp}
+                        onChange={toggleCustomTimestamp}
+                        disabled={albumIsEmpty}
+                      ></CustomInput>
+                    </React.Fragment>
+                  );
+                }
               }
-            }</Translation>
-            <FontAwesomeIcon id="timestampInfoIcon" icon={faQuestionCircle} color="var(--gray)" onClick={toggleTimestampCopy} />
+            </Translation>
+            <FontAwesomeIcon
+              id="timestampInfoIcon"
+              icon={faQuestionCircle}
+              color="var(--gray)"
+              onClick={toggleTimestampCopy}
+            />
           </FormGroup>
         </div>
       </div>
 
       <DateTimePicker value={customTimestamp} onChange={handleTimestampChange} visible={useCustomTimestamp} />
-      <Alert color="dark" isOpen={showTimestampCopy} toggle={toggleTimestampCopy} className="text-justify mt-3" fade={false}>
+      <Alert
+        color="dark"
+        isOpen={showTimestampCopy}
+        toggle={toggleTimestampCopy}
+        className="text-justify mt-3"
+        fade={false}
+      >
         <Trans i18nKey="albumTimestampLogicDescription" />
       </Alert>
       <div className="row">
@@ -166,7 +186,10 @@ export default function Tracklist({
         </div>
       </div>
 
-      <ScrobbleList compact isAlbum noMenu
+      <ScrobbleList
+        compact
+        isAlbum
+        noMenu
         analyticsEventForScrobbles="Scrobble individual album song"
         scrobbles={tracks || []}
         onSelect={toggleSelectedTrack}
@@ -179,7 +202,8 @@ export default function Tracklist({
               <Trans i18nKey="emptyAlbum">This album appears to be empty.</Trans>
             </p>
             <a href="/scrobble/album" onClick={goBack} className="my-2">
-              <FontAwesomeIcon icon={faArrowLeft} />{` ${t('goBack')}`}
+              <FontAwesomeIcon icon={faArrowLeft} />
+              {` ${t('goBack')}`}
             </a>
           </div>
         </div>

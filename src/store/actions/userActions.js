@@ -20,13 +20,15 @@ import { createAlert } from './alertActions';
 import { setSettings } from './settingsActions';
 
 const history = createHistory();
-const lastfmAuthURL = `https://www.last.fm/api/auth/?api_key=${process.env.REACT_APP_LASTFM_API_KEY}` +
-                      `&cb=${window.location.protocol}//${window.location.host}/`;
+const lastfmAuthURL =
+  `https://www.last.fm/api/auth/?api_key=${process.env.REACT_APP_LASTFM_API_KEY}` +
+  `&cb=${window.location.protocol}//${window.location.host}/`;
 
 export function authUserWithToken(dispatch) {
   return (token) => {
-    axios.post(`${OPENSCROBBLER_API_URL}/callback.php`, { token: token })
-      .then(response => {
+    axios
+      .post(`${OPENSCROBBLER_API_URL}/callback.php`, { token: token })
+      .then((response) => {
         if (get(response, 'data.status') === 'ok') {
           dispatch({
             type: USER_LOGGED_IN,
@@ -35,13 +37,14 @@ export function authUserWithToken(dispatch) {
           history.push('/scrobble/song');
         }
       })
-      .catch(response => {
+      .catch((response) => {
         createAlert(dispatch)({
           type: 'danger',
           title: 'loginError.title',
           message: 'loginError.message',
         });
-        if (response) { // Avoid issue OPENSCROBBLER-47
+        // Avoid issue OPENSCROBBLER-47
+        if (response) {
           /* eslint-disable no-console */
           console.error('Error logging in', response);
         }
@@ -51,34 +54,36 @@ export function authUserWithToken(dispatch) {
 
 export function getUserInfo(dispatch) {
   return () => {
-    axios.post(`${OPENSCROBBLER_API_URL}/user.php`)
-      .then((response) => {
-        dispatch({
-          type: `${USER_GET_INFO}_FULFILLED`,
-          payload: response,
-        });
-        if (response.data.user) {
-          const hashedUserId = md5(response.data.user.name);
-          ReactGA.set({
-            userId: hashedUserId,
-          });
-          saveToLocalStorage('hashedUID', hashedUserId);
-        }
-        if (response.data.settings) {
-          setSettings(dispatch)(response.data.settings, false);
-        }
+    axios.post(`${OPENSCROBBLER_API_URL}/user.php`).then((response) => {
+      dispatch({
+        type: `${USER_GET_INFO}_FULFILLED`,
+        payload: response,
       });
+      if (response.data.user) {
+        const hashedUserId = md5(response.data.user.name);
+        ReactGA.set({
+          userId: hashedUserId,
+        });
+        saveToLocalStorage('hashedUID', hashedUserId);
+      }
+      if (response.data.settings) {
+        setSettings(dispatch)(response.data.settings, false);
+      }
+    });
   };
 }
 
 export function logIn() {
   return () => {
-    ReactGA.outboundLink({
-      label: 'Login intent',
-      to: lastfmAuthURL,
-    }, () => {
-      window.location.href = lastfmAuthURL;
-    });
+    ReactGA.outboundLink(
+      {
+        label: 'Login intent',
+        to: lastfmAuthURL,
+      },
+      () => {
+        window.location.href = lastfmAuthURL;
+      }
+    );
   };
 }
 
@@ -89,22 +94,25 @@ export function logOut(dispatch) {
       action: 'Logout',
       label: 'Intent',
     }); // ToDo: add nonInteraction prop when logout is not manual
-    axios.post(`${OPENSCROBBLER_API_URL}/logout.php`)
-      .then(() => {
-        dispatch({
-          type: USER_LOGGED_OUT,
-        });
-        ReactGA.set({
-          userId: undefined,
-        });
-        localStorage.removeItem('hashedUID');
-        history.push('/');
-        createAlert(dispatch)(hasIn(alertObject, 'message') ? alertObject : {
-          type: 'info',
-          title: 'logoutInfo.title',
-          message: 'logoutInfo.message',
-        });
+    axios.post(`${OPENSCROBBLER_API_URL}/logout.php`).then(() => {
+      dispatch({
+        type: USER_LOGGED_OUT,
       });
+      ReactGA.set({
+        userId: undefined,
+      });
+      localStorage.removeItem('hashedUID');
+      history.push('/');
+      createAlert(dispatch)(
+        hasIn(alertObject, 'message')
+          ? alertObject
+          : {
+            type: 'info',
+            title: 'logoutInfo.title',
+            message: 'logoutInfo.message',
+          }
+      );
+    });
   };
 }
 

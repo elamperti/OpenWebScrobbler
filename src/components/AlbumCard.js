@@ -6,7 +6,7 @@ import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 import './AlbumCard.css';
 
-const AlbumCard = props => {
+const AlbumCard = (props) => {
   const albumCardStyle = {};
 
   if (props.background) {
@@ -15,7 +15,7 @@ const AlbumCard = props => {
     albumCardStyle.backgroundColor = `hsl(${random(0, 359)},50%,30%)`;
   }
 
-  const albumCaption = (props.name &&
+  const albumCaption = props.name && (
     <div className="albumCard-caption px-3 pb-2">
       <strong className="albumCard-title">{props.name}</strong>
       <br />
@@ -23,7 +23,9 @@ const AlbumCard = props => {
     </div>
   );
 
-  const albumArt = props.background && <LazyLoadImage className='albumArt' src={props.background} alt={props.name} effect="opacity" />;
+  const albumArt = props.background && (
+    <LazyLoadImage className="albumArt" src={props.background} alt={props.name} effect="opacity" />
+  );
 
   return (
     <div className={`albumCard ${props.className} ${props.interactive && 'interactive'}`} style={albumCardStyle}>

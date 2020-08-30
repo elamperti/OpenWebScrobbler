@@ -14,7 +14,7 @@ import AlbumResults from './partials/AlbumResults';
 export function ScrobbleArtistResults({ match }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const searchQuery = useSelector(state => state.album.queries);
+  const searchQuery = useSelector((state) => state.album.queries);
   const [artist, setArtist] = useState(null);
 
   // ToDo: refactor all these useEffects; avoid having an internal state
@@ -43,7 +43,8 @@ export function ScrobbleArtistResults({ match }) {
   return (
     <React.Fragment>
       <h2 className="m-0 d-inline">
-        <FontAwesomeIcon icon={faCompactDisc} className="mr-2" />{t('scrobbleAlbum')}
+        <FontAwesomeIcon icon={faCompactDisc} className="mr-2" />
+        {t('scrobbleAlbum')}
       </h2>
       <AlbumBreadcrumb artistQuery={searchQuery.artist} albumQuery={searchQuery.album} />
       <h3 className="mt-3 mb-0">
