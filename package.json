@@ -21,6 +21,7 @@
     "lodash": "^4.17.13",
     "md5": "^2.2.1",
     "node-sass": "^4.13.1",
+    "prettier": "^2.1.1",
     "prop-types": "^15.6.2",
     "qs": "^6.5.2",
     "react": "^16.13.1",
@@ -72,7 +73,9 @@
     "start:server": "react-app-rewired -r @cypress/instrument-cra start",
     "start:services": "docker-compose up",
     "build": "REACT_APP_VERSION=$npm_package_version react-app-rewired build",
-    "lint": "eslint src/ cypress/integration",
+    "prettier": "prettier --write \"src/**/*.js\"",
+    "lint": "eslint src/ cypress/integration --fix",
+    "fix": "yarn prettier && yarn lint",
     "patch": "yarn version --no-git-tag-version --patch",
     "eject": "react-scripts eject",
     "test": "BROWSER=none start-test 'yarn start:server' 3000 'cypress run'",
@@ -85,7 +88,7 @@
   },
   "lint-staged": {
     "src/**/*.{js,jsx}": [
-      "yarn lint"
+      "eslint --fix"
     ]
   },
   "browserslist": {
