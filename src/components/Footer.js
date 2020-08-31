@@ -31,7 +31,7 @@ function Footer() {
           </Trans>
           <br />
           <Trans i18nKey="footer.specialThanks">
-            Special thanks to all our supporters, translators and{' '}
+            {'Special thanks to all our supporters, translators and '}
             <a href="https://github.com/elamperti/OpenWebScrobbler/graphs/contributors">contributors</a>
           </Trans>
           {' ❤ '}

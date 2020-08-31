@@ -4,11 +4,16 @@ import { Jumbotron, Button, Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { faLastfm } from '@fortawesome/free-brands-svg-icons';
-import { logIn } from 'store/actions/userActions';
 import SocialNetworksBlock from './partials/SocialNetworksBlock';
 import WelcomeBlock from './partials/WelcomeBlock';
 
 import './HomeVisitor.scss';
+
+const logIn = () => {
+  window.location.href =
+    `https://www.last.fm/api/auth/?api_key=${process.env.REACT_APP_LASTFM_API_KEY}` +
+    `&cb=${window.location.protocol}//${window.location.host}/`;
+};
 
 export default function Home() {
   const { t } = useTranslation();
@@ -21,7 +26,7 @@ export default function Home() {
             <WelcomeBlock />
             <p className="text-center">{t('authNeeded')}</p>
             <p className="lead text-center">
-              <Button onClick={() => logIn()()} size="lg" color="danger">
+              <Button onClick={logIn} size="lg" color="danger">
                 <FontAwesomeIcon icon={faLastfm} color="white" /> {t('logInWithLastFm')}
               </Button>
               <small className="text-muted text-copy d-block mt-1">
