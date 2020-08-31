@@ -1,25 +1,30 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+// import { useSelector, useDispatch } from 'react-redux';
 import ReactGA from 'react-ga';
 
-import { Row, FormGroup, Label, Input } from 'reactstrap';
+import {
+  Row,
+  // FormGroup,
+  // Label,
+  // Input,
+} from 'reactstrap';
 import SearchForm from 'components/SearchForm';
 
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { setDataProvider as setDataProviderAction } from 'store/actions/settingsActions';
-import { PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
+// import { setDataProvider as setDataProviderAction } from 'store/actions/settingsActions';
+// import { PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
 import './ScrobbleAlbumSearch.scss';
 
 export function ScrobbleAlbumSearch() {
   const history = useHistory();
   const { t } = useTranslation();
-  const dataProvider = useSelector((state) => state.settings.dataProvider);
-  const dispatch = useDispatch();
+  // const dataProvider = useSelector((state) => state.settings.dataProvider);
+  // const dispatch = useDispatch();
 
   const onSearch = (query) => {
     ReactGA.event({
@@ -30,10 +35,10 @@ export function ScrobbleAlbumSearch() {
     history.push(`/scrobble/album/search/${encodeURIComponent(query.trim())}`);
   };
 
-  const setDataProvider = (e) => {
-    const { provider } = e.currentTarget.dataset;
-    dispatch(setDataProviderAction(provider));
-  };
+  // const setDataProvider = (e) => {
+  //   const { provider } = e.currentTarget.dataset;
+  //   dispatch(setDataProviderAction(provider));
+  // };
 
   const validator = (str) => str.trim().length > 0;
 
@@ -52,7 +57,8 @@ export function ScrobbleAlbumSearch() {
           validator={validator}
           feedbackMessageKey="emptyAlbum"
         />
-        <div className="mt-3 mt-sm-0 justify-content-center">
+        {/* Hiding this to avoid confusion -- power users may switch providers from settings */}
+        {/* <div className="mt-3 mt-sm-0 justify-content-center">
           <span className="mr-2">{t('dataProvider')}:</span>
           <FormGroup inline check>
             <Label check className="ows-ScrobbleAlbum-dataProvider">
@@ -78,7 +84,7 @@ export function ScrobbleAlbumSearch() {
               Discogs
             </Label>
           </FormGroup>
-        </div>
+        </div> */}
       </div>
     </Row>
   );

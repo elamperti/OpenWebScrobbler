@@ -20,9 +20,6 @@ import { createAlert } from './alertActions';
 import { setSettings } from './settingsActions';
 
 const history = createHistory();
-const lastfmAuthURL =
-  `https://www.last.fm/api/auth/?api_key=${process.env.REACT_APP_LASTFM_API_KEY}` +
-  `&cb=${window.location.protocol}//${window.location.host}/`;
 
 export function authUserWithToken(dispatch) {
   return (token) => {
@@ -70,20 +67,6 @@ export function getUserInfo(dispatch) {
         setSettings(dispatch)(response.data.settings, false);
       }
     });
-  };
-}
-
-export function logIn() {
-  return () => {
-    ReactGA.outboundLink(
-      {
-        label: 'Login intent',
-        to: lastfmAuthURL,
-      },
-      () => {
-        window.location.href = lastfmAuthURL;
-      }
-    );
   };
 }
 

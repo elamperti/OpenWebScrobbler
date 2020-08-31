@@ -20,7 +20,6 @@ export default function AlbumResults({ useFullWidth, query, topAlbums }) {
 
   const albums = useSelector((state) => state.album.list);
   const dataProvider = useSelector((state) => state.settings.dataProvider);
-
   const colSizes = useFullWidth ? 'col-6 col-md-4 col-xl-3' : 'col-6 col-xl-4';
 
   useEffect(() => {
