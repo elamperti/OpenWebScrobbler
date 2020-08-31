@@ -67,8 +67,20 @@
       "short": "MMM Do"
     },
     "months": {
-      "short": ["Ene","Feb","Mar","Abr","May","Jun","Jul","Ago","Sep","Nov","Dic"],
-      "long": ["Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Noviembre","Diciembre"]
+      "short": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Nov", "Dic"],
+      "long": [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Noviembre",
+        "Diciembre"
+      ]
     }
   },
   "updates": {
@@ -78,5 +90,45 @@
     "lastfmRejected": "Last.fm rechazó este scrobble",
     "unexpectedResponse": "Respuesta inesperada",
     "apiCallFailed": "Fallo en la llamada a la API"
+  },
+  "settingsFor": "Configuración para",
+  "saveSettings": "Guardar cambios",
+  "defaultLanguage": "Idioma por defecto",
+  "availableLanguages": "Idiomas disponibles",
+  "use12HoursFormat": "Usar formato de 12 horas (AM/PM)",
+  "splitPastedText": "Dividir texto al pegar en los campos de artista o título",
+  "welcomeToTheScrobbler": "¡Bienvenidos al <1>Open Scrobbler</1>!",
+  "purpose": "Esta herramienta permite scrobblear canciones y álbums que hayas escuchado en la radio, en vinilos, o de alguna otra forma que requiera scrobblear manualmente.",
+  "authNeeded": "¡Autoriza la aplicación para empezar!",
+  "logInWithLastFm": "Ingresar con Last.fm",
+  "logInIsSafe": "Esto se hace de forma segura en Last.fm",
+  "about": {
+    "title": "¿Qué es esto?",
+    "description": "Un scrobbler de código abierto para la web que te permitirá agregar canciones manualmente en tu perfil de Last.fm."
+  },
+  "support": {
+    "title": "Colabora con el proyecto",
+    "copy": "Por favor considera hacer un aporte para mantener este sitio en funcionamiento y soportar su desarrollo.",
+    "CTA": "Hacer un aporte"
+  },
+  "discord": {
+    "title": "¡Únete a Discord!",
+    "copy": "¡Conéctate con otros fanáticos de la música y entérate cuando haya novedades!",
+    "CTA": "Ir a Discord"
+  },
+  "authFailed": "Fallo de autenticación",
+  "loginAgain": "¡Debes iniciar sesión nuevamente!",
+  "serviceUnavailable": "El servicio no está disponible",
+  "unexpectedError": "Error inesperado",
+  "unexpectedErrorMessage": "Tu ad blocker podría estar bloqueando llamadas a la API de last.fm, intenta desactivarlo o agrega una excepción para ws.audioscrobbler.com",
+  "lastfmUnavailable": "Last.fm no está respondiendo, intenta de nuevo más tarde.",
+  "settingsSavedSuccessfully": "Tu configuración fue guardada exitosamente!",
+  "loginError": {
+    "title": "Error al iniciar sesión",
+    "message": "Hubo un error inesperado al iniciar sesión. ¡Lo lamento!"
+  },
+  "logoutInfo": {
+    "title": "Hasta pronto!",
+    "message": "Has cerrado sesión correctamente."
   }
 }

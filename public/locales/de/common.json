@@ -45,7 +45,7 @@
   "lastfmWillRejectOldTimestamps": "Last.fm wird Scroobles verwerfen, die älter als 2 Wochen sind.",
   "keepOriginalTimestamp": "Scrobble using original date and time",
   "noSongsScrobbled": "Noch keine Lieder gescrobblet!",
-  "songsWillAppearHere":  "Titel werden hier erscheinen, sobald Sie diese scrobblen.",
+  "songsWillAppearHere": "Titel werden hier erscheinen, sobald Sie diese scrobblen.",
   "clearHistory": "Verlauf löschen",
   "scrobbleAgain": "Erneut scrobblen",
   "copyToEditor": "Zum Editor kopieren",
@@ -67,8 +67,21 @@
       "short": "MMM Do"
     },
     "months": {
-      "short": ["Jan","Feb","Mar","Apr","Mai","Jun","Jul","Aug","Sep","Okt","Nov","Dez"],
-      "long": ["Januar","Februar","März","April","Mai","Juni","Juli","August","September","Oktober","November","Dezember"]
+      "short": ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
+      "long": [
+        "Januar",
+        "Februar",
+        "März",
+        "April",
+        "Mai",
+        "Juni",
+        "Juli",
+        "August",
+        "September",
+        "Oktober",
+        "November",
+        "Dezember"
+      ]
     }
   },
   "updates": {
@@ -78,5 +91,45 @@
     "lastfmRejected": "Last.fm hat deinen Scrobble abgelehnt",
     "unexpectedResponse": "Unerwartete Antwort",
     "apiCallFailed": "API-Aufruf ist fehlgeschlagen"
+  },
+  "settingsFor": "Einstellungen für",
+  "saveSettings": "Einstellungen speichern",
+  "defaultLanguage": "Bevorzugte Sprache",
+  "availableLanguages": "Verfügbare Sprachen",
+  "use12HoursFormat": "Das 12-Stunden Zeitformat benutzen (AM/PM)",
+  "splitPastedText": "Den Text aufteilen, der in Künstler-/Titel-Felder eingefügt wurde",
+  "welcomeToTheScrobbler": "Willkommen beim <1>Open Scrobbler</1>!",
+  "purpose": "Dieses Seite lässt Sie Titel und Alben manuell scrobblen, die Sie im Radio, auf Vinyl oder wo anders gehört haben.",
+  "authNeeded": "Authorisieren Sie bitte die App um zu starten!",
+  "logInWithLastFm": "Mit Last.fm einloggen",
+  "logInIsSafe": "Dies geschieht sicher über Last.fm",
+  "about": {
+    "title": "Was ist das?",
+    "description": "Ein freier Scrobbler für das Internet, der dir erlaubt, Titel manuell einzugeben und sie deinem Last.fm Profile zuzufügen."
+  },
+  "support": {
+    "title": "Das Projekt unterstützen",
+    "copy": "Bitte überlegen Sie sich ein Pate zu werden, um die Seite am Leben zu halten und zu ünterstüzten!",
+    "CTA": "Werde ein Pate"
+  },
+  "discord": {
+    "title": "Treten Sie uns bei Discord bei!",
+    "copy": "Bleiben Sie mit anderen Musik-Fans in Verbindung und finden Sie heraus, was es Neues gibt!",
+    "CTA": "Trete Discord bei"
+  },
+  "authFailed": "Anmeldung fehlgeschlagen",
+  "loginAgain": "Loggen Sie sich erneut ein!",
+  "serviceUnavailable": "Service nicht erreichbar",
+  "unexpectedError": "Unerwarteter Fehler",
+  "unexpectedErrorMessage": "Your ad blocker may be blocking API calls to last.fm, try disabling it or adding an exception for ws.audioscrobbler.com",
+  "lastfmUnavailable": "Last.fm antwortet nicht, bitte versuchen sie es später noch einmal.",
+  "settingsSavedSuccessfully": "Ihre Einstellungen wurden erfolgreich gespeichert!",
+  "loginError": {
+    "title": "Fehler bei Anmelden",
+    "message": "Es gab einen unerwarteten Fehler beim Anmelden. Entschuldigen Sie bitte!"
+  },
+  "logoutInfo": {
+    "title": "Bis bald!",
+    "message": "Erfolgreich abgemeldet."
   }
 }

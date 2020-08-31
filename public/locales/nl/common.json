@@ -67,8 +67,21 @@
       "short": "Do MMM"
     },
     "months": {
-      "short": ["Jan","Feb","Maa","Apr","Mei","Jun","Jul","Aug","Sep","Okt","Nov","Dec"],
-      "long": ["Januari","Februari","Maart","April","Mei","Juni","Juli","Augustus","September","Oktober","November","December"]
+      "short": ["Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
+      "long": [
+        "Januari",
+        "Februari",
+        "Maart",
+        "April",
+        "Mei",
+        "Juni",
+        "Juli",
+        "Augustus",
+        "September",
+        "Oktober",
+        "November",
+        "December"
+      ]
     }
   },
   "updates": {
@@ -78,5 +91,45 @@
     "lastfmRejected": "Last.fm rejected this scrobble",
     "unexpectedResponse": "Unexpected response",
     "apiCallFailed": "Call to API failed"
+  },
+  "settingsFor": "Instellingen voor",
+  "saveSettings": "Opslaan",
+  "defaultLanguage": "Standaardtaal",
+  "availableLanguages": "Beschikbare talen",
+  "use12HoursFormat": "Twaalfuurstijd gebruiken (AM/PM)",
+  "splitPastedText": "Geplakte tekst opsplitsen in velden artiest/titel",
+  "welcomeToTheScrobbler": "Welkom bij de <1>Open Scrobbler</1>!",
+  "purpose": "Deze tool laat je nummers en albums scrobbelen die je hoorde op de radio, op vinyl, of ergens anders waar je manueel moet scrobbelen.",
+  "authNeeded": "Geef de applicatie toegang tot je Last.fm om te beginnen!",
+  "logInWithLastFm": "Log in met Last.fm",
+  "logInIsSafe": "Dit wordt veilig gedaan via Last.fm",
+  "about": {
+    "title": "Wat is dit?",
+    "description": "Een open source scrobbeler voor het internet, die je manueel nummers laat invoeren om ze aan je Last.fm-profiel toe te voegen."
+  },
+  "support": {
+    "title": "Steun dit project",
+    "copy": "Het zou fijn zijn mocht je overwegen om dit project te steunen op Patreon! Zo help je deze site om online te blijven en steun je de ontwikkeling ervan :)",
+    "CTA": "Word een patron"
+  },
+  "discord": {
+    "title": "Word lid van onze Discord!",
+    "copy": "Praat met andere muziekfans, en ontdek wanneer er nieuwe ontwikkelingen zijn!",
+    "CTA": "Naar Discord"
+  },
+  "authFailed": "Authenticatie mislukt",
+  "loginAgain": "Je moet opnieuw inloggen!",
+  "serviceUnavailable": "Service niet beschikbaar",
+  "unexpectedError": "Onverwachte fout",
+  "unexpectedErrorMessage": "Your ad blocker may be blocking API calls to last.fm, try disabling it or adding an exception for ws.audioscrobbler.com",
+  "lastfmUnavailable": "Last.fm reageert niet. Probeer het later opnieuw.",
+  "settingsSavedSuccessfully": "Je instellingen zijn opgeslagen!",
+  "loginError": {
+    "title": "Fout bij het inloggen",
+    "message": "Er trad een onverwachte fout op bij het inloggen. Sorry!"
+  },
+  "logoutInfo": {
+    "title": "Tot later!",
+    "message": "Succesvol uitgelogd."
   }
 }

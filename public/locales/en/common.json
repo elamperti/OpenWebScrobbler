@@ -68,8 +68,21 @@
       "short": "MMM Do"
     },
     "months": {
-      "short": ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],
-      "long": ["January","February","March","April","May","June","July","August","September","October","November","December"]
+      "short": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+      "long": [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ]
     }
   },
   "updates": {
@@ -81,5 +94,45 @@
     "apiCallFailed": "Call to API failed"
   },
   "next": "Next",
-  "previous": "Previous"
+  "previous": "Previous",
+  "settingsFor": "Settings for",
+  "saveSettings": "Save settings",
+  "defaultLanguage": "Default language",
+  "availableLanguages": "Available languages",
+  "use12HoursFormat": "Use 12-hour time format (AM/PM)",
+  "splitPastedText": "Split text pasted in artists/title fields",
+  "welcomeToTheScrobbler": "Welcome to the <1>Open Scrobbler</1>!",
+  "purpose": "This tool lets you scrobble songs and albums you heard on the radio, vinyl or at some place where you need to manually scrobble.",
+  "authNeeded": "Authorize the application to get started!",
+  "logInWithLastFm": "Log in with Last.fm",
+  "logInIsSafe": "This is safely done over at Last.fm",
+  "about": {
+    "title": "What is this?",
+    "description": "An open source scrobbler for the web, which allows you to manually input songs and add them to your Last.fm profile."
+  },
+  "support": {
+    "title": "Support this project",
+    "copy": "Please consider becoming a patron to keep this site up and support development!",
+    "CTA": "Become a patron"
+  },
+  "discord": {
+    "title": "Join us on Discord!",
+    "copy": "Stay connected with other music fans and find out when there's something new!",
+    "CTA": "Join Discord"
+  },
+  "authFailed": "Authentication failed",
+  "loginAgain": "You must log in again!",
+  "serviceUnavailable": "Service unavailable",
+  "unexpectedError": "Unexpected error",
+  "unexpectedErrorMessage": "Your ad blocker may be blocking API calls to last.fm, try disabling it or adding an exception for ws.audioscrobbler.com",
+  "lastfmUnavailable": "Last.fm isn't responding, please try again later.",
+  "settingsSavedSuccessfully": "Your settings were saved successfully!",
+  "loginError": {
+    "title": "Error logging in",
+    "message": "There was an unexpected error logging in. Sorry about that!"
+  },
+  "logoutInfo": {
+    "title": "See you soon!",
+    "message": "Successfully logged out."
+  }
 }
