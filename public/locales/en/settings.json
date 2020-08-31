@@ -1,9 +1,0 @@
-{
-  "settingsFor": "Settings for",
-  "dataProvider": "Data source",
-  "saveSettings": "Save settings",
-  "defaultLanguage": "Default language",
-  "availableLanguages": "Available languages",
-  "use12HoursFormat": "Use 12-hour time format (AM/PM)",
-  "splitPastedText": "Split text pasted in artists/title fields"
-}

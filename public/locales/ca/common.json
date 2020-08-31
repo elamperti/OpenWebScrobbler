@@ -67,8 +67,21 @@
       "short": "Do MMM"
     },
     "months": {
-      "short": ["gen.","febr.","març","abr.","maig","juny","jul.","ag.","set.","oct.","nov.","des."],
-      "long": ["gener","febrer","març","abril","maig","juny","juliol","agost","setembre","octubre","novembre","desembre"]
+      "short": ["gen.", "febr.", "març", "abr.", "maig", "juny", "jul.", "ag.", "set.", "oct.", "nov.", "des."],
+      "long": [
+        "gener",
+        "febrer",
+        "març",
+        "abril",
+        "maig",
+        "juny",
+        "juliol",
+        "agost",
+        "setembre",
+        "octubre",
+        "novembre",
+        "desembre"
+      ]
     }
   },
   "updates": {
@@ -78,5 +91,45 @@
     "lastfmRejected": "El Last.fm ha rebutjat aquest enviament",
     "unexpectedResponse": "Resposta inesperada",
     "apiCallFailed": "La trucada a l’API ha fallat"
+  },
+  "settingsFor": "Paràmetres per a",
+  "saveSettings": "Desa els paràmetres",
+  "defaultLanguage": "Llengua per defecte",
+  "availableLanguages": "Llengües disponibles",
+  "use12HoursFormat": "Utilitza la notació de 12 hores (a. m./p. m.)",
+  "splitPastedText": "Divideix el text enganxat als camps d’artista/títol",
+  "welcomeToTheScrobbler": "Us donem la benvinguda a l’<1>Open Scrobbler</1>!",
+  "purpose": "Aquesta eina us permet registrar al Last.fm les cançons i els àlbums que sentiu a la ràdio, als vinils o a altres mitjans on calgui registrar-los-hi manualment.",
+  "authNeeded": "Autoritzeu l’aplicació per a començar!",
+  "logInWithLastFm": "Inicia la sessió amb el Last.fm",
+  "logInIsSafe": "Això es fa de manera segura al Last.fm",
+  "about": {
+    "title": "Què és això?",
+    "description": "Un «scrobbler» de codi obert per al Web que us permet introduïr cançons manualment per a afegir-les al vostre perfil del Last.fm."
+  },
+  "support": {
+    "title": "Doneu suport al projecte",
+    "copy": "Considereu esdevenir mecenes per a mantenir el lloc en línia i sostenir-ne el desenvolupament.",
+    "CTA": "Feu-vos mecenes"
+  },
+  "discord": {
+    "title": "Uniu-vos a nosaltres al Discord!",
+    "copy": "Mantingueu-vos al tant de les notícies i connecteu-vos amb altres fanàtics de la música!",
+    "CTA": "Visita el Discord"
+  },
+  "authFailed": "Ha fallat l’autenticació",
+  "loginAgain": "Heu d’iniciar la sessió novament.",
+  "serviceUnavailable": "Servei no disponible",
+  "unexpectedError": "Error inesperat",
+  "unexpectedErrorMessage": "El vostre blocador d’anuncis potser ha impedit les crides a l’API del Last.fm. Proveu de desactivar-lo o afegir-ne una excepció per a ws.audioscrobbler.com",
+  "lastfmUnavailable": "El Last.fm no respon. Torneu-ho a intentar més tard.",
+  "settingsSavedSuccessfully": "S’han desat els paràmetres correctament.",
+  "loginError": {
+    "title": "S’ha produït un error en iniciar la sessió",
+    "message": "Hi ha hagut un error inesperat en iniciar la sessió. Disculpeu!"
+  },
+  "logoutInfo": {
+    "title": "Fins aviat!",
+    "message": "La sessió ha finalitzat correctament."
   }
 }

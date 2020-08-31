@@ -45,11 +45,9 @@ i18n
     },
     fallbackLng,
 
-    // ToDo: get all these together
-    // have a common namespace used around the full app
-    ns: ['common', 'settings', 'home', 'alerts'],
+    // Just one namespace (sorry PEP 20 I guess?)
+    ns: ['common'],
     defaultNS: 'common',
-    fallbackNS: ['settings', 'home', 'alerts'],
 
     debug: process.env.NODE_ENV === 'development',
 
