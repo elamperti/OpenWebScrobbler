@@ -19,7 +19,7 @@ Contributions and suggestions are welcome. Please read the [contribution guideli
 Updating translations is very easy. There's a [short guide](https://github.com/elamperti/OpenWebScrobbler/blob/master/CONTRIBUTING.md#Translations) in the contribution guidelines :)
 
 ## Setup
-You'll need [a Last.fm API account](https://www.last.fm/api/account/create)!
+You'll need [a Last.fm API account](https://www.last.fm/api/account/create)! (and probably a Discogs API key as well)
 
   * Run `yarn` to download the required libraries.
   * Copy `.env` to `.env.development.local` and fill in the required constants.

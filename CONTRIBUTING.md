@@ -30,8 +30,8 @@ Below you will find a short step-by-step guides to add a new language or update 
 ### Adding a new language
 
   1. Fork this project if you haven't already, so you can edit it.
-  2. Create a folder for your language in the [locales](./public/locales) directory, copying the files in [`en` language](./public/locales/en).
-  3. Translate all the values in the JSON files (for example, in a line that says `"foo": "bar",` you should translate only the `bar` part).
+  2. Create a folder for your language in the [locales](./public/locales) directory, copying the `common.json` file in [`en` language](./public/locales/en).
+  3. Translate all the values in the JSON file (for example, in a line that says `"foo": "bar",` you should translate only the `bar` part).
   4. Add you language to the language list in [`src/i18n.js`](./src/i18n.js)
   5. Duplicate one hreflang tag in the [index.html](./public/index.html) and modify it to fit your language.
   6. Once you are done, the only thing left is creating a pull request so it can be merged with the current code. :confetti_ball:
@@ -40,5 +40,5 @@ Below you will find a short step-by-step guides to add a new language or update 
 
   1. Fork this project if you haven't already, so you can edit it.
   2. Find the folder corresponding to your language in [locales](./public/locales) directory.
-  3. Translate or modify the values you want in the JSON files in that directory.
+  3. Translate or modify the values you want in `common.json`
   4. Create a pull request so it can be merged back into this repository. :tada:
