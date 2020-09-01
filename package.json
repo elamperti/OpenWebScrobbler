@@ -18,7 +18,7 @@
     "i18next-browser-languagedetector": "^3.0.1",
     "i18next-xhr-backend": "^2.0.1",
     "localforage": "^1.7.4",
-    "lodash": "^4.17.13",
+    "lodash": "^4.17.19",
     "md5": "^2.2.1",
     "node-sass": "^4.13.1",
     "prettier": "^2.1.1",
