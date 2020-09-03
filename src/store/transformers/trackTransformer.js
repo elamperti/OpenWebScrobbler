@@ -10,7 +10,7 @@ export function fetchLastfmTracks(rawTrackList, options) {
       artist: track.artist.name,
       title: track.name,
       album: get(options, 'album'),
-      duration: track.duration || 1,
+      duration: track.duration || 0,
       uuid: shortid.generate(),
     };
 
@@ -32,7 +32,7 @@ export function fetchLastfmTracks(rawTrackList, options) {
 const powersOf60LUT = [1, 60, 3600];
 function _HMSStrToSeconds(str) {
   // prettier-ignore
-  return str ? str.split(':', 3).reverse().reduce((acc, n, i) => acc + n * powersOf60LUT[i], 0) : 0;
+  return str ? str.split(':', 3).reverse().reduce((acc, n, i) => acc + n * powersOf60LUT[i], 0) : 30;
 }
 
 export function fetchDiscogsTracks(rawTrackList, options) {
@@ -41,7 +41,7 @@ export function fetchDiscogsTracks(rawTrackList, options) {
       artist: get(options, 'artist'),
       title: track.title,
       album: get(options, 'album'),
-      duration: _HMSStrToSeconds(track.duration) || 1,
+      duration: track.duration && _HMSStrToSeconds(track.duration),
       uuid: shortid.generate(),
     };
 

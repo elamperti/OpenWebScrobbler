@@ -34,7 +34,6 @@ export function ScrobbleAlbumTracklist({ match }) {
 
   useEffect(() => {
     const { albumId, discogsId, albumName, artist } = match.params;
-
     if (albumId) {
       setTracklistDataProvider(PROVIDER_LASTFM);
       setTriedAlternativeProvider(true);

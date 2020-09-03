@@ -5,7 +5,7 @@ import { withTranslation, Trans } from 'react-i18next';
 import ReactGA from 'react-ga';
 
 import addDays from 'date-fns/add_days';
-import addMinutes from 'date-fns/add_minutes';
+import addSeconds from 'date-fns/add_seconds';
 // import isFuture from 'date-fns/is_future';
 import subDays from 'date-fns/sub_days';
 import format from 'date-fns/format';
@@ -24,6 +24,8 @@ import { faPatreon } from '@fortawesome/free-brands-svg-icons';
 
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 import { createAlert, dismissAlert } from 'store/actions/alertActions';
+
+import { DEFAULT_SONG_DURATION } from 'Constants';
 
 import './SongForm.css';
 
@@ -244,7 +246,7 @@ class SongForm extends React.Component {
     }
 
     if (this.state.useCustomDate) {
-      newState.timestamp = addMinutes(this.state.timestamp, 3);
+      newState.timestamp = addSeconds(this.state.timestamp, DEFAULT_SONG_DURATION);
 
       // if time goes into the future disable custom timestamp
       // ToDo: make this a setting, maybe?

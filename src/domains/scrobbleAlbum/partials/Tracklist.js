@@ -18,6 +18,8 @@ import ScrobbleList from 'components/ScrobbleList';
 
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
+import { DEFAULT_SONG_DURATION } from 'Constants';
+
 // ToDo: refactor this component completely.
 // It's too complex and carries several blocks from old code.
 
@@ -104,8 +106,8 @@ export default function Tracklist({ albumInfo, tracks }) {
 
         // Prepare timestamp for next track
         rollingTimestamp = timestampCalculationSubstractsTime
-          ? subSeconds(rollingTimestamp, track.duration)
-          : addSeconds(rollingTimestamp, track.duration);
+          ? subSeconds(rollingTimestamp, track.duration || DEFAULT_SONG_DURATION)
+          : addSeconds(rollingTimestamp, track.duration || DEFAULT_SONG_DURATION);
       }
     }
 
