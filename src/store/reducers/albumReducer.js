@@ -35,8 +35,6 @@ const initialState = {
 };
 
 const albumReducer = (state = initialState, action) => {
-  let info;
-
   switch (action.type) {
     case USER_LOGGED_OUT:
       return {
@@ -127,8 +125,8 @@ const albumReducer = (state = initialState, action) => {
       };
     }
 
-    case `${GET_ALBUM_INFO_LASTFM}_FULFILLED`:
-      info = fetchLastfmAlbumInfo(get(action.payload, 'data', {}));
+    case `${GET_ALBUM_INFO_LASTFM}_FULFILLED`: {
+      const info = fetchLastfmAlbumInfo(get(action.payload, 'data', {}));
 
       return {
         ...state,
@@ -138,9 +136,10 @@ const albumReducer = (state = initialState, action) => {
           cover: info.cover,
         }),
       };
+    }
 
-    case `${GET_ALBUM_INFO_DISCOGS}_FULFILLED`:
-      info = fetchDiscogsAlbumInfo(get(action.payload, 'data', {}));
+    case `${GET_ALBUM_INFO_DISCOGS}_FULFILLED`: {
+      const info = fetchDiscogsAlbumInfo(get(action.payload, 'data', {}));
 
       return {
         ...state,
@@ -151,6 +150,7 @@ const albumReducer = (state = initialState, action) => {
           cover: info.cover,
         }),
       };
+    }
 
     default:
       return state;

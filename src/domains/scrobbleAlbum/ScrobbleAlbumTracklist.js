@@ -62,28 +62,33 @@ export function ScrobbleAlbumTracklist({ match }) {
     }
   }, [dispatch, match]);
 
+  // ToDo: refactor this block
   useEffect(() => {
-    if (Array.isArray(tracks) && tracks.length === 0) {
-      if (match.params.albumName && tracklistDataProvider !== PROVIDER_DISCOGS) {
-        // ToDo: refactor this block of code
-        (async() => {
-          const { albumName, artist } = match.params;
-          const topMatchId = await _discogsFindBestMatch({
-            artist: decodeURIComponent(artist),
-            name: decodeURIComponent(albumName),
-          });
+    if (Array.isArray(tracks)) {
+      if (tracks.length === 0) {
+        if (match.params.albumName && tracklistDataProvider !== PROVIDER_DISCOGS) {
+          (async() => {
+            const { albumName, artist } = match.params;
+            const topMatchId = await _discogsFindBestMatch({
+              artist: decodeURIComponent(artist),
+              name: decodeURIComponent(albumName),
+            });
 
-          if (topMatchId) {
-            history.push(`/scrobble/album/view/dsid/${topMatchId}`);
-          } else {
-            setTriedAlternativeProvider(true);
-          }
-        })();
+            if (topMatchId) {
+              dispatch(clearAlbumTracklist());
+              history.push(`/scrobble/album/view/dsid/${topMatchId}`);
+            } else {
+              setTriedAlternativeProvider(true);
+            }
+          })();
+        }
       } else {
-        setTriedAlternativeProvider(true);
+        if (tracklistDataProvider !== PROVIDER_DISCOGS) {
+          setTriedAlternativeProvider(true);
+        }
       }
     }
-  }, [tracks, history, match, tracklistDataProvider]);
+  }, [tracks, history, match, tracklistDataProvider, dispatch]);
 
   return (
     <React.Fragment>
