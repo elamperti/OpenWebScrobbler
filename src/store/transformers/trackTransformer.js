@@ -35,8 +35,12 @@ function _HMSStrToSeconds(str) {
   return str ? str.split(':', 3).reverse().reduce((acc, n, i) => acc + n * powersOf60LUT[i], 0) : 30;
 }
 
-export function fetchDiscogsTracks(rawTrackList, options) {
-  return rawTrackList.map((track) => {
+export function fetchDiscogsTracks(data, options) {
+  if (!Array.isArray(data.tracklist) || data.tracklist.length === 0) {
+    return [];
+  }
+
+  return data.tracklist.map((track) => {
     const transformedTrack = {
       artist: get(options, 'artist'),
       title: track.title,

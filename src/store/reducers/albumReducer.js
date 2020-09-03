@@ -107,7 +107,7 @@ const albumReducer = (state = initialState, action) => {
         ...state,
         queries: {
           ...state.queries,
-          artist: lastfmTopAlbums ? lastfmTopAlbums[0].artist : state.queries.artist,
+          artist: lastfmTopAlbums && lastfmTopAlbums.length > 0 ? lastfmTopAlbums[0].artist : state.queries.artist,
         },
         list: lastfmTopAlbums,
       };
@@ -144,7 +144,7 @@ const albumReducer = (state = initialState, action) => {
       return {
         ...state,
         info,
-        tracks: fetchDiscogsTracks(get(action.payload, 'data.tracklist', []), {
+        tracks: fetchDiscogsTracks(get(action.payload, 'data', {}), {
           artist: info.artist,
           album: info.name,
           cover: info.cover,

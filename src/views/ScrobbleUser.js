@@ -183,7 +183,7 @@ class ScrobbleUser extends Component {
   render() {
     const sectionHeading = (
       <h2 className={`w-100 ${this.state.searchFormView ? 'mb-3' : 'm-0 d-inline'}`}>
-        <FontAwesomeIcon icon={faUserFriends} />{' '}
+        <FontAwesomeIcon icon={faUserFriends} className="mr-2" />
         <Trans i18nKey="scrobbleFromOtherUser">Scrobble from another user</Trans>
       </h2>
     );

@@ -43,6 +43,7 @@
     $discogsrq = curl_init();
     curl_setopt($discogsrq, CURLOPT_USERAGENT, 'OpenScrobbler/2.0');
     curl_setopt($discogsrq, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($discogsrq, CURLOPT_HTTPHEADER, ["REMOTE_ADDR: $_SERVER[REMOTE_ADDR]", "HTTP_X_FORWARDED_FOR: $_SERVER[REMOTE_ADDR]"]);
 
     $params = array();
     $params['key'] = getenv('DISCOGS_API_KEY');

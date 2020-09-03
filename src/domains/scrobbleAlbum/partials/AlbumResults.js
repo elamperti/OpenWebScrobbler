@@ -33,7 +33,7 @@ export default function AlbumResults({ useFullWidth, query, topAlbums }) {
     if (albums.length === 0) {
       return (
         <div className="col-12 text-center my-4">
-          <Trans t={t} i18nKey="noAlbumsFound" values={{ albumOrArtist: query }}>
+          <Trans t={t} i18nKey="noAlbumsFound" values={{ albumOrArtist: query.name || query }}>
             No albums found for <em>your search query</em>
           </Trans>
           <br />

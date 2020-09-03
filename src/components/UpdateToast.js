@@ -22,7 +22,7 @@ class UpdateToast extends React.Component {
       <Alert color="primary" className="UpdateToast mx-4 py-1">
         <FontAwesomeIcon icon={faExclamation} transform="shrink-8" mask={faComment} className="mr-2" />
         <Trans i18nKey="updates.newVersionAvailable">
-          There&apos;s a new version available! Please{' '}
+          {"There's a new version available! Please "}
           <Button size="sm" color="info" onClick={this.reloadPage}>
             reload the page
           </Button>

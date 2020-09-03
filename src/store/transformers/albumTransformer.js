@@ -12,7 +12,11 @@ export function fetchLastfmAlbumInfo(response) {
 }
 
 export function fetchDiscogsAlbumInfo(response) {
-  const primaryImage = response.images.find((image) => image.type === 'primary');
+  if (response.message) {
+    return {};
+  }
+
+  const primaryImage = get(response, 'images', []).find((image) => image.type === 'primary') || null;
   return {
     name: response.title,
     artist: get(response, 'artists[0].name', ''), // + response.artists.length > 1 ? '+' : ''
