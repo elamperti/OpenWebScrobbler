@@ -58,7 +58,7 @@ export default function AlbumBreadcrumb({ albumQuery, artistQuery, album, dataPr
     <Breadcrumb className="my-3">
       {itemList}
       {dataProvider && (
-        <div>
+        <div className="flex-grow-1 text-right">
           {t('dataProvider')}: {dataProvider}
         </div>
       )}
