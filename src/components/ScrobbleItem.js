@@ -177,10 +177,14 @@ class ScrobbleItem extends Component {
       timestampFormat += this.props.settings.use12Hours ? 'h:mm A' : 'H:mm';
       theTimestamp = format(scrobble.timestamp, timestampFormat);
     } else {
-      // Yes, there are songs over one hour. Is it worth making this more complex for those? (no, it isn't)
-      const minutes = Math.floor(scrobble.duration / 60);
-      const seconds = `0${scrobble.duration % 60}`.slice(-2);
-      theTimestamp = `${minutes}:${seconds}`;
+      if (scrobble.duration > 0) {
+        // Yes, there are songs over one hour. Is it worth making this more complex for those? (no, it isn't)
+        const minutes = Math.floor(scrobble.duration / 60);
+        const seconds = `0${scrobble.duration % 60}`.slice(-2);
+        theTimestamp = `${minutes}:${seconds}`;
+      } else {
+        theTimestamp = '';
+      }
     }
 
     const timeOrDuration = (
