@@ -24,6 +24,9 @@ const settingsReducer = (state = initialState, action) => {
         ...initialState,
         ...state,
         ...action.payload,
+        use12Hours: !!action.payload.use12Hours,
+        catchPaste: !!action.payload.catchPaste,
+        isDonor: !!action.payload.isDonor,
       };
 
     case SETTINGS_MODAL_OPEN:

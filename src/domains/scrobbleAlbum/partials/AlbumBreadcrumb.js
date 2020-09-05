@@ -14,7 +14,7 @@ import './AlbumBreadcrumb.scss';
 function generateBreadcrumbItem(targetPath, caption, icon) {
   return (
     <BreadcrumbItem className="ows-AlbumBreadcrumb-item" tag={Link} to={targetPath} key={targetPath}>
-      {icon && <FontAwesomeIcon icon={icon} className="mr-2" />}
+      {icon && <FontAwesomeIcon icon={icon} className="mr-2 mt-1" />}
       {caption}
     </BreadcrumbItem>
   );
@@ -48,7 +48,9 @@ export default function AlbumBreadcrumb({ albumQuery, artistQuery, album, dataPr
     } else if (album.discogsId) {
       targetPath = `/scrobble/album/view/dsid/${album.discogsId}`;
     } else {
-      targetPath = `/scrobble/album/view/${encodeURIComponent(album.artist)}/${encodeURIComponent(album.name)}`;
+      targetPath =
+        `/scrobble/album/view/${encodeURIComponent(album.artist.replace('%', ''))}` +
+        `/${encodeURIComponent(album.name.replace('%', ''))}`;
     }
 
     itemList.push(generateBreadcrumbItem(targetPath, album.name, faCompactDisc));

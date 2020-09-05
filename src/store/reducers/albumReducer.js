@@ -107,7 +107,10 @@ const albumReducer = (state = initialState, action) => {
         ...state,
         queries: {
           ...state.queries,
-          artist: lastfmTopAlbums && lastfmTopAlbums.length > 0 ? lastfmTopAlbums[0].artist : state.queries.artist,
+          artist:
+            lastfmTopAlbums && lastfmTopAlbums.length > 0
+              ? get(lastfmTopAlbums[0], 'artist', '')
+              : state.queries.artist,
         },
         list: lastfmTopAlbums,
       };
@@ -119,7 +122,7 @@ const albumReducer = (state = initialState, action) => {
         ...state,
         queries: {
           ...state.queries,
-          artist: discogsTopAlbums ? discogsTopAlbums[0].artist : state.queries.artist,
+          artist: discogsTopAlbums ? get(discogsTopAlbums[0], 'artist', '') : state.queries.artist,
         },
         list: discogsTopAlbums,
       };

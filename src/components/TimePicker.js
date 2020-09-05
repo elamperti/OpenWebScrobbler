@@ -118,7 +118,7 @@ TimePickerPicker.propTypes = {
   options: PropTypes.array.isRequired,
   readOnly: PropTypes.bool,
   type: PropTypes.string,
-  value: PropTypes.instanceOf(Date).isRequired,
+  value: PropTypes.number,
 };
 
 class TimePicker extends React.Component {

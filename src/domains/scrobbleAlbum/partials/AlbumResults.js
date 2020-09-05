@@ -61,7 +61,8 @@ export default function AlbumResults({ useFullWidth, query, topAlbums }) {
           history.push(`/scrobble/album/view/dsid/${targetAlbum.discogsId}`);
         } else {
           history.push(
-            `/scrobble/album/view/${encodeURIComponent(targetAlbum.artist)}/${encodeURIComponent(targetAlbum.name)}`
+            `/scrobble/album/view/${encodeURIComponent(targetAlbum.artist.replace('%', ''))}` +
+              `/${encodeURIComponent(targetAlbum.name.replace('%', ''))}`
           );
         }
       };
