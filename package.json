@@ -1,6 +1,6 @@
 {
   "name": "openscrobbler",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
@@ -9,7 +9,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.1",
     "@fortawesome/free-solid-svg-icons": "^5.1",
     "@fortawesome/react-fontawesome": "^0.1",
-    "@sentry/browser": "^5.15.4",
+    "@sentry/browser": "^5.22.3",
     "axios": "^0.20.0-0",
     "axios-cache-adapter": "^2.5.0",
     "bootswatch": "^4.1.1",
