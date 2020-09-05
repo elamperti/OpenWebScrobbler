@@ -34,7 +34,7 @@ export default function Tracklist({ albumInfo, tracks }) {
   const [customTimestamp, setCustomTimestamp] = useState(new Date());
   const [useCustomTimestamp, setUseCustomTimestamp] = useState(false);
   const [selectedTracks, setSelectedTracks] = useState(new Set());
-  const albumIsEmpty = tracks.length === 0;
+  const albumHasTracks = tracks && tracks.length > 0;
 
   const goBack = (e) => {
     e.preventDefault();
@@ -128,45 +128,45 @@ export default function Tracklist({ albumInfo, tracks }) {
             <h3 className="album-heading-album-name mb-0">{albumInfo.name}</h3>
             <div className="album-heading-artist-name">{albumInfo.artist}</div>
           </div>
-          <FormGroup className="align-self-end mb-0">
-            <Translation>
-              {
-                // This mess is required to translate the `label` properties using t(), otherwise label wouldn't be clickable
-                (t) => {
-                  return (
-                    <React.Fragment>
-                      <CustomInput
-                        inline
-                        type="radio"
-                        id="useNowTimestamp"
-                        label={t('now')}
-                        name="useCustomTimestamp"
-                        checked={!useCustomTimestamp}
-                        onChange={toggleCustomTimestamp}
-                        disabled={albumIsEmpty}
-                      ></CustomInput>
-                      <CustomInput
-                        inline
-                        type="radio"
-                        id="useCustomTimestamp"
-                        label={t('customTimestamp')}
-                        name="useCustomTimestamp"
-                        checked={useCustomTimestamp}
-                        onChange={toggleCustomTimestamp}
-                        disabled={albumIsEmpty}
-                      ></CustomInput>
-                    </React.Fragment>
-                  );
+          {albumHasTracks && (
+            <FormGroup className="align-self-end mb-0">
+              <Translation>
+                {
+                  // This mess is required to translate the `label` properties using t(), otherwise label wouldn't be clickable
+                  (t) => {
+                    return (
+                      <React.Fragment>
+                        <CustomInput
+                          inline
+                          type="radio"
+                          id="useNowTimestamp"
+                          label={t('now')}
+                          name="useCustomTimestamp"
+                          checked={!useCustomTimestamp}
+                          onChange={toggleCustomTimestamp}
+                        ></CustomInput>
+                        <CustomInput
+                          inline
+                          type="radio"
+                          id="useCustomTimestamp"
+                          label={t('customTimestamp')}
+                          name="useCustomTimestamp"
+                          checked={useCustomTimestamp}
+                          onChange={toggleCustomTimestamp}
+                        ></CustomInput>
+                      </React.Fragment>
+                    );
+                  }
                 }
-              }
-            </Translation>
-            <FontAwesomeIcon
-              id="timestampInfoIcon"
-              icon={faQuestionCircle}
-              color="var(--gray)"
-              onClick={toggleTimestampCopy}
-            />
-          </FormGroup>
+              </Translation>
+              <FontAwesomeIcon
+                id="timestampInfoIcon"
+                icon={faQuestionCircle}
+                color="var(--gray)"
+                onClick={toggleTimestampCopy}
+              />
+            </FormGroup>
+          )}
         </div>
       </div>
 
@@ -180,13 +180,15 @@ export default function Tracklist({ albumInfo, tracks }) {
       >
         <Trans i18nKey="albumTimestampLogicDescription" />
       </Alert>
-      <div className="row">
-        <div className="my-2 col-12 col-sm-9 offset-sm-3 col-lg-6 offset-lg-6">
-          <Button className="w-100 mr-3" color="success" onClick={scrobbleSelectedTracks} disabled={!canScrobble}>
-            <Trans i18nKey={selectedTracks.size > 0 ? 'scrobbleSelected' : 'scrobbleAlbum'}>Scrobble it</Trans>
-          </Button>
+      {albumHasTracks && (
+        <div className="row">
+          <div className="my-2 col-12 col-sm-9 offset-sm-3 col-lg-6 offset-lg-6">
+            <Button className="w-100 mr-3" color="success" onClick={scrobbleSelectedTracks} disabled={!canScrobble}>
+              <Trans i18nKey={selectedTracks.size > 0 ? 'scrobbleSelected' : 'scrobbleAlbum'}>Scrobble it</Trans>
+            </Button>
+          </div>
         </div>
-      </div>
+      )}
 
       <ScrobbleList
         compact
