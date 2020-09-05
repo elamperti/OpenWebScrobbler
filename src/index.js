@@ -59,11 +59,17 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
   }
 
   ReactGA.initialize(process.env.REACT_APP_ANALYTICS_CODE, {
-    // debug: process.env.NODE_ENV === 'development',
+    debug: process.env.NODE_ENV === 'development',
     gaOptions: {
       clientId,
       userId,
     },
+    onerror: (err) => {
+      // eslint-disable-next-line no-console
+      console.debug('⚠️ Unable to load Google Analytics'); // (I'm avoiding console.warn here)
+      err.stopPropagation();
+    },
+    testMode: process.env.NODE_ENV === 'test',
   });
 
   ReactGA.set({
