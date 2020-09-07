@@ -1,5 +1,5 @@
-describe('Navigation (authenticated user)', function() {
-  beforeEach(function() {
+describe('Navigation (authenticated user)', () => {
+  beforeEach(() => {
     cy.fixture('api/v2/user/authenticated.json').as('userLoggedInJSON');
 
     cy.server();
@@ -9,15 +9,15 @@ describe('Navigation (authenticated user)', function() {
     cy.wait('@userData');
   });
 
-  it('has a link to scrobble songs', function() {
+  it('has a link to scrobble songs', () => {
     cy.get('[data-cy="NavigationItem-song"]').should('exist');
   });
 
-  it('has a link to scrobble albums', function() {
+  it('has a link to scrobble albums', () => {
     cy.get('[data-cy="NavigationItem-album"]').should('exist');
   });
 
-  it('has a link to scrobble from users', function() {
+  it('has a link to scrobble from users', () => {
     cy.get('[data-cy="NavigationItem-otherUser"]').should('exist');
   });
 
@@ -28,8 +28,8 @@ describe('Navigation (authenticated user)', function() {
       .and('contain', '.png');
   });
 
-  describe('User dropdown menu', function() {
-    beforeEach(function() {
+  describe('User dropdown menu', () => {
+    beforeEach(() => {
       cy.get('[data-cy="UserDropdown"]').click();
     });
 

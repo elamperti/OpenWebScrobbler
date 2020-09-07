@@ -1,5 +1,5 @@
-describe('Home (authenticated user)', function() {
-  beforeEach(function() {
+describe('Home (authenticated user)', () => {
+  beforeEach(() => {
     cy.fixture('api/v2/user/visitor.json').as('userIsVisitorJSON');
     cy.fixture('api/v2/user/authenticated.json').as('userLoggedInJSON');
     cy.fixture('api/v2/callback/success.json').as('callbackSuccessJSON');
@@ -9,7 +9,7 @@ describe('Home (authenticated user)', function() {
     cy.clearCookies();
   });
 
-  it('redirects to song scrobble after validating a token', function() {
+  it('redirects to song scrobble after validating a token', () => {
     cy.route('POST', '/api/v2/user.php', '@userIsVisitorJSON').as('userData');
     cy.route('POST', '/api/v2/callback.php', '@callbackSuccessJSON').as('callback');
 
@@ -18,7 +18,7 @@ describe('Home (authenticated user)', function() {
     cy.location('pathname').should('equal', '/scrobble/song');
   });
 
-  it('shows the user version of the home page', function() {
+  it('shows the user version of the home page', () => {
     cy.route('POST', '/api/v2/user.php', '@userLoggedInJSON').as('userData');
 
     cy.visit('/');

@@ -1,5 +1,5 @@
-describe('Navigation (visitor)', function() {
-  beforeEach(function() {
+describe('Navigation (visitor)', () => {
+  beforeEach(() => {
     cy.fixture('api/v2/user/visitor.json').as('userIsVisitorJSON');
 
     cy.server();
@@ -9,11 +9,11 @@ describe('Navigation (visitor)', function() {
     cy.wait('@userData');
   });
 
-  it('Shows the logo', function() {
+  it('Shows the logo', () => {
     cy.get('[data-cy="Navigation-logo"]').should('exist');
   });
 
-  it('links to login page', function() {
+  it('links to login page', () => {
     cy.get('[data-cy="NavigationItem-logIn"] a')
       .should('have.attr', 'href')
       .and('match', /^https:\/\/www.last.fm\/api\//);

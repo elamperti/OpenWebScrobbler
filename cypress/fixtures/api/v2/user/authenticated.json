@@ -35,6 +35,7 @@
     "use12Hours": 0,
     "lang": "auto",
     "isDonor": 0,
-    "keepOriginalTimestamp": 1
+    "keepOriginalTimestamp": 1,
+    "dataProvider": "lastfm"
   }
 }
