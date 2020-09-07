@@ -64,6 +64,6 @@ workflows:
           attach-workspace: true
           yarn: true
           start: 'yarn start:server'
-          wait-on: 'http://localhost:3000'
+          wait-on: 'http://localhost:3030'
           no-workspace: true
           store_artifacts: true

@@ -78,8 +78,8 @@
     "fix": "yarn prettier && yarn lint",
     "patch": "yarn version --no-git-tag-version --patch",
     "eject": "react-scripts eject",
-    "test": "BROWSER=none start-test 'yarn start:server' 3000 'cypress run'",
-    "cypress": "BROWSER=none start-test 'yarn start:server' 3000 'cypress open'"
+    "test": "BROWSER=none PORT=3030 start-test 'yarn start:server' 3030 'cypress run'",
+    "cypress": "BROWSER=none PORT=3030 start-test 'yarn start:server' 3030 'cypress open'"
   },
   "husky": {
     "hooks": {
@@ -89,6 +89,9 @@
   "lint-staged": {
     "src/**/*.{js,jsx}": [
       "eslint --fix"
+    ],
+    "cypress/**/*": [
+      "yarn test"
     ]
   },
   "browserslist": {
