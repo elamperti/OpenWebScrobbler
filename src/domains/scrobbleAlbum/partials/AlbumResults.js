@@ -4,6 +4,7 @@ import { Trans, useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactGA from 'react-ga';
+import get from 'lodash/get';
 
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -33,7 +34,7 @@ export default function AlbumResults({ useFullWidth, query, topAlbums }) {
     if (albums.length === 0) {
       return (
         <div className="col-12 text-center my-4">
-          <Trans t={t} i18nKey="noAlbumsFound" values={{ albumOrArtist: query.name || query }}>
+          <Trans t={t} i18nKey="noAlbumsFound" values={{ albumOrArtist: get(query, 'name', query) }}>
             No albums found for <em>your search query</em>
           </Trans>
           <br />
