@@ -1,5 +1,7 @@
 import get from 'lodash/get';
 
+import { sanitizeDiscogsArtistName } from './common/discogsTransformer';
+
 export function fetchLastfmAlbumInfo(response) {
   const album = get(response, 'album', {});
   return {
@@ -19,7 +21,7 @@ export function fetchDiscogsAlbumInfo(response) {
   const primaryImage = get(response, 'images', []).find((image) => image.type === 'primary') || null;
   return {
     name: response.title,
-    artist: get(response, 'artists[0].name', ''), // + response.artists.length > 1 ? '+' : ''
+    artist: sanitizeDiscogsArtistName(get(response, 'artists[0].name', '')), // + response.artists.length > 1 ? '+' : ''
     releasedate: response.year,
     url: '',
     cover: primaryImage && primaryImage.uri150,
@@ -74,7 +76,7 @@ export function fetchLastfmTopAlbums(response) {
 
 export function fetchDiscogsTopAlbums(response) {
   return get(response, 'releases', []).map((album) => ({
-    artist: album.artist,
+    artist: sanitizeDiscogsArtistName(album.artist),
     discogsId: album.master_id || album.id,
     name: album.title,
     url: album.resource_url,

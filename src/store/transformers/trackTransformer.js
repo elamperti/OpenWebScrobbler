@@ -2,6 +2,8 @@ import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';
 import shortid from 'shortid';
 
+import { sanitizeDiscogsArtistName } from './common/discogsTransformer';
+
 export function fetchLastfmTracks(rawTrackList, options) {
   const tracks = [];
 
@@ -42,7 +44,7 @@ export function fetchDiscogsTracks(data, options) {
 
   return data.tracklist.map((track) => {
     const transformedTrack = {
-      artist: get(options, 'artist'),
+      artist: sanitizeDiscogsArtistName(get(options, 'artist', '')),
       title: track.title,
       album: get(options, 'album'),
       duration: track.duration && _HMSStrToSeconds(track.duration),
