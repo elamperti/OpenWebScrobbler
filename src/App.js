@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect } from 'react';
-import { Route, Redirect, Switch, useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useHistory } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLanguage } from 'i18next';
 import qs from 'qs';
@@ -10,22 +10,13 @@ import { languageList, fallbackLng } from 'utils/i18n';
 
 import { authUserWithToken, getUserInfo } from 'store/actions/userActions';
 
-import PrivateRoute from './components/PrivateRoute';
+import Routes from 'Routes';
 import Navigation from 'components/Navigation';
 import Footer from './components/Footer';
 import AlertZone from './components/AlertZone';
 import AnalyticsListener from './components/AnalyticsListener';
 import UpdateToast from './components/UpdateToast';
 
-import Home from 'domains/home';
-import ScrobbleSong from './views/ScrobbleSong';
-import {
-  ScrobbleAlbumSearch,
-  ScrobbleArtistResults,
-  ScrobbleAlbumResults,
-  ScrobbleAlbumTracklist,
-} from 'domains/scrobbleAlbum';
-import ScrobbleUser from './views/ScrobbleUser';
 import Spinner from 'components/Spinner';
 import SettingsModal from 'components/SettingsModal';
 
@@ -84,28 +75,7 @@ function App() {
           <AlertZone />
         </div>
         <main className="container flex-wrap flex-grow-1">
-          <Switch>
-            <PrivateRoute exact path="/scrobble/song" component={ScrobbleSong} />
-            <PrivateRoute exact path="/scrobble/album" component={ScrobbleAlbumSearch} />
-            <PrivateRoute exact path="/scrobble/album/search/:albumName" component={ScrobbleAlbumResults} />
-            <PrivateRoute
-              exact
-              path={['/scrobble/artist/:artistName', '/scrobble/artist/mbid/:mbid', '/scrobble/artist/dsid/:discogsId']}
-              component={ScrobbleArtistResults}
-            />
-            <PrivateRoute
-              exact
-              path={[
-                '/scrobble/album/view/mbid/:albumId',
-                '/scrobble/album/view/dsid/:discogsId',
-                '/scrobble/album/view/:artist/:albumName',
-              ]}
-              component={ScrobbleAlbumTracklist}
-            />
-            <PrivateRoute exact path="/scrobble/user/:username?" component={ScrobbleUser} />
-            <Route exact path="/" component={Home} />
-            <Redirect to="/" />
-          </Switch>
+          <Routes />
         </main>
         <Footer />
       </div>

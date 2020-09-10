@@ -16,6 +16,7 @@ import {
 } from 'Constants';
 
 export function setSettings(dispatch) {
+  // ToDo: split so there is one action to save locally, other to post server
   return (newSettings, pushToServer = true, silent = false) => {
     if (pushToServer) {
       dispatch({
