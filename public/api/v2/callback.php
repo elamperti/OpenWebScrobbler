@@ -2,7 +2,7 @@
   $token = $_POST['token'] ?: '';
   if (strlen($token) != 32) {
     require('inc/error.php');
-    raiseOWSError('Bad token' . $_POST['token'], 400);
+    raiseOWSError('Bad token', 400);
   }
 
   require('inc/session.php');
