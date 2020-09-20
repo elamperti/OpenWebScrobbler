@@ -1,6 +1,7 @@
 <?php
+  require('inc/session.php');
 
-  if (true || isset($_SESSION['key'])) {
+  if (isset($_SESSION['key'])) {
     if (isset($_GET['method'])) {
       switch ($_GET['method']) {
         case 'album.search':
