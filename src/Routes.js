@@ -17,8 +17,9 @@ import Spinner from 'components/Spinner';
 
 export default function Routes() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const settingsLoaded = useSelector((state) => state.settings.settingsLoaded);
 
-  if (isLoggedIn === null) {
+  if (isLoggedIn === null || (isLoggedIn && !settingsLoaded)) {
     // ToDo: use suspense
     return <Spinner />;
   }

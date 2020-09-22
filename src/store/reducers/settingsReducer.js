@@ -15,6 +15,7 @@ const initialState = {
   keepOriginalTimestamp: true,
   modalIsOpen: false,
   dataProvider: PROVIDER_LASTFM,
+  settingsLoaded: false,
 };
 
 const settingsReducer = (state = initialState, action) => {
@@ -27,6 +28,7 @@ const settingsReducer = (state = initialState, action) => {
         use12Hours: !!action.payload.use12Hours,
         catchPaste: !!action.payload.catchPaste,
         isDonor: !!action.payload.isDonor,
+        settingsLoaded: true,
       };
 
     case SETTINGS_MODAL_OPEN:
@@ -45,7 +47,6 @@ const settingsReducer = (state = initialState, action) => {
       return {
         ...initialState,
         lang: state.lang,
-        isDonor: false,
       };
 
     case SETTINGS_SET_DATA_PROVIDER:
