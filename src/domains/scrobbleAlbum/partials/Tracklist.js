@@ -77,39 +77,39 @@ export default function Tracklist({ albumInfo, tracks }) {
     const userHasNotSelectedTracks = selectedTracks.size < 1;
     const timestampCalculationSubstractsTime = !useCustomTimestamp;
     const albumName = albumInfo.name || '';
-    const tracklist = tracks.slice(0);
+    const tracklist = Array.from(tracks);
     let rollingTimestamp = useCustomTimestamp ? customTimestamp : new Date();
-    const tracksToScrobble = [];
-
     if (timestampCalculationSubstractsTime) {
       // When the user specifies a custom timestamp it will be the one of the first track,
       // so we'll be adding track.duration to that starting timestamp. In the other case,
-      // when the timestamp is `now`, you've just listened to all those tracks, so the most
-      // recent track for you is the last one of the album/selection.
+      // when the timestamp is `now`, the user has just listened to all those tracks, so
+      // the most recent track will be the last one of the album/selection.
       tracklist.reverse();
     }
 
-    for (const track of tracklist) {
-      if (userHasNotSelectedTracks || selectedTracks.has(track.uuid)) {
+    const tracksToScrobble = tracklist
+      .filter(({ uuid }) => userHasNotSelectedTracks || selectedTracks.has(uuid))
+      .reduce((result, track) => {
         const newTrack = {
           ...track,
           album: albumName,
           timestamp: rollingTimestamp,
         };
 
-        // Adds the track to the array keeping timestamps chronological
-        if (timestampCalculationSubstractsTime) {
-          tracksToScrobble.unshift(newTrack);
-        } else {
-          tracksToScrobble.push(newTrack);
-        }
-
         // Prepare timestamp for next track
         rollingTimestamp = timestampCalculationSubstractsTime
           ? subSeconds(rollingTimestamp, track.duration || DEFAULT_SONG_DURATION)
           : addSeconds(rollingTimestamp, track.duration || DEFAULT_SONG_DURATION);
-      }
-    }
+
+        // Adds the track to the array keeping timestamps chronological
+        if (timestampCalculationSubstractsTime) {
+          result.unshift(newTrack);
+        } else {
+          result.push(newTrack);
+        }
+
+        return result;
+      }, []);
 
     enqueueScrobble(dispatch)(tracksToScrobble);
     setCanScrobble(selectedTracks.size > 0);
