@@ -6,8 +6,8 @@ import ArtistCard from 'components/ArtistCard';
 
 export default function ArtistList({ artists = [], onClick }) {
   return (
-    <Row>
-      {artists.map((artist, i) => (
+    <Row data-cy="ArtistList-container">
+      {artists.slice(0, 20).map((artist, i) => (
         <ArtistCard artist={artist} artistId={i} key={i} onClick={onClick} className="col-12" />
       ))}
     </Row>

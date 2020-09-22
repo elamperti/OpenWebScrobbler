@@ -46,7 +46,11 @@ export function ScrobbleArtistResults({ match }) {
         <FontAwesomeIcon icon={faCompactDisc} className="mr-2" />
         {t('scrobbleAlbum')}
       </h2>
-      <AlbumBreadcrumb artistQuery={searchQuery.artist} albumQuery={searchQuery.album} />
+      <AlbumBreadcrumb
+        artistQuery={searchQuery.artist}
+        artistDiscogsId={artist && artist.discogsId}
+        albumQuery={searchQuery.album}
+      />
       <h3 className="mt-3 mb-0">
         {searchQuery.artist && <Trans i18nKey="topAlbumsBy" t={t} values={{ nameOfArtist: searchQuery.artist }} />}
       </h3>

@@ -10,12 +10,20 @@
           break;
 
         case 'album.getInfo':
-          if (!isset($_GET['album_id']) || !is_numeric($_GET['album_id'])) {
+          if (!isset($_GET['album_id'])) {
             require('inc/error.php');
             raiseOWSError('Missing artist id', 400, 605);
           }
 
-          $endpoint = 'masters/' . $_GET['album_id'];
+          if (substr($_GET['album_id'], 0, 8) === 'release-') {
+            $endpoint = 'releases/' . substr($_GET['album_id'], 8);
+          } else {
+            if (!is_numeric($_GET['album_id'])) {
+              require('inc/error.php');
+              raiseOWSError('Missing artist id', 400, 606);
+            }
+            $endpoint = 'masters/' . $_GET['album_id'];
+          }
           unset($_GET['album_id']);
           break;
 

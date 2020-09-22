@@ -20,7 +20,7 @@ function generateBreadcrumbItem(targetPath, caption, icon) {
   );
 }
 
-export default function AlbumBreadcrumb({ albumQuery, artistQuery, album, dataProvider }) {
+export default function AlbumBreadcrumb({ albumQuery, artistQuery, artistDiscogsId, album, dataProvider }) {
   const { t } = useTranslation();
   const itemList = [generateBreadcrumbItem('/scrobble/album', t('search'))];
 
@@ -32,13 +32,19 @@ export default function AlbumBreadcrumb({ albumQuery, artistQuery, album, dataPr
 
   const albumArtist = album.artist;
   if (artistQuery || albumArtist) {
-    itemList.push(
-      generateBreadcrumbItem(
-        `/scrobble/artist/${encodeURIComponent(albumArtist || artistQuery)}`,
-        albumArtist || `"${artistQuery}"`,
-        albumArtist ? faUser : undefined
-      )
-    );
+    if (artistDiscogsId) {
+      itemList.push(
+        generateBreadcrumbItem(`/scrobble/artist/dsid/${artistDiscogsId}`, albumArtist || artistQuery, faUser)
+      );
+    } else {
+      itemList.push(
+        generateBreadcrumbItem(
+          `/scrobble/artist/${encodeURIComponent(albumArtist || artistQuery)}`,
+          albumArtist || `"${artistQuery}"`,
+          albumArtist ? faUser : undefined
+        )
+      );
+    }
   }
 
   if (album.name) {
@@ -71,6 +77,7 @@ export default function AlbumBreadcrumb({ albumQuery, artistQuery, album, dataPr
 AlbumBreadcrumb.propTypes = {
   albumQuery: PropTypes.string,
   artistQuery: PropTypes.string,
+  artistDiscogsId: PropTypes.number,
   album: PropTypes.object,
   dataProvider: PropTypes.string,
 };
