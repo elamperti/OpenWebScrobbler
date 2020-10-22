@@ -1,6 +1,6 @@
-import localforage from 'localforage';
+// import localforage from 'localforage';
 import axios from 'axios';
-import { setupCache } from 'axios-cache-adapter';
+// import { setupCache } from 'axios-cache-adapter';
 import { DISCOGS_API_URL } from 'Constants';
 
 export const discogsAPI = axios.create({
@@ -8,10 +8,7 @@ export const discogsAPI = axios.create({
   headers: {
     'User-Agent': `OpenScrobbler/${process.env.REACT_APP_VERSION} +https://${process.env.REACT_APP_HOST}`,
   },
-  // params: {
-  //   key: process.env.REACT_APP_DISCOGS_API_KEY,
-  // },
-  adapter: setupCache({
+  adapter: undefined /* setupCache({
     maxAge: 24 * 60 * 60 * 1000, // 1 day
     readHeaders: false, // Disregard cache-control headers
     exclude: {
@@ -23,5 +20,5 @@ export const discogsAPI = axios.create({
     }),
     limit: 50, // Max cached requests
     debug: process.env.NODE_ENV === 'development',
-  }).adapter,
+  }).adapter */,
 });
