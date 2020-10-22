@@ -40,13 +40,13 @@
     "shortid": "^2.2.8"
   },
   "devDependencies": {
-    "@cypress/code-coverage": "^3.1.0",
+    "@cypress/code-coverage": "^3.8.2",
     "@cypress/instrument-cra": "^1.1.0",
     "babel-eslint": "~10.0.3",
     "babel-plugin-jsx-remove-data-test-id": "^2.1.3",
     "concurrently": "^4.0.0",
     "customize-cra": "^0.9.1",
-    "cypress": "5.1.0",
+    "cypress": "5.4.0",
     "dynamic-cdn-webpack-plugin": "^5.0.0",
     "eslint": "^6.8.0",
     "eslint-config": "^0.3.0",
@@ -104,6 +104,11 @@
       ">0.25%",
       "not op_mini all",
       "ie 11"
+    ]
+  },
+  "nyc": {
+    "reporter": [
+      "html"
     ]
   }
 }
