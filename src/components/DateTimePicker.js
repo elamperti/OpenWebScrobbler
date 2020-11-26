@@ -19,7 +19,7 @@ import TimePicker from 'components/TimePicker';
 class DatePickerInput extends React.Component {
   render() {
     return (
-      <InputGroup>
+      <InputGroup size="sm">
         <InputGroupAddon addonType="prepend">
           <span className="input-group-text">
             <FontAwesomeIcon icon={faCalendarAlt} />
@@ -60,7 +60,7 @@ class DateTimePicker extends React.Component {
 
     return (
       <div className={`timestamp row ${!this.props.visible && 'd-none'} ${this.props.className}`}>
-        <div className="col-sm-6 mt-3">
+        <div className="col-sm-6 mt-3 pr-0">
           <DayPickerInput
             dayPickerProps={{
               fromMonth: minDate,

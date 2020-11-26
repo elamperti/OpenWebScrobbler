@@ -207,7 +207,7 @@ class TimePicker extends React.Component {
 
     return (
       <div>
-        <InputGroup id="TimePickerInputGroup">
+        <InputGroup size="sm" id="TimePickerInputGroup">
           <InputGroupAddon addonType="prepend">
             <span className="input-group-text">
               <FontAwesomeIcon icon={faClock} />

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Fragment, Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { withTranslation } from 'react-i18next';
@@ -16,14 +16,17 @@ import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faCheck,
-  faInbox,
-  faTimes,
   faCompactDisc,
+  faEllipsisH,
+  faInbox,
+  faRedoAlt,
+  faShoppingCart,
   faSquare,
   faSync,
-  faEllipsisH,
+  faTimes,
 } from '@fortawesome/free-solid-svg-icons';
-import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { faClock, faCopy } from '@fortawesome/free-regular-svg-icons';
+import { getAmznLink } from 'Constants';
 
 import './ScrobbleItem.css';
 
@@ -88,8 +91,6 @@ class ScrobbleItem extends Component {
     const t = this.props.t;
     const scrobble = this.props.scrobble;
     let albumArt;
-    let albumInfo;
-    let cloneOption;
     let errorMessage;
     let rightSideContent;
     let selectionCheckbox;
@@ -98,16 +99,6 @@ class ScrobbleItem extends Component {
     let statusIcon;
     let theTimestamp;
     let timestampFormat = '';
-
-    if (scrobble.album) {
-      albumInfo = (
-        <span>
-          <FontAwesomeIcon className="mr-1" icon={faCompactDisc} transform="shrink-4" mask={faSquare} />
-          {this.properCase(scrobble.album, true)}
-          {scrobble.albumArtist ? ` - ${this.properCase(scrobble.albumArtist, true)}` : ''}
-        </span>
-      );
-    }
 
     if (this.props.noCover || this.props.compact) {
       albumArt = null;
@@ -133,19 +124,19 @@ class ScrobbleItem extends Component {
     if (scrobble.status) {
       switch (scrobble.status) {
         case 'success':
-          statusIcon = <FontAwesomeIcon size="xs" icon={faCheck} />;
+          statusIcon = faCheck;
           break;
         case 'retry':
-          statusIcon = <FontAwesomeIcon size="xs" icon={faSync} />;
+          statusIcon = faSync;
           break;
         case 'error':
-          statusIcon = <FontAwesomeIcon size="xs" icon={faTimes} />;
+          statusIcon = faTimes;
           break;
         case 'pending':
-          statusIcon = <FontAwesomeIcon size="xs" spin icon={faCompactDisc} />;
+          statusIcon = faCompactDisc;
           break;
         case 'queued':
-          statusIcon = <FontAwesomeIcon size="xs" icon={faInbox} />;
+          statusIcon = faInbox;
           break;
         default:
           statusIcon = null;
@@ -159,15 +150,6 @@ class ScrobbleItem extends Component {
           </div>
         );
       }
-    }
-
-    if (this.props.cloneScrobbleTo) {
-      cloneOption = [
-        <DropdownItem key="cloneDivider" divider />,
-        <DropdownItem key="clone" onClick={this.cloneScrobble}>
-          {t('copyToEditor')}
-        </DropdownItem>,
-      ];
     }
 
     if (scrobble.timestamp) {
@@ -201,10 +183,10 @@ class ScrobbleItem extends Component {
     if (!this.props.hideArtist) {
       if (this.props.muteArtist) {
         songFullTitle = (
-          <React.Fragment>
+          <Fragment>
             {this.properCase(scrobble.title, true)}{' '}
             <span className="text-muted">{this.properCase(scrobble.artist)}</span>
-          </React.Fragment>
+          </Fragment>
         );
       } else {
         songFullTitle = `${this.properCase(scrobble.artist)} - ${this.properCase(scrobble.title, true)}`;
@@ -224,13 +206,21 @@ class ScrobbleItem extends Component {
     } else {
       // FULL view
       songInfo = (
-        <React.Fragment>
+        <Fragment>
           <span className="song">{songFullTitle}</span>
           <div className="d-flex">
-            <small className="text-muted flex-grow-1 truncate album">{albumInfo}</small>
+            <small className="text-muted flex-grow-1 truncate album">
+              {scrobble.album && (
+                <Fragment>
+                  <FontAwesomeIcon className="mr-1" icon={faCompactDisc} transform="shrink-4" mask={faSquare} />
+                  {this.properCase(scrobble.album, true)}
+                  {scrobble.albumArtist ? ` - ${this.properCase(scrobble.albumArtist, true)}` : ''}
+                </Fragment>
+              )}
+            </small>
             {timeOrDuration}
           </div>
-        </React.Fragment>
+        </Fragment>
       );
     }
 
@@ -260,11 +250,28 @@ class ScrobbleItem extends Component {
               </Button>
             </DropdownToggle>
             <DropdownMenu right>
-              <DropdownItem onClick={this.scrobbleAgain}>{t('scrobbleAgain')}</DropdownItem>
-              {cloneOption}
+              <DropdownItem onClick={this.scrobbleAgain}>
+                <FontAwesomeIcon icon={faRedoAlt} className="mr-2" />
+                {t('scrobbleAgain')}
+              </DropdownItem>
+              <DropdownItem tag="a" href={getAmznLink(scrobble.artist, scrobble.album)} target="_blank" rel="noopener">
+                <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
+                {t('buyOnAmzn')}
+              </DropdownItem>
+              {this.props.cloneScrobbleTo && (
+                <Fragment>
+                  <DropdownItem key="cloneDivider" divider />
+                  <DropdownItem key="clone" onClick={this.cloneScrobble}>
+                    <FontAwesomeIcon icon={faCopy} className="mr-2" />
+                    {t('copyToEditor')}
+                  </DropdownItem>
+                </Fragment>
+              )}
             </DropdownMenu>
           </Dropdown>
-          <span className="status-icon">{statusIcon}</span>
+          <span className="status-icon">
+            {statusIcon && <FontAwesomeIcon size="xs" icon={statusIcon} spin={statusIcon === faCompactDisc} />}
+          </span>
         </div>
       );
     }

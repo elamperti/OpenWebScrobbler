@@ -1,6 +1,6 @@
 {
   "name": "openscrobbler",
-  "version": "2.5.4",
+  "version": "2.5.6",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",

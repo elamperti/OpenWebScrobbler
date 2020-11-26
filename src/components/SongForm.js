@@ -34,7 +34,7 @@ const controlOrder = ['artist', 'title', 'album']; // Used for arrow navigation
 class InputForDatePicker extends React.Component {
   render() {
     return (
-      <InputGroup>
+      <InputGroup size="sm">
         <InputGroupAddon addonType="prepend">
           <span className="input-group-text">
             <FontAwesomeIcon icon={faCalendarAlt} />

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
@@ -9,7 +9,13 @@ import subSeconds from 'date-fns/sub_seconds';
 
 import { Alert, Button, FormGroup, CustomInput } from 'reactstrap';
 
-import { faArrowLeft, faBolt, faCompactDisc, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
+import {
+  faArrowLeft,
+  faBolt,
+  faCompactDisc,
+  faShoppingCart,
+  faQuestionCircle,
+} from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import AlbumCard from 'components/AlbumCard';
@@ -18,7 +24,7 @@ import ScrobbleList from 'components/ScrobbleList';
 
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
-import { DEFAULT_SONG_DURATION } from 'Constants';
+import { DEFAULT_SONG_DURATION, getAmznLink } from 'Constants';
 
 // ToDo: refactor this component completely.
 // It's too complex and carries several blocks from old code.
@@ -29,12 +35,17 @@ export default function Tracklist({ albumInfo, tracks }) {
   const { t } = useTranslation();
 
   const [showTimestampCopy, setShowTimestampCopy] = useState(false);
+  const [amznLink, setAmznLink] = useState('');
   const [canScrobble, setCanScrobble] = useState(true);
   // ToDo: simplify customTimestamp + useCustomTimestamp
   const [customTimestamp, setCustomTimestamp] = useState(new Date());
   const [useCustomTimestamp, setUseCustomTimestamp] = useState(false);
   const [selectedTracks, setSelectedTracks] = useState(new Set());
   const albumHasTracks = tracks && tracks.length > 0;
+
+  useEffect(() => {
+    setAmznLink(getAmznLink(albumInfo.artist, albumInfo.name));
+  }, [albumInfo]);
 
   const goBack = (e) => {
     e.preventDefault();
@@ -182,7 +193,20 @@ export default function Tracklist({ albumInfo, tracks }) {
       </Alert>
       {albumHasTracks && (
         <div className="row">
-          <div className="my-2 col-12 col-sm-9 offset-sm-3 col-lg-6 offset-lg-6">
+          <div className="my-2 col-3 col-lg-2 offset-lg-4 pr-0 text-right">
+            {amznLink && (
+              <a
+                href={getAmznLink(albumInfo.artist, albumInfo.name)}
+                class="w-100 btn btn-secondary"
+                target="_blank"
+                rel="noopener noreferrer"
+                title={t('buyOnAmzn')}
+              >
+                <FontAwesomeIcon icon={faShoppingCart} />
+              </a>
+            )}
+          </div>
+          <div className="my-2 col-9 col-lg-6">
             <Button className="w-100 mr-3" color="success" onClick={scrobbleSelectedTracks} disabled={!canScrobble}>
               <Trans i18nKey={selectedTracks.size > 0 ? 'scrobbleSelected' : 'scrobbleAlbum'}>Scrobble it</Trans>
             </Button>

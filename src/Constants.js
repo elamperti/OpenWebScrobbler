@@ -60,3 +60,15 @@ export const FETCH_LASTFM_USER_HISTORY = 'FETCH_LASTFM_USER_HISTORY';
 
 // Updates store
 export const NEW_VERSION_READY = 'NEW_VERSION_READY';
+
+// Referral link generation
+export const getAmznLink = (artist, album) => {
+  if (artist === album) {
+    album = '';
+  }
+  return (
+    atob('aHR0cHM6Ly93d3cuYW1hem9uLmNvbS9ncC9zZWFyY2g/aWU9VVRGOCZpbmRleD1tdXNpYyZrZXl3b3Jkcz0=') +
+    encodeURIComponent(`${artist} ${album || ''}`.trim()) +
+    atob('JnRhZz1vcGVuc2Nyb2JibGVyLTIwJmxpbmtDb2RlPXVyMiZjYW1wPTE3ODkmY3JlYXRpdmU9OTMyNQ==')
+  );
+};

@@ -9,8 +9,8 @@ import hasIn from 'lodash/hasIn';
 import { Badge, Button, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBroom, faCompactDisc, faHistory, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
-import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
+import { faCompactDisc, faHistory, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
+import { faPlayCircle, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
 import { clearListOfScrobbles, scrobbleCounterEnabled } from 'store/actions/scrobbleActions';
 import { fetchLastfmProfileHistory } from 'store/actions/userActions';
@@ -109,7 +109,7 @@ class ScrobbleSong extends Component {
         clearListButton = (
           <div className="ml-auto d-flex my-auto">
             <Button className="btn-clear" size="sm" color="secondary" onClick={this.props.clearUserList}>
-              <FontAwesomeIcon icon={faBroom} className="mr-1" />
+              <FontAwesomeIcon icon={faTrashAlt} className="mr-1" />
               <Trans i18nKey="clearHistory">Clear history</Trans>
             </Button>
           </div>
