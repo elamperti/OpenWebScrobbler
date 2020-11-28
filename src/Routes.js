@@ -1,5 +1,5 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+// import { useSelector } from 'react-redux';
 import { Route, Redirect, Switch } from 'react-router-dom';
 import PrivateRoute from './components/PrivateRoute';
 
@@ -13,16 +13,17 @@ import {
 } from 'domains/scrobbleAlbum';
 import ScrobbleUser from './views/ScrobbleUser';
 
-import Spinner from 'components/Spinner';
+// import Spinner from 'components/Spinner';
 
 export default function Routes() {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  const settingsLoaded = useSelector((state) => state.settings.settingsLoaded);
+  // ToDo: fix this to avoid the eternal spinner of death
+  // const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  // const settingsLoaded = useSelector((state) => state.settings.settingsLoaded);
 
-  if (isLoggedIn === null || (isLoggedIn && !settingsLoaded)) {
-    // ToDo: use suspense
-    return <Spinner />;
-  }
+  // if (isLoggedIn === null || (isLoggedIn && !settingsLoaded)) {
+  //   // ToDo: use suspense
+  //   return <Spinner />;
+  // }
 
   return (
     <Switch>

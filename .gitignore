@@ -17,6 +17,7 @@
 # production
 deploy.sh
 /build
+/public/reset.html
 
 # misc
 .DS_Store
