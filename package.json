@@ -10,7 +10,7 @@
     "@fortawesome/free-solid-svg-icons": "^5.1",
     "@fortawesome/react-fontawesome": "^0.1",
     "@sentry/browser": "^5.22.3",
-    "axios": "^0.20.0-0",
+    "axios": "^0.21.1",
     "axios-cache-adapter": "^2.5.0",
     "bootswatch": "^4.1.1",
     "date-fns": "^1.29.0",
