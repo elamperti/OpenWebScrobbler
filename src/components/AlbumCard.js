@@ -17,6 +17,12 @@ const AlbumCard = (props) => {
 
   const albumCaption = props.name && (
     <div className="albumCard-caption px-3 pb-2">
+      {props.year && (
+        <React.Fragment>
+          <small className="albumCard-year badge badge-secondary">{props.year}</small>
+          <br />
+        </React.Fragment>
+      )}
       <strong className="albumCard-title">{props.name}</strong>
       <br />
       <span className="albumCard-artist">{props.artist}</span>
@@ -41,6 +47,7 @@ AlbumCard.propTypes = {
   className: PropTypes.string,
   interactive: PropTypes.bool,
   name: PropTypes.string,
+  year: PropTypes.string,
 };
 
 AlbumCard.defaultProps = {

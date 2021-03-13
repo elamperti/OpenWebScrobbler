@@ -12,7 +12,7 @@ export function fetchLastfmTracks(rawTrackList, options) {
       artist: track.artist.name,
       title: track.name,
       album: get(options, 'album'),
-      duration: track.duration || 0,
+      duration: track.duration ? parseInt(track.duration) : 0,
       uuid: shortid.generate(),
     };
 

@@ -10,7 +10,14 @@ export default function AlbumList({ albums = [], className, onClick }) {
       {albums.map((album, i) => (
         <div className={`listOfAlbums ${className}`} key={i}>
           <a href={album.url} data-album-index={i} onClick={onClick}>
-            <AlbumCard artist={album.artist} name={album.name} background={album.cover} className="mt-4" interactive />
+            <AlbumCard
+              artist={album.artist}
+              name={album.name}
+              background={album.cover}
+              year={album.releasedate || null}
+              className="mt-4"
+              interactive
+            />
           </a>
         </div>
       ))}

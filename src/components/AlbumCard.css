@@ -2,7 +2,7 @@
   background-position: center;
   background-size: cover;
   border-radius: 2px;
-  box-shadow: -2px 2px 4px rgba(0,0,0,0.3);
+  box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.3);
   overflow: hidden;
   position: relative;
   top: 0;
@@ -10,14 +10,14 @@
 }
 
 .albumCard:before {
-  content: "";
+  content: '';
   display: block;
   padding-top: 100%;
 }
 
 .albumCard.interactive:hover {
   background-size: 102%; /* This may result annoying? */
-  box-shadow: -4px 0.5rem 0.5rem rgba(0,0,0,0.3);
+  box-shadow: -4px 0.5rem 0.5rem rgba(0, 0, 0, 0.3);
   cursor: pointer;
   top: -0.5rem;
   /* filter: brightness(1.1); */
@@ -42,22 +42,25 @@
 
 .albumCard .lazy-load-image-background.lazy-load-image-loaded {
   opacity: 1;
-  transition: opacity .3s;
+  transition: opacity 0.3s;
 }
 
-
 .albumCard-caption {
-  background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.5));
+  background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.5));
   border-radius: 2px;
   bottom: 0;
-  color: #EFEFEF;
+  color: #efefef;
   left: 0;
   /* margin-left: 1em;
   margin-right: 1em; */
   padding-top: 2em;
   position: absolute;
   right: 0;
-  text-shadow: 0 0 10px rgba(0,0,0,0.7);
+  text-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+}
+
+.albumCard-year {
+  background-color: #7a828899 !important;
 }
 
 .albumCard-title {
