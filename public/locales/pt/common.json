@@ -42,6 +42,7 @@
   "now": "Agora",
   "custom": "Customizar...",
   "timestamp": "Horário",
+  "unknown": "Desconhecido",
   "lastfmWillRejectOldTimestamps": "Last.fm vai rejeitar scrobbles mais antigos que duas semanas.",
   "keepOriginalTimestamp": "Fazer scrobble utilizando a data e hora original",
   "noSongsScrobbled": "Nenhum scrobble ainda!",

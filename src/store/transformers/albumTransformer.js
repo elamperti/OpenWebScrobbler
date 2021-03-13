@@ -19,6 +19,7 @@ export function fetchDiscogsAlbumInfo(response) {
   }
 
   const primaryImage = get(response, 'images', []).find((image) => image.type === 'primary') || null;
+
   return {
     name: response.title,
     artist: sanitizeDiscogsArtistName(get(response, 'artists[0].name', '')), // + response.artists.length > 1 ? '+' : ''
@@ -52,6 +53,7 @@ export function fetchDiscogsAlbums(response) {
       discogsId: `${album.type === 'master' ? '' : 'release-'}${album.master_id || album.id}`,
       name: album.title,
       url: '',
+      releasedate: album.year,
       cover: album.thumb,
     };
   });
@@ -80,6 +82,7 @@ export function fetchDiscogsTopAlbums(response) {
     discogsId: `${album.type === 'master' ? '' : 'release-'}${album.master_id || album.id}`,
     name: album.title,
     url: album.resource_url,
+    releasedate: album.year,
     cover: album.thumb,
   }));
 }

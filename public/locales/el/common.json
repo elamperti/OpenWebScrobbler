@@ -29,6 +29,7 @@
   "now": "Τώρα",
   "custom": "Προσαρμοσμένο...",
   "timestamp": "Timestamp",
+  "unknown": "Unknown",
   "lastfmWillRejectOldTimestamps": "Το Last.fm θα απορρίψει scrobbles παλαιότερα από 2 εβδομάδες.",
   "keepOriginalTimestamp": "Scrobble χρησιμοποιώντας την αρχική ημερομηνία και ώρα",
   "noSongsScrobbled": "Δεν έχουν γίνει scrobble τραγούδια ακόμα!",

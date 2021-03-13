@@ -42,6 +42,7 @@
   "now": "Ara",
   "custom": "Personalitzat…",
   "timestamp": "Data i hora",
+  "unknown": "Unknown",
   "lastfmWillRejectOldTimestamps": "El Last.fm rebutjarà els enviaments anteriors a dues setmanes.",
   "keepOriginalTimestamp": "Registra amb la data i l’hora originals",
   "noSongsScrobbled": "Encara no heu enviat cap cançó",

@@ -6,14 +6,16 @@ import { Trans, Translation, useTranslation } from 'react-i18next';
 import ReactGA from 'react-ga';
 import addSeconds from 'date-fns/add_seconds';
 import subSeconds from 'date-fns/sub_seconds';
+import format from 'date-fns/format';
 
-import { Alert, Button, FormGroup, CustomInput } from 'reactstrap';
+import { Alert, Badge, Button, FormGroup, CustomInput } from 'reactstrap';
 
 import {
   faArrowLeft,
   faBolt,
   faCompactDisc,
   faShoppingCart,
+  faStopwatch,
   faQuestionCircle,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -41,11 +43,29 @@ export default function Tracklist({ albumInfo, tracks }) {
   const [customTimestamp, setCustomTimestamp] = useState(new Date());
   const [useCustomTimestamp, setUseCustomTimestamp] = useState(false);
   const [selectedTracks, setSelectedTracks] = useState(new Set());
+  const [totalDuration, setTotalDuration] = useState(0);
   const albumHasTracks = tracks && tracks.length > 0;
+  const durationFormat = totalDuration > 3600 ? 'h:mm:ss' : 'mm:ss'; // ToDo: use formatDuration after upgrading date-fns to ^2.19
 
   useEffect(() => {
     setAmznLink(getAmznLink(albumInfo.artist, albumInfo.name));
   }, [albumInfo]);
+
+  useEffect(() => {
+    let newDuration = 0;
+    if (albumHasTracks) {
+      for (const track of tracks) {
+        if (track.duration) {
+          newDuration += track.duration;
+        } else {
+          newDuration = 0;
+          break;
+        }
+      }
+    }
+
+    setTotalDuration(newDuration);
+  }, [albumHasTracks, tracks]);
 
   const goBack = (e) => {
     e.preventDefault();
@@ -138,6 +158,17 @@ export default function Tracklist({ albumInfo, tracks }) {
           <div className="album-heading-info flex-grow-1">
             <h3 className="album-heading-album-name mb-0">{albumInfo.name}</h3>
             <div className="album-heading-artist-name">{albumInfo.artist}</div>
+            <Badge className="my-1">{albumInfo.releasedate}</Badge>
+            {tracks.length > 0 && (
+              <div className="album-heading-duration">
+                <FontAwesomeIcon icon={faStopwatch} className="mr-2" color="var(--gray)" />
+                {totalDuration ? (
+                  format(addSeconds(new Date(0), totalDuration), durationFormat)
+                ) : (
+                  <Trans i18nKey="unknown">Unknown</Trans>
+                )}
+              </div>
+            )}
           </div>
           {albumHasTracks && (
             <FormGroup className="align-self-end mb-0">
@@ -197,7 +228,7 @@ export default function Tracklist({ albumInfo, tracks }) {
             {amznLink && (
               <a
                 href={getAmznLink(albumInfo.artist, albumInfo.name)}
-                class="w-100 btn btn-secondary"
+                className="w-100 btn btn-secondary"
                 target="_blank"
                 rel="noopener noreferrer"
                 title={t('buyOnAmzn')}
