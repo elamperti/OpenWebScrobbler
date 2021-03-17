@@ -1,9 +1,0 @@
-.TimePicker-caret:hover {
-  cursor: pointer;
-  background-color: var(--gray);
-  color: var(--white);
-}
-
-.DayPickerInput-OverlayWrapper {
-  z-index: 1001; /* Avoid calendar under footer */
-}

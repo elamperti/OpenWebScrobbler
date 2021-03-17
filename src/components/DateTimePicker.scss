@@ -1,0 +1,112 @@
+.DayPicker-Day {
+  padding: 0.3rem;
+}
+
+.DayPicker-Day--today {
+  color: var(--white);
+}
+
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  background-color: var(--gray);
+  color: var(--white);
+
+  &:hover {
+    background-color: var(--white);
+    color: var(--dark);
+  }
+}
+
+.DayPicker-Weekday {
+  color: var(--gray);
+}
+
+.DayPicker-Day--disabled {
+  color: var(--dark);
+}
+
+.DayPickerInput-Overlay {
+  top: 10px;
+}
+
+.DayPickerInput-Overlay {
+  background: var(--gray-dark);
+  border-radius: 0.2rem;
+}
+
+.DateTimePicker {
+  input[readonly] {
+    background-color: #fff;
+  }
+
+  input:focus {
+    box-shadow: none;
+  }
+
+  .DayPickerInput {
+    width: 100%;
+  }
+}
+
+.react-timekeeper {
+  // main wrapper
+  // var(--main-box-shadow, 0 3px 11px rgba(0, 0, 0, 0.1), 0 3px 6px rgba(0, 0, 0, 0.15))
+  --main-box-shadow: none;
+  --main-bg: transparent;
+  --top-bg: transparent;
+  --clock-wrapper-bg: transparent;
+  --meridiem-bg-color: rgba(255, 255, 255, 0.1);
+  --meridiem-selected-bg-color: #0c161bb3;
+  --meridiem-selected-text-color: white;
+  --clock-bg: rgba(255, 255, 255, 0.1);
+  --numbers-text-color: #efefef;
+  --hand-circle-center: #0c161bb3;
+  --hand-circle-outer: #0c161bb3;
+  --hand-minute-circle: black;
+  // var(--main-font-family, 'Roboto', sans-serif)
+
+  // // top bar
+  // var(--top-bg, white)
+  // var(--top-colon-color, #8C8C8C)
+  // var(--top-text-color, #8C8C8C)
+  // var(--top-selected-color, #8EDDFD)
+  // var(--top-meridiem-color, #8C8C8C)
+
+  // // time dropdown
+  // var(--dropdown-border, 1px solid #f4f4f4)
+  // var(--dropdown-shadow, 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24))
+  // var(--dropdown-text-color, #8c8c8c)
+  // var(--dropdown-hover-bg, #EAF8FF)
+
+  // // clock wrapper
+  // var(--clock-wrapper-bg, #f4f4f4);
+  // var(--clock-bg, white);
+
+  // // clock hand
+  // var(--hand-line-color, #bceaff);
+  // var(--hand-circle-center, #bceaff);
+  // var(--hand-circle-outer, #e6f7ff);
+  // var(--hand-minute-circle, #ade2fb); // minutes only, dot between intervals
+
+  // // numbers
+  // var(--numbers-text-color, #999);
+  // var(--numbers-font-size-reg, 16px); // 12h mode only
+  // var(--numbers-font-size-inner, 15px); // 24h mode only
+  // var(--numbers-font-size-outer, 13px); // 24h mode only
+
+  // // meridiem buttons
+  // var(--meridiem-bg-color, white);
+  // var(--meridiem-text-color, #898989);
+  // var(--meridiem-selected-bg-color, #E1EFF6);
+  // var(--meridiem-selected-text-color, #898989);
+
+  // // done button
+  // var(--done-bg-color, #f4f4f4);
+  // var(--done-text-color, #686868);
+  // var(--done-border-top, 1px solid #ccc);
+  // var(--done-font-size, 13px);
+  // var(--done-font-weight, 500);
+
+  &-noscroll {
+    padding-right: 0 !important;
+  }
+}

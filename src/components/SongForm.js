@@ -4,22 +4,17 @@ import { connect } from 'react-redux';
 import { withTranslation, Trans } from 'react-i18next';
 import ReactGA from 'react-ga';
 
-import addDays from 'date-fns/add_days';
 import addSeconds from 'date-fns/add_seconds';
 // import isFuture from 'date-fns/is_future';
-import subDays from 'date-fns/sub_days';
-import format from 'date-fns/format';
 
-import { Button, ButtonGroup, Form, FormGroup, Input, InputGroup, InputGroupAddon, Label } from 'reactstrap';
+import { Button, ButtonGroup, Form, FormGroup, Input, Label } from 'reactstrap';
 
-import DayPickerInput from 'react-day-picker/DayPickerInput';
-import 'react-day-picker/lib/style.css';
-import TimePicker from 'components/TimePicker';
+import DateTimePicker from 'components/DateTimePicker';
 import Tooltip from 'components/Tooltip';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbtack, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
-import { faCalendarAlt, faLightbulb } from '@fortawesome/free-regular-svg-icons';
+import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 import { faPatreon } from '@fortawesome/free-brands-svg-icons';
 
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
@@ -30,21 +25,6 @@ import { DEFAULT_SONG_DURATION } from 'Constants';
 import './SongForm.css';
 
 const controlOrder = ['artist', 'title', 'album']; // Used for arrow navigation
-
-class InputForDatePicker extends React.Component {
-  render() {
-    return (
-      <InputGroup size="sm">
-        <InputGroupAddon addonType="prepend">
-          <span className="input-group-text">
-            <FontAwesomeIcon icon={faCalendarAlt} />
-          </span>
-        </InputGroupAddon>
-        <Input bsSize="sm" {...this.props} />
-      </InputGroup>
-    );
-  }
-}
 
 class SongForm extends React.Component {
   constructor(props) {
@@ -65,7 +45,6 @@ class SongForm extends React.Component {
 
     this.catchKeys = this.catchKeys.bind(this);
     this.catchPaste = this.catchPaste.bind(this);
-    this.handleDateChange = this.handleDateChange.bind(this);
     this.handleTimeChange = this.handleTimeChange.bind(this);
     this.insertData = this.insertData.bind(this);
     this.revertPaste = this.revertPaste.bind(this);
@@ -171,16 +150,6 @@ class SongForm extends React.Component {
       );
       event.preventDefault(); // avoids the call to onChange handler
     }
-  }
-
-  handleDateChange(newDate) {
-    if (!this.state.useCustomDate) return;
-    newDate.setHours(this.state.timestamp.getHours());
-    newDate.setMinutes(this.state.timestamp.getMinutes());
-
-    this.setState({
-      timestamp: newDate,
-    });
   }
 
   handleTimeChange(newDate) {
@@ -329,9 +298,6 @@ class SongForm extends React.Component {
 
   render() {
     const t = this.props.t;
-    const minDate = subDays(new Date(), 14);
-    const maxDate = addDays(new Date(), 14);
-
     const donationCTA = this.props.settings.isDonor ? null : (
       <div className="donation-cta mt-2">
         <a href="https://www.patreon.com/OpenScrobbler" rel="noopener">
@@ -464,33 +430,12 @@ class SongForm extends React.Component {
                 {t('custom')}
               </Button>
             </ButtonGroup>
-            <div className={'timestamp row' + (this.state.useCustomDate ? '' : ' d-none')}>
-              <div className="col-sm-6 mt-3">
-                <DayPickerInput
-                  dayPickerProps={{
-                    fromMonth: minDate,
-                    toMonth: maxDate,
-                    disabledDays: {
-                      before: minDate,
-                      after: maxDate,
-                    },
-                  }}
-                  format={t('dates.format.short')}
-                  formatDate={format}
-                  component={InputForDatePicker}
-                  onDayChange={this.handleDateChange}
-                  value={this.state.timestamp}
-                  inputProps={{ readOnly: true }}
-                />
-              </div>
-              <div className="col-sm-6 mt-3">
-                <TimePicker
-                  use12Hours={!!this.props.settings.use12Hours}
-                  onChange={this.handleTimeChange}
-                  value={this.state.timestamp}
-                  format={this.props.settings.use12Hours ? 'hh:mm a' : 'HH:mm'}
-                />
-              </div>
+            <DateTimePicker
+              value={this.state.timestamp}
+              onChange={this.handleTimeChange}
+              visible={this.state.useCustomDate}
+            />
+            <div className="row">
               <div className="col-12 mt-1">
                 <FontAwesomeIcon icon={faLightbulb} /> {t('lastfmWillRejectOldTimestamps')}
               </div>
