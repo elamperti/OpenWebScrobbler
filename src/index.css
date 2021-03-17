@@ -1,9 +1,10 @@
-html, body {
+html,
+body {
   height: 100%;
 }
 
 body {
-  background-color: #272B30;
+  background-color: #272b30;
   margin: 0;
   padding: 0;
   font-family: sans-serif;
@@ -44,7 +45,8 @@ body {
   opacity: 1;
 }
 
-.alert-link, .nav-link {
+.alert-link,
+.nav-link {
   cursor: pointer;
 }
 
@@ -67,7 +69,7 @@ body {
 .buttonize {
   padding-left: 0.2rem;
   padding-right: 0.2rem;
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 }
 
 .donation-cta {
@@ -98,7 +100,7 @@ body {
 
 /* ToDo: improve selection highlighting for albums and artists */
 .listOfAlbums > a:focus {
-    outline: none;
+  outline: none;
 }
 
 .SongFormLists-container .nav-tabs {
@@ -144,11 +146,15 @@ body {
 
 .ScrobbleList-container.with-gradient {
   background: linear-gradient(#161619, transparent 40%);
-  border: 1px solid rgba(0,0,0,0.2);
+  border: 1px solid rgba(0, 0, 0, 0.2);
   border-bottom-left-radius: 4px;
   border-top: none;
 }
 
 .recent-users li {
   cursor: pointer;
+}
+
+.w-auto {
+  width: auto !important;
 }

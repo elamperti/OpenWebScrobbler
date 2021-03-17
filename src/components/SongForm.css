@@ -1,6 +1,6 @@
 Label.required::after {
-  content: " *";
-  color: #B00;
+  content: ' *';
+  color: #b00;
 }
 
 @media (max-width: 575.98px) {
@@ -41,7 +41,8 @@ input.hasLock {
   transform: rotate(30deg);
 }
 
-.swaptool-top, .swaptool-bottom {
+.swaptool-top,
+.swaptool-bottom {
   height: 1em;
   position: relative;
   top: 0.25rem;
@@ -59,69 +60,4 @@ input.hasLock {
     /* padding: 0 !important; */
     top: 1em;
   }
-}
-
-.rc-time-picker-panel-narrow {
-  max-width: inherit;
-}
-
-.rc-time-picker-panel-select {
-  width: 50%;
-}
-
-.rc-time-picker-panel-select ul {
-  overflow-x: hidden;
-}
-
-.rc-time-picker-panel-select li {
-  padding: 0;
-  text-align: center;
-  color: var(--primary);
-}
-
-.DayPicker-Day {
-  padding: 0.3rem;
-}
-
-.DayPickerInput {
-  width: 100%;
-}
-
-.DayPickerInput-Overlay {
-  background: var(--gray-dark);
-  border-radius: 0.2rem;
-}
-
-.DayPicker-Weekday {
-  color: var(--gray);
-}
-
-.DayPicker-Day--today {
-  color: var(--white);
-}
-
-.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
-  color: var(--white);
-  background-color: var( --gray);
-}
-
-.DayPicker-Day--disabled {
-  color: var(--dark);
-}
-
-.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside):hover {
-  background-color: var(--white);
-  color: var(--dark);
-}
-
-.DayPickerInput-Overlay {
-  top: 10px;
-}
-
-.timestamp input[readonly] {
-  background-color: #fff;
-}
-
-.timestamp input:focus {
-  box-shadow: none;
 }
