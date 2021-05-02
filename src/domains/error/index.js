@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 // import { useSelector } from 'react-redux';
 import { showReportDialog } from '@sentry/react';
 
@@ -122,6 +123,12 @@ const ErrorPage = ({ error, eventId, resetError }) => {
       </div>
     </React.Fragment>
   );
+};
+
+ErrorPage.propTypes = {
+  error: PropTypes.any,
+  eventId: PropTypes.string,
+  resetError: PropTypes.func,
 };
 
 export default ErrorPage;
