@@ -24,6 +24,11 @@
   color: var(--dark);
 }
 
+/* This avoids reactstrap checkboxes going over date picker in albums */
+.DayPickerInput-OverlayWrapper {
+  z-index: 1050;
+}
+
 .DayPickerInput-Overlay {
   top: 10px;
 }
