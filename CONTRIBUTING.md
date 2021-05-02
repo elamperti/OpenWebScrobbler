@@ -3,12 +3,23 @@
 I'm really glad you're reading this, because it's through the help of contributors that the Open Scrobbler can continue to grow! Below you will find guidelines for contributing new features, bug fixes or translations.
 
 <!-- TOC depthFrom:2 -->
+- [Fixing bugs](#fixing-bugs)
 - [Adding new features or changing the code](#adding-new-features-or-changing-the-code)
   - [Making changes to the database structure](#making-changes-to-the-database-structure)
 - [Translations](#translations)
   - [Adding a new language](#adding-a-new-language)
   - [Update an existing language](#update-an-existing-language)
 <!-- /TOC -->
+
+---
+
+## Fixing bugs
+
+Thanks for taking interest in fixing a bug! First of all, please check if there's [an existing issue](https://github.com/elamperti/OpenWebScrobbler/issues) for it, [create a new one](https://github.com/elamperti/OpenWebScrobbler/issues) otherwise. This may help other people add feedback, maintainers will know the bug status and also let you know if there are error reports in Sentry related to it (which may help you find a solution).
+
+You may skip raising an issue if it's a minor bug.
+
+Once you have a possible fix, open a pull request so it can be reviewed and merged.
 
 ---
 

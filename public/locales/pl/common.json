@@ -33,6 +33,7 @@
   "search": "Szukaj",
   "backToSearch": "Wróć do wyszukiwania",
   "userNotFound": "Nie znaleziono użytkownika.",
+  "username": "Nazwa użytkownika",
   "invalidUsername": "Zła nazwa użytkownika.",
   "recentlySearchedUsers": "Ostatnio wyszukiwane",
   "language": "Język",
@@ -60,7 +61,7 @@
   "footer": {
     "joinCommunity": "Dołącz do naszej społeczności <1>na Discordzie</1>!",
     "supportThisProject": "<1>Wesprzyj ten projekt</1> na Patreonie. :)",
-    "specialThanks": "Specjalnie podziękowania dla wszystkich darczyńców, tłumaczy <1>i współtwórców.</1>"
+    "specialThanks": "Specjalnie podziękowania dla wszystkich darczyńców, tłumaczy <1>i współtwórców</1>."
   },
   "settings": "Ustawienia",
   "cancel": "Anuluj",
@@ -94,6 +95,8 @@
     "unexpectedResponse": "Nieoczekiwana odpowiedź.",
     "apiCallFailed": "Wywołanie API zakończone niepowodzeniem."
   },
+  "next": "Następna strona",
+  "previous": "Poprzednia strona",
   "settingsFor": "Ustawienia dla",
   "saveSettings": "Zapisz ustawienia",
   "defaultLanguage": "Domyślny język",
@@ -123,7 +126,7 @@
   "loginAgain": "Zaloguj się ponownie!",
   "serviceUnavailable": "Usługa niedostępna",
   "unexpectedError": "Nieoczekiwany błąd",
-  "unexpectedErrorMessage": "Your ad blocker may be blocking API calls to last.fm, try disabling it or adding an exception for ws.audioscrobbler.com",
+  "unexpectedErrorMessage": "Twój ad blocker może blokować API last.fm, spróbuj wyłączyć wtyczkę lub dodaj wyjątek dla ws.audioscrobbler.com",
   "lastfmUnavailable": "Last.fm nie odpowiada, spróbuj ponownie później.",
   "settingsSavedSuccessfully": "Twoje ustawienia zostały zapisane z powodzeniem!",
   "loginError": {

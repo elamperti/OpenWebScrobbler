@@ -33,6 +33,7 @@
   "search": "Поиск",
   "backToSearch": "Вернуться к поиску",
   "userNotFound": "Пользователь не найден",
+  "username": "имя пользователя",
   "invalidUsername": "Недопустимое имя пользователя",
   "recentlySearchedUsers": "Поиск в последнее время",
   "language": "Язык",
