@@ -18,7 +18,7 @@ const UserCard = (props) => {
         href={`https://last.fm/user/${props.name}`}
         // eslint-disable-next-line react/jsx-no-target-blank
         target="_blank"
-        rel="noopener"
+        rel="noopener noreferrer"
       >
         {t('visitProfile')}
       </a>{' '}
