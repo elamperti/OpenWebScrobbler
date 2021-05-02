@@ -33,6 +33,7 @@
   "search": "Cerca",
   "backToSearch": "Torna a la cerca",
   "userNotFound": "No s’ha trobat el compte",
+  "username": "Nom d’usuari",
   "invalidUsername": "El nom d’usuari no és vàlid",
   "recentlySearchedUsers": "Cercats recentment",
   "language": "Llengua",

@@ -1,10 +1,10 @@
 // Various settings
 export const AUDIOSCROBBLER_API_URL = 'https://ws.audioscrobbler.com/2.0/';
-export const DISCOGS_API_URL = `//${process.env.REACT_APP_HOST}/api/v2/discogs.php`;
+export const DISCOGS_API_URL = '/api/v2/discogs.php';
 export const LASTFM_AUTH_URL =
   `https://www.last.fm/api/auth/?api_key=${process.env.REACT_APP_LASTFM_API_KEY}` +
   `&cb=${window.location.protocol}//${window.location.host}/`;
-export const OPENSCROBBLER_API_URL = `//${process.env.REACT_APP_HOST}/api/v2`;
+export const OPENSCROBBLER_API_URL = '/api/v2';
 export const CONSIDER_HISTORY_STALE_AFTER = 5 * 60 * 1000; // 5 minutes
 export const DEBOUNCE_PERIOD = 3 * 1000; // 3 seconds
 export const LASTFM_API_RATE_LIMIT = 0; // At this moment is 5 rq/s over 5m per originating IP
