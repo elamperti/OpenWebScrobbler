@@ -28,13 +28,13 @@
   "otherUser": "Пользователь",
   "or": "или",
   "refresh": "Обновить",
-  "findFriendCopy": "Введите имя пользователя last.fm, чтобы просмотреть их последние треки",
+  "findFriendCopy": "Введите имя пользователя last.fm, чтобы просмотреть последние скробблы",
   "visitProfile": "Просмотреть профиль",
   "search": "Поиск",
   "backToSearch": "Вернуться к поиску",
   "userNotFound": "Пользователь не найден",
   "invalidUsername": "Недопустимое имя пользователя",
-  "recentlySearchedUsers": "Поиск в последнее время",
+  "recentlySearchedUsers": "Вы недавно искали",
   "language": "Язык",
   "translateYourLanguage": "Хотите добавить свой язык?",
   "logIn": "Войти",
@@ -53,7 +53,7 @@
   "viewProfile": "Просмотреть свой профиль last.fm",
   "lockArtist": "Не стирать имя исполнителя",
   "lockAlbum": "Не стирать название альбома",
-  "buyOnAmzn": "Search on Amazon",
+  "buyOnAmzn": "Найти в Amazon",
   "pasteIntercepted": "Вставленный текст был автоматически разбит на поля!",
   "considerDonating": "Пожалуйста, поддержите этот проект на Patreon!",
   "footer": {
@@ -119,15 +119,15 @@
     "CTA": "Присоединиться к Discord"
   },
   "authFailed": "Не удалось войти",
-  "loginAgain": "Необходим повторный вход!",
+  "loginAgain": "Срок действия сессии истек. Необходимо авторизоваться вновь!",
   "serviceUnavailable": "Сервис недоступен",
   "unexpectedError": "Непредвиденная ошибка",
-  "unexpectedErrorMessage": "Your ad blocker may be blocking API calls to last.fm, try disabling it or adding an exception for ws.audioscrobbler.com",
+  "unexpectedErrorMessage": "Пожалуйста, добавьте в исключения Вашего блокировщика рекламы этот сайт \"ws.audioscrobbler.com\". Это нужно ни в коем случае не для рекламы, просто возможно он будет блокировать доступ к сайту last.fm через API.",
   "lastfmUnavailable": "Last.fm не отвечает, пожалуйста, попробуйте позже.",
   "settingsSavedSuccessfully": "Ваши настройки успешно сохранены!",
   "loginError": {
     "title": "Ошибка при входе",
-    "message": "При входе произошла непредвиденная ошибка. Сожалеем об этом!"
+    "message": "При входе произошла непредвиденная ошибка. Сожалеем об этом! Повторите попытку позднее."
   },
   "logoutInfo": {
     "title": "До скорой встречи!",
