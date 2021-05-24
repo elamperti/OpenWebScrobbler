@@ -14,7 +14,7 @@ function ScrobbleList(props) {
 
   function navigateToPage(page) {
     props.fetchLastfmProfileHistory(props.userToDisplay, { page }, () => {
-      if (props.containerRef && props.containerRef.current) {
+      if (props.containerRef && props.containerRef.current && props.containerRef.current.scrollTo) {
         props.containerRef.current.scrollTo(0, 0);
       }
     });
