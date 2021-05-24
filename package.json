@@ -8,7 +8,7 @@
     "@fortawesome/free-regular-svg-icons": "^5.15.3",
     "@fortawesome/free-solid-svg-icons": "^5.15.3",
     "@fortawesome/react-fontawesome": "^0.1.14",
-    "@sentry/react": "^6.2.3",
+    "@sentry/react": "^6.18.1",
     "axios": "^0.21.1",
     "axios-cache-adapter": "^2.5.0",
     "bootswatch": "^4.1.1",
