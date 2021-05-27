@@ -43,7 +43,7 @@
   "now": "Сейчас",
   "custom": "Задать...",
   "timestamp": "Временная метка",
-  "unknown": "Unknown",
+  "unknown": "Неизвестно",
   "lastfmWillRejectOldTimestamps": "Last.fm не примет скробблы более чем двухнедельной давности.",
   "keepOriginalTimestamp": "Скробблить с сохранением временных меток",
   "noSongsScrobbled": "Ещё ничего не заскробблено!",
