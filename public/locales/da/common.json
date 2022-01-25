@@ -1,0 +1,141 @@
+{
+  "scrobble": "Scrobbl",
+  "getScrobbling": "Begynd at scrobble",
+  "loading": "Indlæser...",
+  "artist": "Kunstner",
+  "song": "Sang",
+  "title": "Titel",
+  "album": "Album",
+  "scrobbleFromAlbum": "Scrobbl albummer",
+  "scrobbleAlbum": "Scrobbl album",
+  "album_plural": "Albummer",
+  "goBack": "Gå tilbage",
+  "topAlbumsBy": "Albummer af {{nameOfArtist}}",
+  "noAlbumsFound": "Ingen albummer fundet for <1>{{albumOrArtist}}</1>",
+  "noArtistsFound": "Ingen kunstnere fundet for <1>{{albumOrArtist}}</1>",
+  "emptyAlbum": "Dette album ser ud til at være tomt.",
+  "scrobbleSongs": "Scrobbl sange",
+  "scrobbleSelected": "Scrobbl valgte",
+  "findAlbumCopy": "Indtast en albumtitel eller et kunstnernavn",
+  "customTimestamp": "Brugerdefineret tidsstempel",
+  "albumTimestampLogicDescription": "Når du scrobbler numre \"nu\", scrobbles det sidste nummer på albummet med nuværende klokkeslæt, og herudfra tilbagedateres de forrige numre (som hvis du lige var blevet færdig med at lytte). Med \"brugerdefineret tidsstempel\" defineres første nummers tidsstempel, og derfra lægges tid til de efterfølgende numres tidsstempel ud fra deres længde (dvs., at du specificerer klokkeslættet, hvor du startede med at lytte til dette album)",
+  "albumArtist": "Albumkunstner",
+  "history": "Historik",
+  "yourProfile": "Din profil",
+  "yourHistory": "Din historik",
+  "scrobbleManually": "Scrobbl manuelt",
+  "scrobbleFromOtherUser": "Scrobbl fra anden bruger",
+  "otherUser": "Bruger",
+  "or": "eller",
+  "refresh": "Genindlæs",
+  "findFriendCopy": "Indtast et last.fm-brugernavn for at se vedkommendes seneste numre",
+  "visitProfile": "Se profil",
+  "search": "Søg",
+  "backToSearch": "Tilbage til søgning",
+  "userNotFound": "Bruger ikke fundet",
+  "username": "Brugernavn",
+  "invalidUsername": "Ugyldigt brugernavn",
+  "recentlySearchedUsers": "Søgt på for nyligt",
+  "language": "Sprog",
+  "translateYourLanguage": "Har du lyst til at tilføje dit sprog?",
+  "logIn": "Log ind",
+  "logOut": "Log ud",
+  "dataProvider": "Datakilde",
+  "now": "Nu",
+  "custom": "Brugerdefineret...",
+  "timestamp": "Tidsstempel",
+  "unknown": "Ukendt",
+  "lastfmWillRejectOldTimestamps": "Last.fm afviser scrobbles ældre end to uger.",
+  "keepOriginalTimestamp": "Scrobbl med oprindelig dato og klokkeslæt",
+  "noSongsScrobbled": "Ingen sange scrobblet endnu!",
+  "songsWillAppearHere": "Numre dukker op her, når du scrobbler dem.",
+  "clearHistory": "Ryd historik",
+  "scrobbleAgain": "Scrobbl igen",
+  "copyToEditor": "Kopiér til redigeringsboks",
+  "swapArtistTitle": "Byt om på kunstner og titel",
+  "viewProfile": "Se min last.fm-profil",
+  "lockArtist": "Lås kunstner-feltet",
+  "lockAlbum": "Lås album-feltet",
+  "buyOnAmzn": "Søg på Amazon",
+  "pasteIntercepted": "Den indsatte tekst blev automatisk adskilt!",
+  "considerDonating": "Støt venligst dette projekt på Patreon!",
+  "footer": {
+    "joinCommunity": "Du skal være velkommen til at joine vores fællesskab <1>på Discord</1>!",
+    "supportThisProject": "Støt venligst <1>dette projekt</1> på Patreon :)",
+    "specialThanks": "Mange tak til alle donatorerne, oversætterne og <1>bidragsyderne</1>"
+  },
+  "settings": "Indstillinger",
+  "cancel": "Annuller",
+  "dates": {
+    "format": {
+      "short": "MMM Do"
+    },
+    "months": {
+      "short": ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
+      "long": [
+        "Januar",
+        "Februar",
+        "Marts",
+        "April",
+        "Maj",
+        "Juni",
+        "Juli",
+        "August",
+        "September",
+        "Oktober",
+        "November",
+        "December"
+      ]
+    }
+  },
+  "updates": {
+    "newVersionAvailable": "Der er en ny version tilgængelig! Vær venlig at <1>genindlæse siden</1>"
+  },
+  "errors": {
+    "lastfmRejected": "Last.fm afviste dette scrobble",
+    "unexpectedResponse": "Uventet svar",
+    "apiCallFailed": "Opkald til API mislykkedes"
+  },
+  "next": "Næste",
+  "previous": "Forrige",
+  "settingsFor": "Indstillinger for",
+  "saveSettings": "Gem indstillinger",
+  "defaultLanguage": "Standardsprog",
+  "availableLanguages": "Tilgængelige sprog",
+  "use12HoursFormat": "Brug 12-timers tidsformat (AM/PM)",
+  "splitPastedText": "Skil indsat tekst ad i kunstner/titel-felterne",
+  "welcomeToTheScrobbler": "Velkommen til <1>Open Scrobbler</1>!",
+  "purpose": "Dette værktøj lader dig scrobble sange og albummer du har lyttet til i radioen, på vinyl eller andetsteds, hvor du har brug for manuelt at scrobble.",
+  "authNeeded": "Godkend applikationen for at komme i gang!",
+  "logInWithLastFm": "Log ind med Last.fm",
+  "logInIsSafe": "Dette gøres på en sikker måde ovre hos Last.fm",
+  "about": {
+    "title": "Hvad er dette?",
+    "description": "En open source scrobbler til nettet, som giver dig mulighed for at indtaste sange manuelt og tilføje dem til din Last.fm-profil."
+  },
+  "support": {
+    "title": "Støt dette projekt",
+    "copy": "Overvej gerne at blive sponsor for at holde siden kørende og støtte dens udvikling!",
+    "CTA": "Bliv sponsor"
+  },
+  "discord": {
+    "title": "Slut dig til os på Discord!",
+    "copy": "Hold dig forbundet med andre musikfans og find ud af, når der er nyt!",
+    "CTA": "Tilslut dig Discord"
+  },
+  "authFailed": "Godkendelse mislykkedes",
+  "loginAgain": "Du skal logge ind igen!",
+  "serviceUnavailable": "Tjeneste utilgængelig",
+  "unexpectedError": "Uventet fejl",
+  "unexpectedErrorMessage": "Din adblocker blokerer muligvis for API-opkald til last.fm, prøv at deaktivere den eller at tilføje en undtagelse for ws.audioscrobbler.com",
+  "lastfmUnavailable": "Last.fm svarer ikke, prøv venligst igen senere.",
+  "settingsSavedSuccessfully": "Dine indstillinger blev gemt successfuldt!",
+  "loginError": {
+    "title": "Fejl ved login",
+    "message": "Der opstod en uventet fejl ved login. Beklager!"
+  },
+  "logoutInfo": {
+    "title": "Vi ses snart!",
+    "message": "Successfuldt logget ud."
+  }
+}

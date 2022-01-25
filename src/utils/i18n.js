@@ -5,6 +5,7 @@ import { initReactI18next } from 'react-i18next';
 
 export const languageList = [
   { code: 'ca', name: 'Català' },
+  { code: 'da', name: 'Dansk' },
   { code: 'de', name: 'Deutsch' },
   { code: 'el', name: 'Ελληνικά' },
   { code: 'en', name: 'English' },
