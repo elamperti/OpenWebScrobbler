@@ -8,11 +8,11 @@ import {
   FETCH_LASTFM_USER_INFO,
   FETCH_LASTFM_USER_HISTORY,
   MAX_RECENT_USERS,
-  PROVIDER_LASTFM,
+  PROVIDER_DISCOGS,
 } from 'Constants';
 
 const initialState = {
-  dataProvider: PROVIDER_LASTFM,
+  dataProvider: PROVIDER_DISCOGS,
   isLoggedIn: null,
   name: '',
   profiles: {},

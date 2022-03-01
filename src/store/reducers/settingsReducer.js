@@ -4,7 +4,7 @@ import {
   SETTINGS_MODAL_CLOSE,
   SETTINGS_SET_DATA_PROVIDER,
   USER_LOGGED_OUT,
-  PROVIDER_LASTFM,
+  PROVIDER_DISCOGS,
 } from 'Constants';
 
 const initialState = {
@@ -14,7 +14,7 @@ const initialState = {
   isDonor: false,
   keepOriginalTimestamp: true,
   modalIsOpen: false,
-  dataProvider: PROVIDER_LASTFM,
+  dataProvider: PROVIDER_DISCOGS,
   settingsLoaded: false,
 };
 
