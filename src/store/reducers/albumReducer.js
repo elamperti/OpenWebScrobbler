@@ -9,6 +9,8 @@ import {
 } from 'store/transformers/albumTransformer';
 import { fetchLastfmTracks, fetchDiscogsTracks } from 'store/transformers/trackTransformer';
 
+import { castArray } from 'utils/common';
+
 import {
   GET_ALBUM_INFO_LASTFM,
   GET_ALBUM_INFO_DISCOGS,
@@ -130,11 +132,14 @@ const albumReducer = (state = initialState, action) => {
 
     case `${GET_ALBUM_INFO_LASTFM}_FULFILLED`: {
       const info = fetchLastfmAlbumInfo(get(action.payload, 'data', {}));
+      // tracks.track can be either an array of tracks or just a track object (when it's only one track).
+      // A consistency only second to that of jelly.
+      const tracks = castArray(get(action.payload, 'data.album.tracks.track', []));
 
       return {
         ...state,
         info,
-        tracks: fetchLastfmTracks(get(action.payload, 'data.album.tracks.track', []), {
+        tracks: fetchLastfmTracks(tracks, {
           album: info.name,
           cover: info.cover,
         }),
