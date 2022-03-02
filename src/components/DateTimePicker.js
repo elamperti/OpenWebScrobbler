@@ -7,7 +7,7 @@ import addDays from 'date-fns/add_days';
 import subDays from 'date-fns/sub_days';
 import format from 'date-fns/format';
 
-import { Input, InputGroup, InputGroupAddon, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import { Input, InputGroup, InputGroupText, Modal, ModalBody, ModalHeader } from 'reactstrap';
 import TimeKeeper from 'react-timekeeper';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -21,11 +21,9 @@ import './DateTimePicker.scss';
 function DatePickerInput(props = {}) {
   return (
     <InputGroup size="sm">
-      <InputGroupAddon addonType="prepend">
-        <span className="input-group-text">
-          <FontAwesomeIcon icon={faCalendarAlt} />
-        </span>
-      </InputGroupAddon>
+      <InputGroupText>
+        <FontAwesomeIcon icon={faCalendarAlt} />
+      </InputGroupText>
       <Input bsSize="sm" {...props} />
     </InputGroup>
   );
@@ -81,11 +79,9 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
       </div>
       <div className="col-sm-6 mt-3">
         <InputGroup size="sm" id="TimePickerInputGroup">
-          <InputGroupAddon addonType="prepend">
-            <span className="input-group-text">
-              <FontAwesomeIcon icon={faClock} />
-            </span>
-          </InputGroupAddon>
+          <InputGroupText>
+            <FontAwesomeIcon icon={faClock} />
+          </InputGroupText>
           <Input
             id="TimePicker"
             className="text-center"

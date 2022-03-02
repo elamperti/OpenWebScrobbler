@@ -6,7 +6,7 @@ body {
 body {
   background-color: #272b30;
   margin: 0;
-  padding: 0;
+  padding: 0 !important;
   font-family: sans-serif;
 }
 
@@ -27,7 +27,7 @@ body {
 }
 
 .album-heading-album-name {
-  color: var(--white);
+  color: var(--bs-white);
 }
 
 /* same as .card */
@@ -73,14 +73,14 @@ body {
 }
 
 .donation-cta {
-  color: var(--gray);
+  color: var(--bs-gray);
   font-size: 0.9em;
   margin-bottom: 1em;
   text-align: center;
 }
 
 .donation-cta a {
-  color: var(--gray);
+  color: var(--bs-gray);
   text-decoration: underline;
 }
 
@@ -95,7 +95,13 @@ body {
 }
 
 .fa-question-circle:hover {
-  color: var(--light);
+  color: var(--bs-light);
+}
+
+.jumbotron {
+  border: 1px solid rgba(0, 0, 0, 0.6);
+  background-color: #1c1e22;
+  margin-bottom: 2rem;
 }
 
 /* ToDo: improve selection highlighting for albums and artists */
@@ -131,11 +137,19 @@ body {
   .SongFormLists-container {
     margin-top: -1rem;
   }
+
   .ScrobbleList-container {
-    padding-right: 0.5rem;
     min-height: 10rem;
     max-height: 70vh;
     overflow-y: auto;
+  }
+
+  .ScrobbleList-container .jumbotron {
+    border-top: 0;
+    margin-left: 1px;
+    margin-right: 1px;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
   }
 
   .ScrobbleList-container.with-gradient {

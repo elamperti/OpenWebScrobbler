@@ -1,5 +1,5 @@
 import React from 'react';
-import { Jumbotron, Button, Row, Col } from 'reactstrap';
+import { Button, Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiscord, faPatreon } from '@fortawesome/free-brands-svg-icons';
 import { useTranslation } from 'react-i18next';
@@ -11,8 +11,8 @@ export default function SocialNetworksBlock() {
 
   return (
     <Row data-cy="SocialNetworkBlock" className="ows-SocialNetworkBlock">
-      <Col sm="6">
-        <Jumbotron data-cy="SocialNetworkBlock-discord" className="ows-social-discord">
+      <Col md="6">
+        <div data-cy="SocialNetworkBlock-discord" className="ows-social-discord jumbotron rounded">
           <Row>
             <Col xs="3" className="ows-logo">
               <FontAwesomeIcon icon={faDiscord} size="4x" className="d-block mx-auto" />
@@ -25,17 +25,17 @@ export default function SocialNetworksBlock() {
                 type="secondary"
                 size="sm"
                 href="https://discord.gg/SEDp6Zy"
-                className="float-right col-12 col-lg-6"
+                className="float-end col-12 col-lg-6"
                 data-cy="SocialNetworkBlock-discord-button"
               >
                 {t('discord.CTA')}
               </Button>
             </Col>
           </Row>
-        </Jumbotron>
+        </div>
       </Col>
-      <Col sm="6">
-        <Jumbotron data-cy="SocialNetworkBlock-patreon" className="ows-social-patreon">
+      <Col md="6">
+        <div data-cy="SocialNetworkBlock-patreon" className="ows-social-patreon jumbotron rounded">
           <Row>
             <Col xs="3" className="ows-logo">
               <FontAwesomeIcon icon={faPatreon} size="4x" className="d-block mx-auto" />
@@ -48,14 +48,14 @@ export default function SocialNetworksBlock() {
                 type="secondary"
                 size="sm"
                 href="https://www.patreon.com/OpenScrobbler"
-                className="float-right col-12 col-lg-6"
+                className="float-end col-12 col-lg-6"
                 data-cy="SocialNetworkBlock-patreon-button"
               >
                 {t('support.CTA')}
               </Button>
             </Col>
           </Row>
-        </Jumbotron>
+        </div>
       </Col>
     </Row>
   );

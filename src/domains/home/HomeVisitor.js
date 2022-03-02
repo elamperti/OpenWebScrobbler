@@ -1,6 +1,6 @@
 import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
-import { Jumbotron, Button, Row, Col } from 'reactstrap';
+import { Button, Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { faLastfm } from '@fortawesome/free-brands-svg-icons';
@@ -22,7 +22,7 @@ export default function Home() {
     <React.Fragment>
       <Row data-cy="HomeVisitor">
         <Col lg="7">
-          <Jumbotron>
+          <div className="jumbotron rounded px-3 px-sm-4 py-3 py-sm-5">
             <WelcomeBlock />
             <p className="text-center">{t('authNeeded')}</p>
             <p className="lead text-center">
@@ -33,10 +33,10 @@ export default function Home() {
                 <FontAwesomeIcon icon={faLock} /> {t('logInIsSafe')}
               </small>
             </p>
-          </Jumbotron>
+          </div>
         </Col>
         <Col lg="5">
-          <Jumbotron data-cy="HomeVisitor-about" className="ows-Home-about">
+          <div data-cy="HomeVisitor-about" className="jumbotron rounded px-3 px-sm-4 py-3 py-sm-5 ows-Home-about">
             <h4>
               <Trans t={t} i18nKey="about.title">
                 What is this?
@@ -48,7 +48,7 @@ export default function Home() {
               alt="Application screenshot"
               className="img-fluid d-none d-lg-block img-thumbnail mx-auto mb-2"
             />
-          </Jumbotron>
+          </div>
         </Col>
       </Row>
       <SocialNetworksBlock />

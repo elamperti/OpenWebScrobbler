@@ -82,7 +82,7 @@ const ErrorPage = ({ error, eventId, resetError }) => {
 
         <details className="mb-2">
           <summary>Technical details</summary>
-          <div className="card p-3 my-2 ml-3">
+          <div className="card p-3 my-2 ms-3">
             <code>{error.toString()}</code>
             <p className="pt-3">
               If you understand what is going on here, your feedback will be very helpful!
@@ -114,12 +114,12 @@ const ErrorPage = ({ error, eventId, resetError }) => {
 
         <div className="mt-4 d-flex justify-content-center align-items-center">
           <Button className="mx-2" color="success" onClick={resetError}>
-            <FontAwesomeIcon icon={faArrowLeft} className="mr-2" />
+            <FontAwesomeIcon icon={faArrowLeft} className="me-2" />
             Return to the scrobbler
           </Button>
           <Button className="mx-2" color="info" onClick={fillReport}>
             Tell us what happened
-            <FontAwesomeIcon icon={faPaperPlane} className="ml-2" />
+            <FontAwesomeIcon icon={faPaperPlane} className="ms-2" />
           </Button>
         </div>
       </div>

@@ -1,3 +1,11 @@
+.breadcrumb {
+  padding: 0.75rem 1rem !important;
+
+  li a {
+    text-decoration: none;
+  }
+}
+
 .ows-AlbumBreadcrumb-item:last-of-type {
   flex-grow: 1;
 }

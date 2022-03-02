@@ -139,7 +139,7 @@ class SongForm extends React.Component {
             rawMessage: (
               <div>
                 <Trans i18nKey="pasteIntercepted">Paste intercepted!</Trans> ✨
-                <span href="#" onClick={this.revertPaste} className="ml-2 alert-link">
+                <span href="#" onClick={this.revertPaste} className="ms-2 alert-link">
                   <Trans i18nKey="undo">Undo</Trans>
                 </span>
               </div>
@@ -313,7 +313,7 @@ class SongForm extends React.Component {
           <Label for="artist" className="col-sm-3 required">
             {t('artist')}
           </Label>
-          <div className="col-10 col-sm-8 p-0">
+          <div className="col-10 col-sm-8 p-0 input-with-lock">
             <Input
               bsSize="sm"
               type="text"
@@ -326,7 +326,6 @@ class SongForm extends React.Component {
               onInput={this.updateField('artist')}
               onKeyUp={this.catchKeys}
               onPaste={this.catchPaste}
-              data-lpignore="true"
             />
             <div className="lock-button rounded" id="lock-artist" onClick={this.toggleLock('artist')}>
               <FontAwesomeIcon className={this.state.artistLocked ? 'active' : ''} icon={faThumbtack} />
@@ -347,20 +346,20 @@ class SongForm extends React.Component {
           <Label for="title" className="col-sm-3 required">
             {t('title')}
           </Label>
-          <Input
-            bsSize="sm"
-            className="col-10 col-sm-8"
-            type="text"
-            name="title"
-            id="title"
-            tabIndex="2"
-            value={this.state.title}
-            onChange={() => {}}
-            onInput={this.updateField('title')}
-            onKeyUp={this.catchKeys}
-            onPaste={this.catchPaste}
-            data-lpignore="true"
-          />
+          <div className="col-10 col-sm-8 p-0">
+            <Input
+              bsSize="sm"
+              type="text"
+              name="title"
+              id="title"
+              tabIndex="2"
+              value={this.state.title}
+              onChange={() => {}}
+              onInput={this.updateField('title')}
+              onKeyUp={this.catchKeys}
+              onPaste={this.catchPaste}
+            />
+          </div>
           <div className="col-1 swaptool-bottom">
             <span>⏌</span>
           </div>
@@ -369,7 +368,7 @@ class SongForm extends React.Component {
           <Label for="album" className="col-sm-3">
             {t('album')}
           </Label>
-          <div className="col-sm-9 p-0">
+          <div className="col-sm-9 p-0 input-with-lock">
             <Input
               bsSize="sm"
               type="text"
@@ -381,7 +380,6 @@ class SongForm extends React.Component {
               onChange={() => {}}
               onInput={this.updateField('album')}
               onKeyUp={this.catchKeys}
-              data-lpignore="true"
             />
             <div className="lock-button rounded" id="lock-album" onClick={this.toggleLock('album')}>
               <FontAwesomeIcon className={this.state.albumLocked ? 'active' : ''} icon={faThumbtack} />
@@ -405,7 +403,6 @@ class SongForm extends React.Component {
               onChange={() => {}}
               onInput={this.updateField('albumArtist')}
               onKeyUp={this.catchKeys}
-              data-lpignore="true"
             />
           </div>
         </FormGroup>

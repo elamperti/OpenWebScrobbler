@@ -3,7 +3,7 @@
 }
 
 .artistCard .artistCard-name {
-  color: var(--light);
+  color: var(--bs-light);
   font-size: 1.15em;
   max-height: 5em;
   overflow: hidden;
@@ -14,7 +14,7 @@
 }
 
 .artistCard:hover .artistCard-name {
-  color: var(--white);
+  color: var(--bs-white);
 }
 
 .artistCard img.user-avatar {

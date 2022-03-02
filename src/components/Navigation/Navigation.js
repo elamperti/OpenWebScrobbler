@@ -30,21 +30,21 @@ export default function Navigation() {
         <FontAwesomeIcon icon={faHeadphonesAlt} className="d-none d-sm-inline" />
         Open Scrobbler
       </NavbarBrand>
-      <ul className="m-auto pl-0">
+      <ul className="m-auto ps-0">
         {/* ToDo: try to use only one LanguageSelector */}
-        <LanguageSelector className="d-md-none text-right" />
+        <LanguageSelector className="d-md-none text-end" />
       </ul>
       <NavbarToggler title="Menu" onClick={() => toggleMenu(!menuIsOpen)} />
       <Collapse isOpen={menuIsOpen} navbar>
         {/* ToDo: show these items for visitors too */}
         {isLoggedIn && (
-          <Nav navbar data-cy="Navigation-appMenuItems">
+          <Nav className="flex-grow-1" navbar data-cy="Navigation-appMenuItems">
             <NavigationItem href="/scrobble/song" i18nKey="song" icon={faPlayCircle} />
             <NavigationItem href="/scrobble/album" i18nKey="album" icon={faCompactDisc} />
             <NavigationItem href="/scrobble/user" i18nKey="otherUser" icon={faUserFriends} />
           </Nav>
         )}
-        <Nav className="ml-auto" navbar>
+        <Nav navbar>
           <LanguageSelector className="d-none d-md-block" />
           {isLoggedIn ? (
             <UserDropdown />

@@ -10,7 +10,7 @@ import { enqueueScrobble } from 'store/actions/scrobbleActions';
 import format from 'date-fns/format';
 import isToday from 'date-fns/is_today';
 
-import { Button, CustomInput, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Button, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -174,11 +174,11 @@ class ScrobbleItem extends Component {
 
     const timeOrDuration = (
       <small
-        className={`text-right timestamp d-flex align-items-center ${
+        className={`text-end timestamp d-flex align-items-center ${
           this.props.compact ? 'flex-row' : 'flex-row-reverse'
         } ${!scrobble.timestamp && 'duration text-muted'}`}
       >
-        {scrobble.timestamp && <FontAwesomeIcon className={`${this.props.compact ? 'mr-2' : 'ml-2'}`} icon={faClock} />}
+        {scrobble.timestamp && <FontAwesomeIcon className={`${this.props.compact ? 'me-2' : 'ms-2'}`} icon={faClock} />}
         {theTimestamp}
       </small>
     );
@@ -202,7 +202,7 @@ class ScrobbleItem extends Component {
       // COMPACT view
       songInfo = (
         <div className="d-flex align-items-center">
-          <span className="song flex-grow-1 pr-2 truncate">{songFullTitle}</span>
+          <span className="song flex-grow-1 pe-2 truncate">{songFullTitle}</span>
           {timeOrDuration}
         </div>
       );
@@ -215,7 +215,7 @@ class ScrobbleItem extends Component {
             <small className="text-muted flex-grow-1 truncate album">
               {scrobble.album && (
                 <Fragment>
-                  <FontAwesomeIcon className="mr-1" icon={faCompactDisc} transform="shrink-4" mask={faSquare} />
+                  <FontAwesomeIcon className="me-1" icon={faCompactDisc} transform="shrink-4" mask={faSquare} />
                   {this.properCase(scrobble.album, true)}
                   {scrobble.albumArtist ? ` - ${this.properCase(scrobble.albumArtist, true)}` : ''}
                 </Fragment>
@@ -254,18 +254,18 @@ class ScrobbleItem extends Component {
             </DropdownToggle>
             <DropdownMenu right>
               <DropdownItem onClick={this.scrobbleAgain}>
-                <FontAwesomeIcon icon={faRedoAlt} className="mr-2" />
+                <FontAwesomeIcon icon={faRedoAlt} className="me-2" />
                 {t('scrobbleAgain')}
               </DropdownItem>
               <DropdownItem tag="a" href={getAmznLink(scrobble.artist, scrobble.album)} target="_blank" rel="noopener">
-                <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
+                <FontAwesomeIcon icon={faShoppingCart} className="me-2" />
                 {t('buyOnAmzn')}
               </DropdownItem>
               {this.props.cloneScrobbleTo && (
                 <Fragment>
                   <DropdownItem key="cloneDivider" divider />
                   <DropdownItem key="clone" onClick={this.cloneScrobble}>
-                    <FontAwesomeIcon icon={faCopy} className="mr-2" />
+                    <FontAwesomeIcon icon={faCopy} className="me-2" />
                     {t('copyToEditor')}
                   </DropdownItem>
                 </Fragment>
@@ -281,10 +281,10 @@ class ScrobbleItem extends Component {
 
     if (this.props.onSelect) {
       selectionCheckbox = (
-        <CustomInput
+        <Input
           inline
           type="checkbox"
-          className="mr-1"
+          className="me-1"
           checked={this.props.selected}
           onChange={() => this.props.onSelect(this.props.uuid, this.props.selected)}
           id={`ScrobbleItem-checkbox-${this.props.uuid}`}
@@ -297,9 +297,9 @@ class ScrobbleItem extends Component {
       <div className={scrobbleItemClasses}>
         <div className={`d-flex flex-row align-items-center p-2 ${this.props.compact ? 'flex-wrap' : ''}`}>
           {selectionCheckbox}
-          {albumArt && <div className="albumArt align-self-center pr-2">{albumArt}</div>}
+          {albumArt && <div className="albumArt align-self-center pe-2">{albumArt}</div>}
           <div className="flex-grow-1 truncate">{songInfo}</div>
-          <div className="ml-auto pl-2">{rightSideContent}</div>
+          <div className="ms-auto ps-2">{rightSideContent}</div>
         </div>
         {errorMessage}
       </div>

@@ -58,7 +58,7 @@ export default function SearchForm({
   return (
     <div>
       <Row noGutters className="mt-2">
-        <div className="col-12 col-sm-9 pr-sm-3">
+        <div className="col-12 col-sm-9 pe-sm-3">
           <FormGroup>
             <Label for="title" className="required sr-only">
               {ariaLabel}
@@ -74,7 +74,6 @@ export default function SearchForm({
               onKeyDown={catchEnter}
               onChange={(e) => setQuery(e.target.value)}
               maxLength={maxLength}
-              data-lpignore="true"
             />
             <FormFeedback valid={query.length < 1 || isValid}>
               {feedbackMessageKey ? <Trans i18nKey={feedbackMessageKey} /> : 'Unknown error'}
