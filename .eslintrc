@@ -21,7 +21,7 @@
       "version": "16.5"
     }
   },
-  "plugins": ["cypress", "node", "promise", "react"],
+  "plugins": ["cypress", "node", "promise"],
   "rules": {
     "comma-dangle": [
       "warn",
