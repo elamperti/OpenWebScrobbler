@@ -84,8 +84,8 @@ const userReducer = (state = initialState, action) => {
             case 'medium':
               avatars.md = avatar['#text'];
               break;
-            default:
             case 'large':
+            default:
               avatars.lg = avatar['#text'];
               break;
             // case 'extralarge':

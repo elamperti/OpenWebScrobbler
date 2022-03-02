@@ -6,11 +6,8 @@
     "node": true,
     "cypress/globals": true
   },
-  "extends": [
-    "standard",
-    "react-app"
-  ],
-  "parser": "babel-eslint",
+  "extends": ["standard", "react-app"],
+  "parser": "@babel/eslint-parser",
   "parserOptions": {
     "allowImportExportEverywhere": false,
     "ecmaFeatures": {
@@ -24,30 +21,26 @@
       "version": "16.5"
     }
   },
-  "plugins": [
-    "cypress",
-    "node",
-    "promise",
-    "react"
-  ],
+  "plugins": ["cypress", "node", "promise", "react"],
   "rules": {
-    "comma-dangle": ["warn", {
-      "arrays": "always-multiline",
-      "objects": "always-multiline",
-      "imports": "always-multiline",
-      "exports": "always-multiline",
-      "functions": "never"
-    }],
-    "no-console": 2,
+    "comma-dangle": [
+      "warn",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "never"
+      }
+    ],
+    "multiline-ternary": "off",
+    "no-console": "warn",
     "no-unused-vars": "error",
     "prefer-const": "warn",
     "react/prop-types": 1,
     "semi": [2, "always"],
     "space-infix-ops": 1,
     "space-before-function-paren": [2, "never"],
-    "strict": [
-      "error",
-      "global"
-    ]
+    "strict": ["error", "global"]
   }
 }

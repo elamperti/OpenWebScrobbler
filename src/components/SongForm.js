@@ -103,17 +103,17 @@ class SongForm extends React.Component {
     if (splittedValues) {
       // Assigns values depending on which field they were pasted on
       switch (event.target.id) {
-        default:
-        case 'artist':
-          pasteData = {
-            artist: splittedValues[1],
-            title: splittedValues[2],
-          };
-          break;
         case 'title':
           pasteData = {
             artist: splittedValues[2],
             title: splittedValues[1],
+          };
+          break;
+        case 'artist':
+        default:
+          pasteData = {
+            artist: splittedValues[1],
+            title: splittedValues[2],
           };
           break;
       }
@@ -322,7 +322,7 @@ class SongForm extends React.Component {
               tabIndex="1"
               className="hasLock"
               value={this.state.artist}
-              onChange={function() {}}
+              onChange={() => {}}
               onInput={this.updateField('artist')}
               onKeyUp={this.catchKeys}
               onPaste={this.catchPaste}
@@ -355,7 +355,7 @@ class SongForm extends React.Component {
             id="title"
             tabIndex="2"
             value={this.state.title}
-            onChange={function() {}}
+            onChange={() => {}}
             onInput={this.updateField('title')}
             onKeyUp={this.catchKeys}
             onPaste={this.catchPaste}
@@ -378,7 +378,7 @@ class SongForm extends React.Component {
               tabIndex="3"
               className="hasLock"
               value={this.state.album}
-              onChange={function() {}}
+              onChange={() => {}}
               onInput={this.updateField('album')}
               onKeyUp={this.catchKeys}
               data-lpignore="true"
@@ -402,7 +402,7 @@ class SongForm extends React.Component {
               tabIndex="3"
               className="hasLock"
               value={this.state.albumArtist}
-              onChange={function() {}}
+              onChange={() => {}}
               onInput={this.updateField('albumArtist')}
               onKeyUp={this.catchKeys}
               data-lpignore="true"

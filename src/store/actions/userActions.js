@@ -90,10 +90,10 @@ export function logOut(dispatch) {
         hasIn(alertObject, 'message')
           ? alertObject
           : {
-            type: 'info',
-            title: 'logoutInfo.title',
-            message: 'logoutInfo.message',
-          }
+              type: 'info',
+              title: 'logoutInfo.title',
+              message: 'logoutInfo.message',
+            }
       );
     });
   };
