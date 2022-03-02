@@ -7,9 +7,9 @@ import './ArtistCard.css';
 
 const ArtistCard = ({ artist, artistId, className, onClick }) => (
   <div className={`artistCard ${className} my-2 py-2 rounded`}>
-    <a href={artist.url} className="ml-2 row h-100 align-items-center" data-artist-id={artistId} onClick={onClick}>
+    <a href={artist.url} className="ms-2 d-flex h-100 align-items-center" data-artist-id={artistId} onClick={onClick}>
       <Avatar user={artist} size="sm" alt={artist.name} isArtist />
-      <span className="artistCard-name pl-3">{artist.name}</span>
+      <span className="artistCard-name ps-3">{artist.name}</span>
     </a>
   </div>
 );

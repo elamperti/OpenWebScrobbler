@@ -20,12 +20,17 @@ input.hasLock {
 }
 
 .lock-button {
-  position: absolute;
+  position: relative;
   height: 1.6rem;
-  top: 0.1rem;
+  top: -1.8rem;
   right: 0.15rem;
-  padding: 0.1rem 0.4rem;
+  margin-left: calc(100% - 1.5rem);
+  padding: 0.1rem 0.4rem 0.1rem;
   cursor: pointer;
+}
+
+.input-with-lock {
+  max-height: 1rem;
 }
 
 .fa-thumbtack {
@@ -36,8 +41,6 @@ input.hasLock {
 .fa-thumbtack.active {
   color: #333333;
   position: relative;
-  top: 0.1rem;
-  left: -0.1rem;
   transform: rotate(30deg);
 }
 

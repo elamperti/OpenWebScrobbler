@@ -44,7 +44,7 @@ export function ScrobbleArtistResults() {
   return (
     <React.Fragment>
       <h2 className="m-0 d-inline">
-        <FontAwesomeIcon icon={faCompactDisc} className="mr-2" />
+        <FontAwesomeIcon icon={faCompactDisc} className="me-2" />
         {t('scrobbleAlbum')}
       </h2>
       <AlbumBreadcrumb

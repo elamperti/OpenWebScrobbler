@@ -3,25 +3,25 @@
 }
 
 .DayPicker-Day--today {
-  color: var(--white);
+  color: var(--bs-white);
 }
 
 .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
-  background-color: var(--gray);
-  color: var(--white);
+  background-color: var(--bs-gray);
+  color: var(--bs-white);
 
   &:hover {
-    background-color: var(--white);
-    color: var(--dark);
+    background-color: var(--bs-white);
+    color: var(--bs-dark);
   }
 }
 
 .DayPicker-Weekday {
-  color: var(--gray);
+  color: var(--bs-gray);
 }
 
 .DayPicker-Day--disabled {
-  color: var(--dark);
+  color: var(--bs-dark);
 }
 
 /* This avoids reactstrap checkboxes going over date picker in albums */
@@ -34,7 +34,7 @@
 }
 
 .DayPickerInput-Overlay {
-  background: var(--gray-dark);
+  background: var(--bs-gray-dark);
   border-radius: 0.2rem;
 }
 

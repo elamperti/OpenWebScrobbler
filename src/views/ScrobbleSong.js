@@ -107,9 +107,9 @@ class ScrobbleSong extends Component {
     if (this.state.activeTab === 'history') {
       if (this.props.localScrobbles.length > 0) {
         clearListButton = (
-          <div className="ml-auto d-flex my-auto">
+          <div className="ms-auto d-flex my-auto">
             <Button className="btn-clear" size="sm" color="secondary" onClick={this.props.clearUserList}>
-              <FontAwesomeIcon icon={faTrashAlt} className="mr-1" />
+              <FontAwesomeIcon icon={faTrashAlt} className="me-1" />
               <Trans i18nKey="clearHistory">Clear history</Trans>
             </Button>
           </div>
@@ -130,7 +130,7 @@ class ScrobbleSong extends Component {
             <NavItem>
               <NavLink className={this.state.activeTab === 'history' ? 'active' : ''} onClick={this.goToHistoryTab}>
                 <FontAwesomeIcon icon={faHistory} />
-                <span className="pl-1 px-2">
+                <span className="ps-1 px-2">
                   <Trans i18nKey="history">History</Trans>
                 </span>
                 {this.props.unreadScrobbles > 0 && <Badge color="secondary">{this.props.unreadScrobbles}</Badge>}
@@ -143,20 +143,20 @@ class ScrobbleSong extends Component {
                 onClick={this.goToProfileTab}
               >
                 <FontAwesomeIcon icon={hasUsername ? faUserAstronaut : faCompactDisc} spin={!hasUsername} />
-                <span className="pl-2">
+                <span className="ps-2">
                   <Trans i18nKey="yourProfile">Your profile</Trans>
                 </span>
               </NavLink>
             </NavItem>
             {clearListButton}
           </Nav>
-          <TabContent className="mt-2" activeTab={this.state.activeTab}>
-            <TabPane className="ScrobbleList-container" tabId="history">
+          <TabContent activeTab={this.state.activeTab}>
+            <TabPane className="ScrobbleList-container pt-2" tabId="history">
               <ScrobbleList scrobbles={this.props.localScrobbles} cloneScrobblesTo={this.state.cloneReceiver}>
                 <EmptyScrobbleListFiller />
               </ScrobbleList>
             </TabPane>
-            <TabPane className="ScrobbleList-container" tabId="userProfile">
+            <TabPane className="ScrobbleList-container pt-2" tabId="userProfile">
               <ScrobbleList
                 compact
                 scrobbles={get(this.props.user, `profiles[${this.props.user.name}].scrobbles[1]`, [])}

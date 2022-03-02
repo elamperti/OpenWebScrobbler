@@ -13,9 +13,11 @@ import './AlbumBreadcrumb.scss';
 
 function generateBreadcrumbItem(targetPath, caption, icon) {
   return (
-    <BreadcrumbItem className="ows-AlbumBreadcrumb-item" tag={Link} to={targetPath} key={targetPath}>
-      {icon && <FontAwesomeIcon icon={icon} className="mr-2 mt-1" />}
-      {caption}
+    <BreadcrumbItem className="ows-AlbumBreadcrumb-item" key={targetPath}>
+      <Link to={targetPath}>
+        {icon && <FontAwesomeIcon icon={icon} className="me-2 mt-1" />}
+        {caption}
+      </Link>
     </BreadcrumbItem>
   );
 }
@@ -72,7 +74,7 @@ export default function AlbumBreadcrumb({ albumQuery, artistQuery, artistDiscogs
     <Breadcrumb className="my-3">
       {itemList}
       {dataProvider && (
-        <div className="flex-grow-1 text-right">
+        <div className="flex-grow-1 text-end">
           {t('dataProvider')}: {dataProvider}
         </div>
       )}

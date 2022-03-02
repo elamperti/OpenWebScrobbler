@@ -38,12 +38,12 @@
 }
 
 .scrobbled-item.card.status-error {
-  border-left: 3px solid var(--red);
+  border-left: 3px solid var(--bs-red);
 }
 
 .scrobbled-item.card.status-retry,
 .scrobbled-item .albumArt.fa-compact {
-  color: var(--gray);
+  color: var(--bs-gray);
   /* opacity: 0.8; */
 }
 
@@ -64,7 +64,7 @@
   /* background-color: rgba(255,0,0,0.2);
   border: 1px solid #3a1c1c; */
   border-radius: 4px;
-  color: var(--light);
+  color: var(--bs-light);
   font-size: 0.7rem;
   margin: 4px;
   margin-top: -0.8rem;
@@ -73,16 +73,16 @@
 }
 
 .scrobbled-item .status-icon .fa-check {
-  color: var(--green);
+  color: var(--bs-green);
 }
 
 .scrobbled-item .status-icon .fa-circle,
 .fa-times {
-  color: var(--red);
+  color: var(--bs-red);
 }
 
 .scrobbled-item .status-icon .fa-compact {
-  color: var(--light);
+  color: var(--bs-light);
 }
 
 .scrobbled-item .quick-scrobble-button {

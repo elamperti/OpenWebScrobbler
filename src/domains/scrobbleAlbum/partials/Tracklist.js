@@ -2,13 +2,13 @@ import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { Trans, Translation, useTranslation } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import ReactGA from 'react-ga';
 import addSeconds from 'date-fns/add_seconds';
 import subSeconds from 'date-fns/sub_seconds';
 import format from 'date-fns/format';
 
-import { Alert, Badge, Button, FormGroup, CustomInput } from 'reactstrap';
+import { Alert, Badge, Button, FormGroup, Label, Input } from 'reactstrap';
 
 import {
   faArrowLeft,
@@ -163,7 +163,7 @@ export default function Tracklist({ albumInfo, tracks }) {
               <Badge className="my-1">{albumInfo.releasedate}</Badge>
               {tracks.length > 0 && (
                 <div className="album-heading-duration">
-                  <FontAwesomeIcon icon={faStopwatch} className="mr-2" color="var(--gray)" />
+                  <FontAwesomeIcon icon={faStopwatch} className="me-2" color="var(--bs-gray)" />
                   {totalDuration ? (
                     format(addSeconds(new Date(0), totalDuration), durationFormat)
                   ) : (
@@ -173,43 +173,40 @@ export default function Tracklist({ albumInfo, tracks }) {
               )}
             </div>
             {albumHasTracks && (
-              <FormGroup className="align-self-end mb-0">
-                <Translation>
-                  {
-                    // This mess is required to translate the `label` properties using t(), otherwise label wouldn't be clickable
-                    (t) => {
-                      return (
-                        <React.Fragment>
-                          <CustomInput
-                            inline
-                            type="radio"
-                            id="useNowTimestamp"
-                            label={t('now')}
-                            name="useCustomTimestamp"
-                            checked={!useCustomTimestamp}
-                            onChange={toggleCustomTimestamp}
-                          ></CustomInput>
-                          <CustomInput
-                            inline
-                            type="radio"
-                            id="useCustomTimestamp"
-                            label={t('customTimestamp')}
-                            name="useCustomTimestamp"
-                            checked={useCustomTimestamp}
-                            onChange={toggleCustomTimestamp}
-                          ></CustomInput>
-                        </React.Fragment>
-                      );
-                    }
-                  }
-                </Translation>
+              <div className="align-self-end mb-0">
+                <FormGroup check inline>
+                  <Input
+                    inline
+                    type="radio"
+                    id="useNowTimestamp"
+                    name="useCustomTimestamp"
+                    checked={!useCustomTimestamp}
+                    onChange={toggleCustomTimestamp}
+                  />
+                  <Label for="useNowTimestamp" check>
+                    <Trans i18nKey="now" />
+                  </Label>
+                </FormGroup>
+                <FormGroup check inline>
+                  <Input
+                    inline
+                    type="radio"
+                    id="useCustomTimestamp"
+                    name="useCustomTimestamp"
+                    checked={useCustomTimestamp}
+                    onChange={toggleCustomTimestamp}
+                  />
+                  <Label for="useCustomTimestamp" check>
+                    <Trans i18nKey="customTimestamp" />
+                  </Label>
+                </FormGroup>
                 <FontAwesomeIcon
                   id="timestampInfoIcon"
                   icon={faQuestionCircle}
-                  color="var(--gray)"
+                  color="var(--bs-gray)"
                   onClick={toggleTimestampCopy}
                 />
-              </FormGroup>
+              </div>
             )}
           </div>
         </div>
@@ -227,7 +224,7 @@ export default function Tracklist({ albumInfo, tracks }) {
       </Alert>
       {albumHasTracks && (
         <div className="row">
-          <div className="my-2 col-3 col-lg-2 offset-lg-4 pr-0 text-right">
+          <div className="my-2 col-3 col-lg-2 offset-lg-4 pe-0 text-end">
             {amznLink && (
               <a
                 href={getAmznLink(albumInfo.artist, albumInfo.name)}
@@ -241,7 +238,7 @@ export default function Tracklist({ albumInfo, tracks }) {
             )}
           </div>
           <div className="my-2 col-9 col-lg-6">
-            <Button className="w-100 mr-3" color="success" onClick={scrobbleSelectedTracks} disabled={!canScrobble}>
+            <Button className="w-100 me-3" color="success" onClick={scrobbleSelectedTracks} disabled={!canScrobble}>
               <Trans i18nKey={selectedTracks.size > 0 ? 'scrobbleSelected' : 'scrobbleAlbum'}>Scrobble it</Trans>
             </Button>
           </div>

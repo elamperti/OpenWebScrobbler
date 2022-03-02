@@ -28,7 +28,7 @@ export default function UserDropdow() {
         <DropdownMenu right>
           <DropdownItem href={user.url} target="_blank" rel="noopener" data-cy="UserDropdown-profileLink">
             {t('viewProfile')}
-            <FontAwesomeIcon className="ml-1" color="var(--gray)" icon={faExternalLinkAlt} />
+            <FontAwesomeIcon className="ms-1" color="var(--bs-gray)" icon={faExternalLinkAlt} />
           </DropdownItem>
           <DropdownItem divider />
           <DropdownItem onClick={openSettingsModal(dispatch)}>

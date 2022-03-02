@@ -34,11 +34,11 @@ export const UserCard: React.FC<UserCardProps> = (props) => {
   );
 
   return (
-    <div className={`user-card d-flex w-100 px-3 no-gutters align-items-center ${props.isHeading ? 'py-3' : ''}`}>
+    <div className={`user-card d-flex w-100 px-3 g-0 align-items-center ${props.isHeading ? 'py-3' : ''}`}>
       <div className="text-center">
         <Avatar user={props.user} alt={props.name} size="md" />
       </div>
-      <div className="d-flex-grow-1 pl-3">
+      <div className="d-flex-grow-1 ps-3">
         <h3>{props.name}</h3>
         {props.withLinkToProfile && externalLink}
       </div>

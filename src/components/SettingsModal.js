@@ -83,13 +83,13 @@ class SettingsModal extends React.Component {
         toggle={this.props.close}
       >
         <ModalHeader toggle={this.props.close}>
-          <FontAwesomeIcon className="mr-2" icon={faCog} />
+          <FontAwesomeIcon className="me-2" icon={faCog} />
           {t('settingsFor')} {this.props.user.name}
         </ModalHeader>
         <ModalBody>
           <Form>
             <FormGroup>
-              <div className="row ml-0 ml-sm-auto mr-0">
+              <div className="row ms-0 ms-sm-auto me-0">
                 <Label className="col-sm-4" htmlFor="lang">
                   {t('language')}
                 </Label>
@@ -105,7 +105,7 @@ class SettingsModal extends React.Component {
                     </optgroup>
                   </Input>
                   <a
-                    className="d-none d-sm-block text-right translationCTA"
+                    className="d-none d-sm-block text-end translationCTA"
                     target="_blank"
                     rel="noopener noreferrer"
                     href="https://github.com/elamperti/OpenWebScrobbler/#translations"
@@ -117,7 +117,7 @@ class SettingsModal extends React.Component {
             </FormGroup>
 
             <FormGroup>
-              <div className="row ml-0 ml-sm-auto mr-0">
+              <div className="row ms-0 ms-sm-auto me-0">
                 <Label className="col-sm-4" htmlFor="lang">
                   {t('dataProvider')}
                 </Label>
@@ -147,7 +147,7 @@ class SettingsModal extends React.Component {
             {t('cancel')}
           </Button>
           <Button className="btn-save" color="success" onClick={this.saveSettings}>
-            <FontAwesomeIcon className="mr-2" icon={faSave} />
+            <FontAwesomeIcon className="me-2" icon={faSave} />
             {t('saveSettings')}
           </Button>
         </ModalFooter>

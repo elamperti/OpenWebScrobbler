@@ -20,7 +20,7 @@ class UpdateToast extends React.Component {
   render() {
     return (
       <Alert color="primary" className="UpdateToast mx-4 py-1">
-        <FontAwesomeIcon icon={faExclamation} transform="shrink-8" mask={faComment} className="mr-2" />
+        <FontAwesomeIcon icon={faExclamation} transform="shrink-8" mask={faComment} className="me-2" />
         <Trans i18nKey="updates.newVersionAvailable">
           {"There's a new version available! Please "}
           <Button size="sm" color="info" onClick={this.reloadPage}>
