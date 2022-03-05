@@ -1,6 +1,9 @@
+.user-avatar {
+  background-color: rgba(0, 0, 0, 0.3);
+}
+
 .user-avatar.without-img {
   display: inline-block;
-  background-color: rgba(0,0,0,0.3);
 }
 
 .user-avatar-sm.without-img {
