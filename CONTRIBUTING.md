@@ -7,8 +7,6 @@ I'm really glad you're reading this, because it's through the help of contributo
 - [Adding new features or changing the code](#adding-new-features-or-changing-the-code)
   - [Making changes to the database structure](#making-changes-to-the-database-structure)
 - [Translations](#translations)
-  - [Adding a new language](#adding-a-new-language)
-  - [Update an existing language](#update-an-existing-language)
 <!-- /TOC -->
 
 ---
@@ -34,22 +32,8 @@ All changes to the database schema must be added as migrations (use [migration #
 
 ## Translations
 
-Below, you will find short step-by-step guides to adding a new language or updating an existing one. If you get stuck, let me know [on Discord](https://discord.gg/vcbprTz) or [open an issue](https://github.com/elamperti/OpenWebScrobbler/issues/new).
+To add or improve translations for your language, follow the link "Want to add your language?" from the language selector menu. If you get stuck or want to discuss a particular translation, join #translations [on Discord](https://discord.gg/vcbprTz) or [open an issue](https://github.com/elamperti/OpenWebScrobbler/issues/new).
 
 :bulb: Subscribe to [issue #115](https://github.com/elamperti/OpenWebScrobbler/issues/115) to receive notifications when there are new things to be translated!
 
-### Adding a new language
-
-  1. Fork this project if you haven't already, so you can edit it.
-  2. Create a folder for your language in the [locales](./public/locales) directory, copying the `common.json` file in [`en` language](./public/locales/en).
-  3. Translate all the values in the JSON file (for example, in a line that says `"foo": "bar",` you should translate only the `bar` part).
-  4. Add your language to the language list in [`src/utils/i18n.js`](./src/utils/i18n.js)
-  5. Duplicate one hreflang tag in the [index.html](./public/index.html) and modify it to fit your language.
-  6. Once you are done, the only thing left is creating a pull request so it can be merged with the current code. :confetti_ball:
-
-### Update an existing language
-
-  1. Fork this project if you haven't already, so you can edit it.
-  2. Find the folder corresponding to your language in [locales](./public/locales) directory.
-  3. Translate or modify the values you want in `common.json`
-  4. Create a pull request so it can be merged back into this repository. :tada:
+Updated translations should usually be available on the next update.

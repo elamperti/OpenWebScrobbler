@@ -70,7 +70,20 @@
       "short": "Do MMM"
     },
     "months": {
-      "short": ["Jan", "Feb", "Maa", "Apr", "Mei", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
+      "short": [
+        "Jan",
+        "Feb",
+        "Maa",
+        "Apr",
+        "Mei",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Okt",
+        "Nov",
+        "Dec"
+      ],
       "long": [
         "Januari",
         "Februari",

@@ -17,7 +17,7 @@ export const languageList = [
   { code: 'pt', name: 'Português' },
   { code: 'ru', name: 'Русский' },
   { code: 'tr', name: 'Turkish' },
-  { code: 'ua', name: 'Українська' },
+  { code: 'uk', name: 'Українська' },
 ];
 
 export const fallbackLng = {
@@ -33,7 +33,7 @@ export const fallbackLng = {
   'pt-BR': ['pt'],
   'pt-PT': ['pt'],
   'fr-FR': ['fr'],
-  'uk-UA': ['ua'],
+  'uk-UA': ['uk'],
   default: ['en'],
 };
 
@@ -42,16 +42,12 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    load: 'languageOnly', // 'en-US' becomes 'en'
+    load: 'all', // e.g. 'en-US' tries 'en-US' -> 'en' -> [fallbackLng]
     backend: {
-      loadPath: '/locales/{{lng}}/{{ns}}.json',
+      loadPath: '/locales/{{lng}}.json',
       allowMultiLoading: false,
     },
     fallbackLng,
-
-    // Just one namespace (sorry PEP 20 I guess?)
-    ns: ['common'],
-    defaultNS: 'common',
 
     debug: process.env.NODE_ENV === 'development',
 

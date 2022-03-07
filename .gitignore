@@ -25,6 +25,7 @@ deploy.sh
 .env.development.local
 .env.test.local
 .env.production.local
+poeditor-config.json
 
 npm-debug.log*
 yarn-debug.log*

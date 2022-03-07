@@ -54,7 +54,7 @@ export default function LanguageSelector({ className }) {
         ))}
         <a
           className="px-2 d-none d-sm-block text-center ows-translateCTA"
-          href="https://github.com/elamperti/OpenWebScrobbler/#translations"
+          href={process.env.REACT_APP_LINK_TO_TRANSLATIONS}
         >
           {t('translateYourLanguage')}
         </a>

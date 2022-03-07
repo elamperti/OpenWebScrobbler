@@ -108,7 +108,7 @@ class SettingsModal extends React.Component {
                     className="d-none d-sm-block text-end translationCTA"
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://github.com/elamperti/OpenWebScrobbler/#translations"
+                    href={process.env.REACT_APP_LINK_TO_TRANSLATIONS}
                   >
                     {t('translateYourLanguage')}
                   </a>

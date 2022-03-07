@@ -40,13 +40,14 @@
   "translateYourLanguage": "¿Quieres sumar tu idioma?",
   "logIn": "Ingresar",
   "logOut": "Cerrar sesión",
+  "dataProvider": "Fuente de datos",
   "now": "Ahora",
   "custom": "Otra...",
   "timestamp": "Fecha",
   "unknown": "Desconocido",
-  "noSongsScrobbled": "¡No has scrobbleado canciones aún!",
   "lastfmWillRejectOldTimestamps": "Last.fm rechazará scrobbles anteriores a las últimas dos semanas.",
   "keepOriginalTimestamp": "Conservar fecha y hora originales",
+  "noSongsScrobbled": "¡No has scrobbleado canciones aún!",
   "songsWillAppearHere": "Tus canciones aparecerán aquí una vez que las hayas scrobbleado.",
   "clearHistory": "Limpiar historial",
   "scrobbleAgain": "Scrobblear otra vez",
@@ -70,7 +71,19 @@
       "short": "MMM Do"
     },
     "months": {
-      "short": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Nov", "Dic"],
+      "short": [
+        "Ene",
+        "Feb",
+        "Mar",
+        "Abr",
+        "May",
+        "Jun",
+        "Jul",
+        "Ago",
+        "Sep",
+        "Nov",
+        "Dic"
+      ],
       "long": [
         "Enero",
         "Febrero",
@@ -94,6 +107,8 @@
     "unexpectedResponse": "Respuesta inesperada",
     "apiCallFailed": "Fallo en la llamada a la API"
   },
+  "next": "Siguiente",
+  "previous": "Anterior",
   "settingsFor": "Configuración para",
   "saveSettings": "Guardar cambios",
   "defaultLanguage": "Idioma por defecto",
