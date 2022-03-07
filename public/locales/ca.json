@@ -70,7 +70,20 @@
       "short": "Do MMM"
     },
     "months": {
-      "short": ["gen.", "febr.", "març", "abr.", "maig", "juny", "jul.", "ag.", "set.", "oct.", "nov.", "des."],
+      "short": [
+        "gen.",
+        "febr.",
+        "març",
+        "abr.",
+        "maig",
+        "juny",
+        "jul.",
+        "ag.",
+        "set.",
+        "oct.",
+        "nov.",
+        "des."
+      ],
       "long": [
         "gener",
         "febrer",
