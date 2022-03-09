@@ -6,6 +6,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeadphonesAlt, faCompactDisc, faSignInAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
 
+import { useBootstrapBreakpoint, BS_SIZE_SM } from 'utils/bootstrapBreakpoints';
+
 import LanguageSelector from './partials/LanguageSelector';
 import NavigationItem from './partials/NavigationItem';
 import UserDropdown from './partials/UserDropdown';
@@ -16,6 +18,8 @@ export default function Navigation() {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
   const isDonor = useSelector((state) => state.settings.isDonor);
   const [menuIsOpen, toggleMenu] = useState(false);
+  const bsBreakpoint = useBootstrapBreakpoint();
+  const langSelectorInNav = bsBreakpoint > BS_SIZE_SM;
 
   return (
     <Navbar
@@ -30,10 +34,7 @@ export default function Navigation() {
         <FontAwesomeIcon icon={faHeadphonesAlt} className="d-none d-sm-inline" />
         Open Scrobbler
       </NavbarBrand>
-      <ul className="m-auto ps-0">
-        {/* ToDo: try to use only one LanguageSelector */}
-        <LanguageSelector className="d-md-none text-end" />
-      </ul>
+      <ul className="m-auto ps-0">{!langSelectorInNav && <LanguageSelector />}</ul>
       <NavbarToggler title="Menu" onClick={() => toggleMenu(!menuIsOpen)} />
       <Collapse isOpen={menuIsOpen} navbar>
         {/* ToDo: show these items for visitors too */}
@@ -45,7 +46,7 @@ export default function Navigation() {
           </Nav>
         )}
         <Nav navbar>
-          <LanguageSelector className="d-none d-md-block" />
+          {langSelectorInNav && <LanguageSelector />}
           {isLoggedIn ? (
             <UserDropdown />
           ) : (

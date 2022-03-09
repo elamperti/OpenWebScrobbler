@@ -252,7 +252,7 @@ class ScrobbleItem extends Component {
                 <FontAwesomeIcon icon={faEllipsisH} />
               </Button>
             </DropdownToggle>
-            <DropdownMenu right>
+            <DropdownMenu end>
               <DropdownItem onClick={this.scrobbleAgain}>
                 <FontAwesomeIcon icon={faRedoAlt} className="me-2" />
                 {t('scrobbleAgain')}
