@@ -51,7 +51,7 @@ const Avatar = (props) => {
       <div
         className={`user-avatar user-avatar-${props.size} ${props.className} rounded-circle d-inline-flex justify-content-center align-items-center without-img`}
       >
-        <FontAwesomeIcon icon={faUserAstronaut} size={iconSize} color="white" className="d-block" />
+        <FontAwesomeIcon icon={faUserAstronaut} size={iconSize} color="white" className="d-block me-0" />
       </div>
     );
   }
