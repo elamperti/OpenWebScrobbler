@@ -8,6 +8,7 @@ import { useTranslation } from 'react-i18next';
 import Avatar from 'components/Avatar';
 import { openSettingsModal } from 'store/actions/settingsActions';
 import { logOut } from 'store/actions/userActions';
+import { useBootstrapBreakpoint, BS_SIZE_MD } from 'utils/bootstrapBreakpoints';
 
 import './UserDropdown.scss';
 
@@ -15,17 +16,18 @@ export default function UserDropdow() {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  const bsBreakpoint = useBootstrapBreakpoint();
 
   return (
     <React.Fragment>
-      <UncontrolledDropdown data-cy="UserDropdown" nav inNavbar>
+      <UncontrolledDropdown data-cy="UserDropdown" nav inNavbar={bsBreakpoint < BS_SIZE_MD}>
         <DropdownToggle nav caret className="ows-dropdown-user">
           <Avatar user={user} alt={user.name} size="sm" />
           <span className="ows-username" data-cy="UserDropdown-username">
             {user.name}
           </span>
         </DropdownToggle>
-        <DropdownMenu right>
+        <DropdownMenu end>
           <DropdownItem href={user.url} target="_blank" rel="noopener" data-cy="UserDropdown-profileLink">
             {t('viewProfile')}
             <FontAwesomeIcon className="ms-1" color="var(--bs-gray)" icon={faExternalLinkAlt} />

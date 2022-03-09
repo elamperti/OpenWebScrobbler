@@ -36,12 +36,12 @@ export default function LanguageSelector({ className }) {
   }
 
   return (
-    <UncontrolledDropdown data-cy="LanguageSelector" className={`ows-LanguageSelector ${className}`} nav inNavbar>
+    <UncontrolledDropdown data-cy="LanguageSelector" className={`ows-LanguageSelector ${className}`} nav>
       <DropdownToggle title="Select language" nav caret>
         <FontAwesomeIcon icon={faGlobe} />
         <span className="d-none d-lg-inline">{t('language')}</span>
       </DropdownToggle>
-      <DropdownMenu right>
+      <DropdownMenu end>
         {languageList.map((lang) => (
           <DropdownItem
             key={lang.code}
