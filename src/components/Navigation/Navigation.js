@@ -39,13 +39,13 @@ export default function Navigation() {
       <Collapse isOpen={menuIsOpen} navbar>
         {/* ToDo: show these items for visitors too */}
         {isLoggedIn && (
-          <Nav className="flex-grow-1" navbar data-cy="Navigation-appMenuItems">
+          <Nav navbar className="flex-grow-1" data-cy="Navigation-appMenuItems">
             <NavigationItem href="/scrobble/song" i18nKey="song" icon={faPlayCircle} />
             <NavigationItem href="/scrobble/album" i18nKey="album" icon={faCompactDisc} />
             <NavigationItem href="/scrobble/user" i18nKey="otherUser" icon={faUserFriends} />
           </Nav>
         )}
-        <Nav navbar>
+        <Nav navbar className="justify-content-end flex-grow-1">
           {langSelectorInNav && <LanguageSelector />}
           {isLoggedIn ? (
             <UserDropdown />
