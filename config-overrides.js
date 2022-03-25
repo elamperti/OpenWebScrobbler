@@ -1,4 +1,4 @@
-const DynamicCdnWebpackPlugin = require('dynamic-cdn-webpack-plugin');
+const DynamicCdnWebpackPlugin = require('@effortlessmotion/dynamic-cdn-webpack-plugin');
 const moduleToCdn = require('module-to-cdn');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 const { override, addBabelPlugin, addWebpackPlugin } = require('customize-cra');
