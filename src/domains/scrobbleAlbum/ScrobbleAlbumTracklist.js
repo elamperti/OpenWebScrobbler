@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 import { faHistory } from '@fortawesome/free-solid-svg-icons';
@@ -15,10 +14,11 @@ import Tracklist from './partials/Tracklist';
 import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 import { PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
-export function ScrobbleAlbumTracklist({ match }) {
+export function ScrobbleAlbumTracklist() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
-  const history = useHistory();
+  const navigate = useNavigate();
+  const params = useParams();
   const [tracklistDataProvider, setTracklistDataProvider] = useState(null);
   const [triedAlternativeProvider, setTriedAlternativeProvider] = useState(false);
 
@@ -33,7 +33,7 @@ export function ScrobbleAlbumTracklist({ match }) {
   }, [dispatch]);
 
   useEffect(() => {
-    const { albumId, discogsId, albumName, artist } = match.params;
+    const { albumId, discogsId, albumName, artist } = params;
     if (albumId) {
       setTracklistDataProvider(PROVIDER_LASTFM);
       setTriedAlternativeProvider(true);
@@ -59,15 +59,16 @@ export function ScrobbleAlbumTracklist({ match }) {
         })
       );
     }
-  }, [dispatch, match]);
+  }, [dispatch, params]);
 
   // ToDo: refactor this block
   useEffect(() => {
     if (Array.isArray(tracks)) {
       if (tracks.length === 0) {
-        if (match.params.albumName && tracklistDataProvider !== PROVIDER_DISCOGS) {
-          (async() => {
-            const { albumName, artist } = match.params;
+        if (params.albumName && tracklistDataProvider !== PROVIDER_DISCOGS) {
+          // eslint-disable-next-line space-before-function-paren
+          (async () => {
+            const { albumName, artist } = params;
             const topMatchId = await _discogsFindBestMatch({
               artist: decodeURIComponent(artist),
               name: decodeURIComponent(albumName),
@@ -75,7 +76,7 @@ export function ScrobbleAlbumTracklist({ match }) {
 
             if (topMatchId) {
               dispatch(clearAlbumTracklist());
-              history.push(`/scrobble/album/view/dsid/${topMatchId}`);
+              navigate(`/scrobble/album/view/dsid/${topMatchId}`);
             } else {
               setTriedAlternativeProvider(true);
             }
@@ -87,7 +88,7 @@ export function ScrobbleAlbumTracklist({ match }) {
         }
       }
     }
-  }, [tracks, history, match, tracklistDataProvider, dispatch]);
+  }, [tracks, navigate, params, tracklistDataProvider, dispatch]);
 
   return (
     <React.Fragment>
@@ -120,7 +121,3 @@ export function ScrobbleAlbumTracklist({ match }) {
     </React.Fragment>
   );
 }
-
-ScrobbleAlbumTracklist.propTypes = {
-  match: PropTypes.object,
-};

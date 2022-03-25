@@ -1,9 +1,9 @@
 import React from 'react';
 // import { useSelector } from 'react-redux';
-import { Route, Redirect, Switch } from 'react-router-dom';
-import PrivateRoute from './components/PrivateRoute';
+import { Navigate, Route, Routes as Switch } from 'react-router-dom';
 
 import Home from 'domains/home';
+import PrivateRoute from 'components/PrivateRoute';
 import ScrobbleSong from './views/ScrobbleSong';
 import {
   ScrobbleAlbumSearch,
@@ -11,7 +11,7 @@ import {
   ScrobbleAlbumResults,
   ScrobbleAlbumTracklist,
 } from 'domains/scrobbleAlbum';
-import ScrobbleUser from './views/ScrobbleUser';
+import { ScrobbleUserSearch, ScrobbleUserResults } from './domains/scrobbleUser';
 
 // import Spinner from 'components/Spinner';
 
@@ -27,26 +27,24 @@ export default function Routes() {
 
   return (
     <Switch>
-      <PrivateRoute exact path="/scrobble/song" component={ScrobbleSong} />
-      <PrivateRoute exact path="/scrobble/album" component={ScrobbleAlbumSearch} />
-      <PrivateRoute exact path="/scrobble/album/search/:albumName" component={ScrobbleAlbumResults} />
-      <PrivateRoute
-        exact
-        path={['/scrobble/artist/:artistName', '/scrobble/artist/mbid/:mbid', '/scrobble/artist/dsid/:discogsId']}
-        component={ScrobbleArtistResults}
-      />
-      <PrivateRoute
-        exact
-        path={[
-          '/scrobble/album/view/mbid/:albumId',
-          '/scrobble/album/view/dsid/:discogsId',
-          '/scrobble/album/view/:artist/:albumName',
-        ]}
-        component={ScrobbleAlbumTracklist}
-      />
-      <PrivateRoute exact path="/scrobble/user/:username?" component={ScrobbleUser} />
-      <Route exact path="/" component={Home} />
-      <Redirect to="/" />
+      <Route exact path="/scrobble/song" element={<ScrobbleSong />} />
+      <Route exact path="/scrobble/album" element={<PrivateRoute using={ScrobbleAlbumSearch} />} />
+      <Route exact path="/scrobble/album/search/:albumName" element={<PrivateRoute using={ScrobbleAlbumResults} />} />
+      <Route path="/scrobble/artist">
+        <Route exact path=":artistName" element={<PrivateRoute using={ScrobbleArtistResults} />} />
+        <Route exact path="mbid/:mbid" element={<PrivateRoute using={ScrobbleArtistResults} />} />
+        <Route exact path="dsid/:discogsId" element={<PrivateRoute using={ScrobbleArtistResults} />} />
+      </Route>
+      <Route path="/scrobble/album/view">
+        <Route exact path="mbid/:albumId" element={<PrivateRoute using={ScrobbleAlbumTracklist} />} />
+        <Route exact path="dsid/:discogsId" element={<PrivateRoute using={ScrobbleAlbumTracklist} />} />
+        <Route exact path=":artist/:albumName" element={<PrivateRoute using={ScrobbleAlbumTracklist} />} />
+      </Route>
+      <Route exact path="/scrobble/user" element={<PrivateRoute using={ScrobbleUserSearch} />} />
+      <Route exact path="/scrobble/user/:username" element={<PrivateRoute using={ScrobbleUserResults} />} />
+
+      <Route exact path="/" element={<Home />} />
+      <Route path="*" element={<Navigate to="/" />} />
     </Switch>
   );
 }

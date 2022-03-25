@@ -1,13 +1,17 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
-import { Route, Redirect } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
-export default function PrivateRoute(props) {
+export default function PrivateRoute({ using: View }) {
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-
   if (isLoggedIn) {
-    return <Route {...props} />;
+    return <View />;
   } else {
-    return <Redirect to="/" />;
+    return <Navigate to="/" />;
   }
 }
+
+PrivateRoute.propTypes = {
+  using: PropTypes.oneOfType([PropTypes.element, PropTypes.func]).isRequired,
+};

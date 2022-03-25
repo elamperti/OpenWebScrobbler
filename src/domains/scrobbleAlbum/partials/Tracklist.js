@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Trans, Translation, useTranslation } from 'react-i18next';
 import ReactGA from 'react-ga';
 import addSeconds from 'date-fns/add_seconds';
@@ -33,7 +33,7 @@ import { DEFAULT_SONG_DURATION, getAmznLink } from 'Constants';
 
 export default function Tracklist({ albumInfo, tracks }) {
   const dispatch = useDispatch();
-  const history = useHistory();
+  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const [showTimestampCopy, setShowTimestampCopy] = useState(false);
@@ -69,7 +69,7 @@ export default function Tracklist({ albumInfo, tracks }) {
 
   const goBack = (e) => {
     e.preventDefault();
-    history.goBack();
+    navigate(-1);
   };
 
   const toggleCustomTimestamp = () => {

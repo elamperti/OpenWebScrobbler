@@ -1,9 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 
 import './index.css';
 import App from 'App';
+import history from 'utils/history';
 import ErrorPage from 'domains/error';
 import registerServiceWorker from 'utils/registerServiceWorker';
 import 'bootswatch/dist/slate/bootstrap.min.css';
@@ -83,9 +84,9 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
 
 const baseApp = (
   <ReduxProvider store={store}>
-    <BrowserRouter>
+    <HistoryRouter history={history}>
       <App />
-    </BrowserRouter>
+    </HistoryRouter>
   </ReduxProvider>
 );
 

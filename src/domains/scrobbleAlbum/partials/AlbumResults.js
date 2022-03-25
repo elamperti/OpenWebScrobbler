@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Trans, useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactGA from 'react-ga';
 import get from 'lodash/get';
@@ -15,7 +15,7 @@ import Spinner from 'components/Spinner';
 import AlbumList from './AlbumList';
 
 export default function AlbumResults({ useFullWidth, query, topAlbums }) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -57,11 +57,11 @@ export default function AlbumResults({ useFullWidth, query, topAlbums }) {
         });
 
         if (targetAlbum.mbid) {
-          history.push(`/scrobble/album/view/mbid/${targetAlbum.mbid}`);
+          navigate(`/scrobble/album/view/mbid/${targetAlbum.mbid}`);
         } else if (targetAlbum.discogsId) {
-          history.push(`/scrobble/album/view/dsid/${targetAlbum.discogsId}`);
+          navigate(`/scrobble/album/view/dsid/${targetAlbum.discogsId}`);
         } else {
-          history.push(
+          navigate(
             `/scrobble/album/view/${encodeURIComponent(targetAlbum.artist.replace('%', ''))}` +
               `/${encodeURIComponent(targetAlbum.name.replace('%', ''))}`
           );

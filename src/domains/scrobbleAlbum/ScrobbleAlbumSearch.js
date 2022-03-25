@@ -1,6 +1,6 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 // import { useSelector, useDispatch } from 'react-redux';
 import ReactGA from 'react-ga';
 
@@ -21,7 +21,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ScrobbleAlbumSearch.scss';
 
 export function ScrobbleAlbumSearch() {
-  const history = useHistory();
+  const navigate = useNavigate();
   const { t } = useTranslation();
   // const dataProvider = useSelector((state) => state.settings.dataProvider);
   // const dispatch = useDispatch();
@@ -31,8 +31,8 @@ export function ScrobbleAlbumSearch() {
       category: 'Interactions',
       action: 'Search album',
     });
-
-    history.push(`/scrobble/album/search/${encodeURIComponent(query.trim())}`);
+    const queryWithSafeFormat = encodeURIComponent(query.trim().replace(/%(?![0-9A-F])/g, 'PERCENT_SIGN'));
+    navigate(`/scrobble/album/search/${queryWithSafeFormat}`);
   };
 
   // const setDataProvider = (e) => {

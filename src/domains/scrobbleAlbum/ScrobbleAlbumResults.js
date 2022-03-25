@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
+import { useParams } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -14,8 +15,9 @@ import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 import AlbumResults from './partials/AlbumResults';
 import ArtistResults from './partials/ArtistResults';
 
-export function ScrobbleAlbumResults({ match }) {
+export function ScrobbleAlbumResults() {
   const dispatch = useDispatch();
+  const params = useParams();
   const { t } = useTranslation();
 
   const searchQuery = useSelector((state) => state.album.queries);
@@ -28,10 +30,10 @@ export function ScrobbleAlbumResults({ match }) {
 
   useEffect(() => {
     // This extracts the search parameter from the URL
-    const { albumName } = match.params;
+    const { albumName } = params;
 
-    setQuery(decodeURIComponent(albumName || ''));
-  }, [match]);
+    setQuery(decodeURIComponent(albumName || '').replace('PERCENT_SIGN', '%'));
+  }, [params]);
 
   useEffect(() => {
     if (query) {

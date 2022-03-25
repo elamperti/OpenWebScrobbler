@@ -4,6 +4,8 @@ import { Trans } from 'react-i18next';
 
 import { Button, FormFeedback, FormGroup, Input, Label, Row } from 'reactstrap';
 
+// ToDo: check and fix any double-renders on change/validation
+
 export default function SearchForm({
   ariaLabel,
   feedbackMessageKey,

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Trans, useTranslation } from 'react-i18next';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactGA from 'react-ga';
 
@@ -11,7 +11,7 @@ import Spinner from 'components/Spinner';
 import ArtistList from './ArtistList';
 
 export default function ArtistResults({ query }) {
-  const history = useHistory();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -47,11 +47,11 @@ export default function ArtistResults({ query }) {
         });
 
         if (selectedArtist.mbid) {
-          history.push(`/scrobble/artist/mbid/${encodeURIComponent(selectedArtist.mbid)}`);
+          navigate(`/scrobble/artist/mbid/${encodeURIComponent(selectedArtist.mbid)}`);
         } else if (selectedArtist.discogsId) {
-          history.push(`/scrobble/artist/dsid/${encodeURIComponent(selectedArtist.discogsId)}`);
+          navigate(`/scrobble/artist/dsid/${encodeURIComponent(selectedArtist.discogsId)}`);
         } else {
-          history.push(`/scrobble/artist/${encodeURIComponent(selectedArtist.name)}`);
+          navigate(`/scrobble/artist/${encodeURIComponent(selectedArtist.name)}`);
         }
       };
 

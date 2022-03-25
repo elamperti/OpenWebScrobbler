@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { createBrowserHistory as createHistory } from 'history';
 import ReactGA from 'react-ga';
 import md5 from 'md5';
 import get from 'lodash/get';
@@ -15,11 +14,10 @@ import {
   FETCH_LASTFM_USER_HISTORY,
 } from 'Constants';
 
+import history from 'utils/history';
 import { saveToLocalStorage } from 'localstorage';
 import { createAlert } from './alertActions';
 import { setSettings } from './settingsActions';
-
-const history = createHistory();
 
 export function authUserWithToken(dispatch) {
   return (token) => {

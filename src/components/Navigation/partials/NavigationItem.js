@@ -10,7 +10,6 @@ export default function NavigationItem({ external, href, i18nKey, icon }) {
   let navLinkProps = {
     tag: RouterNavLink,
     to: href,
-    activeClassName: 'active',
   };
 
   if (external) {

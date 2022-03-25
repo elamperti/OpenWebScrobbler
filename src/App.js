@@ -1,5 +1,5 @@
 import React, { Suspense, useEffect } from 'react';
-import { useLocation, useHistory } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLanguage } from 'i18next';
 import qs from 'qs';
@@ -23,7 +23,7 @@ import SettingsModal from 'components/SettingsModal';
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
-  const history = useHistory();
+  const navigate = useNavigate();
 
   const versionUpdateReady = useSelector((state) => state.updates.newVersionReady);
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
@@ -39,7 +39,7 @@ function App() {
     if (location.search && !isLoggedIn) {
       const token = queryString.token || null;
       if (token) {
-        history.push('/'); // Clear the URL
+        navigate('/', { replace: true }); // Clear the URL
         authUserWithToken(dispatch)(token);
       }
     } else {
@@ -55,7 +55,7 @@ function App() {
         changeLanguage(queryString.hl);
       }
     }
-  }, [dispatch, history, isLoggedIn, location.search]);
+  }, [dispatch, navigate, isLoggedIn, location.search]);
 
   const loadingSpinner = (
     <div id="ows-loading">

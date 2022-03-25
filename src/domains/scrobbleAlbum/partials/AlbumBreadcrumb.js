@@ -26,7 +26,10 @@ export default function AlbumBreadcrumb({ albumQuery, artistQuery, artistDiscogs
 
   if (albumQuery) {
     itemList.push(
-      generateBreadcrumbItem(`/scrobble/album/search/${encodeURIComponent(albumQuery)}`, `"${albumQuery}"`)
+      generateBreadcrumbItem(
+        `/scrobble/album/search/${encodeURIComponent(albumQuery.replace(/%(?![0-9A-F])/g, 'PERCENT_SIGN'))}`,
+        `"${albumQuery}"`
+      )
     );
   }
 
@@ -39,7 +42,10 @@ export default function AlbumBreadcrumb({ albumQuery, artistQuery, artistDiscogs
     } else {
       itemList.push(
         generateBreadcrumbItem(
-          `/scrobble/artist/${encodeURIComponent(albumArtist || artistQuery)}`,
+          `/scrobble/artist/${encodeURIComponent(albumArtist || artistQuery).replace(
+            /%(?![0-9A-F])/g,
+            'PERCENT_SIGN'
+          )}`,
           albumArtist || `"${artistQuery}"`,
           albumArtist ? faUser : undefined
         )

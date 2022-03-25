@@ -49,10 +49,12 @@ const ErrorPage = ({ error, eventId, resetError }) => {
   return (
     <React.Fragment>
       <Navbar color="dark" dark expand="md" id="ows-Navigation">
-        <NavbarBrand className="flex-grow-1 flex-md-grow-0">
-          <FontAwesomeIcon icon={faHeadphonesAlt} />
-          Open Scrobbler
-        </NavbarBrand>
+        <a href="/">
+          <NavbarBrand tag="div" className="flex-grow-1 flex-md-grow-0">
+            <FontAwesomeIcon icon={faHeadphonesAlt} />
+            Open Scrobbler
+          </NavbarBrand>
+        </a>
       </Navbar>
 
       <div className="col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3">
@@ -65,14 +67,14 @@ const ErrorPage = ({ error, eventId, resetError }) => {
         <p>
           In most cases you will be able to continue using the application by clicking the <em>Go back</em> button. If
           that doesn't work,{' '}
-          <button class="btn btn-link p-0" onClick={reloadPage}>
+          <button className="btn btn-link p-0" onClick={reloadPage}>
             please refresh the page
           </button>
           .
         </p>
         <p>
           It would be very helpful to{' '}
-          <button class="btn btn-link p-0" onClick={fillReport}>
+          <button className="btn btn-link p-0" onClick={fillReport}>
             send a crash report
           </button>{' '}
           if you can spare a few minutes :)

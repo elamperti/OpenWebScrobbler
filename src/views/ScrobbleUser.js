@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+// import { useParams } from 'react-router-dom';
 import { withTranslation, Trans } from 'react-i18next';
 import ReactGA from 'react-ga';
 import get from 'lodash/get';
@@ -24,9 +25,12 @@ import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 class ScrobbleUser extends Component {
   constructor(props) {
     super(props);
+    const params = {
+      username: `${window.location}`.split('/user').pop(),
+    };
 
     // ToDo: move this to componentDidMount
-    const proposedUser = get(this.props, 'match.params.username', '');
+    const proposedUser = get(params, 'username', '');
 
     this.state = {
       userToSearch: proposedUser.substring(0, 15),
@@ -61,7 +65,8 @@ class ScrobbleUser extends Component {
   }
 
   static getDerivedStateFromProps(props, state) {
-    if (!state.searchFormView && !state.isLoading && !props.match.params.username && !!state.userToDisplay) {
+    const username = `${window.location}`.split('/user').pop(); // ToDo: remove this! use params
+    if (!state.searchFormView && !state.isLoading && !username && !!state.userToDisplay) {
       return {
         ...state,
         userToDisplay: null,
