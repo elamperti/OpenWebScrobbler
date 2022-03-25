@@ -76,10 +76,14 @@ export function ScrobbleUserSearch() {
           validator={intermediateUserValidator}
           feedbackMessageKey={usernameGood ? 'userNotFound' : 'invalidUsername'}
         />
-        <h4>
-          <Trans i18nKey="recentlySearchedUsers">Searched recently</Trans>
-        </h4>
-        {recentUsersList.length > 0 && <ul className="list-group mx-2 recent-users">{recentUsersList}</ul>}
+        {recentUsersList.length > 0 && (
+          <React.Fragment>
+            <h4>
+              <Trans i18nKey="recentlySearchedUsers">Searched recently</Trans>
+            </h4>
+            <ul className="list-group mx-2 recent-users">{recentUsersList}</ul>
+          </React.Fragment>
+        )}
       </div>
     </Row>
   );
