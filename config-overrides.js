@@ -24,7 +24,7 @@ module.exports = override(
     addWebpackPlugin(
       new DynamicCdnWebpackPlugin({
         verbose: !!process.env.LIST_CDN_BUNDLES,
-        exclude: ['react-router', 'react-router-dom'],
+        exclude: ['react-router', 'react-router-dom', 'history'],
         resolver(moduleName, version) {
           var url;
 
