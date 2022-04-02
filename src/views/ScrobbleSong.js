@@ -60,7 +60,7 @@ class ScrobbleSong extends Component {
         : true;
       if (
         this.state.activeTab === 'userProfile' ||
-        !hasIn(this.props.user, `profiles[${this.props.user.name}].scrobbles`) ||
+        !hasIn(this.props.user, `profiles[${this.props.user.name}].scrobbles[1]`) ||
         listIsProbablyStale
       ) {
         this.setState(
@@ -159,7 +159,7 @@ class ScrobbleSong extends Component {
             <TabPane className="ScrobbleList-container" tabId="userProfile">
               <ScrobbleList
                 compact
-                scrobbles={get(this.props.user, `profiles[${this.props.user.name}].scrobbles`, [])}
+                scrobbles={get(this.props.user, `profiles[${this.props.user.name}].scrobbles[1]`, [])}
                 cloneScrobblesTo={this.state.cloneReceiver}
                 loading={this.state.profileScrobblesLoading}
               >

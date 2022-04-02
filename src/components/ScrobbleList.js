@@ -1,24 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import get from 'lodash/get';
 
 import ScrobbleItem from 'components/ScrobbleItem';
 import Spinner from 'components/Spinner';
-import Pagination from 'components/Pagination';
-import { fetchLastfmProfileHistory } from 'store/actions/userActions';
 
 function ScrobbleList(props) {
   let albumHasVariousArtists = !props.isAlbum;
-  const totalPages = parseInt(get(props.user, `profiles['${props.userToDisplay}'].totalPages`, 0));
-
-  function navigateToPage(page) {
-    props.fetchLastfmProfileHistory(props.userToDisplay, { page }, () => {
-      if (props.containerRef && props.containerRef.current && props.containerRef.current.scrollTo) {
-        props.containerRef.current.scrollTo(0, 0);
-      }
-    });
-  }
 
   if (props.loading) {
     return <Spinner />;
@@ -57,7 +44,6 @@ function ScrobbleList(props) {
     return (
       <div className="ScrobbleList">
         <div className={`d-flex ${props.isAlbum ? 'flex-column' : 'flex-column-reverse'}`}>{ScrobbleListContent}</div>
-        {totalPages > 1 && <Pagination onPageChange={navigateToPage} totalPages={totalPages} />}
       </div>
     );
   } else {
@@ -70,14 +56,12 @@ ScrobbleList.propTypes = {
   children: PropTypes.node.isRequired,
   cloneScrobblesTo: PropTypes.func,
   compact: PropTypes.bool,
-  containerRef: PropTypes.object,
   isAlbum: PropTypes.bool,
   loading: PropTypes.bool,
   noMenu: PropTypes.bool,
   onSelect: PropTypes.func,
   selected: PropTypes.instanceOf(Set),
   scrobbles: PropTypes.array,
-  userToDisplay: PropTypes.string,
   fetchLastfmProfileHistory: PropTypes.func,
   user: PropTypes.object,
 };
@@ -88,16 +72,6 @@ ScrobbleList.defaultProps = {
   loading: false,
   noMenu: false,
   scrobbles: [],
-  fetchLastfmProfileHistory: () => {},
-  user: {},
 };
 
-const mapStateToProps = (state) => ({
-  user: state.user,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  fetchLastfmProfileHistory: fetchLastfmProfileHistory(dispatch),
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(ScrobbleList);
+export default ScrobbleList;

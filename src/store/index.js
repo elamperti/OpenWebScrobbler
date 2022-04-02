@@ -53,6 +53,7 @@ store.subscribe(
       user: {
         ...state.user,
         userSettingsLoading: false,
+        profiles: {},
       },
       settings: {
         ...state.settings,

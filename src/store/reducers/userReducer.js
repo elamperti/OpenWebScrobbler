@@ -112,6 +112,8 @@ const userReducer = (state = initialState, action) => {
         const newScrobbles = [];
         const username = get(action.payload, 'data.recenttracks[@attr].user', '');
         const totalPages = get(action.payload, 'data.recenttracks[@attr].totalPages', '');
+        const thisPage = get(action.payload, 'data.recenttracks[@attr].page', 1);
+        const scrobbles = get(profiles, `[${username}].scrobbles`, []);
 
         for (const item of get(action.payload, 'data.recenttracks.track', [])) {
           if (!get(item, '[@attr].nowplaying', false)) {
@@ -125,9 +127,11 @@ const userReducer = (state = initialState, action) => {
           }
         }
 
+        scrobbles[thisPage] = newScrobbles;
+
         profiles[username] = {
           ...get(profiles, username, {}),
-          scrobbles: newScrobbles,
+          scrobbles,
           totalPages,
         };
 

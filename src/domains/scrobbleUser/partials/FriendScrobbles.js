@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -13,15 +13,14 @@ import { setSettings } from 'store/actions/settingsActions';
 import UserCard from 'components/UserCard';
 import ScrobbleList from 'components/ScrobbleList';
 
-export default function FriendScrobbles({ username }) {
-  const listRef = useRef(null);
+export default function FriendScrobbles({ username, page }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userProfiles = useSelector((state) => state.user.profiles);
   const keepOriginalTimestamp = useSelector((state) => state.settings.keepOriginalTimestamp);
   const friendProfile = Object.prototype.hasOwnProperty.call(userProfiles, username) ? userProfiles[username] : null;
 
-  // ToDo: don't use a callback here
+  // ToDo: don't use a callback for this
   const checkUsernameCapitalization = (res) => {
     const correctUsername = res.value?.data?.user?.name || '';
 
@@ -66,14 +65,12 @@ export default function FriendScrobbles({ username }) {
           />
         </div>
       </div>
-      <div ref={listRef} className="ScrobbleList-container with-gradient">
+      <div className="ScrobbleList-container with-gradient">
         <ScrobbleList
           compact
           noMenu
           analyticsEventForScrobbles="Scrobble from user"
-          containerRef={listRef}
-          scrobbles={friendProfile.scrobbles || []}
-          userToDisplay={username}
+          scrobbles={friendProfile.scrobbles[page] || []}
         >
           <div className="mt-3 text-center">
             <Trans i18nKey="noSongsScrobbled">This user hasn&apos;t scrobbled anything yet!</Trans>
