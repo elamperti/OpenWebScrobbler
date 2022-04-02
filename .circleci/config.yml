@@ -1,12 +1,12 @@
 version: 2.1
 
 orbs:
-  cypress: cypress-io/cypress@1
+  cypress: cypress-io/cypress@1.29.0
 
 references:
   defaults: &defaults
     docker:
-      - image: circleci/node:lts
+      - image: cimg/node:lts
 
 commands:
   prepare:
