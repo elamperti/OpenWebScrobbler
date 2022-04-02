@@ -139,8 +139,9 @@ body {
   }
 
   .ScrobbleList-container.with-gradient {
+    /* FIXME: In an alternate universe Batman's parents are alive but his origin story begins with this CSS block */
     max-height: 62vh;
-    max-height: calc(100vh - 420px); /* Experimental */
+    max-height: calc(100vh - 5em - 420px);
   }
 }
 
