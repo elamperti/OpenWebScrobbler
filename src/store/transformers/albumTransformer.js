@@ -25,20 +25,24 @@ export function fetchDiscogsAlbumInfo(response) {
     return {};
   }
 
-  const primaryImage = get(response, 'images', []).find((image) => image.type === 'primary') || null;
+  const images = get(response, 'images', []);
+  let image = images.find((image) => image.type === 'primary') || null;
+  if (!image) {
+    image = images.find((image) => image.type === 'secondary') || null;
+  }
 
   return {
     name: response.title,
     artist: sanitizeDiscogsArtistName(get(response, 'artists[0].name', '')), // + response.artists.length > 1 ? '+' : ''
     releasedate: response.year,
     url: '',
-    cover: primaryImage && {
-      sm: primaryImage.uri150,
-      lg: primaryImage.resource_url,
+    cover: image && {
+      sm: image.uri150,
+      lg: image.resource_url,
     },
-    coverSizes: primaryImage && {
+    coverSizes: image && {
       sm: 150,
-      lg: primaryImage.width,
+      lg: image.width,
     },
   };
 }

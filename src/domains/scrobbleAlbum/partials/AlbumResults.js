@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
 import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactGA from 'react-ga';
 import get from 'lodash/get';
@@ -18,6 +18,7 @@ export default function AlbumResults({ useFullWidth, query, topAlbums }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
+  const { state } = useLocation();
 
   const albums = useSelector((state) => state.album.list);
   const dataProvider = useSelector((state) => state.settings.dataProvider);
@@ -25,7 +26,7 @@ export default function AlbumResults({ useFullWidth, query, topAlbums }) {
 
   useEffect(() => {
     if (query && !albums) {
-      const opts = { provider: dataProvider };
+      const opts = { provider: dataProvider, includeReleases: state?.includeReleases };
       dispatch(topAlbums ? searchTopAlbums(query, opts) : searchAlbums(query, opts));
     }
   }, [topAlbums, query, albums, dataProvider, dispatch]);

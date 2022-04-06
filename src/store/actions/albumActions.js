@@ -22,7 +22,7 @@ export function searchAlbums(album, options = {}) {
       payload: discogsAPI.get('', {
         params: {
           method: 'album.search',
-          type: 'master',
+          type: options.includeReleases ? 'release' : 'master',
           q: album.toLowerCase(), // dedupes case-sensitive cached queries
         },
       }),
@@ -113,7 +113,7 @@ export async function _discogsFindBestMatch(album) {
   const { data } = await discogsAPI.get('', {
     params: {
       method: 'album.search',
-      type: 'master',
+      type: 'release',
       // toLowerCase dedupes case-sensitive cached queries
       artist: album.artist.toLowerCase(),
       title: album.name.toLowerCase(),

@@ -103,13 +103,16 @@ class ScrobbleItem extends Component {
     if (this.props.noCover || this.props.compact) {
       albumArt = null;
     } else {
+      // ToDo: LazyLoadImage.src is using those two values to mitigate the transition between old and new structures.
+      //       It should be safe to simplify some time from now.
+      //       Worst case scenario it breaks the cover image of old scrobbles in history.
       const placeholderCDIcon = <FontAwesomeIcon size="3x" icon={faCompactDisc} />;
       albumArt = !scrobble.cover ? (
         placeholderCDIcon
       ) : (
         <LazyLoadImage
           className="cover rounded"
-          src={scrobble.cover}
+          src={scrobble.cover.sm || scrobble.cover}
           alt={scrobble.album}
           placeholder={placeholderCDIcon}
           scrollPosition={this.props.lazyScrollPosition}
