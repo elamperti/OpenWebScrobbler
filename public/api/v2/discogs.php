@@ -2,6 +2,8 @@
   require('inc/session.php');
 
   if (isset($_SESSION['key'])) {
+    $params = array();
+
     if (isset($_GET['method'])) {
       switch ($_GET['method']) {
         case 'album.search':
@@ -34,6 +36,7 @@
           }
 
           $endpoint = 'artists/' . $_GET['artist_id'] . '/releases';
+          $params['sort_order'] = 'desc';
           unset($_GET['artist_id']);
           break;
 
@@ -54,7 +57,6 @@
     curl_setopt($discogsrq, CURLOPT_RETURNTRANSFER, true);
     curl_setopt($discogsrq, CURLOPT_HTTPHEADER, ["REMOTE_ADDR: $_SERVER[REMOTE_ADDR]", "HTTP_X_FORWARDED_FOR: $_SERVER[REMOTE_ADDR]"]);
 
-    $params = array();
     $params['key'] = getenv('DISCOGS_API_KEY');
     $params['secret'] = getenv('DISCOGS_SECRET');
     $params = array_merge($params, $_GET);

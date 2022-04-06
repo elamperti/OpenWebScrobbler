@@ -24,7 +24,7 @@ export function fetchDiscogsArtists(response) {
   return get(response, 'results', []).map((artist) => ({
     name: artist.title,
     discogsId: artist.id,
-    url: '',
+    url: `https://www.discogs.com${artist.uri}`,
     avatar: {
       sm: artist.thumb,
       md: artist.thumb,

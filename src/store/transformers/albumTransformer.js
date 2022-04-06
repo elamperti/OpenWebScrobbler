@@ -9,7 +9,14 @@ export function fetchLastfmAlbumInfo(response) {
     artist: album.artist,
     releasedate: album.releasedate,
     url: album.url,
-    cover: get(album, 'image[2][#text]'),
+    cover: {
+      sm: get(album, 'image[2][#text]'),
+      lg: get(album, 'image[3][#text]'),
+    },
+    coverSizes: {
+      sm: 174,
+      lg: 300,
+    },
   };
 }
 
@@ -25,7 +32,14 @@ export function fetchDiscogsAlbumInfo(response) {
     artist: sanitizeDiscogsArtistName(get(response, 'artists[0].name', '')), // + response.artists.length > 1 ? '+' : ''
     releasedate: response.year,
     url: '',
-    cover: primaryImage && primaryImage.uri150,
+    cover: primaryImage && {
+      sm: primaryImage.uri150,
+      lg: primaryImage.resource_url,
+    },
+    coverSizes: primaryImage && {
+      sm: 150,
+      lg: primaryImage.width,
+    },
   };
 }
 
@@ -40,7 +54,14 @@ export function fetchLastfmAlbums(response) {
       mbid: album.mbid,
       name: album.name,
       url: album.url, // <--
-      cover: get(album, 'image[2][#text]'),
+      cover: {
+        sm: get(album, 'image[2][#text]'),
+        lg: get(album, 'image[3][#text]'),
+      },
+      coverSizes: {
+        sm: 174,
+        lg: 300,
+      },
     });
   }
   return albums;
@@ -54,7 +75,14 @@ export function fetchDiscogsAlbums(response) {
       name: album.title,
       url: '',
       releasedate: album.year,
-      cover: album.thumb,
+      cover: {
+        sm: album.thumb,
+        lg: album.cover_image,
+      },
+      coverSizes: {
+        sm: 150,
+        lg: 500,
+      },
     };
   });
 }
@@ -70,7 +98,14 @@ export function fetchLastfmTopAlbums(response) {
       artist: album.artist.name, // <--
       mbid: album.mbid,
       name: album.name,
-      cover: get(album, 'image[2][#text]'),
+      cover: {
+        sm: get(album, 'image[2][#text]'),
+        lg: get(album, 'image[3][#text]'),
+      },
+      coverSizes: {
+        sm: 174,
+        lg: 300,
+      },
     });
   }
   return albums;
@@ -83,6 +118,13 @@ export function fetchDiscogsTopAlbums(response) {
     name: album.title,
     url: album.resource_url,
     releasedate: album.year,
-    cover: album.thumb,
+    cover: {
+      sm: album.thumb,
+      lg: album.cover_image || '', // only returning thumb at the moment
+    },
+    coverSizes: {
+      sm: 150,
+      lg: 500,
+    },
   }));
 }

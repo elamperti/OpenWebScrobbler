@@ -152,7 +152,7 @@ export default function Tracklist({ albumInfo, tracks }) {
     <React.Fragment>
       <div className="album-heading row my-2">
         <div className="col-3">
-          <AlbumCard background={albumInfo.cover} />
+          <AlbumCard background={albumInfo.cover} sizes={albumInfo.coverSizes} />
         </div>
         <div className="col-9 d-flex flex-column">
           <div className="album-heading-info flex-grow-1">

@@ -6,35 +6,39 @@ import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 import './AlbumCard.css';
 
-const AlbumCard = (props) => {
+const AlbumCard = ({ background, sizes, name, artist, className, year, interactive }) => {
   const albumCardStyle = {};
+  let srcset;
 
-  if (props.background) {
+  if (background) {
     albumCardStyle.backgroundColor = '#A0A0A0';
+    if (sizes && background.lg) {
+      srcset = `${background.sm} ${sizes.sm}w, ${background.lg} ${sizes.lg}w`;
+    }
   } else {
     albumCardStyle.backgroundColor = `hsl(${random(0, 359)},50%,30%)`;
   }
 
-  const albumCaption = props.name && (
+  const albumCaption = name && (
     <div className="albumCard-caption px-3 pb-2">
-      {props.year && (
+      {year && (
         <React.Fragment>
-          <small className="albumCard-year badge badge-secondary">{props.year}</small>
+          <small className="albumCard-year badge badge-secondary">{year}</small>
           <br />
         </React.Fragment>
       )}
-      <strong className="albumCard-title">{props.name}</strong>
+      <strong className="albumCard-title">{name}</strong>
       <br />
-      <span className="albumCard-artist">{props.artist}</span>
+      <span className="albumCard-artist">{artist}</span>
     </div>
   );
 
-  const albumArt = props.background && (
-    <LazyLoadImage className="albumArt" src={props.background} alt={props.name} effect="opacity" />
+  const albumArt = background && (
+    <LazyLoadImage className="albumArt" src={background.sm} srcSet={srcset} alt={name} effect="opacity" />
   );
 
   return (
-    <div className={`albumCard ${props.className} ${props.interactive && 'interactive'}`} style={albumCardStyle}>
+    <div className={`albumCard ${className} ${interactive && 'interactive'}`} style={albumCardStyle}>
       {albumArt}
       {albumCaption}
     </div>
@@ -43,11 +47,12 @@ const AlbumCard = (props) => {
 
 AlbumCard.propTypes = {
   artist: PropTypes.string,
-  background: PropTypes.string.isRequired,
+  background: PropTypes.object.isRequired, // ToDo: better check for sm/lg and values
+  sizes: PropTypes.object,
   className: PropTypes.string,
   interactive: PropTypes.bool,
   name: PropTypes.string,
-  year: PropTypes.string,
+  year: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 };
 
 AlbumCard.defaultProps = {

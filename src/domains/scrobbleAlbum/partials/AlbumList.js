@@ -14,6 +14,7 @@ export default function AlbumList({ albums = [], className, onClick }) {
               artist={album.artist}
               name={album.name}
               background={album.cover}
+              sizes={album.coverSizes}
               year={album.releasedate || null}
               className="mt-4"
               interactive

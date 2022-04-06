@@ -34,17 +34,15 @@ const Avatar = (props) => {
       break;
   }
 
-  if (avatarURL && !props.isArtist) {
+  if (avatarURL) {
     return (
       <LazyLoadImage
         src={avatarURL}
         alt={props.alt}
         placeholder={placeholderIcon}
-        className={`user-avatar user-avatar-${props.size} rounded-circle${
-          props.className ? ' ' + props.className : ''
-        }`}
-        width={imgSize}
-        height={imgSize}
+        className={`user-avatar user-avatar-${props.size} rounded-circle ${props.className}`}
+        width={props.isArtist ? null : imgSize}
+        height={props.isArtist ? null : imgSize}
         // ToDo: implement scrollPosition
       />
     );
