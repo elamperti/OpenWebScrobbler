@@ -29,7 +29,7 @@ export default function AlbumResults({ useFullWidth, query, topAlbums }) {
       const opts = { provider: dataProvider, includeReleases: state?.includeReleases };
       dispatch(topAlbums ? searchTopAlbums(query, opts) : searchAlbums(query, opts));
     }
-  }, [topAlbums, query, albums, dataProvider, dispatch]);
+  }, [topAlbums, query, albums, dataProvider, state, dispatch]);
 
   if (Array.isArray(albums)) {
     if (albums.length === 0) {

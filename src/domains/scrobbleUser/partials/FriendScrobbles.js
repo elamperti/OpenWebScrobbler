@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
@@ -33,7 +34,8 @@ export default function FriendScrobbles({ username, page }) {
     if (!friendProfile || !friendProfile.avatar) {
       fetchLastfmProfileInfo(dispatch)(username, checkUsernameCapitalization);
     }
-  }, [dispatch, userProfiles, friendProfile, username]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, userProfiles, username]);
 
   const toggleOriginalTimestamp = () => {
     setSettings(dispatch)({
@@ -80,3 +82,8 @@ export default function FriendScrobbles({ username, page }) {
     </React.Fragment>
   );
 }
+
+FriendScrobbles.propTypes = {
+  username: PropTypes.string,
+  page: PropTypes.number,
+};
