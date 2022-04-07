@@ -99,7 +99,7 @@ body {
 }
 
 /* ToDo: improve selection highlighting for albums and artists */
-.listOfAlbums > a:focus {
+.listOfAlbums a:focus {
   outline: none;
 }
 

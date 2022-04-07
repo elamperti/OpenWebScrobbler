@@ -27,6 +27,11 @@
   display: block !important; /* Override arbritrary rule introduced by LazyLoadImage component */
 }
 
+.albumCard img {
+  height: 100%;
+  object-fit: cover;
+}
+
 .albumCard .albumArt {
   top: 0;
   position: absolute;
