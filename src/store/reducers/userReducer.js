@@ -1,13 +1,18 @@
 import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';
 
+import { fetchLastfmAlbumInfo, fetchDiscogsAlbumInfo } from 'store/transformers/albumTransformer';
+
 import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
   USER_GET_INFO,
   FETCH_LASTFM_USER_INFO,
   FETCH_LASTFM_USER_HISTORY,
+  GET_ALBUM_INFO_LASTFM,
+  GET_ALBUM_INFO_DISCOGS,
   MAX_RECENT_USERS,
+  MAX_RECENT_ALBUMS,
   PROVIDER_DISCOGS,
 } from 'Constants';
 
@@ -17,6 +22,7 @@ const initialState = {
   name: '',
   profiles: {},
   recentProfiles: [],
+  recentAlbums: [],
   url: '',
   userSettingsLoading: false,
 };
@@ -147,6 +153,39 @@ const userReducer = (state = initialState, action) => {
         profiles,
         recentProfiles,
       };
+
+    case `${GET_ALBUM_INFO_LASTFM}_FULFILLED`: {
+      const recentAlbums = state.recentAlbums || [];
+      const newAlbum = fetchLastfmAlbumInfo(get(action.payload, 'data', {}));
+
+      const i = recentAlbums.findIndex(({ title, artist }) => title === newAlbum.title && artist === newAlbum.artist);
+      if (i > -1) {
+        recentAlbums.splice(i, 1);
+      }
+      recentAlbums.unshift(newAlbum);
+
+      return {
+        ...state,
+        recentAlbums: recentAlbums.slice(0, MAX_RECENT_ALBUMS),
+      };
+    }
+
+    // ToDo: maybe join this with the lastfm case above?
+    case `${GET_ALBUM_INFO_DISCOGS}_FULFILLED`: {
+      const recentAlbums = state.recentAlbums || [];
+      const newAlbum = fetchDiscogsAlbumInfo(get(action.payload, 'data', {}));
+
+      const i = recentAlbums.findIndex(({ title, artist }) => title === newAlbum.title && artist === newAlbum.artist);
+      if (i > -1) {
+        recentAlbums.splice(i, 1);
+      }
+      recentAlbums.unshift(newAlbum);
+
+      return {
+        ...state,
+        recentAlbums: recentAlbums.slice(0, MAX_RECENT_ALBUMS),
+      };
+    }
 
     default:
       return state;

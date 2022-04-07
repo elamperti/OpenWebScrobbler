@@ -6,9 +6,9 @@ import AlbumCard from 'components/AlbumCard';
 
 export default function AlbumList({ albums = [], className, onClick }) {
   return (
-    <Row className="mb-4">
+    <Row className="listOfAlbums mb-4">
       {albums.map((album, i) => (
-        <div className={`listOfAlbums ${className}`} key={i}>
+        <div className={className || null} key={i}>
           <a href={album.url} data-album-index={i} onClick={onClick}>
             <AlbumCard
               artist={album.artist}
