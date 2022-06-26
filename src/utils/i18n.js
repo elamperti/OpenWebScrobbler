@@ -16,6 +16,7 @@ export const languageList = [
   { code: 'pl', name: 'polski' },
   { code: 'pt', name: 'Português' },
   { code: 'ru', name: 'Русский' },
+  { code: 'tr', name: 'Turkish' },
 ];
 
 export const fallbackLng = {

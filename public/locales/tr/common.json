@@ -1,0 +1,141 @@
+{
+  "scrobble": "Skropla",
+  "getScrobbling": "Skroplamaya başla",
+  "loading": "Yükleniyor...",
+  "artist": "Sanatçı",
+  "song": "Şarkı",
+  "title": "Parça",
+  "album": "Albüm",
+  "scrobbleFromAlbum": "Albüm skropla",
+  "scrobbleAlbum": "Albüm skropla",
+  "album_plural": "Albümler",
+  "goBack": "Geri dön",
+  "topAlbumsBy": "{{nameOfArtist}} adlı sanatçıdan albümler",
+  "noAlbumsFound": "<1>{{albumOrArtist}}</1> aramasıyla eşleşen bir albüm yok",
+  "noArtistsFound": "<1>{{albumOrArtist}}</1> aramasıyla eşleşen bir sanatçı yok",
+  "emptyAlbum": "Bu albüm Last.fm veritabanında boş görünüyor.",
+  "scrobbleSongs": "Şarkı skropla",
+  "scrobbleSelected": "Seçili olanları skropla",
+  "findAlbumCopy": "Bir albümün veya sanatçının adını gir",
+  "customTimestamp": "Özel tarih",
+  "albumTimestampLogicDescription": "\"Şimdi\" seçiliyken yapılan skroplamalarda albümdeki son parça mevcut tarih ve saatte göre skroplanır. Son parçadan önce gelen parçalar ise bu tarih ve saate göre geriye doğru skroplanır (sanki seçilen parçaları sırayla dinlemeyi yeni bitirmişsin gibi). \"Özel tarih\" seçiliyken yapılan skroplamalarda ise albümdeki ilk parça girilen tarih ve saate göre skroplanır. İlk parçadan sonra gelen parçalar ise bu tarih ve saate göre ileriye doğru skroplanır (yani \"Özel tarih\" seçeneğinde albümü dinlemeye başladığın zamanı belirlersin).",
+  "albumArtist": "Albüm sanatçısı",
+  "history": "Geçmiş",
+  "yourProfile": "Profilin",
+  "yourHistory": "Geçmişin",
+  "scrobbleManually": "Manuel skroplama yap",
+  "scrobbleFromOtherUser": "Başka bir kullanıcıdan skroplama yap",
+  "otherUser": "Kullanıcı",
+  "or": "veya",
+  "refresh": "Yenile",
+  "findFriendCopy": "Dinlediği son parçaları görmek için bir Last.fm kullanıcı adı gir",
+  "visitProfile": "Profili görüntüle",
+  "search": "Ara",
+  "backToSearch": "Aramaya geri dön",
+  "userNotFound": "Kullanıcı bulunamadı",
+  "username": "Kullanıcı adı",
+  "invalidUsername": "Geçersiz kullanıcı adı",
+  "recentlySearchedUsers": "Yakın zamanda arananlar",
+  "language": "Dil",
+  "translateYourLanguage": "Siteyi başka bir dile çevirmek ister misin?",
+  "logIn": "Giriş yap",
+  "logOut": "Çıkış yap",
+  "dataProvider": "Veri kaynağı",
+  "now": "Şimdi",
+  "custom": "Özel...",
+  "timestamp": "Tarih",
+  "unknown": "Bilinmiyor",
+  "lastfmWillRejectOldTimestamps": "Last.fm iki haftadan daha eski olan skroplamaları reddeder.",
+  "keepOriginalTimestamp": "Orijinal tarih ve saati kullanarak skropla",
+  "noSongsScrobbled": "Henüz skroplama yapmadın!",
+  "songsWillAppearHere": "Skropladığın parçalar burada belirecek.",
+  "clearHistory": "Geçmişi temizle",
+  "scrobbleAgain": "Tekrar Skropla",
+  "copyToEditor": "Editöre kopyala",
+  "swapArtistTitle": "Sanatçı ve parça kutucuklarının yerini değiştir",
+  "viewProfile": "Last.fm profilini görüntüle",
+  "lockArtist": "Sanatçı kutucuğunu kilitle",
+  "lockAlbum": "Albüm kutucuğunu kilitle",
+  "buyOnAmzn": "Amazon'da ara",
+  "pasteIntercepted": "Yapıştırılan metin otomatik olarak ayrıldı!",
+  "considerDonating": "Lütfen projemizi Patreon üzerinden destekle!",
+  "footer": {
+    "joinCommunity": "<1>Discord</1> topluluğumuza katıl!",
+    "supportThisProject": "Lütfen projemizi <1>Patreon üzerinden destekle</1> :)",
+    "specialThanks": "Bağışçılara, çevirmenlere ve diğer tüm <1>destekçilere</1> teşekkürler"
+  },
+  "settings": "Ayarlar",
+  "cancel": "İptal",
+  "dates": {
+    "format": {
+      "short": "MMM Do"
+    },
+    "months": {
+      "short": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
+      "long": [
+        "Ocak",
+        "Şubat",
+        "Mart",
+        "Nisan",
+        "Mayıs",
+        "Haziran",
+        "Temmuz",
+        "Ağustos",
+        "Eylül",
+        "Ekim",
+        "Kasım",
+        "Aralık"
+      ]
+    }
+  },
+  "updates": {
+    "newVersionAvailable": "Yeni bir güncelleme mevcut! Lütfen <1>sayfayı yenile</1>"
+  },
+  "errors": {
+    "lastfmRejected": "Last.fm bu skropu reddetti",
+    "unexpectedResponse": "Beklenmedik yanıt",
+    "apiCallFailed": "API çağrısı başarısız"
+  },
+  "next": "İleri",
+  "previous": "Geri",
+  "settingsFor": "Kullanıcı ayarları -",
+  "saveSettings": "Ayarları kaydet",
+  "defaultLanguage": "Varsayılan",
+  "availableLanguages": "Mevcut diller",
+  "use12HoursFormat": "12 saatlik zaman kullan (AM/PM)",
+  "splitPastedText": "Sanatçı/parça kutucuklarına yapıştırılan metni otomatik olarak ayır",
+  "welcomeToTheScrobbler": "<1>Open Scrobbler</1>'a hoş geldin!",
+  "purpose": "Bu site sayesinde radyoda, plakta veya başka bir yerde dinlediğin şarkıları ve albümleri manuel olarak skroplayabilirsin.",
+  "authNeeded": "Skroplamaya başlamak için Last.fm hesabını bağla!",
+  "logInWithLastFm": "Last.fm ile giriş yap",
+  "logInIsSafe": "Bu işlem Last.fm üzerinde güvenli bir şekilde yapılır",
+  "about": {
+    "title": "Site hakkında",
+    "description": "Open Scrobbler, şarkıları manuel olarak Last.fm profilinize skroplamanızı sağlayan web tabanlı ve açık kaynaklı bir skroplayıcıdır."
+  },
+  "support": {
+    "title": "Projemizi destekle",
+    "copy": "Siteyi ayakta tutmak ve sitenin gelişiminde yardımcı olmak için projeye bağış yap!",
+    "CTA": "Bağış yap"
+  },
+  "discord": {
+    "title": "Discord kanalımıza katıl!",
+    "copy": "Diğer müzikseverlerle tanış ve yeni değişikliklerden anında haberdar ol!",
+    "CTA": "Kanala katıl"
+  },
+  "authFailed": "Kimlik doğrulama başarısız",
+  "loginAgain": "Tekrar giriş yapmak zorundasın!",
+  "serviceUnavailable": "Hizmet kullanılamıyor",
+  "unexpectedError": "Beklenmeyen hata",
+  "unexpectedErrorMessage": "Reklam engelleyicin Last.fm'e gönderilen API çağrılarını engelliyor olabilir. Reklam engelleyicini devre dışı bırakmayı veya ws.audioscrobbler.com adresini istisna olarak eklemeyi dene.",
+  "lastfmUnavailable": "Last.fm yanıt vermiyor, lütfen daha sonra tekrar dene.",
+  "settingsSavedSuccessfully": "Ayarların başarıyla kaydedildi!",
+  "loginError": {
+    "title": "Giriş yapma başarısız",
+    "message": "Giriş sırasında beklenmedik bir hata ile karşılaşıldı. Üzgünüz!"
+  },
+  "logoutInfo": {
+    "title": "Görüşmek üzere!",
+    "message": "Çıkış yapma başarılı."
+  }
+}
