@@ -1,0 +1,141 @@
+{
+  "scrobble": "Скробблити",
+  "getScrobbling": "Почати скробблінг",
+  "loading": "Завантаження...",
+  "artist": "Виконавець",
+  "song": "Трек",
+  "title": "Назва",
+  "album": "Альбом",
+  "scrobbleFromAlbum": "Скробблінг альбомів",
+  "scrobbleAlbum": "Скробблити альбом",
+  "album_plural": "Альбоми",
+  "goBack": "Назад",
+  "topAlbumsBy": "Найкращі альбоми {{nameOfArtist}}",
+  "noAlbumsFound": "Не знайдено альбомів, за запитом <1>{{albumOrArtist}}</1>",
+  "noArtistsFound": "Не знайдено виконавців, за запитом <1>{{albumOrArtist}}</1>",
+  "emptyAlbum": "Цей альбом пустий.",
+  "scrobbleSongs": "Скробблінг треків",
+  "scrobbleSelected": "Скробблити вибраний трек",
+  "findAlbumCopy": "Введіть назву альбому чи виконавця",
+  "customTimestamp": "Своя часова мітка",
+  "albumTimestampLogicDescription": "Параметр скробблінгу \"зараз\" буде скробблити останній трек прямо зараз, одразу переходячи до наступного (як мабуть ви тільки-но закінчили прослуховування попереднього). The \"Своя часова мітка\" визначить час час першого треку і додасть час відповідно іншим трекам (тобто ви вказуєте час початку прослуховування цього альбому)",
+  "albumArtist": "Виконавець альбому",
+  "history": "Історія",
+  "yourProfile": "Ваш профіль",
+  "yourHistory": "Ваша історія",
+  "scrobbleManually": "Скробблити вручну",
+  "scrobbleFromOtherUser": "Скробблити за іншим користувачем",
+  "otherUser": "Користувач",
+  "or": "чи",
+  "refresh": "Оновити",
+  "findFriendCopy": "Впишіть ім'я користувача з last.fm щоб побачити його останні треки",
+  "visitProfile": "Дивитися профіль",
+  "search": "Пошук",
+  "backToSearch": "Повернутися до пошуку,
+  "userNotFound": "Користувача не знайдено",
+  "username": "Ім'я користувача",
+  "invalidUsername": "Недопустиме ім'я користувача",
+  "recentlySearchedUsers": "Шукане востаннє",
+  "language": "Мова",
+  "translateYourLanguage": "Хочете додати свою мову?",
+  "logIn": "Увійти",
+  "logOut": "Вийти",
+  "dataProvider": "Джерело даних",
+  "now": "Зараз",
+  "custom": "Користувальницький...",
+  "timestamp": "Часова мітка",
+  "unknown": "Невідомо",
+  "lastfmWillRejectOldTimestamps": "Last.fm не прийме скроббли, старіші за два тижні.",
+  "keepOriginalTimestamp": "Скробблити зі збереженням часових міток",
+  "noSongsScrobbled": "Ні одного трека ще не було заскробблено!",
+  "songsWillAppearHere": "Заскробблені треки будуть з'являтися тут як",
+  "clearHistory": "Очистити ісіторію",
+  "scrobbleAgain": "Скробблити знову",
+  "copyToEditor": "Копіювати у редактор",
+  "swapArtistTitle": "Змінити місцями виконавця та трек",
+  "viewProfile": "Подивитися мій профіль на last.fm",
+  "lockArtist": "Не витирати поле виконавця",
+  "lockAlbum": "Не витирати поле альбому",
+  "buyOnAmzn": "Шукати на Amazon",
+  "pasteIntercepted": "Скопійований текст буде автоматично розбитий на поля!",
+  "considerDonating": "Будь ласка, підтримайте цей проєкт на Patreon!",
+  "footer": {
+    "joinCommunity": "Будемо раді бачити нас на нашому <1>Discord-сервері</1>!",
+    "supportThisProject": "Будь ласка, <1>підтримайте цей проєктt</1> на Patreon :)",
+    "specialThanks": "Окрема подяка всім донатерам, перекладачам та<1>співучасникам</1>"
+  },
+  "settings": "Налаштування",
+  "cancel": "Відмінити",
+  "dates": {
+    "format": {
+      "short": "MMM Do"
+    },
+    "months": {
+      "short": ["січ.", "лют.", "бер.", "кві.", "тра.", "чер.", "лип.", "сер.", "вер.", "жов.", "лис.", "гру."],
+      "long": [
+        "Січень",
+        "Лютий",
+        "Березень",
+        "Квітень",
+        "Травень",
+        "Червень",
+        "Липень",
+        "Серпень",
+        "Вересень",
+        "Жовтень",
+        "Листопад",
+        "Грудень"
+      ]
+    }
+  },
+  "updates": {
+    "newVersionAvailable": "Доступна нова версія! Будь ласка, <1>оновіть сторінку</1>"
+  },
+  "errors": {
+    "lastfmRejected": "Last.fm відмінив цей скроббл",
+    "unexpectedResponse": "Неочікувана відповідь",
+    "apiCallFailed": "Сталася помилка під час виклику API"
+  },
+  "next": "Next",
+  "previous": "Previous",
+  "settingsFor": "Settings for",
+  "saveSettings": "Save settings",
+  "defaultLanguage": "Default language",
+  "availableLanguages": "Available languages",
+  "use12HoursFormat": "Use 12-hour time format (AM/PM)",
+  "splitPastedText": "Split text pasted in artists/title fields",
+  "welcomeToTheScrobbler": "Welcome to the <1>Open Scrobbler</1>!",
+  "purpose": "This tool lets you scrobble songs and albums you heard on the radio, vinyl or at some place where you need to manually scrobble.",
+  "authNeeded": "Authorize the application to get started!",
+  "logInWithLastFm": "Log in with Last.fm",
+  "logInIsSafe": "This is safely done over at Last.fm",
+  "about": {
+    "title": "What is this?",
+    "description": "An open source scrobbler for the web, which allows you to manually input songs and add them to your Last.fm profile."
+  },
+  "support": {
+    "title": "Support this project",
+    "copy": "Please consider becoming a patron to keep this site up and support development!",
+    "CTA": "Become a patron"
+  },
+  "discord": {
+    "title": "Join us on Discord!",
+    "copy": "Stay connected with other music fans and find out when there's something new!",
+    "CTA": "Join Discord"
+  },
+  "authFailed": "Authentication failed",
+  "loginAgain": "You must log in again!",
+  "serviceUnavailable": "Service unavailable",
+  "unexpectedError": "Unexpected error",
+  "unexpectedErrorMessage": "Your ad blocker may be blocking API calls to last.fm, try disabling it or adding an exception for ws.audioscrobbler.com",
+  "lastfmUnavailable": "Last.fm isn't responding, please try again later.",
+  "settingsSavedSuccessfully": "Your settings were saved successfully!",
+  "loginError": {
+    "title": "Error logging in",
+    "message": "There was an unexpected error logging in. Sorry about that!"
+  },
+  "logoutInfo": {
+    "title": "See you soon!",
+    "message": "Successfully logged out."
+  }
+}
