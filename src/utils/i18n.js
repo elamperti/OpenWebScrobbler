@@ -33,6 +33,7 @@ export const fallbackLng = {
   'pt-BR': ['pt'],
   'pt-PT': ['pt'],
   'fr-FR': ['fr'],
+  'uk-UA': ['ua'],
   default: ['en'],
 };
 
