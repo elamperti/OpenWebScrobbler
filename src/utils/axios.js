@@ -97,6 +97,12 @@ export function interceptAxios(dispatch) {
       // ToDo: improve this match to avoid collisions or problems with future API versions
       if (response.config.url.match(/\/api\/v2\//)) {
         switch (response.status) {
+          case 502:
+            ReactGA.exception({
+              description: 'Bad gateway',
+              fatal: false,
+            });
+            break;
           case 503:
             ReactGA.exception({
               description: 'Rate limit hit',
