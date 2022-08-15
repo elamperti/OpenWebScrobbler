@@ -45,6 +45,7 @@ export default function Tracklist({ albumInfo, tracks }) {
   const [selectedTracks, setSelectedTracks] = useState(new Set());
   const [totalDuration, setTotalDuration] = useState(0);
   const albumHasTracks = tracks && tracks.length > 0;
+  const hasAlbumInfo = Object.keys(albumInfo).length > 0;
   const durationFormat = totalDuration > 3600 ? 'h:mm:ss' : 'mm:ss'; // ToDo: use formatDuration after upgrading date-fns to ^2.19
 
   useEffect(() => {
@@ -150,67 +151,69 @@ export default function Tracklist({ albumInfo, tracks }) {
 
   return (
     <React.Fragment>
-      <div className="album-heading row my-2">
-        <div className="col-3">
-          <AlbumCard background={albumInfo.cover} sizes={albumInfo.coverSizes} />
-        </div>
-        <div className="col-9 d-flex flex-column">
-          <div className="album-heading-info flex-grow-1">
-            <h3 className="album-heading-album-name mb-0">{albumInfo.name}</h3>
-            <div className="album-heading-artist-name">{albumInfo.artist}</div>
-            <Badge className="my-1">{albumInfo.releasedate}</Badge>
-            {tracks.length > 0 && (
-              <div className="album-heading-duration">
-                <FontAwesomeIcon icon={faStopwatch} className="mr-2" color="var(--gray)" />
-                {totalDuration ? (
-                  format(addSeconds(new Date(0), totalDuration), durationFormat)
-                ) : (
-                  <Trans i18nKey="unknown">Unknown</Trans>
-                )}
-              </div>
+      {hasAlbumInfo && (
+        <div className="album-heading row my-2">
+          <div className="col-3">
+            <AlbumCard background={albumInfo.cover} sizes={albumInfo.coverSizes} />
+          </div>
+          <div className="col-9 d-flex flex-column">
+            <div className="album-heading-info flex-grow-1">
+              <h3 className="album-heading-album-name mb-0">{albumInfo.name}</h3>
+              <div className="album-heading-artist-name">{albumInfo.artist}</div>
+              <Badge className="my-1">{albumInfo.releasedate}</Badge>
+              {tracks.length > 0 && (
+                <div className="album-heading-duration">
+                  <FontAwesomeIcon icon={faStopwatch} className="mr-2" color="var(--gray)" />
+                  {totalDuration ? (
+                    format(addSeconds(new Date(0), totalDuration), durationFormat)
+                  ) : (
+                    <Trans i18nKey="unknown">Unknown</Trans>
+                  )}
+                </div>
+              )}
+            </div>
+            {albumHasTracks && (
+              <FormGroup className="align-self-end mb-0">
+                <Translation>
+                  {
+                    // This mess is required to translate the `label` properties using t(), otherwise label wouldn't be clickable
+                    (t) => {
+                      return (
+                        <React.Fragment>
+                          <CustomInput
+                            inline
+                            type="radio"
+                            id="useNowTimestamp"
+                            label={t('now')}
+                            name="useCustomTimestamp"
+                            checked={!useCustomTimestamp}
+                            onChange={toggleCustomTimestamp}
+                          ></CustomInput>
+                          <CustomInput
+                            inline
+                            type="radio"
+                            id="useCustomTimestamp"
+                            label={t('customTimestamp')}
+                            name="useCustomTimestamp"
+                            checked={useCustomTimestamp}
+                            onChange={toggleCustomTimestamp}
+                          ></CustomInput>
+                        </React.Fragment>
+                      );
+                    }
+                  }
+                </Translation>
+                <FontAwesomeIcon
+                  id="timestampInfoIcon"
+                  icon={faQuestionCircle}
+                  color="var(--gray)"
+                  onClick={toggleTimestampCopy}
+                />
+              </FormGroup>
             )}
           </div>
-          {albumHasTracks && (
-            <FormGroup className="align-self-end mb-0">
-              <Translation>
-                {
-                  // This mess is required to translate the `label` properties using t(), otherwise label wouldn't be clickable
-                  (t) => {
-                    return (
-                      <React.Fragment>
-                        <CustomInput
-                          inline
-                          type="radio"
-                          id="useNowTimestamp"
-                          label={t('now')}
-                          name="useCustomTimestamp"
-                          checked={!useCustomTimestamp}
-                          onChange={toggleCustomTimestamp}
-                        ></CustomInput>
-                        <CustomInput
-                          inline
-                          type="radio"
-                          id="useCustomTimestamp"
-                          label={t('customTimestamp')}
-                          name="useCustomTimestamp"
-                          checked={useCustomTimestamp}
-                          onChange={toggleCustomTimestamp}
-                        ></CustomInput>
-                      </React.Fragment>
-                    );
-                  }
-                }
-              </Translation>
-              <FontAwesomeIcon
-                id="timestampInfoIcon"
-                icon={faQuestionCircle}
-                color="var(--gray)"
-                onClick={toggleTimestampCopy}
-              />
-            </FormGroup>
-          )}
         </div>
-      </div>
+      )}
 
       <DateTimePicker value={customTimestamp} onChange={handleTimestampChange} visible={useCustomTimestamp} />
       <Alert

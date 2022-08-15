@@ -160,6 +160,15 @@ const albumReducer = (state = initialState, action) => {
       };
     }
 
+    case `${GET_ALBUM_INFO_LASTFM}_REJECTED`:
+    case `${GET_ALBUM_INFO_DISCOGS}_REJECTED`: {
+      return {
+        ...state,
+        info: {},
+        tracks: [],
+      };
+    }
+
     default:
       return state;
   }
