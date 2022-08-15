@@ -126,6 +126,8 @@
   "authFailed": "Echec d'authentification",
   "loginAgain": "Vous devez vous reconnecter !",
   "serviceUnavailable": "Service indisponible",
+  "rateLimitExceeded": "Rate limit exceeded.",
+  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
   "unexpectedError": "Erreur inconnu",
   "unexpectedErrorMessage": "Your ad blocker may be blocking API calls to last.fm, try disabling it or adding an exception for ws.audioscrobbler.com",
   "lastfmUnavailable": "Last.fm ne réponds pas, essayez encore.",

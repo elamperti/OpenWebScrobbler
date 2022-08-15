@@ -126,6 +126,8 @@
   "authFailed": "Kimlik doğrulama başarısız",
   "loginAgain": "Tekrar giriş yapmak zorundasın!",
   "serviceUnavailable": "Hizmet kullanılamıyor",
+  "rateLimitExceeded": "Rate limit exceeded.",
+  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
   "unexpectedError": "Beklenmeyen hata",
   "unexpectedErrorMessage": "Reklam engelleyicin Last.fm'e gönderilen API çağrılarını engelliyor olabilir. Reklam engelleyicini devre dışı bırakmayı veya ws.audioscrobbler.com adresini istisna olarak eklemeyi dene.",
   "lastfmUnavailable": "Last.fm yanıt vermiyor, lütfen daha sonra tekrar dene.",

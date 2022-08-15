@@ -123,6 +123,8 @@
   "authFailed": "Не удалось войти",
   "loginAgain": "Срок действия сессии истек. Необходимо авторизоваться вновь!",
   "serviceUnavailable": "Сервис недоступен",
+  "rateLimitExceeded": "Rate limit exceeded.",
+  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
   "unexpectedError": "Непредвиденная ошибка",
   "unexpectedErrorMessage": "Пожалуйста, добавьте в исключения Вашего блокировщика рекламы этот сайт \"ws.audioscrobbler.com\". Это нужно ни в коем случае не для рекламы, просто возможно он будет блокировать доступ к сайту last.fm через API.",
   "lastfmUnavailable": "Last.fm не отвечает, пожалуйста, попробуйте позже.",

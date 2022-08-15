@@ -42,9 +42,12 @@ function axiosErrorHandler(payload, dispatch) {
       newError.message = 'lastfmUnavailable';
       showErrorNumber = true;
       break;
+    case 29: // Rate limit exceeded
+      newError.title = 'rateLimitExceeded';
+      newError.message = 'rateLimitMessage';
+      break;
     case 13: // Invalid method signature supplied
     case 26: // API key suspended
-    case 29: // Rate limit exceeded
     default:
       newError.title = 'unexpectedError';
       newError.message = 'unexpectedErrorMessage';

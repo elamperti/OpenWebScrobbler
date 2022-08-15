@@ -126,6 +126,8 @@
   "authFailed": "Авторизація провалилася",
   "loginAgain": "Ви повинні увійти ще раз!",
   "serviceUnavailable": "Сервіс недоступний",
+  "rateLimitExceeded": "Rate limit exceeded.",
+  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
   "unexpectedError": "Непередбачувана помилка",
   "unexpectedErrorMessage": "Ваш блокувальник реклами може блокувати доступ до last.fm через API, будь ласка, вимкніть його або додайте виняток для сайту ws.audioscrobbler.com",
   "lastfmUnavailable": "Last.fm не відповідає, будь ласка, спробуйте пізніше.",

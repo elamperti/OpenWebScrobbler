@@ -126,6 +126,8 @@
   "authFailed": "Godkendelse mislykkedes",
   "loginAgain": "Du skal logge ind igen!",
   "serviceUnavailable": "Tjeneste utilgængelig",
+  "rateLimitExceeded": "Rate limit exceeded.",
+  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
   "unexpectedError": "Uventet fejl",
   "unexpectedErrorMessage": "Din adblocker blokerer muligvis for API-opkald til last.fm, prøv at deaktivere den eller at tilføje en undtagelse for ws.audioscrobbler.com",
   "lastfmUnavailable": "Last.fm svarer ikke, prøv venligst igen senere.",
