@@ -89,6 +89,10 @@
   min-width: 80px;
 }
 
+.scrobbled-item .dropdown-menu {
+  z-index: 1020;
+}
+
 .scrobbled-item .dropdown-item {
   padding-left: 1.15rem;
   padding-right: 1.15rem;
