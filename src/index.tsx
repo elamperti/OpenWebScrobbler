@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import ReactDOM from 'react-dom/client';
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 
 import './index.css';
@@ -7,6 +7,8 @@ import App from 'App';
 import history from 'utils/history';
 import ErrorPage from 'domains/error';
 import registerServiceWorker from 'utils/registerServiceWorker';
+import reportWebVitals from 'utils/reportWebVitals';
+
 import 'bootswatch/dist/slate/bootstrap.min.css';
 
 import { Provider as ReduxProvider } from 'react-redux';
@@ -37,6 +39,7 @@ if (sentryEnabled) {
     debug: process.env.NODE_ENV === 'development',
     release: process.env.REACT_APP_VERSION,
     environment: process.env.NODE_ENV,
+    // @ts-ignore (sanitizeKeys is a valid property)
     sanitizeKeys: [/token/],
     ignoreErrors: ['ResizeObserver'],
     ignoreUrls: [
@@ -62,6 +65,7 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
     }
   }
 
+  // @ts-ignore (we need to keep onerror)
   ReactGA.initialize(process.env.REACT_APP_ANALYTICS_CODE, {
     debug: process.env.NODE_ENV === 'development',
     gaOptions: {
@@ -84,14 +88,21 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
 
 const baseApp = (
   <ReduxProvider store={store}>
+    {/* @ts-ignore https://github.com/remix-run/react-router/issues/9630 */}
     <HistoryRouter history={history}>
       <App />
     </HistoryRouter>
   </ReduxProvider>
 );
 
-ReactDOM.render(
-  sentryEnabled ? <Sentry.ErrorBoundary fallback={ErrorPage}>{baseApp}</Sentry.ErrorBoundary> : baseApp,
-  document.getElementById('root')
-);
+const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+root.render(sentryEnabled ? <Sentry.ErrorBoundary fallback={ErrorPage}>{baseApp}</Sentry.ErrorBoundary> : baseApp);
+
 registerServiceWorker(store);
+
+// If you want to start measuring performance in your app, pass a function
+// to log results (for example: reportWebVitals(console.log))
+// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
+if (process.env.NODE_ENV === 'development') {
+  reportWebVitals();
+}
