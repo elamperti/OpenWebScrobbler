@@ -6,7 +6,7 @@
     "node": true,
     "cypress/globals": true
   },
-  "extends": ["standard", "react-app"],
+  "extends": ["standard", "react-app", "react-app/jest"],
   "parser": "@babel/eslint-parser",
   "parserOptions": {
     "allowImportExportEverywhere": false,
@@ -35,7 +35,7 @@
     ],
     "multiline-ternary": "off",
     "no-console": "warn",
-    "no-unused-vars": "error",
+    "no-unused-vars": "warn",
     "prefer-const": "warn",
     "react/prop-types": 1,
     "semi": [2, "always"],
