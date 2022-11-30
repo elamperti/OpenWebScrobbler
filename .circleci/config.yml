@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  cypress: cypress-io/cypress@1.29.0
+  cypress: cypress-io/cypress@2
 
 references:
   defaults: &defaults
@@ -14,7 +14,7 @@ commands:
     description: 'Prepare job'
     steps:
       - attach_workspace:
-          at: '~'
+          at: '/mnt/ramdisk'
 
 jobs:
   setup:
@@ -32,19 +32,19 @@ jobs:
           name: Save Yarn package cache
           key: yarn-packages-{{ checksum "yarn.lock" }}
           paths:
-            - ~/.cache/yarn
-            - ~/.cache/Cypress
+            - /mnt/ramdisk/ows/.cache/yarn
+            - /mnt/ramdisk/ows/.cache/Cypress
       - persist_to_workspace:
-          root: '~'
+          root: '/mnt/ramdisk'
           paths:
-            - project
+            - ./*
 
   lint:
     <<: *defaults
     steps:
       - prepare
       - run:
-          name: ESLint
+          name: Lint
           command: yarn lint
 
   unit:
@@ -52,7 +52,7 @@ jobs:
     steps:
       - prepare
       - run:
-          name: Unit tests
+          name: Run unit tests
           command: yarn test:unit
 
 workflows:
@@ -69,14 +69,15 @@ workflows:
       - cypress/install:
           requires:
             - lint
-            - unit
+          executor: cypress/base-16-14-2-slim
           yarn: true
       - cypress/run:
           requires:
             - cypress/install
           attach-workspace: true
+          executor: cypress/base-16-14-2-slim
           yarn: true
           start: 'yarn start:server'
-          wait-on: 'http://localhost:3030'
+          wait-on: 'http://127.0.0.1:3030'
           no-workspace: true
           store_artifacts: true
