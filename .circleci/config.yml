@@ -5,8 +5,9 @@ orbs:
 
 references:
   defaults: &defaults
+    working_directory: /mnt/ramdisk/ows
     docker:
-      - image: cimg/node:lts
+      - image: cimg/node:current
 
 commands:
   prepare:
@@ -46,6 +47,14 @@ jobs:
           name: ESLint
           command: yarn lint
 
+  unit:
+    <<: *defaults
+    steps:
+      - prepare
+      - run:
+          name: Unit tests
+          command: yarn test:unit
+
 workflows:
   version: 2
   ows:
@@ -54,9 +63,13 @@ workflows:
       - lint:
           requires:
             - setup
+      - unit:
+          requires:
+            - setup
       - cypress/install:
           requires:
             - lint
+            - unit
           yarn: true
       - cypress/run:
           requires:
