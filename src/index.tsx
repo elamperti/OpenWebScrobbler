@@ -7,7 +7,7 @@ import App from 'App';
 import history from 'utils/history';
 import ErrorPage from 'domains/error';
 import registerServiceWorker from 'utils/registerServiceWorker';
-import reportWebVitals from 'utils/reportWebVitals';
+// import reportWebVitals from 'utils/reportWebVitals';
 
 import 'bootswatch/dist/slate/bootstrap.min.css';
 
@@ -100,9 +100,6 @@ root.render(sentryEnabled ? <Sentry.ErrorBoundary fallback={ErrorPage}>{baseApp}
 
 registerServiceWorker(store);
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-if (process.env.NODE_ENV === 'development') {
-  reportWebVitals();
-}
+// Measure performance Learn more: https://bit.ly/CRA-vitals
+// ToDo: Analyze if this is worth using
+// reportWebVitals(process.env.NODE_ENV === 'development' ? console.log : undefined);
