@@ -13,7 +13,7 @@ const ErrorPage = ({ error, eventId, resetError }) => {
   // const username = useSelector((state) => state.user?.name);
 
   const reloadPage = () => {
-    Location.reload();
+    window.location.reload();
     return false;
   };
 
@@ -38,7 +38,7 @@ const ErrorPage = ({ error, eventId, resetError }) => {
               resetError();
             } catch (e) {
               window.location.href = '/';
-              Location.reload();
+              window.location.reload();
             }
           });
         }
@@ -83,7 +83,7 @@ const ErrorPage = ({ error, eventId, resetError }) => {
         <details className="mb-2">
           <summary>Technical details</summary>
           <div className="card p-3 my-2 ms-3">
-            <code>{error.toString()}</code>
+            <code>{error && error.toString()}</code>
             <p className="pt-3">
               If you understand what is going on here, your feedback will be very helpful!
               <br />

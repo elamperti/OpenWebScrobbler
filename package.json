@@ -87,6 +87,7 @@
     "test": "yarn test:e2e && yarn test:unit",
     "test:e2e": "BROWSER=none PORT=3030 start-test 'yarn start:server' http://127.0.0.1:3030/ 'cypress run'",
     "test:unit": "react-scripts test",
+    "test:coverage": "yarn test:unit --watchAll=false --coverage",
     "typecheck": "yarn run tsc",
     "cypress": "BROWSER=none PORT=3030 start-test 'yarn start:server' http://127.0.0.1:3030/ 'cypress open'",
     "translations:fetch": "poeditor pull",
