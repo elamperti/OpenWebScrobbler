@@ -28,7 +28,6 @@ export const UserCard: React.FC<UserCardProps> = (props) => {
       >
         {t('visitProfile')}
       </a>{' '}
-      {/* @ts-expect-error resolve-fa-types */}
       <FontAwesomeIcon icon={faExternalLinkAlt} />
     </div>
   );
