@@ -62,12 +62,12 @@ export function ScrobbleUserResults() {
           <Button
             onClick={() => navigate('/scrobble/user', { state: { userToSearch: username } })}
             size="sm"
-            className="mr-3"
+            className="me-3"
           >
             <FontAwesomeIcon icon={faChevronLeft} />
           </Button>
           <h2 className="w-100 m-0 d-inline">
-            <FontAwesomeIcon icon={faUserFriends} className="mr-2" />
+            <FontAwesomeIcon icon={faUserFriends} className="me-2" />
             <Trans i18nKey="scrobbleFromOtherUser">Scrobble from another user</Trans>
           </h2>
         </div>

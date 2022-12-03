@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 
-import { Button, CustomInput } from 'reactstrap';
+import { Button, Input, FormGroup, Label } from 'reactstrap';
 import { Trans } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
@@ -47,7 +47,7 @@ export default function FriendScrobbles({ username, page }) {
 
   return (
     <React.Fragment>
-      <div className="UserCard-container rect row no-gutters pb-3">
+      <div className="UserCard-container rect row mx-0 pb-3">
         <div className="col-sm-8 d-flex align-items-middle">
           <UserCard user={friendProfile} name={username} isHeading withLinkToProfile />
         </div>
@@ -57,14 +57,17 @@ export default function FriendScrobbles({ username, page }) {
           </Button>
         </div>
         <div className="col-12 px-3">
-          <CustomInput
-            type="checkbox"
-            id="keepOriginalTimestamp"
-            label={<Trans i18nKey="keepOriginalTimestamp" />}
-            checked={keepOriginalTimestamp}
-            onChange={toggleOriginalTimestamp}
-            inline
-          />
+          <FormGroup check>
+            <Label className="d-block" check>
+              <Input
+                type="checkbox"
+                id="keepOriginalTimestamp"
+                checked={keepOriginalTimestamp}
+                onChange={toggleOriginalTimestamp}
+              />
+              <Trans i18nKey="keepOriginalTimestamp" />
+            </Label>
+          </FormGroup>
         </div>
       </div>
       <div className="ScrobbleList-container with-gradient">

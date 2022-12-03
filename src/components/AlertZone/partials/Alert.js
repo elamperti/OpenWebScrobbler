@@ -21,7 +21,7 @@ export default function Alert({ id: alertId, type, errorNumber, title, message, 
     <ReactstrapAlert isOpen={isOpen} fade={false} color={type} toggle={onClose}>
       <div className="d-flex">
         {icon && (
-          <div className="mr-4">
+          <div className="me-4">
             <FontAwesomeIcon size={title ? '3x' : null} icon={icon} />
           </div>
         )}

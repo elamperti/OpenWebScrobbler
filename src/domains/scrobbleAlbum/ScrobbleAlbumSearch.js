@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ReactGA from 'react-ga';
 
-import { Row, FormGroup, CustomInput } from 'reactstrap';
+import { Row, FormGroup, Input, Label } from 'reactstrap';
 import SearchForm from 'components/SearchForm';
 
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
@@ -66,7 +66,7 @@ export function ScrobbleAlbumSearch() {
       <Row className="flex-lg-grow-1 mt-3">
         <div className="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
           <h2 className="mb-3">
-            <FontAwesomeIcon icon={faCompactDisc} className="mr-2" />
+            <FontAwesomeIcon icon={faCompactDisc} className="me-2" />
             <Trans i18nKey="scrobbleAlbum" />
           </h2>
           <Trans i18nKey="findAlbumCopy" />:
@@ -78,16 +78,18 @@ export function ScrobbleAlbumSearch() {
             feedbackMessageKey="emptyAlbum"
           />
           {dataProvider === PROVIDER_DISCOGS && (
-            <FormGroup inline check>
-              <CustomInput
-                className="mt-2 mt-sm-0"
+            <FormGroup inline switch>
+              <Input
+                className="mt-1"
                 type="switch"
-                label="Include releases in search results"
                 name="includeReleases"
                 id="includeReleases"
                 checked={includeReleases}
                 onChange={toggleReleaseSwitch}
               />
+              <Label for="includeReleases" check>
+                <Trans i18nKey="includeReleases" />
+              </Label>
             </FormGroup>
           )}
         </div>

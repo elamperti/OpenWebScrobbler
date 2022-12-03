@@ -152,5 +152,6 @@
   "logoutInfo": {
     "title": "See you soon!",
     "message": "Successfully logged out."
-  }
+  },
+  "includeReleases": "Include releases"
 }

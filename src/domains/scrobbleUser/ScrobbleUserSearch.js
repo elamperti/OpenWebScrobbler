@@ -50,7 +50,7 @@ export function ScrobbleUserSearch() {
       // ToDo: use <a> so users can copy a permalink to a recent search
       recentUsersList.push(
         <li key={recentUser} className="list-group-item" onClick={() => searchUser(recentUser)}>
-          <Avatar user={profileImg} size="sm" className="mr-2" />
+          <Avatar user={profileImg} size="sm" className="me-2" />
           {recentUser}
         </li>
       );
@@ -61,7 +61,7 @@ export function ScrobbleUserSearch() {
     <Row className="flex-lg-grow-1 mt-3">
       <div className="col-12 col-md-10 offset-md-1 col-lg-8 offset-lg-2 col-xl-6 offset-xl-3">
         <h2 className="w-100 mb-3">
-          <FontAwesomeIcon icon={faUserFriends} className="mr-2" />
+          <FontAwesomeIcon icon={faUserFriends} className="me-2" />
           <Trans i18nKey="scrobbleFromOtherUser">Scrobble from other user</Trans>
         </h2>
         <Trans i18nKey="findFriendCopy">Enter a last.fm username to see their last tracks</Trans>:
