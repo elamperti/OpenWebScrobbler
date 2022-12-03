@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import { useTranslation } from 'react-i18next';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,7 +8,14 @@ import Avatar from 'components/Avatar';
 
 import './UserCard.css';
 
-const UserCard = (props) => {
+type UserCardProps = {
+  name: string;
+  user: any;
+  isHeading: boolean;
+  withLinkToProfile?: boolean;
+};
+
+export const UserCard: React.FC<UserCardProps> = (props) => {
   const { t } = useTranslation();
   // ToDo: use URL from user.info endpoint
   const externalLink = (
@@ -22,6 +28,7 @@ const UserCard = (props) => {
       >
         {t('visitProfile')}
       </a>{' '}
+      {/* @ts-expect-error resolve-fa-types */}
       <FontAwesomeIcon icon={faExternalLinkAlt} />
     </div>
   );
@@ -37,18 +44,6 @@ const UserCard = (props) => {
       </div>
     </div>
   );
-};
-
-UserCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  user: PropTypes.object.isRequired,
-  isHeading: PropTypes.bool,
-  withLinkToProfile: PropTypes.bool,
-};
-
-UserCard.defaultProps = {
-  rect: false,
-  withLinkToProfile: false,
 };
 
 export default UserCard;
