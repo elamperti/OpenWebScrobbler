@@ -1,10 +1,22 @@
 import React, { useState, useEffect } from 'react';
-import PropTypes from 'prop-types';
 import { Trans } from 'react-i18next';
 
 import { Button, FormFeedback, FormGroup, Input, Label, Row } from 'reactstrap';
 
 // ToDo: check and fix any double-renders on change/validation
+
+type SearchFormProps = {
+  ariaLabel: string;
+  disableSearch: boolean;
+  feedbackMessageKey?: string;
+  id: string;
+  maxLength: number;
+  onSearch: (query: string) => void;
+  readOnly: boolean;
+  size: 'lg' | 'sm';
+  validator: (query: string) => boolean;
+  value?: string;
+};
 
 export default function SearchForm({
   ariaLabel,
@@ -16,12 +28,12 @@ export default function SearchForm({
   size,
   value,
   validator,
-}) {
+}: SearchFormProps) {
   const [query, setQuery] = useState(value || '');
   const [isValid, setValidation] = useState(true);
 
   useEffect(() => {
-    const searchInput = document.getElementById(id);
+    const searchInput = document.getElementById(id) as HTMLInputElement;
 
     if (searchInput) {
       searchInput.focus();
@@ -87,17 +99,4 @@ SearchForm.defaultProps = {
   size: 'lg',
   validator: () => true,
   value: null,
-};
-
-SearchForm.propTypes = {
-  ariaLabel: PropTypes.string.isRequired,
-  disableSearch: PropTypes.bool,
-  feedbackMessageKey: PropTypes.string,
-  id: PropTypes.string.isRequired,
-  maxLength: PropTypes.number,
-  onSearch: PropTypes.func.isRequired,
-  readOnly: PropTypes.bool,
-  size: PropTypes.oneOf(['lg', 'sm']),
-  validator: PropTypes.func,
-  value: PropTypes.string,
 };
