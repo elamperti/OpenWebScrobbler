@@ -5,7 +5,7 @@ import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 import './index.css';
 import App from 'App';
 import history from 'utils/history';
-import ErrorPage from 'domains/error';
+import ErrorPage from 'domains/error/ErrorPage';
 import registerServiceWorker from 'utils/registerServiceWorker';
 // import reportWebVitals from 'utils/reportWebVitals';
 
