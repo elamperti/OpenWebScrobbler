@@ -7,7 +7,7 @@
     "cypress/globals": true
   },
   "extends": ["standard", "react-app", "react-app/jest"],
-  "parser": "@babel/eslint-parser",
+  "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "allowImportExportEverywhere": false,
     "ecmaFeatures": {
