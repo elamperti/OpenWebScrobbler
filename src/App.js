@@ -39,7 +39,8 @@ function App() {
     if (location.search && !isLoggedIn) {
       const token = queryString.token || null;
       if (token) {
-        navigate('/', { replace: true }); // Clear the URL
+        // Clear the URL, but keep any alert (so login errors are shown)
+        navigate('/', { replace: true, state: { keepAlerts: true } });
         authUserWithToken(dispatch)(token);
       }
     } else {
