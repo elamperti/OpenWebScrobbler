@@ -12,7 +12,7 @@ export default function AlertZone() {
   const alerts = useSelector((state) => state.alerts);
 
   useEffect(() => {
-    if (alerts && alerts.length > 0) {
+    if (alerts && alerts.length > 0 && !location.state?.keepAlerts) {
       dispatch(clearAlerts());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
