@@ -1,4 +1,5 @@
 import { lastfmAPI, discogsAPI } from 'utils/adapters';
+import * as discogsClient from 'utils/clients/discogs';
 
 import {
   GET_ALBUM_INFO_LASTFM,
@@ -19,13 +20,7 @@ export function searchAlbums(album, options = {}) {
   if (options.provider === PROVIDER_DISCOGS) {
     return {
       type: SEARCH_ALBUM_DISCOGS,
-      payload: discogsAPI.get('', {
-        params: {
-          method: 'album.search',
-          type: options.includeReleases ? 'release' : 'master',
-          q: album.toLowerCase(), // dedupes case-sensitive cached queries
-        },
-      }),
+      payload: discogsClient.albumSearch(album, options.includeReleases),
     };
   } else {
     // Last.fm request

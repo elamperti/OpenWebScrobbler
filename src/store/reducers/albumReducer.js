@@ -100,7 +100,7 @@ const albumReducer = (state = initialState, action) => {
     case `${SEARCH_ALBUM_DISCOGS}_FULFILLED`:
       return {
         ...state,
-        list: fetchDiscogsAlbums(get(action.payload, 'data', [])),
+        list: action.payload,
       };
 
     case `${SEARCH_TOP_ALBUMS_LASTFM}_FULFILLED`: {
