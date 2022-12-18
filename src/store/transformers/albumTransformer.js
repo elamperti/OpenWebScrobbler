@@ -71,26 +71,6 @@ export function fetchLastfmAlbums(response) {
   return albums;
 }
 
-export function fetchDiscogsAlbums(response) {
-  return get(response, 'results', []).map((album) => {
-    return {
-      artist: '', // It's part of the name, impossible to tell
-      discogsId: album.type === 'master' ? album.master_id.toString() : `release-${album.id}`,
-      name: album.title,
-      url: '',
-      releasedate: album.year,
-      cover: {
-        sm: album.thumb,
-        lg: album.cover_image,
-      },
-      coverSizes: {
-        sm: 150,
-        lg: 500,
-      },
-    };
-  });
-}
-
 // Yes, I wish it was as simple as making a decorator of fetchLastfmAlbums (it isn't)
 export function fetchLastfmTopAlbums(response) {
   const albums = [];

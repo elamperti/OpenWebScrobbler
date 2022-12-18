@@ -1,7 +1,6 @@
 import get from 'lodash/get';
 import {
   fetchLastfmAlbums,
-  fetchDiscogsAlbums,
   fetchLastfmAlbumInfo,
   fetchDiscogsAlbumInfo,
   fetchLastfmTopAlbums,
