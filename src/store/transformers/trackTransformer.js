@@ -42,19 +42,21 @@ export function fetchDiscogsTracks(data, options) {
     return [];
   }
 
-  return data.tracklist.map((track) => {
-    const transformedTrack = {
-      artist: sanitizeDiscogsArtistName(get(options, 'artist', '')),
-      title: track.title,
-      album: get(options, 'album'),
-      duration: track.duration && _HMSStrToSeconds(track.duration),
-      uuid: shortid.generate(),
-    };
+  return data.tracklist
+    .filter(({ type_: trackType }) => (trackType ? trackType === 'track' : true))
+    .map((track) => {
+      const transformedTrack = {
+        artist: sanitizeDiscogsArtistName(get(options, 'artist', '')),
+        title: track.title,
+        album: get(options, 'album'),
+        duration: track.duration && _HMSStrToSeconds(track.duration),
+        uuid: shortid.generate(),
+      };
 
-    if (hasIn(options, 'cover')) {
-      transformedTrack.cover = options.cover;
-    }
+      if (hasIn(options, 'cover')) {
+        transformedTrack.cover = options.cover;
+      }
 
-    return transformedTrack;
-  });
+      return transformedTrack;
+    });
 }
