@@ -1,6 +1,4 @@
-import { discogsAPI } from '../adapters';
-
-interface IAlbum {
+interface AlbumResult {
   type: string;
   id: number;
   master_id?: number;
@@ -10,18 +8,10 @@ interface IAlbum {
   cover_image: string;
 }
 
-export async function albumSearch(album: string, includeReleases?: boolean) {
-  const response = await discogsAPI.get('', {
-    params: {
-      method: 'album.search',
-      type: includeReleases ? 'release' : 'master',
-      q: album.toLowerCase(), // dedupes case-sensitive cached queries
-    },
-  });
-
+export function albumSearchFormatter(response?: { data?: { results?: AlbumResult[] } }) {
   const results = response?.data?.results || [];
 
-  return results.map((album: IAlbum) => {
+  return results.map((album: AlbumResult) => {
     return {
       artist: '', // It's part of the name, impossible to tell
       discogsId: album.type === 'master' ? album.master_id.toString() : `release-${album.id}`,
