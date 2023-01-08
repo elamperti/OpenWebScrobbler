@@ -1,5 +1,7 @@
 import { lastfmAPI, discogsAPI } from 'utils/adapters';
+
 import * as discogsClient from 'utils/clients/discogs';
+import * as lastfmClient from 'utils/clients/lastfm';
 
 import {
   GET_ALBUM_INFO_LASTFM,
@@ -26,12 +28,7 @@ export function searchAlbums(album, options = {}) {
     // Last.fm request
     return {
       type: SEARCH_ALBUM_LASTFM,
-      payload: lastfmAPI.get('', {
-        params: {
-          method: 'album.search',
-          album: album.toLowerCase(), // dedupes case-sensitive cached queries
-        },
-      }),
+      payload: lastfmClient.albumSearch(album),
     };
   }
 }

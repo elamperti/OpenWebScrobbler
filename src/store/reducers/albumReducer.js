@@ -1,6 +1,5 @@
 import get from 'lodash/get';
 import {
-  fetchLastfmAlbums,
   fetchLastfmAlbumInfo,
   fetchDiscogsAlbumInfo,
   fetchLastfmTopAlbums,
@@ -93,7 +92,7 @@ const albumReducer = (state = initialState, action) => {
     case `${SEARCH_ALBUM_LASTFM}_FULFILLED`:
       return {
         ...state,
-        list: fetchLastfmAlbums(get(action.payload, 'data', [])),
+        list: action.payload,
       };
 
     case `${SEARCH_ALBUM_DISCOGS}_FULFILLED`:
