@@ -12,8 +12,7 @@ import { castArray } from 'utils/common';
 import {
   GET_ALBUM_INFO_LASTFM,
   GET_ALBUM_INFO_DISCOGS,
-  SEARCH_ALBUM_LASTFM,
-  SEARCH_ALBUM_DISCOGS,
+  SEARCH_ALBUM,
   SEARCH_TOP_ALBUMS_LASTFM,
   SEARCH_TOP_ALBUMS_DISCOGS,
   SET_ALBUM_QUERY,
@@ -79,8 +78,7 @@ const albumReducer = (state = initialState, action) => {
         },
       };
 
-    case `${SEARCH_ALBUM_LASTFM}_REJECTED`:
-    case `${SEARCH_ALBUM_DISCOGS}_REJECTED`:
+    case `${SEARCH_ALBUM}_REJECTED`:
     case `${SEARCH_TOP_ALBUMS_LASTFM}_REJECTED`:
     case `${SEARCH_TOP_ALBUMS_DISCOGS}_REJECTED`:
       // do something with action.payload
@@ -89,13 +87,7 @@ const albumReducer = (state = initialState, action) => {
         list: [],
       };
 
-    case `${SEARCH_ALBUM_LASTFM}_FULFILLED`:
-      return {
-        ...state,
-        list: action.payload,
-      };
-
-    case `${SEARCH_ALBUM_DISCOGS}_FULFILLED`:
+    case `${SEARCH_ALBUM}_FULFILLED`:
       return {
         ...state,
         list: action.payload,

@@ -9,8 +9,7 @@ import {
   CLEAR_ALBUM_SEARCH,
   CLEAR_ALBUM_ARTIST_SEARCH,
   CLEAR_ALBUM_TRACKLIST,
-  SEARCH_ALBUM_LASTFM,
-  SEARCH_ALBUM_DISCOGS,
+  SEARCH_ALBUM,
   SEARCH_TOP_ALBUMS_LASTFM,
   SEARCH_TOP_ALBUMS_DISCOGS,
   SET_ALBUM_QUERY,
@@ -19,18 +18,13 @@ import {
 } from 'Constants';
 
 export function searchAlbums(album, options = {}) {
-  if (options.provider === PROVIDER_DISCOGS) {
-    return {
-      type: SEARCH_ALBUM_DISCOGS,
-      payload: discogsClient.albumSearch(album, options.includeReleases),
-    };
-  } else {
-    // Last.fm request
-    return {
-      type: SEARCH_ALBUM_LASTFM,
-      payload: lastfmClient.albumSearch(album),
-    };
-  }
+  return {
+    type: SEARCH_ALBUM,
+    payload:
+      options.provider === PROVIDER_DISCOGS
+        ? discogsClient.albumSearch(album, options.includeReleases)
+        : lastfmClient.albumSearch(album),
+  };
 }
 
 export function searchTopAlbums(artist, options = {}) {
