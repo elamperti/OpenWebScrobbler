@@ -11,7 +11,7 @@
     $timestamp = strtotime($timestamp);
     $current_time = time();
     $min = $current_time - 14*24*3600;
-    $max = $current_time + 14*24*3600;
+    $max = $current_time + 1*24*3600;
     if(!$timestamp || $timestamp < $min || $max < $timestamp) {
       $timestamp = $current_time;
     }
