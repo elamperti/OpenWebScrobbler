@@ -5,10 +5,14 @@ import qs from 'qs';
 
 import { logOut } from 'store/actions/userActions';
 import { createAlert } from 'store/actions/alertActions';
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 
+/*
+ * For invalid (ERROR) responses
+ */
 function axiosErrorHandler(payload, dispatch) {
   const errorNumber = payload ? get(payload, 'data.error', payload.status) : -1;
-  const newError = {
+  let newError = {
     type: 'danger',
     persistent: false,
     title: '',
@@ -46,6 +50,16 @@ function axiosErrorHandler(payload, dispatch) {
       newError.title = 'rateLimitExceeded';
       newError.message = 'rateLimitMessage';
       break;
+    case 429: // OWS Rate limit
+      newError = {
+        persistent: false,
+        icon: faExclamationTriangle,
+        type: 'warning',
+        title: 'slowDown',
+        message: 'slowDownMessage',
+        category: 'slowDown',
+      };
+      break;
     case 13: // Invalid method signature supplied
     case 26: // API key suspended
     default:
@@ -58,7 +72,7 @@ function axiosErrorHandler(payload, dispatch) {
   if (newError.message !== 'loginAgain' && newError.message !== 'userNotFound') {
     createAlert(dispatch)({
       ...newError,
-      errorNumber: showErrorNumber ? errorNumber : null,
+      errorNumber: showErrorNumber ? errorNumber : undefined,
     });
   }
 }
@@ -86,7 +100,7 @@ export function interceptAxios(dispatch) {
   );
 
   /*
-   * Intercepts responses
+   * Intercepts valid (OK) responses
    */
   axios.interceptors.response.use(
     (response) => {
@@ -103,7 +117,7 @@ export function interceptAxios(dispatch) {
               fatal: false,
             });
             break;
-          case 503:
+          case 429:
             ReactGA.exception({
               description: 'Rate limit hit',
               fatal: false,
