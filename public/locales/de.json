@@ -40,6 +40,7 @@
   "translateYourLanguage": "Wollen Sie Ihre Sprache ergänzen?",
   "logIn": "Einloggen",
   "logOut": "Ausloggen",
+  "dataProvider": "Data source",
   "now": "Jetzt",
   "custom": "Eigener...",
   "timestamp": "Zeitstempel",
@@ -108,6 +109,8 @@
     "unexpectedResponse": "Unerwartete Antwort",
     "apiCallFailed": "API-Aufruf ist fehlgeschlagen"
   },
+  "next": "Next",
+  "previous": "Previous",
   "settingsFor": "Einstellungen für",
   "saveSettings": "Einstellungen speichern",
   "defaultLanguage": "Bevorzugte Sprache",
@@ -136,8 +139,6 @@
   "authFailed": "Anmeldung fehlgeschlagen",
   "loginAgain": "Loggen Sie sich erneut ein!",
   "serviceUnavailable": "Service nicht erreichbar",
-  "rateLimitExceeded": "Rate limit exceeded.",
-  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
   "unexpectedError": "Unerwarteter Fehler",
   "unexpectedErrorMessage": "Ihr Ad-Blocker könnte API-Aufrufe zu last.fm blockieren. Bitte versuchen sie diesen zu deaktivieren oder fügen sie eine Ausnahme für ws.audioscrobbler.com hinzu.",
   "lastfmUnavailable": "Last.fm antwortet nicht, bitte versuchen sie es später noch einmal.",
@@ -149,5 +150,10 @@
   "logoutInfo": {
     "title": "Bis bald!",
     "message": "Erfolgreich abgemeldet."
-  }
+  },
+  "includeReleases": "Include releases",
+  "rateLimitExceeded": "Rate limit exceeded.",
+  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
+  "slowDown": "Slow down!",
+  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes."
 }

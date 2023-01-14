@@ -71,7 +71,20 @@
       "short": "MMM Do"
     },
     "months": {
-      "short": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
+      "short": [
+        "Oca",
+        "Şub",
+        "Mar",
+        "Nis",
+        "May",
+        "Haz",
+        "Tem",
+        "Ağu",
+        "Eyl",
+        "Eki",
+        "Kas",
+        "Ara"
+      ],
       "long": [
         "Ocak",
         "Şubat",
@@ -126,8 +139,6 @@
   "authFailed": "Kimlik doğrulama başarısız",
   "loginAgain": "Tekrar giriş yapmak zorundasın!",
   "serviceUnavailable": "Hizmet kullanılamıyor",
-  "rateLimitExceeded": "Rate limit exceeded.",
-  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
   "unexpectedError": "Beklenmeyen hata",
   "unexpectedErrorMessage": "Reklam engelleyicin Last.fm'e gönderilen API çağrılarını engelliyor olabilir. Reklam engelleyicini devre dışı bırakmayı veya ws.audioscrobbler.com adresini istisna olarak eklemeyi dene.",
   "lastfmUnavailable": "Last.fm yanıt vermiyor, lütfen daha sonra tekrar dene.",
@@ -139,5 +150,10 @@
   "logoutInfo": {
     "title": "Görüşmek üzere!",
     "message": "Çıkış yapma başarılı."
-  }
+  },
+  "includeReleases": "Include releases",
+  "rateLimitExceeded": "Rate limit exceeded.",
+  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
+  "slowDown": "Slow down!",
+  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes."
 }

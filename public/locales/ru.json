@@ -40,6 +40,7 @@
   "translateYourLanguage": "Хотите добавить свой язык?",
   "logIn": "Войти",
   "logOut": "Выйти",
+  "dataProvider": "Data source",
   "now": "Сейчас",
   "custom": "Задать...",
   "timestamp": "Временная метка",
@@ -108,6 +109,8 @@
     "unexpectedResponse": "Неожиданный ответ",
     "apiCallFailed": "Не удалось выполнить вызов в API"
   },
+  "next": "Next",
+  "previous": "Previous",
   "settingsFor": "Настройки",
   "saveSettings": "Сохранить настройки",
   "defaultLanguage": "Язык по умолчанию",
@@ -136,8 +139,6 @@
   "authFailed": "Не удалось войти",
   "loginAgain": "Срок действия сессии истек. Необходимо авторизоваться вновь!",
   "serviceUnavailable": "Сервис недоступен",
-  "rateLimitExceeded": "Rate limit exceeded.",
-  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
   "unexpectedError": "Непредвиденная ошибка",
   "unexpectedErrorMessage": "Пожалуйста, добавьте в исключения Вашего блокировщика рекламы этот сайт \"ws.audioscrobbler.com\". Это нужно ни в коем случае не для рекламы, просто возможно он будет блокировать доступ к сайту last.fm через API.",
   "lastfmUnavailable": "Last.fm не отвечает, пожалуйста, попробуйте позже.",
@@ -149,5 +150,10 @@
   "logoutInfo": {
     "title": "До скорой встречи!",
     "message": "Вы успешно вышли из аккаунта."
-  }
+  },
+  "includeReleases": "Include releases",
+  "rateLimitExceeded": "Rate limit exceeded.",
+  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
+  "slowDown": "Slow down!",
+  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes."
 }

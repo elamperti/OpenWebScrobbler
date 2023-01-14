@@ -11,8 +11,8 @@
   "album_plural": "Альбоми",
   "goBack": "Назад",
   "topAlbumsBy": "Найкращі альбоми {{nameOfArtist}}",
-  "noAlbumsFound": "Не знайдено альбомів за запитом <1>{{albumOrArtist}}</1>",
-  "noArtistsFound": "Не знайдено виконавців за запитом <1>{{albumOrArtist}}</1>",
+  "noAlbumsFound": "Не знайдено альбомів, за запитом <1>{{albumOrArtist}}</1>",
+  "noArtistsFound": "Не знайдено виконавців, за запитом <1>{{albumOrArtist}}</1>",
   "emptyAlbum": "Цей альбом пустий.",
   "scrobbleSongs": "Скробблінг треків",
   "scrobbleSelected": "Скробблити вибраний трек",
@@ -42,7 +42,7 @@
   "logOut": "Вийти",
   "dataProvider": "Джерело даних",
   "now": "Зараз",
-  "custom": "Користувацький...",
+  "custom": "Користувальницький...",
   "timestamp": "Часова мітка",
   "unknown": "Невідомо",
   "lastfmWillRejectOldTimestamps": "Last.fm не прийме скроббли, старіші за два тижні.",
@@ -53,7 +53,7 @@
   "scrobbleAgain": "Скробблити знову",
   "copyToEditor": "Копіювати у редактор",
   "swapArtistTitle": "Змінити місцями виконавця та трек",
-  "viewProfile": "Подивитися мій профіль на Last.fm",
+  "viewProfile": "Подивитися мій профіль на last.fm",
   "lockArtist": "Не витирати поле виконавця",
   "lockAlbum": "Не витирати поле альбому",
   "buyOnAmzn": "Шукати на Amazon",
@@ -71,7 +71,20 @@
       "short": "MMM Do"
     },
     "months": {
-      "short": ["січ.", "лют.", "бер.", "кві.", "тра.", "чер.", "лип.", "сер.", "вер.", "жов.", "лис.", "гру."],
+      "short": [
+        "січ.",
+        "лют.",
+        "бер.",
+        "кві.",
+        "тра.",
+        "чер.",
+        "лип.",
+        "сер.",
+        "вер.",
+        "жов.",
+        "лис.",
+        "гру."
+      ],
       "long": [
         "Січень",
         "Лютий",
@@ -104,8 +117,8 @@
   "availableLanguages": "Доступні мови",
   "use12HoursFormat": "Використовувати 12-годинний формат часу (AM/PM)",
   "splitPastedText": "Розділити вставлений тест на поля виконавець/назва",
-  "welcomeToTheScrobbler": "Ласкаво просимо в <1>Open Scrobbler</1>!",
-  "purpose": "Цей інструмент дозволяє вам вручну скробблити треки та альбоми які ви почули на радіо, платівках або з іншого місця, де автоскробблинг неможливий.",
+  "welcomeToTheScrobbler": "Ласкаво просимо в<1>Open Scrobbler</1>!",
+  "purpose": "Цей інструмент дозволяє вам вручну скробблити треки та альбоми які ви почули на радіо, платівках або з іншого місця, де автоскробблінг неможливий.",
   "authNeeded": "Авторизуйтеся в додатку, щоб почати!",
   "logInWithLastFm": "Увійти за допомогою Last.fm",
   "logInIsSafe": "Ця процедура є безпечною і відбувається через Last.fm",
@@ -119,25 +132,28 @@
     "CTA": "Стати патроном"
   },
   "discord": {
-    "title": "Приєднуйтеся до Discord!",
+    "title": "Приєднуйтесь у Discord!",
     "copy": "Підтримуйте зв'язок з іншими музичними поціновувачами та знайдіть для себе щось нове!",
     "CTA": "Приєднатися до Discord"
   },
   "authFailed": "Авторизація провалилася",
   "loginAgain": "Ви повинні увійти ще раз!",
   "serviceUnavailable": "Сервіс недоступний",
-  "rateLimitExceeded": "Rate limit exceeded.",
-  "rateLimitMessage": "Заскробблено занадто швидко? Ліміт швидкості скидається опівночі за Гринвічем (цей ліміт вимушено встановлений Last.fm)",
   "unexpectedError": "Непередбачувана помилка",
-  "unexpectedErrorMessage": "Ваш блокувальник реклами може блокувати доступ до Last.fm через API, будь ласка, вимкніть його або додайте виняток для сайту ws.audioscrobbler.com",
+  "unexpectedErrorMessage": "Ваш блокувальник реклами може блокувати доступ до last.fm через API, будь ласка, вимкніть його або додайте виняток для сайту ws.audioscrobbler.com",
   "lastfmUnavailable": "Last.fm не відповідає, будь ласка, спробуйте пізніше.",
   "settingsSavedSuccessfully": "Ваші налаштування збережені успішно!",
   "loginError": {
     "title": "Помилка при вході",
-    "message": "Сталася непередбачувана помилка. Нам шкода!"
+    "message": "Сталася непередбачувана помилка. Ми шкодуємо про це!"
   },
   "logoutInfo": {
     "title": "До нової зустрічі!",
     "message": "Ви успішно вийшли."
-  }
+  },
+  "includeReleases": "Include releases",
+  "rateLimitExceeded": "Rate limit exceeded.",
+  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
+  "slowDown": "Slow down!",
+  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes."
 }

@@ -40,6 +40,7 @@
   "translateYourLanguage": "Voleu afegir-hi la vostra llengua?",
   "logIn": "Inicia la sessió",
   "logOut": "Finalitza la sessió",
+  "dataProvider": "Data source",
   "now": "Ara",
   "custom": "Personalitzat…",
   "timestamp": "Data i hora",
@@ -108,6 +109,8 @@
     "unexpectedResponse": "Resposta inesperada",
     "apiCallFailed": "La trucada a l’API ha fallat"
   },
+  "next": "Next",
+  "previous": "Previous",
   "settingsFor": "Paràmetres per a",
   "saveSettings": "Desa els paràmetres",
   "defaultLanguage": "Llengua per defecte",
@@ -136,8 +139,6 @@
   "authFailed": "Ha fallat l’autenticació",
   "loginAgain": "Heu d’iniciar la sessió novament.",
   "serviceUnavailable": "Servei no disponible",
-  "rateLimitExceeded": "Rate limit exceeded.",
-  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
   "unexpectedError": "Error inesperat",
   "unexpectedErrorMessage": "El vostre blocador d’anuncis potser ha impedit les crides a l’API del Last.fm. Proveu de desactivar-lo o afegir-ne una excepció per a ws.audioscrobbler.com",
   "lastfmUnavailable": "El Last.fm no respon. Torneu-ho a intentar més tard.",
@@ -149,5 +150,10 @@
   "logoutInfo": {
     "title": "Fins aviat!",
     "message": "La sessió ha finalitzat correctament."
-  }
+  },
+  "includeReleases": "Include releases",
+  "rateLimitExceeded": "Rate limit exceeded.",
+  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
+  "slowDown": "Slow down!",
+  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes."
 }
