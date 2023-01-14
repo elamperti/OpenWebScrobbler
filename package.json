@@ -8,6 +8,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@redux-devtools/extension": "^3.2.4",
     "@sentry/react": "^7.21.1",
     "axios": "^0.21.1",
     "axios-cache-adapter": "^2.5.0",

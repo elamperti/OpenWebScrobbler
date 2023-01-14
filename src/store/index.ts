@@ -1,4 +1,5 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
+import { composeWithDevTools } from '@redux-devtools/extension';
 import promise from 'redux-promise-middleware';
 import createDebounce from 'redux-debounced';
 import throttle from 'lodash/throttle';
@@ -14,16 +15,12 @@ import updatesReducer from './reducers/updatesReducer';
 import userReducer from './reducers/userReducer';
 
 const middlewares = [createDebounce(), promise()];
+const isDevEnvironmet = process.env.NODE_ENV === 'development';
+const hasDevTools = typeof window === 'object' && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
-let composeEnhancer = compose;
-
-if (process.env.NODE_ENV === 'development') {
-  if (typeof window === 'object' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) {
-    composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-  } else {
-    const { logger } = require('redux-logger');
-    middlewares.push(logger);
-  }
+if (isDevEnvironmet && !hasDevTools) {
+  const { logger } = require('redux-logger');
+  middlewares.push(logger);
 }
 
 const persistedState = loadState();
@@ -39,7 +36,7 @@ const store = createStore(
     user: userReducer,
   }),
   persistedState,
-  composeEnhancer(applyMiddleware(...middlewares))
+  (isDevEnvironmet && hasDevTools ? composeWithDevTools({}) : compose)(applyMiddleware(...middlewares))
 );
 
 store.subscribe(
@@ -62,5 +59,7 @@ store.subscribe(
     });
   }, 2000)
 );
+
+export type RootState = ReturnType<typeof store.getState>;
 
 export default store;

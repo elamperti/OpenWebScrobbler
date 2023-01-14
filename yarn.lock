@@ -1045,6 +1045,13 @@
   dependencies:
     regenerator-runtime "^0.13.11"
 
+"@babel/runtime@^7.20.7":
+  version "7.20.7"
+  resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.20.7.tgz#fcb41a5a70550e04a7b708037c7c32f7f356d8fd"
+  integrity sha512-UF0tvkUtxwAgZ5W/KrkHf0Rn0fdnLDU9ScxBrEVNUprE/MzirjK4MJUX1/BVDv00Sv8cljtukVK1aky++X1SjQ==
+  dependencies:
+    regenerator-runtime "^0.13.11"
+
 "@babel/template@^7.18.10", "@babel/template@^7.3.3":
   version "7.18.10"
   resolved "https://registry.yarnpkg.com/@babel/template/-/template-7.18.10.tgz#6f9134835970d1dbf0835c0d100c9f38de0c5e71"
@@ -1912,6 +1919,14 @@
     "@react-spring/core" "~9.5.5"
     "@react-spring/shared" "~9.5.5"
     "@react-spring/types" "~9.5.5"
+
+"@redux-devtools/extension@^3.2.4":
+  version "3.2.4"
+  resolved "https://registry.yarnpkg.com/@redux-devtools/extension/-/extension-3.2.4.tgz#24fd4a98cec2cb805373accb33afa7854476b636"
+  integrity sha512-fKh6zQiwbn8cd/rXmG1WQmm0YwIJifkBQ5oI0SeavldvT/wVD9OTPdBSW2NSYFjVvqCg/OiTzjrdfzxbE6neLQ==
+  dependencies:
+    "@babel/runtime" "^7.20.7"
+    immutable "^4.2.2"
 
 "@remix-run/router@1.0.4":
   version "1.0.4"
@@ -6545,6 +6560,11 @@ immutable@^4.0.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.1.0.tgz#f795787f0db780183307b9eb2091fcac1f6fafef"
   integrity sha512-oNkuqVTA8jqG1Q6c+UglTOD1xhC1BtjKI7XkCXRkZHrN5m18/XsnUp8Q89GkQO/z+0WjonSvl0FLhDYftp46nQ==
+
+immutable@^4.2.2:
+  version "4.2.2"
+  resolved "https://registry.yarnpkg.com/immutable/-/immutable-4.2.2.tgz#2da9ff4384a4330c36d4d1bc88e90f9e0b0ccd16"
+  integrity sha512-fTMKDwtbvO5tldky9QZ2fMX7slR0mYpY5nbnFWYp0fOzDhHqhgIw9KoYgxLWsoNTS9ZHGauHj18DTyEw6BK3Og==
 
 import-fresh@^3.0.0, import-fresh@^3.1.0, import-fresh@^3.2.1:
   version "3.3.0"
