@@ -4,12 +4,13 @@ import { useLocation } from 'react-router-dom';
 
 import { clearAlerts } from 'store/actions/alertActions';
 
-import Alert from './partials/Alert';
+import AlertItem from './partials/AlertItem';
+import { RootState } from 'store';
 
 export default function AlertZone() {
   const location = useLocation();
   const dispatch = useDispatch();
-  const alerts = useSelector((state) => state.alerts);
+  const alerts = useSelector((state: RootState) => state.alerts);
 
   useEffect(() => {
     if (alerts && alerts.length > 0 && !location.state?.keepAlerts) {
@@ -23,7 +24,7 @@ export default function AlertZone() {
   return (
     <div className="AlertZone mt-3">
       {alerts.map((data) => (
-        <Alert key={data.id} {...data} />
+        <AlertItem key={data.id} {...data} />
       ))}
     </div>
   );

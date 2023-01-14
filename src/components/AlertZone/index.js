@@ -1,1 +1,1 @@
-export { default } from './AlertZone.js';
+export { default } from './AlertZone';

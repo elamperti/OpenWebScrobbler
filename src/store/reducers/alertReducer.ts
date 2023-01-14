@@ -1,7 +1,8 @@
 import shortid from 'shortid';
 import { ALERT_CREATE, ALERT_DISMISS, ALERT_CLEAR_ALL } from 'Constants';
+import { Alert } from 'components/AlertZone/types';
 
-const initialState = [];
+const initialState: Alert[] = [];
 
 /*
   Alert properties for humans:
@@ -32,7 +33,7 @@ const alertReducer = (state = initialState, action) => {
           rawMessage: action.payload.rawMessage,
           icon: action.payload.icon || null,
           persistent: action.payload.persistent || false,
-        },
+        } as Alert,
         ...state.filter((alert) => {
           if (action.payload.category && alert.category) {
             return alert.category !== action.payload.category;

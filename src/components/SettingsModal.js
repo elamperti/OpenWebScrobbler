@@ -9,7 +9,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
 
-import { dismissAlert } from 'store/actions/alertActions';
 import { setSettings, closeSettingsModal } from 'store/actions/settingsActions';
 import { languageList } from 'utils/i18n';
 import { PROVIDER_LASTFM, PROVIDER_DISCOGS } from 'Constants';
@@ -165,14 +164,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    dismissAlert: dismissAlert(dispatch),
     setSettings: setSettings(dispatch),
     close: closeSettingsModal(dispatch),
   };
 };
 
 SettingsModal.propTypes = {
-  dismissAlert: PropTypes.func.isRequired,
   setSettings: PropTypes.func.isRequired,
   close: PropTypes.func.isRequired,
   settings: PropTypes.object.isRequired,

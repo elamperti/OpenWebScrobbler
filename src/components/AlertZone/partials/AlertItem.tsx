@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 
 import { Trans } from 'react-i18next';
@@ -7,8 +6,9 @@ import { Alert as ReactstrapAlert } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { dismissAlert } from 'store/actions/alertActions';
+import { Alert } from '../types';
 
-export default function Alert({ id: alertId, type, errorNumber, title, message, rawMessage, icon }) {
+export default function AlertItem({ id: alertId, type, errorNumber, title, message, rawMessage, icon }: Alert) {
   const [isOpen, setOpenState] = useState(true);
   const dispatch = useDispatch();
 
@@ -41,13 +41,3 @@ export default function Alert({ id: alertId, type, errorNumber, title, message, 
     </ReactstrapAlert>
   );
 }
-
-Alert.propTypes = {
-  id: PropTypes.string.isRequired,
-  type: PropTypes.string,
-  errorNumber: PropTypes.number,
-  title: PropTypes.string,
-  message: PropTypes.string,
-  rawMessage: PropTypes.string,
-  icon: PropTypes.object,
-};
