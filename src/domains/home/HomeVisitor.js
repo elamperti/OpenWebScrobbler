@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <React.Fragment>
       <Row data-cy="HomeVisitor">
-        <Col lg="7">
+        <Col lg="7" xl="8">
           <div className="jumbotron rounded px-3 px-sm-4 py-3 py-sm-5">
             <WelcomeBlock />
             <p className="text-center">{t('authNeeded')}</p>
@@ -35,7 +35,7 @@ export default function Home() {
             </p>
           </div>
         </Col>
-        <Col lg="5">
+        <Col lg="5" xl="4">
           <div data-cy="HomeVisitor-about" className="jumbotron rounded px-3 px-sm-4 py-3 py-sm-5 ows-Home-about">
             <h4>
               <Trans t={t} i18nKey="about.title">
