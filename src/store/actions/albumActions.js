@@ -1,7 +1,6 @@
 import { lastfmAPI, discogsAPI } from 'utils/adapters';
 
-import * as discogsClient from 'utils/clients/discogs';
-import * as lastfmClient from 'utils/clients/lastfm';
+import { discogsClient, lastfmClient } from 'utils/clients';
 
 import {
   GET_ALBUM_INFO_LASTFM,
