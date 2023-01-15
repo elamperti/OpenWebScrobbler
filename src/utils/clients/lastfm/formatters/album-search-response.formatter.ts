@@ -1,16 +1,8 @@
 import get from 'lodash/get';
 
-interface AlbumResult {
-  name: string;
-  artist: string;
-  mbid: string;
-  url: string;
-  image: { '#text': string }[];
-}
-
-export function albumSearchFormatter(response?: unknown) {
+export function albumSearchFormatter(response: any) {
   const albums = [];
-  const rawAlbumList = get(response, 'data.results.albummatches.album', []) as AlbumResult[];
+  const rawAlbumList = get(response, 'data.results.albummatches.album', []);
 
   for (const album of rawAlbumList) {
     if (album.name === '(null)') continue;
@@ -18,7 +10,7 @@ export function albumSearchFormatter(response?: unknown) {
       artist: album.artist,
       mbid: album.mbid,
       name: album.name,
-      url: album.url, // <--
+      url: album.url,
       cover: {
         sm: get(album, 'image[2][#text]'),
         lg: get(album, 'image[3][#text]'),
