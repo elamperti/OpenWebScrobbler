@@ -1,10 +1,5 @@
 import get from 'lodash/get';
-import {
-  fetchLastfmAlbumInfo,
-  fetchDiscogsAlbumInfo,
-  fetchLastfmTopAlbums,
-  fetchDiscogsTopAlbums,
-} from 'store/transformers/albumTransformer';
+import { fetchLastfmAlbumInfo, fetchDiscogsAlbumInfo } from 'store/transformers/albumTransformer';
 import { fetchLastfmTracks, fetchDiscogsTracks } from 'store/transformers/trackTransformer';
 
 import { castArray } from 'utils/common';
@@ -13,8 +8,7 @@ import {
   GET_ALBUM_INFO_LASTFM,
   GET_ALBUM_INFO_DISCOGS,
   SEARCH_ALBUM,
-  SEARCH_TOP_ALBUMS_LASTFM,
-  SEARCH_TOP_ALBUMS_DISCOGS,
+  SEARCH_TOP_ALBUMS,
   SET_ALBUM_QUERY,
   SET_ARTIST_QUERY,
   CLEAR_ALBUM_SEARCH,
@@ -79,8 +73,7 @@ const albumReducer = (state = initialState, action) => {
       };
 
     case `${SEARCH_ALBUM}_REJECTED`:
-    case `${SEARCH_TOP_ALBUMS_LASTFM}_REJECTED`:
-    case `${SEARCH_TOP_ALBUMS_DISCOGS}_REJECTED`:
+    case `${SEARCH_TOP_ALBUMS}_REJECTED`:
       // do something with action.payload
       return {
         ...state,
@@ -93,30 +86,15 @@ const albumReducer = (state = initialState, action) => {
         list: action.payload,
       };
 
-    case `${SEARCH_TOP_ALBUMS_LASTFM}_FULFILLED`: {
-      const lastfmTopAlbums = fetchLastfmTopAlbums(get(action.payload, 'data', []));
+    case `${SEARCH_TOP_ALBUMS}_FULFILLED`: {
       return {
         ...state,
         queries: {
           ...state.queries,
           artist:
-            lastfmTopAlbums && lastfmTopAlbums.length > 0
-              ? get(lastfmTopAlbums[0], 'artist', '')
-              : state.queries.artist,
+            action.payload && action.payload.length > 0 ? get(action.payload[0], 'artist', '') : state.queries.artist,
         },
-        list: lastfmTopAlbums,
-      };
-    }
-
-    case `${SEARCH_TOP_ALBUMS_DISCOGS}_FULFILLED`: {
-      const discogsTopAlbums = fetchDiscogsTopAlbums(get(action.payload, 'data', []));
-      return {
-        ...state,
-        queries: {
-          ...state.queries,
-          artist: discogsTopAlbums ? get(discogsTopAlbums[0], 'artist', '') : state.queries.artist,
-        },
-        list: discogsTopAlbums,
+        list: action.payload,
       };
     }
 

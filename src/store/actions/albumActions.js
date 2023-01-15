@@ -9,8 +9,7 @@ import {
   CLEAR_ALBUM_ARTIST_SEARCH,
   CLEAR_ALBUM_TRACKLIST,
   SEARCH_ALBUM,
-  SEARCH_TOP_ALBUMS_LASTFM,
-  SEARCH_TOP_ALBUMS_DISCOGS,
+  SEARCH_TOP_ALBUMS,
   SET_ALBUM_QUERY,
   SET_ARTIST_QUERY,
   PROVIDER_DISCOGS,
@@ -26,40 +25,11 @@ export function searchAlbums(album, options = {}) {
   };
 }
 
-export function searchTopAlbums(artist, options = {}) {
-  if (artist.discogsId) {
-    return {
-      type: SEARCH_TOP_ALBUMS_DISCOGS,
-      payload: discogsAPI.get('', {
-        params: {
-          method: 'artist.getTopAlbums',
-          artist_id: artist.discogsId,
-          // sort: 'year',
-          // sort_order: 'desc',
-        },
-      }),
-    };
-  } else {
-    // Last.fm request
-    const params = {
-      method: 'artist.getTopAlbums',
-      api_key: process.env.REACT_APP_LASTFM_API_KEY,
-      format: 'json',
-    };
-
-    if (artist.mbid) {
-      params.mbid = artist.mbid;
-    } else {
-      params.artist = artist.name.toLowerCase(); // dedupes case-sensitive cached queries
-    }
-
-    return {
-      type: SEARCH_TOP_ALBUMS_LASTFM,
-      payload: lastfmAPI.get('', {
-        params,
-      }),
-    };
-  }
+export function searchTopAlbums(artist) {
+  return {
+    type: SEARCH_TOP_ALBUMS,
+    payload: artist.discogsId ? discogsClient.searchTopAlbums(artist.discogsId) : lastfmClient.searchTopAlbums(artist),
+  };
 }
 
 export function setAlbumQuery(query) {
