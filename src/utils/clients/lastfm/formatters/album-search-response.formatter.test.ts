@@ -11,12 +11,12 @@ describe('the `albumSearchFormatter` function', () => {
                 name: 'title',
                 artist: 'artist',
                 mbid: '1',
-                url: 'album.com',
+                url: 'example.com',
                 image: [
-                  { '#text': 'images.com/sample' },
-                  { '#text': 'images.com/sample-2' },
-                  { '#text': 'images.com/thumb' },
-                  { '#text': 'images.com/cover' },
+                  { '#text': 'example.com/sample' },
+                  { '#text': 'example.com/sample-2' },
+                  { '#text': 'example.com/thumb' },
+                  { '#text': 'example.com/cover' },
                 ],
               },
             ],
@@ -29,8 +29,8 @@ describe('the `albumSearchFormatter` function', () => {
       {
         artist: 'artist',
         cover: {
-          lg: 'images.com/cover',
-          sm: 'images.com/thumb',
+          lg: 'example.com/cover',
+          sm: 'example.com/thumb',
         },
         coverSizes: {
           lg: 300,
@@ -38,7 +38,7 @@ describe('the `albumSearchFormatter` function', () => {
         },
         mbid: '1',
         name: 'title',
-        url: 'album.com',
+        url: 'example.com',
       },
     ]);
   });

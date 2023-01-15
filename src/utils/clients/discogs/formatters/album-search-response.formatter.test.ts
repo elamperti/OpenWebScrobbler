@@ -11,8 +11,8 @@ describe('the `albumSearchFormatter` function', () => {
             master_id: 2,
             title: 'title',
             year: 2022,
-            thumb: 'images.com/thumb',
-            cover_image: 'images.com/cover',
+            thumb: 'example.com/thumb',
+            cover_image: 'example.com/cover',
           },
         ],
       },
@@ -22,8 +22,8 @@ describe('the `albumSearchFormatter` function', () => {
       {
         artist: '',
         cover: {
-          lg: 'images.com/cover',
-          sm: 'images.com/thumb',
+          lg: 'example.com/cover',
+          sm: 'example.com/thumb',
         },
         coverSizes: {
           lg: 500,
@@ -47,8 +47,8 @@ describe('the `albumSearchFormatter` function', () => {
             master_id: 2,
             title: 'title',
             year: 2022,
-            thumb: 'images.com/thumb',
-            cover_image: 'images.com/cover',
+            thumb: 'example.com/thumb',
+            cover_image: 'example.com/cover',
           },
         ],
       },
