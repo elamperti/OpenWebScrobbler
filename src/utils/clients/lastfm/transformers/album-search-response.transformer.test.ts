@@ -1,8 +1,8 @@
-import { albumSearchFormatter } from './album-search-response.transformer';
+import { albumSearchTransformer } from './album-search-response.transformer';
 
-describe('the `albumSearchFormatter` function', () => {
+describe('the `albumSearchTransformer` function', () => {
   it('should format the results', () => {
-    const results = albumSearchFormatter({
+    const results = albumSearchTransformer({
       data: {
         results: {
           albummatches: {

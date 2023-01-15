@@ -2,7 +2,7 @@ import get from 'lodash/get';
 import { sanitizeArtistName } from './common/sanitize-artist-name';
 
 export function topAlbumsTransformer(response: any) {
-  return get(response, 'releases', []).map((album) => ({
+  return get(response, 'data.releases', []).map((album) => ({
     artist: sanitizeArtistName(album.artist),
     discogsId: `${album.type === 'master' ? '' : 'release-'}${album.master_id || album.id}`,
     name: album.title,

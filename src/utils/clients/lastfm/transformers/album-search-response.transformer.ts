@@ -1,6 +1,6 @@
 import get from 'lodash/get';
 
-export function albumSearchFormatter(response: any) {
+export function albumSearchTransformer(response: any) {
   const albums = [];
   const rawAlbumList = get(response, 'data.results.albummatches.album', []);
 

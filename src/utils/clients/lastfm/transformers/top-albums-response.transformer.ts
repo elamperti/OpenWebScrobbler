@@ -2,7 +2,7 @@ import get from 'lodash/get';
 
 export function topAlbumsTransformer(response: any) {
   const albums = [];
-  const rawAlbumList = get(response, 'data.results.topalbums.album', []);
+  const rawAlbumList = get(response, 'data.topalbums.album', []);
 
   for (const album of rawAlbumList) {
     if (album.name === '(null)') continue;
