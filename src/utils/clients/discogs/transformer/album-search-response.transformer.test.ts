@@ -1,8 +1,8 @@
-import { albumSearchFormatter } from './album-search-response.formatter';
+import { albumSearchTransformer } from './album-search-response.transformer';
 
 describe('the `albumSearchFormatter` function', () => {
   it('should format the results', () => {
-    const results = albumSearchFormatter({
+    const results = albumSearchTransformer({
       data: {
         results: [
           {
@@ -38,7 +38,7 @@ describe('the `albumSearchFormatter` function', () => {
   });
 
   it('should set the `discogsId` based on the album type', () => {
-    const results = albumSearchFormatter({
+    const results = albumSearchTransformer({
       data: {
         results: [
           {

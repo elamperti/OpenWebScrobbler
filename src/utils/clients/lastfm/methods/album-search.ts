@@ -1,5 +1,5 @@
 import { lastfmAPI } from '../api-client';
-import { albumSearchFormatter } from '../formatters/album-search-response.formatter';
+import { albumSearchFormatter as albumSearchTransformer } from '../transformers/album-search-response.transformer';
 
 export async function albumSearch(album: string) {
   const response = await lastfmAPI.get('', {
@@ -9,5 +9,5 @@ export async function albumSearch(album: string) {
     },
   });
 
-  return albumSearchFormatter(response);
+  return albumSearchTransformer(response);
 }

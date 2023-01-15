@@ -1,4 +1,4 @@
-export function albumSearchFormatter(response: any) {
+export function albumSearchTransformer(response: any) {
   const results = response?.data?.results || [];
 
   return results.map((album) => {

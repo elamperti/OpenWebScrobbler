@@ -1,1 +1,1 @@
-export * from './methods';
+export { albumSearch } from './methods/album-search';
