@@ -64,7 +64,7 @@ function axiosErrorHandler(payload, dispatch) {
     case 26: // API key suspended
     default:
       newError.title = 'unexpectedError';
-      newError.message = 'unexpectedErrorMessage';
+      // newError.message = 'unexpectedErrorMessage';
       newError.rawMessage = get(payload, 'data.message', null);
       showErrorNumber = true;
   }
