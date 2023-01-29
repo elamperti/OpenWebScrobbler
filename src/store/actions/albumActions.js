@@ -1,10 +1,9 @@
-import { lastfmAPI, discogsAPI } from 'utils/adapters';
+import { discogsAPI } from 'utils/adapters';
 
 import { discogsClient, lastfmClient } from 'utils/clients';
 
 import {
-  GET_ALBUM_INFO_LASTFM,
-  GET_ALBUM_INFO_DISCOGS,
+  GET_ALBUM_INFO,
   CLEAR_ALBUM_SEARCH,
   CLEAR_ALBUM_ARTIST_SEARCH,
   CLEAR_ALBUM_TRACKLIST,
@@ -81,35 +80,8 @@ export async function _discogsFindBestMatch(album) {
 }
 
 export function getAlbum(album) {
-  if (album.discogsId) {
-    return {
-      type: GET_ALBUM_INFO_DISCOGS,
-      payload: discogsAPI.get('', {
-        params: {
-          method: 'album.getInfo',
-          album_id: album.discogsId,
-        },
-      }),
-    };
-  } else {
-    const searchParams = {};
-
-    // Last.fm request
-    if (album.mbid) {
-      searchParams.mbid = album.mbid;
-    } else {
-      searchParams.artist = album.artist;
-      searchParams.album = album.name;
-    }
-
-    return {
-      type: GET_ALBUM_INFO_LASTFM,
-      payload: lastfmAPI.get('', {
-        params: {
-          method: 'album.getInfo',
-          ...searchParams,
-        },
-      }),
-    };
-  }
+  return {
+    type: GET_ALBUM_INFO,
+    payload: album.discogsId ? discogsClient.albumGetInfo(album.discogsId) : lastfmClient.albumGetInfo(album),
+  };
 }

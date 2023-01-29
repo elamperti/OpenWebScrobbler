@@ -1,12 +1,7 @@
 import get from 'lodash/get';
-import { fetchLastfmAlbumInfo, fetchDiscogsAlbumInfo } from 'store/transformers/albumTransformer';
-import { fetchLastfmTracks, fetchDiscogsTracks } from 'store/transformers/trackTransformer';
-
-import { castArray } from 'utils/common';
 
 import {
-  GET_ALBUM_INFO_LASTFM,
-  GET_ALBUM_INFO_DISCOGS,
+  GET_ALBUM_INFO,
   SEARCH_ALBUM,
   SEARCH_TOP_ALBUMS,
   SET_ALBUM_QUERY,
@@ -98,42 +93,18 @@ const albumReducer = (state = initialState, action) => {
       };
     }
 
-    case `${GET_ALBUM_INFO_LASTFM}_FULFILLED`: {
-      const info = fetchLastfmAlbumInfo(get(action.payload, 'data', {}));
-      // tracks.track can be either an array of tracks or just a track object (when it's only one track).
-      // A consistency only second to that of jelly.
-      const tracks = castArray(get(action.payload, 'data.album.tracks.track', []));
-
-      return {
-        ...state,
-        info,
-        tracks: fetchLastfmTracks(tracks, {
-          album: info.name,
-          cover: info.cover,
-        }),
-      };
-    }
-
-    case `${GET_ALBUM_INFO_DISCOGS}_FULFILLED`: {
-      const info = fetchDiscogsAlbumInfo(get(action.payload, 'data', {}));
-
-      return {
-        ...state,
-        info,
-        tracks: fetchDiscogsTracks(get(action.payload, 'data', {}), {
-          artist: info.artist,
-          album: info.name,
-          cover: info.cover,
-        }),
-      };
-    }
-
-    case `${GET_ALBUM_INFO_LASTFM}_REJECTED`:
-    case `${GET_ALBUM_INFO_DISCOGS}_REJECTED`: {
+    case `${GET_ALBUM_INFO}_REJECTED`: {
       return {
         ...state,
         info: {},
         tracks: [],
+      };
+    }
+
+    case `${GET_ALBUM_INFO}_FULFILLED`: {
+      return {
+        ...state,
+        ...action.payload,
       };
     }
 
