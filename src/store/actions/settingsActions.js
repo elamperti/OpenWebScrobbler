@@ -9,7 +9,7 @@ import {
   OPENSCROBBLER_API_URL,
   SETTINGS_UPDATE,
   SETTINGS_SAVE,
-  DEBOUNCE_PERIOD,
+  SETTINGS_DEBOUNCE_PERIOD,
   SETTINGS_MODAL_OPEN,
   SETTINGS_MODAL_CLOSE,
   SETTINGS_SET_DATA_PROVIDER,
@@ -22,7 +22,7 @@ export function setSettings(dispatch) {
       dispatch({
         type: SETTINGS_SAVE,
         meta: {
-          debounce: { time: silent ? DEBOUNCE_PERIOD : 1 },
+          debounce: { time: silent ? SETTINGS_DEBOUNCE_PERIOD : 1 },
         },
         payload: () => {
           axios.post(`${OPENSCROBBLER_API_URL}/settings.php`, newSettings).then(() => {

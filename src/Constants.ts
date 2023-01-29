@@ -6,7 +6,8 @@ export const LASTFM_AUTH_URL =
   `&cb=${window.location.protocol}//${window.location.host}/`;
 export const OPENSCROBBLER_API_URL = '/api/v2';
 export const CONSIDER_HISTORY_STALE_AFTER = 5 * 60 * 1000; // 5 minutes
-export const DEBOUNCE_PERIOD = 3 * 1000; // 3 seconds
+export const SETTINGS_DEBOUNCE_PERIOD = 3 * 1000; // 3 seconds
+export const SCROBBLING_DEBOUNCE_PERIOD = 1.5 * 1000; // 1.5 seconds
 export const LASTFM_API_RATE_LIMIT = 0; // At this moment is 5 rq/s over 5m per originating IP
 export const MAX_RECENT_USERS = 6;
 export const MAX_RECENT_ALBUMS = 8;
@@ -39,6 +40,7 @@ export const ALERT_CLEAR_ALL = 'ALERT_CLEAR_ALL';
 
 // Scrobbles store
 export const ENQUEUE_NEW = 'ENQUEUE_NEW';
+export const FLUSH_QUEUE = 'FLUSH_QUEUE';
 export const SCROBBLE = 'SCROBBLE';
 export const SCROBBLE_COVER_SEARCH = 'SCROBBLE_COVER_SEARCH';
 export const CLEAR_SCROBBLES_LIST = 'CLEAR_SCROBBLES_LIST';

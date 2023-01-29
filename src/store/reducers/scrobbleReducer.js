@@ -1,15 +1,20 @@
+import axios from 'axios';
 import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';
+import shortid from 'shortid';
 
 import {
   ENQUEUE_NEW,
+  FLUSH_QUEUE,
   COUNT_SCROBBLES_ENABLE,
   COUNT_SCROBBLES_DISABLE,
   USER_LOGGED_OUT,
   CLEAR_SCROBBLES_LIST,
   SCROBBLE,
   SCROBBLE_COVER_SEARCH,
+  OPENSCROBBLER_API_URL,
 } from 'Constants';
+import { prepareScrobbles } from 'store/transformers/scrobbleTransformer';
 
 const initialState = {
   countNewScrobbles: false,
@@ -40,25 +45,73 @@ function updateScrobbleProps(state, scrobbleUUID, newProps) {
 
 const scrobbleReducer = (state = initialState, action) => {
   let status, errorDescription;
-  const newScrobbles = [];
   let trackUUID;
   let albumData;
 
   switch (action.type) {
-    case ENQUEUE_NEW:
-      for (const scrobble of action.payload.scrobbles) {
-        newScrobbles.push({
+    case ENQUEUE_NEW: {
+      const newScrobbles = action.payload.scrobbles.map((scrobble) => {
+        return {
           ...scrobble,
-          status: 'pending',
-          scrobbleUUID: action.payload.scrobbleUUID,
-        });
-      }
+          status: 'queued',
+        };
+      });
 
       return {
         ...state,
         unreadCount: state.countNewScrobbles ? (state.unreadCount || 0) + newScrobbles.length : 0,
         list: [...state.list, ...newScrobbles],
       };
+    }
+
+    case FLUSH_QUEUE: {
+      const scrobbleUUID = shortid.generate();
+      const { dispatch } = action.payload; // sorry :(
+
+      // I'm reversing twice to go from old to new without affecting any possible ordering issues
+      const queuedScrobbles = state.list.filter(({ status }) => status === 'queued').reverse();
+      const scrobbles = queuedScrobbles.splice(0, 50).reverse();
+      const scrobbledIds = scrobbles.map(({ id }) => id);
+
+      if (scrobbles.length > 0) {
+        // Dispatch axios promise
+        setTimeout(
+          () =>
+            dispatch({
+              type: SCROBBLE,
+              payload: axios.post(`${OPENSCROBBLER_API_URL}/scrobble.php`, prepareScrobbles(scrobbles), {
+                headers: {
+                  scrobbleUUID,
+                },
+              }),
+            }),
+          0
+        );
+      }
+
+      // Flush any pending scrobbles if there were more than 50
+      if (queuedScrobbles.length > 0) {
+        setTimeout(
+          () =>
+            dispatch({
+              type: FLUSH_QUEUE,
+              payload: { dispatch },
+            }),
+          500
+        ); // Wait period between queue flushes
+      }
+
+      return {
+        ...state,
+        list: state.list.map((scrobble) => {
+          if (scrobbledIds.includes(scrobble.id)) {
+            scrobble.scrobbleUUID = scrobbleUUID;
+            scrobble.status = 'pending';
+          }
+          return scrobble;
+        }),
+      };
+    }
 
     case COUNT_SCROBBLES_ENABLE:
       return {
@@ -112,7 +165,7 @@ const scrobbleReducer = (state = initialState, action) => {
       return state;
 
     case `${SCROBBLE_COVER_SEARCH}_FULFILLED`:
-      trackUUID = action.payload.config.params.ows_scrobbleUUID;
+      trackUUID = action.payload.config.params._uuid;
       if (hasIn(action.payload, 'data.track.album') || hasIn(action.payload, 'data.album')) {
         albumData = action.payload.data.album || action.payload.data.track.album;
         if (albumData.image) {

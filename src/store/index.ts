@@ -45,7 +45,9 @@ store.subscribe(
     saveState({
       scrobbles: {
         ...state.scrobbles,
-        list: state.scrobbles.list.filter((scrobble) => scrobble.status !== 'pending').slice(-50),
+        list: state.scrobbles.list
+          .filter((scrobble) => scrobble.status !== 'queued' && scrobble.status !== 'pending')
+          .slice(-100),
       },
       user: {
         ...state.user,

@@ -3,54 +3,38 @@ import shortid from 'shortid';
 
 import {
   AUDIOSCROBBLER_API_URL,
-  OPENSCROBBLER_API_URL,
   ENQUEUE_NEW,
+  FLUSH_QUEUE,
   COUNT_SCROBBLES_ENABLE,
   COUNT_SCROBBLES_DISABLE,
   CLEAR_SCROBBLES_LIST,
-  SCROBBLE,
   SCROBBLE_COVER_SEARCH,
+  SCROBBLING_DEBOUNCE_PERIOD,
 } from 'Constants';
 
 export function enqueueScrobble(dispatch) {
   return (scrobbles = []) => {
-    const artist = [];
-    const track = [];
-    const album = [];
-    const albumArtist = [];
-    const timestamp = [];
-    const scrobbleUUID = shortid.generate();
-
     // Normalize and add metadata
     scrobbles = scrobbles.map((scrobble) => {
-      let coverSearchEndpoint;
       scrobble.id = shortid.generate();
 
       if (!scrobble.timestamp) {
         scrobble.timestamp = new Date();
       }
-      // scrobble.unixTimestamp = Math.trunc((scrobble.timestamp || new Date()).getTime() / 1000);
-
-      if (scrobble.album) {
-        coverSearchEndpoint = 'album.getInfo';
-      } else {
-        coverSearchEndpoint = 'track.getInfo';
-        scrobble.album = '';
-      }
 
       if (!scrobble.cover) {
-        // ToDo: possible race condition (response arrives before scrobble is added to store)
         dispatch({
+          // ToDo: queue to avoid sending many reqs together
           type: SCROBBLE_COVER_SEARCH,
           payload: axios.get(AUDIOSCROBBLER_API_URL, {
             params: {
-              method: coverSearchEndpoint,
+              _uuid: scrobble.id,
+              method: scrobble.album ? 'album.getInfo' : 'track.getInfo',
               api_key: process.env.REACT_APP_LASTFM_API_KEY,
               artist: scrobble.artist,
               track: scrobble.title,
-              album: scrobble.album,
+              album: scrobble.album || '',
               albumArtist: scrobble.albumArtist,
-              ows_scrobbleUUID: scrobble.id,
               format: 'json',
             },
           }),
@@ -65,39 +49,21 @@ export function enqueueScrobble(dispatch) {
       type: ENQUEUE_NEW,
       payload: {
         scrobbles,
-        scrobbleUUID,
       },
     });
 
-    // ToDo: split following code so queue can be processed on demand
-
-    // transform content for OWS API
-    for (const scrobble of scrobbles) {
-      timestamp.push(new Date(scrobble.timestamp).toISOString());
-      artist.push(scrobble.artist);
-      track.push(scrobble.title);
-      album.push(scrobble.album);
-      albumArtist.push(scrobble.albumArtist);
-    }
-
-    // Dispatch axios promise
     dispatch({
-      type: SCROBBLE,
-      payload: axios.post(
-        `${OPENSCROBBLER_API_URL}/scrobble.php`,
-        {
-          artist,
-          track,
-          album,
-          albumArtist,
-          timestamp,
-        },
-        {
-          headers: {
-            scrobbleUUID,
-          },
-        }
-      ),
+      type: FLUSH_QUEUE,
+      meta: {
+        debounce: { time: SCROBBLING_DEBOUNCE_PERIOD },
+      },
+      payload: { dispatch }, // FIXME: this is an anti-pattern
+      /* The thing here is: I need to scrobble *all* queued tracks, but I only want to
+       * do so once every SCROBBLING_DEBOUNCE_PERIOD. This is an ugly -but effective-
+       * way to trigger on each enqueue call and fire just once.
+       *
+       * PS: Future me: I'm sorry.
+       */
     });
   };
 }
