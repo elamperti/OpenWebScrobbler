@@ -10,7 +10,7 @@ import { enqueueScrobble } from 'store/actions/scrobbleActions';
 import format from 'date-fns/format';
 import isToday from 'date-fns/is_today';
 
-import { Button, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { Button, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, FormGroup } from 'reactstrap';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -281,14 +281,15 @@ class ScrobbleItem extends Component {
 
     if (this.props.onSelect) {
       selectionCheckbox = (
-        <Input
-          inline
-          type="checkbox"
-          className="me-1"
-          checked={this.props.selected}
-          onChange={() => this.props.onSelect(this.props.uuid, this.props.selected)}
-          id={`ScrobbleItem-checkbox-${this.props.uuid}`}
-        />
+        <FormGroup check inline className="me-0">
+          <Input
+            type="checkbox"
+            className="me-1"
+            checked={this.props.selected}
+            onChange={() => this.props.onSelect(this.props.uuid, this.props.selected)}
+            id={`ScrobbleItem-checkbox-${this.props.uuid}`}
+          />
+        </FormGroup>
       );
     }
 
