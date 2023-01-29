@@ -55,7 +55,10 @@ export function enqueueScrobble(dispatch) {
     dispatch({
       type: FLUSH_QUEUE,
       meta: {
-        debounce: { time: SCROBBLING_DEBOUNCE_PERIOD },
+        debounce: {
+          leading: true,
+          time: SCROBBLING_DEBOUNCE_PERIOD,
+        },
       },
       payload: { dispatch }, // FIXME: this is an anti-pattern
       /* The thing here is: I need to scrobble *all* queued tracks, but I only want to

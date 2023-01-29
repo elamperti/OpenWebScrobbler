@@ -9,6 +9,7 @@ export const CONSIDER_HISTORY_STALE_AFTER = 5 * 60 * 1000; // 5 minutes
 export const SETTINGS_DEBOUNCE_PERIOD = 3 * 1000; // 3 seconds
 export const SCROBBLING_DEBOUNCE_PERIOD = 1.5 * 1000; // 1.5 seconds
 export const LASTFM_API_RATE_LIMIT = 0; // At this moment is 5 rq/s over 5m per originating IP
+export const MAX_SCROBBLES_PER_REQUEST = 50;
 export const MAX_RECENT_USERS = 6;
 export const MAX_RECENT_ALBUMS = 8;
 export const DEFAULT_SONG_DURATION = 3 * 60; // ToDo: use this value when skipping time forward after scrobble
