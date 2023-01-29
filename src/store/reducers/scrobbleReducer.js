@@ -13,6 +13,7 @@ import {
   SCROBBLE,
   SCROBBLE_COVER_SEARCH,
   OPENSCROBBLER_API_URL,
+  MAX_SCROBBLES_PER_REQUEST,
 } from 'Constants';
 import { prepareScrobbles } from 'store/transformers/scrobbleTransformer';
 
@@ -68,9 +69,8 @@ const scrobbleReducer = (state = initialState, action) => {
       const scrobbleUUID = shortid.generate();
       const { dispatch } = action.payload; // sorry :(
 
-      // I'm reversing twice to go from old to new without affecting any possible ordering issues
-      const queuedScrobbles = state.list.filter(({ status }) => status === 'queued').reverse();
-      const scrobbles = queuedScrobbles.splice(0, 50).reverse();
+      const queuedScrobbles = state.list.filter(({ status }) => status === 'queued');
+      const scrobbles = queuedScrobbles.splice(-MAX_SCROBBLES_PER_REQUEST, MAX_SCROBBLES_PER_REQUEST);
       const scrobbledIds = scrobbles.map(({ id }) => id);
 
       if (scrobbles.length > 0) {
@@ -89,7 +89,7 @@ const scrobbleReducer = (state = initialState, action) => {
         );
       }
 
-      // Flush any pending scrobbles if there were more than 50
+      // Flush any pending scrobbles if there were more than MAX_SCROBBLES_PER_REQUEST
       if (queuedScrobbles.length > 0) {
         setTimeout(
           () =>
