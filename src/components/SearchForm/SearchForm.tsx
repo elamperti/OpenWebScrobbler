@@ -57,7 +57,7 @@ export default function SearchForm({
 
   return (
     <div>
-      <Row noGutters className="mt-2">
+      <Row className="mt-2 g-0">
         <div className="col-12 col-sm-9 pe-sm-3">
           <FormGroup>
             <Label for="title" className="required sr-only">
