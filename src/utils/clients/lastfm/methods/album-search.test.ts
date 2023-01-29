@@ -4,7 +4,7 @@ import { albumSearch } from './album-search';
 jest.mock('../api-client');
 
 describe('the `albumSearch` function', () => {
-  it('should call the album.search API with the given search term', async() => {
+  it('should call the API with the given search term', async() => {
     await albumSearch('search-term');
 
     expect(lastfmAPI.get).toHaveBeenCalledWith('', {

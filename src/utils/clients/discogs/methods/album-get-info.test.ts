@@ -1,16 +1,16 @@
 import { discogsAPI } from '../api-client';
-import { searchTopAlbums } from './search-top-albums';
+import { albumGetInfo } from './album-get-info';
 
 jest.mock('../api-client');
 
-describe('the `searchTopAlbums` function', () => {
+describe('the `albumGetInfo` function', () => {
   it('should call the API with the given discogs id', async() => {
-    await searchTopAlbums('1');
+    await albumGetInfo('1');
 
     expect(discogsAPI.get).toHaveBeenCalledWith('', {
       params: {
-        method: 'artist.getTopAlbums',
-        artist_id: '1',
+        method: 'album.getInfo',
+        album_id: '1',
       },
     });
   });
