@@ -1,4 +1,4 @@
-import { tracksTransformer } from './tracks-response.transformer';
+import { tracksTransformer } from './tracksResponse.transformer';
 
 describe('the `tracksTransformer` function', () => {
   it('should format the results', () => {

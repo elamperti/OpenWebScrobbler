@@ -1,7 +1,7 @@
 import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';
 import shortid from 'shortid';
-import { sanitizeArtistName } from './common/sanitize-artist-name';
+import { sanitizeArtistName } from './common/sanitizeArtistName';
 
 /*
   This function takes a [[HH:]MM:]SS string (e.g. "1:03:55") and converts it

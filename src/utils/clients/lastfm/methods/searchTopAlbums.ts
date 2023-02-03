@@ -1,5 +1,5 @@
-import { lastfmAPI } from '../api-client';
-import { topAlbumsTransformer } from '../transformers/top-albums-response.transformer';
+import { lastfmAPI } from '../apiClient';
+import { topAlbumsTransformer } from '../transformers/topAlbumsResponse.transformer';
 
 export async function searchTopAlbums(artist: { mbid?: string; name: string }) {
   const search = artist.mbid

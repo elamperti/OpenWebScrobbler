@@ -1,7 +1,7 @@
-import { discogsAPI } from '../api-client';
-import { albumSearch } from './album-search';
+import { discogsAPI } from '../apiClient';
+import { albumSearch } from './albumSearch';
 
-jest.mock('../api-client');
+jest.mock('../apiClient');
 
 describe('the `albumSearch` function', () => {
   it('should call the API with the given search term', async() => {

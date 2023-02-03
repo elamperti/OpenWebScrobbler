@@ -1,7 +1,7 @@
-import { lastfmAPI } from '../api-client';
-import { albumGetInfo } from './album-get-info';
+import { lastfmAPI } from '../apiClient';
+import { albumGetInfo } from './albumGetInfo';
 
-jest.mock('../api-client');
+jest.mock('../apiClient');
 
 describe('the `albumGetInfo` function', () => {
   it('should call the API to get the album info', async() => {

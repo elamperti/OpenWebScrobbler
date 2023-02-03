@@ -1,4 +1,4 @@
-import { tracksTransformer } from './tracks-response.transformer';
+import { tracksTransformer } from './tracksResponse.transformer';
 
 jest.mock('shortid', () => ({
   generate: () => 'fakeShortId',

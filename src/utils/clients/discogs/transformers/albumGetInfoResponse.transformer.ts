@@ -1,5 +1,5 @@
 import get from 'lodash/get';
-import { sanitizeArtistName } from './common/sanitize-artist-name';
+import { sanitizeArtistName } from './common/sanitizeArtistName';
 
 export function albumGetInfoTransformer(response: any) {
   if (response?.data.message) {

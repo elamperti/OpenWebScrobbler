@@ -1,5 +1,5 @@
-import { discogsAPI } from '../api-client';
-import { albumSearchTransformer } from '../transformers/album-search-response.transformer';
+import { discogsAPI } from '../apiClient';
+import { albumSearchTransformer } from '../transformers/albumSearchResponse.transformer';
 
 export async function albumSearch(album: string, includeReleases?: boolean) {
   const response = await discogsAPI.get('', {

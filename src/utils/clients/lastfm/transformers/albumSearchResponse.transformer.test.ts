@@ -1,4 +1,4 @@
-import { albumSearchTransformer } from './album-search-response.transformer';
+import { albumSearchTransformer } from './albumSearchResponse.transformer';
 
 describe('the `albumSearchTransformer` function', () => {
   it('should format the results', () => {

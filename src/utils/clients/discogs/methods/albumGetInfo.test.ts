@@ -1,7 +1,7 @@
-import { discogsAPI } from '../api-client';
-import { albumGetInfo } from './album-get-info';
+import { discogsAPI } from '../apiClient';
+import { albumGetInfo } from './albumGetInfo';
 
-jest.mock('../api-client');
+jest.mock('../apiClient');
 
 describe('the `albumGetInfo` function', () => {
   it('should call the API with the given discogs id', async() => {

@@ -1,3 +1,3 @@
-export { albumSearch } from './methods/album-search';
-export { searchTopAlbums } from './methods/search-top-albums';
-export { albumGetInfo } from './methods/album-get-info';
+export { albumSearch } from './methods/albumSearch';
+export { searchTopAlbums } from './methods/searchTopAlbums';
+export { albumGetInfo } from './methods/albumGetInfo';

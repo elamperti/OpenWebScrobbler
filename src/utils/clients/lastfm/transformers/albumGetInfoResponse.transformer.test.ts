@@ -1,4 +1,4 @@
-import { albumGetInfoTransformer } from './album-get-info-response.transformer';
+import { albumGetInfoTransformer } from './albumGetInfoResponse.transformer';
 
 describe('the `albumGetInfoTransformer` function', () => {
   it('should format the results', () => {

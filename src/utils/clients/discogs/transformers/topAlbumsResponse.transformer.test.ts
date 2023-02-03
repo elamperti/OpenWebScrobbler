@@ -1,4 +1,4 @@
-import { topAlbumsTransformer } from './top-albums-response.transformer';
+import { topAlbumsTransformer } from './topAlbumsResponse.transformer';
 
 describe('the `topAlbumsTransformer` function', () => {
   it('should format the results', () => {
