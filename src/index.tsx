@@ -16,6 +16,7 @@ import store from 'store';
 
 import ReactGA from 'react-ga';
 import * as Sentry from '@sentry/react';
+import { BrowserTracing } from '@sentry/tracing';
 
 import 'utils/i18n';
 
@@ -47,9 +48,10 @@ if (sentryEnabled) {
       /extensions\//i,
       /^chrome:\/\//i,
     ],
-    integrations: [new Sentry.Replay()],
-    replaysSessionSampleRate: process.env.NODE_ENV === 'development' ? 1 : 0.1,
+    integrations: [new BrowserTracing(), new Sentry.Replay()],
+    replaysSessionSampleRate: process.env.NODE_ENV === 'development' ? 1 : 0.02,
     replaysOnErrorSampleRate: 1.0,
+    tracesSampleRate: process.env.NODE_ENV === 'development' ? 0.2 : 0.05,
   });
 }
 
