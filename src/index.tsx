@@ -47,6 +47,9 @@ if (sentryEnabled) {
       /extensions\//i,
       /^chrome:\/\//i,
     ],
+    integrations: [new Sentry.Replay()],
+    replaysSessionSampleRate: process.env.NODE_ENV === 'development' ? 1 : 0.1,
+    replaysOnErrorSampleRate: 1.0,
   });
 }
 
