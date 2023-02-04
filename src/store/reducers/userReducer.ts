@@ -16,7 +16,18 @@ import {
   PROVIDER_DISCOGS,
 } from 'Constants';
 
-const initialState = {
+type UserSettings = {
+  dataProvider: 'discogs' | 'lastfm';
+  isLoggedIn: boolean | null;
+  name: string;
+  profiles: any;
+  recentProfiles: any;
+  recentAlbums: any;
+  url: string;
+  userSettingsLoading: boolean;
+};
+
+const initialState: UserSettings = {
   dataProvider: PROVIDER_DISCOGS,
   isLoggedIn: null,
   name: '',
@@ -80,7 +91,12 @@ const userReducer = (state = initialState, action) => {
     case `${FETCH_LASTFM_USER_INFO}_FULFILLED`:
       if (hasIn(action.payload, 'data.user')) {
         const username = action.payload.data.user.name;
-        const avatars = {};
+        const avatars = {
+          sm: '',
+          md: '',
+          lg: '',
+          // xl: '',
+        };
 
         for (const avatar of get(action.payload.data.user, 'image')) {
           switch (avatar.size) {

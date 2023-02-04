@@ -1,6 +1,10 @@
 import { NEW_VERSION_READY } from 'Constants';
 
-const initialState = {
+type Updates = {
+  newVersionReady: boolean;
+};
+
+const initialState: Updates = {
   newVersionReady: false,
 };
 

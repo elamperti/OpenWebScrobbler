@@ -20,14 +20,16 @@ import UpdateToast from './components/UpdateToast';
 import Spinner from 'components/Spinner';
 import SettingsModal from 'components/SettingsModal';
 
+import { RootState } from 'store';
+
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
   const [translationsReady, setTranslationsReady] = useState(false);
-  const versionUpdateReady = useSelector((state) => state.updates.newVersionReady);
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const versionUpdateReady = useSelector((state: RootState) => state.updates.newVersionReady);
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
 
   useEffect(() => {
     i18next.on('initialized', () => setTranslationsReady(true));
@@ -58,7 +60,7 @@ function App() {
         find(languageList, { code: queryString.hl }) ||
         Object.prototype.hasOwnProperty.call(fallbackLng, queryString.hl)
       ) {
-        changeLanguage(queryString.hl);
+        changeLanguage(queryString.hl.toString());
       }
     }
   }, [dispatch, navigate, isLoggedIn, location.search]);
