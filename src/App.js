@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLanguage } from 'i18next';
@@ -6,7 +6,7 @@ import qs from 'qs';
 import find from 'lodash/find';
 
 import { interceptAxios } from 'utils/axios';
-import { languageList, fallbackLng } from 'utils/i18n';
+import i18next, { languageList, fallbackLng } from 'utils/i18n';
 
 import { authUserWithToken, getUserInfo } from 'store/actions/userActions';
 
@@ -25,8 +25,13 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const [translationsReady, setTranslationsReady] = useState(false);
   const versionUpdateReady = useSelector((state) => state.updates.newVersionReady);
   const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+
+  useEffect(() => {
+    i18next.on('initialized', () => setTranslationsReady(true));
+  }, []);
 
   useEffect(() => {
     // Things break if this interceptor is applied more than once!
@@ -58,14 +63,16 @@ function App() {
     }
   }, [dispatch, navigate, isLoggedIn, location.search]);
 
-  const loadingSpinner = (
+  const LoadingSpinner = (
     <div id="ows-loading">
-      <Spinner />
+      <Spinner noTranslation={!translationsReady} />
     </div>
   );
 
+  if (!translationsReady) return LoadingSpinner;
+
   return (
-    <Suspense fallback={loadingSpinner}>
+    <Suspense fallback={LoadingSpinner}>
       <SettingsModal />
       <Navigation />
       <div className="d-flex flex-column" style={{ height: 'calc(100vh - 80px)' }}>
