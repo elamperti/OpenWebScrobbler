@@ -41,6 +41,7 @@
     "web-vitals": "^2.1.0"
   },
   "devDependencies": {
+    "@craco/craco": "^7.0.0",
     "@cypress/code-coverage": "^3.9.12",
     "@cypress/instrument-cra": "^1.4.0",
     "@testing-library/jest-dom": "^5.14.1",
@@ -77,9 +78,9 @@
   },
   "scripts": {
     "start": "concurrently -r --kill-others 'yarn start:server' 'yarn start:services'",
-    "start:server": "react-scripts -r @cypress/instrument-cra start",
+    "start:server": "craco -r @cypress/instrument-cra start",
     "start:services": "docker-compose up",
-    "build": "REACT_APP_VERSION=$npm_package_version react-scripts build",
+    "build": "REACT_APP_VERSION=$npm_package_version craco build",
     "prettier": "prettier --write \"src/**/*.js\"",
     "lint": "eslint src/ --fix",
     "fix": "yarn prettier && yarn lint",
@@ -87,9 +88,9 @@
     "eject": "react-scripts eject",
     "test": "yarn test:e2e && yarn test:unit",
     "test:e2e": "BROWSER=none PORT=3030 start-test 'yarn start:server' http://127.0.0.1:3030/ 'cypress run'",
-    "test:unit": "react-scripts test --watchAll=false",
+    "test:unit": "craco test --watchAll=false",
     "test:coverage": "yarn test:unit --coverage",
-    "watch": "react-scripts test --watchAll",
+    "watch": "craco test --watchAll",
     "typecheck": "yarn run tsc",
     "cypress": "BROWSER=none PORT=3030 start-test 'yarn start:server' http://127.0.0.1:3030/ 'cypress open'",
     "translations:fetch": "poeditor pull",
