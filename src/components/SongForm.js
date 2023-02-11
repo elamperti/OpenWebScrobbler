@@ -13,9 +13,8 @@ import DateTimePicker from 'components/DateTimePicker';
 import Tooltip from 'components/Tooltip';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbtack, faExchangeAlt } from '@fortawesome/free-solid-svg-icons';
+import { faThumbtack, faExchangeAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
-import { faPatreon } from '@fortawesome/free-brands-svg-icons';
 
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 import { createAlert, dismissAlert } from 'store/actions/alertActions';
@@ -303,7 +302,7 @@ class SongForm extends React.Component {
         <a href="https://www.patreon.com/OpenScrobbler" rel="noopener">
           {t('considerDonating')}
         </a>
-        <FontAwesomeIcon icon={faPatreon} />
+        <FontAwesomeIcon icon={faHeart} />
       </div>
     );
 

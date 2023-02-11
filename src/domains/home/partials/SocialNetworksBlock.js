@@ -1,7 +1,8 @@
 import React from 'react';
 import { Button, Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDiscord, faPatreon } from '@fortawesome/free-brands-svg-icons';
+import { faDiscord } from '@fortawesome/free-brands-svg-icons';
+import { faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 
 import './SocialNetworksBlock.scss';
@@ -35,10 +36,10 @@ export default function SocialNetworksBlock() {
         </div>
       </Col>
       <Col md="6">
-        <div data-cy="SocialNetworkBlock-patreon" className="ows-social-patreon jumbotron rounded">
+        <div data-cy="SocialNetworkBlock-support" className="ows-social-support jumbotron rounded">
           <Row>
             <Col xs="3" className="ows-logo">
-              <FontAwesomeIcon icon={faPatreon} size="4x" className="d-block mx-auto" />
+              <FontAwesomeIcon icon={faHandHoldingHeart} size="4x" className="d-block mx-auto" />
             </Col>
             <Col xs="9">
               <h4>{t('support.title')}</h4>

@@ -19,17 +19,17 @@
     }
   }
 
-  &.ows-social-patreon {
+  &.ows-social-support {
     .btn:hover,
     .btn:active {
       /* box-shadow: 0px 0px 20px rgba(249, 104, 84, 0.3); */
-      background: #ad8148;
+      background: var(--bs-green, #ad8148);
       color: white;
     }
 
     .btn:focus,
     .btn:focus:active {
-      box-shadow: 0 0 0 0.2rem rgba(154, 87, 39, 0.5);
+      box-shadow: 0 0 0 0.2rem rgba(39, 154, 45, 0.5);
     }
   }
 }
