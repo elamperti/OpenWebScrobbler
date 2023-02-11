@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosRequestConfig } from 'axios';
 import ReactGA from 'react-ga';
 import get from 'lodash/get';
 import qs from 'qs';
@@ -6,13 +6,21 @@ import qs from 'qs';
 import { logOut } from 'store/actions/userActions';
 import { createAlert } from 'store/actions/alertActions';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
+import { Alert } from 'components/AlertZone/types';
+
+interface ExtendedAxiosRequestConfig extends AxiosRequestConfig {
+  timing?: {
+    start: DOMHighResTimeStamp;
+    elapsedTime?: DOMHighResTimeStamp;
+  };
+}
 
 /*
  * For invalid (ERROR) responses
  */
 function axiosErrorHandler(payload, dispatch) {
   const errorNumber = payload ? get(payload, 'data.error', payload.status) : -1;
-  let newError = {
+  let newError: Partial<Alert> = {
     type: 'danger',
     persistent: false,
     title: '',
@@ -82,15 +90,17 @@ export function interceptAxios(dispatch) {
    * Intercepts requests
    */
   axios.interceptors.request.use(
-    (request) => {
+    (request: ExtendedAxiosRequestConfig) => {
       request.timing = {
         start: performance.now(),
       };
+
       // ToDo: transform to form encoding only for last.fm
       if (request.method === 'post') {
         request.headers['Content-Type'] = 'application/x-www-form-urlencoded';
         request.data = qs.stringify(request.data); // PHP doesn't understand JSON payloads
       }
+
       return request;
     },
     (error) => {
@@ -104,8 +114,10 @@ export function interceptAxios(dispatch) {
    */
   axios.interceptors.response.use(
     (response) => {
-      if (response.config && response.config.timing) {
-        response.config.timing.elapsedTime = performance.now() - response.config.timing.start;
+      const timing = (response.config as ExtendedAxiosRequestConfig)?.timing;
+
+      if (timing) {
+        timing.elapsedTime = performance.now() - timing.start;
       }
 
       // ToDo: improve this match to avoid collisions or problems with future API versions
@@ -139,11 +151,11 @@ export function interceptAxios(dispatch) {
           default:
             break;
         }
-        if (response.config.timing) {
+        if (timing) {
           ReactGA.timing({
             category: 'Client response time',
             variable: response.config.url,
-            value: Math.round(response.config.timing.elapsedTime),
+            value: Math.round(timing.elapsedTime),
           });
         }
         if (response.data.error) {
@@ -155,7 +167,7 @@ export function interceptAxios(dispatch) {
     },
     (error) => {
       axiosErrorHandler(error.response, dispatch);
-      return Promise.reject(error.response);
+      return Promise.resolve(error.response);
     }
   );
 }

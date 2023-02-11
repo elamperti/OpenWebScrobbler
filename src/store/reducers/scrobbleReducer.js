@@ -147,7 +147,9 @@ const scrobbleReducer = (state = initialState, action) => {
         });
       } else {
         /* eslint-disable no-console */
-        console.error('Unexpected scrobble response', action.payload.data);
+        if (process.env.NODE_ENV === 'development') {
+          console.error('Unexpected scrobble response', action.payload.data);
+        }
         return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           status: 'error',
           errorMessage: get(action.payload, 'data.message'),
