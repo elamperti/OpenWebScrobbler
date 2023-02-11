@@ -88,7 +88,10 @@ export function fetchDiscogsAlbums(response) {
         lg: 500,
       },
     };
-  });
+  })
+    .filter((album) => {
+      return album.discogsId || album.artist;
+    });
 }
 
 // Yes, I wish it was as simple as making a decorator of fetchLastfmAlbums (it isn't)
@@ -130,5 +133,8 @@ export function fetchDiscogsTopAlbums(response) {
       sm: 150,
       lg: 500,
     },
-  }));
+  }))
+    .filter((album) => {
+      return album.discogsId || album.artist;
+    });
 }
