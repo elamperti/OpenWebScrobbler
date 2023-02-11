@@ -14,7 +14,7 @@ import settingsReducer from './reducers/settingsReducer';
 import updatesReducer from './reducers/updatesReducer';
 import userReducer from './reducers/userReducer';
 
-const middlewares = [createDebounce(), promise()];
+const middlewares = [createDebounce(), promise];
 const isDevEnvironmet = process.env.NODE_ENV === 'development';
 const hasDevTools = typeof window === 'object' && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
