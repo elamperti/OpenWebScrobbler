@@ -73,6 +73,7 @@ export function useBootstrapBreakpoint(returnBreakpointName = false) {
     return () => {
       __breakpointListener.removeEventListener('breakpoint', resizeEvent);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return breakpoint;
