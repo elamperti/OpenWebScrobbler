@@ -176,7 +176,6 @@ export default function Tracklist({ albumInfo, tracks }) {
               <div className="align-self-end mb-0">
                 <FormGroup check inline>
                   <Input
-                    inline
                     type="radio"
                     id="useNowTimestamp"
                     name="useCustomTimestamp"
@@ -189,7 +188,6 @@ export default function Tracklist({ albumInfo, tracks }) {
                 </FormGroup>
                 <FormGroup check inline>
                   <Input
-                    inline
                     type="radio"
                     id="useCustomTimestamp"
                     name="useCustomTimestamp"
