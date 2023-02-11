@@ -87,8 +87,9 @@
     "eject": "react-scripts eject",
     "test": "yarn test:e2e && yarn test:unit",
     "test:e2e": "BROWSER=none PORT=3030 start-test 'yarn start:server' http://127.0.0.1:3030/ 'cypress run'",
-    "test:unit": "react-scripts test",
-    "test:coverage": "yarn test:unit --watchAll=false --coverage",
+    "test:unit": "react-scripts test --watchAll=false",
+    "test:coverage": "yarn test:unit --coverage",
+    "watch": "react-scripts test --watchAll",
     "typecheck": "yarn run tsc",
     "cypress": "BROWSER=none PORT=3030 start-test 'yarn start:server' http://127.0.0.1:3030/ 'cypress open'",
     "translations:fetch": "poeditor pull",
@@ -96,7 +97,7 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "lint-staged && CI=true yarn test:unit"
     }
   },
   "lint-staged": {
@@ -104,7 +105,7 @@
       "eslint --fix"
     ],
     "cypress/**/*": [
-      "yarn test"
+      "yarn test:e2e"
     ]
   },
   "browserslist": {
