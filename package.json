@@ -1,6 +1,6 @@
 {
   "name": "openscrobbler",
-  "version": "2.7.2",
+  "version": "2.7.3",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
@@ -88,7 +88,7 @@
     "fix": "yarn prettier && yarn lint",
     "patch": "yarn version --no-git-tag-version --patch",
     "eject": "react-scripts eject",
-    "test": "yarn test:e2e && yarn test:unit",
+    "test": "yarn test:unit && yarn test:e2e",
     "test:e2e": "BROWSER=none PORT=3030 start-test 'yarn start:server' http://127.0.0.1:3030/ 'cypress run'",
     "test:unit": "craco test --watchAll=false",
     "test:coverage": "yarn test:unit --coverage",
