@@ -67,14 +67,14 @@ const ErrorPage = ({ error, eventId, resetError }) => {
         <p>
           In most cases you will be able to continue using the application by clicking the <em>Go back</em> button. If
           that doesn't work,{' '}
-          <button className="btn btn-link p-0" onClick={reloadPage}>
+          <button className="btn btn-link p-0" style={{ top: '-2px' }} onClick={reloadPage}>
             please refresh the page
           </button>
           .
         </p>
         <p>
           It would be very helpful to{' '}
-          <button className="btn btn-link p-0" onClick={fillReport}>
+          <button className="btn btn-link p-0" style={{ top: '-2px' }} onClick={fillReport}>
             send a crash report
           </button>{' '}
           if you can spare a few minutes :)
