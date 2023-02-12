@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { Suspense } from 'react';
 import PropTypes from 'prop-types';
+import { lazyWithPreload } from 'react-lazy-with-preload';
 import { connect } from 'react-redux';
 import { withTranslation, Trans } from 'react-i18next';
 import ReactGA from 'react-ga';
@@ -9,7 +10,6 @@ import addSeconds from 'date-fns/addSeconds';
 
 import { Button, ButtonGroup, Form, FormGroup, Input, Label } from 'reactstrap';
 
-import DateTimePicker from 'components/DateTimePicker';
 import Tooltip from 'components/Tooltip';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -22,6 +22,8 @@ import { createAlert, dismissAlert } from 'store/actions/alertActions';
 import { DEFAULT_SONG_DURATION } from 'Constants';
 
 import './SongForm.css';
+
+const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 
 const controlOrder = ['artist', 'title', 'album']; // Used for arrow navigation
 
@@ -306,6 +308,8 @@ class SongForm extends React.Component {
       </div>
     );
 
+    DateTimePicker.preload();
+
     return (
       <Form className="SongForm">
         <FormGroup className="row">
@@ -406,37 +410,45 @@ class SongForm extends React.Component {
           </div>
         </FormGroup>
         <FormGroup className="row">
-          <Label className="col-sm-3">{t('timestamp')}</Label>
-          <div className="col-sm-9 p-0">
-            <ButtonGroup className="w-100">
-              <Button
-                onClick={() => this.toggleTimestampMode()}
-                active={!this.state.useCustomDate}
-                size="sm"
-                className="w-50"
-              >
-                {t('now')}
-              </Button>
-              <Button
-                onClick={() => this.toggleTimestampMode()}
-                active={this.state.useCustomDate}
-                size="sm"
-                className="w-50"
-              >
-                {t('custom')}
-              </Button>
-            </ButtonGroup>
-            <DateTimePicker
-              value={this.state.timestamp}
-              onChange={this.handleTimeChange}
-              visible={this.state.useCustomDate}
-            />
-            <div className="row">
-              <div className="col-12 mt-1">
-                <FontAwesomeIcon icon={faLightbulb} /> {t('lastfmWillRejectOldTimestamps')}
+          <Suspense
+            fallback={
+              <div>
+                <Trans i18nKey="loading">Loading...</Trans>
+              </div>
+            }
+          >
+            <Label className="col-sm-3">{t('timestamp')}</Label>
+            <div className="col-sm-9 p-0">
+              <ButtonGroup className="w-100">
+                <Button
+                  onClick={() => this.toggleTimestampMode()}
+                  active={!this.state.useCustomDate}
+                  size="sm"
+                  className="w-50"
+                >
+                  {t('now')}
+                </Button>
+                <Button
+                  onClick={() => this.toggleTimestampMode()}
+                  active={this.state.useCustomDate}
+                  size="sm"
+                  className="w-50"
+                >
+                  {t('custom')}
+                </Button>
+              </ButtonGroup>
+              <DateTimePicker
+                value={this.state.timestamp}
+                onChange={this.handleTimeChange}
+                visible={this.state.useCustomDate}
+              />
+              <div className="row">
+                <div className="col-12 mt-1">
+                  <FontAwesomeIcon icon={faLightbulb} /> {t('lastfmWillRejectOldTimestamps')}
+                </div>
               </div>
             </div>
-          </div>
+          </Suspense>
         </FormGroup>
 
         <Button

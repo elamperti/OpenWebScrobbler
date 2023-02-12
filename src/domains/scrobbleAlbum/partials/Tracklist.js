@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense } from 'react';
 import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { lazyWithPreload } from 'react-lazy-with-preload';
 import { Trans, useTranslation } from 'react-i18next';
 import ReactGA from 'react-ga';
 import addSeconds from 'date-fns/addSeconds';
@@ -21,12 +22,13 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import AlbumCard from 'components/AlbumCard';
-import DateTimePicker from 'components/DateTimePicker';
 import ScrobbleList from 'components/ScrobbleList';
 
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
 import { DEFAULT_SONG_DURATION, getAmznLink } from 'Constants';
+
+const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 
 // ToDo: refactor this component completely.
 // It's too complex and carries several blocks from old code.
@@ -67,6 +69,8 @@ export default function Tracklist({ albumInfo, tracks }) {
 
     setTotalDuration(newDuration);
   }, [albumHasTracks, tracks]);
+
+  DateTimePicker.preload();
 
   const goBack = (e) => {
     e.preventDefault();
@@ -209,8 +213,15 @@ export default function Tracklist({ albumInfo, tracks }) {
           </div>
         </div>
       )}
-
-      <DateTimePicker value={customTimestamp} onChange={handleTimestampChange} visible={useCustomTimestamp} />
+      <Suspense
+        fallback={
+          <div>
+            <Trans i18nKey="loading">Loading...</Trans>
+          </div>
+        }
+      >
+        <DateTimePicker value={customTimestamp} onChange={handleTimestampChange} visible={useCustomTimestamp} />
+      </Suspense>
       <Alert
         color="dark"
         isOpen={showTimestampCopy}
