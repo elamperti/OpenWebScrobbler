@@ -8,7 +8,7 @@ import get from 'lodash/get';
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
 import format from 'date-fns/format';
-import isToday from 'date-fns/is_today';
+import isToday from 'date-fns/isToday';
 
 import { Button, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, FormGroup } from 'reactstrap';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -157,10 +157,10 @@ class ScrobbleItem extends Component {
 
     if (scrobble.timestamp) {
       if (!isToday(scrobble.timestamp)) {
-        timestampFormat = 'D/MM ';
+        timestampFormat = 'd/MM ';
       }
       timestampFormat += this.props.settings.use12Hours ? 'h:mm A' : 'H:mm';
-      theTimestamp = format(scrobble.timestamp, timestampFormat);
+      theTimestamp = format(new Date(scrobble.timestamp), timestampFormat);
     } else {
       if (scrobble.duration > 0) {
         // Yes, there are songs over one hour. Is it worth making this more complex for those? (no, it isn't)

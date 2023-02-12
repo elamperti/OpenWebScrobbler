@@ -4,8 +4,8 @@ import { lazyWithPreload } from 'react-lazy-with-preload';
 import { Trans, useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
-import addDays from 'date-fns/add_days';
-import subDays from 'date-fns/sub_days';
+import addDays from 'date-fns/addDays';
+import subDays from 'date-fns/subDays';
 import format from 'date-fns/format';
 
 import { Input, InputGroup, InputGroupText, Modal, ModalBody, ModalHeader } from 'reactstrap';

@@ -68,7 +68,7 @@
   "cancel": "Отмена",
   "dates": {
     "format": {
-      "short": "MMM Do"
+      "short": "MMM do"
     },
     "months": {
       "short": [

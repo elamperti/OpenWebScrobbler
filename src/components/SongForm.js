@@ -4,8 +4,8 @@ import { connect } from 'react-redux';
 import { withTranslation, Trans } from 'react-i18next';
 import ReactGA from 'react-ga';
 
-import addSeconds from 'date-fns/add_seconds';
-// import isFuture from 'date-fns/is_future';
+import addSeconds from 'date-fns/addSeconds';
+// import isFuture from 'date-fns/isFuture';
 
 import { Button, ButtonGroup, Form, FormGroup, Input, Label } from 'reactstrap';
 

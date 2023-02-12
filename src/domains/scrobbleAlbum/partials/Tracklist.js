@@ -4,8 +4,8 @@ import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import ReactGA from 'react-ga';
-import addSeconds from 'date-fns/add_seconds';
-import subSeconds from 'date-fns/sub_seconds';
+import addSeconds from 'date-fns/addSeconds';
+import subSeconds from 'date-fns/subSeconds';
 import format from 'date-fns/format';
 
 import { Alert, Badge, Button, FormGroup, Label, Input } from 'reactstrap';
@@ -46,7 +46,7 @@ export default function Tracklist({ albumInfo, tracks }) {
   const [totalDuration, setTotalDuration] = useState(0);
   const albumHasTracks = tracks && tracks.length > 0;
   const hasAlbumInfo = Object.keys(albumInfo).length > 0;
-  const durationFormat = totalDuration > 3600 ? 'h:mm:ss' : 'mm:ss'; // ToDo: use formatDuration after upgrading date-fns to ^2.19
+  const durationFormat = totalDuration > 3600 ? 'H:mm:ss' : 'mm:ss'; // ToDo: use formatDuration after upgrading date-fns to ^2.19
 
   useEffect(() => {
     setAmznLink(getAmznLink(albumInfo.artist, albumInfo.name));
