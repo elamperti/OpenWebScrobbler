@@ -18,9 +18,6 @@ import ReactGA from 'react-ga';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
 
-// Development tool: https://www.locatorjs.com/
-import setupLocatorUI from '@locator/runtime';
-
 import 'utils/i18n';
 
 // Avoid proxies that may interfer with the site
@@ -92,10 +89,6 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
     appName: 'Open Scrobbler',
     appVersion,
   });
-}
-
-if (process.env.NODE_ENV === 'development') {
-  setupLocatorUI();
 }
 
 const baseApp = (
