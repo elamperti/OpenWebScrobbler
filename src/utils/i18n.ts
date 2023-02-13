@@ -46,7 +46,7 @@ i18n
     load: 'languageOnly',
     fallbackLng,
     backend: {
-      loadPath: '/locales/{{lng}}.json',
+      loadPath: `/locales/{{lng}}.json?v=${process.env.REACT_APP_VERSION}`,
       allowMultiLoading: false,
     },
     debug: process.env.NODE_ENV === 'development',
