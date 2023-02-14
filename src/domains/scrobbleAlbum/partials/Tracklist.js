@@ -48,7 +48,7 @@ export default function Tracklist({ albumInfo, tracks }) {
   const [totalDuration, setTotalDuration] = useState(0);
   const albumHasTracks = tracks && tracks.length > 0;
   const hasAlbumInfo = Object.keys(albumInfo).length > 0;
-  const durationFormat = totalDuration > 3600 ? 'H:mm:ss' : 'mm:ss'; // ToDo: use formatDuration after upgrading date-fns to ^2.19
+  const durationFormat = totalDuration > 3600 ? 'H:mm:ss' : 'mm:ss';
 
   useEffect(() => {
     setAmznLink(getAmznLink(albumInfo.artist, albumInfo.name));

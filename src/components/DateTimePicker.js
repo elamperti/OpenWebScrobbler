@@ -43,7 +43,7 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
 
   const minDate = subDays(new Date(), 14);
   const maxDate = addDays(new Date(), 1);
-  const timeFormat = use12Hours ? 'h:mm A' : 'H:mm';
+  const timeFormat = use12Hours ? 'h:mm a' : 'H:mm';
 
   const handleDateChange = (timestamp) => {
     // Restore hours and minutes

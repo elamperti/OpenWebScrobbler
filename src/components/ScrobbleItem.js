@@ -159,7 +159,7 @@ class ScrobbleItem extends Component {
       if (!isToday(scrobble.timestamp)) {
         timestampFormat = 'd/MM ';
       }
-      timestampFormat += this.props.settings.use12Hours ? 'h:mm A' : 'H:mm';
+      timestampFormat += this.props.settings.use12Hours ? 'h:mm a' : 'H:mm';
       theTimestamp = format(new Date(scrobble.timestamp), timestampFormat);
     } else {
       if (scrobble.duration > 0) {
