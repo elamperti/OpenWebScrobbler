@@ -1,5 +1,6 @@
 const babelPlugins = [];
 const webpackPlugins = [];
+const cracoPlugins = [];
 const isDevEnvironment = process.env.NODE_ENV === 'development';
 const isProdEnvironment = process.env.NODE_ENV === 'production';
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
@@ -24,6 +25,27 @@ if (isProdEnvironment) {
       attributes: 'data-cy',
     },
   ]);
+
+  // Based on https://github.com/dilanx/craco/issues/44#issuecomment-573554956
+  cracoPlugins.push({
+    plugin: {
+      overrideWebpackConfig: ({ webpackConfig }) => {
+        const minimizerIndex = webpackConfig.optimization.minimizer.findIndex((item) => item.options);
+
+        webpackConfig.optimization.minimizer[minimizerIndex].options = {
+          ...webpackConfig.optimization.minimizer[minimizerIndex].options,
+          extractComments: false,
+          terserOptions: {
+            format: {
+              comments: false,
+            },
+          },
+        };
+
+        return webpackConfig;
+      },
+    },
+  });
 }
 
 module.exports = {
@@ -38,4 +60,5 @@ module.exports = {
       },
     },
   },
+  plugins: cracoPlugins,
 };
