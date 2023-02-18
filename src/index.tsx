@@ -6,7 +6,7 @@ import './index.css';
 import App from 'App';
 import history from 'utils/history';
 import ErrorPage from 'domains/error/ErrorPage';
-import registerServiceWorker from 'utils/registerServiceWorker';
+import * as serviceWorkerRegistration from 'utils/serviceWorkerRegistration';
 // import reportWebVitals from 'utils/reportWebVitals';
 
 import 'bootswatch/dist/slate/bootstrap.min.css';
@@ -19,6 +19,7 @@ import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
 
 import 'utils/i18n';
+import { NEW_VERSION_READY } from 'Constants';
 
 // Avoid proxies that may interfer with the site
 if (process.env.NODE_ENV !== 'development' && document.location.host !== process.env.REACT_APP_HOST) {
@@ -103,7 +104,13 @@ const baseApp = (
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(sentryEnabled ? <Sentry.ErrorBoundary fallback={ErrorPage}>{baseApp}</Sentry.ErrorBoundary> : baseApp);
 
-registerServiceWorker(store);
+serviceWorkerRegistration.register({
+  onUpdate: () => {
+    store.dispatch({
+      type: NEW_VERSION_READY,
+    });
+  },
+});
 
 // Measure performance Learn more: https://bit.ly/CRA-vitals
 // ToDo: Analyze if this is worth using
