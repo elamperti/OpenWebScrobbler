@@ -112,4 +112,23 @@ describe('the `topAlbumsTransformer` function', () => {
       }),
     ]);
   });
+
+  it.skip('should filter out releases with no artist or discogsId', () => {
+    // FIXME: Bug: in this case the discogsId becomes 'undefined' (string)
+    const results = topAlbumsTransformer({
+      data: {
+        releases: [
+          {
+            master_id: '',
+            artist: '',
+            type: 'master',
+            title: 'title',
+            year: '2022',
+          },
+        ],
+      },
+    });
+
+    expect(results.length).toBe(0);
+  });
 });

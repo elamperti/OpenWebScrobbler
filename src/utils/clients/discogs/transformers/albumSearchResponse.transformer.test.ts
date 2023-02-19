@@ -60,4 +60,23 @@ describe('the `albumSearchTransformer` function', () => {
       }),
     ]);
   });
+
+  it('should filter out releases with no artist or discogsId', () => {
+    const results = albumSearchTransformer({
+      data: {
+        results: [
+          {
+            type: 'master',
+            master_id: '',
+            title: 'title',
+            year: 2022,
+            thumb: 'example.com/thumb',
+            cover_image: 'example.com/cover',
+          },
+        ],
+      },
+    });
+
+    expect(results.length).toBe(0);
+  });
 });
