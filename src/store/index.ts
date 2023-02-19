@@ -14,11 +14,11 @@ import settingsReducer from './reducers/settingsReducer';
 import updatesReducer from './reducers/updatesReducer';
 import userReducer from './reducers/userReducer';
 
-const middlewares = [createDebounce(), promise()];
-const isDevEnvironmet = process.env.NODE_ENV === 'development';
+const middlewares = [createDebounce(), promise];
+const isDevEnvironment = process.env.NODE_ENV === 'development';
 const hasDevTools = typeof window === 'object' && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
 
-if (isDevEnvironmet && !hasDevTools) {
+if (isDevEnvironment && !hasDevTools) {
   const { logger } = require('redux-logger');
   middlewares.push(logger);
 }
@@ -36,7 +36,7 @@ const store = createStore(
     user: userReducer,
   }),
   persistedState,
-  (isDevEnvironmet && hasDevTools ? composeWithDevTools({}) : compose)(applyMiddleware(...middlewares))
+  (isDevEnvironment && hasDevTools ? composeWithDevTools({}) : compose)(applyMiddleware(...middlewares))
 );
 
 store.subscribe(

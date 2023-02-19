@@ -68,7 +68,7 @@
   "cancel": "Cancel",
   "dates": {
     "format": {
-      "short": "MMM Do"
+      "short": "MMM do"
     },
     "months": {
       "short": [

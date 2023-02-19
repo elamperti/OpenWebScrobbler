@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { Suspense, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLanguage } from 'i18next';
@@ -6,7 +6,7 @@ import qs from 'qs';
 import find from 'lodash/find';
 
 import { interceptAxios } from 'utils/axios';
-import { languageList, fallbackLng } from 'utils/i18n';
+import i18next, { languageList, fallbackLng } from 'utils/i18n';
 
 import { authUserWithToken, getUserInfo } from 'store/actions/userActions';
 
@@ -20,13 +20,20 @@ import UpdateToast from './components/UpdateToast';
 import Spinner from 'components/Spinner';
 import SettingsModal from 'components/SettingsModal';
 
+import { RootState } from 'store';
+
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
 
-  const versionUpdateReady = useSelector((state) => state.updates.newVersionReady);
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const [translationsReady, setTranslationsReady] = useState(false);
+  const versionUpdateReady = useSelector((state: RootState) => state.updates.newVersionReady);
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+
+  useEffect(() => {
+    i18next.on('initialized', () => setTranslationsReady(true));
+  }, []);
 
   useEffect(() => {
     // Things break if this interceptor is applied more than once!
@@ -53,19 +60,21 @@ function App() {
         find(languageList, { code: queryString.hl }) ||
         Object.prototype.hasOwnProperty.call(fallbackLng, queryString.hl)
       ) {
-        changeLanguage(queryString.hl);
+        changeLanguage(queryString.hl.toString());
       }
     }
   }, [dispatch, navigate, isLoggedIn, location.search]);
 
-  const loadingSpinner = (
+  const LoadingSpinner = (
     <div id="ows-loading">
-      <Spinner />
+      <Spinner noTranslation={!translationsReady} />
     </div>
   );
 
+  if (!translationsReady) return LoadingSpinner;
+
   return (
-    <Suspense fallback={loadingSpinner}>
+    <Suspense fallback={LoadingSpinner}>
       <SettingsModal />
       <Navigation />
       <div className="d-flex flex-column" style={{ height: 'calc(100vh - 80px)' }}>

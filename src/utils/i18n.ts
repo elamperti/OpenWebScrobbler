@@ -1,7 +1,8 @@
 import i18n from 'i18next';
-import Backend from 'i18next-xhr-backend';
-import LanguageDetector from 'i18next-browser-languagedetector';
 import { initReactI18next } from 'react-i18next';
+
+import Backend from 'i18next-http-backend';
+import LanguageDetector from 'i18next-browser-languagedetector';
 
 export const languageList = [
   { code: 'ca', name: 'Català' },
@@ -42,27 +43,19 @@ i18n
   .use(LanguageDetector)
   .use(initReactI18next)
   .init({
-    load: 'all', // e.g. 'en-US' tries 'en-US' -> 'en' -> [fallbackLng]
+    load: 'languageOnly',
+    fallbackLng,
     backend: {
-      loadPath: '/locales/{{lng}}.json',
+      loadPath: `/locales/{{lng}}.json?v=${process.env.REACT_APP_VERSION}`,
       allowMultiLoading: false,
     },
-    fallbackLng,
-
     debug: process.env.NODE_ENV === 'development',
-
     interpolation: {
       escapeValue: false, // not needed for react
-    },
-
-    react: {
-      useSuspense: true,
-      wait: true,
     },
   });
 
 i18n.on('languageChanged', (newLang) => {
   document.documentElement.lang = newLang;
 });
-
 export default i18n;

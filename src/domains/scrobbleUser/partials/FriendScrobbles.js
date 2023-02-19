@@ -75,7 +75,9 @@ export default function FriendScrobbles({ username, page }) {
           compact
           noMenu
           analyticsEventForScrobbles="Scrobble from user"
-          scrobbles={friendProfile.scrobbles[page] || []}
+          scrobbles={
+            friendProfile.scrobbles && friendProfile.scrobbles.length >= page ? friendProfile.scrobbles[page] : []
+          }
         >
           <div className="mt-3 text-center">
             <Trans i18nKey="noSongsScrobbled">This user hasn&apos;t scrobbled anything yet!</Trans>
