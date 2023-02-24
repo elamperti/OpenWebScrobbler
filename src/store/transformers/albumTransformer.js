@@ -71,29 +71,6 @@ export function fetchLastfmAlbums(response) {
   return albums;
 }
 
-export function fetchDiscogsAlbums(response) {
-  return get(response, 'results', []).map((album) => {
-    return {
-      artist: '', // It's part of the name, impossible to tell
-      discogsId: album.type === 'master' ? album.master_id.toString() : `release-${album.id}`,
-      name: album.title,
-      url: '',
-      releasedate: album.year,
-      cover: {
-        sm: album.thumb,
-        lg: album.cover_image,
-      },
-      coverSizes: {
-        sm: 150,
-        lg: 500,
-      },
-    };
-  })
-    .filter((album) => {
-      return album.discogsId || album.artist;
-    });
-}
-
 // Yes, I wish it was as simple as making a decorator of fetchLastfmAlbums (it isn't)
 export function fetchLastfmTopAlbums(response) {
   const albums = [];
@@ -119,21 +96,22 @@ export function fetchLastfmTopAlbums(response) {
 }
 
 export function fetchDiscogsTopAlbums(response) {
-  return get(response, 'releases', []).map((album) => ({
-    artist: sanitizeDiscogsArtistName(album.artist),
-    discogsId: `${album.type === 'master' ? '' : 'release-'}${album.master_id || album.id}`,
-    name: album.title,
-    url: album.resource_url,
-    releasedate: album.year,
-    cover: {
-      sm: album.thumb,
-      lg: album.cover_image || '', // only returning thumb at the moment
-    },
-    coverSizes: {
-      sm: 150,
-      lg: 500,
-    },
-  }))
+  return get(response, 'releases', [])
+    .map((album) => ({
+      artist: sanitizeDiscogsArtistName(album.artist),
+      discogsId: `${album.type === 'master' ? '' : 'release-'}${album.master_id || album.id}`,
+      name: album.title,
+      url: album.resource_url,
+      releasedate: album.year,
+      cover: {
+        sm: album.thumb,
+        lg: album.cover_image || '', // only returning thumb at the moment
+      },
+      coverSizes: {
+        sm: 150,
+        lg: 500,
+      },
+    }))
     .filter((album) => {
       return album.discogsId || album.artist;
     });
