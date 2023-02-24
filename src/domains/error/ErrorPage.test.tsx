@@ -13,10 +13,6 @@ jest.mock('@sentry/react', () => {
 });
 
 describe('ErrorPage', () => {
-  const originalLocation: Location = window.location;
-
-  beforeEach(() => {});
-
   it('should render correctly', () => {
     render(<ErrorPage />);
 
@@ -45,24 +41,20 @@ describe('ErrorPage', () => {
   });
 
   it('should be able to reload the page', () => {
-    const reloadMock = jest.fn();
-    Object.defineProperty(window, 'location', {
-      get() {
-        return {
-          reload: reloadMock,
-        };
-      },
-    });
+    const originalLocation = window.location;
+    delete window.location;
+    window.location = { reload: jest.fn() } as unknown as Location;
 
     render(<ErrorPage />);
 
     const refreshButton = screen.getByText(/please refresh the page/i);
     fireEvent.click(refreshButton);
-    expect(reloadMock).toHaveBeenCalled();
+    expect(window.location.reload).toHaveBeenCalled();
+
+    window.location = originalLocation;
   });
 
   afterEach(() => {
     jest.restoreAllMocks(); // Do we need this here?
-    window.location = originalLocation;
   });
 });
