@@ -96,16 +96,8 @@ jobs:
           node-version: 18
           cache: 'yarn'
 
-      - name: Cache Cypress binary
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            cypress-${{ runner.os }}-cypress-
-
       - name: Cache local node_modules
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -133,7 +125,7 @@ jobs:
           cache: 'yarn'
 
       - name: Cache Cypress binary
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
           path: ~/.cache/Cypress
           key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
@@ -141,7 +133,7 @@ jobs:
             cypress-${{ runner.os }}-cypress-
 
       - name: Cache local node_modules
-        uses: actions/cache@v3
+        uses: actions/cache/restore@v3
         with:
           path: node_modules
           key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
@@ -159,7 +151,7 @@ jobs:
           npx cypress info
 
       - name: E2E tests
-        run: yarn test:e2e
+        run: yarn test:e2e --record
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           TERM: xterm
