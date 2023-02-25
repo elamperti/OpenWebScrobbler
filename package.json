@@ -104,6 +104,7 @@
     "eject": "react-scripts eject",
     "test": "yarn test:unit && yarn test:e2e",
     "test:e2e": "BROWSER=none PORT=3030 start-test 'yarn start:server' http://127.0.0.1:3030/ 'cypress run'",
+    "test:e2e:rec": "BROWSER=none PORT=3030 start-test 'yarn start:server' http://127.0.0.1:3030/ 'cypress run --record'",
     "test:unit": "craco test --watchAll=false",
     "test:coverage": "yarn test:unit --coverage",
     "watch": "craco test --watchAll",

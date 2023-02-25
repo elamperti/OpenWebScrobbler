@@ -151,7 +151,7 @@ jobs:
           npx cypress info
 
       - name: E2E tests
-        run: yarn test:e2e --record
+        run: yarn test:e2e:rec
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           TERM: xterm
