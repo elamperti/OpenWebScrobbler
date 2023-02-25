@@ -49,6 +49,7 @@ if (isProdEnvironment) {
 }
 
 module.exports = {
+  plugins: cracoPlugins,
   babel: {
     plugins: babelPlugins,
   },
@@ -60,5 +61,11 @@ module.exports = {
       },
     },
   },
-  plugins: cracoPlugins,
+  jest: {
+    configure: {
+      // "collectCoverage": true,
+      coverageReporters: ['lcov', 'html'],
+      coverageDirectory: '<rootDir>/coverage/',
+    },
+  },
 };
