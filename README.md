@@ -13,7 +13,7 @@ What is _scrobbling_, you ask? It's tracking the music you listen to, using [las
 This tool is open source and free. You can support its development by [becoming a Patron](https://www.patreon.com/OpenScrobbler) (you'll have a distinct identifier in the application and get a sneak peek into what's coming next! :sparkles: )
 
 ### Contributing
-Contributions and suggestions are welcome. Please read the [contribution guidelines](https://github.com/elamperti/OpenWebScrobbler/blob/master/CONTRIBUTING.md) for more information. Issues labeled with ["help wanted"](https://github.com/elamperti/OpenWebScrobbler/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) are great candidates if you don't know where to begin!
+Contributions and suggestions are welcome. Please read the [contribution guidelines](https://github.com/elamperti/OpenWebScrobbler/blob/main/CONTRIBUTING.md) for more information. Issues labeled with ["help wanted"](https://github.com/elamperti/OpenWebScrobbler/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22) are great candidates if you don't know where to begin!
 
 ### Translations
 To join the translators team, follow the link at the bottom of the language selector in the application ("Want to add your language?").

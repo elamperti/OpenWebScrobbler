@@ -93,7 +93,7 @@ const ErrorPage = ({ error, eventId, resetError }) => {
               className="d-block"
               target="_blank"
               rel="noopener noreferrer"
-              href="https://github.com/elamperti/OpenWebScrobbler/blob/master/CONTRIBUTING.md#fixing-bugs"
+              href="https://github.com/elamperti/OpenWebScrobbler/blob/main/CONTRIBUTING.md#fixing-bugs"
             >
               How to contribute →
             </a>
