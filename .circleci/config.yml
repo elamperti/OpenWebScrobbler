@@ -46,6 +46,9 @@ jobs:
       - run:
           name: Lint
           command: yarn lint
+      - run:
+          name: Typecheck
+          command: yarn typecheck
 
   unit:
     <<: *defaults
