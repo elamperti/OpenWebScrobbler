@@ -40,7 +40,7 @@
   "translateYourLanguage": "Хотите добавить свой язык?",
   "logIn": "Войти",
   "logOut": "Выйти",
-  "dataProvider": "Data source",
+  "dataProvider": "Источник данных",
   "now": "Сейчас",
   "custom": "Задать...",
   "timestamp": "Временная метка",
@@ -109,8 +109,8 @@
     "unexpectedResponse": "Неожиданный ответ",
     "apiCallFailed": "Не удалось выполнить вызов в API"
   },
-  "next": "Next",
-  "previous": "Previous",
+  "next": "Следующая",
+  "previous": "Предыдущая",
   "settingsFor": "Настройки",
   "saveSettings": "Сохранить настройки",
   "defaultLanguage": "Язык по умолчанию",
@@ -151,9 +151,9 @@
     "title": "До скорой встречи!",
     "message": "Вы успешно вышли из аккаунта."
   },
-  "includeReleases": "Include releases",
-  "rateLimitExceeded": "Rate limit exceeded.",
-  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
-  "slowDown": "Slow down!",
-  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes."
+  "includeReleases": "Включая официальные релизы",
+  "rateLimitExceeded": "Ограничение по скорости.",
+  "rateLimitMessage": "Скробблинг слишком быстрый? Ограничение по скорости сбрасывается в полночь UTC (это ограничение со стороны Last.fm)",
+  "slowDown": "Медленнее!",
+  "slowDownMessage": "Вы скробблите слишком быстро. Пожалуйста, подождите и повторите попытку через несколько минут.."
 }
