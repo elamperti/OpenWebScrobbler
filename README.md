@@ -27,7 +27,9 @@ You'll need [a Last.fm API account](https://www.last.fm/api/account/create)! (an
 ## Testing
 You will need to copy `cypress.env.json` to `cypress.development.json` and update the file to execute the tests. Don't use last.fm account credentials from a real account!
 
-Tests can be run with `yarn test`, Cypress console can be accessed with `yarn cypress`. At this moment tests are in an experimental WIP phase.
+Tests can be run with `yarn test`, Cypress console can be accessed with `yarn cypress`.
+
+To check test coverage run `yarn test:coverage`
 
 ## Running the application
 Just start it with `yarn start` (it will launch both the API server and the React application).

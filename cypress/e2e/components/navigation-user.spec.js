@@ -1,12 +1,7 @@
 describe('Navigation (authenticated user)', () => {
   beforeEach(() => {
-    cy.fixture('api/v2/user/authenticated.json').as('userLoggedInJSON');
-
-    cy.server();
-    cy.route('POST', '/api/v2/user.php', '@userLoggedInJSON').as('userData');
-
+    cy.intercept('POST', '/api/v2/user.php', { fixture: 'api/v2/user/authenticated.json' });
     cy.visit('/');
-    cy.wait('@userData');
   });
 
   it('has a link to scrobble songs', () => {
@@ -23,9 +18,7 @@ describe('Navigation (authenticated user)', () => {
 
   it('displays the logged in user along with its avatar', () => {
     cy.get('[data-cy="UserDropdown-username"]').should('contain', 'cypress');
-    cy.get('[data-cy="UserDropdown"] .user-avatar')
-      .should('have.attr', 'src')
-      .and('contain', '.png');
+    cy.get('[data-cy="UserDropdown"] .user-avatar').should('have.attr', 'src').and('contain', '.png');
   });
 
   describe('User dropdown menu', () => {
