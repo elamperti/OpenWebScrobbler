@@ -71,8 +71,6 @@ function App() {
     </div>
   );
 
-  if (!translationsReady) return LoadingSpinner;
-
   return (
     <Suspense fallback={LoadingSpinner}>
       <SettingsModal />
