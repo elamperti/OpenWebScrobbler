@@ -22,7 +22,7 @@ import { setSettings } from './settingsActions';
 export function authUserWithToken(dispatch) {
   return (token) => {
     axios
-      .post(`${OPENSCROBBLER_API_URL}/callback.php`, { token: token })
+      .post(`${OPENSCROBBLER_API_URL}/callback.php`, { token })
       .then((response) => {
         if (get(response, 'data.status') === 'ok') {
           dispatch({
