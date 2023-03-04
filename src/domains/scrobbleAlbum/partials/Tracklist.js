@@ -112,7 +112,6 @@ export default function Tracklist({ albumInfo, tracks }) {
   const scrobbleSelectedTracks = () => {
     const userHasNotSelectedTracks = selectedTracks.size < 1;
     const timestampCalculationSubstractsTime = !useCustomTimestamp;
-    const albumName = albumInfo.name || '';
     const tracklist = Array.from(tracks);
     let rollingTimestamp = useCustomTimestamp ? customTimestamp : new Date();
     if (timestampCalculationSubstractsTime) {
@@ -128,7 +127,8 @@ export default function Tracklist({ albumInfo, tracks }) {
       .reduce((result, track) => {
         const newTrack = {
           ...track,
-          album: albumName,
+          album: albumInfo.name || '',
+          albumArtist: albumInfo.artist || '',
           timestamp: rollingTimestamp,
         };
 

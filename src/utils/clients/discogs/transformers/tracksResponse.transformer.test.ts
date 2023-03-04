@@ -48,6 +48,7 @@ describe('the `tracksTransformer` function', () => {
     expect(results).toEqual([
       {
         artist: 'artist',
+        albumArtist: 'artist',
         title: 'track',
         album: 'album',
         duration: 259,
@@ -112,6 +113,41 @@ describe('the `tracksTransformer` function', () => {
     expect(results).toEqual([
       expect.objectContaining({
         artist: 'artist',
+      }),
+    ]);
+  });
+
+  it('should use the track artist if present', () => {
+    const results = tracksTransformer(
+      {
+        data: {
+          tracklist: [
+            {
+              type_: 'track',
+              artists: [
+                {
+                  name: 'someone else',
+                },
+                {
+                  name: 'secondary artist',
+                },
+              ],
+              title: 'track',
+              duration: '4:19',
+            },
+          ],
+        },
+      },
+      {
+        album: 'album',
+        artist: 'Various',
+      }
+    );
+
+    expect(results).toEqual([
+      expect.objectContaining({
+        artist: 'someone else',
+        albumArtist: 'Various',
       }),
     ]);
   });
