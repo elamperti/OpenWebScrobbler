@@ -1,11 +1,6 @@
 describe('Home (visitor)', () => {
   beforeEach(() => {
-    cy.fixture('api/v2/user/visitor.json').as('userIsVisitorJSON');
-    cy.fixture('api/v2/callback/failure.json').as('callbackFailureJSON');
-
-    cy.server();
-    cy.route('POST', '/api/v2/user.php', '@userIsVisitorJSON');
-
+    cy.intercept('POST', '/api/v2/user.php', { fixture: 'api/v2/user/visitor.json' });
     cy.visit('/');
   });
 
@@ -18,7 +13,7 @@ describe('Home (visitor)', () => {
   });
 
   it('shows an error if token was invalid', () => {
-    cy.route('POST', '/api/v2/callback.php', '@callbackFailureJSON');
+    cy.intercept('POST', '/api/v2/callback.php', { fixture: 'api/v2/callback/failure.json' });
 
     cy.visit('/?token=aTestValue-withNumbers1234and_x1');
     cy.get('.alert-danger').should('exist');
