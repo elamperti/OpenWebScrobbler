@@ -1476,6 +1476,18 @@
   dependencies:
     prop-types "^15.8.1"
 
+"@growthbook/growthbook-react@^0.11.2":
+  version "0.11.2"
+  resolved "https://registry.yarnpkg.com/@growthbook/growthbook-react/-/growthbook-react-0.11.2.tgz#6677e5416b4dad53f0602b2a02c249edb959eb80"
+  integrity sha512-C2O4F3Sf28vFDM8Bv3xj9wYAeCVm5r2ykGzWjtezrhd2MVc38gFVOz3tIMg79xJiffM50NF7G+qIm4Y664rV8Q==
+  dependencies:
+    "@growthbook/growthbook" "^0.21.2"
+
+"@growthbook/growthbook@^0.21.2":
+  version "0.21.2"
+  resolved "https://registry.yarnpkg.com/@growthbook/growthbook/-/growthbook-0.21.2.tgz#69081da36eb0cc0d037eed3c6f4c2c0eb3460e5a"
+  integrity sha512-kAu6LH02krkS+IxfQbe5mGYfPCGrmw+Cm9N3BChc151anhhVvMd8KS1m+vev6yEPnY606BouxE6a3SuDmmCF4g==
+
 "@hapi/hoek@^9.0.0":
   version "9.3.0"
   resolved "https://registry.yarnpkg.com/@hapi/hoek/-/hoek-9.3.0.tgz#8368869dcb735be2e7f5cb7647de78e167a251fb"

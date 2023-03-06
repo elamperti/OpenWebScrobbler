@@ -8,6 +8,7 @@
     "@fortawesome/free-regular-svg-icons": "^6.2.1",
     "@fortawesome/free-solid-svg-icons": "^6.2.1",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "@growthbook/growthbook-react": "^0.11.2",
     "@redux-devtools/extension": "^3.2.4",
     "@sentry/react": "^7.21.1",
     "@sentry/tracing": "^7.36.0",

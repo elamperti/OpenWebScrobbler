@@ -21,11 +21,13 @@ import Spinner from 'components/Spinner';
 import SettingsModal from 'components/SettingsModal';
 
 import { RootState } from 'store';
+import { useGrowthBook } from '@growthbook/growthbook-react';
 
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const growthbook = useGrowthBook();
 
   const [translationsReady, setTranslationsReady] = useState(false);
   const versionUpdateReady = useSelector((state: RootState) => state.updates.newVersionReady);
@@ -34,6 +36,12 @@ function App() {
   useEffect(() => {
     i18next.on('initialized', () => setTranslationsReady(true));
   }, []);
+
+  useEffect(() => {
+    if (growthbook && growthbook.ready === false) {
+      growthbook.loadFeatures();
+    }
+  }, [growthbook]);
 
   useEffect(() => {
     // Things break if this interceptor is applied more than once!

@@ -18,6 +18,8 @@ import ReactGA from 'react-ga';
 import * as Sentry from '@sentry/react';
 import { BrowserTracing } from '@sentry/tracing';
 
+import { GrowthBook, GrowthBookProvider } from '@growthbook/growthbook-react';
+
 import 'utils/i18n';
 import { NEW_VERSION_READY } from 'Constants';
 
@@ -33,6 +35,15 @@ if (top.location !== self.location) {
   // eslint-disable-next-line no-restricted-globals
   top.location = self.location.href;
 }
+
+let wrappedApp = (
+  <ReduxProvider store={store}>
+    {/* @ts-ignore https://github.com/remix-run/react-router/issues/9630 */}
+    <HistoryRouter history={history}>
+      <App />
+    </HistoryRouter>
+  </ReduxProvider>
+);
 
 const sentryEnabled = !!process.env.REACT_APP_SENTRY_DSN;
 if (sentryEnabled) {
@@ -54,6 +65,8 @@ if (sentryEnabled) {
     replaysOnErrorSampleRate: 1.0,
     tracesSampleRate: process.env.NODE_ENV === 'development' ? 0.2 : 0.05,
   });
+
+  wrappedApp = <Sentry.ErrorBoundary fallback={ErrorPage}>{wrappedApp}</Sentry.ErrorBoundary>;
 }
 
 if (process.env.REACT_APP_ANALYTICS_CODE) {
@@ -92,17 +105,29 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
   });
 }
 
-const baseApp = (
-  <ReduxProvider store={store}>
-    {/* @ts-ignore https://github.com/remix-run/react-router/issues/9630 */}
-    <HistoryRouter history={history}>
-      <App />
-    </HistoryRouter>
-  </ReduxProvider>
-);
+const growthbookEnabled = !!process.env.REACT_APP_GROWTHBOOK_API_KEY;
+if (growthbookEnabled) {
+  const growthbook = new GrowthBook({
+    apiHost: 'https://cdn.growthbook.io',
+    clientKey: process.env.REACT_APP_GROWTHBOOK_API_KEY,
+    enableDevMode: process.env.NODE_ENV === 'development',
+    trackingCallback: (experiment, result) => {
+      ReactGA.event({
+        category: 'Experiments',
+        action: 'Viewed Experiment',
+        label: experiment.key,
+        value: result.variationId,
+      });
+      if (sentryEnabled) {
+        Sentry.setTag(`experiment-${experiment.key}`, result.variationId);
+      }
+    },
+  });
+  wrappedApp = <GrowthBookProvider growthbook={growthbook}>{wrappedApp}</GrowthBookProvider>;
+}
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
-root.render(sentryEnabled ? <Sentry.ErrorBoundary fallback={ErrorPage}>{baseApp}</Sentry.ErrorBoundary> : baseApp);
+root.render(wrappedApp);
 
 serviceWorkerRegistration.register({
   onUpdate: () => {
