@@ -5,7 +5,9 @@
     $params = array();
 
     if (isset($_GET['method'])) {
-      switch ($_GET['method']) {
+      $method = $_GET['method'];
+
+      switch ($method) {
         case 'album.search':
         case 'artist.search':
           $endpoint = 'database/search';

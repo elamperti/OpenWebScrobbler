@@ -9,24 +9,35 @@
     private $db;
 
     function __construct() {
-      $this->db = new SQLite3(getenv('SQLITE_DB_PATH'));
-      if (!$this->db) {
-        var_dump($this->db);
+      $this->db = mysqli_init();
+      $this->db->options(MYSQLI_OPT_SSL_VERIFY_SERVER_CERT, false);
+      $this->db->real_connect(
+        getenv('NEW_DB_HOST'),
+        getenv('NEW_DB_USER'),
+        getenv('NEW_DB_PASS'),
+        getenv('NEW_DB_NAME'),
+        NULL,
+        NULL,
+        MYSQLI_CLIENT_SSL
+      );
+      if ($this->db->connect_errno) {
         require('inc/error.php');
         raiseOWSError('Database unavailable', 503);
       }
     }
 
     function get_settings($username) {
-      $q = $this->db->prepare('SELECT * FROM "settings" WHERE username = :username;');
-      $q->bindValue(':username', $username);
-      $result = $q->execute();
+      $normalized_username = strtolower($username);
+      $q = $this->db->prepare('SELECT * FROM `settings` WHERE username = ?');
+      $q->bind_param('s', $normalized_username);
+      $q->execute();
+      $result = $q->get_result();
 
       $ga = new Analytics();
-      $ga->event('Settings', 'Load', $result ? 'Hit' : 'Miss');
+      $ga->event('Settings', 'Load', $result->num_rows ? 'Hit' : 'Miss');
 
-      if ($result) {
-        $settings = $result->fetchArray(SQLITE3_ASSOC);
+      if ($result->num_rows) {
+        $settings = $result->fetch_assoc();
         return $settings;
       } else {
         return false;
@@ -34,16 +45,9 @@
     }
 
     function save_settings($username, $settings) {
-      $q = $this->db->prepare('REPLACE INTO "settings" (username, catchPaste, isDonor, use12Hours, lang, dataProvider)
-                                VALUES (:username, :catchPaste, :isDonor, :use12Hours, :lang, :dataProvider);');
-
-      $q->bindValue(':username', $username);
-      $q->bindValue(':lang', $settings['lang'], SQLITE3_TEXT);
-      $q->bindValue(':isDonor', $settings['isDonor'], SQLITE3_INTEGER);
-      $q->bindValue(':catchPaste', $settings['catchPaste'], SQLITE3_INTEGER);
-      $q->bindValue(':use12Hours', $settings['use12Hours'], SQLITE3_INTEGER);
-      $q->bindValue(':dataProvider', $settings['dataProvider'], SQLITE3_TEXT);
-
+      $normalized_username = strtolower($username);
+      $q = $this->db->prepare('REPLACE INTO `settings` (username, catchPaste, use12Hours, lang, dataProvider) VALUES (?, ?, ?, ?, ?)');
+      $q->bind_param('siiss', $normalized_username, $settings['catchPaste'], $settings['use12Hours'], $settings['lang'], $settings['dataProvider']);
       $result = $q->execute();
 
       $ga = new Analytics();

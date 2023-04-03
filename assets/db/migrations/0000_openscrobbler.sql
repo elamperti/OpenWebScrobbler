@@ -1,14 +1,13 @@
-CREATE TABLE IF NOT EXISTS "settings" (
-	`username`	TEXT NOT NULL UNIQUE,
-	`catchPaste`	BOOLEAN,
-	`use12Hours`	BOOLEAN,
-	`lang`	CHARACTER(5),
-	`isDonor`	BOOLEAN NOT NULL DEFAULT 0,
-	PRIMARY KEY(`username`)
+CREATE TABLE IF NOT EXISTS settings (
+  username VARCHAR(32) NOT NULL UNIQUE,
+  catchPaste TINYINT(1) NOT NULL DEFAULT 1,
+  use12Hours TINYINT(1) NOT NULL DEFAULT 0,
+  lang CHAR(5),
+  PRIMARY KEY (username)
 );
 
-CREATE TABLE IF NOT EXISTS "migrations" (
-	`revision` INT NOT NULL UNIQUE,
-	`executedOn` TEXT NOT NULL DEFAULT (strftime('%Y-%m-%d %H:%M:%S','now')),
-	PRIMARY KEY(`revision`)
+CREATE TABLE IF NOT EXISTS migrations (
+  revision TINYINT UNSIGNED NOT NULL UNIQUE,
+  executedOn DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (revision)
 );
