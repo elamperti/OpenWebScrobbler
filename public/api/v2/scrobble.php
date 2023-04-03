@@ -53,7 +53,18 @@
 
       // Client-side script will take it from here
       echo $response;
-      ob_end_flush();
+
+      if (function_exists('fastcgi_finish_request')) {
+        // Flush the output and continue processing
+        fastcgi_finish_request();
+      } else {
+        // Flush the output buffers as a fallback
+        ob_end_flush();
+      }
+
+      require('inc/influxdb.php');
+      $influxdb = new InfluxDB();
+      $influxdb->record_scrobble($_SESSION['username'], $number_of_tracks);
 
       // Track event
       if ($number_of_tracks > 1) {
@@ -61,9 +72,6 @@
       } else {
         $ga->event('Scrobbles', 'Manual', 1);
       }
-
-      die();
-
     } else {
       require('inc/error.php');
       raiseOWSError('Artist or title missing', 400);

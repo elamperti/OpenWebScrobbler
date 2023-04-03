@@ -21,11 +21,15 @@
       raiseOWSError('Last.fm is not available', 503);
     } else {
       $response = json_decode($response);
-      if (array_key_exists('user', $response)) {
+      if (property_exists($response, 'user')) {
         $_SESSION['userInfo'] = $response->user;
+
+        require('inc/database.php');
+        $db = new Database();
+        $db->init_user($_SESSION['userInfo']->name, $_SESSION['userInfo']->registered->unixtime);
       } else {
         require('inc/error.php');
-        if (array_key_exists('error', $response) && array_key_exists('message', $response)) {
+        if (property_exists($response, 'error') && property_exists($response, 'message')) {
           raiseOWSError($response, 503);
         } else {
           raiseOWSError('Unknown Last.fm error', 503);

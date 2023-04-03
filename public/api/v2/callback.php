@@ -22,14 +22,16 @@
     $response = json_decode($response);
     $ga = new Analytics();
 
-    if (array_key_exists('session', $response)) {
+    if (property_exists($response, 'session')) {
       $_SESSION['username'] = strval($response->session->name);
       $_SESSION['key'] = strval($response->session->key);
       session_write_close();
       echo json_encode(array(
         'status' => 'ok'
       ));
-      ob_end_flush();
+      if (ob_get_length()) {
+        ob_end_flush();
+      }
 
       $ga->event('Session', 'Login', 'Success');
     } else {

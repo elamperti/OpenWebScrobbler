@@ -55,9 +55,9 @@
   $db = new Database();
   $_SESSION['settings']['saved'] = !!$db->save_settings($_SESSION['userInfo']->name, $new_settings);
 
-  } // IF POST
-  else {
-    if (!$_SESSION['settings']) {
+  } // end of IF POST
+  else { // GET
+    if (!isset($_SESSION['settings'])) {
       require('inc/database.php');
       $db = new Database();
       $settings = $db->get_settings($_SESSION['userInfo']->name);
