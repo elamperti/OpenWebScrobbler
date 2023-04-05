@@ -31,10 +31,10 @@ export function tracksTransformer(
     .filter(({ type_: trackType }) => (trackType ? trackType === 'track' : true))
     .map((track) => {
       const transformedTrack = {
-        artist: get(track, 'artists[0].name', sanitizeArtistName(options?.artist || '')),
+        artist: sanitizeArtistName(get(track, 'artists[0].name', options?.artist || '')),
         title: track.title,
         album: get(options, 'album'),
-        albumArtist: get(options, 'artist'),
+        albumArtist: sanitizeArtistName(get(options, 'artist', '')),
         duration: track.duration && _HMSStrToSeconds(track.duration),
         uuid: shortid.generate(),
         cover: null,

@@ -126,7 +126,7 @@ describe('the `tracksTransformer` function', () => {
               type_: 'track',
               artists: [
                 {
-                  name: 'someone else',
+                  name: 'someone else (1)',
                 },
                 {
                   name: 'secondary artist',
