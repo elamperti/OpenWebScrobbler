@@ -1,6 +1,5 @@
-import React, { useState, Suspense } from 'react';
+import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
-import { lazyWithPreload } from 'react-lazy-with-preload';
 import { Trans, useTranslation } from 'react-i18next';
 import PropTypes from 'prop-types';
 
@@ -9,6 +8,7 @@ import subDays from 'date-fns/subDays';
 import format from 'date-fns/format';
 
 import { Input, InputGroup, InputGroupText, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import TimeKeeper from 'react-timekeeper';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faClock } from '@fortawesome/free-regular-svg-icons';
@@ -17,8 +17,6 @@ import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
 import './DateTimePicker.scss';
-
-const TimeKeeper = lazyWithPreload(() => import('react-timekeeper'));
 
 function DatePickerInput(props = {}) {
   return (
@@ -37,7 +35,6 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
   const [timePickerModalVisible, setTimePickerModalVisible] = useState(false);
   const showTimePicker = () => setTimePickerModalVisible(true);
   const hideTimePicker = () => setTimePickerModalVisible(false);
-  TimeKeeper.preload();
 
   if (!visible) return null;
 
@@ -106,24 +103,16 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
             <Trans i18nKey="customTimestamp">Custom timestamp</Trans>
           </ModalHeader>
           <ModalBody>
-            <Suspense
-              fallback={
-                <div>
-                  <Trans i18nKey="loading">Loading...</Trans>
-                </div>
-              }
-            >
-              <TimeKeeper
-                hour24Mode={!use12Hours}
-                time={format(value, 'H:mm')}
-                switchToMinuteOnHourSelect={true}
-                switchToMinuteOnHourDropdownSelect={true}
-                closeOnMinuteSelect={true}
-                onChange={handleTimeChange}
-                onDoneClick={hideTimePicker}
-                doneButton={() => null}
-              />
-            </Suspense>
+            <TimeKeeper
+              hour24Mode={!use12Hours}
+              time={format(value, 'H:mm')}
+              switchToMinuteOnHourSelect={true}
+              switchToMinuteOnHourDropdownSelect={true}
+              closeOnMinuteSelect={true}
+              onChange={handleTimeChange}
+              onDoneClick={hideTimePicker}
+              doneButton={() => null}
+            />
           </ModalBody>
         </Modal>
       </div>
