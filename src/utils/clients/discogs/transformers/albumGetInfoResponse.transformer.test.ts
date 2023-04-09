@@ -120,4 +120,24 @@ describe('the `albumGetInfoTransformer` function', () => {
       })
     );
   });
+
+  it('should replace artist Various with Various artists', () => {
+    const results = albumGetInfoTransformer({
+      data: {
+        title: 'title',
+        artists: [
+          {
+            name: 'Various (123)',
+          },
+        ],
+        year: '2021',
+      },
+    });
+
+    expect(results).toEqual(
+      expect.objectContaining({
+        artist: 'Various Artists',
+      })
+    );
+  });
 });

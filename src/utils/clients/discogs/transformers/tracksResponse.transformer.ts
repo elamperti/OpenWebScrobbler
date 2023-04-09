@@ -27,14 +27,17 @@ export function tracksTransformer(
     return [];
   }
 
+  const albumArtist = get(options, 'artist', '');
+  const album = get(options, 'album', '');
+
   return response?.data.tracklist
     .filter(({ type_: trackType }) => (trackType ? trackType === 'track' : true))
     .map((track) => {
       const transformedTrack = {
         artist: sanitizeArtistName(get(track, 'artists[0].name', options?.artist || '')),
         title: track.title,
-        album: get(options, 'album'),
-        albumArtist: sanitizeArtistName(get(options, 'artist', '')),
+        album,
+        albumArtist,
         duration: track.duration && _HMSStrToSeconds(track.duration),
         uuid: shortid.generate(),
         cover: null,

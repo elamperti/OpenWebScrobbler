@@ -12,9 +12,14 @@ export function albumGetInfoTransformer(response: any) {
     image = images.find((image) => image.type === 'secondary') || null;
   }
 
+  let artist = sanitizeArtistName(get(response, 'data.artists[0].name', ''));
+  if (artist.toLowerCase() === 'various') {
+    artist = 'Various Artists';
+  }
+
   return {
     name: response?.data.title,
-    artist: sanitizeArtistName(get(response, 'data.artists[0].name', '')), // + response.artists.length > 1 ? '+' : ''
+    artist,
     releasedate: response?.data.year,
     url: '',
     cover: image && {
