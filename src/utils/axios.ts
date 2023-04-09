@@ -167,7 +167,7 @@ export function interceptAxios(dispatch) {
     },
     (error) => {
       axiosErrorHandler(error.response, dispatch);
-      return Promise.resolve(error.response);
+      return Promise.reject(error.response);
     }
   );
 }
