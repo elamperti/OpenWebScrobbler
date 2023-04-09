@@ -4,7 +4,7 @@ import { albumGetInfo } from './albumGetInfo';
 jest.mock('../apiClient');
 
 describe('the `albumGetInfo` function', () => {
-  it('should call the API with the given discogs id', async() => {
+  it('should call the API with the given Discogs ID', async () => {
     await albumGetInfo('1');
 
     expect(discogsAPI.get).toHaveBeenCalledWith('', {
@@ -13,5 +13,11 @@ describe('the `albumGetInfo` function', () => {
         album_id: '1',
       },
     });
+  });
+
+  it('should contain the Discogs ID in the response', async () => {
+    const response = await albumGetInfo('release-560656');
+
+    expect(response.info.discogsId).toEqual('release-560656');
   });
 });

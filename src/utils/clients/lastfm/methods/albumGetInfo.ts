@@ -19,7 +19,7 @@ export async function albumGetInfo(album: { mbid?: string; artist: string; name:
     },
   });
 
-  const info = albumGetInfoTransformer(response);
+  const info = albumGetInfoTransformer(response, album.mbid);
 
   return {
     info,

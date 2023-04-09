@@ -1,8 +1,9 @@
 import get from 'lodash/get';
 
-export function albumGetInfoTransformer(response: any) {
+export function albumGetInfoTransformer(response: any, mbid?: string) {
   const album = get(response, 'data.album', {});
   return {
+    mbid,
     name: album.name,
     artist: album.artist,
     releasedate: album.releasedate,

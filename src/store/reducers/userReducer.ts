@@ -171,9 +171,11 @@ const userReducer = (state = initialState, action) => {
       const recentAlbums = state.recentAlbums || [];
       const newAlbum = get(action.payload, 'info', {});
 
-      const i = recentAlbums.findIndex(({ title, artist }) => title === newAlbum.title && artist === newAlbum.artist);
-      if (i > -1) {
-        recentAlbums.splice(i, 1);
+      const previousIndex = recentAlbums.findIndex(
+        ({ title, artist }) => title === newAlbum.title && artist === newAlbum.artist
+      );
+      if (previousIndex > -1) {
+        recentAlbums.splice(previousIndex, 1);
       }
       recentAlbums.unshift(newAlbum);
 

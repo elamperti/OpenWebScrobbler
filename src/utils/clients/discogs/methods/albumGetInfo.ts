@@ -10,7 +10,7 @@ export async function albumGetInfo(discogsId: string) {
     },
   });
 
-  const info = albumGetInfoTransformer(response);
+  const info = albumGetInfoTransformer(response, discogsId);
 
   return {
     info,
