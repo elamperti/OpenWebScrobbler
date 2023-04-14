@@ -31,7 +31,12 @@ export function tracksTransformer(
   const album = get(options, 'album', '');
 
   return response?.data.tracklist
-    .filter(({ type_: trackType }) => (trackType ? trackType === 'track' : true))
+    .filter(({ type_: trackType }) => {
+      if (!trackType || trackType === 'track' || trackType === 'index') {
+        return true;
+      }
+      return false;
+    })
     .map((track) => {
       const transformedTrack = {
         artist: sanitizeArtistName(get(track, 'artists[0].name', options?.artist || '')),

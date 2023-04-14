@@ -1,6 +1,6 @@
 import { albumGetInfoTransformer } from './albumGetInfoResponse.transformer';
 
-describe('the `albumGetInfoTransformer` function', () => {
+describe('Discogs transformer: album info', () => {
   it('should return an empty object if there was a problem retrieving the name', () => {
     expect(albumGetInfoTransformer({ data: { message: 'Error ' } })).toEqual({});
   });
