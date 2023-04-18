@@ -1,23 +1,28 @@
 import React, { useState } from 'react';
-import { Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import ReactGA from 'react-ga';
+import { useFeatureIsOn } from '@growthbook/growthbook-react';
 
-import { Row, FormGroup, Input, Label } from 'reactstrap';
+import { Row, FormGroup, Input, Label, DropdownItem } from 'reactstrap';
 import SearchForm from 'components/SearchForm';
 
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { PROVIDER_DISCOGS } from 'Constants';
+import { PROVIDER_NAME, PROVIDER_LASTFM, PROVIDER_DISCOGS } from 'Constants';
 import AlbumList from './partials/AlbumList';
 
 import './ScrobbleAlbumSearch.scss';
+import { setDataProvider } from 'store/actions/settingsActions';
 
 export function ScrobbleAlbumSearch() {
   const [includeReleases, setIncludeReleases] = useState(false);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { t } = useTranslation();
+  const spotifyFF = useFeatureIsOn('spotify');
   const dataProvider = useSelector((state) => state.settings.dataProvider);
   const recentAlbums = useSelector((state) => state.user.recentAlbums || []);
 
@@ -61,6 +66,20 @@ export function ScrobbleAlbumSearch() {
 
   const validator = (str) => str.trim().length > 0;
 
+  const setProvider = (newDataProvider) => dispatch(setDataProvider(newDataProvider));
+
+  const searchOptions = (
+    <>
+      <DropdownItem onClick={() => setProvider(PROVIDER_DISCOGS)}>Discogs</DropdownItem>
+      <DropdownItem onClick={() => setProvider(PROVIDER_LASTFM)}>Last.fm</DropdownItem>
+      {spotifyFF && (
+        <DropdownItem disabled>
+          Spotify (<Trans i18nKey="comingSoon">coming soon!</Trans>)
+        </DropdownItem>
+      )}
+    </>
+  );
+
   return (
     <div className="ows-ScrobbleAlbumSearch">
       <Row className="flex-lg-grow-1 mt-3">
@@ -71,6 +90,8 @@ export function ScrobbleAlbumSearch() {
           </h2>
           <Trans i18nKey="findAlbumCopy" />:
           <SearchForm
+            searchOptions={searchOptions}
+            searchCopy={t('searchOnProvider', { dataProvider: PROVIDER_NAME[dataProvider] })}
             onSearch={onSearch}
             ariaLabel="Album or artist"
             id="albumOrArtistToSearch"

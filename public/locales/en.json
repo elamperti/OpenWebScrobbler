@@ -31,6 +31,7 @@
   "findFriendCopy": "Enter a last.fm username to see their last tracks",
   "visitProfile": "View profile",
   "search": "Search",
+  "searchOnProvider": "Search on {{dataProvider}}",
   "backToSearch": "Back to search",
   "userNotFound": "User not found",
   "username": "Username",
@@ -71,20 +72,7 @@
       "short": "MMM do"
     },
     "months": {
-      "short": [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "May",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec"
-      ],
+      "short": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
       "long": [
         "January",
         "February",

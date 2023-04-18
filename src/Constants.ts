@@ -16,6 +16,13 @@ export const DEFAULT_SONG_DURATION = 3 * 60; // ToDo: use this value when skippi
 
 export const PROVIDER_LASTFM = 'lastfm';
 export const PROVIDER_DISCOGS = 'discogs';
+export const PROVIDER_SPOTIFY = 'spotify';
+
+export const PROVIDER_NAME = {
+  [PROVIDER_LASTFM]: 'Last.fm',
+  [PROVIDER_DISCOGS]: 'Discogs',
+  [PROVIDER_SPOTIFY]: 'Spotify',
+};
 
 // Albums store
 export const GET_ALBUM_INFO_LASTFM = 'GET_ALBUM_INFO_LASTFM'; // remove

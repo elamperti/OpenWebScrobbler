@@ -1,12 +1,26 @@
 import React, { useState, useEffect } from 'react';
 import { Trans } from 'react-i18next';
 
-import { Button, FormFeedback, FormGroup, Input, Label, Row } from 'reactstrap';
+import {
+  Button,
+  DropdownMenu,
+  DropdownToggle,
+  FormFeedback,
+  FormGroup,
+  Input,
+  Label,
+  Row,
+  UncontrolledDropdown,
+} from 'reactstrap';
+
+import styles from './SearchForm.module.scss';
 
 // ToDo: check and fix any double-renders on change/validation
 
 type SearchFormProps = {
   ariaLabel: string;
+  searchOptions?: React.ReactNode;
+  searchCopy: string;
   disableSearch: boolean;
   feedbackMessageKey?: string;
   id: string;
@@ -20,6 +34,8 @@ type SearchFormProps = {
 
 export default function SearchForm({
   ariaLabel,
+  searchOptions,
+  searchCopy,
   feedbackMessageKey,
   id,
   maxLength,
@@ -55,10 +71,17 @@ export default function SearchForm({
     }
   };
 
+  const disableSearch = !isValid || query.length < 1;
+  const searchButton = (
+    <Button block size={size} color="success" onClick={callOnSearch} disabled={disableSearch}>
+      {searchCopy}
+    </Button>
+  );
+
   return (
     <div>
       <Row className="mt-2 g-0">
-        <div className="col-12 col-sm-9 pe-sm-3">
+        <div className="col-12 col-sm-7 pe-sm-3">
           <FormGroup>
             <Label for="title" className="required sr-only">
               {ariaLabel}
@@ -80,10 +103,15 @@ export default function SearchForm({
             </FormFeedback>
           </FormGroup>
         </div>
-        <div className="col-12 col-sm-3">
-          <Button block size={size} color="success" onClick={callOnSearch} disabled={!isValid || query.length < 1}>
-            <Trans i18nKey="search">Search</Trans>
-          </Button>
+        <div className="col-12 col-sm-5">
+          {!searchOptions && searchButton}
+          {searchOptions && (
+            <UncontrolledDropdown group className="w-100">
+              {searchButton}
+              <DropdownToggle caret color="success" className={disableSearch ? styles['fake-disabled'] : ''} />
+              <DropdownMenu>{searchOptions}</DropdownMenu>
+            </UncontrolledDropdown>
+          )}
         </div>
       </Row>
     </div>
