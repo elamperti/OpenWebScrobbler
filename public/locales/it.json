@@ -45,7 +45,7 @@
   "custom": "Personalizzato...",
   "timestamp": "Timestamp",
   "unknown": "Unknown",
-  "lastfmWillRejectOldTimestamps": "Last.fm will rifiuterà di scrobblare canzoni datate più di due settimane fa.",
+  "lastfmWillRejectOldTimestamps": "Last.fm rifiuterà di scrobblare canzoni datate più di due settimane fa.",
   "keepOriginalTimestamp": "Scrobbla usando data e ora originali",
   "noSongsScrobbled": "Ancora nessuna canzone scrobblata!",
   "songsWillAppearHere": "Le canzoni appariranno qui una volta scrobblate.",
