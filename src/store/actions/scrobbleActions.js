@@ -15,8 +15,9 @@ import {
 export function enqueueScrobble(dispatch) {
   return (scrobbles = []) => {
     // Normalize and add metadata
-    scrobbles = scrobbles.map((scrobble) => {
+    scrobbles = scrobbles.map((scrobble, i) => {
       scrobble.id = shortid.generate();
+      scrobble.setIndex = i;
 
       if (!scrobble.timestamp) {
         scrobble.timestamp = new Date();

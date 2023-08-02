@@ -16,6 +16,7 @@ import {
   MAX_SCROBBLES_PER_REQUEST,
 } from 'Constants';
 import { prepareScrobbles } from 'store/transformers/scrobbleTransformer';
+import { castArray } from 'utils/common';
 
 const initialState = {
   countNewScrobbles: false,
@@ -23,7 +24,56 @@ const initialState = {
   list: [],
 };
 
-function updateScrobbleProps(state, scrobbleUUID, newProps) {
+// This is not the best solution
+function updateScrobbleProps(state, scrobbleUUID, payload) {
+  if (!scrobbleUUID || !payload.scrobbles) return state;
+  const scrobblesToModify = state.list.filter((item) => item.scrobbleUUID === scrobbleUUID); // .sort((a,b) => a.id - b.id); // Could lead to offset errors if there's a length mismatch
+
+  if (payload.scrobbles.length !== scrobblesToModify.length) {
+    // eslint-disable-next-line no-console
+    console.warn('Unexpected count discrepancy while updating scrobble props');
+  }
+
+  payload.scrobbles.forEach((scrobble, i) => {
+    const j = scrobblesToModify.findIndex((item) => item.setIndex === i);
+
+    if (j === -1) {
+      // eslint-disable-next-line no-console
+      console.warn(`Unable to find scrobble with setIndex ${i} in set {$scrobbleUUID}`);
+      return;
+    }
+
+    const scrobbleWasRejected = parseInt(scrobble.ignoredMessage.code) !== 0;
+    const errorDescription = scrobbleWasRejected ? scrobble.ignoredMessage['#text'] || 'errors.lastfmRejected' : '';
+
+    scrobblesToModify[j] = {
+      ...scrobblesToModify[j],
+      status: scrobbleWasRejected ? 'error' : 'success',
+      errorDescription,
+      timestamp: new Date(scrobble.timestamp * 1000),
+      artist: scrobble.artist['#text'],
+      track: scrobble.track['#text'],
+      album: scrobble.album['#text'],
+    };
+  });
+
+  return {
+    ...state,
+    list: state.list.map((item) => {
+      if (item.scrobbleUUID !== scrobbleUUID) {
+        return item;
+      } else {
+        return {
+          ...item,
+          ...scrobblesToModify.find((modified) => modified.id === item.id),
+        };
+      }
+    }),
+  };
+}
+
+// And this may be redundant
+function overrideScrobbleProps(state, scrobbleUUID, newProps) {
   if (!scrobbleUUID || !newProps) return state;
   if (newProps.timestamp && newProps.timestamp.valueOf() === 0) {
     // ToDo: update timestamp with response value for multiple scrobbles
@@ -45,7 +95,6 @@ function updateScrobbleProps(state, scrobbleUUID, newProps) {
 }
 
 const scrobbleReducer = (state = initialState, action) => {
-  let status, errorDescription;
   let trackUUID;
   let albumData;
 
@@ -138,19 +187,16 @@ const scrobbleReducer = (state = initialState, action) => {
 
     case `${SCROBBLE}_FULFILLED`:
       if (hasIn(action.payload, 'data.scrobbles[@attr]')) {
-        status = action.payload.data.scrobbles['@attr'].ignored ? 'error' : 'success';
-        errorDescription = status === 'error' ? 'errors.lastfmRejected' : null;
         return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
-          status,
-          errorDescription,
-          timestamp: new Date(get(action.payload.data.scrobbles.scrobble, 'timestamp', 0) * 1000),
+          scrobbles: castArray(action.payload.data.scrobbles.scrobble),
+          // attr: action.payload.scrobbles['@attr'],
         });
       } else {
         /* eslint-disable no-console */
         if (process.env.NODE_ENV === 'development') {
           console.error('Unexpected scrobble response', action.payload.data);
         }
-        return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
+        return overrideScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           status: 'error',
           errorMessage: get(action.payload, 'data.message'),
           errorDescription: 'errors.unexpectedResponse',
@@ -159,7 +205,7 @@ const scrobbleReducer = (state = initialState, action) => {
 
     case `${SCROBBLE}_REJECTED`:
       if (hasIn(action.payload, 'config.headers.scrobbleUUID')) {
-        return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
+        return overrideScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           status: 'error',
           errorDescription: 'errors.apiCallFailed',
         });
