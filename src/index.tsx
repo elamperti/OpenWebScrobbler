@@ -16,7 +16,6 @@ import store from 'store';
 
 import ReactGA from 'react-ga';
 import * as Sentry from '@sentry/react';
-import { BrowserTracing } from '@sentry/tracing';
 
 import { GrowthBook, GrowthBookProvider } from '@growthbook/growthbook-react';
 
@@ -60,9 +59,9 @@ if (sentryEnabled) {
       /extensions\//i,
       /^chrome:\/\//i,
     ],
-    integrations: [new BrowserTracing(), new Sentry.Replay()],
+    integrations: [new Sentry.BrowserTracing(), new Sentry.Replay()],
     replaysSessionSampleRate: process.env.NODE_ENV === 'development' ? 1 : 0.02,
-    replaysOnErrorSampleRate: 1.0,
+    replaysOnErrorSampleRate: 0.8,
     tracesSampleRate: process.env.NODE_ENV === 'development' ? 0.2 : 0.05,
   });
 
