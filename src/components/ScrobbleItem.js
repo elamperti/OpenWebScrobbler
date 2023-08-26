@@ -198,20 +198,22 @@ class ScrobbleItem extends Component {
       songFullTitle = this.properCase(scrobble.title, true);
     }
 
+    const scrobbleItemInputId = `ScrobbleItem-checkbox-${this.props.uuid}`;
+
     if (this.props.compact) {
       // COMPACT view
       songInfo = (
-        <div className="d-flex align-items-center">
+        <label className="d-flex align-items-center" for={scrobbleItemInputId}>
           <span className="song flex-grow-1 pe-2 truncate">{songFullTitle}</span>
           {timeOrDuration}
-        </div>
+        </label>
       );
     } else {
       // FULL view
       songInfo = (
         <Fragment>
           <span className="song">{songFullTitle}</span>
-          <div className="d-flex">
+          <label className="d-flex" for={scrobbleItemInputId}>
             <small className="text-muted flex-grow-1 truncate album">
               {scrobble.album && (
                 <Fragment>
@@ -222,13 +224,10 @@ class ScrobbleItem extends Component {
               )}
             </small>
             {timeOrDuration}
-          </div>
+          </label>
         </Fragment>
       );
     }
-
-    const scrobbleItemClasses =
-      `scrobbled-item status-${scrobble.status} ` + (this.props.compact ? 'compact' : 'card mb-2');
 
     if (this.props.noMenu) {
       rightSideContent = (
@@ -287,11 +286,14 @@ class ScrobbleItem extends Component {
             className="me-1"
             checked={this.props.selected}
             onChange={() => this.props.onSelect(this.props.uuid, this.props.selected)}
-            id={`ScrobbleItem-checkbox-${this.props.uuid}`}
+            id={scrobbleItemInputId}
           />
         </FormGroup>
       );
     }
+
+    const scrobbleItemClasses =
+      `scrobbled-item status-${scrobble.status} ${(this.props.compact ? 'compact' : 'card mb-2')}`;
 
     // ToDo: evaluate using flex-nowrap instead of flex-wrap
     return (
