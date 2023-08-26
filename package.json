@@ -111,11 +111,6 @@
     "translations:fetch": "poeditor pull",
     "translations:update": "poeditor push"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged && CI=true yarn test:unit"
-    }
-  },
   "lint-staged": {
     "src/**/*.{js,jsx,ts,tsx}": [
       "eslint --fix"
