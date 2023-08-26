@@ -17,11 +17,11 @@
   "scrobbleSongs": "Scrobbla canzoni",
   "scrobbleSelected": "Scrobbla la canzone selezionata",
   "findAlbumCopy": "Scrivi il nome di un album o di un artista",
-  "customTimestamp": "Timestamp personalizzato",
-  "albumTimestampLogicDescription": "Scrobblando le canzoni \"adesso\" scrobblerà l'ultima canzone in questo momento, anticipando relativamente le precedenti (come se avessi appena finito di ascoltarle). Il \"timestamp personalizzato\" definirà il timestamp di ascolto della prima traccia ed agginguerà il relativo tempo alle canzoni successive (come se avessi iniziato ad ascoltare l'album nel timestamp selezionato)",
+  "customTimestamp": "Data e ora personalizzate",
+  "albumTimestampLogicDescription": "Scrobblando le canzoni \"adesso\" scrobblerà l'ultima canzone in questo momento, anticipando relativamente le precedenti (come se avessi appena finito di ascoltarle). \"Data e ora personalizzate\" definiranno il momento di ascolto della prima traccia ed agginguerà il relativo tempo alle canzoni successive (come se avessi iniziato ad ascoltare l'album nel momento selezionato)",
   "albumArtist": "Artista di un Album",
   "history": "Storico",
-  "yourProfile": "Tuo profile",
+  "yourProfile": "Tuo profilo",
   "yourHistory": "Tuo storico",
   "scrobbleManually": "Scrobbla manualmente",
   "scrobbleFromOtherUser": "Scrobbla da un altro utente",
@@ -40,10 +40,10 @@
   "translateYourLanguage": "Vuoi aggiungere la tua lingua?",
   "logIn": "Login",
   "logOut": "Logout",
-  "dataProvider": "Data source",
+  "dataProvider": "Fonte dati",
   "now": "Adesso",
   "custom": "Personalizzato...",
-  "timestamp": "Timestamp",
+  "timestamp": "Data e ora",
   "unknown": "Unknown",
   "lastfmWillRejectOldTimestamps": "Last.fm rifiuterà di scrobblare canzoni datate più di due settimane fa.",
   "keepOriginalTimestamp": "Scrobbla usando data e ora originali",
@@ -56,8 +56,9 @@
   "viewProfile": "Vedi il mio profilo Last.fm",
   "lockArtist": "Blocca il campo artista",
   "lockAlbum": "Blocca il campo album",
-  "buyOnAmzn": "Search on Amazon",
+  "buyOnAmzn": "Cerca su Amazon",
   "pasteIntercepted": "Il testo copiato è stato automaticamente suddiviso!",
+  "undo": "Annulla",
   "considerDonating": "Per favore finanzia questo progetto su Patreon!",
   "footer": {
     "joinCommunity": "Sei il benvenuto ad unirti alla nostra community <1>su Discord</1>!",
@@ -71,20 +72,7 @@
       "short": "MMM do"
     },
     "months": {
-      "short": [
-        "Gen",
-        "Feb",
-        "Mar",
-        "Apr",
-        "Mag",
-        "Giu",
-        "Lug",
-        "Ago",
-        "Set",
-        "Ott",
-        "Nov",
-        "Dic"
-      ],
+      "short": ["Gen", "Feb", "Mar", "Apr", "Mag", "Giu", "Lug", "Ago", "Set", "Ott", "Nov", "Dic"],
       "long": [
         "Gennaio",
         "Febbraio",
@@ -140,7 +128,7 @@
   "loginAgain": "Devi autenticarti di nuovo!",
   "serviceUnavailable": "Servizio non disponibile",
   "unexpectedError": "Errore inatteso",
-  "unexpectedErrorMessage": "Your ad blocker may be blocking API calls to last.fm, try disabling it or adding an exception for ws.audioscrobbler.com",
+  "unexpectedErrorMessage": "Il tuo ad blocker potrebbe aver bloccato le chiamate API a last.fm, prova a disabilitarlo o ad aggiungere un'eccezione per ws.audioscrobbler.com",
   "lastfmUnavailable": "Last.fm non sta rispondendo, riprovare più tardi.",
   "settingsSavedSuccessfully": "Le tue impostazioni sono state salvate con successo!",
   "loginError": {
@@ -151,9 +139,9 @@
     "title": "A presto!",
     "message": "Ti sei disconnesso correttamente"
   },
-  "includeReleases": "Include releases",
-  "rateLimitExceeded": "Rate limit exceeded.",
-  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
-  "slowDown": "Slow down!",
-  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes."
+  "includeReleases": "Includi pubblicazioni",
+  "rateLimitExceeded": "Limite di frequenza superato.",
+  "rateLimitMessage": "Scrobblato troppo velocemente? Il limite di frequenza si ripristina a mezzanotte UTC (questo limite è forzato da Last.fm)",
+  "slowDown": "Calma!",
+  "slowDownMessage": "Stai scrobblando troppo velocemente. Per favore attendi un momento e prova ancora tra qualche minuto."
 }
