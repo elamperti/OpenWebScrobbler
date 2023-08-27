@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 
 import { Row } from 'reactstrap';
-import { Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { usernameIsValid } from 'utils/common';
@@ -14,6 +14,7 @@ import Avatar from 'components/Avatar';
 export function ScrobbleUserSearch() {
   const navigate = useNavigate();
   const { state } = useLocation();
+  const { t } = useTranslation();
   const recentUsers = useSelector((state) => state.user.recentProfiles);
   const userProfiles = useSelector((state) => state.user.profiles);
   const [previousFailedSearch, setFailedSearch] = useState('');
@@ -68,6 +69,7 @@ export function ScrobbleUserSearch() {
         <SearchForm
           onSearch={searchUser}
           ariaLabel="Username"
+          searchCopy={t('search')}
           id="userToSearch"
           maxLength={15}
           size="lg"

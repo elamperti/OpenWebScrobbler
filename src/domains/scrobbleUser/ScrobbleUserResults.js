@@ -5,7 +5,7 @@ import ReactGA from 'react-ga';
 import get from 'lodash/get';
 
 import { Row, Button } from 'reactstrap';
-import { Trans } from 'react-i18next';
+import { Trans, useTranslation } from 'react-i18next';
 import { faChevronLeft, faHistory, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
@@ -28,6 +28,7 @@ export function ScrobbleUserResults() {
   const [currentPage, setCurrentPage] = useState(1);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (username) {
@@ -74,6 +75,7 @@ export function ScrobbleUserResults() {
         <div className="col-md-4 d-flex align-items-center justify-content-end">
           <SearchForm
             onSearch={(newUser) => navigate(`/scrobble/user/${newUser}`)}
+            searchCopy={t('search')}
             ariaLabel="Username"
             id="userToSearch"
             maxLength={15}
