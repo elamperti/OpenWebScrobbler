@@ -32,8 +32,6 @@ All changes to the database schema must be added as migrations (use [migration #
 
 ## Translations
 
-To add or improve translations for your language, follow the link "Want to add your language?" from the language selector menu. If you get stuck or want to discuss a particular translation, join #translations [on Discord](https://discord.gg/vcbprTz) or [open an issue](https://github.com/elamperti/OpenWebScrobbler/issues/new).
+To add or improve translations for your language, follow the link "Want to add your language?" from the language selector menu. We are currently using a very friendly tool that doesn't require any code knowledge! To discuss a particular term or seek help, you can join #translations [on Discord](https://discord.gg/vcbprTz) or [open an issue](https://github.com/elamperti/OpenWebScrobbler/issues/new).
 
-:bulb: Subscribe to [issue #115](https://github.com/elamperti/OpenWebScrobbler/issues/115) to receive notifications when there are new things to be translated!
-
-Updated translations should usually be available on the next update.
+Languages with less than 60% of terms translated may not be listed in the application. Updated translation terms will be pushed to the application on the following update.

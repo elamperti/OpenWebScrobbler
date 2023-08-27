@@ -5,20 +5,22 @@ import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 export const languageList = [
-  { code: 'ca', name: 'Català' },
-  { code: 'da', name: 'Dansk' },
-  { code: 'de', name: 'Deutsch' },
-  { code: 'el', name: 'Ελληνικά' },
+  { code: 'ca', name: 'Català' }, // Catalan
+  // { code: 'zh-Hans', name: '中文' }, // Chinese (simplified)
+  { code: 'da', name: 'Dansk' }, // Danish
+  { code: 'de', name: 'Deutsch' }, // German
+  { code: 'el', name: 'Ελληνικά' }, // Greek
   { code: 'en', name: 'English' },
-  { code: 'es', name: 'Español' },
-  { code: 'fr', name: 'French' },
+  { code: 'es', name: 'Español' }, // Spanish
+  { code: 'fr', name: 'Français' }, // French
   { code: 'it', name: 'Italiano' },
-  { code: 'nl', name: 'Nederlands' },
-  { code: 'pl', name: 'polski' },
+  { code: 'nl', name: 'Nederlands' }, // Dutch
+  { code: 'pl', name: 'polski' }, // Polish
   { code: 'pt', name: 'Português' },
-  { code: 'ru', name: 'Русский' },
-  { code: 'tr', name: 'Turkish' },
-  { code: 'uk', name: 'Українська' },
+  { code: 'sr', name: 'Српски' }, // Serbian
+  { code: 'ru', name: 'Русский' }, // Russian
+  { code: 'tr', name: 'Türkçe' }, // Turkish
+  { code: 'uk', name: 'Українська' }, // Ukrainian
 ];
 
 export const fallbackLng = {
