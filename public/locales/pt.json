@@ -40,7 +40,7 @@
   "translateYourLanguage": "Quer adicionar seu idioma?",
   "logIn": "Entrar",
   "logOut": "Sair",
-  "dataProvider": "Data source",
+  "dataProvider": "Fonte de dados",
   "now": "Agora",
   "custom": "Customizar...",
   "timestamp": "Horário",
@@ -155,5 +155,7 @@
   "rateLimitExceeded": "Rate limit exceeded.",
   "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
   "slowDown": "Slow down!",
-  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes."
+  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes.",
+  "comingSoon": "em desenvolvimento",
+  "searchOnProvider": "Search on {{dataProvider}}"
 }

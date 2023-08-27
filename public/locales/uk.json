@@ -155,5 +155,7 @@
   "rateLimitExceeded": "Rate limit exceeded.",
   "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
   "slowDown": "Slow down!",
-  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes."
+  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes.",
+  "comingSoon": "coming soon",
+  "searchOnProvider": "Search on {{dataProvider}}"
 }

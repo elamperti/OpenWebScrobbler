@@ -31,7 +31,6 @@
   "findFriendCopy": "Enter a last.fm username to see their last tracks",
   "visitProfile": "View profile",
   "search": "Search",
-  "searchOnProvider": "Search on {{dataProvider}}",
   "backToSearch": "Back to search",
   "userNotFound": "User not found",
   "username": "Username",
@@ -144,5 +143,7 @@
   "rateLimitExceeded": "Rate limit exceeded.",
   "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
   "slowDown": "Slow down!",
-  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes."
+  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes.",
+  "comingSoon": "coming soon",
+  "searchOnProvider": "Search on {{dataProvider}}"
 }
