@@ -16,6 +16,7 @@ import AlbumList from './partials/AlbumList';
 
 import './ScrobbleAlbumSearch.scss';
 import { setDataProvider } from 'store/actions/settingsActions';
+import { setAlbumQuery } from 'store/actions/albumActions';
 
 export function ScrobbleAlbumSearch() {
   const [includeReleases, setIncludeReleases] = useState(false);
@@ -51,6 +52,9 @@ export function ScrobbleAlbumSearch() {
       action: 'Click album',
       label: albumIndex,
     });
+
+    // Clears previous queries
+    dispatch(setAlbumQuery(''));
 
     if (targetAlbum.mbid) {
       navigate(`/scrobble/album/view/mbid/${targetAlbum.mbid}`);
