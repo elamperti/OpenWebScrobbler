@@ -66,7 +66,7 @@ const userReducer = (state = initialState, action) => {
       };
 
     case `${USER_GET_INFO}_FULFILLED`:
-      if (action.payload.data.user) {
+      if (hasIn(action.payload, 'data.user')) {
         const userData = action.payload.data.user;
         return {
           ...state,
