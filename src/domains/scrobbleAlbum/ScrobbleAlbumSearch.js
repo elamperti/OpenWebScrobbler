@@ -61,10 +61,8 @@ export function ScrobbleAlbumSearch() {
     } else if (targetAlbum.discogsId) {
       navigate(`/scrobble/album/view/dsid/${targetAlbum.discogsId}`);
     } else {
-      navigate(
-        `/scrobble/album/view/${encodeURIComponent(targetAlbum.artist.replace('%', ''))}` +
-          `/${encodeURIComponent(targetAlbum.name.replace('%', ''))}`
-      );
+      const sanitizedArtistName = targetAlbum.artist ? encodeURIComponent(targetAlbum.artist.replace('%', '')) : '_';
+      navigate(`/scrobble/album/view/${sanitizedArtistName}/${encodeURIComponent(targetAlbum.name.replace('%', ''))}`);
     }
   };
 
