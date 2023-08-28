@@ -10,7 +10,7 @@ import { enqueueScrobble } from 'store/actions/scrobbleActions';
 import format from 'date-fns/format';
 import isToday from 'date-fns/isToday';
 
-import { Button, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, FormGroup } from 'reactstrap';
+import { Button, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, FormGroup, Label } from 'reactstrap';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -203,17 +203,17 @@ class ScrobbleItem extends Component {
     if (this.props.compact) {
       // COMPACT view
       songInfo = (
-        <label className="d-flex align-items-center" for={scrobbleItemInputId}>
+        <Label className="d-flex align-items-center mb-0" htmlFor={scrobbleItemInputId}>
           <span className="song flex-grow-1 pe-2 truncate">{songFullTitle}</span>
           {timeOrDuration}
-        </label>
+        </Label>
       );
     } else {
       // FULL view
       songInfo = (
         <Fragment>
           <span className="song">{songFullTitle}</span>
-          <label className="d-flex" for={scrobbleItemInputId}>
+          <Label className="d-flex mb-0" htmlFor={scrobbleItemInputId}>
             <small className="text-muted flex-grow-1 truncate album">
               {scrobble.album && (
                 <Fragment>
@@ -224,7 +224,7 @@ class ScrobbleItem extends Component {
               )}
             </small>
             {timeOrDuration}
-          </label>
+          </Label>
         </Fragment>
       );
     }
