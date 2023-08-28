@@ -98,6 +98,7 @@ describe('Discogs transformer: album info', () => {
       url: '',
       cover: null,
       coverSizes: null,
+      trackCount: 0,
     });
   });
 

@@ -33,6 +33,7 @@ describe('the `albumGetInfoTransformer` function', () => {
       },
       name: 'title',
       url: 'example.com',
+      trackCount: 0,
     });
   });
 });

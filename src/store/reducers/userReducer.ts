@@ -171,6 +171,9 @@ const userReducer = (state = initialState, action) => {
       const recentAlbums = state.recentAlbums || [];
       const newAlbum = get(action.payload, 'info', {});
 
+      // No use in storing an empty or broken album
+      if (newAlbum.trackCount === 0) return state;
+
       const previousIndex = recentAlbums.findIndex(
         ({ title, artist }) => title === newAlbum.title && artist === newAlbum.artist
       );

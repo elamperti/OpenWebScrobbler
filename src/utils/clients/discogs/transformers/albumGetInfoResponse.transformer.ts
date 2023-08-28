@@ -31,5 +31,6 @@ export function albumGetInfoTransformer(response: any, discogsId?: string) {
       sm: 150,
       lg: image.width,
     },
+    trackCount: get(response, 'data.tracklist.length', 0),
   };
 }

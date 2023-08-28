@@ -16,5 +16,6 @@ export function albumGetInfoTransformer(response: any, mbid?: string) {
       sm: 174,
       lg: 300,
     },
+    trackCount: get(album, 'tracks.track.length', 0),
   };
 }
