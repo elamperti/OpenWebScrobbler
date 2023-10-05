@@ -19,7 +19,7 @@ Contributions and suggestions are welcome. Please read the [contribution guideli
 To join the translators team, follow the link at the bottom of the language selector in the application ("Want to add your language?").
 
 ## Development setup
-You'll need [a Last.fm API account](https://www.last.fm/api/account/create)! (and probably a Discogs API key as well)
+You'll need [a Last.fm API account](https://www.last.fm/api/account/create)! (and probably a Discogs API key as well). Please note you need to paste the Last.fm API key twice on variables `LASTFM_API_KEY` and `REACT_APP_LASTFM_API_KEY`.
 You will also need to install Docker Desktop, and make sure it is running before running trying to run the project.
 
 Windows only: you need to run the development server from within WSL; trying to run with node on Windows directly won't work. [More details on this issue](https://github.com/elamperti/OpenWebScrobbler/issues/216).
