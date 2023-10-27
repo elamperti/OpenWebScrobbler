@@ -5,6 +5,7 @@ import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 
 export const languageList = [
+  { code: 'ast', name: 'Asturianu' }, // Asturian
   { code: 'bg', name: 'Български' }, // Bulgarian
   { code: 'ca', name: 'Català' }, // Catalan
   // { code: 'zh-Hans', name: '中文' }, // Chinese (simplified)
@@ -25,7 +26,8 @@ export const languageList = [
 ];
 
 export const fallbackLng = {
-  'bg-BG': ['ca'],
+  'ast-ES': ['ast'],
+  'bg-BG': ['bg'],
   'ca-ES': ['ca'],
   'ca-AD': ['ca'],
   'el-GR': ['el'],
