@@ -151,11 +151,11 @@
     "title": "Vi ses snart!",
     "message": "Successfuldt logget ud."
   },
-  "includeReleases": "Include releases",
-  "rateLimitExceeded": "Rate limit exceeded.",
-  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
-  "slowDown": "Slow down!",
-  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes.",
-  "comingSoon": "coming soon",
-  "searchOnProvider": "Search on {{dataProvider}}"
+  "includeReleases": "Inkludér udgivelser",
+  "rateLimitExceeded": "Ratebegrænsning overskredet.",
+  "rateLimitMessage": "Har du scrobblet for hurtigt? Ratebegrænsningen nulstilles ved midnat UTC (denne begrænsning håndhæves af Last.fm)",
+  "slowDown": "Sænk farten!",
+  "slowDownMessage": "Du scrobbler for hurtigt. Vent venligst et øjeblik og prøv igen om et par minutter.",
+  "comingSoon": "kommer snart",
+  "searchOnProvider": "Søg på {{dataProvider}}"
 }
