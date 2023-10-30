@@ -40,7 +40,6 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
 
   const minDate = subDays(new Date(), 14);
   const maxDate = addDays(new Date(), 1);
-  const timeFormat = use12Hours ? 'h:mm a' : 'H:mm';
 
   const handleDateChange = (timestamp) => {
     // Restore hours and minutes
@@ -48,6 +47,23 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
     timestamp.setMinutes(value.getMinutes());
 
     onChange(timestamp);
+  };
+
+  // This is almost the same as handleTimeChange, but I've separated it
+  // because I'm deprecating react-timekeeper and it will be removed in the future
+  const handleTimeInputChange = (e) => {
+    const newTime = e.target.value;
+    const [hour, minute] = newTime.split(':');
+
+    const timestamp = new Date(value);
+    timestamp.setHours(hour);
+    timestamp.setMinutes(minute);
+
+    if (timestamp > maxDate) {
+      e.value = value;
+    } else {
+      onChange(timestamp);
+    }
   };
 
   const handleTimeChange = (newTime) => {
@@ -79,16 +95,17 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
       </div>
       <div className="col-sm-6 mt-3">
         <InputGroup size="sm" id="TimePickerInputGroup">
-          <InputGroupText>
+          <InputGroupText id="TimePickerInputGroupClock" onClick={showTimePicker}>
             <FontAwesomeIcon icon={faClock} />
           </InputGroupText>
           <Input
             id="TimePicker"
             className="text-center"
+            type="time"
             bsSize="sm"
-            onClick={showTimePicker}
-            value={format(value, timeFormat)}
-            readOnly
+            pattern="^([01]?\d|2[0-3]):[0-5]\d$"
+            onChange={handleTimeInputChange}
+            value={format(value, 'HH:mm:ss')}
           />
         </InputGroup>
         <Modal
