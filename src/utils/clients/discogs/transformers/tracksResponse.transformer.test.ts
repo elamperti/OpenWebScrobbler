@@ -68,6 +68,7 @@ describe('Discogs transformer: tracks response', () => {
         duration: 259,
         uuid: 'fakeShortId',
         cover: null,
+        trackNumber: null,
       },
     ]);
   });

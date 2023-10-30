@@ -18,6 +18,7 @@ export function tracksTransformer(response: any, options?: { album?: string; cov
       duration: track.duration ? parseInt(track.duration) : 0,
       uuid: shortid.generate(),
       cover: undefined,
+      trackNumber: track['@attr'] ? parseInt(track['@attr'].rank) : null,
     };
 
     if (hasIn(options, 'cover')) {

@@ -204,6 +204,9 @@ class ScrobbleItem extends Component {
       // COMPACT view
       songInfo = (
         <Label className="d-flex align-items-center mb-0" htmlFor={scrobbleItemInputId}>
+          {!!this.props.settings.showTrackNumber && scrobble.trackNumber && (
+            <span className="me-1">{scrobble.trackNumber}.</span>
+          )}
           <span className="song flex-grow-1 pe-2 truncate">{songFullTitle}</span>
           {timeOrDuration}
         </Label>
@@ -292,8 +295,9 @@ class ScrobbleItem extends Component {
       );
     }
 
-    const scrobbleItemClasses =
-      `scrobbled-item status-${scrobble.status} ${(this.props.compact ? 'compact' : 'card mb-2')}`;
+    const scrobbleItemClasses = `scrobbled-item status-${scrobble.status} ${
+      this.props.compact ? 'compact' : 'card mb-2'
+    }`;
 
     // ToDo: evaluate using flex-nowrap instead of flex-wrap
     return (
@@ -348,6 +352,7 @@ ScrobbleItem.propTypes = {
   selected: PropTypes.bool,
   settings: PropTypes.shape({
     use12Hours: PropTypes.bool,
+    showTrackNumber: PropTypes.bool,
   }),
   t: PropTypes.func,
   uuid: PropTypes.string,

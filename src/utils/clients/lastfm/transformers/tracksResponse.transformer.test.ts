@@ -13,6 +13,9 @@ describe('the `tracksTransformer` function', () => {
                 },
                 name: 'track',
                 duration: '123',
+                '@attr': {
+                  rank: '2',
+                },
               },
             ],
           },
@@ -28,6 +31,7 @@ describe('the `tracksTransformer` function', () => {
         duration: 123,
         uuid: expect.anything(),
         cover: undefined,
+        trackNumber: 2,
       },
     ]);
   });

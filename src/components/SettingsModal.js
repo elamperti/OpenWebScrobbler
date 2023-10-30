@@ -72,6 +72,9 @@ class SettingsModal extends React.Component {
 
   render() {
     const t = this.props.t;
+    // ToDo: refactor this component ffs
+    // const trackNumbersEnabled = useFeatureIsOn('show-track-numbers');
+    const trackNumbersEnabled = false;
 
     return (
       <Modal
@@ -123,6 +126,12 @@ class SettingsModal extends React.Component {
                 <Input type="checkbox" {...this.createPropsForCheckbox('catchPaste')} />
                 {t('splitPastedText')}
               </Label>
+              {trackNumbersEnabled && (
+                <Label className="d-block" check>
+                  <Input type="checkbox" {...this.createPropsForCheckbox('showTrackNumbers')} />
+                  {t('showTrackNumbers')}
+                </Label>
+              )}
             </FormGroup>
           </Form>
         </ModalBody>

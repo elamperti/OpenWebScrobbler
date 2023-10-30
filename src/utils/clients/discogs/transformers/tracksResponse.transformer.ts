@@ -46,6 +46,7 @@ export function tracksTransformer(
         duration: track.duration && _HMSStrToSeconds(track.duration),
         uuid: shortid.generate(),
         cover: null,
+        trackNumber: track.position || null,
       };
 
       if (hasIn(options, 'cover')) {

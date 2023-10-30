@@ -11,6 +11,7 @@ const initialState = {
   lang: 'auto',
   use12Hours: false,
   catchPaste: true,
+  showTrackNumbers: false,
   isDonor: false,
   keepOriginalTimestamp: true,
   modalIsOpen: false,
@@ -27,6 +28,7 @@ const settingsReducer = (state = initialState, action) => {
         ...action.payload,
         use12Hours: !!action.payload.use12Hours,
         catchPaste: !!action.payload.catchPaste,
+        showTrackNumbers: !!action.payload.showTrackNumbers,
         isDonor: !!action.payload.isDonor,
         settingsLoaded: true,
       };
