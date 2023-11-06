@@ -6,8 +6,21 @@ import {
   USER_LOGGED_OUT,
   PROVIDER_DISCOGS,
 } from 'Constants';
+import type { Provider } from 'Constants';
 
-const initialState = {
+export type Settings = {
+  catchPaste: boolean;
+  dataProvider: Provider;
+  isDonor: boolean;
+  keepOriginalTimestamp: boolean;
+  lang: string; // ToDo: coordinate this value with i18n.ts? (do we need that?)
+  modalIsOpen: boolean;
+  settingsLoaded: boolean;
+  showTrackNumbers: boolean;
+  use12Hours: boolean;
+};
+
+const initialState: Settings = {
   lang: 'auto',
   use12Hours: false,
   catchPaste: true,

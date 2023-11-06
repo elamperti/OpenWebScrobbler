@@ -4,7 +4,7 @@ import { Navigate, Route, Routes as Switch } from 'react-router-dom';
 
 import Home from 'domains/home';
 import PrivateRoute from 'components/PrivateRoute';
-import ScrobbleSong from './views/ScrobbleSong';
+import { ScrobbleSong } from './domains/scrobbleSong';
 import {
   ScrobbleAlbumSearch,
   ScrobbleArtistResults,

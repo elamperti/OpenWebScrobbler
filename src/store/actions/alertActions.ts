@@ -1,12 +1,10 @@
 import { ALERT_CREATE, ALERT_DISMISS, ALERT_CLEAR_ALL } from 'Constants';
 import { Alert } from 'components/AlertZone/types';
 
-export function dismissAlert(dispatch) {
-  return (alertIdentifier: Partial<Alert>) => {
-    dispatch({
-      type: ALERT_DISMISS,
-      payload: alertIdentifier,
-    });
+export function dismissAlert(alertIdentifier: Partial<Alert>) {
+  return {
+    type: ALERT_DISMISS,
+    payload: alertIdentifier,
   };
 }
 
@@ -16,11 +14,9 @@ export function clearAlerts() {
   };
 }
 
-export function createAlert(dispatch) {
-  return (newAlert: Partial<Alert>) => {
-    dispatch({
-      type: ALERT_CREATE,
-      payload: newAlert,
-    });
+export function createAlert(newAlert: Partial<Alert>) {
+  return {
+    type: ALERT_CREATE,
+    payload: newAlert,
   };
 }

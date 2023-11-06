@@ -8,6 +8,6 @@ export type Alert = {
   persistent: boolean;
   errorNumber?: number;
   message?: string;
-  rawMessage?: string;
+  rawMessage?: React.ReactNode;
   icon?: IconProp;
 };

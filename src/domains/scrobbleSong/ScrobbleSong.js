@@ -16,12 +16,12 @@ import { clearListOfScrobbles, scrobbleCounterEnabled } from 'store/actions/scro
 import { fetchLastfmProfileHistory } from 'store/actions/userActions';
 
 import ScrobbleList from 'components/ScrobbleList';
-import SongForm from 'components/SongForm';
+import { SongForm } from './SongForm';
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 
 const CONSIDER_STALE_AFTER = 5 * 60 * 1000; // 5 minutes
 
-class ScrobbleSong extends Component {
+class ScrobbleSongClass extends Component {
   constructor(props) {
     super(props);
 
@@ -173,7 +173,7 @@ class ScrobbleSong extends Component {
   }
 }
 
-ScrobbleSong.propTypes = {
+ScrobbleSongClass.propTypes = {
   fetchLastfmProfileHistory: PropTypes.func,
   clearUserList: PropTypes.func,
   scrobbleCounterEnabled: PropTypes.func,
@@ -198,4 +198,4 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(ScrobbleSong);
+export const ScrobbleSong = connect(mapStateToProps, mapDispatchToProps)(ScrobbleSongClass);

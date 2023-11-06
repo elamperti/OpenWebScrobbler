@@ -78,10 +78,12 @@ function axiosErrorHandler(payload, dispatch) {
   }
 
   if (newError.message !== 'loginAgain' && newError.message !== 'userNotFound') {
-    createAlert(dispatch)({
-      ...newError,
-      errorNumber: showErrorNumber ? errorNumber : undefined,
-    });
+    dispatch(
+      createAlert({
+        ...newError,
+        errorNumber: showErrorNumber ? errorNumber : undefined,
+      })
+    );
   }
 }
 

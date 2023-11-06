@@ -45,6 +45,7 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
     // Restore hours and minutes
     timestamp.setHours(value.getHours());
     timestamp.setMinutes(value.getMinutes());
+    timestamp.setSeconds(value.getSeconds());
 
     onChange(timestamp);
   };
@@ -53,11 +54,12 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
   // because I'm deprecating react-timekeeper and it will be removed in the future
   const handleTimeInputChange = (e) => {
     const newTime = e.target.value;
-    const [hour, minute] = newTime.split(':');
+    const [hour, minute, seconds] = newTime.split(':');
 
     const timestamp = new Date(value);
     timestamp.setHours(hour);
     timestamp.setMinutes(minute);
+    timestamp.setSeconds(seconds);
 
     if (timestamp > maxDate) {
       e.value = value;
@@ -70,6 +72,7 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
     const timestamp = new Date(value);
     timestamp.setHours(newTime.hour);
     timestamp.setMinutes(newTime.minute);
+    timestamp.setSeconds(0);
     onChange(timestamp);
   };
 

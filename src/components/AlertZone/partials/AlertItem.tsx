@@ -14,7 +14,7 @@ export default function AlertItem({ id: alertId, type, errorNumber, title, messa
 
   const onClose = () => {
     setOpenState(false);
-    setTimeout(() => dismissAlert(dispatch)({ id: alertId }), 1000);
+    setTimeout(() => dispatch(dismissAlert({ id: alertId })), 1000);
   };
 
   return (

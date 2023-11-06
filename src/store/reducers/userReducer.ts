@@ -11,10 +11,11 @@ import {
   MAX_RECENT_USERS,
   MAX_RECENT_ALBUMS,
   PROVIDER_DISCOGS,
+  Provider,
 } from 'Constants';
 
 type UserSettings = {
-  dataProvider: 'discogs' | 'lastfm';
+  dataProvider: Provider;
   isLoggedIn: boolean | null;
   name: string;
   profiles: any;

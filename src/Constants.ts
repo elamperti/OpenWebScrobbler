@@ -14,9 +14,12 @@ export const MAX_RECENT_USERS = 6;
 export const MAX_RECENT_ALBUMS = 8;
 export const DEFAULT_SONG_DURATION = 3 * 60; // ToDo: use this value when skipping time forward after scrobble
 
-export const PROVIDER_LASTFM = 'lastfm';
-export const PROVIDER_DISCOGS = 'discogs';
-export const PROVIDER_SPOTIFY = 'spotify';
+// ToDo: improve this
+export type Provider = 'lastfm' | 'discogs' | 'spotify';
+
+export const PROVIDER_LASTFM: Provider = 'lastfm';
+export const PROVIDER_DISCOGS: Provider = 'discogs';
+export const PROVIDER_SPOTIFY: Provider = 'spotify';
 
 export const PROVIDER_NAME = {
   [PROVIDER_LASTFM]: 'Last.fm',

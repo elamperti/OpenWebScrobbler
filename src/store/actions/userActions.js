@@ -33,11 +33,13 @@ export function authUserWithToken(dispatch) {
         }
       })
       .catch((response) => {
-        createAlert(dispatch)({
-          type: 'danger',
-          title: 'loginError.title',
-          message: 'loginError.message',
-        });
+        dispatch(
+          createAlert({
+            type: 'danger',
+            title: 'loginError.title',
+            message: 'loginError.message',
+          })
+        );
         // Avoid issue OPENSCROBBLER-47
         if (response) {
           /* eslint-disable no-console */
@@ -84,14 +86,16 @@ export function logOut(dispatch) {
       });
       localStorage.removeItem('hashedUID');
       history.push('/');
-      createAlert(dispatch)(
-        hasIn(alertObject, 'message')
-          ? alertObject
-          : {
-              type: 'info',
-              title: 'logoutInfo.title',
-              message: 'logoutInfo.message',
-            }
+      dispatch(
+        createAlert(
+          hasIn(alertObject, 'message')
+            ? alertObject
+            : {
+                type: 'info',
+                title: 'logoutInfo.title',
+                message: 'logoutInfo.message',
+              }
+        )
       );
     });
   };
