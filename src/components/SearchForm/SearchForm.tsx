@@ -57,9 +57,10 @@ export default function SearchForm({
     }
   }, [id]);
 
-  useEffect(() => {
-    setValidation(validator(query));
-  }, [validator, query]);
+  const updateQuery = (newQuery: string) => {
+    setQuery(newQuery);
+    setValidation(validator(newQuery));
+  };
 
   const callOnSearch = () => {
     onSearch(query);
@@ -95,7 +96,7 @@ export default function SearchForm({
               invalid={query.length > 1 && !isValid}
               readOnly={readOnly}
               onKeyDown={catchEnter}
-              onChange={(e) => setQuery(e.target.value)}
+              onInput={(e) => updateQuery((e.target as HTMLInputElement).value)}
               maxLength={maxLength}
             />
             <FormFeedback valid={query.length < 1 || isValid}>
