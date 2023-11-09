@@ -22,7 +22,7 @@ export default function UserDropdow() {
     <React.Fragment>
       <UncontrolledDropdown data-cy="UserDropdown" nav inNavbar={bsBreakpoint < BS_SIZE_MD}>
         <DropdownToggle nav caret className="ows-dropdown-user">
-          <Avatar user={user} alt={user.name} size="sm" />
+          <Avatar url={user.avatar?.md} alt={user.name} size="sm" />
           <span className="ows-username" data-cy="UserDropdown-username">
             {user.name}
           </span>

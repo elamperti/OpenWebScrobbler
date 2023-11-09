@@ -1,21 +1,12 @@
 import get from 'lodash/get';
-
-const sizeMap = {
-  small: 'sm',
-  medium: 'md',
-  large: 'lg',
-  extralarge: 'xl',
-};
+import { avatarTransformer } from './avatar.transformer';
 
 export function userProfileTransformer(response: any) {
   const userData = response?.data?.user || {};
   let avatar = null;
 
   if (userData.image) {
-    avatar = (get(userData, 'image') as any[]).reduce((avatars, image) => {
-      avatars[sizeMap[image.size]] = image['#text'];
-      return avatars;
-    }, {});
+    avatar = avatarTransformer(get(userData, 'image') as any[]);
   }
 
   return {

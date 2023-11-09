@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import { avatarTransformer } from 'utils/clients/lastfm/transformers/avatar.transformer';
 
 export function fetchLastfmArtists(response) {
   const artists = [];
@@ -9,12 +10,7 @@ export function fetchLastfmArtists(response) {
       name: artist.name,
       mbid: artist.mbid,
       url: artist.url,
-      avatar: {
-        sm: get(artist, 'image[1][#text]'),
-        md: get(artist, 'image[2][#text]'),
-        lg: get(artist, 'image[3][#text]'),
-        xl: get(artist, 'image[4][#text]'),
-      },
+      avatar: avatarTransformer(artist.image),
     });
   }
   return artists;

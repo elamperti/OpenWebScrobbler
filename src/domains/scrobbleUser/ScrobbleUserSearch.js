@@ -46,13 +46,13 @@ export function ScrobbleUserSearch() {
   if (recentUsers.length > 0) {
     for (const recentUser of recentUsers) {
       const profileImg = Object.prototype.hasOwnProperty.call(userProfiles, recentUser)
-        ? userProfiles[recentUser]
+        ? userProfiles[recentUser].avatar?.md
         : null;
 
       // ToDo: use <a> so users can copy a permalink to a recent search
       recentUsersList.push(
         <li key={recentUser} className="list-group-item" onClick={() => searchUser(recentUser)}>
-          <Avatar user={profileImg} size="sm" className="me-2" />
+          <Avatar url={profileImg} size="sm" className="me-2" />
           {recentUser}
         </li>
       );
