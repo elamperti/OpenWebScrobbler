@@ -17,7 +17,7 @@ export const languageList = [
   { code: 'fr', name: 'Français' }, // French
   { code: 'it', name: 'Italiano' },
   { code: 'nl', name: 'Nederlands' }, // Dutch
-  { code: 'pl', name: 'polski' }, // Polish
+  { code: 'pl', name: 'Polski' }, // Polish
   { code: 'pt', name: 'Português' },
   { code: 'sr', name: 'Српски' }, // Serbian
   { code: 'ru', name: 'Русский' }, // Russian
