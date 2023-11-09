@@ -5,13 +5,12 @@ import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';
 
 import {
-  AUDIOSCROBBLER_API_URL,
   OPENSCROBBLER_API_URL,
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
   USER_GET_INFO,
-  FETCH_LASTFM_USER_INFO,
-  FETCH_LASTFM_USER_HISTORY,
+  USER_ADD_RECENT_PROFILE,
+  USER_SAVE_INFO,
 } from 'Constants';
 
 import history from 'utils/history';
@@ -101,51 +100,16 @@ export function logOut(dispatch) {
   };
 }
 
-export function fetchLastfmProfileInfo(dispatch) {
-  return (username, callback) => {
-    const response = dispatch({
-      type: FETCH_LASTFM_USER_INFO,
-      payload: axios.get(AUDIOSCROBBLER_API_URL, {
-        params: {
-          method: 'user.getInfo',
-          user: username,
-          api_key: process.env.REACT_APP_LASTFM_API_KEY,
-          format: 'json',
-        },
-      }),
-    });
-
-    if (typeof callback === 'function') {
-      response.then((res) => {
-        callback(res);
-      });
-    }
+export function addRecentUser(user) {
+  return {
+    type: USER_ADD_RECENT_PROFILE,
+    payload: user,
   };
 }
 
-export function fetchLastfmProfileHistory(dispatch) {
-  return (username, options = {}, callback) => {
-    const response = dispatch({
-      type: FETCH_LASTFM_USER_HISTORY,
-      payload: axios.get(AUDIOSCROBBLER_API_URL, {
-        params: {
-          method: 'user.getRecentTracks',
-          user: username,
-          ...options,
-          api_key: process.env.REACT_APP_LASTFM_API_KEY,
-          format: 'json',
-        },
-      }),
-    });
-
-    if (typeof callback === 'function') {
-      response
-        .then((res) => {
-          callback(res);
-        })
-        .catch((err) => {
-          callback(null, err);
-        });
-    }
+export function saveUserInfo(data) {
+  return {
+    type: USER_SAVE_INFO,
+    payload: data,
   };
 }

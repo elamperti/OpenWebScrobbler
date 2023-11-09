@@ -107,7 +107,7 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
             type="time"
             bsSize="sm"
             pattern="^([01]?\d|2[0-3]):[0-5]\d$"
-            onChange={handleTimeInputChange}
+            onInput={handleTimeInputChange}
             value={format(value, 'HH:mm:ss')}
           />
         </InputGroup>

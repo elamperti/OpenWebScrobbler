@@ -1,5 +1,5 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
@@ -15,34 +15,32 @@ type UserCardProps = {
   withLinkToProfile?: boolean;
 };
 
-export const UserCard: React.FC<UserCardProps> = (props) => {
-  const { t } = useTranslation();
-  // ToDo: use URL from user.info endpoint
+export function UserCard({ name, user, isHeading, withLinkToProfile }: UserCardProps) {
   const externalLink = (
     <div>
       <a
-        href={`https://last.fm/user/${props.name}`}
+        href={user.url || `https://last.fm/user/${name}`}
         // eslint-disable-next-line react/jsx-no-target-blank
         target="_blank"
         rel="noopener noreferrer"
       >
-        {t('visitProfile')}
+        <Trans i18nKey="visitProfile">Visit profile</Trans>
       </a>{' '}
       <FontAwesomeIcon icon={faExternalLinkAlt} />
     </div>
   );
 
   return (
-    <div className={`user-card d-flex w-100 px-3 g-0 align-items-center ${props.isHeading ? 'py-3' : ''}`}>
+    <div className={`user-card d-flex w-100 px-3 g-0 align-items-center${isHeading ? ' py-3' : ''}`}>
       <div className="text-center">
-        <Avatar user={props.user} alt={props.name} size="md" />
+        <Avatar user={user} alt={name} size="md" />
       </div>
       <div className="d-flex-grow-1 ps-3">
-        <h3>{props.name}</h3>
-        {props.withLinkToProfile && externalLink}
+        <h3>{name}</h3>
+        {withLinkToProfile && externalLink}
       </div>
     </div>
   );
-};
+}
 
 export default UserCard;

@@ -21,6 +21,7 @@ import { GrowthBook, GrowthBookProvider } from '@growthbook/growthbook-react';
 
 import 'utils/i18n';
 import { NEW_VERSION_READY } from 'Constants';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 // Avoid proxies that may interfer with the site
 if (process.env.NODE_ENV !== 'development' && document.location.host !== process.env.REACT_APP_HOST) {
@@ -48,7 +49,7 @@ const sentryEnabled = !!process.env.REACT_APP_SENTRY_DSN;
 if (sentryEnabled) {
   Sentry.init({
     dsn: process.env.REACT_APP_SENTRY_DSN,
-    debug: process.env.NODE_ENV === 'development',
+    debug: false, // Enable only to debug specific issues, it's too verbose otherwise
     release: process.env.REACT_APP_VERSION,
     environment: process.env.NODE_ENV,
     // @ts-ignore (sanitizeKeys is a valid property)
@@ -60,7 +61,7 @@ if (sentryEnabled) {
       /^chrome:\/\//i,
     ],
     integrations: [new Sentry.BrowserTracing(), new Sentry.Replay()],
-    replaysSessionSampleRate: process.env.NODE_ENV === 'development' ? 1 : 0.02,
+    replaysSessionSampleRate: process.env.NODE_ENV === 'development' ? 0 : 0.02,
     replaysOnErrorSampleRate: 0.8,
     tracesSampleRate: process.env.NODE_ENV === 'development' ? 0.2 : 0.05,
   });
@@ -103,6 +104,16 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
     appVersion,
   });
 }
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+      retry: false,
+    },
+  },
+});
+wrappedApp = <QueryClientProvider client={queryClient}>{wrappedApp}</QueryClientProvider>;
 
 const growthbookEnabled = !!process.env.REACT_APP_GROWTHBOOK_API_KEY;
 if (growthbookEnabled) {

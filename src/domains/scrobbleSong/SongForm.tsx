@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useContext, useEffect, useState } from 'react';
 import { lazyWithPreload } from 'react-lazy-with-preload';
 import { useDispatch, useSelector } from 'react-redux';
 import { Trans } from 'react-i18next';
@@ -15,9 +15,10 @@ import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 
 import Tooltip from 'components/Tooltip';
 
-import { RootState } from 'store';
+import type { RootState } from 'store';
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 import { createAlert, dismissAlert } from 'store/actions/alertActions';
+import { ScrobbleCloneContext } from './ScrobbleSong';
 
 import { DEFAULT_SONG_DURATION } from 'Constants';
 
@@ -42,7 +43,7 @@ export function extractArtistTitle(text: string, reverse = false) {
   return null;
 }
 
-export function SongForm({ exportCloneReceiver }: { exportCloneReceiver?: (scrobble: any) => void }) {
+export function SongForm() {
   const [album, setAlbum] = useState('');
   const [artist, setArtist] = useState('');
   const [locks, setLocks] = useState({
@@ -57,14 +58,15 @@ export function SongForm({ exportCloneReceiver }: { exportCloneReceiver?: (scrob
 
   const dispatch = useDispatch();
   const settings = useSelector((state: RootState) => state.settings);
+  const { setCloneFn } = useContext(ScrobbleCloneContext);
 
   // ToDo: refactor to use context or something more practical
   useEffect(() => {
-    if (exportCloneReceiver) {
-      exportCloneReceiver(cloneDataFromScrobble);
+    if (setCloneFn) {
+      setCloneFn(() => cloneDataFromScrobble);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [exportCloneReceiver]);
+  }, [setCloneFn]);
 
   useEffect(() => {
     document.getElementById('artist').focus();

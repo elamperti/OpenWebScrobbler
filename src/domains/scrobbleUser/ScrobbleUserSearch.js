@@ -42,6 +42,7 @@ export function ScrobbleUserSearch() {
     }
   };
 
+  // ToDo: just iterate over recentUsers inside the <ul> below
   if (recentUsers.length > 0) {
     for (const recentUser of recentUsers) {
       const profileImg = Object.prototype.hasOwnProperty.call(userProfiles, recentUser)

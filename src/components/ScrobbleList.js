@@ -1,10 +1,12 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 
 import ScrobbleItem from 'components/ScrobbleItem';
 import Spinner from 'components/Spinner';
+import { ScrobbleCloneContext } from 'domains/scrobbleSong/ScrobbleSong';
 
 function ScrobbleList(props) {
+  const { cloneFn, setCloneFn } = useContext(ScrobbleCloneContext);
   let albumHasVariousArtists = !props.isAlbum;
 
   if (props.loading) {
@@ -28,7 +30,7 @@ function ScrobbleList(props) {
         <ScrobbleItem
           scrobble={scrobble}
           analyticsEvent={props.analyticsEventForScrobbles}
-          cloneScrobbleTo={props.cloneScrobblesTo}
+          cloneScrobbleTo={setCloneFn ? cloneFn : undefined}
           compact={props.compact}
           noMenu={props.noMenu}
           noCover={props.isAlbum}
@@ -54,7 +56,6 @@ function ScrobbleList(props) {
 ScrobbleList.propTypes = {
   analyticsEventForScrobbles: PropTypes.string,
   children: PropTypes.node.isRequired,
-  cloneScrobblesTo: PropTypes.func,
   compact: PropTypes.bool,
   isAlbum: PropTypes.bool,
   loading: PropTypes.bool,
@@ -62,7 +63,6 @@ ScrobbleList.propTypes = {
   onSelect: PropTypes.func,
   selected: PropTypes.instanceOf(Set),
   scrobbles: PropTypes.array,
-  fetchLastfmProfileHistory: PropTypes.func,
   user: PropTypes.object,
 };
 

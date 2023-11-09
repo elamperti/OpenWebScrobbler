@@ -27,11 +27,13 @@ export function setSettings(dispatch) {
         payload: () => {
           axios.post(`${OPENSCROBBLER_API_URL}/settings.php`, newSettings).then(() => {
             if (!silent) {
-              createAlert(dispatch)({
-                type: 'success',
-                category: 'settings',
-                message: 'settingsSavedSuccessfully',
-              });
+              dispatch(
+                createAlert({
+                  type: 'success',
+                  category: 'settings',
+                  message: 'settingsSavedSuccessfully',
+                })
+              );
             }
           });
         },

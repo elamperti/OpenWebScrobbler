@@ -5,7 +5,7 @@ import { useLocation } from 'react-router-dom';
 import { clearAlerts } from 'store/actions/alertActions';
 
 import AlertItem from './partials/AlertItem';
-import { RootState } from 'store';
+import type { RootState } from 'store';
 
 export default function AlertZone() {
   const location = useLocation();

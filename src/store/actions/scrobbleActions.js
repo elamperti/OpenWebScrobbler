@@ -72,18 +72,15 @@ export function enqueueScrobble(dispatch) {
   };
 }
 
-export function clearListOfScrobbles(dispatch) {
-  return () => {
-    dispatch({
-      type: CLEAR_SCROBBLES_LIST,
-    });
+export function clearListOfScrobbles() {
+  return {
+    type: CLEAR_SCROBBLES_LIST,
   };
 }
 
-export function scrobbleCounterEnabled(dispatch) {
-  return (newValue) => {
-    dispatch({
-      type: newValue ? COUNT_SCROBBLES_ENABLE : COUNT_SCROBBLES_DISABLE,
-    });
+// 🤔 wtf.
+export function scrobbleCounterEnabled(newValue) {
+  return {
+    type: newValue ? COUNT_SCROBBLES_ENABLE : COUNT_SCROBBLES_DISABLE,
   };
 }

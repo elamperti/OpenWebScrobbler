@@ -5,14 +5,16 @@ import {
   USER_LOGGED_IN,
   USER_LOGGED_OUT,
   USER_GET_INFO,
-  FETCH_LASTFM_USER_INFO,
-  FETCH_LASTFM_USER_HISTORY,
+  USER_ADD_RECENT_PROFILE,
   GET_ALBUM_INFO,
   MAX_RECENT_USERS,
   MAX_RECENT_ALBUMS,
   PROVIDER_DISCOGS,
   Provider,
+  USER_SAVE_INFO,
 } from 'Constants';
+
+import { userProfileTransformer } from '../../utils/clients/lastfm/transformers/userProfile.transformer';
 
 type UserSettings = {
   dataProvider: Provider;
@@ -68,14 +70,10 @@ const userReducer = (state = initialState, action) => {
 
     case `${USER_GET_INFO}_FULFILLED`:
       if (hasIn(action.payload, 'data.user')) {
-        const userData = action.payload.data.user;
         return {
           ...state,
           isLoggedIn: true,
-          name: userData.name || '',
-          url: userData.url || '',
-          // country: userData.country || '',
-          avatar: userData.image ? { sm: userData.image[1]['#text'] } : '',
+          ...userProfileTransformer(action.payload),
         };
       } else if (hasIn(action.payload, 'data.isLoggedIn')) {
         return {
@@ -86,87 +84,40 @@ const userReducer = (state = initialState, action) => {
         return state;
       }
 
-    case `${FETCH_LASTFM_USER_INFO}_FULFILLED`:
-      if (hasIn(action.payload, 'data.user')) {
-        const username = action.payload.data.user.name;
-        const avatars = {
-          sm: '',
-          md: '',
-          lg: '',
-          // xl: '',
-        };
-
-        for (const avatar of get(action.payload.data.user, 'image')) {
-          switch (avatar.size) {
-            case 'small':
-              avatars.sm = avatar['#text'];
-              break;
-            case 'medium':
-              avatars.md = avatar['#text'];
-              break;
-            case 'large':
-            default:
-              avatars.lg = avatar['#text'];
-              break;
-            // case 'extralarge':
-            //   avatars['xl'] = avatar['#text'];
-            //   break;
-          }
-        }
+    case USER_SAVE_INFO:
+      if (hasIn(action.payload, 'name')) {
+        const username = action.payload.name;
 
         profiles[username] = {
           ...get(profiles, username, {}),
-          avatar: avatars,
+          ...action.payload,
         };
         return {
           ...state,
           profiles,
         };
       } else {
-        // ToDo: the user wasn't found, do something?
+        // eslint-disable-next-line no-console
+        console.warn('Unexpected payload in USER_SAVE_INFO');
         return state;
       }
 
-    case `${FETCH_LASTFM_USER_HISTORY}_FULFILLED`:
-      if (hasIn(action.payload, 'data.recenttracks.track')) {
-        const newScrobbles = [];
-        const username = get(action.payload, 'data.recenttracks[@attr].user', '');
-        const totalPages = get(action.payload, 'data.recenttracks[@attr].totalPages', '');
-        const thisPage = get(action.payload, 'data.recenttracks[@attr].page', 1);
-        const scrobbles = get(profiles, `[${username}].scrobbles`, []);
+    case USER_ADD_RECENT_PROFILE: {
+      const username = action.payload;
 
-        for (const item of get(action.payload, 'data.recenttracks.track', [])) {
-          if (!get(item, '[@attr].nowplaying', false)) {
-            newScrobbles.unshift({
-              artist: item.artist['#text'],
-              title: item.name,
-              album: item.album['#text'],
-              albumArtist: null,
-              timestamp: new Date(item.date.uts * 1000),
-            });
-          }
-        }
-
-        scrobbles[thisPage] = newScrobbles;
-
-        profiles[username] = {
-          ...get(profiles, username, {}),
-          scrobbles,
-          totalPages,
-        };
-
-        const i = recentProfiles.indexOf(username);
-        if (i > -1) {
-          recentProfiles.splice(i, 1);
-        }
-        recentProfiles.unshift(username);
-        recentProfiles = recentProfiles.slice(0, MAX_RECENT_USERS);
+      const currentIndex = recentProfiles.indexOf(username);
+      if (currentIndex > -1) {
+        recentProfiles.splice(currentIndex, 1);
       }
+
+      recentProfiles.unshift(username);
+      recentProfiles = recentProfiles.slice(0, MAX_RECENT_USERS);
+
       return {
         ...state,
-        profiles,
         recentProfiles,
       };
+    }
 
     case `${GET_ALBUM_INFO}_FULFILLED`: {
       const recentAlbums = state.recentAlbums || [];

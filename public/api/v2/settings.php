@@ -27,6 +27,7 @@
   filter_and_assign('catchPaste', $new_settings, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
   filter_and_assign('use12Hours', $new_settings, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
   filter_and_assign('keepOriginalTimestamp', $new_settings, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
+  filter_and_assign('showTrackNumbers', $new_settings, FILTER_VALIDATE_BOOLEAN, FILTER_NULL_ON_FAILURE);
   filter_and_assign('lang', $new_settings, FILTER_SANITIZE_STRING, FILTER_FLAG_EMPTY_STRING_NULL, function($str) {
     if (strlen($str) > 5) return NULL;
     $str = strtolower($str);
