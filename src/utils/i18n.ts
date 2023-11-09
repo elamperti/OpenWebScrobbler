@@ -6,6 +6,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 
 export const languageList = [
   { code: 'ast', name: 'Asturianu' }, // Asturian
+  { code: 'ar', name: 'العربية', rtl: true }, // Arabic
   { code: 'bg', name: 'Български' }, // Bulgarian
   { code: 'ca', name: 'Català' }, // Catalan
   // { code: 'zh-Hans', name: '中文' }, // Chinese (simplified)
@@ -26,6 +27,7 @@ export const languageList = [
 ];
 
 export const fallbackLng = {
+  'ar-jo': ['ar'],
   'ast-ES': ['ast'],
   'bg-BG': ['bg'],
   'ca-ES': ['ca'],
@@ -63,6 +65,8 @@ i18n
 
 i18n.on('languageChanged', (newLang) => {
   document.documentElement.lang = newLang;
+  const isRTL = languageList.find(({ code }) => code === newLang)?.rtl;
+  document.documentElement.dir = isRTL ? 'rtl' : 'ltr';
 });
 
 export default i18n;
