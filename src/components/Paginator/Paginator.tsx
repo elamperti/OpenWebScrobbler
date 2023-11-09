@@ -19,7 +19,7 @@ export default function Paginator({ currentPage, pageCount, onPageChange }: Pagi
     onPageChange(parseInt(targetPage, 10));
   };
 
-  const pageItems = Array(maxBound - minBound)
+  const pageItems = Array(maxBound - minBound + 1)
     .fill(0)
     .map((_, i) => minBound + i);
 
@@ -28,11 +28,6 @@ export default function Paginator({ currentPage, pageCount, onPageChange }: Pagi
       {currentPage > Math.ceil(MAX_PAGE_ITEMS / 2) && (
         <PaginationItem>
           <PaginationLink first onClick={goToPage} data-page={1} />
-        </PaginationItem>
-      )}
-      {currentPage > 1 && (
-        <PaginationItem>
-          <PaginationLink previous onClick={goToPage} data-page={currentPage - 1} />
         </PaginationItem>
       )}
 
@@ -44,11 +39,6 @@ export default function Paginator({ currentPage, pageCount, onPageChange }: Pagi
         </PaginationItem>
       ))}
 
-      {currentPage < pageCount && (
-        <PaginationItem>
-          <PaginationLink next onClick={goToPage} data-page={currentPage + 1} />
-        </PaginationItem>
-      )}
       {maxBound < pageCount && (
         <PaginationItem>
           <PaginationLink last onClick={goToPage} data-page={pageCount} />
