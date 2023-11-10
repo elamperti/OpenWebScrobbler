@@ -58,19 +58,15 @@ export function setSettings(dispatch) {
   };
 }
 
-export function openSettingsModal(dispatch) {
-  return () => {
-    dispatch({
-      type: SETTINGS_MODAL_OPEN,
-    });
+export function openSettingsModal() {
+  return {
+    type: SETTINGS_MODAL_OPEN,
   };
 }
 
-export function closeSettingsModal(dispatch) {
-  return () => {
-    dispatch({
-      type: SETTINGS_MODAL_CLOSE,
-    });
+export function closeSettingsModal() {
+  return {
+    type: SETTINGS_MODAL_CLOSE,
   };
 }
 

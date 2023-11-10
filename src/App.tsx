@@ -18,7 +18,7 @@ import AnalyticsListener from './components/AnalyticsListener';
 import UpdateToast from './components/UpdateToast';
 
 import Spinner from 'components/Spinner';
-import SettingsModal from 'components/SettingsModal';
+import { SettingsModal } from 'components/SettingsModal';
 
 import { RootState } from 'store';
 import { useGrowthBook } from '@growthbook/growthbook-react';

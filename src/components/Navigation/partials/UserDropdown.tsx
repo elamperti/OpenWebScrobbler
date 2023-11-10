@@ -34,7 +34,7 @@ export default function UserDropdow() {
             <FontAwesomeIcon className="ms-1" color="var(--bs-gray)" icon={faExternalLinkAlt} />
           </DropdownItem>
           <DropdownItem divider />
-          <DropdownItem onClick={openSettingsModal(dispatch)}>
+          <DropdownItem onClick={() => dispatch(openSettingsModal())}>
             <FontAwesomeIcon icon={faCog} />
             <Trans i18nKey="settings">Settings</Trans>
           </DropdownItem>
