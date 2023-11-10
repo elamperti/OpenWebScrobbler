@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { Trans } from 'react-i18next';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTwitter, faGithub, faDiscord, faPatreon } from '@fortawesome/free-brands-svg-icons';
+import { faGithub, faDiscord, faPatreon } from '@fortawesome/free-brands-svg-icons';
 
 import './Footer.css';
 
@@ -14,9 +14,6 @@ function Footer() {
     <footer>
       <div className="container mt-3 mb-2">
         <div className="social text-center my-2">
-          <a title="Twitter" className="mx-2" href="https://twitter.com/OpenScrobbler" target="_blank" rel="noreferrer">
-            <FontAwesomeIcon icon={faTwitter} size="2x" />
-          </a>
           <a title="GitHub" className="mx-2" href="https://github.com/elamperti/openwebscrobbler">
             <FontAwesomeIcon icon={faGithub} size="2x" />
           </a>
