@@ -15,8 +15,10 @@ import {
 } from 'Constants';
 
 import { userProfileTransformer } from '../../utils/clients/lastfm/transformers/userProfile.transformer';
+import { Avatar } from 'utils/types/avatar';
 
 type UserSettings = {
+  avatar: Avatar;
   dataProvider: Provider;
   isLoggedIn: boolean | null;
   name: string;
@@ -36,6 +38,7 @@ const initialState: UserSettings = {
   recentAlbums: [],
   url: '',
   userSettingsLoading: false,
+  avatar: null,
 };
 
 const userReducer = (state = initialState, action) => {

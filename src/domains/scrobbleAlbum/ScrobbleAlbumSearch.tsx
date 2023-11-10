@@ -18,14 +18,16 @@ import './ScrobbleAlbumSearch.scss';
 import { setDataProvider } from 'store/actions/settingsActions';
 import { setAlbumQuery } from 'store/actions/albumActions';
 
+import type { RootState } from 'store';
+
 export function ScrobbleAlbumSearch() {
   const [includeReleases, setIncludeReleases] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const spotifyFF = useFeatureIsOn('spotify');
-  const dataProvider = useSelector((state) => state.settings.dataProvider);
-  const recentAlbums = useSelector((state) => state.user.recentAlbums || []);
+  const dataProvider = useSelector((state: RootState) => state.settings.dataProvider);
+  const recentAlbums = useSelector((state: RootState) => state.user.recentAlbums || []);
 
   const toggleReleaseSwitch = () => setIncludeReleases(!includeReleases);
 

@@ -1,8 +1,6 @@
-import React, { useState, useEffect, Suspense } from 'react';
-import PropTypes from 'prop-types';
+import React, { useState, useEffect, Suspense, useMemo } from 'react';
+import lazyWithPreload from 'react-lazy-with-preload';
 import { useDispatch } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
-import { lazyWithPreload } from 'react-lazy-with-preload';
 import { Trans, useTranslation } from 'react-i18next';
 import ReactGA from 'react-ga';
 import addSeconds from 'date-fns/addSeconds';
@@ -10,15 +8,7 @@ import subSeconds from 'date-fns/subSeconds';
 import format from 'date-fns/format';
 
 import { Alert, Badge, Button, FormGroup, Label, Input } from 'reactstrap';
-
-import {
-  faArrowLeft,
-  faBolt,
-  faCompactDisc,
-  faShoppingCart,
-  faStopwatch,
-  faQuestionCircle,
-} from '@fortawesome/free-solid-svg-icons';
+import { faShoppingCart, faStopwatch, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import AlbumCard from 'components/AlbumCard';
@@ -28,31 +18,30 @@ import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
 import { DEFAULT_SONG_DURATION, getAmznLink } from 'Constants';
 
+import { EmptyDiscMessage } from './EmptyDiscMessage';
+
+import type { Album, DiscogsAlbum } from 'utils/types/album';
+import type { Scrobble } from 'utils/types/scrobble';
+
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 
 // ToDo: refactor this component completely.
 // It's too complex and carries several blocks from old code.
-
-export default function Tracklist({ albumInfo, tracks }) {
+export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album; tracks: Scrobble[] }) {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const { t } = useTranslation();
 
   const [showTimestampCopy, setShowTimestampCopy] = useState(false);
-  const [amznLink, setAmznLink] = useState('');
+  const amznLink = useMemo(() => getAmznLink(albumInfo.artist, albumInfo.name), [albumInfo]);
   const [canScrobble, setCanScrobble] = useState(true);
   // ToDo: simplify customTimestamp + useCustomTimestamp
   const [customTimestamp, setCustomTimestamp] = useState(new Date());
   const [useCustomTimestamp, setUseCustomTimestamp] = useState(false);
-  const [selectedTracks, setSelectedTracks] = useState(new Set());
+  const [selectedTracks, setSelectedTracks] = useState<Set<string>>(new Set());
   const [totalDuration, setTotalDuration] = useState(0);
   const albumHasTracks = tracks && tracks.length > 0;
   const hasAlbumInfo = Object.keys(albumInfo).length > 0;
   const durationFormat = totalDuration > 3600 ? 'H:mm:ss' : 'mm:ss';
-
-  useEffect(() => {
-    setAmznLink(getAmznLink(albumInfo.artist, albumInfo.name));
-  }, [albumInfo]);
 
   useEffect(() => {
     let newDuration = 0;
@@ -72,11 +61,6 @@ export default function Tracklist({ albumInfo, tracks }) {
 
   DateTimePicker.preload();
 
-  const goBack = (e) => {
-    e.preventDefault();
-    navigate(-1);
-  };
-
   const toggleCustomTimestamp = () => {
     if (!useCustomTimestamp) {
       ReactGA.event({
@@ -92,7 +76,7 @@ export default function Tracklist({ albumInfo, tracks }) {
     setShowTimestampCopy(!showTimestampCopy);
   };
 
-  const toggleSelectedTrack = (trackUUID, wasCheckedBefore) => {
+  const toggleSelectedTrack = (trackUUID: string, wasCheckedBefore = false) => {
     const newSet = new Set(selectedTracks);
 
     if (wasCheckedBefore) {
@@ -112,7 +96,7 @@ export default function Tracklist({ albumInfo, tracks }) {
   const scrobbleSelectedTracks = () => {
     const userHasNotSelectedTracks = selectedTracks.size < 1;
     const timestampCalculationSubstractsTime = !useCustomTimestamp;
-    const tracklist = Array.from(tracks);
+    const tracklist = Array.from(tracks) as Scrobble[];
     let rollingTimestamp = useCustomTimestamp ? customTimestamp : new Date();
     if (timestampCalculationSubstractsTime) {
       // When the user specifies a custom timestamp it will be the one of the first track,
@@ -164,7 +148,9 @@ export default function Tracklist({ albumInfo, tracks }) {
             <div className="album-heading-info flex-grow-1">
               <h3 className="album-heading-album-name mb-0">{albumInfo.name}</h3>
               <div className="album-heading-artist-name">{albumInfo.artist}</div>
-              <Badge className="my-1">{albumInfo.releasedate}</Badge>
+              {(albumInfo as DiscogsAlbum).releasedate && (
+                <Badge className="my-1">{(albumInfo as DiscogsAlbum).releasedate}</Badge>
+              )}
               {tracks.length > 0 && (
                 <div className="album-heading-duration">
                   <FontAwesomeIcon icon={faStopwatch} className="me-2" color="var(--bs-gray)" />
@@ -263,24 +249,8 @@ export default function Tracklist({ albumInfo, tracks }) {
         onSelect={toggleSelectedTrack}
         selected={selectedTracks}
       >
-        <div className="row">
-          <div className="col-12 text-center mt-4">
-            <FontAwesomeIcon icon={faBolt} transform="shrink-8 up-3 right-4 rotate-30" mask={faCompactDisc} size="4x" />
-            <p className="mt-2">
-              <Trans i18nKey="emptyAlbum">This album appears to be empty.</Trans>
-            </p>
-            <a href="/scrobble/album" onClick={goBack} className="my-2">
-              <FontAwesomeIcon icon={faArrowLeft} />
-              {` ${t('goBack')}`}
-            </a>
-          </div>
-        </div>
+        <EmptyDiscMessage />
       </ScrobbleList>
     </React.Fragment>
   );
 }
-
-Tracklist.propTypes = {
-  albumInfo: PropTypes.object,
-  tracks: PropTypes.array,
-};

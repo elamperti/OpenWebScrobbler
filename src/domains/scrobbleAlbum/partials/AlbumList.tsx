@@ -1,14 +1,22 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { MouseEventHandler } from 'react';
 
 import { Row } from 'reactstrap';
 import AlbumCard from 'components/AlbumCard';
+import type { Album } from 'utils/types/album';
 
-export default function AlbumList({ albums = [], className, onClick }) {
+export default function AlbumList({
+  albums = [],
+  className = '',
+  onClick,
+}: {
+  albums: Album[];
+  className: string;
+  onClick: MouseEventHandler<HTMLAnchorElement>;
+}) {
   return (
     <Row className="listOfAlbums mb-4">
       {albums.map((album, i) => (
-        <div className={className || null} key={i}>
+        <div className={className} key={i}>
           <a href={album.url} data-album-index={i} onClick={onClick}>
             <AlbumCard
               artist={album.artist}
@@ -25,9 +33,3 @@ export default function AlbumList({ albums = [], className, onClick }) {
     </Row>
   );
 }
-
-AlbumList.propTypes = {
-  albums: PropTypes.array.isRequired,
-  className: PropTypes.string,
-  onClick: PropTypes.func,
-};

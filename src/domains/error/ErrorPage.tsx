@@ -1,5 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 // import { useSelector } from 'react-redux';
 import { showReportDialog } from '@sentry/react';
 
@@ -9,7 +8,7 @@ import { faHeadphonesAlt, faBolt, faCompactDisc, faPaperPlane, faArrowLeft } fro
 
 /* ToDo: Translate this whole page? What about i18n lib errors? */
 
-const ErrorPage = ({ error, eventId, resetError }) => {
+const ErrorPage = ({ error, eventId, resetError }: { error?: any; eventId?: string; resetError?: () => void }) => {
   // const username = useSelector((state) => state.user?.name);
 
   const reloadPage = () => {
@@ -32,7 +31,7 @@ const ErrorPage = ({ error, eventId, resetError }) => {
       onLoad: () => {
         const sentryCloseButton = document.querySelector('.sentry-error-embed .close');
 
-        if (sentryCloseButton) {
+        if (sentryCloseButton && resetError) {
           sentryCloseButton.addEventListener('click', () => {
             try {
               resetError();
@@ -125,12 +124,6 @@ const ErrorPage = ({ error, eventId, resetError }) => {
       </div>
     </React.Fragment>
   );
-};
-
-ErrorPage.propTypes = {
-  error: PropTypes.any,
-  eventId: PropTypes.string,
-  resetError: PropTypes.func,
 };
 
 export default ErrorPage;

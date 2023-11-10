@@ -17,8 +17,15 @@ import {
 } from 'Constants';
 import { prepareScrobbles } from 'store/transformers/scrobbleTransformer';
 import { castArray } from 'utils/common';
+import { Scrobble } from 'utils/types/scrobble';
 
-const initialState = {
+type ScrobbleState = {
+  countNewScrobbles: boolean;
+  unreadCount: number;
+  list: Scrobble[];
+};
+
+const initialState: ScrobbleState = {
   countNewScrobbles: false,
   unreadCount: 0,
   list: [],

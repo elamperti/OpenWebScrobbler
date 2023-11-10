@@ -7,9 +7,9 @@ import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 
 import type { SizeProp } from '@fortawesome/fontawesome-svg-core';
 
-import './Avatar.css';
+import type { AvatarSizes } from 'utils/types/avatar';
 
-export type AvatarSizes = 'xl' | 'lg' | 'md' | 'sm';
+import './Avatar.css';
 
 interface AvatarProps {
   alt: string;
@@ -19,6 +19,7 @@ interface AvatarProps {
   url: string | null;
 }
 
+// eslint-disable-next-line no-unused-vars
 const iconSizes: { [key in AvatarSizes]: SizeProp } = {
   xl: '5x',
   lg: '5x',
@@ -26,6 +27,7 @@ const iconSizes: { [key in AvatarSizes]: SizeProp } = {
   sm: '1x',
 };
 
+// eslint-disable-next-line no-unused-vars
 const imgSizes: { [key in AvatarSizes]: number } = {
   xl: 300,
   lg: 128,
@@ -33,7 +35,7 @@ const imgSizes: { [key in AvatarSizes]: number } = {
   sm: 24,
 };
 
-const Avatar: React.FC<AvatarProps> = ({ alt = '', className = '', isArtist = false, size = 'sm', url = null }) => {
+export default function Avatar({ alt = '', className = '', isArtist = false, size = 'sm', url = null }: AvatarProps) {
   const iconSize = iconSizes[size];
   const baseClassName = `user-avatar user-avatar-${size} rounded-circle ${className}`;
 
@@ -48,6 +50,4 @@ const Avatar: React.FC<AvatarProps> = ({ alt = '', className = '', isArtist = fa
   const imgSize = isArtist ? null : imgSizes[size];
 
   return <LazyLoadImage src={url} alt={alt} className={baseClassName} width={imgSize} height={imgSize} />;
-};
-
-export default Avatar;
+}

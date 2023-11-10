@@ -14,6 +14,7 @@ function AnalyticsListener() {
   useEffect(() => {
     sendPageChange(location.pathname);
   }, [location]);
+
   return null;
 }
 

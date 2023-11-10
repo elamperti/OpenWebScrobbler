@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 
 import { faHistory } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,18 +14,19 @@ import Tracklist from './partials/Tracklist';
 import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 import { PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
+import type { RootState } from 'store';
+
 export function ScrobbleAlbumTracklist() {
   const dispatch = useDispatch();
-  const { t } = useTranslation();
   const navigate = useNavigate();
   const params = useParams();
   const [tracklistDataProvider, setTracklistDataProvider] = useState(null);
   const [triedAlternativeProvider, setTriedAlternativeProvider] = useState(false);
 
-  const albumInfo = useSelector((state) => state.album.info);
-  const searchQuery = useSelector((state) => state.album.queries);
-  const tracks = useSelector((state) => state.album.tracks);
-  const scrobbles = useSelector((state) => state.scrobbles.list);
+  const albumInfo = useSelector((state: RootState) => state.album.info);
+  const searchQuery = useSelector((state: RootState) => state.album.queries);
+  const tracks = useSelector((state: RootState) => state.album.tracks);
+  const scrobbles = useSelector((state: RootState) => state.scrobbles.list);
 
   useEffect(() => {
     // Clears any previous tracklist (this should be improved)
@@ -108,8 +109,7 @@ export function ScrobbleAlbumTracklist() {
         </div>
         <div className="col-md-5">
           <h4>
-            <FontAwesomeIcon icon={faHistory} />
-            {` ${t('yourHistory')}`}
+            <FontAwesomeIcon icon={faHistory} /> <Trans i18nKey="yourHistory" />
           </h4>
           <div className="ScrobbleList-container">
             <ScrobbleList scrobbles={scrobbles}>

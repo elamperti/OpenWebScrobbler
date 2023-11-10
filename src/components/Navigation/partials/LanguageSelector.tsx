@@ -1,22 +1,23 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { languageList } from 'utils/i18n'; // ToDo: remove i18n and get current language from elsewhere
+import { languageList } from 'utils/i18n';
 import ReactGA from 'react-ga';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
 
 import { setSettings } from 'store/actions/settingsActions';
 
 import './LanguageSelector.scss';
 
-export default function LanguageSelector({ className }) {
+import type { RootState } from 'store';
+
+export default function LanguageSelector({ className = '' }: { className?: string }) {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  const settings = useSelector((state) => state.settings);
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const settings = useSelector((state: RootState) => state.settings);
 
   function changeLanguage(el) {
     const langCode = el.target.dataset.lang;
@@ -62,11 +63,3 @@ export default function LanguageSelector({ className }) {
     </UncontrolledDropdown>
   );
 }
-
-LanguageSelector.propTypes = {
-  className: PropTypes.string,
-};
-
-LanguageSelector.defaultProps = {
-  className: '',
-};

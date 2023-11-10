@@ -3,19 +3,20 @@ import { useDispatch, useSelector } from 'react-redux';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, NavLink } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faExternalLinkAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import { useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 
 import Avatar from 'components/Avatar';
 import { openSettingsModal } from 'store/actions/settingsActions';
 import { logOut } from 'store/actions/userActions';
 import { useBootstrapBreakpoint, BS_SIZE_MD } from 'utils/bootstrapBreakpoints';
 
+import type { RootState } from 'store';
+
 import './UserDropdown.scss';
 
 export default function UserDropdow() {
-  const { t } = useTranslation();
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state: RootState) => state.user);
   const bsBreakpoint = useBootstrapBreakpoint();
 
   return (
@@ -29,24 +30,24 @@ export default function UserDropdow() {
         </DropdownToggle>
         <DropdownMenu end>
           <DropdownItem href={user.url} target="_blank" rel="noopener" data-cy="UserDropdown-profileLink">
-            {t('viewProfile')}
+            <Trans i18nKey="viewProfile">Visit profile</Trans>
             <FontAwesomeIcon className="ms-1" color="var(--bs-gray)" icon={faExternalLinkAlt} />
           </DropdownItem>
           <DropdownItem divider />
           <DropdownItem onClick={openSettingsModal(dispatch)}>
             <FontAwesomeIcon icon={faCog} />
-            {t('settings')}
+            <Trans i18nKey="settings">Settings</Trans>
           </DropdownItem>
           <DropdownItem className="d-none d-md-block" onClick={logOut(dispatch)}>
             <FontAwesomeIcon icon={faSignOutAlt} />
-            {t('logOut')}
+            <Trans i18nKey="logOut">Sign out</Trans>
           </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
       <NavItem className="d-block d-md-none">
         <NavLink onClick={logOut(dispatch)}>
           <FontAwesomeIcon icon={faSignOutAlt} />
-          {t('logOut')}
+          <Trans i18nKey="logOut">Sign out</Trans>
         </NavLink>
       </NavItem>
     </React.Fragment>

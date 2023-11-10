@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactGA from 'react-ga';
@@ -10,13 +9,14 @@ import { searchArtists } from 'store/actions/artistActions';
 import Spinner from 'components/Spinner';
 import ArtistList from './ArtistList';
 
-export default function ArtistResults({ query }) {
+import type { RootState } from 'store';
+
+export default function ArtistResults({ query }: { query: string }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { t } = useTranslation();
 
-  const artists = useSelector((state) => state.artist.list);
-  const dataProvider = useSelector((state) => state.settings.dataProvider);
+  const artists = useSelector((state: RootState) => state.artist.list);
+  const dataProvider = useSelector((state: RootState) => state.settings.dataProvider);
 
   useEffect(() => {
     if (query && !artists) {
@@ -30,7 +30,7 @@ export default function ArtistResults({ query }) {
     if (artists.length === 0) {
       return (
         <div className="col-12 text-center my-4">
-          <Trans t={t} i18nKey="noArtistsFound" values={{ albumOrArtist: query }}>
+          <Trans i18nKey="noArtistsFound" values={{ albumOrArtist: query }}>
             No artists found for <em>your search query</em>
           </Trans>
         </div>
@@ -61,7 +61,3 @@ export default function ArtistResults({ query }) {
     return <Spinner />;
   }
 }
-
-ArtistResults.propTypes = {
-  query: PropTypes.string,
-};

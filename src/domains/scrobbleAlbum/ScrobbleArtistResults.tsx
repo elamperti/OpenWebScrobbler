@@ -11,11 +11,13 @@ import { clearAlbumsArtistSearch, setArtistQuery } from 'store/actions/albumActi
 import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 import AlbumResults from './partials/AlbumResults';
 
+import type { RootState } from 'store';
+
 export function ScrobbleArtistResults() {
   const dispatch = useDispatch();
   const { t } = useTranslation();
   const params = useParams();
-  const searchQuery = useSelector((state) => state.album.queries);
+  const searchQuery = useSelector((state: RootState) => state.album.queries);
   const [artist, setArtist] = useState(null);
 
   // ToDo: refactor all these useEffects; avoid having an internal state

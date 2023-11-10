@@ -1,14 +1,33 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import { CSSProperties } from 'react';
 import random from 'lodash/random';
+
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 import './AlbumCard.css';
+import { AlbumCover, AlbumCoverSizes } from 'utils/types/album';
 
-const AlbumCard = ({ background, sizes, name, artist, className, year, interactive }) => {
-  const albumCardStyle = {};
-  let srcset;
+interface AlbumCardProps {
+  artist?: string;
+  background: AlbumCover;
+  sizes?: AlbumCoverSizes;
+  className?: string;
+  interactive?: boolean;
+  name?: string;
+  year?: string | number;
+}
+
+export default function AlbumCard({
+  background,
+  sizes,
+  name,
+  artist,
+  className = '',
+  year,
+  interactive = false,
+}: AlbumCardProps) {
+  const albumCardStyle: CSSProperties = {};
+  let srcset = '';
 
   if (background) {
     albumCardStyle.backgroundColor = '#A0A0A0';
@@ -22,10 +41,10 @@ const AlbumCard = ({ background, sizes, name, artist, className, year, interacti
   const albumCaption = name && (
     <div className="albumCard-caption px-3 pb-2">
       {year && (
-        <React.Fragment>
+        <>
           <small className="albumCard-year badge badge-secondary">{year}</small>
           <br />
-        </React.Fragment>
+        </>
       )}
       <strong className="albumCard-title">{name}</strong>
       <br />
@@ -43,21 +62,4 @@ const AlbumCard = ({ background, sizes, name, artist, className, year, interacti
       {albumCaption}
     </div>
   );
-};
-
-AlbumCard.propTypes = {
-  artist: PropTypes.string,
-  background: PropTypes.object.isRequired, // ToDo: better check for sm/lg and values
-  sizes: PropTypes.object,
-  className: PropTypes.string,
-  interactive: PropTypes.bool,
-  name: PropTypes.string,
-  year: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-};
-
-AlbumCard.defaultProps = {
-  interactive: false,
-  className: '',
-};
-
-export default AlbumCard;
+}

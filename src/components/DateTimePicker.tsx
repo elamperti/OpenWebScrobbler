@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Trans, useTranslation } from 'react-i18next';
-import PropTypes from 'prop-types';
 
 import addDays from 'date-fns/addDays';
 import subDays from 'date-fns/subDays';
@@ -16,6 +15,8 @@ import { faCalendarAlt, faClock } from '@fortawesome/free-regular-svg-icons';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
 import 'react-day-picker/lib/style.css';
 
+import type { RootState } from 'store';
+
 import './DateTimePicker.scss';
 
 function DatePickerInput(props = {}) {
@@ -29,8 +30,15 @@ function DatePickerInput(props = {}) {
   );
 }
 
-export default function DateTimePicker({ className = '', onChange, value, visible = false }) {
-  const use12Hours = useSelector((state) => state.settings.use12Hours);
+interface DateTimePickerProps {
+  className?: string;
+  onChange: (timestamp: Date) => void;
+  value: Date;
+  visible?: boolean;
+}
+
+export default function DateTimePicker({ className = '', onChange, value, visible = false }: DateTimePickerProps) {
+  const use12Hours = useSelector((state: RootState) => state.settings.use12Hours);
   const { t } = useTranslation();
   const [timePickerModalVisible, setTimePickerModalVisible] = useState(false);
   const showTimePicker = () => setTimePickerModalVisible(true);
@@ -89,7 +97,7 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
             },
           }}
           format={t('dates.format.short')}
-          formatDate={format}
+          formatDate={format as unknown as (date: Date, format: string) => string}
           component={DatePickerInput}
           onDayChange={handleDateChange}
           value={value}
@@ -139,10 +147,3 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
     </div>
   );
 }
-
-DateTimePicker.propTypes = {
-  className: PropTypes.string,
-  value: PropTypes.instanceOf(Date).isRequired,
-  onChange: PropTypes.func,
-  visible: PropTypes.bool,
-};

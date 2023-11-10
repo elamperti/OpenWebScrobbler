@@ -12,11 +12,14 @@ import LanguageSelector from './partials/LanguageSelector';
 import NavigationItem from './partials/NavigationItem';
 import UserDropdown from './partials/UserDropdown';
 import { LASTFM_AUTH_URL } from 'Constants';
+
+import type { RootState } from 'store';
+
 import './Navigation.scss';
 
 export default function Navigation() {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  const isDonor = useSelector((state) => state.settings.isDonor);
+  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const isDonor = useSelector((state: RootState) => state.settings.isDonor);
   const [menuIsOpen, toggleMenu] = useState(false);
   const bsBreakpoint = useBootstrapBreakpoint();
   const langSelectorInNav = bsBreakpoint > BS_SIZE_SM;

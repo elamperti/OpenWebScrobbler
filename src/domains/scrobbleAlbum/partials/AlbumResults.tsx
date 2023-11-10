@@ -1,6 +1,5 @@
 import React, { useEffect } from 'react';
-import PropTypes from 'prop-types';
-import { Trans, useTranslation } from 'react-i18next';
+import { Trans } from 'react-i18next';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import ReactGA from 'react-ga';
@@ -14,20 +13,29 @@ import { searchAlbums, searchTopAlbums } from 'store/actions/albumActions';
 import Spinner from 'components/Spinner';
 import AlbumList from './AlbumList';
 
-export default function AlbumResults({ useFullWidth, query, topAlbums }) {
+import type { RootState } from 'store';
+
+export default function AlbumResults({
+  useFullWidth,
+  query,
+  topAlbums = false,
+}: {
+  useFullWidth: boolean;
+  query: string;
+  topAlbums?: boolean;
+}) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { t } = useTranslation();
   const { state } = useLocation();
 
-  const albums = useSelector((state) => state.album.list);
-  const dataProvider = useSelector((state) => state.settings.dataProvider);
+  const albums = useSelector((state: RootState) => state.album.list);
+  const dataProvider = useSelector((state: RootState) => state.settings.dataProvider);
   const colSizes = useFullWidth ? 'col-6 col-md-4 col-xl-3' : 'col-6 col-xl-4';
 
   useEffect(() => {
     if (query && !albums) {
       const opts = { provider: dataProvider, includeReleases: state?.includeReleases };
-      dispatch(topAlbums ? searchTopAlbums(query, opts) : searchAlbums(query, opts));
+      dispatch(topAlbums ? searchTopAlbums(query) : searchAlbums(query, opts));
     }
   }, [topAlbums, query, albums, dataProvider, state, dispatch]);
 
@@ -35,13 +43,12 @@ export default function AlbumResults({ useFullWidth, query, topAlbums }) {
     if (albums.length === 0) {
       return (
         <div className="col-12 text-center my-4">
-          <Trans t={t} i18nKey="noAlbumsFound" values={{ albumOrArtist: get(query, 'name', query) }}>
+          <Trans i18nKey="noAlbumsFound" values={{ albumOrArtist: get(query, 'name', query) }}>
             No albums found for <em>your search query</em>
           </Trans>
           <br />
           <a href={`/scrobble/album?q=${encodeURIComponent(query)}`} className="my-2">
-            <FontAwesomeIcon icon={faArrowLeft} />
-            {` ${t('goBack')}`}
+            <FontAwesomeIcon icon={faArrowLeft} /> <Trans i18nKey="goBack">Go back</Trans>
           </a>
         </div>
       );
@@ -75,13 +82,3 @@ export default function AlbumResults({ useFullWidth, query, topAlbums }) {
     return <Spinner />;
   }
 }
-
-AlbumResults.propTypes = {
-  useFullWidth: PropTypes.bool,
-  topAlbums: PropTypes.bool,
-  query: PropTypes.oneOfType([PropTypes.string, PropTypes.object]),
-};
-
-AlbumResults.defaultProps = {
-  topAlbums: false,
-};

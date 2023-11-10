@@ -1,6 +1,3 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -8,10 +5,19 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
 import { faCompactDisc, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 import './AlbumBreadcrumb.scss';
 
-function generateBreadcrumbItem(targetPath, caption, icon) {
+/**
+ * Generates a breadcrumb item
+ *
+ * @param targetPath Relative path to link
+ * @param caption Text shown in breadcrumb
+ * @param [icon] FontAwesome icon
+ * @returns BreadcrumbItem
+ */
+function generateBreadcrumbItem(targetPath: string, caption: string, icon: IconProp = undefined) {
   return (
     <BreadcrumbItem className="ows-AlbumBreadcrumb-item" key={targetPath}>
       <Link to={targetPath}>
@@ -22,7 +28,26 @@ function generateBreadcrumbItem(targetPath, caption, icon) {
   );
 }
 
-export default function AlbumBreadcrumb({ albumQuery, artistQuery, artistDiscogsId, album, dataProvider }) {
+interface AlbumBreadcrumbProps {
+  album?: {
+    artist: string;
+    discogsId?: number;
+    mbid?: string;
+    name: string;
+  };
+  albumQuery?: string;
+  artistQuery?: string;
+  artistDiscogsId?: number;
+  dataProvider?: string;
+}
+
+export default function AlbumBreadcrumb({
+  albumQuery,
+  artistQuery,
+  artistDiscogsId,
+  album,
+  dataProvider,
+}: AlbumBreadcrumbProps) {
   const { t } = useTranslation();
   const itemList = [generateBreadcrumbItem('/scrobble/album', t('search'))];
 
@@ -30,12 +55,12 @@ export default function AlbumBreadcrumb({ albumQuery, artistQuery, artistDiscogs
     itemList.push(
       generateBreadcrumbItem(
         `/scrobble/album/search/${encodeURIComponent(albumQuery.replace(/%(?![0-9A-F])/g, 'PERCENT_SIGN'))}`,
-        `"${albumQuery}"`
+        `"${albumQuery}"` // This is quoting the query
       )
     );
   }
 
-  const albumArtist = album.artist;
+  const albumArtist = album?.artist;
   if (artistQuery || albumArtist) {
     if (artistDiscogsId) {
       itemList.push(
@@ -48,15 +73,16 @@ export default function AlbumBreadcrumb({ albumQuery, artistQuery, artistDiscogs
             /%(?![0-9A-F])/g,
             'PERCENT_SIGN'
           )}`,
-          albumArtist || `"${artistQuery}"`,
+          albumArtist || `"${artistQuery}"`, // This is quoting the query
           albumArtist ? faUser : undefined
         )
       );
     }
   }
 
-  if (album.name) {
+  if (album?.name) {
     let targetPath;
+
     if (album.mbid) {
       targetPath = `/scrobble/album/view/mbid/${album.mbid}`;
     } else if (album.discogsId) {
@@ -81,15 +107,3 @@ export default function AlbumBreadcrumb({ albumQuery, artistQuery, artistDiscogs
     </Breadcrumb>
   );
 }
-
-AlbumBreadcrumb.propTypes = {
-  albumQuery: PropTypes.string,
-  artistQuery: PropTypes.string,
-  artistDiscogsId: PropTypes.number,
-  album: PropTypes.object,
-  dataProvider: PropTypes.string,
-};
-
-AlbumBreadcrumb.defaultProps = {
-  album: {},
-};
