@@ -80,7 +80,7 @@ export default function AlbumBreadcrumb({
     }
   }
 
-  if (album?.name) {
+  if (album && album.name) {
     let targetPath;
 
     if (album.mbid) {

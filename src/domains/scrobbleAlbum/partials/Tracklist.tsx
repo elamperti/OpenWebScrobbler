@@ -27,12 +27,12 @@ const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker')
 
 // ToDo: refactor this component completely.
 // It's too complex and carries several blocks from old code.
-export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album; tracks: Scrobble[] }) {
+export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | null; tracks: Scrobble[] }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
   const [showTimestampCopy, setShowTimestampCopy] = useState(false);
-  const amznLink = useMemo(() => getAmznLink(albumInfo.artist, albumInfo.name), [albumInfo]);
+  const amznLink = useMemo<string>(() => getAmznLink(albumInfo?.artist, albumInfo?.name), [albumInfo]);
   const [canScrobble, setCanScrobble] = useState(true);
   // ToDo: simplify customTimestamp + useCustomTimestamp
   const [customTimestamp, setCustomTimestamp] = useState(new Date());
@@ -40,7 +40,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album; tra
   const [selectedTracks, setSelectedTracks] = useState<Set<string>>(new Set());
   const [totalDuration, setTotalDuration] = useState(0);
   const albumHasTracks = tracks && tracks.length > 0;
-  const hasAlbumInfo = Object.keys(albumInfo).length > 0;
+  const hasAlbumInfo = !!albumInfo && Object.keys(albumInfo).length > 0;
   const durationFormat = totalDuration > 3600 ? 'H:mm:ss' : 'mm:ss';
 
   useEffect(() => {
@@ -111,8 +111,8 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album; tra
       .reduce((result, track) => {
         const newTrack = {
           ...track,
-          album: albumInfo.name || '',
-          albumArtist: albumInfo.artist || '',
+          album: albumInfo?.name || '',
+          albumArtist: albumInfo?.artist || '',
           timestamp: rollingTimestamp,
         };
 
@@ -222,7 +222,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album; tra
           <div className="my-2 col-3 col-lg-2 offset-lg-4 pe-0 text-end">
             {amznLink && (
               <a
-                href={getAmznLink(albumInfo.artist, albumInfo.name)}
+                href={amznLink}
                 className="w-100 btn btn-secondary"
                 target="_blank"
                 rel="noopener noreferrer"

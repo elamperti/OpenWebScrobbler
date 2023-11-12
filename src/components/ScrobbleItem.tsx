@@ -1,4 +1,4 @@
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Trans } from 'react-i18next';
 import ReactGA from 'react-ga';
 import get from 'lodash/get';
@@ -61,6 +61,7 @@ export default function ScrobbleItem({
   const [hasScrobbledAgain, setHasScrobbledAgain] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const settings = useSelector((state: RootState) => state.settings);
+  const dispatch = useDispatch();
 
   const cloneScrobble = () => {
     ReactGA.event({
@@ -80,7 +81,7 @@ export default function ScrobbleItem({
       category: 'Interactions',
       action: analyticsEvent,
     });
-    enqueueScrobble([
+    enqueueScrobble(dispatch)([
       {
         ...scrobble,
         timestamp: useOriginalTimestamp ? scrobble.timestamp : new Date(),

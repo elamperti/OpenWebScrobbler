@@ -11,9 +11,21 @@ import {
   CLEAR_ALBUM_TRACKLIST,
   USER_LOGGED_OUT,
 } from 'Constants';
+import { Album } from 'utils/types/album';
+import { Track } from 'utils/types/track';
 
-const initialState = {
-  info: {},
+type AlbumInfoState = {
+  info: Album | null; // Current (selected) album
+  list: Album[]; // List of albums from latest search
+  tracks: Track[] | null; // List of tracks from selected album
+  queries: {
+    artist: string;
+    album: string;
+  };
+};
+
+const initialState: AlbumInfoState = {
+  info: null,
   list: null,
   tracks: null,
   queries: {
@@ -96,7 +108,7 @@ const albumReducer = (state = initialState, action) => {
     case `${GET_ALBUM_INFO}_REJECTED`: {
       return {
         ...state,
-        info: {},
+        info: null,
         tracks: [],
       };
     }
