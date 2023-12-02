@@ -10,38 +10,22 @@ on:
 
 jobs:
   install:
-    name: Install dependencies
+    name: Setup and quick checks
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Use Node.js v18
-        uses: actions/setup-node@v3
+      - name: Use Node.js v20
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-          cache: 'yarn'
-
-      # Use the exact restore key to avoid Cypress binary snowballing
-      # https://glebbahmutov.com/blog/do-not-let-cypress-cache-snowball/
-      - name: Cache Cypress binary
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
-
-      - name: Cache local node_modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-${{ github.ref }}-
+          node-version: 20
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        uses: cypress-io/github-action@v6
+        with:
+          runTests: false
+          install-command: yarn install --frozen-lockfile
         env:
           CI: 1
 
@@ -57,23 +41,20 @@ jobs:
     needs: install
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Use Node.js v18
-        uses: actions/setup-node@v3
+      - name: Use Node.js v20
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-
-      - name: Cache local node_modules
-        uses: actions/cache/restore@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-${{ github.ref }}-
+          node-version: 20
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
+        uses: cypress-io/github-action@v6
+        with:
+          runTests: false
+          install-command: yarn install --frozen-lockfile
+        env:
+          CI: 1
 
       - name: Unit tests
         run: yarn test:unit
@@ -84,52 +65,39 @@ jobs:
     needs: install
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Use Node.js v18
-        uses: actions/setup-node@v3
+      - name: Use Node.js v20
+        uses: actions/setup-node@v4
         with:
-          node-version: 18
-
-      - name: Cache Cypress binary
-        uses: actions/cache@v3
-        with:
-          path: ~/.cache/Cypress
-          key: cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
-          restore-keys: |
-            cypress-${{ runner.os }}-cypress-${{ hashFiles('**/package.json') }}
-
-      - name: Cache local node_modules
-        uses: actions/cache/restore@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-modules-${{ github.ref }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-node-modules-${{ github.ref }}-
+          node-version: 20
 
       - name: Install dependencies
-        run: yarn install --frozen-lockfile
-
-      - name: Verify Cypress
-        run: |
-          npx cypress cache path
-          npx cypress cache list
-          npx cypress verify
-          npx cypress info
+        uses: cypress-io/github-action@v6
+        with:
+          runTests: false
+          install-command: yarn install --frozen-lockfile
+        env:
+          CI: 1
 
       - name: E2E tests
-        run: yarn test:e2e:rec
+        uses: cypress-io/github-action@v6
+        with:
+          install: false
+          build: npx cypress info
+          command: yarn test:e2e:rec
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          TERM: xterm
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload screenshots
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: screenshots
           path: cypress/screenshots
 
-      - uses: actions/upload-artifact@v3
+      - name: Upload videos
+        uses: actions/upload-artifact@v3
         if: failure()
         with:
           name: videos
