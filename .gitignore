@@ -30,3 +30,12 @@ poeditor-config.json
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# Newer yarn files
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

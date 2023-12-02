@@ -25,7 +25,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           runTests: false
-          install-command: yarn install --frozen-lockfile
+          install-command: yarn install --immutable
         env:
           CI: 1
 
@@ -52,7 +52,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           runTests: false
-          install-command: yarn install --frozen-lockfile
+          install-command: yarn install --immutable
         env:
           CI: 1
 
@@ -76,7 +76,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           runTests: false
-          install-command: yarn install --frozen-lockfile
+          install-command: yarn install --immutable
         env:
           CI: 1
 
