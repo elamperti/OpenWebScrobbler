@@ -2,11 +2,16 @@
   "env": {
     "browser": true,
     "es6": true,
-    "jest": true,
     "node": true,
     "cypress/globals": true
   },
-  "extends": ["standard", "react-app", "react-app/jest"],
+  "extends": [
+    "standard",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:react/jsx-runtime",
+    "plugin:vitest/recommended"
+  ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
     "allowImportExportEverywhere": false,
@@ -18,10 +23,13 @@
   },
   "settings": {
     "react": {
-      "version": "16.5"
+      "version": "detect"
     }
   },
-  "plugins": ["cypress", "n", "promise"],
+  "plugins": ["react", "react-hooks", "vitest", "cypress", "n", "promise"],
+  "globals": {
+    "vi": true
+  },
   "rules": {
     "comma-dangle": [
       "warn",

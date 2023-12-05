@@ -155,7 +155,7 @@ export default function ScrobbleItem({
     if (scrobble.status === 'error') {
       errorMessage = (
         <div className="error px-2">
-          {scrobble.errorDescription && !scrobble.errorMessage ? t(scrobble.errorDescription) : null}
+          {scrobble.errorDescription && !scrobble.errorMessage ? <Trans i18nKey={scrobble.errorDescription} /> : null}
           {get(scrobble, 'errorMessage')}
         </div>
       );

@@ -1,7 +1,7 @@
 import { lastfmAPI } from '../apiClient';
 import { albumGetInfo } from './albumGetInfo';
 
-jest.mock('../apiClient');
+vi.mock('../apiClient');
 
 describe('the `albumGetInfo` function', () => {
   it('should call the API to get the album info', async() => {
@@ -42,7 +42,7 @@ describe('the `albumGetInfo` function', () => {
       name: 'Let Go',
     });
 
-    expect(response.info.mbid).toEqual('bd2fef46-f003-477f-bfb0-6b4de66cfcea');
+    expect(response.info.mbid).toBe('bd2fef46-f003-477f-bfb0-6b4de66cfcea');
   });
 
   it('should return an undefined mbid if not specified in request', async() => {

@@ -1,8 +1,12 @@
 import { tracksTransformer } from './tracksResponse.transformer';
 
-jest.mock('shortid', () => ({
-  generate: () => 'fakeShortId',
-}));
+vi.mock('shortid', async(importOriginal) => {
+  return {
+    default: {
+      generate: () => 'fakeShortId',
+    },
+  };
+});
 
 describe('Discogs transformer: tracks response', () => {
   it('should return an empty array with empty tracklist in the response', () => {

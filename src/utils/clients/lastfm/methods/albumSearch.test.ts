@@ -1,7 +1,7 @@
 import { lastfmAPI } from '../apiClient';
 import { albumSearch } from './albumSearch';
 
-jest.mock('../apiClient');
+vi.mock('../apiClient');
 
 describe('the `albumSearch` function', () => {
   it('should call the API with the given search term', async() => {

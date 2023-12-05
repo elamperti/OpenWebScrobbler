@@ -17,12 +17,6 @@ import userReducer from './reducers/userReducer';
 const middlewares = [createDebounce(), promise];
 const isDevEnvironment = process.env.NODE_ENV === 'development';
 const hasDevTools = typeof window === 'object' && (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__;
-
-if (isDevEnvironment && !hasDevTools) {
-  const { logger } = require('redux-logger');
-  middlewares.push(logger);
-}
-
 const persistedState = loadState();
 
 const store = createStore(

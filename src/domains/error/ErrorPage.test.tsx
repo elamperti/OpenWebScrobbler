@@ -1,16 +1,6 @@
-import React from 'react';
 import { render, screen, fireEvent } from '@testing-library/react';
 import ErrorPage from './ErrorPage';
 import sentry from '@sentry/react';
-
-jest.mock('@sentry/react', () => {
-  const originalModule = jest.requireActual('@sentry/react');
-
-  return {
-    ...originalModule,
-    showReportDialog: jest.fn(),
-  };
-});
 
 describe('ErrorPage', () => {
   it('should render correctly', () => {
@@ -28,12 +18,14 @@ describe('ErrorPage', () => {
   });
 
   it('should have working buttons', () => {
-    const returnFn = jest.fn();
+    const returnFn = vi.fn();
+    const reportDialog = vi.spyOn(sentry, 'showReportDialog');
+
     render(<ErrorPage resetError={returnFn} />);
 
     const reportButton = screen.getByText(/Tell us what happened/);
     fireEvent.click(reportButton);
-    expect(sentry.showReportDialog).toHaveBeenCalled();
+    expect(reportDialog).toHaveBeenCalled();
 
     const returnButton = screen.getByText(/Return to the scrobbler/);
     fireEvent.click(returnButton);
@@ -43,7 +35,7 @@ describe('ErrorPage', () => {
   it('should be able to reload the page', () => {
     const originalLocation = window.location;
     delete window.location;
-    window.location = { reload: jest.fn() } as unknown as Location;
+    window.location = { reload: vi.fn() } as unknown as Location;
 
     render(<ErrorPage />);
 
@@ -52,9 +44,5 @@ describe('ErrorPage', () => {
     expect(window.location.reload).toHaveBeenCalled();
 
     window.location = originalLocation;
-  });
-
-  afterEach(() => {
-    jest.restoreAllMocks(); // Do we need this here?
   });
 });

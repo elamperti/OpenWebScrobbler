@@ -1,7 +1,7 @@
 import { discogsAPI } from '../apiClient';
 import { searchTopAlbums } from './searchTopAlbums';
 
-jest.mock('../apiClient');
+vi.mock('../apiClient');
 
 describe('the `searchTopAlbums` function', () => {
   it('should call the API with the given discogs id', async() => {

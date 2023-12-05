@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Footer from './Footer';
 import i18n from '../utils/i18n';
@@ -7,8 +6,8 @@ const returnedLocation = {
   pathName: '',
 };
 
-jest.mock('react-router-dom', () => ({
-  ...jest.requireActual('react-router-dom'),
+vi.mock('react-router-dom', async() => ({
+  ...(await vi.importActual('react-router-dom')),
   useLocation: () => returnedLocation,
 }));
 

@@ -1,3 +1,4 @@
 *.md
 src/utils/registerServiceWorker.js
 cypress/fixtures/**/*.json
+index.html

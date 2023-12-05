@@ -1,7 +1,7 @@
 import { discogsAPI } from '../apiClient';
 import { albumGetInfo } from './albumGetInfo';
 
-jest.mock('../apiClient');
+vi.mock('../apiClient');
 
 describe('the `albumGetInfo` function', () => {
   it('should call the API with the given Discogs ID', async() => {
@@ -18,6 +18,6 @@ describe('the `albumGetInfo` function', () => {
   it('should contain the Discogs ID in the response', async() => {
     const response = await albumGetInfo('release-560656');
 
-    expect(response.info.discogsId).toEqual('release-560656');
+    expect(response.info.discogsId).toBe('release-560656');
   });
 });
