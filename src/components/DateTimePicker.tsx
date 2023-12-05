@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Trans, useTranslation } from 'react-i18next';
 
@@ -43,11 +43,10 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
   const [timePickerModalVisible, setTimePickerModalVisible] = useState(false);
   const showTimePicker = () => setTimePickerModalVisible(true);
   const hideTimePicker = () => setTimePickerModalVisible(false);
+  const minDate = useMemo(() => subDays(new Date(), 14), []);
+  const maxDate = useMemo(() => addDays(new Date(), 1), []);
 
   if (!visible) return null;
-
-  const minDate = subDays(new Date(), 14);
-  const maxDate = addDays(new Date(), 1);
 
   const handleDateChange = (timestamp) => {
     // Restore hours and minutes
@@ -69,11 +68,7 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
     timestamp.setMinutes(minute);
     timestamp.setSeconds(seconds);
 
-    if (timestamp > maxDate) {
-      e.value = value;
-    } else {
-      onChange(timestamp);
-    }
+    onChange(timestamp);
   };
 
   const handleTimeChange = (newTime) => {
@@ -117,6 +112,7 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
             pattern="^([01]?\d|2[0-3]):[0-5]\d$"
             onInput={handleTimeInputChange}
             value={format(value, 'HH:mm:ss')}
+            // invalid={value > maxDate}
           />
         </InputGroup>
         <Modal
