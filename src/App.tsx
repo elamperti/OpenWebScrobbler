@@ -71,7 +71,9 @@ function App() {
         changeLanguage(queryString.hl.toString());
       }
     }
-  }, [dispatch, navigate, isLoggedIn, location.search]);
+    // Including `navigate` in this array causes a bug in album search, see #220
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch, isLoggedIn, location.search]);
 
   const LoadingSpinner = (
     <div id="ows-loading">
