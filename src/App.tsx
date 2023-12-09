@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect, useState } from 'react';
+import { Suspense, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { changeLanguage } from 'i18next';
@@ -6,7 +6,8 @@ import qs from 'qs';
 import find from 'lodash/find';
 
 import { interceptAxios } from 'utils/axios';
-import i18next, { languageList, fallbackLng } from 'utils/i18n';
+import { languageList, fallbackLng } from 'utils/i18n';
+import { useTranslation } from 'react-i18next';
 
 import { authUserWithToken, getUserInfo } from 'store/actions/userActions';
 
@@ -28,14 +29,11 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const growthbook = useGrowthBook();
+  // This is used to trigger a suspense while i18n is loading
+  const { ready: i18nReady } = useTranslation();
 
-  const [translationsReady, setTranslationsReady] = useState(false);
   const versionUpdateReady = useSelector((state: RootState) => state.updates.newVersionReady);
   const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
-
-  useEffect(() => {
-    i18next.on('initialized', () => setTranslationsReady(true));
-  }, []);
 
   useEffect(() => {
     if (growthbook && growthbook.ready === false) {
@@ -77,7 +75,7 @@ function App() {
 
   const LoadingSpinner = (
     <div id="ows-loading">
-      <Spinner noTranslation={!translationsReady} />
+      <Spinner noTranslation={!i18nReady} />
     </div>
   );
 

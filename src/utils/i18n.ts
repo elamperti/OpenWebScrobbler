@@ -61,6 +61,9 @@ i18n
     interpolation: {
       escapeValue: false, // not needed for react
     },
+    react: {
+      useSuspense: true,
+    },
   });
 
 i18n.on('languageChanged', (newLang) => {
