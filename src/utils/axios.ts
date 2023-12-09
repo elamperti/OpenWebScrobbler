@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { InternalAxiosRequestConfig } from 'axios';
 import ReactGA from 'react-ga';
 import get from 'lodash/get';
 import qs from 'qs';
@@ -8,9 +8,13 @@ import { createAlert } from 'store/actions/alertActions';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { Alert } from 'components/AlertZone/types';
 
-interface ExtendedAxiosRequestConfig extends AxiosRequestConfig {
+// The types are skipped with eslint because of an error I couldn't fix
+// (it's a linting issue, not a TS issue)
+interface ExtendedAxiosRequestConfig extends InternalAxiosRequestConfig {
   timing?: {
+    // eslint-disable-next-line no-undef
     start: DOMHighResTimeStamp;
+    // eslint-disable-next-line no-undef
     elapsedTime?: DOMHighResTimeStamp;
   };
 }
