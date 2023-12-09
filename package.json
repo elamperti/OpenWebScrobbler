@@ -10,7 +10,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@growthbook/growthbook-react": "^0.11.2",
     "@redux-devtools/extension": "^3.2.4",
-    "@sentry/react": "^7.79.0",
+    "@sentry/react": "^7.86.0",
     "@tanstack/react-query": "^5.7.2",
     "axios": "^0.21.1",
     "bootswatch": "^5.1.3",

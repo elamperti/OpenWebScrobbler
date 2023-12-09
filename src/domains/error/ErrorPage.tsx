@@ -16,6 +16,17 @@ const ErrorPage = ({ error, eventId, resetError }: { error?: any; eventId?: stri
     return false;
   };
 
+  const resetOrGoHome = () => {
+    try {
+      if (resetError) {
+        resetError();
+      }
+    } catch (e) {
+      window.location.href = '/';
+      window.location.reload();
+    }
+  };
+
   const fillReport = () => {
     showReportDialog({
       eventId,
@@ -27,21 +38,7 @@ const ErrorPage = ({ error, eventId, resetError }: { error?: any; eventId?: stri
       title: 'Crash report',
       subtitle: 'The developer has been notified.',
       subtitle2: "If you'd like to help, tell us what happened below. Thanks in advance!",
-      // This ugly thing below will be removed once https://github.com/getsentry/sentry-javascript/issues/758 is solved
-      onLoad: () => {
-        const sentryCloseButton = document.querySelector('.sentry-error-embed .close');
-
-        if (sentryCloseButton && resetError) {
-          sentryCloseButton.addEventListener('click', () => {
-            try {
-              resetError();
-            } catch (e) {
-              window.location.href = '/';
-              window.location.reload();
-            }
-          });
-        }
-      },
+      onClose: resetOrGoHome,
     });
   };
 
@@ -60,12 +57,12 @@ const ErrorPage = ({ error, eventId, resetError }: { error?: any; eventId?: stri
         <div className="text-center mb-4">
           <FontAwesomeIcon icon={faBolt} transform="shrink-8 up-3 right-4 rotate-30" mask={faCompactDisc} size="4x" />
           <h2 className="mt-2 mb-0 h1 text-white">Sorry, there was a problem!</h2>
-          <p>An unexpected problem occurred. It's not your fault.</p>
+          <p>An unexpected problem occurred. It&apos;s not your fault.</p>
         </div>
         <h3 className="h4">What now?</h3>
         <p>
           In most cases you will be able to continue using the application by clicking the <em>Go back</em> button. If
-          that doesn't work,{' '}
+          that doesn&apos;t work,{' '}
           <button className="btn btn-link p-0" style={{ top: '-2px' }} onClick={reloadPage}>
             please refresh the page
           </button>
