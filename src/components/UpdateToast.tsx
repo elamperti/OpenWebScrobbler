@@ -1,4 +1,3 @@
-import React from 'react';
 import { Trans } from 'react-i18next';
 import { Alert, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

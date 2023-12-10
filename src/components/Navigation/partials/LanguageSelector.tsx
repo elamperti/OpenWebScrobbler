@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { languageList } from 'utils/i18n';
 import ReactGA from 'react-ga';

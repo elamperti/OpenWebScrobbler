@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Tooltip as BSTooltip, TooltipProps } from 'reactstrap';
 
 export default function Tooltip(props: TooltipProps) {

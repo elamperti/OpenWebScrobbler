@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense, useMemo } from 'react';
+import { useState, useEffect, Suspense, useMemo } from 'react';
 import lazyWithPreload from 'react-lazy-with-preload';
 import { useDispatch } from 'react-redux';
 import { Trans, useTranslation } from 'react-i18next';
@@ -138,7 +138,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
   };
 
   return (
-    <React.Fragment>
+    <>
       {hasAlbumInfo && (
         <div className="album-heading row my-2">
           <div className="col-3">
@@ -251,6 +251,6 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
       >
         <EmptyDiscMessage />
       </ScrobbleList>
-    </React.Fragment>
+    </>
   );
 }

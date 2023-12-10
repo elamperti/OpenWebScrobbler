@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Trans, useTranslation } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
@@ -44,7 +44,7 @@ export function ScrobbleArtistResults() {
   }, [artist, dispatch]);
 
   return (
-    <React.Fragment>
+    <>
       <h2 className="m-0 d-inline">
         <FontAwesomeIcon icon={faCompactDisc} className="me-2" />
         {t('scrobbleAlbum')}
@@ -58,6 +58,6 @@ export function ScrobbleArtistResults() {
         {searchQuery.artist && <Trans i18nKey="topAlbumsBy" t={t} values={{ nameOfArtist: searchQuery.artist }} />}
       </h3>
       <AlbumResults query={artist} useFullWidth={true} topAlbums={true} />
-    </React.Fragment>
+    </>
   );
 }

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -120,10 +120,10 @@ export function ScrobbleAlbumSearch() {
         </div>
       </Row>
       {recentAlbums.length > 0 && (
-        <React.Fragment>
+        <>
           <hr />
           <AlbumList albums={recentAlbums} className="col-6 col-sm-4 col-md-3 col-xl-2" onClick={navigateToAlbum} />
-        </React.Fragment>
+        </>
       )}
     </div>
   );

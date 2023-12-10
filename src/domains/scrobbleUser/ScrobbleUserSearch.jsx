@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate, useLocation } from 'react-router-dom';
 
@@ -80,12 +80,12 @@ export function ScrobbleUserSearch() {
           feedbackMessageKey={usernameGood ? 'userNotFound' : 'invalidUsername'}
         />
         {recentUsersList.length > 0 && (
-          <React.Fragment>
+          <>
             <h4>
               <Trans i18nKey="recentlySearchedUsers">Searched recently</Trans>
             </h4>
             <ul className="list-group mx-2 recent-users">{recentUsersList}</ul>
-          </React.Fragment>
+          </>
         )}
       </div>
     </Row>

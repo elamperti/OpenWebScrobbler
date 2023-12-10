@@ -1,4 +1,3 @@
-import React from 'react';
 import { NavLink as RouterNavLink } from 'react-router-dom';
 import { Trans } from 'react-i18next';
 import { NavItem, NavLink } from 'reactstrap';

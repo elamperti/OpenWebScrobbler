@@ -1,4 +1,4 @@
-import React from 'react';
+import type { SyntheticEvent } from 'react';
 
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
@@ -14,7 +14,7 @@ export default function Paginator({ currentPage, pageCount, onPageChange }: Pagi
   const minBound = Math.max(currentPage - Math.floor(MAX_PAGE_ITEMS / 2), 1);
   const maxBound = Math.min(minBound + MAX_PAGE_ITEMS, pageCount);
 
-  const goToPage = (e: React.SyntheticEvent<HTMLElement>) => {
+  const goToPage = (e: SyntheticEvent<HTMLElement>) => {
     const targetPage = e.currentTarget.dataset.page as string;
     onPageChange(parseInt(targetPage, 10));
   };

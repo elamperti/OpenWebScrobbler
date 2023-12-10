@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 
@@ -56,7 +56,7 @@ export default function FriendScrobbles({
   const showPagination = userCardVisible && scrobbles && scrobbles.length > 0;
 
   return (
-    <React.Fragment>
+    <>
       <div className="UserCard-container rect row mx-0 pb-3">
         <div className="col-sm-8 d-flex align-items-middle">
           {userCardVisible && <UserCard user={friendProfileQuery.data} name={username} isHeading withLinkToProfile />}
@@ -87,6 +87,6 @@ export default function FriendScrobbles({
           </div>
         </ScrobbleList>
       </div>
-    </React.Fragment>
+    </>
   );
 }

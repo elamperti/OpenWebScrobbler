@@ -1,4 +1,3 @@
-import React from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { Button, Row, Col } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -19,7 +18,7 @@ export default function Home() {
   const { t } = useTranslation();
 
   return (
-    <React.Fragment>
+    <>
       <Row data-cy="HomeVisitor">
         <Col lg="7" xl="8">
           <div className="jumbotron rounded px-3 px-sm-4 py-3 py-sm-5">
@@ -52,6 +51,6 @@ export default function Home() {
         </Col>
       </Row>
       <SocialNetworksBlock />
-    </React.Fragment>
+    </>
   );
 }

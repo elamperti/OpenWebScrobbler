@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { Trans } from 'react-i18next';
 
 import {
@@ -13,13 +13,15 @@ import {
   UncontrolledDropdown,
 } from 'reactstrap';
 
+import type { ReactNode } from 'react';
+
 import styles from './SearchForm.module.scss';
 
 // ToDo: check and fix any double-renders on change/validation
 
 type SearchFormProps = {
   ariaLabel: string;
-  searchOptions?: React.ReactNode;
+  searchOptions?: ReactNode;
   searchCopy: string;
   disableSearch: boolean;
   feedbackMessageKey?: string;

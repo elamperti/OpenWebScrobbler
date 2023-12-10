@@ -1,12 +1,14 @@
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 
 import ScrobbleItem from 'components/ScrobbleItem';
 import Spinner from 'components/Spinner';
 import { ScrobbleCloneContext } from 'domains/scrobbleSong/ScrobbleSong';
 
+import type { ReactNode } from 'react';
+
 interface ScrobbleListProps {
   analyticsEventForScrobbles?: string;
-  children: React.ReactNode;
+  children: ReactNode;
   compact?: boolean;
   isAlbum?: boolean;
   loading?: boolean;

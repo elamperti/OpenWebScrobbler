@@ -1,4 +1,4 @@
-import React, { MouseEventHandler } from 'react';
+import { MouseEventHandler } from 'react';
 
 import { Row } from 'reactstrap';
 import AlbumCard from 'components/AlbumCard';

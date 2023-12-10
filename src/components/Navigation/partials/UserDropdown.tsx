@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, NavLink } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -20,7 +19,7 @@ export default function UserDropdow() {
   const bsBreakpoint = useBootstrapBreakpoint();
 
   return (
-    <React.Fragment>
+    <>
       <UncontrolledDropdown data-cy="UserDropdown" nav inNavbar={bsBreakpoint < BS_SIZE_MD}>
         <DropdownToggle nav caret className="ows-dropdown-user">
           <Avatar url={user.avatar?.md} alt={user.name} size="sm" />
@@ -50,6 +49,6 @@ export default function UserDropdow() {
           <Trans i18nKey="logOut">Sign out</Trans>
         </NavLink>
       </NavItem>
-    </React.Fragment>
+    </>
   );
 }

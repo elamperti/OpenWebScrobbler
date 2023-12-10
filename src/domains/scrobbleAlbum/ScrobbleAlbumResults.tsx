@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Trans } from 'react-i18next';
 import { useSelector, useDispatch } from 'react-redux';
@@ -42,7 +42,7 @@ export function ScrobbleAlbumResults() {
   }, [query, dispatch]);
 
   return (
-    <React.Fragment>
+    <>
       <h2 className="m-0 d-inline">
         <FontAwesomeIcon icon={faCompactDisc} className="me-2" />
         <Trans i18nKey="scrobbleAlbum">Scrobble Album</Trans>
@@ -61,6 +61,6 @@ export function ScrobbleAlbumResults() {
           <ArtistResults query={query} />
         </div>
       </Row>
-    </React.Fragment>
+    </>
   );
 }

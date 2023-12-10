@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactGA from 'react-ga';
@@ -126,12 +126,12 @@ export function ScrobbleUserResults() {
         <div className="col-md-7 mb-4">
           {isLoading && <Spinner />}
           {data && (
-            <React.Fragment>
+            <>
               <FriendScrobbles loading={isFetching} username={data.username} scrobbles={data.scrobbles} />
               {!isLoading && totalPages > 1 && (
                 <Paginator pageCount={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />
               )}
-            </React.Fragment>
+            </>
           )}
         </div>
 

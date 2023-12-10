@@ -1,4 +1,3 @@
-import React from 'react';
 import { Row } from 'reactstrap';
 import { faCompactDisc, faPencilAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import BigHomeButton from './partials/BigHomeButton';
@@ -7,7 +6,7 @@ import WelcomeBlock from './partials/WelcomeBlock';
 
 export default function Home() {
   return (
-    <React.Fragment>
+    <>
       <div className="jumbotron rounded px-3 px-sm-4 py-3 py-sm-5 py-md-4" data-cy="HomeUser">
         <WelcomeBlock />
         <Row className="d-block d-md-flex justify-content-between">
@@ -17,6 +16,6 @@ export default function Home() {
         </Row>
       </div>
       <SocialNetworksBlock />
-    </React.Fragment>
+    </>
   );
 }

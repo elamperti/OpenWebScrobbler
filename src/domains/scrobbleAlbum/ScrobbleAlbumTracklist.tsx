@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Trans } from 'react-i18next';
@@ -92,7 +92,7 @@ export function ScrobbleAlbumTracklist() {
   }, [tracks, navigate, params, tracklistDataProvider, dispatch]);
 
   return (
-    <React.Fragment>
+    <>
       <AlbumBreadcrumb
         artistQuery={searchQuery.artist}
         albumQuery={searchQuery.album}
@@ -118,6 +118,6 @@ export function ScrobbleAlbumTracklist() {
           </div>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 }

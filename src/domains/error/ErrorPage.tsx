@@ -1,4 +1,3 @@
-import React from 'react';
 // import { useSelector } from 'react-redux';
 import { showReportDialog } from '@sentry/react';
 
@@ -43,7 +42,7 @@ const ErrorPage = ({ error, eventId, resetError }: { error?: any; eventId?: stri
   };
 
   return (
-    <React.Fragment>
+    <>
       <Navbar color="dark" dark expand="md" id="ows-Navigation">
         <a href="/">
           <NavbarBrand tag="div" className="flex-grow-1 flex-md-grow-0">
@@ -119,7 +118,7 @@ const ErrorPage = ({ error, eventId, resetError }: { error?: any; eventId?: stri
           </Button>
         </div>
       </div>
-    </React.Fragment>
+    </>
   );
 };
 
