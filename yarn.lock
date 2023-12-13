@@ -9245,7 +9245,7 @@ __metadata:
     react: "npm:^18.2.0"
     react-day-picker: "npm:^7.4.10"
     react-dom: "npm:^18.2.0"
-    react-ga: "npm:^3.3.1"
+    react-ga-neo: "npm:^2.2.0"
     react-i18next: "npm:^13.5.0"
     react-lazy-load-image-component: "npm:^1.6.0"
     react-lazy-with-preload: "npm:^2.2.1"
@@ -9952,13 +9952,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-ga@npm:^3.3.1":
-  version: 3.3.1
-  resolution: "react-ga@npm:3.3.1"
-  peerDependencies:
-    prop-types: ^15.6.0
-    react: ^15.6.2 || ^16.0 || ^17 || ^18
-  checksum: a2a61c138887c651a59b49669141246e9a01803bd67c5d7581016949d2c8acdbef14db1a0039b855dcd3c979c711b4c45d910fcaa49e27165c13cdc685b4c2e0
+"react-ga-neo@npm:^2.2.0":
+  version: 2.2.0
+  resolution: "react-ga-neo@npm:2.2.0"
+  checksum: 27614a1f4cddd88fad7575f0a2d90d1de7ae25f14e69fe49b1fb6f6f65f42d4dff71cac7ac6406fba9326abd5dbfa91e479ee47146f0c8ad62193cf83c7247ae
   languageName: node
   linkType: hard
 

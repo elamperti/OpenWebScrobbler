@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga-neo';
 import { useFeatureIsOn } from '@growthbook/growthbook-react';
 
 import { Row, FormGroup, Input, Label, DropdownItem } from 'reactstrap';

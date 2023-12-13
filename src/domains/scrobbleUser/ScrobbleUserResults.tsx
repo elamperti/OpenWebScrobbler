@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga-neo';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import get from 'lodash/get';
 

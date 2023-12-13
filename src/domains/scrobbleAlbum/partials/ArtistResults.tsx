@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga-neo';
 
 import { searchArtists } from 'store/actions/artistActions';
 

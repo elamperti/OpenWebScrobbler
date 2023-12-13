@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { languageList } from 'utils/i18n';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga-neo';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';

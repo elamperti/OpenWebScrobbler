@@ -2,7 +2,7 @@ import { useState, useEffect, Suspense, useMemo } from 'react';
 import lazyWithPreload from 'react-lazy-with-preload';
 import { useDispatch } from 'react-redux';
 import { Trans, useTranslation } from 'react-i18next';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga-neo';
 import addSeconds from 'date-fns/addSeconds';
 import subSeconds from 'date-fns/subSeconds';
 import format from 'date-fns/format';

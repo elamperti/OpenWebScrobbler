@@ -1,5 +1,5 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga-neo';
 import get from 'lodash/get';
 import qs from 'qs';
 

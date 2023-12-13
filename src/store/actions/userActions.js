@@ -1,5 +1,5 @@
 import axios from 'axios';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga-neo';
 import md5 from 'md5';
 import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';

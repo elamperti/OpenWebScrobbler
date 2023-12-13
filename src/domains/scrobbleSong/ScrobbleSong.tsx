@@ -1,7 +1,7 @@
 import { useState, createContext } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Trans } from 'react-i18next';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga-neo';
 
 import { Badge, Button, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 
@@ -19,6 +19,8 @@ import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 import { LastFmProfileHistory } from './partials/LastFmProfileHistory';
 import { useQueryClient } from '@tanstack/react-query';
 
+import type { FC } from 'react';
+
 type SidebarTab = 'history' | 'userProfile';
 
 export const ScrobbleCloneContext = createContext({
@@ -26,7 +28,7 @@ export const ScrobbleCloneContext = createContext({
   setCloneFn: undefined,
 });
 
-export const ScrobbleSong: React.FC = () => {
+export const ScrobbleSong: FC = () => {
   const [activeTab, setActiveTab] = useState<SidebarTab>('history');
   const [cloneReceiver, setCloneReceiver] = useState(undefined);
   const localScrobbles = useSelector((state: RootState) => state.scrobbles.list);

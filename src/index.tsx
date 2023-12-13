@@ -13,7 +13,7 @@ import 'bootswatch/dist/slate/bootstrap.min.css';
 import { Provider as ReduxProvider } from 'react-redux';
 import store from 'store';
 
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga-neo';
 import * as Sentry from '@sentry/react';
 
 import { GrowthBook, GrowthBookProvider } from '@growthbook/growthbook-react';
@@ -84,18 +84,14 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
   }
 
   // @ts-ignore (we need to keep onerror)
-  ReactGA.initialize(process.env.REACT_APP_ANALYTICS_CODE, {
-    debug: process.env.NODE_ENV === 'development',
+  ReactGA.initialize(process.env.REACT_APP_ANALYTICS_MEASUREMENT_ID, {
+    // debug: process.env.NODE_ENV === 'development',
     gaOptions: {
       clientId,
       userId,
     },
-    onerror: (err) => {
-      // eslint-disable-next-line no-console
-      console.debug('⚠️ Unable to load Google Analytics'); // (I'm avoiding console.warn here)
-      err.stopPropagation();
-    },
     testMode: process.env.NODE_ENV === 'test',
+    titleCase: false,
   });
 
   ReactGA.set({

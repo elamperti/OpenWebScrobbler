@@ -2,7 +2,7 @@ import { Suspense, useContext, useEffect, useState } from 'react';
 import { lazyWithPreload } from 'react-lazy-with-preload';
 import { useDispatch, useSelector } from 'react-redux';
 import { Trans } from 'react-i18next';
-import ReactGA from 'react-ga';
+import ReactGA from 'react-ga-neo';
 
 import addSeconds from 'date-fns/addSeconds';
 import addDays from 'date-fns/addDays';
