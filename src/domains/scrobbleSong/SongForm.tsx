@@ -368,10 +368,22 @@ export function SongForm() {
           </Label>
           <div className="col-sm-9 p-0">
             <ButtonGroup className="w-100">
-              <Button onClick={toggleTimestampMode} active={!isCustomDate} size="sm" className="w-50">
+              <Button
+                onClick={toggleTimestampMode}
+                aria-pressed={!isCustomDate}
+                active={!isCustomDate}
+                size="sm"
+                className="w-50"
+              >
                 <Trans i18nKey="now">Now</Trans>
               </Button>
-              <Button onClick={toggleTimestampMode} active={isCustomDate} size="sm" className="w-50">
+              <Button
+                onClick={toggleTimestampMode}
+                aria-pressed={isCustomDate}
+                active={isCustomDate}
+                size="sm"
+                className="w-50"
+              >
                 <Trans i18nKey="custom">Custom</Trans>
               </Button>
             </ButtonGroup>

@@ -61,14 +61,19 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
   // because I'm deprecating react-timekeeper and it will be removed in the future
   const handleTimeInputChange = (e) => {
     const newTime = e.target.value;
-    const [hour, minute, seconds] = newTime.split(':');
+    try {
+      const [hour, minute, seconds] = newTime.split(':');
 
-    const timestamp = new Date(value);
-    timestamp.setHours(hour);
-    timestamp.setMinutes(minute);
-    timestamp.setSeconds(seconds);
+      const timestamp = new Date(value);
+      timestamp.setHours(hour);
+      timestamp.setMinutes(minute);
+      timestamp.setSeconds(seconds || 0); // iOS may not give us seconds
 
-    onChange(timestamp);
+      onChange(timestamp);
+    } catch (err) {
+      // eslint-disable-next-line no-console
+      console.warn(`Invalid time value «${newTime}»`);
+    }
   };
 
   const handleTimeChange = (newTime) => {
@@ -108,6 +113,7 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
             id="TimePicker"
             className="text-center"
             type="time"
+            step="1"
             bsSize="sm"
             pattern="^([01]?\d|2[0-3]):[0-5]\d$"
             onInput={handleTimeInputChange}
