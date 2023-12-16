@@ -1,0 +1,31 @@
+{
+  "scrobbles": {
+    "scrobble": {
+      "artist": {
+        "corrected": "0",
+        "#text": "Arctic Monkeys"
+      },
+      "album": {
+        "corrected": "0",
+        "#text": "AM"
+      },
+      "track": {
+        "corrected": "0",
+        "#text": "Arabella"
+      },
+      "ignoredMessage": {
+        "code": "0",
+        "#text": ""
+      },
+      "albumArtist": {
+        "corrected": "0",
+        "#text": "Other"
+      },
+      "timestamp": "1688169544"
+    },
+    "@attr": {
+      "ignored": 0,
+      "accepted": 1
+    }
+  }
+}

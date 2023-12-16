@@ -10,6 +10,7 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:react/jsx-runtime",
+    "plugin:cypress/recommended",
     "plugin:vitest/recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -49,5 +50,14 @@
     "space-infix-ops": 1,
     "space-before-function-paren": [2, "never"],
     "strict": ["error", "global"]
-  }
+  },
+  "overrides": [
+    {
+      "files": ["cypress/**"],
+      "rules": {
+        "vitest/expect-expect": "off",
+        "vitest/valid-expect": "off"
+      }
+    }
+  ]
 }

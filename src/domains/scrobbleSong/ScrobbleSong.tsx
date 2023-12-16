@@ -82,7 +82,7 @@ export const ScrobbleSong: FC = () => {
 
   return (
     <ScrobbleCloneContext.Provider value={{ cloneFn: cloneReceiver, setCloneFn: setCloneReceiver }}>
-      <div className="row flex-lg-grow-1 mt-3">
+      <div className="row flex-lg-grow-1 mt-3" data-cy="ScrobbleSong">
         <div className="col-md-6 mb-4 SongForm-container">
           <h2 className="mb-sm-4 mb-md-3">
             <FontAwesomeIcon icon={faPlayCircle} /> <Trans i18nKey="scrobbleSongs">Scrobble songs</Trans>

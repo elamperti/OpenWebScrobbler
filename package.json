@@ -108,23 +108,16 @@
     "fix": "yarn prettier && yarn lint --fix",
     "patch": "yarn version --no-git-tag-version --patch",
     "test": "yarn test:unit && yarn test:e2e",
-    "test:e2e": "start-test 'yarn start:server --port 3030' 3030 'cypress run'",
-    "test:e2e:rec": "start-test 'yarn start:server --port 3030' 3030 'cypress run --record'",
+    "test:e2e": "TZ=Etc/GMT-3 start-test 'yarn start:server --port 3030' 3030 'cypress run'",
+    "test:e2e:quiet": "TZ=Etc/GMT-3 start-test 'yarn start:server --port 3030' 3030 'cypress run --quiet'",
+    "test:e2e:rec": "TZ=Etc/GMT-3 start-test 'yarn start:server --port 3030' 3030 'cypress run --record'",
     "test:unit": "vitest run",
     "test:coverage": "vitest run --coverage",
     "watch": "vitest watch",
     "typecheck": "yarn run tsc",
-    "cypress": "start-test 'yarn start:server --port 3030' 3030 'cypress open'",
+    "cypress": "start-test 'yarn start:server --port 3030' 3030 'TZ=Etc/GMT-3 cypress open'",
     "translations:fetch": "poeditor pull",
     "translations:update": "poeditor push"
-  },
-  "lint-staged": {
-    "src/**/*.{js,jsx,ts,tsx}": [
-      "eslint --fix"
-    ],
-    "cypress/**/*": [
-      "yarn test:e2e"
-    ]
   },
   "browserslist": {
     "development": [

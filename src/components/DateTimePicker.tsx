@@ -68,6 +68,7 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
       timestamp.setHours(hour);
       timestamp.setMinutes(minute);
       timestamp.setSeconds(seconds || 0); // iOS may not give us seconds
+      timestamp.setMilliseconds(0);
 
       onChange(timestamp);
     } catch (err) {
@@ -81,11 +82,12 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
     timestamp.setHours(newTime.hour);
     timestamp.setMinutes(newTime.minute);
     timestamp.setSeconds(0);
+    timestamp.setMilliseconds(0);
     onChange(timestamp);
   };
 
   return (
-    <div className={`DateTimePicker mb-2 row ${className}`}>
+    <div className={`DateTimePicker mb-2 row ${className}`} data-cy="DateTimePicker">
       <div className="col-sm-6 mt-3">
         <DayPickerInput
           dayPickerProps={{
@@ -101,7 +103,7 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
           component={DatePickerInput}
           onDayChange={handleDateChange}
           value={value}
-          inputProps={{ readOnly: true, className: 'text-center' }}
+          inputProps={{ readOnly: true, className: 'text-center', 'data-cy': 'DateTimePicker-date' }}
         />
       </div>
       <div className="col-sm-6 mt-3">
@@ -112,6 +114,7 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
           <Input
             id="TimePicker"
             className="text-center"
+            data-cy="DateTimePicker-time"
             type="time"
             step="1"
             bsSize="sm"

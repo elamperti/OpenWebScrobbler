@@ -253,7 +253,7 @@ export function SongForm() {
   };
 
   return (
-    <Form className="SongForm">
+    <Form className="SongForm" data-cy="SongForm">
       <FormGroup className="row">
         <Label for="artist" className="col-sm-3 required">
           <Trans i18nKey="artist">Artist</Trans>
@@ -266,13 +266,19 @@ export function SongForm() {
             id="artist"
             tabIndex={1}
             className="hasLock"
+            data-cy="SongForm-artist"
             value={artist}
             onChange={() => {}}
             onInput={(e) => setArtist((e.target as HTMLInputElement).value)}
             onKeyUp={catchKeys}
             onPaste={catchPaste}
           />
-          <div className="lock-button rounded" id="lock-artist" onClick={toggleLock('artist')}>
+          <div
+            className="lock-button rounded"
+            id="lock-artist"
+            data-cy="SongForm-artist-lock"
+            onClick={toggleLock('artist')}
+          >
             <FontAwesomeIcon className={locks.artist ? 'active' : ''} icon={faThumbtack} />
           </div>
           <Tooltip target="lock-artist">
@@ -281,7 +287,7 @@ export function SongForm() {
         </div>
         <div className="col-1 swaptool-top">
           <span>⏋</span>
-          <Button onClick={swapArtistTitle} id="btn-swap" size="sm">
+          <Button onClick={swapArtistTitle} data-cy="SongForm-swap" id="btn-swap" size="sm">
             <FontAwesomeIcon rotation={90} icon={faExchangeAlt} />
           </Button>
         </div>
@@ -300,6 +306,7 @@ export function SongForm() {
             name="title"
             id="title"
             tabIndex={2}
+            data-cy="SongForm-title"
             value={title}
             onChange={() => {}}
             onInput={(e) => setTitle((e.target as HTMLInputElement).value)}
@@ -323,12 +330,18 @@ export function SongForm() {
             id="album"
             tabIndex={3}
             className="hasLock"
+            data-cy="SongForm-album"
             value={album}
             onChange={() => {}}
             onInput={(e) => setAlbum((e.target as HTMLInputElement).value)}
             onKeyUp={catchKeys}
           />
-          <div className="lock-button rounded" id="lock-album" onClick={toggleLock('album')}>
+          <div
+            className="lock-button rounded"
+            id="lock-album"
+            data-cy="SongForm-album-lock"
+            onClick={toggleLock('album')}
+          >
             <FontAwesomeIcon className={locks.album ? 'active' : ''} icon={faThumbtack} />
           </div>
           <Tooltip target="lock-album">
@@ -348,6 +361,7 @@ export function SongForm() {
             id="albumArtist"
             tabIndex={3}
             className="hasLock"
+            data-cy="SongForm-albumArtist"
             value={albumArtist}
             onChange={() => {}}
             onInput={(e) => setAlbumArtist((e.target as HTMLInputElement).value)}
@@ -371,6 +385,7 @@ export function SongForm() {
               <Button
                 onClick={toggleTimestampMode}
                 aria-pressed={!isCustomDate}
+                data-cy="timestampMode-now"
                 active={!isCustomDate}
                 size="sm"
                 className="w-50"
@@ -380,6 +395,7 @@ export function SongForm() {
               <Button
                 onClick={toggleTimestampMode}
                 aria-pressed={isCustomDate}
+                data-cy="timestampMode-custom"
                 active={isCustomDate}
                 size="sm"
                 className="w-50"
@@ -405,6 +421,7 @@ export function SongForm() {
         tabIndex={4}
         color="success"
         onClick={scrobbleSong}
+        data-cy="scrobble-button"
         disabled={!canScrobble}
       >
         <Trans i18nKey="scrobble">Scrobble</Trans>!

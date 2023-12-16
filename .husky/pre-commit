@@ -4,4 +4,5 @@
 # I appreciate your effort, husky -_-
 PATH="$PATH:$(pwd)/node_modules/.bin/"
 
-lint-staged && CI=true yarn test:unit
+export CI=true
+lint-staged
