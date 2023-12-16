@@ -43,10 +43,10 @@ function Footer() {
           {' ❤ '}
           <br />
           <span className="app-version">v{process.env.REACT_APP_VERSION}</span>
-          {' • '}
+          {/* {' • '}
           <a href="//status.openscrobbler.com/" target="_blank" rel="noreferrer">
             Status
-          </a>
+          </a> */}
         </p>
       </div>
     </footer>
