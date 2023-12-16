@@ -7,7 +7,7 @@ export function albumSearchTransformer(response: any) {
         artist: '', // It's part of the name, impossible to tell
         discogsId: album.type === 'master' ? album.master_id.toString() : `release-${album.id}`,
         name: album.title,
-        url: '',
+        url: `https://www.discogs.com/${album.type}/${album.id}`,
         releasedate: album.year,
         cover: {
           sm: album.thumb,

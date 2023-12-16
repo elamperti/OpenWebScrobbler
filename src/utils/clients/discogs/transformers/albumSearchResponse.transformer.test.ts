@@ -32,7 +32,7 @@ describe('Discogs transformer: album search', () => {
         discogsId: '2',
         name: 'title',
         releasedate: 2022,
-        url: '',
+        url: 'https://www.discogs.com/master/1',
       },
     ]);
   });
