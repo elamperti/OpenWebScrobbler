@@ -91,7 +91,7 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
       userId,
     },
     testMode: process.env.NODE_ENV === 'test',
-    titleCase: false,
+    titleCase: true,
   });
 
   ReactGA.set({
