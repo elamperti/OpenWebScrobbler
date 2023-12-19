@@ -1,29 +1,26 @@
-import get from 'lodash/get';
 import { sanitizeArtistName } from './common/sanitizeArtistName';
 import { Album } from 'utils/types/album';
 
 export function albumGetInfoTransformer(response: any, discogsId?: string): Album {
-  if (response?.data.message) {
-    return {};
-  }
+  const hasArtist = Array.isArray(response?.data?.artists) && response.data.artists.length > 0;
+  const images = response?.data?.images || [];
 
-  const images = get(response, 'data.images', []);
   let image = images.find((image) => image.type === 'primary') || null;
   if (!image) {
     image = images.find((image) => image.type === 'secondary') || null;
   }
 
-  let artist = sanitizeArtistName(get(response, 'data.artists[0].name', ''));
+  let artist = hasArtist ? sanitizeArtistName(response.data.artists[0].name) : '';
   if (artist.toLowerCase() === 'various') {
     artist = 'Various Artists';
   }
 
   return {
     discogsId,
-    name: response?.data.title,
+    name: response?.data?.title || '',
     artist,
-    artistId: get(response, 'data.artists[0].id', null),
-    releasedate: response?.data.year,
+    artistId: (hasArtist && response.data.artists[0].id) || null,
+    releasedate: response?.data?.year,
     url: '',
     cover: image && {
       sm: image.uri150,
@@ -33,6 +30,6 @@ export function albumGetInfoTransformer(response: any, discogsId?: string): Albu
       sm: 150,
       lg: image.width,
     },
-    trackCount: get(response, 'data.tracklist.length', 0),
+    trackCount: response?.data?.tracklist?.length || 0,
   };
 }

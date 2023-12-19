@@ -1,8 +1,20 @@
 import { albumGetInfoTransformer } from './albumGetInfoResponse.transformer';
 
 describe('Discogs transformer: album info', () => {
-  it('should return an empty object if there was a problem retrieving the name', () => {
-    expect(albumGetInfoTransformer({ data: { message: 'Error ' } })).toEqual({});
+  it('should return an empty album if there was a problem retrieving it', () => {
+    const results = albumGetInfoTransformer({ data: { message: 'Error ' } });
+
+    expect(results).toEqual({
+      artist: '',
+      artistId: null,
+      cover: null,
+      coverSizes: null,
+      discogsId: undefined,
+      name: '',
+      releasedate: undefined,
+      trackCount: 0,
+      url: '',
+    });
   });
 
   describe('should format the images', () => {
