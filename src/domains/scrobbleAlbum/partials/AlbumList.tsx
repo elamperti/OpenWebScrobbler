@@ -20,7 +20,7 @@ export default function AlbumList({
           <a href={album.url} data-album-index={i} onClick={onClick}>
             <AlbumCard
               artist={album.artist}
-              name={album.name}
+              name={album.name || ''}
               background={album.cover}
               sizes={album.coverSizes}
               year={album.releasedate || null}

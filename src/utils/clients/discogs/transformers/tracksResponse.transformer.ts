@@ -3,6 +3,8 @@ import hasIn from 'lodash/hasIn';
 import shortid from 'shortid';
 import { sanitizeArtistName } from './common/sanitizeArtistName';
 
+import type { Track } from 'utils/types/track';
+
 /*
   This function takes a [[HH:]MM:]SS string (e.g. "1:03:55") and converts it
   to seconds (e.g. 3785). It does so by spliting by `:` and reversing the str
@@ -22,7 +24,7 @@ export function tracksTransformer(
     artist: string;
     cover?: { sm: string; lg: string };
   }
-) {
+): Track[] {
   if (!Array.isArray(response?.data.tracklist) || response?.data.tracklist.length === 0) {
     return [];
   }

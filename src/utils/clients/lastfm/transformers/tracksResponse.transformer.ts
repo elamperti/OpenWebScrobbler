@@ -3,7 +3,12 @@ import { castArray } from 'utils/common';
 import hasIn from 'lodash/hasIn';
 import shortid from 'shortid';
 
-export function tracksTransformer(response: any, options?: { album?: string; cover?: { sm: string; lg: string } }) {
+import type { Track } from 'utils/types/track';
+
+export function tracksTransformer(
+  response: any,
+  options?: { album?: string; cover?: { sm: string; lg: string } }
+): Track[] {
   // tracks.track can be either an array of tracks or just a track object (when it's only one track).
   // A consistency only second to that of jelly.
   const rawTrackList = castArray(get(response, 'data.album.tracks.track', []));

@@ -1,7 +1,8 @@
 import get from 'lodash/get';
 import { sanitizeArtistName } from './common/sanitizeArtistName';
+import type { Album } from 'utils/types/album';
 
-export function topAlbumsTransformer(response: any) {
+export function topAlbumsTransformer(response: any): Album[] {
   return get(response, 'data.releases', [])
     .map((album) => ({
       artist: sanitizeArtistName(album.artist),

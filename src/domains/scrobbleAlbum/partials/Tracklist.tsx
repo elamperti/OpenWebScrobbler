@@ -22,12 +22,13 @@ import { EmptyDiscMessage } from './EmptyDiscMessage';
 
 import type { Album, DiscogsAlbum } from 'utils/types/album';
 import type { Scrobble } from 'utils/types/scrobble';
+import type { Track } from 'utils/types/track';
 
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 
 // ToDo: refactor this component completely.
 // It's too complex and carries several blocks from old code.
-export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | null; tracks: Scrobble[] }) {
+export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | null; tracks: Track[] | Scrobble[] }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 

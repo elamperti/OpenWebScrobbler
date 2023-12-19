@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import ReactGA from 'react-ga-neo';
 import { useFeatureIsOn } from '@growthbook/growthbook-react';
 
@@ -15,18 +15,15 @@ import { PROVIDER_NAME, PROVIDER_LASTFM, PROVIDER_DISCOGS } from 'Constants';
 import AlbumList from './partials/AlbumList';
 
 import './ScrobbleAlbumSearch.scss';
-import { setDataProvider } from 'store/actions/settingsActions';
-import { setAlbumQuery } from 'store/actions/albumActions';
-
 import type { RootState } from 'store';
+import type { Provider } from 'Constants';
 
 export function ScrobbleAlbumSearch() {
   const [includeReleases, setIncludeReleases] = useState(false);
+  const [dataProvider, setProvider] = useState<Provider>(PROVIDER_DISCOGS);
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const { t } = useTranslation();
   const spotifyFF = useFeatureIsOn('spotify');
-  const dataProvider = useSelector((state: RootState) => state.settings.dataProvider);
   const recentAlbums = useSelector((state: RootState) => state.user.recentAlbums || []);
 
   const toggleReleaseSwitch = () => setIncludeReleases(!includeReleases);
@@ -39,7 +36,9 @@ export function ScrobbleAlbumSearch() {
     const queryWithSafeFormat = encodeURIComponent(query.trim().replace(/%(?![0-9A-F])/g, 'PERCENT_SIGN'));
     navigate(`/scrobble/album/search/${queryWithSafeFormat}`, {
       state: {
+        provider: dataProvider,
         includeReleases,
+        query,
       },
     });
   };
@@ -55,9 +54,6 @@ export function ScrobbleAlbumSearch() {
       label: albumIndex,
     });
 
-    // Clears previous queries
-    dispatch(setAlbumQuery(''));
-
     if (targetAlbum.mbid) {
       navigate(`/scrobble/album/view/mbid/${targetAlbum.mbid}`);
     } else if (targetAlbum.discogsId) {
@@ -69,8 +65,6 @@ export function ScrobbleAlbumSearch() {
   };
 
   const validator = (str) => str.trim().length > 0;
-
-  const setProvider = (newDataProvider) => dispatch(setDataProvider(newDataProvider));
 
   const searchOptions = (
     <>

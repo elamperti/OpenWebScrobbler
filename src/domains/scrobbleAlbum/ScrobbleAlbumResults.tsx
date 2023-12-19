@@ -1,45 +1,46 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
+
+import { albumSearch as LastFmSearch } from 'utils/clients/lastfm';
+import { albumSearch as DiscogsSearch } from 'utils/clients/discogs';
+
 import { Trans } from 'react-i18next';
-import { useSelector, useDispatch } from 'react-redux';
+import { Row } from 'reactstrap';
 
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { clearAlbumsSearch, setAlbumQuery } from 'store/actions/albumActions';
-
-import { Row } from 'reactstrap';
-
+import Spinner from 'components/Spinner';
 import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 import AlbumResults from './partials/AlbumResults';
 import ArtistResults from './partials/ArtistResults';
 
-import type { RootState } from 'store';
+import { PROVIDER_DISCOGS } from 'Constants';
 
 export function ScrobbleAlbumResults() {
-  const dispatch = useDispatch();
   const params = useParams();
-
-  const searchQuery = useSelector((state: RootState) => state.album.queries);
+  const { state } = useLocation();
   const [query, setQuery] = useState('');
 
-  useEffect(() => {
-    // Clears any previous search queries/results
-    dispatch(clearAlbumsSearch());
-  }, [dispatch]);
+  const dataProvider = state?.provider || PROVIDER_DISCOGS;
 
+  // This extracts the search parameter from the URL
   useEffect(() => {
-    // This extracts the search parameter from the URL
-    const { albumName } = params;
-
-    setQuery(decodeURIComponent(albumName || '').replace('PERCENT_SIGN', '%'));
+    setQuery(decodeURIComponent(params?.albumName || '').replace('PERCENT_SIGN', '%'));
   }, [params]);
 
-  useEffect(() => {
-    if (query) {
-      dispatch(setAlbumQuery(query));
-    }
-  }, [query, dispatch]);
+  const { data, isFetching } = useQuery({
+    queryKey: ['albums', query, 1], // First page only for now
+    queryFn: () => {
+      if (dataProvider === PROVIDER_DISCOGS) {
+        return DiscogsSearch(query, !!state?.includeReleases);
+      } else {
+        return LastFmSearch(query);
+      }
+    },
+    enabled: !!query,
+  });
 
   return (
     <>
@@ -47,10 +48,10 @@ export function ScrobbleAlbumResults() {
         <FontAwesomeIcon icon={faCompactDisc} className="me-2" />
         <Trans i18nKey="scrobbleAlbum">Scrobble Album</Trans>
       </h2>
-      <AlbumBreadcrumb artistQuery={searchQuery.artist} albumQuery={searchQuery.album} />
+      <AlbumBreadcrumb albumQuery={query} dataProvider={dataProvider} />
       <Row className="mb-4">
         <div className="col-md-8">
-          <AlbumResults query={query} useFullWidth={false} />
+          {isFetching ? <Spinner /> : <AlbumResults albums={data} query={query} useFullWidth={false} />}
         </div>
         <div className="col-md-4">
           <h3 className="mt-3 mb-0">
@@ -58,7 +59,7 @@ export function ScrobbleAlbumResults() {
               Artist
             </Trans>
           </h3>
-          <ArtistResults query={query} />
+          <ArtistResults query={query} dataProvider={dataProvider} />
         </div>
       </Row>
     </>

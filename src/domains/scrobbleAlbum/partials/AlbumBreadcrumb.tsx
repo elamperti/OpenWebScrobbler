@@ -5,22 +5,16 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 
 import { faCompactDisc, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
+import type { Album, DiscogsAlbum, LastFmAlbum } from 'utils/types/album';
 
 import './AlbumBreadcrumb.scss';
 
-/**
- * Generates a breadcrumb item
- *
- * @param targetPath Relative path to link
- * @param caption Text shown in breadcrumb
- * @param [icon] FontAwesome icon
- * @returns BreadcrumbItem
- */
-function generateBreadcrumbItem(targetPath: string, caption: string, icon: IconProp = undefined) {
+function generateBreadcrumbItem(targetPath: string, caption: string, state = {}, icon: IconProp = undefined) {
   return (
     <BreadcrumbItem className="ows-AlbumBreadcrumb-item" key={targetPath}>
-      <Link to={targetPath}>
+      <Link to={targetPath} state={state}>
         {icon && <FontAwesomeIcon icon={icon} className="me-2 mt-1" />}
         {caption}
       </Link>
@@ -29,15 +23,10 @@ function generateBreadcrumbItem(targetPath: string, caption: string, icon: IconP
 }
 
 interface AlbumBreadcrumbProps {
-  album?: {
-    artist: string;
-    discogsId?: number;
-    mbid?: string;
-    name: string;
-  };
+  album?: Album;
   albumQuery?: string;
   artistQuery?: string;
-  artistDiscogsId?: number;
+  artistDiscogsId?: string;
   dataProvider?: string;
 }
 
@@ -49,13 +38,14 @@ export default function AlbumBreadcrumb({
   dataProvider,
 }: AlbumBreadcrumbProps) {
   const { t } = useTranslation();
-  const itemList = [generateBreadcrumbItem('/scrobble/album', t('search'))];
+  const itemList = [generateBreadcrumbItem('/scrobble/album', t('search'), { provider: dataProvider })];
 
   if (albumQuery) {
     itemList.push(
       generateBreadcrumbItem(
         `/scrobble/album/search/${encodeURIComponent(albumQuery.replace(/%(?![0-9A-F])/g, 'PERCENT_SIGN'))}`,
-        `"${albumQuery}"` // This is quoting the query
+        `"${albumQuery}"`, // This is quoting the query
+        { provider: dataProvider }
       )
     );
   }
@@ -64,7 +54,12 @@ export default function AlbumBreadcrumb({
   if (artistQuery || albumArtist) {
     if (artistDiscogsId) {
       itemList.push(
-        generateBreadcrumbItem(`/scrobble/artist/dsid/${artistDiscogsId}`, albumArtist || artistQuery, faUser)
+        generateBreadcrumbItem(
+          `/scrobble/artist/dsid/${artistDiscogsId}`,
+          albumArtist || artistQuery,
+          { artist: albumArtist, query: albumQuery },
+          faUser
+        )
       );
     } else {
       itemList.push(
@@ -74,6 +69,7 @@ export default function AlbumBreadcrumb({
             'PERCENT_SIGN'
           )}`,
           albumArtist || `"${artistQuery}"`, // This is quoting the query
+          { query: albumQuery, provider: dataProvider },
           albumArtist ? faUser : undefined
         )
       );
@@ -83,17 +79,17 @@ export default function AlbumBreadcrumb({
   if (album && album.name) {
     let targetPath;
 
-    if (album.mbid) {
-      targetPath = `/scrobble/album/view/mbid/${album.mbid}`;
-    } else if (album.discogsId) {
-      targetPath = `/scrobble/album/view/dsid/${album.discogsId}`;
+    if ((album as LastFmAlbum).mbid) {
+      targetPath = `/scrobble/album/view/mbid/${(album as LastFmAlbum).mbid}`;
+    } else if ((album as DiscogsAlbum).discogsId) {
+      targetPath = `/scrobble/album/view/dsid/${(album as DiscogsAlbum).discogsId}`;
     } else {
       targetPath =
         `/scrobble/album/view/${encodeURIComponent(album.artist.replace('%', ''))}` +
         `/${encodeURIComponent(album.name.replace('%', ''))}`;
     }
 
-    itemList.push(generateBreadcrumbItem(targetPath, album.name, faCompactDisc));
+    itemList.push(generateBreadcrumbItem(targetPath, album.name, { query: albumQuery }, faCompactDisc));
   }
 
   return (

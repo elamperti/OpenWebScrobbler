@@ -6,12 +6,12 @@ import {
   USER_LOGGED_OUT,
   USER_GET_INFO,
   USER_ADD_RECENT_PROFILE,
-  GET_ALBUM_INFO,
   MAX_RECENT_USERS,
   MAX_RECENT_ALBUMS,
   PROVIDER_DISCOGS,
   Provider,
   USER_SAVE_INFO,
+  GET_ALBUM_INFO,
 } from 'Constants';
 
 import { userProfileTransformer } from '../../utils/clients/lastfm/transformers/userProfile.transformer';
@@ -122,7 +122,7 @@ const userReducer = (state = initialState, action) => {
       };
     }
 
-    case `${GET_ALBUM_INFO}_FULFILLED`: {
+    case GET_ALBUM_INFO: {
       const recentAlbums = state.recentAlbums || [];
       const newAlbum = get(action.payload, 'info', {});
 

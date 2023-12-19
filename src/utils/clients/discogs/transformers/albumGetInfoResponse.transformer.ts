@@ -1,7 +1,8 @@
 import get from 'lodash/get';
 import { sanitizeArtistName } from './common/sanitizeArtistName';
+import { Album } from 'utils/types/album';
 
-export function albumGetInfoTransformer(response: any, discogsId?: string) {
+export function albumGetInfoTransformer(response: any, discogsId?: string): Album {
   if (response?.data.message) {
     return {};
   }
@@ -21,6 +22,7 @@ export function albumGetInfoTransformer(response: any, discogsId?: string) {
     discogsId,
     name: response?.data.title,
     artist,
+    artistId: get(response, 'data.artists[0].id', null),
     releasedate: response?.data.year,
     url: '',
     cover: image && {

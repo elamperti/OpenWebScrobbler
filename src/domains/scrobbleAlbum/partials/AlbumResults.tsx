@@ -1,43 +1,27 @@
-import { useEffect } from 'react';
 import { Trans } from 'react-i18next';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import ReactGA from 'react-ga-neo';
 import get from 'lodash/get';
 
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { searchAlbums, searchTopAlbums } from 'store/actions/albumActions';
-
 import Spinner from 'components/Spinner';
 import AlbumList from './AlbumList';
 
-import type { RootState } from 'store';
+import type { Album, DiscogsAlbum, LastFmAlbum } from 'utils/types/album';
 
 export default function AlbumResults({
   useFullWidth,
   query,
-  topAlbums = false,
+  albums = [],
 }: {
   useFullWidth: boolean;
   query: string;
-  topAlbums?: boolean;
+  albums: Album[];
 }) {
   const navigate = useNavigate();
-  const dispatch = useDispatch();
-  const { state } = useLocation();
-
-  const albums = useSelector((state: RootState) => state.album.list);
-  const dataProvider = useSelector((state: RootState) => state.settings.dataProvider);
   const colSizes = useFullWidth ? 'col-6 col-md-4 col-xl-3' : 'col-6 col-xl-4';
-
-  useEffect(() => {
-    if (query && !albums) {
-      const opts = { provider: dataProvider, includeReleases: state?.includeReleases };
-      dispatch(topAlbums ? searchTopAlbums(query) : searchAlbums(query, opts));
-    }
-  }, [topAlbums, query, albums, dataProvider, state, dispatch]);
 
   if (Array.isArray(albums)) {
     if (albums.length === 0) {
@@ -58,18 +42,27 @@ export default function AlbumResults({
         const { albumIndex } = e.currentTarget.dataset;
         const targetAlbum = albums[albumIndex];
 
+        const navigateWithState = (url: string) =>
+          navigate(url, {
+            state: {
+              artist: targetAlbum.artist,
+              album: targetAlbum.name,
+              query,
+            },
+          });
+
         ReactGA.event({
           category: 'Interactions',
           action: 'Click album',
           label: albumIndex,
         });
 
-        if (targetAlbum.mbid) {
-          navigate(`/scrobble/album/view/mbid/${targetAlbum.mbid}`);
-        } else if (targetAlbum.discogsId) {
-          navigate(`/scrobble/album/view/dsid/${targetAlbum.discogsId}`);
+        if ((targetAlbum as LastFmAlbum).mbid) {
+          navigateWithState(`/scrobble/album/view/mbid/${(targetAlbum as LastFmAlbum).mbid}`);
+        } else if ((targetAlbum as DiscogsAlbum).discogsId) {
+          navigateWithState(`/scrobble/album/view/dsid/${(targetAlbum as DiscogsAlbum).discogsId}`);
         } else {
-          navigate(
+          navigateWithState(
             `/scrobble/album/view/${encodeURIComponent(targetAlbum.artist.replace('%', ''))}` +
               `/${encodeURIComponent(targetAlbum.name.replace('%', ''))}`
           );

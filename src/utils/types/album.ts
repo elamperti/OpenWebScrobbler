@@ -26,6 +26,7 @@ export type LastFmAlbum = BaseAlbum & {
 
 export type DiscogsAlbum = BaseAlbum & {
   discogsId: string;
+  artistId: string | null;
 };
 
 export type Album = DiscogsAlbum | LastFmAlbum;

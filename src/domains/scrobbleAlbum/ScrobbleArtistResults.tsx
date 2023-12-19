@@ -1,47 +1,48 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useLocation, useParams } from 'react-router-dom';
+import { useQuery } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
-import { useSelector, useDispatch } from 'react-redux';
 
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import { clearAlbumsArtistSearch, setArtistQuery } from 'store/actions/albumActions';
+import { searchTopAlbums as LastFmSearch } from 'utils/clients/lastfm';
+import { searchTopAlbums as DiscogsSearch } from 'utils/clients/discogs';
+
+import { PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
 import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 import AlbumResults from './partials/AlbumResults';
 
-import type { RootState } from 'store';
+import Spinner from 'components/Spinner';
 
 export function ScrobbleArtistResults() {
-  const dispatch = useDispatch();
   const { t } = useTranslation();
   const params = useParams();
-  const searchQuery = useSelector((state: RootState) => state.album.queries);
-  const [artist, setArtist] = useState(null);
+  const { state } = useLocation();
+  const [artistName, setArtistName] = useState('');
 
-  // ToDo: refactor all these useEffects; avoid having an internal state
-  useEffect(() => {
-    // Clears any previous search queries/results
-    dispatch(clearAlbumsArtistSearch());
-  }, [dispatch]);
+  const dataProvider = state?.provider || (params.discogsId ? PROVIDER_DISCOGS : PROVIDER_LASTFM);
 
   useEffect(() => {
-    // This extracts the search parameter from the URL
-    const { artistName, mbid, discogsId } = params;
-
-    setArtist({
-      name: decodeURIComponent(artistName || ''),
-      mbid,
-      discogsId,
-    });
+    setArtistName(decodeURIComponent(params.artistName || ''));
   }, [params]);
 
-  useEffect(() => {
-    if (artist && artist.name) {
-      dispatch(setArtistQuery(artist.name));
-    }
-  }, [artist, dispatch]);
+  const artistKey = params.mbid || params.discogsId || artistName;
+  const { data, isFetching } = useQuery({
+    queryKey: ['topAlbums', artistKey, 1], // First page only for now
+    queryFn: () => {
+      if (dataProvider === PROVIDER_DISCOGS) {
+        return DiscogsSearch(params.discogsId);
+      } else {
+        return LastFmSearch({
+          name: artistName,
+          mbid: params.mbid,
+        });
+      }
+    },
+    enabled: dataProvider === PROVIDER_DISCOGS ? !!params.discogsId : !!artistName,
+  });
 
   return (
     <>
@@ -50,14 +51,15 @@ export function ScrobbleArtistResults() {
         {t('scrobbleAlbum')}
       </h2>
       <AlbumBreadcrumb
-        artistQuery={searchQuery.artist}
-        artistDiscogsId={artist && artist.discogsId}
-        albumQuery={searchQuery.album}
+        artistQuery={state?.artist || artistName}
+        artistDiscogsId={params?.discogsId}
+        albumQuery={state?.query}
+        dataProvider={dataProvider}
       />
       <h3 className="mt-3 mb-0">
-        {searchQuery.artist && <Trans i18nKey="topAlbumsBy" t={t} values={{ nameOfArtist: searchQuery.artist }} />}
+        {state?.artist && <Trans i18nKey="topAlbumsBy" t={t} values={{ nameOfArtist: state.artist }} />}
       </h3>
-      <AlbumResults query={artist} useFullWidth={true} topAlbums={true} />
+      {isFetching ? <Spinner /> : <AlbumResults albums={data} query={artistName} useFullWidth={true} />}
     </>
   );
 }

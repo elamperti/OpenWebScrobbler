@@ -6,9 +6,7 @@ import throttle from 'lodash/throttle';
 
 import { loadState, saveState } from 'localstorage';
 
-import albumReducer from './reducers/albumReducer';
 import alertReducer from './reducers/alertReducer';
-import artistReducer from './reducers/artistReducer';
 import scrobbleReducer from './reducers/scrobbleReducer';
 import settingsReducer from './reducers/settingsReducer';
 import updatesReducer from './reducers/updatesReducer';
@@ -21,9 +19,7 @@ const persistedState = loadState();
 
 const store = createStore(
   combineReducers({
-    album: albumReducer,
     alerts: alertReducer,
-    artist: artistReducer,
     scrobbles: scrobbleReducer,
     settings: settingsReducer,
     updates: updatesReducer,

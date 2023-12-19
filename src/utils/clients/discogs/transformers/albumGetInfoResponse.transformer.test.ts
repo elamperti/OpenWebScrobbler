@@ -92,8 +92,10 @@ describe('Discogs transformer: album info', () => {
     });
 
     expect(results).toEqual({
+      discogsId: undefined,
       name: 'title',
       artist: 'artist',
+      artistId: null,
       releasedate: '2021',
       url: '',
       cover: null,

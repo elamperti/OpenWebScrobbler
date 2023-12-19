@@ -1,7 +1,9 @@
 import get from 'lodash/get';
 
+import type { Album } from 'utils/types/album';
+
 export function topAlbumsTransformer(response: any) {
-  const albums = [];
+  const albums: Album[] = [];
   const rawAlbumList = get(response, 'data.topalbums.album', []);
 
   for (const album of rawAlbumList) {

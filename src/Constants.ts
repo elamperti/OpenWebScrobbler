@@ -27,22 +27,6 @@ export const PROVIDER_NAME = {
   [PROVIDER_SPOTIFY]: 'Spotify',
 };
 
-// Albums store
-export const GET_ALBUM_INFO_LASTFM = 'GET_ALBUM_INFO_LASTFM'; // remove
-export const GET_ALBUM_INFO_DISCOGS = 'GET_ALBUM_INFO_DISCOGS'; // remove
-export const GET_ALBUM_INFO = 'GET_ALBUM_INFO';
-export const SEARCH_ALBUM = 'SEARCH_ALBUM';
-export const SEARCH_TOP_ALBUMS = 'SEARCH_TOP_ALBUMS';
-export const SET_ALBUM_QUERY = 'SET_ALBUM_QUERY';
-export const SET_ARTIST_QUERY = 'SET_ARTIST_QUERY';
-export const CLEAR_ALBUM_SEARCH = 'CLEAR_ALBUM_SEARCH';
-export const CLEAR_ALBUM_ARTIST_SEARCH = 'CLEAR_ALBUM_ARTIST_SEARCH';
-export const CLEAR_ALBUM_TRACKLIST = 'CLEAR_ALBUM_TRACKLIST';
-
-// Artists store
-export const SEARCH_ARTIST_LASTFM = 'SEARCH_ARTIST_LASTFM';
-export const SEARCH_ARTIST_DISCOGS = 'SEARCH_ARTIST_DISCOGS';
-
 // Alerts store
 export const ALERT_CREATE = 'ALERT_CREATE';
 export const ALERT_DISMISS = 'ALERT_DISMISS';
@@ -70,6 +54,7 @@ export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
 export const USER_GET_INFO = 'USER_GET_INFO';
 export const USER_ADD_RECENT_PROFILE = 'USER_ADD_RECENT_PROFILE';
 export const USER_SAVE_INFO = 'USER_SAVE_INFO';
+export const GET_ALBUM_INFO = 'GET_ALBUM_INFO';
 
 // Updates store
 export const NEW_VERSION_READY = 'NEW_VERSION_READY';
