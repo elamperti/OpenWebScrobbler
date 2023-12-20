@@ -8,6 +8,7 @@ export function LastFmProfileHistory({ username, enabled = false }: { username: 
   const { data, isFetching } = useQuery({
     queryKey: ['user', username.toLowerCase(), 'scrobbles', page],
     queryFn: () => userGetRecentTracks(username, page),
+    staleTime: 1000 * 60 * 1, // minutes
     enabled,
   });
 

@@ -33,6 +33,7 @@ export function ScrobbleUserResults() {
   const { data, isLoading, isFetching, isError, error, isSuccess, isPlaceholderData } = useQuery({
     queryKey: ['user', lowercaseUsername, 'scrobbles', currentPage],
     queryFn: () => userGetRecentTracks(lowercaseUsername, currentPage),
+    staleTime: 1000 * 60 * 3, // minutes
     placeholderData: keepPreviousData,
     enabled: isQueryEnabled,
   });
