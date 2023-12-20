@@ -23,7 +23,7 @@ export default function UserDropdow() {
       <UncontrolledDropdown data-cy="UserDropdown" nav inNavbar={bsBreakpoint < BS_SIZE_MD}>
         <DropdownToggle nav caret className="ows-dropdown-user">
           <Avatar url={user.avatar?.md} alt={user.name} size="sm" />
-          <span className="ows-username" data-cy="UserDropdown-username">
+          <span className="ows-username sentry-mask" data-cy="UserDropdown-username">
             {user.name}
           </span>
         </DropdownToggle>

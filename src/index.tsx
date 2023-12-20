@@ -59,7 +59,12 @@ if (sentryEnabled) {
       /extensions\//i,
       /^chrome:\/\//i,
     ],
-    integrations: [new Sentry.BrowserTracing(), new Sentry.Replay()],
+    integrations: [
+      new Sentry.BrowserTracing(),
+      new Sentry.Replay({
+        maskAllText: false,
+      }),
+    ],
     replaysSessionSampleRate: process.env.NODE_ENV === 'development' ? 0 : 0.02,
     replaysOnErrorSampleRate: 0.8,
     tracesSampleRate: process.env.NODE_ENV === 'development' ? 0.2 : 0.05,

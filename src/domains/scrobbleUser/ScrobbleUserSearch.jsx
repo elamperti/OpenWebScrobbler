@@ -51,7 +51,7 @@ export function ScrobbleUserSearch() {
 
       // ToDo: use <a> so users can copy a permalink to a recent search
       recentUsersList.push(
-        <li key={recentUser} className="list-group-item" onClick={() => searchUser(recentUser)}>
+        <li key={recentUser} className="list-group-item sentry-mask" onClick={() => searchUser(recentUser)}>
           <Avatar url={profileImg} size="sm" className="me-2" />
           {recentUser}
         </li>
