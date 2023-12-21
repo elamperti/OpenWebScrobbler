@@ -106,7 +106,6 @@
     "prettier": "prettier --write \"src/**/*.js\"",
     "lint": "eslint src/",
     "fix": "yarn prettier && yarn lint --fix",
-    "patch": "yarn version --no-git-tag-version --patch",
     "test": "yarn test:unit && yarn test:e2e",
     "test:e2e": "TZ=Etc/GMT-3 start-test 'yarn start:server --port 3030' 3030 'cypress run'",
     "test:e2e:quiet": "TZ=Etc/GMT-3 start-test 'yarn start:server --port 3030' 3030 'cypress run --quiet'",
