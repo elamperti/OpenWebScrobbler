@@ -1,4 +1,3 @@
-// import { useSelector } from 'react-redux';
 import { showReportDialog } from '@sentry/react';
 
 import { Button, Navbar, NavbarBrand } from 'reactstrap';
@@ -8,8 +7,6 @@ import { faHeadphonesAlt, faBolt, faCompactDisc, faPaperPlane, faArrowLeft } fro
 /* ToDo: Translate this whole page? What about i18n lib errors? */
 
 const ErrorPage = ({ error, eventId, resetError }: { error?: any; eventId?: string; resetError?: () => void }) => {
-  // const username = useSelector((state) => state.user?.name);
-
   const reloadPage = () => {
     window.location.reload();
     return false;
@@ -26,14 +23,22 @@ const ErrorPage = ({ error, eventId, resetError }: { error?: any; eventId?: stri
     }
   };
 
+  let username;
+  try {
+    username = JSON.parse(localStorage.getItem('user'))?.name;
+  } catch (error) {
+    // eslint-disable-next-line no-console
+    console.warn('Unable to fetch username from localStorage', error);
+  }
+
   const fillReport = () => {
     showReportDialog({
       eventId,
       // labelName: `${t('username')} (last.fm)`,
       // lang: i18n.language,
-      // user: {
-      //   name: username,
-      // },
+      user: {
+        name: username,
+      },
       title: 'Crash report',
       subtitle: 'The developer has been notified.',
       subtitle2: "If you'd like to help, tell us what happened below. Thanks in advance!",
