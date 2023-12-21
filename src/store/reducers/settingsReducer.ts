@@ -1,16 +1,7 @@
-import {
-  SETTINGS_UPDATE,
-  SETTINGS_MODAL_OPEN,
-  SETTINGS_MODAL_CLOSE,
-  SETTINGS_SET_DATA_PROVIDER,
-  USER_LOGGED_OUT,
-  PROVIDER_DISCOGS,
-} from 'Constants';
-import type { Provider } from 'Constants';
+import { SETTINGS_UPDATE, SETTINGS_MODAL_OPEN, SETTINGS_MODAL_CLOSE, USER_LOGGED_OUT } from 'Constants';
 
 export type Settings = {
   catchPaste: boolean;
-  dataProvider: Provider;
   isDonor: boolean;
   keepOriginalTimestamp: boolean;
   lang: string; // ToDo: coordinate this value with i18n.ts? (do we need that?)
@@ -28,7 +19,6 @@ const initialState: Settings = {
   isDonor: false,
   keepOriginalTimestamp: true,
   modalIsOpen: false,
-  dataProvider: PROVIDER_DISCOGS,
   settingsLoaded: false,
 };
 
@@ -62,12 +52,6 @@ const settingsReducer = (state = initialState, action) => {
       return {
         ...initialState,
         lang: state.lang,
-      };
-
-    case SETTINGS_SET_DATA_PROVIDER:
-      return {
-        ...state,
-        dataProvider: action.payload,
       };
 
     default:

@@ -8,8 +8,6 @@ import {
   USER_ADD_RECENT_PROFILE,
   MAX_RECENT_USERS,
   MAX_RECENT_ALBUMS,
-  PROVIDER_DISCOGS,
-  Provider,
   USER_SAVE_INFO,
   GET_ALBUM_INFO,
 } from 'Constants';
@@ -19,7 +17,6 @@ import { Avatar } from 'utils/types/avatar';
 
 type UserSettings = {
   avatar: Avatar;
-  dataProvider: Provider;
   isLoggedIn: boolean | null;
   name: string;
   profiles: any;
@@ -30,7 +27,6 @@ type UserSettings = {
 };
 
 const initialState: UserSettings = {
-  dataProvider: PROVIDER_DISCOGS,
   isLoggedIn: null,
   name: '',
   profiles: {},
