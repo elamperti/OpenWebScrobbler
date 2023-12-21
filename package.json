@@ -1,6 +1,6 @@
 {
   "name": "openscrobbler",
-  "version": "2.8.1",
+  "version": "2.8.2",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
