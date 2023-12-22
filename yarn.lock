@@ -3002,6 +3002,25 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tanstack/query-devtools@npm:5.14.5":
+  version: 5.14.5
+  resolution: "@tanstack/query-devtools@npm:5.14.5"
+  checksum: 06112abf2f0d976061cff76a2c1809ce0882d1fb282aa698244907f8551d1a46fb3e2ec41dc92995f610df9b70ea2f73ea2f2709164fab2a2b12be1e8dea50ee
+  languageName: node
+  linkType: hard
+
+"@tanstack/react-query-devtools@npm:^5.14.5":
+  version: 5.14.5
+  resolution: "@tanstack/react-query-devtools@npm:5.14.5"
+  dependencies:
+    "@tanstack/query-devtools": "npm:5.14.5"
+  peerDependencies:
+    "@tanstack/react-query": ^5.14.2
+    react: ^18.0.0
+  checksum: ab647aa464435391d4dc068906a9eb508a68391699b7e20efa6ebd652e308e26299f727d1544c9735af8661f48ff8e49041ea6c3fdf6a561468d291a2bf721f1
+  languageName: node
+  linkType: hard
+
 "@tanstack/react-query@npm:^5.13.4":
   version: 5.13.4
   resolution: "@tanstack/react-query@npm:5.13.4"
@@ -9202,6 +9221,7 @@ __metadata:
     "@redux-devtools/extension": "npm:^3.3.0"
     "@sentry/react": "npm:^7.86.0"
     "@tanstack/react-query": "npm:^5.13.4"
+    "@tanstack/react-query-devtools": "npm:^5.14.5"
     "@testing-library/dom": "npm:^9.3.3"
     "@testing-library/react": "npm:^14.1.2"
     "@testing-library/user-event": "npm:^14.5.1"

@@ -21,6 +21,7 @@ import { GrowthBook, GrowthBookProvider } from '@growthbook/growthbook-react';
 import 'utils/i18n';
 import { NEW_VERSION_READY } from 'Constants';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 // Avoid proxies that may interfer with the site
 if (process.env.NODE_ENV !== 'development' && document.location.host !== process.env.REACT_APP_HOST) {
@@ -114,7 +115,14 @@ const queryClient = new QueryClient({
     },
   },
 });
-wrappedApp = <QueryClientProvider client={queryClient}>{wrappedApp}</QueryClientProvider>;
+wrappedApp = (
+  <QueryClientProvider client={queryClient}>
+    <>
+      {wrappedApp}
+      <ReactQueryDevtools initialIsOpen={false} />
+    </>
+  </QueryClientProvider>
+);
 
 const growthbookEnabled = !!process.env.REACT_APP_GROWTHBOOK_API_KEY;
 if (growthbookEnabled) {
