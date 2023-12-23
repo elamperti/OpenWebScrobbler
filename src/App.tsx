@@ -5,6 +5,7 @@ import { changeLanguage } from 'i18next';
 import qs from 'qs';
 import find from 'lodash/find';
 
+import * as Sentry from '@sentry/react';
 import { interceptAxios } from 'utils/axios';
 import { languageList, fallbackLng } from 'utils/i18n';
 import { useTranslation } from 'react-i18next';
@@ -79,6 +80,19 @@ function App() {
     // Including `navigate` in this array causes a bug in album search, see #220
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, isLoggedIn, location.search]);
+
+  useEffect(() => {
+    if (process.env.REACT_APP_SENTRY_DSN) {
+      if (user?.name) {
+        Sentry.setUser({
+          username: user.name,
+          ip: '{{auto}}',
+        });
+      } else {
+        Sentry.setUser(null);
+      }
+    }
+  }, [user]);
 
   const LoadingSpinner = (
     <div id="ows-loading">

@@ -67,7 +67,7 @@ if (sentryEnabled) {
       }),
     ],
     replaysSessionSampleRate: process.env.NODE_ENV === 'development' ? 0 : 0.02,
-    replaysOnErrorSampleRate: 0.8,
+    replaysOnErrorSampleRate: 0.75,
     tracesSampleRate: process.env.NODE_ENV === 'development' ? 0.2 : 0.05,
   });
 
@@ -81,12 +81,13 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
 
   try {
     userId = localStorage.getItem('hashedUID');
-    clientId = localStorage.getItem('GA_LOCAL_STORAGE_KEY');
   } catch (err) {
-    const cookieID = document.cookie.match(/PHPSESSID=([^;]*)/);
-    if (cookieID) {
-      clientId = cookieID[1];
-    }
+    // pass
+  }
+
+  if (document?.cookie) {
+    const match = document.cookie.match(/PHPSESSID=([^;]*)/);
+    clientId = match ? match[1] : undefined;
   }
 
   // @ts-ignore (we need to keep onerror)
@@ -124,8 +125,7 @@ wrappedApp = (
   </QueryClientProvider>
 );
 
-const growthbookEnabled = !!process.env.REACT_APP_GROWTHBOOK_API_KEY;
-if (growthbookEnabled) {
+if (process.env.REACT_APP_GROWTHBOOK_API_KEY) {
   const growthbook = new GrowthBook({
     apiHost: 'https://cdn.growthbook.io',
     clientKey: process.env.REACT_APP_GROWTHBOOK_API_KEY,
