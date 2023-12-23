@@ -8,7 +8,9 @@ import find from 'lodash/find';
 import { interceptAxios } from 'utils/axios';
 import { languageList, fallbackLng } from 'utils/i18n';
 import { useTranslation } from 'react-i18next';
+import { useGrowthBook } from '@growthbook/growthbook-react';
 
+import { useUserData } from 'hooks/useUserData';
 import { authUserWithToken, getUserInfo } from 'store/actions/userActions';
 
 import Routes from 'Routes';
@@ -22,18 +24,19 @@ import Spinner from 'components/Spinner';
 import { SettingsModal } from 'components/SettingsModal';
 
 import { RootState } from 'store';
-import { useGrowthBook } from '@growthbook/growthbook-react';
+import { useQueryClient } from '@tanstack/react-query';
 
 function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const growthbook = useGrowthBook();
   // This is used to trigger a suspense while i18n is loading
   const { ready: i18nReady } = useTranslation();
 
   const versionUpdateReady = useSelector((state: RootState) => state.updates.newVersionReady);
-  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const { isLoggedIn, user } = useUserData();
 
   useEffect(() => {
     if (growthbook && growthbook.ready === false) {
@@ -54,7 +57,11 @@ function App() {
       if (token) {
         // Clear the URL, but keep any alert (so login errors are shown)
         navigate('/', { replace: true, state: { keepAlerts: true } });
-        authUserWithToken(dispatch)(token);
+        authUserWithToken(dispatch)(token).finally(() =>
+          queryClient.invalidateQueries({
+            queryKey: ['user', 'self'],
+          })
+        );
       }
     } else {
       getUserInfo(dispatch)();

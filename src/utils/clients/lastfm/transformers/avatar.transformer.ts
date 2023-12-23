@@ -1,4 +1,4 @@
-import { AvatarSizes } from 'utils/types/avatar';
+import { Avatar } from 'utils/types/avatar';
 
 const sizeMap = {
   small: 'sm',
@@ -8,8 +8,8 @@ const sizeMap = {
 };
 
 // eslint-disable-next-line no-unused-vars
-export function avatarTransformer(avatars: any[]): { [key in AvatarSizes]: string } {
-  if (avatars.length === 0) return null;
+export function avatarTransformer(avatars: any[]): Avatar {
+  if (!avatars || avatars.length === 0) return null;
 
   return avatars.reduce((acc, image) => {
     const targetSize = sizeMap[image.size];

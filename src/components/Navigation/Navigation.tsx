@@ -7,6 +7,7 @@ import { faHeadphonesAlt, faCompactDisc, faSignInAlt, faUserFriends } from '@for
 import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
 
 import { useBootstrapBreakpoint, BS_SIZE_SM } from 'utils/bootstrapBreakpoints';
+import { useUserData } from 'hooks/useUserData';
 
 import LanguageSelector from './partials/LanguageSelector';
 import NavigationItem from './partials/NavigationItem';
@@ -18,7 +19,7 @@ import type { RootState } from 'store';
 import './Navigation.scss';
 
 export default function Navigation() {
-  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const { isLoggedIn } = useUserData();
   const isDonor = useSelector((state: RootState) => state.settings.isDonor);
   const [menuIsOpen, toggleMenu] = useState(false);
   const bsBreakpoint = useBootstrapBreakpoint();

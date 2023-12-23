@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
-import { useSelector } from 'react-redux';
+
+import { useUserData } from 'hooks/useUserData';
 
 import HomeUser from 'domains/home/HomeUser';
 import HomeVisitor from 'domains/home/HomeVisitor';
@@ -9,7 +10,7 @@ import './Home.scss';
 const bodyDecoration = 'with-shadow';
 
 export default function Home() {
-  const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
+  const { isLoggedIn } = useUserData();
 
   useEffect(() => {
     // Add body class for special home background

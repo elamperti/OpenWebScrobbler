@@ -6,6 +6,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 
+import { useUserData } from 'hooks/useUserData';
 import { setSettings } from 'store/actions/settingsActions';
 
 import './LanguageSelector.scss';
@@ -15,7 +16,7 @@ import type { RootState } from 'store';
 export default function LanguageSelector({ className = '' }: { className?: string }) {
   const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
-  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const { isLoggedIn } = useUserData();
   const settings = useSelector((state: RootState) => state.settings);
 
   function changeLanguage(el) {

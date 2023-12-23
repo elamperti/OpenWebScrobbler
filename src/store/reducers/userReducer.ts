@@ -2,8 +2,6 @@ import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';
 
 import {
-  USER_LOGGED_IN,
-  USER_LOGGED_OUT,
   USER_GET_INFO,
   USER_ADD_RECENT_PROFILE,
   MAX_RECENT_USERS,
@@ -13,28 +11,17 @@ import {
 } from 'Constants';
 
 import { userProfileTransformer } from '../../utils/clients/lastfm/transformers/userProfile.transformer';
-import { Avatar } from 'utils/types/avatar';
 
 type UserSettings = {
-  avatar: Avatar;
-  isLoggedIn: boolean | null;
-  name: string;
   profiles: any;
   recentProfiles: any;
   recentAlbums: any;
-  url: string;
-  userSettingsLoading: boolean;
 };
 
 const initialState: UserSettings = {
-  isLoggedIn: null,
-  name: '',
   profiles: {},
   recentProfiles: [],
   recentAlbums: [],
-  url: '',
-  userSettingsLoading: false,
-  avatar: null,
 };
 
 const userReducer = (state = initialState, action) => {
@@ -42,42 +29,15 @@ const userReducer = (state = initialState, action) => {
   let recentProfiles = state.recentProfiles || [];
 
   switch (action.type) {
-    case USER_LOGGED_IN:
-      return {
-        ...state,
-        isLoggedIn: true,
-      };
-
-    case USER_LOGGED_OUT:
-      return {
-        ...initialState,
-        isLoggedIn: false,
-      };
-
-    case `${USER_GET_INFO}_PENDING`:
-      return {
-        ...state,
-        userSettingsLoading: true,
-      };
-
-    case `${USER_GET_INFO}_REJECTED`:
-      // ToDo: Handle this failure
-      return {
-        ...state,
-        userSettingsLoading: false,
-      };
-
-    case `${USER_GET_INFO}_FULFILLED`:
+    case USER_GET_INFO:
       if (hasIn(action.payload, 'data.user')) {
         return {
           ...state,
-          isLoggedIn: true,
           ...userProfileTransformer(action.payload),
         };
       } else if (hasIn(action.payload, 'data.isLoggedIn')) {
         return {
           ...state,
-          isLoggedIn: action.payload.data.isLoggedIn,
         };
       } else {
         return state;

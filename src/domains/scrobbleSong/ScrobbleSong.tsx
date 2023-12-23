@@ -20,6 +20,7 @@ import { LastFmProfileHistory } from './partials/LastFmProfileHistory';
 import { useQueryClient } from '@tanstack/react-query';
 
 import type { FC } from 'react';
+import { useUserData } from 'hooks/useUserData';
 
 type SidebarTab = 'history' | 'userProfile';
 
@@ -33,7 +34,7 @@ export const ScrobbleSong: FC = () => {
   const [cloneReceiver, setCloneReceiver] = useState(undefined);
   const localScrobbles = useSelector((state: RootState) => state.scrobbles.list);
   const unreadScrobbles = useSelector((state: RootState) => state.scrobbles.unreadCount);
-  const user = useSelector((state: RootState) => state.user);
+  const { user } = useUserData();
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
@@ -65,7 +66,7 @@ export const ScrobbleSong: FC = () => {
   };
 
   let clearListButton;
-  const hasUsername = !!user.name;
+  const hasUsername = !!user?.name;
 
   if (activeTab === 'history') {
     if (localScrobbles.length > 0) {
@@ -121,10 +122,12 @@ export const ScrobbleSong: FC = () => {
               </ScrobbleList>
             </TabPane>
             <TabPane className="ScrobbleList-container pt-2" tabId="userProfile">
-              <LastFmProfileHistory
-                username={user.name}
-                enabled={activeTab === 'userProfile' /* FIXME: use a better tab component */}
-              />
+              {user?.name && (
+                <LastFmProfileHistory
+                  username={user.name}
+                  enabled={activeTab === 'userProfile' /* FIXME: use a better tab component */}
+                />
+              )}
             </TabPane>
           </TabContent>
         </div>

@@ -1,5 +1,7 @@
 import { IconProp } from '@fortawesome/fontawesome-svg-core';
 
+import type { ReactNode } from 'react';
+
 export type Alert = {
   id: string;
   type: 'danger' | 'success' | 'info' | 'warning';
@@ -8,6 +10,6 @@ export type Alert = {
   persistent: boolean;
   errorNumber?: number;
   message?: string;
-  rawMessage?: React.ReactNode;
+  rawMessage?: ReactNode;
   icon?: IconProp;
 };

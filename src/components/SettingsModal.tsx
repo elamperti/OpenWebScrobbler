@@ -11,9 +11,10 @@ import { setSettings, closeSettingsModal } from 'store/actions/settingsActions';
 import { languageList } from 'utils/i18n';
 import { RootState } from 'store';
 import { Trans, useTranslation } from 'react-i18next';
+import { useUserData } from 'hooks/useUserData';
 
 export function SettingsModal() {
-  const user = useSelector((state: RootState) => state.user);
+  const { user } = useUserData();
   const currentSettings = useSelector((state: RootState) => state.settings);
 
   const dispatch = useDispatch();
@@ -37,6 +38,8 @@ export function SettingsModal() {
     close();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   };
+
+  if (!user) return null;
 
   return (
     <Modal id="SettingsModal" isOpen={currentSettings.modalIsOpen} toggle={close}>

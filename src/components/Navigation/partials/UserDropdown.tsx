@@ -1,22 +1,34 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useQueryClient } from '@tanstack/react-query';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, NavLink } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog, faExternalLinkAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 import { Trans } from 'react-i18next';
 
-import Avatar from 'components/Avatar';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog, faExternalLinkAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+
+import { useUserData } from 'hooks/useUserData';
 import { openSettingsModal } from 'store/actions/settingsActions';
 import { logOut } from 'store/actions/userActions';
-import { useBootstrapBreakpoint, BS_SIZE_MD } from 'utils/bootstrapBreakpoints';
 
-import type { RootState } from 'store';
+import { useBootstrapBreakpoint, BS_SIZE_MD } from 'utils/bootstrapBreakpoints';
+import Avatar from 'components/Avatar';
 
 import './UserDropdown.scss';
 
 export default function UserDropdow() {
   const dispatch = useDispatch();
-  const user = useSelector((state: RootState) => state.user);
+  const { user } = useUserData();
   const bsBreakpoint = useBootstrapBreakpoint();
+  const queryClient = useQueryClient();
+
+  const onLogOut = async() => {
+    await logOut(dispatch)();
+    queryClient.invalidateQueries({
+      queryKey: ['user', 'self'],
+    });
+  };
+
+  if (!user) return null;
 
   return (
     <>
@@ -37,14 +49,14 @@ export default function UserDropdow() {
             <FontAwesomeIcon icon={faCog} />
             <Trans i18nKey="settings">Settings</Trans>
           </DropdownItem>
-          <DropdownItem className="d-none d-md-block" onClick={logOut(dispatch)}>
+          <DropdownItem className="d-none d-md-block" onClick={onLogOut}>
             <FontAwesomeIcon icon={faSignOutAlt} />
             <Trans i18nKey="logOut">Sign out</Trans>
           </DropdownItem>
         </DropdownMenu>
       </UncontrolledDropdown>
       <NavItem className="d-block d-md-none">
-        <NavLink onClick={logOut(dispatch)}>
+        <NavLink onClick={onLogOut}>
           <FontAwesomeIcon icon={faSignOutAlt} />
           <Trans i18nKey="logOut">Sign out</Trans>
         </NavLink>

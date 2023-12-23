@@ -41,7 +41,6 @@ store.subscribe(
       },
       user: {
         ...state.user,
-        userSettingsLoading: false,
         profiles: {}, // This is why profile pictures in recent profiles' list don't appear before search
       },
       settings: {

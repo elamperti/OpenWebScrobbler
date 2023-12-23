@@ -1,14 +1,13 @@
-import { useSelector } from 'react-redux';
 import { Navigate } from 'react-router-dom';
+import { useUserData } from 'hooks/useUserData';
 
 import type { FC } from 'react';
-import type { RootState } from 'store';
 
 export default function PrivateRoute({ using: View }: { using: FC }) {
-  const isLoggedIn = useSelector((state: RootState) => state.user.isLoggedIn);
+  const { isLoggedIn, isLoading } = useUserData();
   if (isLoggedIn) {
     return <View />;
-  } else {
+  } else if (!isLoading) {
     return <Navigate to="/" />;
   }
 }

@@ -1,32 +1,25 @@
-import axios from 'axios';
 import ReactGA from 'react-ga-neo';
 import md5 from 'md5';
 import get from 'lodash/get';
 import hasIn from 'lodash/hasIn';
 
-import {
-  OPENSCROBBLER_API_URL,
-  USER_LOGGED_IN,
-  USER_LOGGED_OUT,
-  USER_GET_INFO,
-  USER_ADD_RECENT_PROFILE,
-  USER_SAVE_INFO,
-} from 'Constants';
+import { USER_LOGGED_OUT, USER_GET_INFO, USER_ADD_RECENT_PROFILE, USER_SAVE_INFO } from 'Constants';
 
 import history from 'utils/history';
 import { saveToLocalStorage } from 'localstorage';
 import { createAlert } from './alertActions';
 import { setSettings } from './settingsActions';
+import { openscrobblerAPI } from 'utils/clients/api/apiClient';
 
 export function authUserWithToken(dispatch) {
   return (token) => {
-    axios
-      .post(`${OPENSCROBBLER_API_URL}/callback.php`, { token })
+    const params = new URLSearchParams();
+    params.append('token', token);
+
+    return openscrobblerAPI
+      .post('/callback.php', params)
       .then((response) => {
         if (get(response, 'data.status') === 'ok') {
-          dispatch({
-            type: USER_LOGGED_IN,
-          });
           getUserInfo(dispatch)();
           history.push('/scrobble/song');
         }
@@ -50,9 +43,9 @@ export function authUserWithToken(dispatch) {
 
 export function getUserInfo(dispatch) {
   return () => {
-    axios.post(`${OPENSCROBBLER_API_URL}/user.php`).then((response) => {
+    openscrobblerAPI.get('/user.php').then((response) => {
       dispatch({
-        type: `${USER_GET_INFO}_FULFILLED`,
+        type: USER_GET_INFO,
         payload: response,
       });
       if (response.data.user) {
@@ -76,14 +69,18 @@ export function logOut(dispatch) {
       action: 'Logout',
       label: 'Intent',
     }); // ToDo: add nonInteraction prop when logout is not manual
-    axios.post(`${OPENSCROBBLER_API_URL}/logout.php`).then(() => {
+    return openscrobblerAPI.post('/logout.php').then(() => {
       dispatch({
         type: USER_LOGGED_OUT,
       });
       ReactGA.set({
         userId: undefined,
       });
-      localStorage.removeItem('hashedUID');
+      try {
+        localStorage.removeItem('hashedUID');
+      } catch (err) {
+        // pass
+      }
       history.push('/');
       dispatch(
         createAlert(
