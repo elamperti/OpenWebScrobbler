@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { forwardRef, useMemo, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Trans, useTranslation } from 'react-i18next';
 
@@ -100,7 +100,7 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
           }}
           format={t('dates.format.short')}
           formatDate={format as unknown as (date: Date, format: string) => string}
-          component={DatePickerInput}
+          component={forwardRef(DatePickerInput)}
           onDayChange={handleDateChange}
           value={value}
           inputProps={{ readOnly: true, className: 'text-center', 'data-cy': 'DateTimePicker-date' }}
