@@ -104,7 +104,7 @@ function App() {
     <Suspense fallback={LoadingSpinner}>
       <SettingsModal />
       <Navigation />
-      <div className="d-flex flex-column" style={{ height: 'calc(100vh - 80px)' }}>
+      <div className="d-flex flex-column" style={{ height: 'calc(100vh - 84px)' }}>
         {process.env.REACT_APP_ANALYTICS_CODE && <AnalyticsListener />}
         {versionUpdateReady && <UpdateToast />}
 
