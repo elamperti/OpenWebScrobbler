@@ -69,31 +69,42 @@ export function logOut(dispatch) {
       action: 'Logout',
       label: 'Intent',
     }); // ToDo: add nonInteraction prop when logout is not manual
-    return openscrobblerAPI.post('/logout.php').then(() => {
-      dispatch({
-        type: USER_LOGGED_OUT,
-      });
-      ReactGA.set({
-        userId: undefined,
-      });
-      try {
-        localStorage.removeItem('hashedUID');
-      } catch (err) {
-        // pass
-      }
-      history.push('/');
-      dispatch(
-        createAlert(
-          hasIn(alertObject, 'message')
-            ? alertObject
-            : {
-                type: 'info',
-                title: 'logoutInfo.title',
-                message: 'logoutInfo.message',
-              }
+    return openscrobblerAPI
+      .post('/logout.php')
+      .then(() => {
+        dispatch({
+          type: USER_LOGGED_OUT,
+        });
+        ReactGA.set({
+          userId: undefined,
+        });
+        try {
+          localStorage.removeItem('hashedUID');
+        } catch (err) {
+          // pass
+        }
+        history.push('/');
+        dispatch(
+          createAlert(
+            hasIn(alertObject, 'message')
+              ? alertObject
+              : {
+                  type: 'info',
+                  title: 'logoutInfo.title',
+                  message: 'logoutInfo.message',
+                }
+          )
+        );
+      })
+      .catch(() =>
+        dispatch(
+          createAlert({
+            type: 'warning',
+            title: 'logoutInfo.title',
+            rawMessage: 'There was an error communicating with the server but you have been successfully logged out.',
+          })
         )
       );
-    });
   };
 }
 
