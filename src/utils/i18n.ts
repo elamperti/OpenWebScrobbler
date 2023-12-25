@@ -3,6 +3,7 @@ import { initReactI18next } from 'react-i18next';
 
 import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { tweak } from './tweaks/Tweaks';
 
 export const languageList = [
   { code: 'ast', name: 'Asturianu' }, // Asturian
@@ -57,7 +58,7 @@ i18n
       loadPath: `/locales/{{lng}}.json?v=${process.env.REACT_APP_VERSION}`,
       allowMultiLoading: false,
     },
-    debug: process.env.NODE_ENV === 'development',
+    debug: tweak(false, 'i18n', 'Debug'),
     interpolation: {
       escapeValue: false, // not needed for react
     },

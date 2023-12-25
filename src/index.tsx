@@ -22,6 +22,7 @@ import 'utils/i18n';
 import { NEW_VERSION_READY } from 'Constants';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+import { tweak } from 'utils/tweaks/Tweaks';
 
 // Avoid proxies that may interfer with the site
 if (process.env.NODE_ENV !== 'development' && document.location.host !== process.env.REACT_APP_HOST) {
@@ -45,11 +46,11 @@ let wrappedApp = (
   </ReduxProvider>
 );
 
-const sentryEnabled = !!process.env.REACT_APP_SENTRY_DSN;
+const sentryEnabled = !!process.env.REACT_APP_SENTRY_DSN && tweak(true, 'Sentry', 'Enabled');
 if (sentryEnabled) {
   Sentry.init({
     dsn: process.env.REACT_APP_SENTRY_DSN,
-    debug: false, // Enable only to debug specific issues, it's too verbose otherwise
+    debug: tweak(false, 'Sentry', 'Debug'),
     release: process.env.REACT_APP_VERSION,
     environment: process.env.NODE_ENV,
     // @ts-ignore (sanitizeKeys is a valid property)
@@ -92,7 +93,7 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
 
   // @ts-ignore (we need to keep onerror)
   ReactGA.initialize(process.env.REACT_APP_ANALYTICS_MEASUREMENT_ID, {
-    // debug: process.env.NODE_ENV === 'development',
+    // debug: tweak(false, 'Analytics', 'Debug'),
     gaOptions: {
       clientId,
       userId,

@@ -1,0 +1,11 @@
+#tweaks-container {
+  position: fixed;
+  z-index: 9999;
+}
+
+.tweaks-grabber {
+  left: 0;
+  position: absolute;
+  width: 32px;
+  text-shadow: -2px 2px 2px rgba(0, 0, 0, 0.5);
+}

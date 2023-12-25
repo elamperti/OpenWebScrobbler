@@ -3071,6 +3071,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@tweakpane/core@npm:^2.0.3":
+  version: 2.0.3
+  resolution: "@tweakpane/core@npm:2.0.3"
+  checksum: f8dcdf607afd9d0efa3d774e20f2572f65a155b96c99d9982083759c076e495ea1fec64b67f20db071dea26c88b44a5a16a1bbe4a0868ed46796fd381d2859fb
+  languageName: node
+  linkType: hard
+
 "@types/aria-query@npm:^5.0.1":
   version: 5.0.4
   resolution: "@types/aria-query@npm:5.0.4"
@@ -9225,6 +9232,7 @@ __metadata:
     "@testing-library/dom": "npm:^9.3.3"
     "@testing-library/react": "npm:^14.1.2"
     "@testing-library/user-event": "npm:^14.5.1"
+    "@tweakpane/core": "npm:^2.0.3"
     "@types/node": "npm:^20.10.4"
     "@types/react": "npm:^18.2.43"
     "@types/react-dom": "npm:^18.2.17"
@@ -9280,6 +9288,7 @@ __metadata:
     sass: "npm:^1.69.5"
     shortid: "npm:^2.2.16"
     start-server-and-test: "npm:^2.0.3"
+    tweakpane: "npm:^4.0.3"
     typescript: "npm:^5.3.3"
     vite: "npm:^5.0.7"
     vite-bundle-visualizer: "npm:^0.11.0"
@@ -11818,6 +11827,13 @@ __metadata:
   dependencies:
     safe-buffer: "npm:^5.0.1"
   checksum: 4c7a1b813e7beae66fdbf567a65ec6d46313643753d0beefb3c7973d66fcec3a1e7f39759f0a0b4465883499c6dc8b0750ab8b287399af2e583823e40410a17a
+  languageName: node
+  linkType: hard
+
+"tweakpane@npm:^4.0.3":
+  version: 4.0.3
+  resolution: "tweakpane@npm:4.0.3"
+  checksum: 4e5e83eb29404a5620101a87c43abd4570a279523b0ea7b0c8db4ef466c454e83abe44db8b53e73e8fbef85cd40e6ee21a2646b47532afb49308a1e08a123dab
   languageName: node
   linkType: hard
 

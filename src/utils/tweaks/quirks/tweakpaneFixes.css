@@ -1,0 +1,48 @@
+/* Style overrides for Tweakpane */
+:root {
+  --tp-base-background-color: hsla(0, 0%, 10%, 0.9);
+  --tp-blade-value-width: 140px;
+  --tp-container-background-color: hsla(230, 15%, 90%, 0.2);
+  --tp-container-background-color-focus: hsla(230, 15%, 90%, 0.2);
+}
+
+.tp-rotv {
+  width: 240px;
+  box-shadow: -1px 0px 8px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  transition: border-color 0.1s ease-in-out;
+  opacity: 0.4;
+}
+
+.tp-rotv:hover,
+.tp-rotv-expanded {
+  opacity: 1;
+}
+
+.tp-rotv-expanded {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.tp-rotv_m {
+  transition: opacity 0.5s ease-in-out;
+}
+
+.tp-rotv_m,
+.tp-fldv_m {
+  width: 16px;
+  height: 16px;
+  background: white;
+  opacity: 0.7;
+  right: calc(var(--cnt-hp) + (var(--cnt-usz) + 4px - 16px) / 2 - 2px);
+  mask: url('./assets/caret.svg') no-repeat 100% 100%;
+  transform: none;
+}
+
+.tp-rotv.tp-rotv-expanded .tp-rotv_m {
+  transform: rotate(90deg);
+  opacity: 0.3;
+}
+
+.tp-fldv.tp-fldv-expanded > .tp-fldv_b > .tp-fldv_m {
+  transform: rotate(90deg);
+}
