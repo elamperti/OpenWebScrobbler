@@ -32,7 +32,7 @@
     if (strlen($str) > 5) return NULL;
     $str = strtolower($str);
     // Test cases: https://regex101.com/r/eaWcrH/1
-    if (!preg_match('/^(?:auto|[a-z]{2}(?:-[A-Z]{2})?)$/', $str)) return NULL;
+    if (!preg_match('/^(?:auto|[a-z]{2}(?:[a-z]|-[A-Z]{2})?)$/', $str)) return NULL;
     return $str;
   });
   filter_and_assign('dataProvider', $new_settings, FILTER_SANITIZE_STRING, FILTER_FLAG_EMPTY_STRING_NULL, function($str) {
