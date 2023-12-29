@@ -62,15 +62,22 @@ export const init = () => {
     moveToInitialPosition();
   }
 
-  // Collapse pane
-  if (config.pane?.expanded === false) {
+  // Collapse/expand pane
+  let wasPreviouslyOpened = sessionStorage.getItem('tweaksPaneExpanded') === 'true';
+  const mainPaneElement = document.getElementsByClassName('tp-rotv_t')[0].parentElement as HTMLElement;
+  if (config.pane?.expanded === false && !wasPreviouslyOpened) {
     try {
-      (document.getElementsByClassName('tp-rotv_t')[0] as HTMLElement).click();
+      mainPaneElement.click();
     } catch (error) {
       // eslint-disable-next-line no-console
       console.error('Could not collapse tweakpane', error);
     }
   }
+
+  mainPaneElement.addEventListener('click', () => {
+    wasPreviouslyOpened = !wasPreviouslyOpened;
+    sessionStorage.setItem('tweaksPaneExpanded', wasPreviouslyOpened.toString());
+  });
 
   const treeWasEmpty = restoreTweaksState();
 
