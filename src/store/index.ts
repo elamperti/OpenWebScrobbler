@@ -8,7 +8,6 @@ import { loadState, saveState } from 'localstorage';
 
 import alertReducer from './reducers/alertReducer';
 import scrobbleReducer from './reducers/scrobbleReducer';
-import settingsReducer from './reducers/settingsReducer';
 import updatesReducer from './reducers/updatesReducer';
 import userReducer from './reducers/userReducer';
 
@@ -21,7 +20,6 @@ const store = createStore(
   combineReducers({
     alerts: alertReducer,
     scrobbles: scrobbleReducer,
-    settings: settingsReducer,
     updates: updatesReducer,
     user: userReducer,
   }),
@@ -40,12 +38,7 @@ store.subscribe(
           .slice(-100),
       },
       user: {
-        ...state.user,
         profiles: {}, // This is why profile pictures in recent profiles' list don't appear before search
-      },
-      settings: {
-        ...state.settings,
-        modalIsOpen: false,
       },
     });
   }, 2000)

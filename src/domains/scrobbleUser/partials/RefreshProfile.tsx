@@ -12,7 +12,7 @@ export default function RefreshProfile({ username }: { username: string }) {
 
   const invalidateUserScrobbles = () => {
     queryClient.invalidateQueries({
-      queryKey: ['user', username, 'scrobbles'],
+      queryKey: ['profile', username, 'scrobbles'],
     });
   };
 

@@ -6,7 +6,7 @@ import { userGetRecentTracks } from 'utils/clients/lastfm/methods/userGetRecentT
 export function LastFmProfileHistory({ username, enabled = false }: { username: string; enabled?: boolean }) {
   const page = 1; // Only the first page is supported for now
   const { data, isFetching } = useQuery({
-    queryKey: ['user', username.toLowerCase(), 'scrobbles', page],
+    queryKey: ['profile', username.toLowerCase(), 'scrobbles', page],
     queryFn: () => userGetRecentTracks(username, page),
     staleTime: 1000 * 60 * 1, // minutes
     enabled,

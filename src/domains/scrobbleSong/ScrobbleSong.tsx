@@ -60,7 +60,7 @@ export const ScrobbleSong: FC = () => {
     } else {
       // Same tab, refresh data!
       queryClient.invalidateQueries({
-        queryKey: ['user', user.name, 'scrobbles', 1],
+        queryKey: ['profile', user.name, 'scrobbles', 1],
       });
     }
   };

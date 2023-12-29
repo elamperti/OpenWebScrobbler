@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Trans } from 'react-i18next';
 import ReactGA from 'react-ga-neo';
 import get from 'lodash/get';
@@ -26,10 +26,10 @@ import {
 import { faClock, faCopy } from '@fortawesome/free-regular-svg-icons';
 import { getAmznLink } from 'Constants';
 
-import type { RootState } from 'store';
 import type { Scrobble } from 'utils/types/scrobble';
 
 import './ScrobbleItem.css';
+import { useSettings } from 'hooks/useSettings';
 
 interface ScrobbleItemProps {
   scrobble: Scrobble;
@@ -60,7 +60,7 @@ export default function ScrobbleItem({
 }: ScrobbleItemProps) {
   const [hasScrobbledAgain, setHasScrobbledAgain] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const settings = useSelector((state: RootState) => state.settings);
+  const { settings } = useSettings();
   const dispatch = useDispatch();
 
   const cloneScrobble = () => {
@@ -166,7 +166,7 @@ export default function ScrobbleItem({
     if (!isToday(new Date(scrobble.timestamp))) {
       timestampFormat = 'd/MM ';
     }
-    timestampFormat += settings.use12Hours ? 'hh:mm a' : 'HH:mm';
+    timestampFormat += settings?.use12Hours ? 'hh:mm a' : 'HH:mm';
     theTimestamp = format(new Date(scrobble.timestamp), timestampFormat);
   } else {
     if (scrobble.duration > 0) {
@@ -210,7 +210,7 @@ export default function ScrobbleItem({
     // COMPACT view
     songInfo = (
       <Label className="d-flex align-items-center mb-0" htmlFor={scrobbleItemInputId}>
-        {!!settings.showTrackNumber && scrobble.trackNumber && <span className="me-1">{scrobble.trackNumber}.</span>}
+        {!!settings?.showTrackNumbers && scrobble.trackNumber && <span className="me-1">{scrobble.trackNumber}.</span>}
         <span className="song flex-grow-1 pe-2 truncate">{songFullTitle}</span>
         {timeOrDuration}
       </Label>

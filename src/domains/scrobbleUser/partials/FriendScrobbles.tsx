@@ -1,16 +1,14 @@
 import { useEffect } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 
 import { Input, FormGroup, Label } from 'reactstrap';
 import { Trans } from 'react-i18next';
 
-import { RootState } from 'store';
-import { setSettings } from 'store/actions/settingsActions';
-
 import UserCard from 'components/UserCard';
 import ScrobbleList from 'components/ScrobbleList';
 import { userGetProfile } from 'utils/clients/lastfm/methods/userGetProfile';
+import { useSettings } from 'hooks/useSettings';
 
 import type { Scrobble } from 'utils/types/scrobble';
 import { addRecentUser, saveUserInfo } from 'store/actions/userActions';
@@ -26,12 +24,12 @@ export default function FriendScrobbles({
   loading: boolean;
 }) {
   const dispatch = useDispatch();
-  const keepOriginalTimestamp = useSelector((state: RootState) => state.settings.keepOriginalTimestamp);
+  const { settings, updateSettings } = useSettings();
   const lowercaseUsername = username.toLowerCase();
 
   // ToDo: move this query to UserCard
   const friendProfileQuery = useQuery({
-    queryKey: ['user', lowercaseUsername, 'profile'],
+    queryKey: ['profile', lowercaseUsername, 'info'],
     queryFn: () => userGetProfile(lowercaseUsername),
   });
 
@@ -45,8 +43,8 @@ export default function FriendScrobbles({
   }, [friendProfileQuery.isSuccess]);
 
   const toggleOriginalTimestamp = () => {
-    setSettings(dispatch)({
-      keepOriginalTimestamp: !keepOriginalTimestamp,
+    updateSettings({
+      keepOriginalTimestamp: !settings?.keepOriginalTimestamp,
     });
   };
 
@@ -71,7 +69,7 @@ export default function FriendScrobbles({
                 <Input
                   type="checkbox"
                   id="keepOriginalTimestamp"
-                  checked={keepOriginalTimestamp}
+                  checked={settings?.keepOriginalTimestamp}
                   onChange={toggleOriginalTimestamp}
                 />
                 <Trans i18nKey="keepOriginalTimestamp" />

@@ -1,6 +1,6 @@
 import { Suspense, useContext, useEffect, useState } from 'react';
 import { lazyWithPreload } from 'react-lazy-with-preload';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { Trans } from 'react-i18next';
 import ReactGA from 'react-ga-neo';
 
@@ -15,7 +15,7 @@ import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 
 import Tooltip from 'components/Tooltip';
 
-import type { RootState } from 'store';
+import { useSettings } from 'hooks/useSettings';
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 import { createAlert, dismissAlert } from 'store/actions/alertActions';
 import { ScrobbleCloneContext } from './ScrobbleSong';
@@ -57,7 +57,7 @@ export function SongForm() {
   const [isCustomDate, setIsCustomDate] = useState(false);
 
   const dispatch = useDispatch();
-  const settings = useSelector((state: RootState) => state.settings);
+  const { settings } = useSettings();
   const { setCloneFn } = useContext(ScrobbleCloneContext);
 
   // ToDo: refactor to use context or something more practical
@@ -109,7 +109,7 @@ export function SongForm() {
   };
 
   const catchPaste = (event) => {
-    if (!settings.catchPaste || artist || title) return;
+    if (!settings?.catchPaste || artist || title) return;
 
     const targetField = event.target.id;
     const textToSplit = event.clipboardData.getData('Text').trim();
@@ -427,7 +427,7 @@ export function SongForm() {
         <Trans i18nKey="scrobble">Scrobble</Trans>!
       </Button>
 
-      {!settings.isDonor && (
+      {!settings?.isDonor && (
         <div className="donation-cta mt-2">
           <a href="https://www.patreon.com/OpenScrobbler" rel="noopener">
             <Trans i18nKey="considerDonating">Consider donating to the project!</Trans>

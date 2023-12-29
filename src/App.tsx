@@ -1,7 +1,6 @@
-import { Suspense, useEffect } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-import { changeLanguage } from 'i18next';
 import qs from 'qs';
 import find from 'lodash/find';
 
@@ -12,7 +11,7 @@ import { useTranslation } from 'react-i18next';
 import { useGrowthBook } from '@growthbook/growthbook-react';
 
 import { useUserData } from 'hooks/useUserData';
-import { authUserWithToken, getUserInfo } from 'store/actions/userActions';
+import { authUserWithToken } from 'store/actions/userActions';
 
 import Routes from 'Routes';
 import Navigation from 'components/Navigation';
@@ -22,10 +21,11 @@ import AnalyticsListener from './components/AnalyticsListener';
 import UpdateToast from './components/UpdateToast';
 
 import Spinner from 'components/Spinner';
-import { SettingsModal } from 'components/SettingsModal';
+import { SettingsModalContext, SettingsModal } from 'components/SettingsModal';
 
 import { RootState } from 'store';
 import { useQueryClient } from '@tanstack/react-query';
+import { useLanguage } from 'hooks/useLanguage';
 
 function App() {
   const dispatch = useDispatch();
@@ -33,11 +33,16 @@ function App() {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const growthbook = useGrowthBook();
+  const { setLanguage } = useLanguage();
+  const { isLoggedIn, user } = useUserData();
+
   // This is used to trigger a suspense while i18n is loading
   const { ready: i18nReady } = useTranslation();
 
+  // ToDo: remove this feature?
   const versionUpdateReady = useSelector((state: RootState) => state.updates.newVersionReady);
-  const { isLoggedIn, user } = useUserData();
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   useEffect(() => {
     if (growthbook && growthbook.ready === false) {
@@ -60,12 +65,10 @@ function App() {
         navigate('/', { replace: true, state: { keepAlerts: true } });
         authUserWithToken(dispatch)(token).finally(() =>
           queryClient.invalidateQueries({
-            queryKey: ['user', 'self'],
+            queryKey: ['user'],
           })
         );
       }
-    } else {
-      getUserInfo(dispatch)();
     }
 
     // ToDo: Move this to a better place
@@ -74,7 +77,7 @@ function App() {
         find(languageList, { code: queryString.hl }) ||
         Object.prototype.hasOwnProperty.call(fallbackLng, queryString.hl)
       ) {
-        changeLanguage(queryString.hl.toString());
+        setLanguage(queryString.hl.toString());
       }
     }
     // Including `navigate` in this array causes a bug in album search, see #220
@@ -102,8 +105,10 @@ function App() {
 
   return (
     <Suspense fallback={LoadingSpinner}>
-      <SettingsModal />
-      <Navigation />
+      <SettingsModalContext.Provider value={{ isOpen: modalIsOpen, setSettingsModalVisible: setModalIsOpen }}>
+        <SettingsModal />
+        <Navigation />
+      </SettingsModalContext.Provider>
       <div className="d-flex flex-column" style={{ height: 'calc(100vh - 84px)' }}>
         {process.env.REACT_APP_ANALYTICS_CODE && <AnalyticsListener />}
         {versionUpdateReady && <UpdateToast />}

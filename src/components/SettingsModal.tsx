@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useState, createContext, useContext } from 'react';
+import { useDispatch } from 'react-redux';
 
 import { Button, Form, FormGroup, Input, Label, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
@@ -7,18 +7,25 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
 
-import { setSettings, closeSettingsModal } from 'store/actions/settingsActions';
 import { languageList } from 'utils/i18n';
-import { RootState } from 'store';
+
 import { Trans, useTranslation } from 'react-i18next';
+import { createAlert } from 'store/actions/alertActions';
 import { useUserData } from 'hooks/useUserData';
+import { useSettings } from 'hooks/useSettings';
+
+export const SettingsModalContext = createContext({
+  isOpen: false,
+  setSettingsModalVisible: (newValue: boolean) => {},
+});
 
 export function SettingsModal() {
   const { user } = useUserData();
-  const currentSettings = useSelector((state: RootState) => state.settings);
+  const { settings: currentSettings, updateSettings } = useSettings();
+  const { isOpen, setSettingsModalVisible } = useContext(SettingsModalContext);
 
   const dispatch = useDispatch();
-  const close = useCallback(() => dispatch(closeSettingsModal()), [dispatch]);
+  const close = () => setSettingsModalVisible(false);
   const { t } = useTranslation();
 
   const trackNumbersEnabled = false; // useFeatureIsOn('show-track-numbers');
@@ -29,20 +36,40 @@ export function SettingsModal() {
   const [showTrackNumbers, setShowTrackNumbers] = useState(currentSettings.showTrackNumbers);
 
   const saveAndClose = () => {
-    setSettings(dispatch)({
-      lang: language,
-      use12Hours,
-      catchPaste,
-      showTrackNumbers,
-    });
+    updateSettings(
+      {
+        lang: language,
+        use12Hours,
+        catchPaste,
+        showTrackNumbers,
+      },
+      {
+        onSuccess: () =>
+          dispatch(
+            createAlert({
+              type: 'success',
+              category: 'settings',
+              message: 'settingsSavedSuccessfully',
+            })
+          ),
+        onError: () =>
+          dispatch(
+            createAlert({
+              type: 'warning',
+              category: 'settings',
+              rawMessage: 'Error saving settings',
+            })
+          ),
+      }
+    );
+
     close();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   };
 
   if (!user) return null;
 
   return (
-    <Modal id="SettingsModal" isOpen={currentSettings.modalIsOpen} toggle={close}>
+    <Modal id="SettingsModal" isOpen={isOpen} toggle={close}>
       <ModalHeader toggle={close}>
         <FontAwesomeIcon className="me-2" icon={faCog} />
         <Trans i18nKey="settingsFor">Settings for</Trans> {user.name}

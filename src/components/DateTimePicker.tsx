@@ -1,5 +1,4 @@
 import { forwardRef, useMemo, useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Trans, useTranslation } from 'react-i18next';
 
 import addDays from 'date-fns/addDays';
@@ -12,11 +11,11 @@ import TimeKeeper from 'react-timekeeper';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faClock } from '@fortawesome/free-regular-svg-icons';
 
+import { useSettings } from 'hooks/useSettings';
+
 import DayPickerInput from 'react-day-picker/DayPickerInput';
+
 import 'react-day-picker/lib/style.css';
-
-import type { RootState } from 'store';
-
 import './DateTimePicker.scss';
 
 function DatePickerInput(props = {}) {
@@ -38,7 +37,7 @@ interface DateTimePickerProps {
 }
 
 export default function DateTimePicker({ className = '', onChange, value, visible = false }: DateTimePickerProps) {
-  const use12Hours = useSelector((state: RootState) => state.settings.use12Hours);
+  const { settings } = useSettings();
   const { t } = useTranslation();
   const [timePickerModalVisible, setTimePickerModalVisible] = useState(false);
   const showTimePicker = () => setTimePickerModalVisible(true);
@@ -137,7 +136,7 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
           </ModalHeader>
           <ModalBody>
             <TimeKeeper
-              hour24Mode={!use12Hours}
+              hour24Mode={!settings?.use12Hours}
               time={format(value, 'H:mm')}
               switchToMinuteOnHourSelect={true}
               switchToMinuteOnHourDropdownSelect={true}

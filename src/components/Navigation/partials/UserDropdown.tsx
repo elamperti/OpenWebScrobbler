@@ -1,3 +1,4 @@
+import { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { useQueryClient } from '@tanstack/react-query';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, NavLink } from 'reactstrap';
@@ -7,11 +8,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faExternalLinkAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { useUserData } from 'hooks/useUserData';
-import { openSettingsModal } from 'store/actions/settingsActions';
 import { logOut } from 'store/actions/userActions';
 
 import { useBootstrapBreakpoint, BS_SIZE_MD } from 'utils/bootstrapBreakpoints';
 import Avatar from 'components/Avatar';
+import { SettingsModalContext } from 'components/SettingsModal';
 
 import './UserDropdown.scss';
 
@@ -20,11 +21,12 @@ export default function UserDropdow() {
   const { user } = useUserData();
   const bsBreakpoint = useBootstrapBreakpoint();
   const queryClient = useQueryClient();
+  const { setSettingsModalVisible } = useContext(SettingsModalContext);
 
   const onLogOut = async() => {
     await logOut(dispatch)();
     queryClient.invalidateQueries({
-      queryKey: ['user', 'self'],
+      queryKey: ['user'],
     });
   };
 
@@ -45,7 +47,7 @@ export default function UserDropdow() {
             <FontAwesomeIcon className="ms-1" color="var(--bs-gray)" icon={faExternalLinkAlt} />
           </DropdownItem>
           <DropdownItem divider />
-          <DropdownItem onClick={() => dispatch(openSettingsModal())}>
+          <DropdownItem onClick={() => setSettingsModalVisible(true)}>
             <FontAwesomeIcon icon={faCog} />
             <Trans i18nKey="settings">Settings</Trans>
           </DropdownItem>

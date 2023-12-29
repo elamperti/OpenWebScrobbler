@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -8,19 +7,18 @@ import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
 
 import { useBootstrapBreakpoint, BS_SIZE_SM } from 'utils/bootstrapBreakpoints';
 import { useUserData } from 'hooks/useUserData';
+import { useSettings } from 'hooks/useSettings';
 
 import LanguageSelector from './partials/LanguageSelector';
 import NavigationItem from './partials/NavigationItem';
 import UserDropdown from './partials/UserDropdown';
 import { LASTFM_AUTH_URL } from 'Constants';
 
-import type { RootState } from 'store';
-
 import './Navigation.scss';
 
 export default function Navigation() {
   const { isLoggedIn } = useUserData();
-  const isDonor = useSelector((state: RootState) => state.settings.isDonor);
+  const { settings } = useSettings();
   const [menuIsOpen, toggleMenu] = useState(false);
   const bsBreakpoint = useBootstrapBreakpoint();
   const langSelectorInNav = bsBreakpoint > BS_SIZE_SM;
@@ -32,7 +30,7 @@ export default function Navigation() {
       expand="md"
       data-cy="Navigation"
       id="ows-Navigation"
-      className={`${isDonor ? 'ows-donor' : ''}`}
+      className={`${settings?.isDonor ? 'ows-donor' : ''}`}
     >
       <NavbarBrand tag={Link} to="/" data-cy="Navigation-logo" className="flex-grow-1 flex-md-grow-0">
         <FontAwesomeIcon icon={faHeadphonesAlt} className="d-none d-sm-inline" />

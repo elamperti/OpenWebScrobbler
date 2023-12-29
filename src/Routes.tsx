@@ -12,18 +12,7 @@ import {
 } from 'domains/scrobbleAlbum';
 import { ScrobbleUserSearch, ScrobbleUserResults } from './domains/scrobbleUser';
 
-// import Spinner from 'components/Spinner';
-
 export default function Routes() {
-  // ToDo: fix this to avoid the eternal spinner of death
-  // const isLoggedIn = useSelector((state) => state.user.isLoggedIn);
-  // const settingsLoaded = useSelector((state) => state.settings.settingsLoaded);
-
-  // if (isLoggedIn === null || (isLoggedIn && !settingsLoaded)) {
-  //   // ToDo: use suspense
-  //   return <Spinner />;
-  // }
-
   return (
     <Switch>
       <Route path="/scrobble/song" element={<ScrobbleSong />} />

@@ -8,7 +8,6 @@ import { USER_LOGGED_OUT, USER_GET_INFO, USER_ADD_RECENT_PROFILE, USER_SAVE_INFO
 import history from 'utils/history';
 import { saveToLocalStorage } from 'localstorage';
 import { createAlert } from './alertActions';
-import { setSettings } from './settingsActions';
 import { openscrobblerAPI } from 'utils/clients/api/apiClient';
 
 export function authUserWithToken(dispatch) {
@@ -54,9 +53,6 @@ export function getUserInfo(dispatch) {
           userId: hashedUserId,
         });
         saveToLocalStorage('hashedUID', hashedUserId);
-      }
-      if (response.data.settings) {
-        setSettings(dispatch)(response.data.settings, false);
       }
     });
   };
