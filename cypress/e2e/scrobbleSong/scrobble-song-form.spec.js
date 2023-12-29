@@ -3,7 +3,7 @@ describe('Scrobble song (form)', () => {
     cy.clearLocalStorage();
     cy.clearCookies();
 
-    cy.intercept('POST', '/api/v2/user.php', { fixture: 'api/v2/user/authenticated.json' }).as('userData');
+    cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/authenticated.json' }).as('userData');
     cy.intercept('POST', '/api/v2/scrobble.php', { fixture: 'api/v2/scrobble/success.json' }).as('scrobbleData');
 
     cy.visit('/scrobble/song');

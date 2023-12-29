@@ -9,6 +9,7 @@ export function userTransformer(raw: any) {
       id: raw?.user?.id || null,
       name: username,
       avatar: avatarTransformer(raw?.user?.image),
+      url: raw?.user?.url || null,
     } as User,
     isLoggedIn: typeof raw?.isLoggedIn === 'boolean' ? raw.isLoggedIn : !!username,
   };

@@ -5,13 +5,17 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
 import { useTranslation } from 'react-i18next';
 
+import { useUserData } from 'hooks/useUserData';
 import { useSettings } from 'hooks/useSettings';
+import { useLanguage } from 'hooks/useLanguage';
 
 import './LanguageSelector.scss';
 
 export default function LanguageSelector({ className = '' }: { className?: string }) {
   const { t, i18n } = useTranslation();
+  const { isLoggedIn } = useUserData();
   const { updateSettings } = useSettings();
+  const { setLanguage } = useLanguage();
   const currentLanguage = i18n.language;
 
   function changeLanguage(el) {
@@ -21,9 +25,14 @@ export default function LanguageSelector({ className = '' }: { className?: strin
       action: 'Change',
       label: lang,
     });
-    updateSettings({
-      lang,
-    });
+    if (isLoggedIn) {
+      updateSettings({
+        lang,
+      });
+    } else {
+      // ToDo: set `hl` query param and preserve it through oauth?
+      setLanguage(lang);
+    }
   }
 
   return (

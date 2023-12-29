@@ -2,10 +2,9 @@ describe('Navigation (visitor)', () => {
   beforeEach(() => {
     cy.fixture('api/v2/user/visitor.json').as('userIsVisitorJSON');
 
-    cy.intercept('POST', '/api/v2/user.php', '@userIsVisitorJSON').as('userData');
+    cy.intercept('GET', '/api/v2/user.php', '@userIsVisitorJSON').as('userData');
 
     cy.visit('/');
-    cy.wait('@userData');
   });
 
   it('Shows the logo', () => {

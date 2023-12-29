@@ -19,7 +19,7 @@ export function authUserWithToken(dispatch) {
       .post('/callback.php', params)
       .then((response) => {
         if (get(response, 'data.status') === 'ok') {
-          getUserInfo(dispatch)();
+          // getUserInfo(dispatch)();
           history.push('/scrobble/song');
         }
       })

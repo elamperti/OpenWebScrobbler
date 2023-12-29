@@ -8,6 +8,8 @@ import { createAlert } from 'store/actions/alertActions';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import { Alert } from 'components/AlertZone/types';
 
+import { OPENSCROBBLER_API_URL } from 'Constants';
+
 // The types are skipped with eslint because of an error I couldn't fix
 // (it's a linting issue, not a TS issue)
 interface ExtendedAxiosRequestConfig extends InternalAxiosRequestConfig {
@@ -127,7 +129,7 @@ export function interceptAxios(dispatch) {
       }
 
       // ToDo: improve this match to avoid collisions or problems with future API versions
-      if (response.config.url.match(/\/api\/v2\//)) {
+      if (response.config.url.includes(OPENSCROBBLER_API_URL)) {
         switch (response.status) {
           case 502:
             ReactGA.exception({

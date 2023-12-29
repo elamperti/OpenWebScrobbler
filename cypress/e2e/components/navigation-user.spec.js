@@ -1,6 +1,6 @@
 describe('Navigation (authenticated user)', () => {
   beforeEach(() => {
-    cy.intercept('POST', '/api/v2/user.php', { fixture: 'api/v2/user/authenticated.json' });
+    cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/authenticated.json' });
     cy.visit('/');
   });
 

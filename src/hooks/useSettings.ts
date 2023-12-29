@@ -1,4 +1,4 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useSuspenseQuery, useQueryClient } from '@tanstack/react-query';
 import useLocalStorage from './useLocalStorage';
 import { settingsTransformer } from 'utils/clients/api/transformers/settings.transformer';
 import { userGetSettings } from 'utils/clients/api/methods/userGetSettings';
@@ -13,7 +13,7 @@ export const useSettings = () => {
   const [storedSettings, updateStoredSettings] = useLocalStorage('settings', defaultSettings);
   const { setLanguage } = useLanguage();
 
-  const { data, isLoading, isFetching } = useQuery({
+  const { data, isLoading, isFetching } = useSuspenseQuery({
     queryKey: ['user', 'settings'],
     queryFn: () =>
       userGetSettings().then((data) => {
@@ -21,7 +21,7 @@ export const useSettings = () => {
         return data;
       }),
     staleTime: Infinity,
-    placeholderData: storedSettings,
+    // placeholderData: storedSettings,
   });
 
   const saveSettings = useMutation({

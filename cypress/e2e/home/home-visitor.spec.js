@@ -13,9 +13,22 @@ describe('Home (visitor)', () => {
   });
 
   it('shows an error if token was invalid', () => {
-    cy.intercept('POST', '/api/v2/callback.php', { fixture: 'api/v2/callback/failure.json' });
+    cy.intercept('POST', '/api/v2/callback.php', { statusCode: 503, fixture: 'api/v2/callback/failure.json' });
 
     cy.visit('/?token=aTestValue-withNumbers1234and_x1');
     cy.get('.alert-danger').should('exist');
+  });
+
+  it('supports changing the language when not logged in', () => {
+    cy.get('[data-cy="LanguageSelector"]').click();
+    cy.get('[data-lang="es"]').click();
+    cy.get('[data-cy="LanguageSelector"] a').should('contain', 'Idioma');
+  });
+
+  it('remembers the chosen language', () => {
+    cy.get('[data-cy="LanguageSelector"]').click();
+    cy.get('[data-lang="es"]').click();
+    cy.reload();
+    cy.get('[data-cy="LanguageSelector"] a').should('contain', 'Idioma');
   });
 });
