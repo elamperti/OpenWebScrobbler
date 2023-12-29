@@ -121,7 +121,7 @@ wrappedApp = (
   <QueryClientProvider client={queryClient}>
     <>
       {wrappedApp}
-      <ReactQueryDevtools initialIsOpen={false} />
+      {!process.env.NO_DEVTOOLS && <ReactQueryDevtools initialIsOpen={false} />}
     </>
   </QueryClientProvider>
 );

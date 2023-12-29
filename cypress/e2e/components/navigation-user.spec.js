@@ -32,7 +32,21 @@ describe('Navigation (authenticated user)', () => {
         .and('equal', 'https://www.last.fm/user/cypress');
     });
 
-    it.skip('opens the settings window');
-    it.skip('triggers logout successfuly');
+    it('opens the settings window', () => {
+      cy.get('[data-cy="SettingsModal"]').should('not.exist');
+      cy.get('[data-cy="UserDropdown-settings"]').click();
+      cy.get('[data-cy="SettingsModal"]').should('exist');
+    });
+
+    it('triggers logout successfuly', () => {
+      cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/visitor.json' });
+      cy.intercept('POST', '/api/v2/logout.php', { fixture: 'api/v2/logout/success.json' }).as('logout');
+
+      cy.get('[data-cy="UserDropdown-logout"]').click();
+
+      cy.wait('@logout').then(() => {
+        cy.get('[data-cy="UserDropdown-username"]').should('not.exist');
+      });
+    });
   });
 });

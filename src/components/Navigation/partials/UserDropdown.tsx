@@ -47,11 +47,11 @@ export default function UserDropdow() {
             <FontAwesomeIcon className="ms-1" color="var(--bs-gray)" icon={faExternalLinkAlt} />
           </DropdownItem>
           <DropdownItem divider />
-          <DropdownItem onClick={() => setSettingsModalVisible(true)}>
+          <DropdownItem onClick={() => setSettingsModalVisible(true)} data-cy="UserDropdown-settings">
             <FontAwesomeIcon icon={faCog} />
             <Trans i18nKey="settings">Settings</Trans>
           </DropdownItem>
-          <DropdownItem className="d-none d-md-block" onClick={onLogOut}>
+          <DropdownItem className="d-none d-md-block" onClick={onLogOut} data-cy="UserDropdown-logout">
             <FontAwesomeIcon icon={faSignOutAlt} />
             <Trans i18nKey="logOut">Sign out</Trans>
           </DropdownItem>

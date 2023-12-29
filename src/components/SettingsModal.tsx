@@ -69,7 +69,7 @@ export function SettingsModal() {
   if (!user) return null;
 
   return (
-    <Modal id="SettingsModal" isOpen={isOpen} toggle={close}>
+    <Modal id="SettingsModal" isOpen={isOpen} toggle={close} data-cy="SettingsModal">
       <ModalHeader toggle={close}>
         <FontAwesomeIcon className="me-2" icon={faCog} />
         <Trans i18nKey="settingsFor">Settings for</Trans> {user.name}

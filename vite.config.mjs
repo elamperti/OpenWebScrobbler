@@ -44,6 +44,7 @@ const viteConfig = ({ mode }) =>
     define: {
       ...defineReactAppEnv(mode),
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
+      'process.env.NO_DEVTOOLS': JSON.stringify(process.env.NO_DEVTOOLS),
       'process.env.REACT_APP_VERSION': JSON.stringify(process.env.npm_package_version),
     },
     plugins: [

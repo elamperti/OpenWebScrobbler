@@ -117,7 +117,7 @@
     "test:coverage": "vitest run --coverage",
     "watch": "vitest watch",
     "typecheck": "yarn run tsc",
-    "cypress": "start-test 'yarn start:server --port 3030' 3030 'TZ=Etc/GMT-3 cypress open --e2e --browser chrome'",
+    "cypress": "start-test 'NO_DEVTOOLS=1 yarn start:server --port 3030' 3030 'TZ=Etc/GMT-3 cypress open --e2e --browser chrome'",
     "translations:fetch": "poeditor pull",
     "translations:update": "poeditor push"
   },
