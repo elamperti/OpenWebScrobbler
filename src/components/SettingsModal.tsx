@@ -23,10 +23,11 @@ export function SettingsModal() {
   const { user } = useUserData();
   const { settings: currentSettings, updateSettings } = useSettings();
   const { isOpen, setSettingsModalVisible } = useContext(SettingsModalContext);
+  const [isSaving, setIsSaving] = useState(false);
 
   const dispatch = useDispatch();
-  const close = () => setSettingsModalVisible(false);
   const { t } = useTranslation();
+  const close = () => setSettingsModalVisible(false);
 
   const trackNumbersEnabled = false; // useFeatureIsOn('show-track-numbers');
 
@@ -36,6 +37,7 @@ export function SettingsModal() {
   const [showTrackNumbers, setShowTrackNumbers] = useState(currentSettings.showTrackNumbers);
 
   const saveAndClose = () => {
+    setIsSaving(true);
     updateSettings(
       {
         lang: language,
@@ -44,26 +46,29 @@ export function SettingsModal() {
         showTrackNumbers,
       },
       {
-        onSuccess: () =>
+        onSuccess: () => {
+          setIsSaving(false);
+          setSettingsModalVisible(false);
           dispatch(
             createAlert({
               type: 'success',
               category: 'settings',
               message: 'settingsSavedSuccessfully',
             })
-          ),
-        onError: () =>
+          );
+        },
+        onError: () => {
+          setIsSaving(false);
           dispatch(
             createAlert({
               type: 'warning',
               category: 'settings',
               rawMessage: 'Error saving settings',
             })
-          ),
+          );
+        },
       }
     );
-
-    close();
   };
 
   if (!user) return null;
@@ -146,11 +151,12 @@ export function SettingsModal() {
         </Form>
       </ModalBody>
       <ModalFooter>
-        <Button className="btn-cancel" color="secondary" onClick={close}>
+        <Button className="btn-cancel" color="secondary" onClick={close} disabled={isSaving}>
           <Trans i18nKey="cancel">Cancel</Trans>
         </Button>
-        <Button className="btn-save" color="success" onClick={saveAndClose}>
-          <FontAwesomeIcon className="me-2" icon={faSave} />
+        <Button className="btn-save" color="success" onClick={saveAndClose} disabled={isSaving}>
+          {isSaving && <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" />}
+          {!isSaving && <FontAwesomeIcon className="me-2" icon={faSave} />}
           <Trans i18nKey="saveSettings">Save</Trans>
         </Button>
       </ModalFooter>
