@@ -1,7 +1,7 @@
 import { albumSearchTransformer } from './albumSearchResponse.transformer';
 
 describe('Discogs transformer: album search', () => {
-  it('should format the results', () => {
+  it('formats the results', () => {
     const results = albumSearchTransformer({
       data: {
         results: [
@@ -11,8 +11,8 @@ describe('Discogs transformer: album search', () => {
             master_id: 2,
             title: 'title',
             year: 2022,
-            thumb: 'example.com/thumb',
-            cover_image: 'example.com/cover',
+            thumb: 'https://example.com/thumb',
+            cover_image: 'https://example.com/cover',
           },
         ],
       },
@@ -22,8 +22,8 @@ describe('Discogs transformer: album search', () => {
       {
         artist: '',
         cover: {
-          lg: 'example.com/cover',
-          sm: 'example.com/thumb',
+          lg: 'https://example.com/cover',
+          sm: 'https://example.com/thumb',
         },
         coverSizes: {
           lg: 500,
@@ -37,7 +37,7 @@ describe('Discogs transformer: album search', () => {
     ]);
   });
 
-  it('should set the `discogsId` based on the album type', () => {
+  it('composes a `discogsId` based on the album type', () => {
     const results = albumSearchTransformer({
       data: {
         results: [
@@ -47,8 +47,8 @@ describe('Discogs transformer: album search', () => {
             master_id: 2,
             title: 'title',
             year: 2022,
-            thumb: 'example.com/thumb',
-            cover_image: 'example.com/cover',
+            thumb: 'https://example.com/thumb',
+            cover_image: 'https://example.com/cover',
           },
         ],
       },
@@ -61,7 +61,7 @@ describe('Discogs transformer: album search', () => {
     ]);
   });
 
-  it('should filter out releases with no artist or discogsId', () => {
+  it('filters out releases with no artist or Discogs id', () => {
     const results = albumSearchTransformer({
       data: {
         results: [
@@ -70,8 +70,8 @@ describe('Discogs transformer: album search', () => {
             master_id: '',
             title: 'title',
             year: 2022,
-            thumb: 'example.com/thumb',
-            cover_image: 'example.com/cover',
+            thumb: 'https://example.com/thumb',
+            cover_image: 'https://example.com/cover',
           },
         ],
       },

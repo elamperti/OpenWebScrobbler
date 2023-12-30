@@ -1,7 +1,7 @@
 import { topAlbumsTransformer } from './topAlbumsResponse.transformer';
 
-describe('the `topAlbumsTransformer` function', () => {
-  it('should format the results', () => {
+describe('Last.fm transformer: top albums', () => {
+  it('formats the results', () => {
     const results = topAlbumsTransformer({
       data: {
         topalbums: {
@@ -12,12 +12,12 @@ describe('the `topAlbumsTransformer` function', () => {
                 name: 'artist',
               },
               mbid: '1',
-              url: 'example.com',
+              url: 'https://example.com',
               image: [
-                { '#text': 'example.com/sample' },
-                { '#text': 'example.com/sample-2' },
-                { '#text': 'example.com/thumb' },
-                { '#text': 'example.com/cover' },
+                { '#text': 'https://example.com/sample' },
+                { '#text': 'https://example.com/sample-2' },
+                { '#text': 'https://example.com/thumb' },
+                { '#text': 'https://example.com/cover' },
               ],
             },
           ],
@@ -29,8 +29,8 @@ describe('the `topAlbumsTransformer` function', () => {
       {
         artist: 'artist',
         cover: {
-          lg: 'example.com/cover',
-          sm: 'example.com/thumb',
+          lg: 'https://example.com/cover',
+          sm: 'https://example.com/thumb',
         },
         coverSizes: {
           lg: 300,

@@ -1,12 +1,10 @@
 import { lastfmAPI } from '../apiClient';
 import { albumGetInfo } from './albumGetInfo';
 
-import type { LastFmAlbum } from 'utils/types/album';
-
 vi.mock('../apiClient');
 
-describe('`albumGetInfo` function', () => {
-  it('should call the API to get the album info', async() => {
+describe('Last.fm client: `albumGetInfo` method', () => {
+  it('calls the API to get the album info', async() => {
     await albumGetInfo({ mbid: '1', artist: 'test-artist', name: 'test' });
 
     expect(lastfmAPI.get).toHaveBeenCalledWith('', {
@@ -16,7 +14,7 @@ describe('`albumGetInfo` function', () => {
     });
   });
 
-  it('should use the mbid of the album', async() => {
+  it('uses the mbid of the album', async() => {
     await albumGetInfo({ mbid: '1', artist: 'test-artist', name: 'test' });
 
     expect(lastfmAPI.get).toHaveBeenCalledWith('', {
@@ -26,7 +24,7 @@ describe('`albumGetInfo` function', () => {
     });
   });
 
-  it('should use the album and artist name in the absence of an mbid', async() => {
+  it('uses the album and artist name in absence of an mbid', async() => {
     await albumGetInfo({ artist: 'test-artist', name: 'test' });
 
     expect(lastfmAPI.get).toHaveBeenCalledWith('', {

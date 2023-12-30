@@ -1,7 +1,7 @@
 import { albumSearchTransformer } from './albumSearchResponse.transformer';
 
-describe('the `albumSearchTransformer` function', () => {
-  it('should format the results', () => {
+describe('Last.fm transformer: album search', () => {
+  it('formats the results', () => {
     const results = albumSearchTransformer({
       data: {
         results: {
@@ -11,12 +11,12 @@ describe('the `albumSearchTransformer` function', () => {
                 name: 'title',
                 artist: 'artist',
                 mbid: '1',
-                url: 'example.com',
+                url: 'https://example.com',
                 image: [
-                  { '#text': 'example.com/sample' },
-                  { '#text': 'example.com/sample-2' },
-                  { '#text': 'example.com/thumb' },
-                  { '#text': 'example.com/cover' },
+                  { '#text': 'https://example.com/sample' },
+                  { '#text': 'https://example.com/sample-2' },
+                  { '#text': 'https://example.com/thumb' },
+                  { '#text': 'https://example.com/cover' },
                 ],
               },
             ],
@@ -29,8 +29,8 @@ describe('the `albumSearchTransformer` function', () => {
       {
         artist: 'artist',
         cover: {
-          lg: 'example.com/cover',
-          sm: 'example.com/thumb',
+          lg: 'https://example.com/cover',
+          sm: 'https://example.com/thumb',
         },
         coverSizes: {
           lg: 300,
@@ -38,7 +38,7 @@ describe('the `albumSearchTransformer` function', () => {
         },
         mbid: '1',
         name: 'title',
-        url: 'example.com',
+        url: 'https://example.com',
       },
     ]);
   });

@@ -10,15 +10,15 @@ describe('Scrobble song (form)', () => {
     cy.location('pathname').should('equal', '/scrobble/song');
   });
 
-  it('should display the page', () => {
+  it('displays the page', () => {
     cy.get('[data-cy="ScrobbleSong"]');
   });
 
-  it('should have the song form', () => {
+  it('has the song form', () => {
     cy.get('[data-cy="SongForm"]');
   });
 
-  it('should disable the Scrobble button when the form is incomplete', () => {
+  it('disables the Scrobble button when the form is incomplete', () => {
     cy.get('[data-cy="scrobble-button"]').should('be.disabled');
 
     // Add only the artist name
@@ -37,13 +37,13 @@ describe('Scrobble song (form)', () => {
     cy.get('[data-cy="scrobble-button"]').should('be.disabled');
   });
 
-  it('should enable the Scrobble button when the form is complete', () => {
+  it('enables the Scrobble button when the form is complete', () => {
     cy.get('[data-cy="SongForm-artist"]').type('Arctic Monkeys');
     cy.get('[data-cy="SongForm-title"]').type('Arabella');
     cy.get('[data-cy="scrobble-button"]').should('not.be.disabled');
   });
 
-  it('should swap artist and title when the user clicks the swap button', () => {
+  it('swaps artist and title when the user clicks the swap button', () => {
     cy.get('[data-cy="SongForm-artist"]').type('Arctic Monkeys', { delay: 0 });
     cy.get('[data-cy="SongForm-title"]').type('Arabella', { delay: 0 });
 
@@ -61,7 +61,7 @@ describe('Scrobble song (form)', () => {
       cy.get('[data-cy="SongForm-albumArtist"]').type('Other', { delay: 0 });
     });
 
-    it('should clear the form after submission', () => {
+    it('clears the form after submission', () => {
       cy.get('[data-cy="scrobble-button"]').click();
 
       cy.wait('@scrobbleData').then(() => {
@@ -72,7 +72,7 @@ describe('Scrobble song (form)', () => {
       });
     });
 
-    it('should keep pinned artist', () => {
+    it('keeps pinned artist', () => {
       cy.get('[data-cy="SongForm-artist-lock"]').click();
 
       cy.get('[data-cy="scrobble-button"]').click();
@@ -83,7 +83,7 @@ describe('Scrobble song (form)', () => {
       });
     });
 
-    it('should keep pinned album', () => {
+    it('keeps pinned album', () => {
       cy.get('[data-cy="SongForm-album-lock"]').click();
 
       cy.get('[data-cy="scrobble-button"]').click();

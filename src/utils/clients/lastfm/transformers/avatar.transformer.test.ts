@@ -1,7 +1,7 @@
 import { avatarTransformer } from './avatar.transformer';
 
-describe('avatarTransformer', () => {
-  it('should transform an array of avatars into an object with the correct keys', () => {
+describe('Last.fm transformer: avatars', () => {
+  it('transforms an array of avatars into an object with the correct keys', () => {
     const avatars = [
       { size: 'small', '#text': 'http://example.com/small.jpg' },
       { size: 'medium', '#text': 'http://example.com/medium.jpg' },
@@ -19,7 +19,7 @@ describe('avatarTransformer', () => {
     });
   });
 
-  it('should ignore any avatars with an unknown size', () => {
+  it('ignores any avatar object with an unknown size', () => {
     const avatars = [
       { size: 'small', '#text': 'http://example.com/small.jpg' },
       { size: 'unknown', '#text': 'http://example.com/unknown.jpg' },
@@ -34,7 +34,7 @@ describe('avatarTransformer', () => {
     });
   });
 
-  it('should return an empty object if no avatars are provided', () => {
+  it('returns a null object if no avatars are provided', () => {
     const result = avatarTransformer([]);
 
     expect(result).toBeNull();

@@ -1,6 +1,6 @@
 import { albumGetInfoTransformer } from './albumGetInfoResponse.transformer';
 
-describe('`albumGetInfoTransformer` function', () => {
+describe('Last.fm transformer: album info', () => {
   it('formats the response', () => {
     const results = albumGetInfoTransformer({
       data: {
@@ -8,13 +8,13 @@ describe('`albumGetInfoTransformer` function', () => {
           name: 'title',
           artist: 'artist',
           mbid: '1234',
-          url: 'example.com',
+          url: 'https://example.com',
           releasedate: '2022',
           image: [
-            { '#text': 'example.com/sample' },
-            { '#text': 'example.com/sample-2' },
-            { '#text': 'example.com/thumb' },
-            { '#text': 'example.com/cover' },
+            { '#text': 'https://example.com/sample' },
+            { '#text': 'https://example.com/sample-2' },
+            { '#text': 'https://example.com/thumb' },
+            { '#text': 'https://example.com/cover' },
           ],
         },
       },
@@ -25,15 +25,15 @@ describe('`albumGetInfoTransformer` function', () => {
       releasedate: '2022',
       mbid: '1234',
       cover: {
-        lg: 'example.com/cover',
-        sm: 'example.com/thumb',
+        lg: 'https://example.com/cover',
+        sm: 'https://example.com/thumb',
       },
       coverSizes: {
         lg: 300,
         sm: 174,
       },
       name: 'title',
-      url: 'example.com',
+      url: 'https://example.com',
       trackCount: 0,
     });
   });

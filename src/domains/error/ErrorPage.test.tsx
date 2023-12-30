@@ -3,21 +3,21 @@ import ErrorPage from './ErrorPage';
 import sentry from '@sentry/react';
 
 describe('ErrorPage', () => {
-  it('should render correctly', () => {
+  it('renders correctly', () => {
     render(<ErrorPage />);
 
     const title = screen.getByText(/Sorry, there was a problem/);
     expect(title).toBeInTheDocument();
   });
 
-  it('should display the error', () => {
+  it('displays the error', () => {
     render(<ErrorPage error={12345} />);
 
     const title = screen.getByText(/12345/);
     expect(title).toBeInTheDocument();
   });
 
-  it('should have working buttons', () => {
+  it('has working buttons', () => {
     const returnFn = vi.fn();
     const reportDialog = vi.spyOn(sentry, 'showReportDialog');
 
@@ -32,7 +32,7 @@ describe('ErrorPage', () => {
     expect(returnFn).toHaveBeenCalled();
   });
 
-  it('should be able to reload the page', () => {
+  it('reloads the page when the refresh button is clicked', () => {
     const originalLocation = window.location;
     delete window.location;
     window.location = { reload: vi.fn() } as unknown as Location;

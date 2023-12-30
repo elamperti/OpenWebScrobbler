@@ -1,7 +1,7 @@
 import { userProfileTransformer } from './userProfile.transformer';
 
-describe('userProfileTransformer', () => {
-  it('should return an object with the expected properties when given a valid response', () => {
+describe('Last.fm transformer: user profile', () => {
+  it('returns an object with the expected properties when given a valid response', () => {
     const response = {
       data: {
         user: {
@@ -33,7 +33,7 @@ describe('userProfileTransformer', () => {
     expect(userProfileTransformer(response)).toEqual(expectedOutput);
   });
 
-  it('should return an object with empty strings when given a response with missing data', () => {
+  it('returns an object with empty strings when given a response with missing data', () => {
     const response = {
       data: {},
     };
@@ -47,7 +47,7 @@ describe('userProfileTransformer', () => {
     expect(userProfileTransformer(response)).toEqual(expectedOutput);
   });
 
-  it('should have an empty string if the image array is missing', () => {
+  it('has an empty string if the image array is missing', () => {
     const response = {
       data: {
         user: {

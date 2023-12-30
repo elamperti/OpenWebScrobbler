@@ -1,7 +1,7 @@
 import { userRecentTracksTransformer } from './userRecentTracks.transformer';
 
-describe('userRecentTracksTransformer', () => {
-  it('should return an object with the correct properties', () => {
+describe('Last.fm transformer: user recent tracks', () => {
+  it('returns an object with the correct properties', () => {
     const response = {
       data: {
         recenttracks: {
@@ -51,7 +51,7 @@ describe('userRecentTracksTransformer', () => {
     expect(userRecentTracksTransformer(response)).toEqual(expected);
   });
 
-  it('should return a valid object when given an empty response', () => {
+  it('returns a valid object when given an empty response', () => {
     const response = {};
 
     const expected = {
@@ -63,7 +63,7 @@ describe('userRecentTracksTransformer', () => {
     expect(userRecentTracksTransformer(response)).toEqual(expected);
   });
 
-  it('should return a valid object even if there are no tracks', () => {
+  it('returns a valid object even if there are no tracks', () => {
     const response = {
       data: {
         recenttracks: {
@@ -84,7 +84,7 @@ describe('userRecentTracksTransformer', () => {
     expect(userRecentTracksTransformer(response)).toEqual(expected);
   });
 
-  it('should skip "now playing" tracks', () => {
+  it('skips "now playing" tracks', () => {
     const response = {
       data: {
         recenttracks: {

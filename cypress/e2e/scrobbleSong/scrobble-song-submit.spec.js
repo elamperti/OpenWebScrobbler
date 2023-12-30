@@ -21,7 +21,7 @@ describe('Scrobble song (scrobbling)', () => {
     cy.get('[data-cy="SongForm-albumArtist"]').type('Other', { delay: 0 });
   });
 
-  it('should submit the expected data', () => {
+  it('submits the expected data', () => {
     cy.get('[data-cy="scrobble-button"]').click();
 
     cy.wait('@scrobbleData').then((interception) => {
@@ -35,7 +35,7 @@ describe('Scrobble song (scrobbling)', () => {
     });
   });
 
-  it('should submit a different time when the user changes it', () => {
+  it('submits a different time when the user changes it', () => {
     cy.get('[data-cy="timestampMode-custom"]').click();
     cy.get('[data-cy="DateTimePicker-time"]').type('10:20:45');
 
@@ -49,7 +49,7 @@ describe('Scrobble song (scrobbling)', () => {
     });
   });
 
-  it('should submit a different date when the user changes it', () => {
+  it('submits a different date when the user changes it', () => {
     cy.get('[data-cy="timestampMode-custom"]').click();
 
     cy.get('[data-cy="DateTimePicker-time"]').type('10:20:45');

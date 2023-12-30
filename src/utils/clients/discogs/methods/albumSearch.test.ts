@@ -3,8 +3,8 @@ import { albumSearch } from './albumSearch';
 
 vi.mock('../apiClient');
 
-describe('the `albumSearch` function', () => {
-  it('should call the API with the given search term', async() => {
+describe('Discogs client: `albumSearch` method', () => {
+  it('calls the API with the given search term', async() => {
     await albumSearch('search-term');
 
     expect(discogsAPI.get).toHaveBeenCalledWith('', {
@@ -16,7 +16,7 @@ describe('the `albumSearch` function', () => {
     });
   });
 
-  it('should ignore the case of the term', async() => {
+  it('ignores the case of the search term', async() => {
     await albumSearch('SEARCH-term');
 
     expect(discogsAPI.get).toHaveBeenCalledWith('', {
@@ -26,7 +26,7 @@ describe('the `albumSearch` function', () => {
     });
   });
 
-  it('should set the type of the search to release', async() => {
+  it('sets the type of the search to release', async() => {
     await albumSearch('SEARCH-term', true);
 
     expect(discogsAPI.get).toHaveBeenCalledWith('', {

@@ -1,7 +1,7 @@
 import { tracksTransformer } from './tracksResponse.transformer';
 
-describe('the `tracksTransformer` function', () => {
-  it('should format the results', () => {
+describe('Last.fm transformer: tracks', () => {
+  it('formats the results', () => {
     const results = tracksTransformer({
       data: {
         album: {
@@ -36,7 +36,7 @@ describe('the `tracksTransformer` function', () => {
     ]);
   });
 
-  it('should add the album name for the tracks', () => {
+  it('adds the album name in each track', () => {
     const results = tracksTransformer(
       {
         data: {
@@ -65,7 +65,7 @@ describe('the `tracksTransformer` function', () => {
     ]);
   });
 
-  it('should add the cover details for the tracks', () => {
+  it('adds the cover details for each track', () => {
     const results = tracksTransformer(
       {
         data: {
@@ -86,8 +86,8 @@ describe('the `tracksTransformer` function', () => {
       },
       {
         cover: {
-          lg: 'example.com/cover',
-          sm: 'example.com/thumb',
+          lg: 'https://example.com/cover',
+          sm: 'https://example.com/thumb',
         },
       }
     );
@@ -95,8 +95,8 @@ describe('the `tracksTransformer` function', () => {
     expect(results).toEqual([
       expect.objectContaining({
         cover: {
-          lg: 'example.com/cover',
-          sm: 'example.com/thumb',
+          lg: 'https://example.com/cover',
+          sm: 'https://example.com/thumb',
         },
       }),
     ]);

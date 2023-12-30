@@ -1,7 +1,7 @@
 import { albumGetInfoTransformer } from './albumGetInfoResponse.transformer';
 
 describe('Discogs transformer: album info', () => {
-  it('should return an empty album if there was a problem retrieving it', () => {
+  it('returns an empty album if there was a problem retrieving it', () => {
     const results = albumGetInfoTransformer({ data: { message: 'Error ' } });
 
     expect(results).toEqual({
@@ -17,16 +17,16 @@ describe('Discogs transformer: album info', () => {
     });
   });
 
-  describe('should format the images', () => {
-    it('should use the primary image if exists', () => {
+  describe('Image formatting', () => {
+    it('uses the primary image if exists', () => {
       const results = albumGetInfoTransformer({
         data: {
           images: [
             {
               type: 'primary',
               width: 200,
-              uri150: 'example.com/thumb',
-              resource_url: 'example.com/cover',
+              uri150: 'https://example.com/thumb',
+              resource_url: 'https://example.com/cover',
             },
           ],
         },
@@ -35,8 +35,8 @@ describe('Discogs transformer: album info', () => {
       expect(results).toEqual(
         expect.objectContaining({
           cover: {
-            sm: 'example.com/thumb',
-            lg: 'example.com/cover',
+            sm: 'https://example.com/thumb',
+            lg: 'https://example.com/cover',
           },
           coverSizes: {
             sm: 150,
@@ -46,15 +46,15 @@ describe('Discogs transformer: album info', () => {
       );
     });
 
-    it('should use the secondary image in absence of the primary', () => {
+    it('uses the secondary image in absence of the primary', () => {
       const results = albumGetInfoTransformer({
         data: {
           images: [
             {
               type: 'secondary',
               width: 200,
-              uri150: 'example.com/thumb',
-              resource_url: 'example.com/cover',
+              uri150: 'https://example.com/thumb',
+              resource_url: 'https://example.com/cover',
             },
           ],
         },
@@ -63,8 +63,8 @@ describe('Discogs transformer: album info', () => {
       expect(results).toEqual(
         expect.objectContaining({
           cover: {
-            sm: 'example.com/thumb',
-            lg: 'example.com/cover',
+            sm: 'https://example.com/thumb',
+            lg: 'https://example.com/cover',
           },
           coverSizes: {
             sm: 150,
@@ -74,7 +74,7 @@ describe('Discogs transformer: album info', () => {
       );
     });
 
-    it('should return null in case of no images', () => {
+    it('returns null in case of no images', () => {
       const results = albumGetInfoTransformer({
         data: {
           images: [],
@@ -90,7 +90,7 @@ describe('Discogs transformer: album info', () => {
     });
   });
 
-  it('should format the album info', () => {
+  it('formats the album info', () => {
     const results = albumGetInfoTransformer({
       data: {
         title: 'title',
@@ -116,7 +116,7 @@ describe('Discogs transformer: album info', () => {
     });
   });
 
-  it('should sanitize artist name', () => {
+  it('sanitizes the artist name', () => {
     const results = albumGetInfoTransformer({
       data: {
         title: 'title',
@@ -136,7 +136,7 @@ describe('Discogs transformer: album info', () => {
     );
   });
 
-  it('should replace artist Various with Various artists', () => {
+  it("replaces artist 'Various' with 'Various artists'", () => {
     const results = albumGetInfoTransformer({
       data: {
         title: 'title',

@@ -1,7 +1,7 @@
 import { topAlbumsTransformer } from './topAlbumsResponse.transformer';
 
 describe('Discogs transformer: top albums', () => {
-  it('should format the results', () => {
+  it('formats the results', () => {
     const results = topAlbumsTransformer({
       data: {
         releases: [
@@ -11,9 +11,9 @@ describe('Discogs transformer: top albums', () => {
             type: 'master',
             title: 'title',
             year: '2022',
-            resource_url: 'example.com/resource',
-            thumb: 'example.com/thumb',
-            cover_image: 'example.com/cover',
+            resource_url: 'https://example.com/resource',
+            thumb: 'https://example.com/thumb',
+            cover_image: 'https://example.com/cover',
           },
         ],
       },
@@ -23,14 +23,14 @@ describe('Discogs transformer: top albums', () => {
       {
         artist: 'artist',
         cover: {
-          lg: 'example.com/cover',
-          sm: 'example.com/thumb',
+          lg: 'https://example.com/cover',
+          sm: 'https://example.com/thumb',
         },
         coverSizes: {
           lg: 500,
           sm: 150,
         },
-        url: 'example.com/resource',
+        url: 'https://example.com/resource',
         name: 'title',
         discogsId: '1',
         releasedate: '2022',
@@ -38,7 +38,7 @@ describe('Discogs transformer: top albums', () => {
     ]);
   });
 
-  it('should sanitize artist name', () => {
+  it('sanitizes artist name', () => {
     const results = topAlbumsTransformer({
       data: {
         releases: [
@@ -48,9 +48,9 @@ describe('Discogs transformer: top albums', () => {
             type: 'master',
             title: 'title',
             year: '2022',
-            resource_url: 'example.com/resource',
-            thumb: 'example.com/thumb',
-            cover_image: 'example.com/cover',
+            resource_url: 'https://example.com/resource',
+            thumb: 'https://example.com/thumb',
+            cover_image: 'https://example.com/cover',
           },
         ],
       },
@@ -63,7 +63,7 @@ describe('Discogs transformer: top albums', () => {
     ]);
   });
 
-  it('should use the album id in case of absence of the master_id', () => {
+  it('uses the album id in absence of master_id', () => {
     const results = topAlbumsTransformer({
       data: {
         releases: [
@@ -73,9 +73,9 @@ describe('Discogs transformer: top albums', () => {
             type: 'master',
             title: 'title',
             year: '2022',
-            resource_url: 'example.com/resource',
-            thumb: 'example.com/thumb',
-            cover_image: 'example.com/cover',
+            resource_url: 'https://example.com/resource',
+            thumb: 'https://example.com/thumb',
+            cover_image: 'https://example.com/cover',
           },
         ],
       },
@@ -88,7 +88,7 @@ describe('Discogs transformer: top albums', () => {
     ]);
   });
 
-  it('should set the `discogsId` based on the album type', () => {
+  it('sets `discogsId` based on the album type', () => {
     const results = topAlbumsTransformer({
       data: {
         releases: [
@@ -98,9 +98,9 @@ describe('Discogs transformer: top albums', () => {
             type: 'release',
             title: 'title',
             year: '2022',
-            resource_url: 'example.com/resource',
-            thumb: 'example.com/thumb',
-            cover_image: 'example.com/cover',
+            resource_url: 'https://example.com/resource',
+            thumb: 'https://example.com/thumb',
+            cover_image: 'https://example.com/cover',
           },
         ],
       },
@@ -113,7 +113,7 @@ describe('Discogs transformer: top albums', () => {
     ]);
   });
 
-  it.skip('should filter out releases with no artist or discogsId', () => {
+  it.skip('filters out releases with no artist or discogsId', () => {
     // FIXME: Bug: in this case the discogsId becomes 'undefined' (string)
     const results = topAlbumsTransformer({
       data: {

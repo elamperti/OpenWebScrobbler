@@ -26,7 +26,7 @@ describe('Navigation (authenticated user)', () => {
       cy.get('[data-cy="UserDropdown"]').click();
     });
 
-    it('should link to the last.fm profile', () => {
+    it('links to the last.fm profile', () => {
       cy.get('[data-cy="UserDropdown-profileLink"]')
         .should('have.attr', 'href')
         .and('equal', 'https://www.last.fm/user/cypress');

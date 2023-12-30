@@ -3,8 +3,8 @@ import { albumSearch } from './albumSearch';
 
 vi.mock('../apiClient');
 
-describe('the `albumSearch` function', () => {
-  it('should call the API with the given search term', async() => {
+describe('Last.fm client: `albumSearch` method', () => {
+  it('calls the API with the given search term', async() => {
     await albumSearch('search-term');
 
     expect(lastfmAPI.get).toHaveBeenCalledWith('', {
@@ -15,7 +15,7 @@ describe('the `albumSearch` function', () => {
     });
   });
 
-  it('should ignore the case of the term', async() => {
+  it('ignores the case of the term', async() => {
     await albumSearch('SEARCH-term');
 
     expect(lastfmAPI.get).toHaveBeenCalledWith('', {

@@ -9,11 +9,11 @@ vi.mock('shortid', async(importOriginal) => {
 });
 
 describe('Discogs transformer: tracks response', () => {
-  it('should return an empty array with empty tracklist in the response', () => {
+  it('returns an empty array with empty tracklist in the response', () => {
     expect(tracksTransformer({ data: {} })).toEqual([]);
   });
 
-  it('should only include proper tracks', () => {
+  it('only includes proper tracks', () => {
     const results = tracksTransformer({
       data: {
         tracklist: [
@@ -44,7 +44,7 @@ describe('Discogs transformer: tracks response', () => {
     expect(results.find(({ title }) => title === 'Jesus Of Suburbia')).toBeTruthy();
   });
 
-  it('should format the tracks', () => {
+  it('formats the tracks', () => {
     const results = tracksTransformer(
       {
         data: {
@@ -77,7 +77,7 @@ describe('Discogs transformer: tracks response', () => {
     ]);
   });
 
-  it('should include tracks of type index', () => {
+  it('includes tracks of type index', () => {
     const results = tracksTransformer(
       {
         data: {
@@ -136,7 +136,7 @@ describe('Discogs transformer: tracks response', () => {
     expect(results.length).toBe(1);
   });
 
-  it('should add the cover of the album to the tracks', () => {
+  it('adds the cover of the album to the tracks', () => {
     const results = tracksTransformer(
       {
         data: {
@@ -169,7 +169,7 @@ describe('Discogs transformer: tracks response', () => {
     ]);
   });
 
-  it('should sanitize artist name', () => {
+  it('sanitizes artist name', () => {
     const results = tracksTransformer(
       {
         data: {
@@ -195,7 +195,7 @@ describe('Discogs transformer: tracks response', () => {
     ]);
   });
 
-  it('should use the track artist if present', () => {
+  it('uses the track artist if present', () => {
     const results = tracksTransformer(
       {
         data: {
