@@ -50,14 +50,15 @@ export default function FriendScrobbles({
 
   if (friendProfileQuery.isLoading) return null;
 
-  const userCardVisible = !!friendProfileQuery.data;
-  const showPagination = userCardVisible && scrobbles && scrobbles.length > 0;
+  const showPagination = !friendProfileQuery.isFetching && scrobbles && scrobbles.length > 0;
 
   return (
     <>
       <div className="UserCard-container rect row mx-0 pb-3">
         <div className="col-sm-8 d-flex align-items-middle">
-          {userCardVisible && <UserCard user={friendProfileQuery.data} name={username} isHeading withLinkToProfile />}
+          {!friendProfileQuery.isLoading && (
+            <UserCard user={friendProfileQuery.data} name={username} isHeading withLinkToProfile />
+          )}
         </div>
         <div className="col-sm-4 d-flex px-3 mb-2 flex-fill justify-content-sm-end">
           <RefreshProfile username={lowercaseUsername} />

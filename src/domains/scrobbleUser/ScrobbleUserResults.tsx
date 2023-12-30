@@ -5,21 +5,21 @@ import ReactGA from 'react-ga-neo';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import get from 'lodash/get';
 
-import { Row, Button } from 'reactstrap';
-import { Trans, useTranslation } from 'react-i18next';
-import { faChevronLeft, faHistory, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { Row } from 'reactstrap';
+import { Trans } from 'react-i18next';
+import { faHistory } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-import SearchForm from 'components/SearchForm';
+import useLocalStorage from 'hooks/useLocalStorage';
+import { userGetRecentTracks } from 'utils/clients/lastfm/methods/userGetRecentTracks';
+import { MAX_RECENT_USERS } from 'Constants';
+
 import ScrobbleList from 'components/ScrobbleList';
 import Spinner from 'components/Spinner';
-import { usernameIsValid } from 'utils/common';
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 import Paginator from 'components/Paginator';
 import FriendScrobbles from './partials/FriendScrobbles';
-import { userGetRecentTracks } from 'utils/clients/lastfm/methods/userGetRecentTracks';
-import useLocalStorage from 'hooks/useLocalStorage';
-import { MAX_RECENT_USERS } from 'Constants';
+import { UserResultsHeading } from './partials/UserResultsHeading';
 
 import type { RootState } from 'store';
 
@@ -31,7 +31,6 @@ export function ScrobbleUserResults() {
   const [isQueryEnabled, setQueryEnabled] = useState(true);
   const [recentUsers, setRecentUsers] = useLocalStorage('recentUsers', []);
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   const { data, isLoading, isFetching, isError, error, isSuccess, isPlaceholderData } = useQuery({
     queryKey: ['profile', lowercaseUsername, 'scrobbles', currentPage],
@@ -98,44 +97,10 @@ export function ScrobbleUserResults() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isError]);
 
-  const switchUserQuery = (newUser: string) => {
-    setQueryEnabled(false);
-    navigate(`/scrobble/user/${newUser}`);
-  };
-
   return (
     <div className="flex-lg-grow-1">
       {/* Heading */}
-      <Row className="mb-3">
-        <div className="col-md-8 d-flex align-items-center">
-          <Button
-            onClick={() => navigate('/scrobble/user', { state: { userToSearch: usernameFromParams } })}
-            size="sm"
-            className="me-3"
-          >
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </Button>
-          <h2 className="w-100 m-0 d-inline">
-            <FontAwesomeIcon icon={faUserFriends} className="me-2" />
-            <Trans i18nKey="scrobbleFromOtherUser">Scrobble from another user</Trans>
-          </h2>
-        </div>
-        <div className="col-md-4 d-flex align-items-center justify-content-end">
-          <SearchForm
-            onSearch={switchUserQuery}
-            searchCopy={t('search')}
-            ariaLabel="Username"
-            id="userToSearch"
-            maxLength={15}
-            size="sm"
-            value=""
-            readOnly={isLoading}
-            disableSearch={isLoading}
-            validator={usernameIsValid}
-            feedbackMessageKey="invalidUsername"
-          />
-        </div>
-      </Row>
+      <UserResultsHeading isLoading={isLoading} userToSearch={usernameFromParams} />
 
       {/* Main blocks */}
       <Row>
