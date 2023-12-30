@@ -137,7 +137,7 @@ export function ScrobbleAlbumTracklist() {
       <div className="row mb-5">
         <div className="col-md-7 mb-4">
           {!albumInfo.isLoading || (Array.isArray(albumInfo.data?.tracks) && triedAlternativeProvider) ? (
-            <Tracklist tracks={albumInfo.data.tracks} albumInfo={albumInfo.data.info} />
+            <Tracklist tracks={albumInfo.data?.tracks || []} albumInfo={albumInfo.data?.info} />
           ) : (
             <Spinner />
           )}

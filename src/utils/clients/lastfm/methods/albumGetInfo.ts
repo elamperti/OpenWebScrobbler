@@ -24,8 +24,8 @@ export async function albumGetInfo(album: { mbid?: string; artist: string; name:
   return {
     info,
     tracks: tracksTransformer(response, {
-      album: info.name,
-      cover: info.cover,
+      album: info?.name || '',
+      cover: info?.cover || null,
     }),
   };
 }
