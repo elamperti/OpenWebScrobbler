@@ -18,6 +18,8 @@ import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 import Paginator from 'components/Paginator';
 import FriendScrobbles from './partials/FriendScrobbles';
 import { userGetRecentTracks } from 'utils/clients/lastfm/methods/userGetRecentTracks';
+import useLocalStorage from 'hooks/useLocalStorage';
+import { MAX_RECENT_USERS } from 'Constants';
 
 import type { RootState } from 'store';
 
@@ -27,6 +29,7 @@ export function ScrobbleUserResults() {
   const localScrobbles = useSelector((state: RootState) => state.scrobbles.list);
   const [currentPage, setCurrentPage] = useState(1);
   const [isQueryEnabled, setQueryEnabled] = useState(true);
+  const [recentUsers, setRecentUsers] = useLocalStorage('recentUsers', []);
   const navigate = useNavigate();
   const { t } = useTranslation();
 
@@ -37,6 +40,19 @@ export function ScrobbleUserResults() {
     placeholderData: keepPreviousData,
     enabled: isQueryEnabled,
   });
+
+  useEffect(() => {
+    if (isSuccess) {
+      const username = data?.username || '';
+      const currentIndex = recentUsers.indexOf(username);
+      if (currentIndex > -1) {
+        recentUsers.splice(currentIndex, 1);
+      }
+      recentUsers.unshift(username);
+      setRecentUsers(recentUsers.slice(0, MAX_RECENT_USERS));
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isSuccess]);
 
   const totalPages = data?.totalPages || 1;
 
