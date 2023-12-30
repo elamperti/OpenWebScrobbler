@@ -27,7 +27,7 @@
       "version": "detect"
     }
   },
-  "plugins": ["react", "react-hooks", "vitest", "cypress", "n", "promise"],
+  "plugins": ["react", "react-hooks", "vitest", "cypress", "n", "promise", "no-only-tests"],
   "globals": {
     "vi": true
   },
@@ -44,6 +44,7 @@
     ],
     "multiline-ternary": "off",
     "no-console": "warn",
+    "no-only-tests/no-only-tests": "error",
     "no-unused-vars": "warn",
     "prefer-const": "warn",
     "semi": [2, "always"],
