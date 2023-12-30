@@ -113,9 +113,7 @@ function App() {
         {process.env.REACT_APP_ANALYTICS_CODE && <AnalyticsListener />}
         {versionUpdateReady && <UpdateToast />}
 
-        <div className="container">
-          <AlertZone />
-        </div>
+        <AlertZone />
         <main className="container flex-wrap flex-grow-1">
           <Routes />
         </main>

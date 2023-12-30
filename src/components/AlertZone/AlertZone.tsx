@@ -22,10 +22,12 @@ export default function AlertZone() {
   if (alerts.length === 0) return null;
 
   return (
-    <div className="AlertZone mt-3">
-      {alerts.map((data) => (
-        <AlertItem key={data.id} {...data} />
-      ))}
+    <div className="container">
+      <div className="AlertZone mt-3">
+        {alerts.map((data) => (
+          <AlertItem key={data.id} {...data} />
+        ))}
+      </div>
     </div>
   );
 }
