@@ -91,6 +91,7 @@ export default function ScrobbleItem({
   };
 
   const properCase = (str: string, forceUcfirstMode = false) => {
+    if (!str) return '';
     if (str.match(/[A-Z]/u)) {
       return str;
     } else if (forceUcfirstMode) {
