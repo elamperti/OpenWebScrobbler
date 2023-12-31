@@ -28,6 +28,7 @@ export default function UserDropdow() {
     queryClient.invalidateQueries({
       queryKey: ['user'],
     });
+    // ToDo: clear local storage
   };
 
   if (!user) return null;

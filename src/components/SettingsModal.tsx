@@ -26,15 +26,16 @@ export function SettingsModal() {
   const [isSaving, setIsSaving] = useState(false);
 
   const dispatch = useDispatch();
-  const { t } = useTranslation();
-  const close = () => setSettingsModalVisible(false);
+  const { t, i18n } = useTranslation();
+  const currentLanguage = i18n.language;
 
+  const [language, setLanguage] = useState(currentSettings?.lang || currentLanguage);
+  const [use12Hours, setUse12Hours] = useState(currentSettings?.use12Hours);
+  const [catchPaste, setCatchPaste] = useState(currentSettings?.catchPaste);
   const trackNumbersEnabled = false; // useFeatureIsOn('show-track-numbers');
+  const [showTrackNumbers, setShowTrackNumbers] = useState(currentSettings?.showTrackNumbers);
 
-  const [language, setLanguage] = useState(currentSettings.lang);
-  const [use12Hours, setUse12Hours] = useState(currentSettings.use12Hours);
-  const [catchPaste, setCatchPaste] = useState(currentSettings.catchPaste);
-  const [showTrackNumbers, setShowTrackNumbers] = useState(currentSettings.showTrackNumbers);
+  const close = () => setSettingsModalVisible(false);
 
   const saveAndClose = () => {
     setIsSaving(true);
