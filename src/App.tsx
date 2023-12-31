@@ -106,7 +106,7 @@ function App() {
   return (
     <Suspense fallback={LoadingSpinner}>
       <SettingsModalContext.Provider value={{ isOpen: modalIsOpen, setSettingsModalVisible: setModalIsOpen }}>
-        <SettingsModal />
+        {isLoggedIn && <SettingsModal />}
         <Navigation />
       </SettingsModalContext.Provider>
       <div className="d-flex flex-column" style={{ height: 'calc(100vh - 84px)' }}>
