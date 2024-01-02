@@ -76,7 +76,14 @@ export default function SearchForm({
 
   const disableSearch = !isValid || query.length < 1;
   const searchButton = (
-    <Button block size={size} color="success" onClick={callOnSearch} disabled={disableSearch}>
+    <Button
+      block
+      size={size}
+      color="success"
+      onClick={callOnSearch}
+      disabled={disableSearch}
+      data-cy="SearchForm-submit"
+    >
       {searchCopy}
     </Button>
   );
@@ -100,6 +107,7 @@ export default function SearchForm({
               onKeyDown={catchEnter}
               onInput={(e) => updateQuery((e.target as HTMLInputElement).value)}
               maxLength={maxLength}
+              data-cy="SearchForm-input"
             />
             <FormFeedback valid={query.length < 1 || isValid}>
               {feedbackMessageKey ? <Trans i18nKey={feedbackMessageKey} /> : 'Unknown error'}

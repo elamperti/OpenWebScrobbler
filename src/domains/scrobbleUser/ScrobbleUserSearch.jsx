@@ -61,18 +61,20 @@ export function ScrobbleUserSearch() {
           feedbackMessageKey={usernameGood ? 'userNotFound' : 'invalidUsername'}
         />
         {recentUsers.length > 0 && (
-          <h4>
-            <Trans i18nKey="recentlySearchedUsers">Searched recently</Trans>
-          </h4>
+          <>
+            <h4>
+              <Trans i18nKey="recentlySearchedUsers">Searched recently</Trans>
+            </h4>
+            <ul className="list-group mx-2 recent-users" data-cy="RecentUsers-list">
+              {recentUsers.map((recentUser) => (
+                <li key={recentUser} className="list-group-item sentry-mask" onClick={() => searchUser(recentUser)}>
+                  <Avatar url={'' /* ToDo: restore this */} size="sm" className="me-2" />
+                  {recentUser}
+                </li>
+              ))}
+            </ul>
+          </>
         )}
-        <ul className="list-group mx-2 recent-users">
-          {recentUsers.map((recentUser) => (
-            <li key={recentUser} className="list-group-item sentry-mask" onClick={() => searchUser(recentUser)}>
-              <Avatar url={'' /* ToDo: restore this */} size="sm" className="me-2" />
-              {recentUser}
-            </li>
-          ))}
-        </ul>
       </div>
     </Row>
   );
