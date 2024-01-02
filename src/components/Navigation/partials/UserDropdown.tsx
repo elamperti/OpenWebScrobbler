@@ -23,12 +23,13 @@ export default function UserDropdow() {
   const queryClient = useQueryClient();
   const { setSettingsModalVisible } = useContext(SettingsModalContext);
 
-  const onLogOut = async() => {
-    await logOut(dispatch)();
-    queryClient.invalidateQueries({
-      queryKey: ['user'],
+  const onLogOut = () => {
+    logOut(dispatch)().then(() => {
+      queryClient.invalidateQueries({
+        queryKey: ['user'],
+      });
+      // ToDo: clear local storage
     });
-    // ToDo: clear local storage
   };
 
   if (!user) return null;
