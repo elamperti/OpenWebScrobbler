@@ -1,5 +1,8 @@
+import * as developmentLib from './tweaks.dev';
+import * as productionLib from './tweaks.prod';
+
 const isDevelopment = process.env.NODE_ENV === 'development' && !process.env.NO_DEVTOOLS;
-const lib = await (isDevelopment ? import('./tweaks.dev') : import('./tweaks.prod'));
+const lib = isDevelopment ? developmentLib : productionLib;
 
 if (isDevelopment) {
   lib.init();

@@ -3,10 +3,7 @@ import { Pane } from 'tweakpane';
 import config from './config';
 import { makeDraggable } from './draggablePane';
 
-import('./quirks/tweakpaneFixes.css');
-
 let __tweaksState;
-const container = document.createElement('div');
 
 const restoreTweaksState = () => {
   const tree = sessionStorage.getItem('tweaks');
@@ -18,14 +15,10 @@ const saveTweaksState = () => {
   sessionStorage.setItem('tweaks', JSON.stringify(__tweaksState));
 };
 
-// Add event listener for F2 key press
-document.addEventListener('keydown', (event) => {
-  if (event.shiftKey && event.key === '?') {
-    container.classList.toggle('d-none');
-  }
-});
-
 export const init = () => {
+  import('./quirks/tweakpaneFixes.css');
+
+  const container = document.createElement('div');
   container.id = 'tweaks-container';
   document.body.appendChild(container);
 
@@ -60,6 +53,13 @@ export const init = () => {
     };
 
     moveToInitialPosition();
+
+    // Add event listener for F2 key press
+    document.addEventListener('keydown', (event) => {
+      if (event.shiftKey && event.key === '?') {
+        container.classList.toggle('d-none');
+      }
+    });
   }
 
   // Collapse/expand pane
