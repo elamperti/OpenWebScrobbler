@@ -3,19 +3,10 @@ import { useTranslation } from 'react-i18next';
 import { changeLanguage } from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { fallbackLng } from 'utils/i18n';
-import useLocalStorage from './useLocalStorage';
 
 export const useLanguage = () => {
   const { i18n } = useTranslation();
-  const [storedLanguagePreference, saveLanguageLocally] = useLocalStorage('lang', 'auto');
-  const [currentLanguage, setLanguage] = useState(
-    storedLanguagePreference !== 'auto' ? storedLanguagePreference : i18n.language
-  );
-
-  const switchToLanguage = (language: string) => {
-    changeLanguage(language);
-    saveLanguageLocally(language);
-  };
+  const [currentLanguage, setLanguage] = useState(i18n.language);
 
   useEffect(() => {
     if (currentLanguage) {
@@ -24,9 +15,9 @@ export const useLanguage = () => {
         if (detectedLanguage.length > 2 && Object.prototype.hasOwnProperty.call(fallbackLng, detectedLanguage)) {
           detectedLanguage = fallbackLng[detectedLanguage][0];
         }
-        switchToLanguage(detectedLanguage);
+        changeLanguage(detectedLanguage);
       } else {
-        switchToLanguage(currentLanguage);
+        changeLanguage(currentLanguage);
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps

@@ -94,6 +94,7 @@ export function SettingsModal() {
                   name="lang"
                   value={language}
                   onChange={(e) => setLanguage(e.target.value)}
+                  data-cy="SettingsModal-language"
                 >
                   <option value="auto">
                     (<Trans i18nKey="defaultLanguage">default</Trans>)
@@ -152,10 +153,22 @@ export function SettingsModal() {
         </Form>
       </ModalBody>
       <ModalFooter>
-        <Button className="btn-cancel" color="secondary" onClick={close} disabled={isSaving}>
+        <Button
+          className="btn-cancel"
+          color="secondary"
+          onClick={close}
+          disabled={isSaving}
+          data-cy="SettingsModal-cancel"
+        >
           <Trans i18nKey="cancel">Cancel</Trans>
         </Button>
-        <Button className="btn-save" color="success" onClick={saveAndClose} disabled={isSaving}>
+        <Button
+          className="btn-save"
+          color="success"
+          onClick={saveAndClose}
+          disabled={isSaving}
+          data-cy="SettingsModal-save"
+        >
           {isSaving && <span className="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true" />}
           {!isSaving && <FontAwesomeIcon className="me-2" icon={faSave} />}
           <Trans i18nKey="saveSettings">Save</Trans>
