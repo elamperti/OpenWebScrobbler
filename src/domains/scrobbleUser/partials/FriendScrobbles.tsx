@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
 import { useQuery } from '@tanstack/react-query';
 
 import { Input, FormGroup, Label } from 'reactstrap';
@@ -11,7 +9,6 @@ import { userGetProfile } from 'utils/clients/lastfm/methods/userGetProfile';
 import { useSettings } from 'hooks/useSettings';
 
 import type { Scrobble } from 'utils/types/scrobble';
-import { addRecentUser, saveUserInfo } from 'store/actions/userActions';
 import RefreshProfile from './RefreshProfile';
 
 export default function FriendScrobbles({
@@ -23,7 +20,6 @@ export default function FriendScrobbles({
   scrobbles: Scrobble[];
   loading: boolean;
 }) {
-  const dispatch = useDispatch();
   const { settings, updateSettings } = useSettings();
   const lowercaseUsername = username.toLowerCase();
 
@@ -33,15 +29,6 @@ export default function FriendScrobbles({
     queryFn: () => userGetProfile(lowercaseUsername),
   });
 
-  useEffect(() => {
-    const username = friendProfileQuery.data?.name;
-    if (friendProfileQuery.isSuccess && username) {
-      dispatch(addRecentUser(username));
-      dispatch(saveUserInfo(friendProfileQuery.data));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [friendProfileQuery.isSuccess]);
-
   const toggleOriginalTimestamp = () => {
     updateSettings({
       keepOriginalTimestamp: !settings?.keepOriginalTimestamp,
@@ -50,7 +37,7 @@ export default function FriendScrobbles({
 
   if (friendProfileQuery.isLoading) return null;
 
-  const showPagination = !friendProfileQuery.isFetching && scrobbles && scrobbles.length > 0;
+  const dataIsReady = !friendProfileQuery.isFetching && scrobbles && scrobbles.length > 0;
 
   return (
     <>
@@ -63,7 +50,7 @@ export default function FriendScrobbles({
         <div className="col-sm-4 d-flex px-3 mb-2 flex-fill justify-content-sm-end">
           <RefreshProfile username={lowercaseUsername} />
         </div>
-        {showPagination && (
+        {dataIsReady && (
           <div className="col-12 px-3">
             <FormGroup check>
               <Label className="d-block" check>

@@ -1,6 +1,6 @@
 describe('Home (visitor)', () => {
   beforeEach(() => {
-    cy.intercept('POST', '/api/v2/user.php', { fixture: 'api/v2/user/visitor.json' });
+    cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/visitor.json' });
     cy.visit('/');
   });
 

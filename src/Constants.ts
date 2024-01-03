@@ -43,10 +43,6 @@ export const COUNT_SCROBBLES_DISABLE = 'COUNT_SCROBBLES_DISABLE';
 
 // Users store
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
-export const USER_GET_INFO = 'USER_GET_INFO';
-export const USER_ADD_RECENT_PROFILE = 'USER_ADD_RECENT_PROFILE';
-export const USER_SAVE_INFO = 'USER_SAVE_INFO';
-export const GET_ALBUM_INFO = 'GET_ALBUM_INFO';
 
 // Updates store
 export const NEW_VERSION_READY = 'NEW_VERSION_READY';

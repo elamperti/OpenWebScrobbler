@@ -3,8 +3,12 @@ describe('Scrobble user (search)', () => {
     cy.clearCookies();
     cy.clearLocalStorage();
 
+    cy.intercept('GET', 'https://ws.audioscrobbler.com/2.0/*method=user.getRecentTracks*', {
+      fixture: 'lastfm/user/getRecentTracks.chairmandore.json',
+    }).as('recentTracks');
     cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/authenticated.json' }).as('userData');
 
+    // FLAKY: There's something wrong with routing/session
     cy.visit('/scrobble/user');
     cy.wait('@userData');
     cy.location('pathname').should('equal', '/scrobble/user');
@@ -25,8 +29,14 @@ describe('Scrobble user (search)', () => {
     cy.get('[data-cy="SearchForm-submit"]').should('be.disabled');
   });
 
+  it('enables the search button after a username is entered', () => {
+    cy.get('[data-cy="SearchForm-submit"]').should('be.disabled');
+    cy.get('[data-cy="SearchForm-input"]').type('chairmandore');
+    cy.get('[data-cy="SearchForm-submit"]').should('be.enabled');
+  });
+
   it('navigates to a user SRP when the search button is clicked', () => {
-    cy.get('[data-cy="SearchForm-input"]').type('chairmandore', { delay: 0 });
+    cy.get('[data-cy="SearchForm-input"]').type('chairmandore');
     cy.get('[data-cy="SearchForm-submit"]').click();
 
     cy.location('pathname').should('equal', '/scrobble/user/chairmandore');
@@ -44,11 +54,6 @@ describe('Scrobble user (search)', () => {
   });
 
   it('remembers a recently searched user', () => {
-    cy.intercept('GET', 'https://ws.audioscrobbler.com/2.0/*method=user.getRecentTracks*', {
-      fixture: 'lastfm/user/getRecentTracks.chairmandore.json',
-    }).as('recentTracks');
-    cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/authenticated.json' }).as('userData');
-
     cy.get('[data-cy="SearchForm-input"]').type('chairmandore', { delay: 0 });
     cy.get('[data-cy="SearchForm-submit"]').click();
     cy.wait('@recentTracks').then(() => {

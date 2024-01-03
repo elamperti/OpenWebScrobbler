@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 import ReactGA from 'react-ga-neo';
 import { useFeatureIsOn } from '@growthbook/growthbook-react';
 
@@ -14,9 +13,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { PROVIDER_NAME, PROVIDER_LASTFM, PROVIDER_DISCOGS } from 'Constants';
 import AlbumList from './partials/AlbumList';
 
-import './ScrobbleAlbumSearch.scss';
-import type { RootState } from 'store';
+import useLocalStorage from 'hooks/useLocalStorage';
+
 import type { Provider } from 'Constants';
+import type { Album, DiscogsAlbum, LastFmAlbum } from 'utils/types/album';
+
+import './ScrobbleAlbumSearch.scss';
 
 export function ScrobbleAlbumSearch() {
   const [includeReleases, setIncludeReleases] = useState(false);
@@ -24,7 +26,7 @@ export function ScrobbleAlbumSearch() {
   const navigate = useNavigate();
   const { t } = useTranslation();
   const spotifyFF = useFeatureIsOn('spotify');
-  const recentAlbums = useSelector((state: RootState) => state.user.recentAlbums || []);
+  const [recentAlbums] = useLocalStorage<Album[]>('recentAlbums', []);
 
   const toggleReleaseSwitch = () => setIncludeReleases(!includeReleases);
 
@@ -54,10 +56,10 @@ export function ScrobbleAlbumSearch() {
       label: albumIndex,
     });
 
-    if (targetAlbum.mbid) {
-      navigate(`/scrobble/album/view/mbid/${targetAlbum.mbid}`);
-    } else if (targetAlbum.discogsId) {
-      navigate(`/scrobble/album/view/dsid/${targetAlbum.discogsId}`);
+    if ((targetAlbum as LastFmAlbum).mbid) {
+      navigate(`/scrobble/album/view/mbid/${(targetAlbum as LastFmAlbum).mbid}`);
+    } else if ((targetAlbum as DiscogsAlbum).discogsId) {
+      navigate(`/scrobble/album/view/dsid/${(targetAlbum as DiscogsAlbum).discogsId}`);
     } else {
       const sanitizedArtistName = targetAlbum.artist ? encodeURIComponent(targetAlbum.artist.replace('%', '')) : '_';
       navigate(`/scrobble/album/view/${sanitizedArtistName}/${encodeURIComponent(targetAlbum.name.replace('%', ''))}`);

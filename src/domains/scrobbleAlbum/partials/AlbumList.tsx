@@ -14,7 +14,7 @@ export default function AlbumList({
   onClick: MouseEventHandler<HTMLAnchorElement>;
 }) {
   return (
-    <Row className="listOfAlbums mb-4">
+    <Row className="listOfAlbums mb-4" data-cy="AlbumList">
       {albums.map((album, i) => (
         <div className={className} key={i}>
           <a href={album.url} data-album-index={i} onClick={onClick}>

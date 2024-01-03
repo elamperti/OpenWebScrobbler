@@ -9,7 +9,6 @@ import { loadState, saveState } from 'localstorage';
 import alertReducer from './reducers/alertReducer';
 import scrobbleReducer from './reducers/scrobbleReducer';
 import updatesReducer from './reducers/updatesReducer';
-import userReducer from './reducers/userReducer';
 
 const middlewares = [createDebounce(), promise];
 const isDevEnvironment = process.env.NODE_ENV === 'development';
@@ -21,7 +20,6 @@ const store = createStore(
     alerts: alertReducer,
     scrobbles: scrobbleReducer,
     updates: updatesReducer,
-    user: userReducer,
   }),
   persistedState,
   (isDevEnvironment && hasDevTools ? composeWithDevTools({}) : compose)(applyMiddleware(...middlewares))
@@ -36,9 +34,6 @@ store.subscribe(
         list: state.scrobbles.list
           .filter((scrobble) => scrobble.status !== 'queued' && scrobble.status !== 'pending')
           .slice(-100),
-      },
-      user: {
-        profiles: {}, // This is why profile pictures in recent profiles' list don't appear before search
       },
     });
   }, 2000)

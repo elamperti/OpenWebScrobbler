@@ -15,13 +15,14 @@ import Spinner from 'components/Spinner';
 import Tracklist from './partials/Tracklist';
 import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 
-import { GET_ALBUM_INFO, PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
+import { MAX_RECENT_ALBUMS, PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
 import { albumGetInfo as DiscogsAlbumGetInfo } from 'utils/clients/discogs';
 import { albumGetInfo as LastfmAlbumGetInfo } from 'utils/clients/lastfm';
+import useLocalStorage from 'hooks/useLocalStorage';
 
 import type { RootState } from 'store';
-import type { DiscogsAlbum } from 'utils/types/album';
+import type { DiscogsAlbum, Album } from 'utils/types/album';
 
 const sanitizeParam = (param: string) => {
   return param ? decodeURIComponent(param) : null;
@@ -36,6 +37,7 @@ export function ScrobbleAlbumTracklist() {
   // const [tracklistDataProvider, setTracklistDataProvider] = useState(null);
   const [triedAlternativeProvider, setTriedAlternativeProvider] = useState(false);
   const scrobbles = useSelector((state: RootState) => state.scrobbles.list);
+  const [recentAlbums, setRecentAlbums] = useLocalStorage<Album[]>('recentAlbums', []);
 
   const albumId = sanitizeParam(params.albumId);
   const discogsId = sanitizeParam(params.discogsId);
@@ -114,16 +116,21 @@ export function ScrobbleAlbumTracklist() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [albumInfo.data, albumInfo.isFetching]);
 
-  // This keeps the recent album list updated
   useEffect(() => {
-    if (albumInfo.data?.info) {
-      dispatch({
-        type: GET_ALBUM_INFO,
-        payload: albumInfo.data,
-      });
+    if (albumInfo.isSuccess && albumInfo.data?.info) {
+      const newAlbum = albumInfo.data?.info;
+      const currentIndex = recentAlbums.findIndex(
+        ({ name, artist }) => name === newAlbum.name && artist === newAlbum.artist
+      );
+
+      if (currentIndex > -1) {
+        recentAlbums.splice(currentIndex, 1);
+      }
+      recentAlbums.unshift(newAlbum);
+      setRecentAlbums(recentAlbums.slice(0, MAX_RECENT_ALBUMS));
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [albumInfo.data]);
+  }, [albumInfo.isSuccess]);
 
   return (
     <>
