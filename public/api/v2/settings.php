@@ -8,6 +8,8 @@
     raiseOWSError('Invalid session key', 401, 9);
   }
 
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+
   function filter_and_assign($var, &$ref, $filter, $options, $custom_filter=NULL) {
     if (isset($_POST[$var])) {
       $filtered = filter_var($_POST[$var], $filter, $options);
@@ -52,6 +54,8 @@
   require('inc/database.php');
   $db = new Database();
   $_SESSION['settings']['saved'] = !!$db->save_settings($_SESSION['userInfo']->name, $new_settings);
+
+  } // IF POST
 
   echo json_encode($_SESSION['settings']);
 

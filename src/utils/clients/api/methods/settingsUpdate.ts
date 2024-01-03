@@ -13,5 +13,5 @@ function objectToSearchParams(obj: { [key: string]: any }) {
 export function settingsUpdate(newSettings: Partial<Settings>) {
   return openscrobblerAPI
     .post('/settings.php', objectToSearchParams(newSettings))
-    .then(({ data }) => settingsTransformer({ settings: data }));
+    .then(({ data }) => settingsTransformer(data));
 }

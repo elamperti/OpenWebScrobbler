@@ -1,7 +1,7 @@
 import { Settings } from 'utils/types/settings';
 import get from 'lodash/get';
 
-export function settingsTransformer({ settings = {} }: any): Settings {
+export function settingsTransformer(settings = {}): Settings {
   return {
     lang: get(settings, 'lang', 'auto'),
     use12Hours: !!get(settings, 'use12Hours', false),
