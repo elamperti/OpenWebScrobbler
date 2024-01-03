@@ -8,5 +8,6 @@ export default defineConfig({
     },
     baseUrl: 'http://localhost:3030',
     specPattern: 'cypress/e2e/**/*.{js,jsx,ts,tsx}',
+    experimentalRunAllSpecs: true,
   },
 });
