@@ -6,6 +6,7 @@ describe('Home (authenticated user)', () => {
 
   it('redirects to song scrobble after validating a token', () => {
     cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/visitor.json' }).as('userData');
+    cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/visitor.json' });
     cy.intercept('POST', '/api/v2/callback.php', { fixture: 'api/v2/callback/success.json' }).as('callback');
 
     cy.visit('/?token=aTestValue-withNumbers1234and_x1');
@@ -16,6 +17,7 @@ describe('Home (authenticated user)', () => {
 
   it('shows the user version of the home page', () => {
     cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/authenticated.json' }).as('userData');
+    cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/authenticated.json' });
 
     cy.visit('/');
     cy.wait(['@userData']).then(() => {

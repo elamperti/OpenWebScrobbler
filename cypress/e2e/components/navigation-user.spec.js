@@ -1,6 +1,7 @@
 describe('Navigation (authenticated user)', () => {
   beforeEach(() => {
     cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/authenticated.json' });
+    cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/authenticated.json' });
     cy.visit('/');
   });
 
@@ -40,6 +41,7 @@ describe('Navigation (authenticated user)', () => {
 
     it('triggers logout successfuly', () => {
       cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/visitor.json' });
+      cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/visitor.json' });
       cy.intercept('POST', '/api/v2/logout.php', { fixture: 'api/v2/logout/success.json' }).as('logout');
 
       cy.get('[data-cy="UserDropdown-logout"]').click();

@@ -8,6 +8,7 @@ describe('Scrobble song (scrobbling)', () => {
     cy.clearCookies();
 
     cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/authenticated.json' }).as('userData');
+    cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/authenticated.json' });
     cy.intercept('POST', '/api/v2/scrobble.php', { fixture: 'api/v2/scrobble/success.json' }).as('scrobbleData');
 
     cy.visit('/scrobble/song');

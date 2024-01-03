@@ -4,10 +4,11 @@ import { useUserData } from 'hooks/useUserData';
 import type { FC } from 'react';
 
 export default function PrivateRoute({ using: View }: { using: FC }) {
-  const { isLoggedIn, isLoading } = useUserData();
-  if (isLoggedIn) {
+  const { isLoggedIn, isFetching } = useUserData();
+
+  if (isFetching || isLoggedIn) {
     return <View />;
-  } else if (!isLoading) {
+  } else {
     return <Navigate to="/" />;
   }
 }

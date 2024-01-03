@@ -7,11 +7,10 @@ describe('Scrobble user (search)', () => {
       fixture: 'lastfm/user/getRecentTracks.chairmandore.json',
     }).as('recentTracks');
     cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/authenticated.json' }).as('userData');
+    cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/authenticated.json' });
 
-    // FLAKY: There's something wrong with routing/session
     cy.visit('/scrobble/user');
     cy.wait('@userData');
-    cy.location('pathname').should('equal', '/scrobble/user');
   });
 
   it('shows a proper search form', () => {

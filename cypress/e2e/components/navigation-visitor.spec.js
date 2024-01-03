@@ -1,8 +1,7 @@
 describe('Navigation (visitor)', () => {
   beforeEach(() => {
-    cy.fixture('api/v2/user/visitor.json').as('userIsVisitorJSON');
-
-    cy.intercept('GET', '/api/v2/user.php', '@userIsVisitorJSON').as('userData');
+    cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/visitor.json' });
+    cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/visitor.json' });
 
     cy.visit('/');
   });
