@@ -1,3 +1,13 @@
 .jumbotron.ows-Home-about {
   padding: 1.2rem 1rem 1rem;
 }
+
+footer {
+  /* I will fix this whenever I get to change the site layout.
+   * There was a jarring 3px gap in the footer for logged out users (because of Reactstrap's navbar).
+   * The way the main container height is calculated rn is not what a juggernaut engineer would have done,
+   * and I'm afraid to loose way more time than I should on this just for those tiny (but annoying) 3px.
+   * Please forgive me. Or submit a PR.
+   */
+  margin-bottom: -3px;
+}
