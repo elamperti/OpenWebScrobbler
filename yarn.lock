@@ -7190,6 +7190,23 @@ __metadata:
   languageName: node
   linkType: hard
 
+"import-from-esm@npm:^1.3.3":
+  version: 1.3.3
+  resolution: "import-from-esm@npm:1.3.3"
+  dependencies:
+    debug: "npm:^4.3.4"
+    import-meta-resolve: "npm:^4.0.0"
+  checksum: 4287ff7e7b8ba52f4547a03be44105ad2cdad1d4bf15ba4f629649ece587633b1c1f14784f1e0f5441d5ac8967f59a64d7017d88d09d34624ebf81af9c48b55e
+  languageName: node
+  linkType: hard
+
+"import-meta-resolve@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "import-meta-resolve@npm:4.0.0"
+  checksum: 709375e01f8c3a87b7870991ca29c630d71bb7e22b7bb0f622613173d87b41b4043b4a983800e6d38ab3867496a46f82d30df0cbc2e55792c91c23193eea67a1
+  languageName: node
+  linkType: hard
+
 "imurmurhash@npm:^0.1.4":
   version: 0.1.4
   resolution: "imurmurhash@npm:0.1.4"
@@ -9318,13 +9335,13 @@ __metadata:
     md5: "npm:^2.3.0"
     nyc: "npm:^15.1.0"
     poeditor-ci: "npm:^1.15.0"
-    prettier: "npm:^2.8.8"
+    prettier: "npm:^3.1.1"
     qs: "npm:^6.11.2"
     react: "npm:^18.2.0"
     react-day-picker: "npm:^7.4.10"
     react-dom: "npm:^18.2.0"
     react-ga-neo: "npm:^2.2.0"
-    react-i18next: "npm:^13.5.0"
+    react-i18next: "npm:^14.0.0"
     react-lazy-load-image-component: "npm:^1.6.0"
     react-lazy-with-preload: "npm:^2.2.1"
     react-redux: "npm:^9.0.4"
@@ -9341,7 +9358,7 @@ __metadata:
     tweakpane: "npm:^4.0.3"
     typescript: "npm:^5.3.3"
     vite: "npm:^5.0.10"
-    vite-bundle-visualizer: "npm:^0.11.0"
+    vite-bundle-visualizer: "npm:^1.0.0"
     vite-plugin-externals: "npm:^0.6.2"
     vite-plugin-react-remove-attributes: "npm:^1.0.3"
     vite-plugin-svgr: "npm:^4.2.0"
@@ -9808,12 +9825,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prettier@npm:^2.8.8":
-  version: 2.8.8
-  resolution: "prettier@npm:2.8.8"
+"prettier@npm:^3.1.1":
+  version: 3.1.1
+  resolution: "prettier@npm:3.1.1"
   bin:
-    prettier: bin-prettier.js
-  checksum: 463ea8f9a0946cd5b828d8cf27bd8b567345cf02f56562d5ecde198b91f47a76b7ac9eae0facd247ace70e927143af6135e8cf411986b8cb8478784a4d6d724a
+    prettier: bin/prettier.cjs
+  checksum: facc944ba20e194ff4db765e830ffbcb642803381f0d2033ed397e79904fa4ccc877dc25ad68f42d36985c01d051c990ca1b905fb83d2d7d65fe69e4386fa1a3
   languageName: node
   linkType: hard
 
@@ -10038,9 +10055,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-i18next@npm:^13.5.0":
-  version: 13.5.0
-  resolution: "react-i18next@npm:13.5.0"
+"react-i18next@npm:^14.0.0":
+  version: 14.0.0
+  resolution: "react-i18next@npm:14.0.0"
   dependencies:
     "@babel/runtime": "npm:^7.22.5"
     html-parse-stringify: "npm:^3.0.1"
@@ -10052,7 +10069,7 @@ __metadata:
       optional: true
     react-native:
       optional: true
-  checksum: 955db09fb83bc68aa9fe7ed11c95fb3e9dc5ab95e85854f169c07a9e71f9154d2cc01f46e343801e2478d5de86475e7a19ec677bec532c3870cb7a01246a6a86
+  checksum: 923990e941cdc9ca73bb34fca8a408f850c6ce7ca490661d83c808c5a91f33997882d40e0d2da64664c91a064e12002164c8dd843d75542a7e7e261a3d4198d8
   languageName: node
   linkType: hard
 
@@ -10662,9 +10679,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup-plugin-visualizer@npm:^5.9.2":
-  version: 5.9.3
-  resolution: "rollup-plugin-visualizer@npm:5.9.3"
+"rollup-plugin-visualizer@npm:^5.11.0":
+  version: 5.12.0
+  resolution: "rollup-plugin-visualizer@npm:5.12.0"
   dependencies:
     open: "npm:^8.4.0"
     picomatch: "npm:^2.3.1"
@@ -10677,7 +10694,7 @@ __metadata:
       optional: true
   bin:
     rollup-plugin-visualizer: dist/bin/cli.js
-  checksum: 71c2b01af69cc1d6a72b4a7ede95a0d18c39a01316892a967eb53865762411f5ea73ce15e4b456bc3d34fffa39cef584b8e47857315811e3883abc929e41112d
+  checksum: 0e44a641223377ebb472bb10f2b22efa773b5f6fbe8d54f197f07c68d7a432cbf00abad79a0aa1570f70c673c792f24700d926d663ed9a4d0ad8406ae5a0f4e4
   languageName: node
   linkType: hard
 
@@ -12234,16 +12251,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite-bundle-visualizer@npm:^0.11.0":
-  version: 0.11.0
-  resolution: "vite-bundle-visualizer@npm:0.11.0"
+"vite-bundle-visualizer@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "vite-bundle-visualizer@npm:1.0.0"
   dependencies:
     cac: "npm:^6.7.14"
-    rollup-plugin-visualizer: "npm:^5.9.2"
+    import-from-esm: "npm:^1.3.3"
+    rollup-plugin-visualizer: "npm:^5.11.0"
     tmp: "npm:^0.2.1"
   bin:
     vite-bundle-visualizer: bin.js
-  checksum: e028c312d3bf68cc204de4187e6436af555627eca3e3ec90e57410500d4c86448fd8a4b1faeec791c46451a9f8be07cb8649405cb32cd9b657e5c3f06d7982cf
+  checksum: 9113c78bf47bcc673cdf8487c2023a2679d8ec78c4fff2a4c6be83bbe0f3596b1fa5c7fdf4fe7b9abd487cf8b4cf10dbd956183da019de4b72ce9a94385225a6
   languageName: node
   linkType: hard
 
