@@ -30,6 +30,50 @@ const config: TweaksConfig = {
         },
       ],
     },
+    'React DevTools': {
+      tweaks: [
+        {
+          name: 'Highlight updates',
+          value: false,
+          onMount: (tweakItem, self) => {
+            if (window && window.__REACT_DEVTOOLS_GLOBAL_HOOK__) {
+              window.__REACT_DEVTOOLS_GLOBAL_HOOK__.on('react-devtools', (agent) => {
+                // Enable the item once the devtools are connected
+                tweakItem.disabled = false;
+
+                if (self.value) {
+                  setTimeout(() => {
+                    agent.setTraceUpdatesEnabled(true);
+                  }, 100); // ToDo: improve this
+                }
+
+                tweakItem.on('change', ({ value }) => {
+                  agent.setTraceUpdatesEnabled(value);
+                });
+              });
+            }
+          },
+          options: {
+            disabled: true,
+          },
+        },
+        {
+          name: 'Renders',
+          type: 'monitor',
+          value: 0,
+          onMount: (tweakItem, self) => {
+            if (window && window.__REACT_DEVTOOLS_GLOBAL_HOOK__) {
+              window.__REACT_DEVTOOLS_GLOBAL_HOOK__.on('traceUpdates', (updatedNodes: Set<any>) => {
+                self.value = updatedNodes.size;
+                tweakItem.refresh();
+                self.value = 0;
+                tweakItem.refresh();
+              });
+            }
+          },
+        },
+      ],
+    },
   },
 };
 

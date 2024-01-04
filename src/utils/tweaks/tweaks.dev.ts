@@ -90,8 +90,9 @@ export const init = () => {
       title: category,
     });
 
-    for (const tweak of config.params[category].tweaks) {
+    config.params[category].tweaks.forEach((tweak, i) => {
       let initialValue = tweak.value;
+
       if (__tweaksState[category][tweak.name] !== undefined) {
         initialValue = __tweaksState[category][tweak.name];
       } else {
@@ -105,20 +106,42 @@ export const init = () => {
           newItem.on('click', tweak.value);
           break;
 
+        case 'monitor':
+          newItem = folder.addBinding(config.params[category].tweaks[i], 'value', {
+            label: tweak.name,
+            readonly: true,
+            view: 'graph',
+            min: 0,
+          });
+          break;
+
         case 'binding':
         default:
-          newItem = folder.addBinding({ [tweak.name]: initialValue }, tweak.name, tweak.options);
+          config.params[category].tweaks[i].value = initialValue;
+          newItem = folder.addBinding(config.params[category].tweaks[i], 'value', {
+            label: tweak.name,
+          });
       }
 
-      newItem.on('change', ({ value }) => {
-        __tweaksState[category][tweak.name] = value;
-        saveTweaksState();
+      if (tweak.type !== 'monitor') {
+        newItem.on('change', ({ value }) => {
+          __tweaksState[category][tweak.name] = value;
+          saveTweaksState();
 
-        if (tweak.options?.reload) {
-          window.location.reload();
-        }
-      });
-    }
+          if (tweak.onChange) {
+            tweak.onChange(newItem, value);
+          }
+
+          if (tweak.options?.reload) {
+            window.location.reload();
+          }
+        });
+      }
+
+      if (tweak.onMount) {
+        tweak.onMount(newItem, tweak);
+      }
+    });
   }
 
   // Save initial state after loading
