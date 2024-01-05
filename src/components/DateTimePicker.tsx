@@ -1,5 +1,6 @@
 import { forwardRef, useMemo, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
+import ReactGA from 'react-ga-neo';
 
 import addDays from 'date-fns/addDays';
 import subDays from 'date-fns/subDays';
@@ -40,7 +41,13 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
   const { settings } = useSettings();
   const { t } = useTranslation();
   const [timePickerModalVisible, setTimePickerModalVisible] = useState(false);
-  const showTimePicker = () => setTimePickerModalVisible(true);
+  const showTimePicker = () => {
+    setTimePickerModalVisible(true);
+    ReactGA.event({
+      category: 'Interactions',
+      action: 'Open time picker',
+    });
+  };
   const hideTimePicker = () => setTimePickerModalVisible(false);
   const minDate = useMemo(() => subDays(new Date(), 14), []);
   const maxDate = useMemo(() => addDays(new Date(), 1), []);
