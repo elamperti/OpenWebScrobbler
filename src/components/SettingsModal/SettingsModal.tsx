@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from 'react';
+import { useState, useContext } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Button, Form, FormGroup, Input, Label, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
@@ -13,13 +13,9 @@ import { Trans, useTranslation } from 'react-i18next';
 import { createAlert } from 'store/actions/alertActions';
 import { useUserData } from 'hooks/useUserData';
 import { useSettings } from 'hooks/useSettings';
+import { SettingsModalContext } from './SettingsModalContext';
 
-export const SettingsModalContext = createContext({
-  isOpen: false,
-  setSettingsModalVisible: (newValue: boolean) => {},
-});
-
-export function SettingsModal() {
+export default function SettingsModal() {
   const { user } = useUserData();
   const { settings: currentSettings, updateSettings } = useSettings();
   const { isOpen, setSettingsModalVisible } = useContext(SettingsModalContext);

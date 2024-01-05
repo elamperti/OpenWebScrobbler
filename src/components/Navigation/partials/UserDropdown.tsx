@@ -12,7 +12,7 @@ import { logOut } from 'store/actions/userActions';
 
 import { useBootstrapBreakpoint, BS_SIZE_MD } from 'utils/bootstrapBreakpoints';
 import Avatar from 'components/Avatar';
-import { SettingsModalContext } from 'components/SettingsModal';
+import { SettingsModalContext } from 'components/SettingsModal/SettingsModalContext';
 
 import './UserDropdown.scss';
 

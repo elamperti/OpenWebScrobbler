@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import qs from 'qs';
 import find from 'lodash/find';
+import lazyWithPreload from 'react-lazy-with-preload';
 
 import * as Sentry from '@sentry/react';
 import { interceptAxios } from 'utils/axios';
@@ -20,12 +21,13 @@ import AlertZone from './components/AlertZone';
 import AnalyticsListener from './components/AnalyticsListener';
 import UpdateToast from './components/UpdateToast';
 
-import Spinner from 'components/Spinner';
-import { SettingsModalContext, SettingsModal } from 'components/SettingsModal';
-
 import { RootState } from 'store';
 import { useQueryClient } from '@tanstack/react-query';
 import { useLanguage } from 'hooks/useLanguage';
+
+import Spinner from 'components/Spinner';
+import { SettingsModalContext } from 'components/SettingsModal/SettingsModalContext';
+const SettingsModal = lazyWithPreload(() => import('components/SettingsModal'));
 
 function App() {
   const dispatch = useDispatch();
@@ -83,6 +85,10 @@ function App() {
     // Including `navigate` in this array causes a bug in album search, see #220
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dispatch, isLoggedIn, location.search]);
+
+  useEffect(() => {
+    if (isLoggedIn) SettingsModal.preload();
+  }, [isLoggedIn]);
 
   useEffect(() => {
     if (process.env.REACT_APP_SENTRY_DSN) {
