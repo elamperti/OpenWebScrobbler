@@ -1,5 +1,3 @@
-import { Pane } from 'tweakpane';
-
 import config from './config';
 import { makeDraggable } from './draggablePane';
 
@@ -15,7 +13,8 @@ const saveTweaksState = () => {
   sessionStorage.setItem('tweaks', JSON.stringify(__tweaksState));
 };
 
-export const init = () => {
+export const init = async() => {
+  const { Pane } = await import('tweakpane');
   import('./quirks/tweakpaneFixes.css');
 
   const container = document.createElement('div');
