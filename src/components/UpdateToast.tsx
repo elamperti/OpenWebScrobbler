@@ -1,12 +1,19 @@
 import { Trans } from 'react-i18next';
+import ReactGA from 'react-ga-neo';
+
 import { Alert, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComment, faExclamation } from '@fortawesome/free-solid-svg-icons';
+
 import './UpdateToast.css';
 
-export default function UpdateToast() {
+export default function UpdateToast({ onUpdate }: { onUpdate: () => void }) {
   const reloadPage = () => {
-    window.location.reload();
+    ReactGA.event({
+      category: 'Interactions',
+      action: 'SW Manual Update',
+    });
+    onUpdate();
   };
 
   return (

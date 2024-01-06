@@ -4,9 +4,13 @@ import { defineConfig, loadEnv } from 'vite';
 import react from '@vitejs/plugin-react-swc';
 import svgrPlugin from 'vite-plugin-svgr';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
-import tsconfigPaths from 'vite-tsconfig-paths';
+import { VitePWA } from 'vite-plugin-pwa';
 import { terser } from 'rollup-plugin-terser';
 import VitePluginReactRemoveAttributes from 'vite-plugin-react-remove-attributes';
+import tsconfigPaths from 'vite-tsconfig-paths';
+
+const manifest = require('./src/webmanifest.json');
+
 const removeAttributes = VitePluginReactRemoveAttributes.default;
 
 const envPrefix = 'REACT_APP_';
@@ -67,6 +71,18 @@ const viteConfig = ({ mode }) =>
       }),
       viteExternalsPlugin({
         'redux-logger': isDevEnvironment ? 'redux-logger' : 'window',
+      }),
+      VitePWA({
+        registerType: 'prompt',
+        injectRegister: 'inline',
+        srcDir: 'build',
+        filename: 'service-worker.js',
+        manifest,
+        manifestFilename: 'site.webmanifest',
+        minify: false, // Applies to manifest
+        workbox: {
+          navigateFallbackDenylist: [/^\/api/],
+        },
       }),
     ],
     build: {

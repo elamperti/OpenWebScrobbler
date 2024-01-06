@@ -44,9 +44,6 @@ export const COUNT_SCROBBLES_DISABLE = 'COUNT_SCROBBLES_DISABLE';
 // Users store
 export const USER_LOGGED_OUT = 'USER_LOGGED_OUT';
 
-// Updates store
-export const NEW_VERSION_READY = 'NEW_VERSION_READY';
-
 // Referral link generation
 export const getAmznLink = (artist, album) => {
   if (artist === album) {

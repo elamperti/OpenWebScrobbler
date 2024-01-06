@@ -1,6 +1,6 @@
 {
   "name": "openscrobbler",
-  "version": "2.8.4",
+  "version": "2.8.5",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.5.1",
@@ -83,23 +83,13 @@
     "vite": "^5.0.10",
     "vite-bundle-visualizer": "^1.0.0",
     "vite-plugin-externals": "^0.6.2",
+    "vite-plugin-pwa": "^0.17.4",
     "vite-plugin-react-remove-attributes": "^1.0.3",
     "vite-plugin-svgr": "^4.2.0",
     "vite-tsconfig-paths": "^4.2.3",
     "vitest": "^1.1.2",
     "vitest-dom": "^0.1.1",
-    "workbox-background-sync": "^7.0.0",
-    "workbox-broadcast-update": "^7.0.0",
-    "workbox-cacheable-response": "^7.0.0",
-    "workbox-core": "^7.0.0",
-    "workbox-expiration": "^7.0.0",
-    "workbox-google-analytics": "^7.0.0",
-    "workbox-navigation-preload": "^7.0.0",
-    "workbox-precaching": "^7.0.0",
-    "workbox-range-requests": "^7.0.0",
-    "workbox-routing": "^7.0.0",
-    "workbox-strategies": "^7.0.0",
-    "workbox-streams": "^7.0.0"
+    "workbox-window": "^7.0.0"
   },
   "scripts": {
     "prepare": "is-ci || husky install",

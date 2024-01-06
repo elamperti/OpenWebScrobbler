@@ -8,7 +8,6 @@ import { loadState, saveState } from 'localstorage';
 
 import alertReducer from './reducers/alertReducer';
 import scrobbleReducer from './reducers/scrobbleReducer';
-import updatesReducer from './reducers/updatesReducer';
 
 const middlewares = [createDebounce(), promise];
 const isDevEnvironment = process.env.NODE_ENV === 'development';
@@ -19,7 +18,6 @@ const store = createStore(
   combineReducers({
     alerts: alertReducer,
     scrobbles: scrobbleReducer,
-    updates: updatesReducer,
   }),
   persistedState,
   (isDevEnvironment && hasDevTools ? composeWithDevTools({}) : compose)(applyMiddleware(...middlewares))

@@ -1,6 +1,6 @@
 import { Suspense, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import qs from 'qs';
 import find from 'lodash/find';
 import lazyWithPreload from 'react-lazy-with-preload';
@@ -9,6 +9,7 @@ import * as Sentry from '@sentry/react';
 import { interceptAxios } from 'utils/axios';
 import { languageList, fallbackLng } from 'utils/i18n';
 import { useTranslation } from 'react-i18next';
+import { useRegisterSW } from 'virtual:pwa-register/react';
 import { useGrowthBook } from '@growthbook/growthbook-react';
 
 import { useUserData } from 'hooks/useUserData';
@@ -21,7 +22,6 @@ import AlertZone from './components/AlertZone';
 import AnalyticsListener from './components/AnalyticsListener';
 import UpdateToast from './components/UpdateToast';
 
-import { RootState } from 'store';
 import { useQueryClient } from '@tanstack/react-query';
 import { useLanguage } from 'hooks/useLanguage';
 
@@ -37,12 +37,10 @@ function App() {
   const growthbook = useGrowthBook();
   const { setLanguage } = useLanguage();
   const { isLoggedIn, user } = useUserData();
+  const serviceWorker = useRegisterSW();
 
   // This is used to trigger a suspense while i18n is loading
   const { ready: i18nReady } = useTranslation();
-
-  // ToDo: remove this feature?
-  const versionUpdateReady = useSelector((state: RootState) => state.updates.newVersionReady);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
@@ -117,7 +115,7 @@ function App() {
       </SettingsModalContext.Provider>
       <div className="d-flex flex-column" style={{ height: 'calc(100vh - 84px)' }}>
         {process.env.REACT_APP_ANALYTICS_CODE && <AnalyticsListener />}
-        {versionUpdateReady && <UpdateToast />}
+        {serviceWorker.needRefresh[0] && <UpdateToast onUpdate={serviceWorker.updateServiceWorker} />}
 
         <AlertZone />
         <main className="container flex-wrap flex-grow-1">

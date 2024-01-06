@@ -17,7 +17,7 @@
     "skipLibCheck": true,
     "strict": false,
     "target": "ESNext",
-    "types": ["vite/client", "vite-plugin-svgr/client", "vitest/globals"]
+    "types": ["vite/client", "vite-plugin-svgr/client", "vitest/globals", "vite-plugin-pwa/client"]
   },
   "include": ["src"]
 }

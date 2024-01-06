@@ -5,7 +5,6 @@ import './index.css';
 import App from 'App';
 import history from 'utils/history';
 import ErrorPage from 'domains/error/ErrorPage';
-import * as serviceWorkerRegistration from 'utils/serviceWorkerRegistration';
 // import reportWebVitals from 'utils/reportWebVitals';
 
 import 'bootswatch/dist/slate/bootstrap.min.css';
@@ -19,7 +18,7 @@ import * as Sentry from '@sentry/react';
 import { GrowthBook, GrowthBookProvider } from '@growthbook/growthbook-react';
 
 import 'utils/i18n';
-import { NEW_VERSION_READY } from 'Constants';
+
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { tweak } from 'utils/tweaks/Tweaks';
@@ -148,14 +147,6 @@ if (process.env.REACT_APP_GROWTHBOOK_API_KEY) {
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(wrappedApp);
-
-serviceWorkerRegistration.register({
-  onUpdate: () => {
-    store.dispatch({
-      type: NEW_VERSION_READY,
-    });
-  },
-});
 
 // Measure performance Learn more: https://bit.ly/CRA-vitals
 // ToDo: Analyze if this is worth using
