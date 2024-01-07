@@ -1,6 +1,5 @@
 import axios from 'axios';
-import get from 'lodash/get';
-import hasIn from 'lodash/hasIn';
+import { get, hasIn } from 'lodash-es';
 import shortid from 'shortid';
 
 import {

@@ -1,6 +1,6 @@
 import axios, { InternalAxiosRequestConfig } from 'axios';
 import ReactGA from 'react-ga-neo';
-import get from 'lodash/get';
+import { get } from 'lodash-es';
 import qs from 'qs';
 
 import { logOut } from 'store/actions/userActions';

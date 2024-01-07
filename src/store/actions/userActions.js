@@ -1,6 +1,5 @@
 import ReactGA from 'react-ga-neo';
-import get from 'lodash/get';
-import hasIn from 'lodash/hasIn';
+import { get, hasIn } from 'lodash-es';
 
 import { USER_LOGGED_OUT } from 'Constants';
 

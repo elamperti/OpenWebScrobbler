@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+import { get } from 'lodash-es';
 import { sanitizeArtistName } from './common/sanitizeArtistName';
 import type { Album } from 'utils/types/album';
 

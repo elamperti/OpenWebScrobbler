@@ -2,7 +2,7 @@ import { legacy_createStore as createStore, combineReducers, applyMiddleware, co
 import { composeWithDevTools } from '@redux-devtools/extension';
 import promise from 'redux-promise-middleware';
 import createDebounce from 'redux-debounced';
-import throttle from 'lodash/throttle';
+import { throttle } from 'lodash-es';
 
 import { loadState, saveState } from 'localstorage';
 

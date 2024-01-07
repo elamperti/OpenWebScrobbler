@@ -1,5 +1,5 @@
 import { Settings } from 'utils/types/settings';
-import get from 'lodash/get';
+import { get } from 'lodash-es';
 
 export function settingsTransformer(settings = {}): Settings {
   return {

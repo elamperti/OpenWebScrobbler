@@ -1,4 +1,4 @@
-import get from 'lodash/get';
+import { get } from 'lodash-es';
 import { avatarTransformer } from './avatar.transformer';
 
 export function userProfileTransformer(response: any) {

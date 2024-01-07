@@ -1,7 +1,6 @@
-import get from 'lodash/get';
-import { castArray } from 'utils/common';
-import hasIn from 'lodash/hasIn';
+import { get, hasIn } from 'lodash-es';
 import shortid from 'shortid';
+import { castArray } from 'utils/common';
 
 import type { Track } from 'utils/types/track';
 

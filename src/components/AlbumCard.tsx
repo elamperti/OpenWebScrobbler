@@ -1,5 +1,5 @@
 import { CSSProperties } from 'react';
-import random from 'lodash/random';
+import { random } from 'lodash-es';
 
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';

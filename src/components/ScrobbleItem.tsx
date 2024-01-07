@@ -1,7 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { Trans } from 'react-i18next';
 import ReactGA from 'react-ga-neo';
-import get from 'lodash/get';
+import { get } from 'lodash-es';
 
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 

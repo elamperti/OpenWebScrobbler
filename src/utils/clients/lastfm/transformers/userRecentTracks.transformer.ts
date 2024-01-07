@@ -1,5 +1,4 @@
-import get from 'lodash/get';
-import hasIn from 'lodash/hasIn';
+import { get, hasIn } from 'lodash-es';
 
 export function userRecentTracksTransformer(response: any) {
   const tracks = [];

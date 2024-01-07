@@ -1,7 +1,7 @@
 import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import ReactGA from 'react-ga-neo';
-import get from 'lodash/get';
+import { get } from 'lodash-es';
 
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

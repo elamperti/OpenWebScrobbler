@@ -2,7 +2,7 @@ import { Suspense, useEffect, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import qs from 'qs';
-import find from 'lodash/find';
+import { find } from 'lodash-es';
 import lazyWithPreload from 'react-lazy-with-preload';
 
 import * as Sentry from '@sentry/react';

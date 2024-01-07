@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
 import ReactGA from 'react-ga-neo';
 import { keepPreviousData, useQuery, QueryClient, useQueryClient } from '@tanstack/react-query';
-import get from 'lodash/get';
+import { get } from 'lodash-es';
 
 import { Row, Button } from 'reactstrap';
 import { Trans, useTranslation } from 'react-i18next';
