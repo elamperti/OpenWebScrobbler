@@ -7,6 +7,7 @@ import { viteExternalsPlugin } from 'vite-plugin-externals';
 import { VitePWA } from 'vite-plugin-pwa';
 import { terser } from 'rollup-plugin-terser';
 import VitePluginReactRemoveAttributes from 'vite-plugin-react-remove-attributes';
+import { sentryVitePlugin } from '@sentry/vite-plugin';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const manifest = require('./src/webmanifest.json');
@@ -82,6 +83,12 @@ const viteConfig = ({ mode }) =>
         minify: false, // Applies to manifest
         workbox: {
           navigateFallbackDenylist: [/^\/api/],
+        },
+      }),
+      sentryVitePlugin({
+        bundleSizeOptimizations: {
+          excludeDebugStatements: true,
+          excludeReplayIframe: true,
         },
       }),
     ],
