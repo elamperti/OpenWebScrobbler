@@ -12,9 +12,10 @@ import { faPlayCircle, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 import type { RootState } from 'store';
 import { clearListOfScrobbles, scrobbleCounterEnabled } from 'store/actions/scrobbleActions';
 
-import ScrobbleList from 'components/ScrobbleList';
-import { SongForm } from './SongForm';
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
+import ScrobbleList from 'components/ScrobbleList';
+import Spinner from 'components/Spinner';
+import { SongForm } from './SongForm';
 
 import { LastFmProfileHistory } from './partials/LastFmProfileHistory';
 import { useQueryClient } from '@tanstack/react-query';
@@ -34,7 +35,7 @@ export const ScrobbleSong: FC = () => {
   const [cloneReceiver, setCloneReceiver] = useState(undefined);
   const localScrobbles = useSelector((state: RootState) => state.scrobbles.list);
   const unreadScrobbles = useSelector((state: RootState) => state.scrobbles.unreadCount);
-  const { user } = useUserData();
+  const { user, isFetching } = useUserData();
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
@@ -88,7 +89,7 @@ export const ScrobbleSong: FC = () => {
           <h2 className="mb-sm-4 mb-md-3">
             <FontAwesomeIcon icon={faPlayCircle} /> <Trans i18nKey="scrobbleSongs">Scrobble songs</Trans>
           </h2>
-          <SongForm />
+          {isFetching ? <Spinner /> : <SongForm />}
         </div>
         <div className="col-md-6 SongFormLists-container">
           <Nav tabs>

@@ -19,6 +19,29 @@ describe('Scrobble song (form)', () => {
     cy.get('[data-cy="SongForm"]');
   });
 
+  it('hides the song form while user data is loading', () => {
+    cy.intercept(
+      {
+        url: '/api/v2/user.php',
+        middleware: true,
+      },
+      (req) => {
+        req.log = false;
+        req.reply({
+          fixture: 'api/v2/user/authenticated.json',
+        });
+        req.on('response', (res) => {
+          res.setDelay(250);
+        });
+      }
+    ).as('delayedUserData');
+    cy.visit('/scrobble/song'); // Reload the page to trigger the intercept
+
+    cy.get('[data-cy="SongForm"]').should('not.exist');
+    cy.wait('@delayedUserData');
+    cy.get('[data-cy="SongForm"]').should('exist');
+  });
+
   it('disables the Scrobble button when the form is incomplete', () => {
     cy.get('[data-cy="scrobble-button"]').should('be.disabled');
 
