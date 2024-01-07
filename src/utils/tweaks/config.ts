@@ -36,7 +36,7 @@ const config: TweaksConfig = {
           name: 'Highlight updates',
           value: false,
           onMount: (tweakItem, self) => {
-            if (window && window.__REACT_DEVTOOLS_GLOBAL_HOOK__) {
+            if (window && typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'function') {
               window.__REACT_DEVTOOLS_GLOBAL_HOOK__.on('react-devtools', (agent) => {
                 // Enable the item once the devtools are connected
                 tweakItem.disabled = false;
@@ -62,7 +62,7 @@ const config: TweaksConfig = {
           type: 'monitor',
           value: 0,
           onMount: (tweakItem, self) => {
-            if (window && window.__REACT_DEVTOOLS_GLOBAL_HOOK__) {
+            if (window && typeof window.__REACT_DEVTOOLS_GLOBAL_HOOK__ === 'function') {
               window.__REACT_DEVTOOLS_GLOBAL_HOOK__.on('traceUpdates', (updatedNodes: Set<any>) => {
                 self.value = updatedNodes.size;
                 tweakItem.refresh();
