@@ -7,6 +7,7 @@ export default {
     () => 'yarn typecheck',
   ],
   'cypress/**/*': () => [
+    'yarn lint',
     'yarn test:e2e:quiet',
   ],
 };
