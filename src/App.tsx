@@ -8,25 +8,24 @@ import lazyWithPreload from 'react-lazy-with-preload';
 import * as Sentry from '@sentry/react';
 import { interceptAxios } from 'utils/axios';
 import { languageList, fallbackLng } from 'utils/i18n';
+
 import { useTranslation } from 'react-i18next';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 import { useGrowthBook } from '@growthbook/growthbook-react';
-
 import { useUserData } from 'hooks/useUserData';
 import { authUserWithToken } from 'store/actions/userActions';
-
-import Routes from 'Routes';
-import Navigation from 'components/Navigation';
-import Footer from './components/Footer';
-import AlertZone from './components/AlertZone';
-import AnalyticsListener from './components/AnalyticsListener';
-import UpdateToast from './components/UpdateToast';
-
 import { useQueryClient } from '@tanstack/react-query';
 import { useLanguage } from 'hooks/useLanguage';
 
+import Routes from 'Routes';
+import Navigation from 'components/Navigation';
+import Footer from 'components/Footer';
+import AlertZone from 'components/AlertZone';
+import AnalyticsListener from 'components/AnalyticsListener';
+import UpdateToast from 'components/UpdateToast';
 import Spinner from 'components/Spinner';
 import { SettingsModalContext } from 'components/SettingsModal/SettingsModalContext';
+
 const SettingsModal = lazyWithPreload(() => import('components/SettingsModal'));
 
 function App() {
