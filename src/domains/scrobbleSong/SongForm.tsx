@@ -13,8 +13,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbtack, faExchangeAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
 import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 
-import Tooltip from 'components/Tooltip';
-
 import { useSettings } from 'hooks/useSettings';
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 import { createAlert, dismissAlert } from 'store/actions/alertActions';
@@ -25,6 +23,7 @@ import { DEFAULT_SONG_DURATION } from 'Constants';
 import './SongForm.css';
 
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
+const Tooltip = lazyWithPreload(() => import('components/Tooltip'));
 
 const reAutoPasteSplitting = / - | ?[–—] ?/;
 const controlOrder = ['artist', 'title', 'album']; // Used for arrow navigation
@@ -71,6 +70,7 @@ export function SongForm() {
   useEffect(() => {
     document.getElementById('artist').focus();
     DateTimePicker.preload();
+    Tooltip.preload();
   }, []);
 
   useEffect(() => {
