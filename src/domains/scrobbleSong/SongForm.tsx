@@ -172,6 +172,11 @@ export function SongForm() {
       },
     ]);
 
+    ReactGA.event({
+      category: 'Interactions',
+      action: 'Manual scrobble',
+    });
+
     // Close paste alert if it exists
     dispatch(
       dismissAlert({
