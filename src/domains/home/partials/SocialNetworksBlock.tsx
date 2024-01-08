@@ -22,7 +22,7 @@ export default function SocialNetworksBlock() {
               <p>{t('discord.copy')}</p>
               <Button
                 outline
-                type="secondary"
+                color="secondary"
                 size="sm"
                 href="https://discord.gg/SEDp6Zy"
                 className="float-end col-12 col-lg-6"
@@ -45,7 +45,7 @@ export default function SocialNetworksBlock() {
               <p>{t('support.copy')}</p>
               <Button
                 outline
-                type="secondary"
+                color="secondary"
                 size="sm"
                 href="https://www.patreon.com/OpenScrobbler"
                 className="float-end col-12 col-lg-6"

@@ -5,7 +5,7 @@ import { Row } from 'reactstrap';
 import { Trans, useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
-import { usernameIsValid } from 'utils/common';
+import { usernameIsValid as validateUsername } from 'utils/common';
 
 import SearchForm from 'components/SearchForm';
 import Avatar from 'components/Avatar';
@@ -17,9 +17,9 @@ export function ScrobbleUserSearch() {
   const { t } = useTranslation();
   const [recentUsers] = useLocalStorage('recentUsers', []);
   const [previousFailedSearch, setFailedSearch] = useState('');
-  const [usernameGood, setUsernameValidity] = useState(false); // FIXME: use better var names here...
+  const [usernameIsValid, setUsernameValid] = useState(false);
 
-  const searchUser = (user) => navigate(`/scrobble/user/${user}`);
+  const searchUser = (user: string) => navigate(`/scrobble/user/${user}`);
 
   useEffect(() => {
     if (state && state.justFailedSearch) {
@@ -27,17 +27,12 @@ export function ScrobbleUserSearch() {
     }
   }, [state]);
 
-  const intermediateUserValidator = (str = '') => {
-    setUsernameValidity(usernameIsValid(str));
-    if (previousFailedSearch) {
-      if (str.toLowerCase() === previousFailedSearch) {
-        return false;
-      } else {
-        return usernameGood;
-      }
-    } else {
-      return usernameGood;
+  const validationMiddleware = (str = '') => {
+    setUsernameValid(validateUsername(str));
+    if (previousFailedSearch && str.toLowerCase() === previousFailedSearch) {
+      return false;
     }
+    return usernameIsValid;
   };
 
   return (
@@ -57,8 +52,8 @@ export function ScrobbleUserSearch() {
           size="lg"
           value={state?.userToSearch || ''}
           // disableSearch={true}
-          validator={intermediateUserValidator}
-          feedbackMessageKey={usernameGood ? 'userNotFound' : 'invalidUsername'}
+          validator={validationMiddleware}
+          feedbackMessageKey={usernameIsValid ? 'userNotFound' : 'invalidUsername'}
         />
         {recentUsers.length > 0 && (
           <>
@@ -68,7 +63,7 @@ export function ScrobbleUserSearch() {
             <ul className="list-group mx-2 recent-users" data-cy="RecentUsers-list">
               {recentUsers.map((recentUser) => (
                 <li key={recentUser} className="list-group-item sentry-mask" onClick={() => searchUser(recentUser)}>
-                  <Avatar url={'' /* ToDo: restore this */} size="sm" className="me-2" />
+                  <Avatar url={'' /* ToDo: restore this */} alt={recentUser} size="sm" className="me-2" />
                   {recentUser}
                 </li>
               ))}
