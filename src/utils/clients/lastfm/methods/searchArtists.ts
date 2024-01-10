@@ -10,5 +10,5 @@ export async function searchArtists(artistName: string) {
     },
   });
 
-  return artistsSearchTransformer(response);
+  return artistsSearchTransformer(response.data);
 }
