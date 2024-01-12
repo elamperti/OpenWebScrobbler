@@ -1,8 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 import ReactGA from 'react-ga-neo';
+
 import { useFeatureIsOn } from '@growthbook/growthbook-react';
+import useLocalStorage from 'hooks/useLocalStorage';
 
 import { Row, FormGroup, Input, Label, DropdownItem } from 'reactstrap';
 import SearchForm from 'components/SearchForm';
@@ -11,9 +13,8 @@ import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { PROVIDER_NAME, PROVIDER_LASTFM, PROVIDER_DISCOGS } from 'Constants';
-import AlbumList from './partials/AlbumList';
 
-import useLocalStorage from 'hooks/useLocalStorage';
+import AlbumList from './partials/AlbumList';
 
 import type { Provider } from 'Constants';
 import type { Album, DiscogsAlbum, LastFmAlbum } from 'utils/types/album';
@@ -22,13 +23,18 @@ import './ScrobbleAlbumSearch.scss';
 
 export function ScrobbleAlbumSearch() {
   const [includeReleases, setIncludeReleases] = useState(false);
-  const [dataProvider, setProvider] = useState<Provider>(PROVIDER_DISCOGS);
+  const [lastUsedProvider, setLastUsedProvider] = useLocalStorage<Provider>('lastUsedProvider', PROVIDER_DISCOGS);
+  const [dataProvider, setProvider] = useState<Provider>(lastUsedProvider);
   const navigate = useNavigate();
   const { t } = useTranslation();
   const spotifyFF = useFeatureIsOn('spotify');
   const [recentAlbums] = useLocalStorage<Album[]>('recentAlbums', []);
 
   const toggleReleaseSwitch = () => setIncludeReleases(!includeReleases);
+
+  useEffect(() => {
+    setLastUsedProvider(dataProvider);
+  }, [dataProvider, setLastUsedProvider]);
 
   const onSearch = (query) => {
     ReactGA.event({
