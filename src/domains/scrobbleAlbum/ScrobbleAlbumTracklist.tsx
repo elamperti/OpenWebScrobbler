@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import ReactGA from 'react-ga-neo';
@@ -32,7 +32,6 @@ export function ScrobbleAlbumTracklist() {
   const navigate = useNavigate();
 
   const params = useParams();
-  const dispatch = useDispatch();
   const { state } = useLocation();
   // const [tracklistDataProvider, setTracklistDataProvider] = useState(null);
   const [triedAlternativeProvider, setTriedAlternativeProvider] = useState(false);

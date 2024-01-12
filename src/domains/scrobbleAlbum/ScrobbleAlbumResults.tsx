@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 
 import { albumSearch as LastFmSearch } from 'utils/clients/lastfm';
 import { albumSearch as DiscogsSearch } from 'utils/clients/discogs';
+import { sanitizeProvider } from 'utils/common';
 
 import { Trans } from 'react-i18next';
 import { Row } from 'reactstrap';
@@ -19,11 +20,12 @@ import ArtistResults from './partials/ArtistResults';
 import { PROVIDER_DISCOGS } from 'Constants';
 
 export function ScrobbleAlbumResults() {
+  const [searchParams] = useSearchParams();
   const params = useParams();
   const { state } = useLocation();
   const [query, setQuery] = useState('');
 
-  const dataProvider = state?.provider || PROVIDER_DISCOGS;
+  const dataProvider = state?.provider || sanitizeProvider(searchParams.get('source'));
 
   // This extracts the search parameter from the URL
   useEffect(() => {
@@ -31,7 +33,7 @@ export function ScrobbleAlbumResults() {
   }, [params]);
 
   const { data, isFetching } = useQuery({
-    queryKey: ['albums', query, 1], // First page only for now
+    queryKey: ['albums', dataProvider, query, 1], // First page only for now
     queryFn: () => {
       if (dataProvider === PROVIDER_DISCOGS) {
         return DiscogsSearch(query, !!state?.includeReleases);

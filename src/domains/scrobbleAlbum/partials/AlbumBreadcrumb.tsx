@@ -6,6 +6,8 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { faCompactDisc, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+import { PROVIDER_NAME } from 'Constants';
+
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import type { Album, DiscogsAlbum, LastFmAlbum } from 'utils/types/album';
 
@@ -97,7 +99,7 @@ export default function AlbumBreadcrumb({
       {itemList}
       {dataProvider && (
         <div className="flex-grow-1 text-end">
-          {t('dataProvider')}: {dataProvider}
+          {t('dataProvider')}: <span data-cy="AlbumBreadcrumb-provider">{PROVIDER_NAME[dataProvider]}</span>
         </div>
       )}
     </Breadcrumb>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useParams } from 'react-router-dom';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
 
@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
 import { searchTopAlbums as LastFmSearch } from 'utils/clients/lastfm';
 import { searchTopAlbums as DiscogsSearch } from 'utils/clients/discogs';
+import { sanitizeProvider } from 'utils/common';
 
 import { PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
@@ -18,11 +19,14 @@ import Spinner from 'components/Spinner';
 
 export function ScrobbleArtistResults() {
   const { t } = useTranslation();
+  const [searchParams] = useSearchParams();
   const params = useParams();
   const { state } = useLocation();
   const [artistName, setArtistName] = useState('');
 
-  const dataProvider = state?.provider || (params.discogsId ? PROVIDER_DISCOGS : PROVIDER_LASTFM);
+  const dataProvider =
+    state?.provider ||
+    (params.discogsId ? PROVIDER_DISCOGS : sanitizeProvider(searchParams.get('source'), PROVIDER_LASTFM));
 
   useEffect(() => {
     setArtistName(decodeURIComponent(params.artistName || ''));
@@ -30,7 +34,7 @@ export function ScrobbleArtistResults() {
 
   const artistKey = params.mbid || params.discogsId || artistName;
   const { data, isFetching } = useQuery({
-    queryKey: ['topAlbums', artistKey, 1], // First page only for now
+    queryKey: ['topAlbums', dataProvider, artistKey, 1], // First page only for now
     queryFn: () => {
       if (dataProvider === PROVIDER_DISCOGS) {
         return DiscogsSearch(params.discogsId);

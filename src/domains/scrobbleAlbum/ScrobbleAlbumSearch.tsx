@@ -113,6 +113,7 @@ export function ScrobbleAlbumSearch() {
                 id="includeReleases"
                 checked={includeReleases}
                 onChange={toggleReleaseSwitch}
+                data-cy="ScrobbleAlbumSearch-include-releases"
               />
               <Label for="includeReleases" check>
                 <Trans i18nKey="includeReleases" />

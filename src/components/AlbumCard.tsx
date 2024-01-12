@@ -57,7 +57,11 @@ export default function AlbumCard({
   );
 
   return (
-    <div className={`albumCard ${className} ${interactive && 'interactive'}`} style={albumCardStyle}>
+    <div
+      className={`albumCard ${className} ${interactive && 'interactive'}`}
+      data-cy="AlbumCard"
+      style={albumCardStyle}
+    >
       {albumArt}
       {albumCaption}
     </div>

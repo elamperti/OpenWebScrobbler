@@ -17,7 +17,7 @@ export default function ArtistResults({ query, dataProvider }: { query: string; 
   const navigate = useNavigate();
 
   const { data, isFetching } = useQuery({
-    queryKey: ['artists', query, 1], // First page only for now
+    queryKey: ['artists', dataProvider, query, 1], // First page only for now
     queryFn: () => {
       if (dataProvider === PROVIDER_DISCOGS) {
         return DiscogsSearch(query);

@@ -117,10 +117,15 @@ export default function SearchForm({
         <div className="col-12 col-sm-5">
           {!searchOptions && searchButton}
           {searchOptions && (
-            <UncontrolledDropdown group className="w-100">
+            <UncontrolledDropdown group className="w-100" data-cy="SearchForm-dropdown">
               {searchButton}
-              <DropdownToggle caret color="success" className={disableSearch ? styles['fake-disabled'] : ''} />
-              <DropdownMenu>{searchOptions}</DropdownMenu>
+              <DropdownToggle
+                caret
+                color="success"
+                className={disableSearch ? styles['fake-disabled'] : ''}
+                data-cy="SearchForm-dropdown-toggle"
+              />
+              <DropdownMenu data-cy="SearchForm-dropdown-menu">{searchOptions}</DropdownMenu>
             </UncontrolledDropdown>
           )}
         </div>

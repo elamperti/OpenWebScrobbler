@@ -1,0 +1,165 @@
+{
+  "pagination": {
+    "page": 1,
+    "pages": 1,
+    "per_page": 50,
+    "items": 14,
+    "urls": {}
+  },
+  "results": [
+    {
+      "id": 6091678,
+      "type": "artist",
+      "master_id": null,
+      "master_url": null,
+      "uri": "/artist/6091678-Yuri-Meteora",
+      "title": "Yuri Meteora",
+      "thumb": "https://i.discogs.com/nF0DAePSnXujw6OM9FSbriNXIgadMkRY1SquGsCyGKQ/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTYwOTE2/NzgtMTYyNzQ5NDgz/NC0zMjI0LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/ald5qlnAtPeTtCaPgWm7PapKTass_jMQRQC1kiZTuW8/rs:fit/g:sm/q:90/h:451/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTYwOTE2/NzgtMTYyNzQ5NDgz/NC0zMjI0LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/artists/6091678"
+    },
+    {
+      "id": 4785229,
+      "type": "artist",
+      "master_id": null,
+      "master_url": null,
+      "uri": "/artist/4785229-Meteora",
+      "title": "Meteora",
+      "thumb": "",
+      "cover_image": "https://st.discogs.com/5df117211f19f021282b54333b1b156e6112eebb/images/spacer.gif",
+      "resource_url": "https://api.discogs.com/artists/4785229"
+    },
+    {
+      "id": 5993717,
+      "type": "artist",
+      "master_id": null,
+      "master_url": null,
+      "uri": "/artist/5993717-Meteora-2",
+      "title": "Meteora (2)",
+      "thumb": "https://i.discogs.com/6WZDDxhdsg5EOxsSLZpGF3PZYVQyQ9KIYhHTknMCjgo/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTU5OTM3/MTctMTUwNDk2OTgw/Ny0zMTE3LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/qwGDZSXBouD1wWkyLOd4YTrWtBRiSYzuTRljzlZaw40/rs:fit/g:sm/q:90/h:469/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTU5OTM3/MTctMTUwNDk2OTgw/Ny0zMTE3LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/artists/5993717"
+    },
+    {
+      "id": 7059863,
+      "type": "artist",
+      "master_id": null,
+      "master_url": null,
+      "uri": "/artist/7059863-Meteora-7",
+      "title": "Meteora (7)",
+      "thumb": "https://i.discogs.com/032zJ9QEjun4dRlTYGPqOgabDaMBIx9LNUF03VQIti8/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTcwNTk4/NjMtMTU3NDc4NDM1/MC03MTQ5LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/ntt9KLdVY2ECqmHqUonjPwPpq2fULv86DGikUpNxe4M/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTcwNTk4/NjMtMTU3NDc4NDM1/MC03MTQ5LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/artists/7059863"
+    },
+    {
+      "id": 6829173,
+      "type": "artist",
+      "master_id": null,
+      "master_url": null,
+      "uri": "/artist/6829173-Riko-Meteora",
+      "title": "Riko Meteora",
+      "thumb": "",
+      "cover_image": "https://st.discogs.com/5df117211f19f021282b54333b1b156e6112eebb/images/spacer.gif",
+      "resource_url": "https://api.discogs.com/artists/6829173"
+    },
+    {
+      "id": 6984956,
+      "type": "artist",
+      "master_id": null,
+      "master_url": null,
+      "uri": "/artist/6984956-Meteora-6",
+      "title": "Meteora (6)",
+      "thumb": "",
+      "cover_image": "https://st.discogs.com/5df117211f19f021282b54333b1b156e6112eebb/images/spacer.gif",
+      "resource_url": "https://api.discogs.com/artists/6984956"
+    },
+    {
+      "id": 5290544,
+      "type": "artist",
+      "master_id": null,
+      "master_url": null,
+      "uri": "/artist/5290544-Sons-Of-Meteora",
+      "title": "Sons Of Meteora",
+      "thumb": "",
+      "cover_image": "https://st.discogs.com/5df117211f19f021282b54333b1b156e6112eebb/images/spacer.gif",
+      "resource_url": "https://api.discogs.com/artists/5290544"
+    },
+    {
+      "id": 4784370,
+      "type": "artist",
+      "master_id": null,
+      "master_url": null,
+      "uri": "/artist/4784370-\u0418\u0440\u0438\u043d\u0430-\u0421\u044b\u0442\u043d\u0438\u043a-Meteora",
+      "title": "\u0418\u0440\u0438\u043d\u0430 \u0421\u044b\u0442\u043d\u0438\u043a (Meteora)",
+      "thumb": "",
+      "cover_image": "https://st.discogs.com/5df117211f19f021282b54333b1b156e6112eebb/images/spacer.gif",
+      "resource_url": "https://api.discogs.com/artists/4784370"
+    },
+    {
+      "id": 6158624,
+      "type": "artist",
+      "master_id": null,
+      "master_url": null,
+      "uri": "/artist/6158624-Meteora-4",
+      "title": "Meteora (4)",
+      "thumb": "",
+      "cover_image": "https://st.discogs.com/5df117211f19f021282b54333b1b156e6112eebb/images/spacer.gif",
+      "resource_url": "https://api.discogs.com/artists/6158624"
+    },
+    {
+      "id": 7555323,
+      "type": "artist",
+      "master_id": null,
+      "master_url": null,
+      "uri": "/artist/7555323-Meteora-8",
+      "title": "Meteora (8)",
+      "thumb": "https://i.discogs.com/x-CSPMvi4ymG1yzxbuzhqNZl6-Nd9HToNEcOre6b1p8/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTc1NTUz/MjMtMTU3NzA5Mjcw/MS01MDM4LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/Woby9r2f4hbw804gKKoX7qI6F25pK_kDtF50kwHf7o8/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTc1NTUz/MjMtMTU3NzA5Mjcw/MS01MDM4LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/artists/7555323"
+    },
+    {
+      "id": 10528018,
+      "type": "artist",
+      "master_id": null,
+      "master_url": null,
+      "uri": "/artist/10528018-Meteora-9",
+      "title": "Meteora (9)",
+      "thumb": "https://i.discogs.com/JmhGNhRD1wqB-pKbKBB_Ll-pUZy9rihS2PDB2UsODMk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTEwNTI4/MDE4LTE2NDA5MDA5/MTYtMTc3NS5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/aOm-ydC4AVuoBj8pBpCox6xA-7PzqWC9YIMdD8nF3W8/rs:fit/g:sm/q:90/h:200/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTEwNTI4/MDE4LTE2NDA5MDA5/MTYtMTc3NS5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/artists/10528018"
+    },
+    {
+      "id": 6142076,
+      "type": "artist",
+      "master_id": null,
+      "master_url": null,
+      "uri": "/artist/6142076-Meteora-3",
+      "title": "Meteora (3)",
+      "thumb": "",
+      "cover_image": "https://st.discogs.com/5df117211f19f021282b54333b1b156e6112eebb/images/spacer.gif",
+      "resource_url": "https://api.discogs.com/artists/6142076"
+    },
+    {
+      "id": 5117026,
+      "type": "artist",
+      "master_id": null,
+      "master_url": null,
+      "uri": "/artist/5117026-Mario-Meteora",
+      "title": "Mario Meteora",
+      "thumb": "",
+      "cover_image": "https://st.discogs.com/5df117211f19f021282b54333b1b156e6112eebb/images/spacer.gif",
+      "resource_url": "https://api.discogs.com/artists/5117026"
+    },
+    {
+      "id": 2392014,
+      "type": "artist",
+      "master_id": null,
+      "master_url": null,
+      "uri": "/artist/2392014-\u039c\u03c0\u03ac\u03bc\u03c0\u03b7\u03c2-\u039c\u03b1\u03c1\u03ba\u03ac\u03ba\u03b7\u03c2",
+      "title": "\u039c\u03c0\u03ac\u03bc\u03c0\u03b7\u03c2 \u039c\u03b1\u03c1\u03ba\u03ac\u03ba\u03b7\u03c2",
+      "thumb": "https://i.discogs.com/6rb2QeJro2fn_Xo4VleBlbKNS2yShy7wlERI-3iMH9A/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTIzOTIw/MTQtMTUyNjMwOTY1/NS0zOTkwLmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/7jvUA5bvr1POo56bd4RUMUupwFS4UmUPbuGMv68FjuQ/rs:fit/g:sm/q:90/h:499/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9BLTIzOTIw/MTQtMTUyNjMwOTY1/NS0zOTkwLmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/artists/2392014"
+    }
+  ]
+}

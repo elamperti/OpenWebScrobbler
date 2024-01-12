@@ -1,0 +1,1916 @@
+{
+  "pagination": {
+    "page": 1,
+    "pages": 2,
+    "per_page": 50,
+    "items": 59,
+    "urls": {
+      "last": "https://api.discogs.com/database/search?key=XgGFvTJYPISHBkLKVVnQ&secret=zdcAvIiLScoqRPZQcXvOoofObaPzhRjG&type=master&q=meteora&page=2&per_page=50",
+      "next": "https://api.discogs.com/database/search?key=XgGFvTJYPISHBkLKVVnQ&secret=zdcAvIiLScoqRPZQcXvOoofObaPzhRjG&type=master&q=meteora&page=2&per_page=50"
+    }
+  },
+  "results": [
+    {
+      "country": "US",
+      "year": "2003",
+      "format": [
+        "CD",
+        "Album",
+        "Enhanced"
+      ],
+      "label": [
+        "Warner Bros. Records",
+        "Warner Bros. Records Inc.",
+        "Warner Bros. Records Inc.",
+        "Zomba Songs Inc.",
+        "NRG Studios",
+        "Soundtrack Studios",
+        "Bernie Grundman Mastering",
+        "Zomba Songs Inc.",
+        "Chesterchaz Publishing",
+        "Big Bad Mr. Hahn Music",
+        "Nondisclosure Agreement Music",
+        "Rob Bourdon Music",
+        "Kenji Kobayashi Music",
+        "Pancakey Cakes Music",
+        "WEA Mfg. Olyphant"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Nu Metal"
+      ],
+      "id": 74533,
+      "barcode": [
+        "093624818625",
+        "0 9362-48186-2 5",
+        "wea mfg. OLYPHANT Z15226  M1S27  1 48186 ECD01",
+        "wea mfg. OLYPHANT Z15226 M1S9 1 48186 ECD01",
+        "wea mfg. OLYPHANT Z15226 1 48186 ECD01 M1S13",
+        "wea mfg. OLYPHANT Z15226 1 48186 ECD01 M2S9",
+        "wea mfg. OLYPHANT Z15226  M1S21  1 48186 ECD01",
+        "wea mfg. OLYPHANT Z15226 1 48186 ECD01 M2S14",
+        "wea mfg. OLYPHANT Z15226  M1S14  1 48186 ECD01",
+        "wea mfg. OLYPHANT Z15226  M1S7  1 48186 ECD01",
+        "wea mfg. OLYPHANT Z15226  1 48186 ECD01 M1S4",
+        "ifpi L909",
+        "IFPI 2U7N",
+        "IFPI 2U3Z",
+        "IFPI 2UG9",
+        "IFPI 2U3T",
+        "IFPI 2U2P",
+        "IFPI 2U3R",
+        "IFPI 2UF4",
+        "IFPI 2U4E"
+      ],
+      "master_id": 74533,
+      "master_url": "https://api.discogs.com/masters/74533",
+      "uri": "/master/74533-Linkin-Park-Meteora",
+      "catno": "48186-2",
+      "title": "Linkin Park - Meteora",
+      "thumb": "https://i.discogs.com/fU9GK9XP1BHI6VgJ6D7D5LsjedZcO8oP51iEL2vkv8A/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU2NzY2/NS0xNjk5ODA5NjQ1/LTc3NzguanBlZw.jpeg",
+      "cover_image": "https://i.discogs.com/Kizriibou3KfYgtHsW8sKpjUlT8ARKNLvpX9o1dSB_I/rs:fit/g:sm/q:90/h:533/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU2NzY2/NS0xNjk5ODA5NjQ1/LTc3NzguanBlZw.jpeg",
+      "resource_url": "https://api.discogs.com/masters/74533",
+      "community": {
+        "want": 32977,
+        "have": 46265
+      }
+    },
+    {
+      "country": "Netherlands",
+      "year": "2021",
+      "format": [
+        "Vinyl",
+        "12\"",
+        "EP"
+      ],
+      "label": [
+        "Knekelhuis",
+        "Deepgrooves",
+        "Rush Hour Distribution"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic",
+        "Rock",
+        "Pop"
+      ],
+      "style": [
+        "Ambient",
+        "Experimental",
+        "IDM",
+        "Leftfield",
+        "Synth-pop"
+      ],
+      "id": 2101273,
+      "barcode": [],
+      "master_id": 2101273,
+      "master_url": "https://api.discogs.com/masters/2101273",
+      "uri": "/master/2101273-Ssiege-Meteora",
+      "catno": "KH035",
+      "title": "Ssiege - Meteora",
+      "thumb": "https://i.discogs.com/9Cv-AeJ-aeOqk7qXRkxb3MovFVh2fcfS9ZJp2-s88A0/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3NjQy/ODUxLTE2MTQ2MTI1/MTAtMTUzOC5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/bizrAg4lcbruYKaunGnExyz73rTbbh2dzwUG8kVxkyw/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3NjQy/ODUxLTE2MTQ2MTI1/MTAtMTUzOC5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/2101273",
+      "community": {
+        "want": 161,
+        "have": 177
+      }
+    },
+    {
+      "country": "Europe",
+      "year": "2021",
+      "format": [
+        "CD",
+        "Album"
+      ],
+      "label": [
+        "Gusstaff Records",
+        "Mute Song",
+        "Secret Plum",
+        "The Cave Studio",
+        "Gusstaff"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Alternative Rock",
+        "Post-Punk"
+      ],
+      "id": 2396881,
+      "barcode": [
+        "5050580 773370",
+        "11943 GUSSTAFF_GRAM2114",
+        "IFPI LT58",
+        "ZY02"
+      ],
+      "master_id": 2396881,
+      "master_url": "https://api.discogs.com/masters/2396881",
+      "uri": "/master/2396881-Savage-Republic-Meteora",
+      "catno": "GRAM2114",
+      "title": "Savage Republic - Meteora",
+      "thumb": "https://i.discogs.com/9V1KVv9nvMF6toVohtaicp_lRnWkYSphv-Or-2-nGNk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIwODc3/NjMxLTE2MzYyMzAw/ODAtOTY5OS5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/gV-dw6VQFGib_Qu5kEZZM9MubXlXhVZk11QVrUCKK74/rs:fit/g:sm/q:90/h:543/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIwODc3/NjMxLTE2MzYyMzAw/ODAtOTY5OS5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/2396881",
+      "community": {
+        "want": 77,
+        "have": 172
+      }
+    },
+    {
+      "country": "Germany",
+      "year": "2014",
+      "format": [
+        "CD",
+        "Album",
+        "Limited Edition"
+      ],
+      "label": [
+        "Solar Lodge",
+        "Tetragrammaton Studios",
+        "www.discpartner.de"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Goth Rock"
+      ],
+      "id": 725021,
+      "barcode": [
+        "4 042564 152012",
+        "www.discpartner.de Disc 8322",
+        "B02",
+        "IFPI AKG C8"
+      ],
+      "master_id": 725021,
+      "master_url": "https://api.discogs.com/masters/725021",
+      "uri": "/Merciful-Nuns-Meteora-VII/master/725021",
+      "catno": "SL 026",
+      "title": "Merciful Nuns - Meteora VII",
+      "thumb": "https://i.discogs.com/hyjfcL64x-G0K5qgz_VDrS1qqfyy9kfn2OjHvrQIn4s/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYwMTMy/ODMtMTQwODgxOTI3/Ni0yMjE0LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/GWs0p3YM_dD405u4l73JseXt7baR6eYF2m02OTK0lGs/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYwMTMy/ODMtMTQwODgxOTI3/Ni0yMjE0LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/725021",
+      "community": {
+        "want": 47,
+        "have": 188
+      }
+    },
+    {
+      "country": "US",
+      "year": "2003",
+      "format": [
+        "DVD",
+        "NTSC"
+      ],
+      "label": [
+        "Warner Bros. Records"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Nu Metal"
+      ],
+      "id": 1022865,
+      "barcode": [
+        "1 48442.1A VA01 Mastered by Wamo",
+        "IFPI L906",
+        "IFPI 2U06"
+      ],
+      "master_id": 1022865,
+      "master_url": "https://api.discogs.com/masters/1022865",
+      "uri": "/Linkin-Park-The-Making-Of-Meteora/master/1022865",
+      "catno": "48442-2",
+      "title": "Linkin Park - The Making Of Meteora",
+      "thumb": "https://i.discogs.com/yfosQrYLDohk3oAUjAlXqmv6VlOo9pEa1UQStyhTtqw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg3MjAz/MjUtMTQ2NzMwNjY3/OS05MjEyLmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/EL0JoqpqqY_7HfgDQpEQ5nT1Lm75khwrEnl0ju8-qJ0/rs:fit/g:sm/q:90/h:533/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg3MjAz/MjUtMTQ2NzMwNjY3/OS05MjEyLmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1022865",
+      "community": {
+        "want": 149,
+        "have": 241
+      }
+    },
+    {
+      "country": "Russia",
+      "year": "2005",
+      "format": [
+        "CD",
+        "Compilation",
+        "Unofficial Release"
+      ],
+      "label": [
+        "\u041e\u041e\u041e \"\u041c\u0435\u0434\u0438\u0430-\u041b\u0430\u0439\u043d\"",
+        "\u041e\u041e\u041e \"\u041c\u0435\u0434\u0438\u0430-\u041b\u0430\u0439\u043d\"",
+        "\u041e\u041e\u041e \"\u041c\u0435\u0434\u0438\u0430-\u041b\u0430\u0439\u043d\""
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Alternative Rock",
+        "Nu Metal"
+      ],
+      "id": 979701,
+      "barcode": [
+        "2 199037 470356",
+        "BB-F62188 \u041e\u041e\u041e\"\u041c\u0435\u0434\u0438\u0430-\u041b\u0430\u0439\u043d\" \u041b\u0438\u0446\u0435\u043d\u0437\u0438\u044f \u041c\u041f\u0422\u0420 \u0420\u043e\u0441\u0441\u0438\u0438 \u0412\u0430\u0444 \u211677-12 \u043e\u0442 02.10.02"
+      ],
+      "master_id": 979701,
+      "master_url": "https://api.discogs.com/masters/979701",
+      "uri": "/master/979701-Linkin-Park-MeteoraErection",
+      "catno": "F62188",
+      "title": "Linkin Park - Meteora+Erection",
+      "thumb": "https://i.discogs.com/54FjeEatvPruBEsgM9qrnVGihj0MqgXkPuP-GpJLZbw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgyODI3/MDYtMTQ1ODU4MzQ3/Mi0yMTMzLmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/nrdhr2McCCGhOtIKU4Rqg7NuTZNxErmVvFvPiIv5XO0/rs:fit/g:sm/q:90/h:587/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgyODI3/MDYtMTQ1ODU4MzQ3/Mi0yMTMzLmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/979701",
+      "community": {
+        "want": 28,
+        "have": 33
+      }
+    },
+    {
+      "country": "Ireland",
+      "year": "2016",
+      "format": [
+        "File",
+        "AIFF"
+      ],
+      "label": [
+        "Subculture",
+        "Subculture"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Trance"
+      ],
+      "id": 949226,
+      "barcode": [],
+      "master_id": 949226,
+      "master_url": "https://api.discogs.com/masters/949226",
+      "uri": "/The-Noble-Six-Meteora/master/949226",
+      "catno": "SUBC099",
+      "title": "The Noble Six - Meteora",
+      "thumb": "https://i.discogs.com/U1hlmiI9gusflIn4ayX2Nlzj0cyxbVd0-KTOTzKbtyg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgwMjg2/MzEtMTQ1Mzc1NTA0/My04MjU2LnBuZw.jpeg",
+      "cover_image": "https://i.discogs.com/981CV7n3A0Tm8TovPG7e47ZGNN1cPCpBIKFojoU_jKQ/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgwMjg2/MzEtMTQ1Mzc1NTA0/My04MjU2LnBuZw.jpeg",
+      "resource_url": "https://api.discogs.com/masters/949226",
+      "community": {
+        "want": 3,
+        "have": 10
+      }
+    },
+    {
+      "country": "Italy",
+      "year": "1997",
+      "format": [
+        "CD",
+        "CD-ROM",
+        "Compilation",
+        "Stereo"
+      ],
+      "label": [
+        "Meteora Music",
+        "Cosmorecord",
+        "Meteora Music"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock",
+        "Pop"
+      ],
+      "style": [
+        "Prog Rock",
+        "Psychedelic Rock",
+        "Pop Rock"
+      ],
+      "id": 2412382,
+      "barcode": [],
+      "master_id": 2412382,
+      "master_url": "https://api.discogs.com/masters/2412382",
+      "uri": "/master/2412382-Various-Meteora-Compilation",
+      "catno": "mtrc 9701",
+      "title": "Various - Meteora Compilation",
+      "thumb": "https://i.discogs.com/SUzoBnVAQTaVNtRjD2-w7QQu1N5R0-40mI1-bI37Pwo/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwOTAz/MjY0LTE1MDYyNTQ2/NTgtODE5Ni5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/iSlOtfSBtPC4zzkbj7UmvLipUnPIKlrSFEQmCQ6paTk/rs:fit/g:sm/q:90/h:515/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwOTAz/MjY0LTE1MDYyNTQ2/NTgtODE5Ni5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/2412382",
+      "community": {
+        "want": 22,
+        "have": 21
+      }
+    },
+    {
+      "country": "Germany",
+      "year": "2023",
+      "format": [
+        "CD",
+        "Album"
+      ],
+      "label": [
+        "Enja Records",
+        "Stockholm Mastering",
+        "The Village Recording"
+      ],
+      "type": "master",
+      "genre": [
+        "Jazz"
+      ],
+      "style": [
+        "Contemporary Jazz"
+      ],
+      "id": 3352456,
+      "barcode": [
+        "7 67522 98352 4",
+        "0767522983524",
+        "LC 18386"
+      ],
+      "master_id": 3352456,
+      "master_url": "https://api.discogs.com/masters/3352456",
+      "uri": "/master/3352456-Makiko-Hirabayashi-Trio-Meteora",
+      "catno": "Enja 9835",
+      "title": "Makiko Hirabayashi Trio - Meteora",
+      "thumb": "https://i.discogs.com/2Xrbx3EuWvja63cG9QAyTk5nN3a2BDj5QVVB2CUYuBk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI4Mzg4/MzY4LTE2OTY2NzE2/MDQtMzg1MS5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/k6Om_X4fQZulamdfHHH8qyhzIP8JQJ6swISdOkXDaGE/rs:fit/g:sm/q:90/h:538/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI4Mzg4/MzY4LTE2OTY2NzE2/MDQtMzg1MS5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/3352456",
+      "community": {
+        "want": 2,
+        "have": 9
+      }
+    },
+    {
+      "country": "Argentina",
+      "year": "2017",
+      "format": [
+        "File",
+        "MP3"
+      ],
+      "label": [
+        "Aerys Records",
+        "Aerys Records",
+        "Aerys Records",
+        "Armada Music B.V."
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Tech Trance"
+      ],
+      "id": 1501765,
+      "barcode": [
+        "8718522159039",
+        "NLF711706984",
+        "NLF711706985"
+      ],
+      "master_id": 1501765,
+      "master_url": "https://api.discogs.com/masters/1501765",
+      "uri": "/Heatbeat-Meteora/master/1501765",
+      "catno": "AERYS013B",
+      "title": "Heatbeat (2) - Meteora",
+      "thumb": "https://i.discogs.com/gCxRtrRJa9zAU3supUPqQtcPXQLZfTIDOMZPlCzfXwo/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExNzc4/ODA0LTE1MjIyMzY2/MTktNjE4Ni5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/yP5EnU3ErRk31DTEeFG7iJjAisCl_t_AbejvP1d1ecM/rs:fit/g:sm/q:90/h:500/w:500/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExNzc4/ODA0LTE1MjIyMzY2/MTktNjE4Ni5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1501765",
+      "community": {
+        "want": 0,
+        "have": 8
+      }
+    },
+    {
+      "country": "Italy",
+      "year": "2023",
+      "format": [
+        "Vinyl",
+        "LP",
+        "Album",
+        "Limited Edition",
+        "Numbered"
+      ],
+      "label": [
+        "MURIA RECORDS"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Ambient",
+        "Experimental"
+      ],
+      "id": 3320794,
+      "barcode": [],
+      "master_id": 3320794,
+      "master_url": "https://api.discogs.com/masters/3320794",
+      "uri": "/master/3320794-Gino-Pavan-Meteora",
+      "catno": "MRCLP 08",
+      "title": "Gino Pavan - Meteora",
+      "thumb": "https://i.discogs.com/yAHlO4tAH8_aeH1PL5jvnFOcK6FW1ZjTqXMOK8DqLc0/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI4OTk5/MjQ5LTE3MDA3NjA1/ODctMzAyMS5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/Rqhsa4Mp70pChebW_SQR2NhCAaA-Eoxxt3HcE1v6HHY/rs:fit/g:sm/q:90/h:442/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI4OTk5/MjQ5LTE3MDA3NjA1/ODctMzAyMS5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/3320794",
+      "community": {
+        "want": 1,
+        "have": 5
+      }
+    },
+    {
+      "country": "Greece",
+      "genre": [
+        "Classical"
+      ],
+      "format": [
+        "CD",
+        "Album"
+      ],
+      "style": [
+        "Religious",
+        "Medieval"
+      ],
+      "id": 1094076,
+      "label": [
+        "Holy Monastery of Great Meteoron"
+      ],
+      "type": "master",
+      "barcode": [],
+      "master_id": 1094076,
+      "master_url": "https://api.discogs.com/masters/1094076",
+      "uri": "/The-Choir-of-Chanters-The-Maistores-of-the-Psaltic-Art-Meteora-Sacra/master/1094076",
+      "catno": "none",
+      "title": "The Choir of Chanters \u201cThe Maistores of the Psaltic Art\u201d* - Meteora Sacra",
+      "thumb": "https://i.discogs.com/2vErA4604E5gO4edAU3gEUNfpNE0TWbklSLVNElzpUM/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkzOTQx/MjUtMTUwOTI2NzM0/OS0yNzY5LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/np7ZqzkHYmJyWNhmj9HFkp_LQXM_kP58_asYjcNumMg/rs:fit/g:sm/q:90/h:609/w:598/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTkzOTQx/MjUtMTUwOTI2NzM0/OS0yNzY5LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1094076",
+      "community": {
+        "want": 1,
+        "have": 10
+      }
+    },
+    {
+      "country": "US",
+      "year": "2023",
+      "format": [
+        "Vinyl",
+        "LP",
+        "Record Store Day",
+        "Compilation",
+        "Limited Edition"
+      ],
+      "label": [
+        "Warner Records",
+        "Machine Shop Recordings",
+        "Warner Music Group",
+        "Warner Records Inc.",
+        "Warner Records Inc."
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Alternative Rock"
+      ],
+      "id": 3316291,
+      "barcode": [
+        "0 93624 85271 1",
+        "093624852711",
+        "093624852711"
+      ],
+      "master_id": 3316291,
+      "master_url": "https://api.discogs.com/masters/3316291",
+      "uri": "/master/3316291-Linkin-Park-Lost-Demos",
+      "catno": "093624852711",
+      "title": "Linkin Park - Lost Demos",
+      "thumb": "https://i.discogs.com/pMw-wuwn8R9hmRb1b2PEqoSA7mGsKysX7EIA0olUXRI/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI5MDA0/MjExLTE3MDA4MTg1/MTAtNzI4Ny5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/7tmaUd2A1lGcPTSPUUyoPl-NLVe6UHzBwB5u0TCNf4A/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI5MDA0/MjExLTE3MDA4MTg1/MTAtNzI4Ny5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/3316291",
+      "community": {
+        "want": 277,
+        "have": 2098
+      }
+    },
+    {
+      "country": "US",
+      "year": "2011",
+      "format": [
+        "CD",
+        "EP",
+        "Club Edition"
+      ],
+      "label": [
+        "Machine Shop Recordings",
+        "Warner Bros. Records",
+        "Linkin Park Underground",
+        "Linkin Park, LLC",
+        "Universal Music",
+        "Rainbo Records",
+        "Bernie Grundman Mastering"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Alternative Rock",
+        "Nu Metal"
+      ],
+      "id": 442306,
+      "barcode": [
+        "12369 - LPUCD11  111711",
+        "IFPI LT05",
+        "IFPI A605"
+      ],
+      "master_id": 442306,
+      "master_url": "https://api.discogs.com/masters/442306",
+      "uri": "/master/442306-Linkin-Park-Underground-Eleven",
+      "catno": "none",
+      "title": "Linkin Park - Underground Eleven",
+      "thumb": "https://i.discogs.com/CHPx7CVNPfSHzcZOfGo_VbpZKIuDoJ1LsA0EFIux6UI/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0Njcy/NTctMTMzMTUwNjQx/OS5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/poiMdbW6Fuympj-vERJ9CJ0GVG39y07XSPtxdIVBxpw/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM0Njcy/NTctMTMzMTUwNjQx/OS5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/442306",
+      "community": {
+        "want": 195,
+        "have": 338
+      }
+    },
+    {
+      "country": "Greece",
+      "genre": [
+        "Classical",
+        "Folk, World, & Country"
+      ],
+      "format": [
+        "CD"
+      ],
+      "style": [
+        "Religious"
+      ],
+      "id": 1959997,
+      "label": [
+        "Not On Label",
+        "Holy Monastery of Great Meteoron"
+      ],
+      "type": "master",
+      "barcode": [
+        "IFPI LA41",
+        "IFPI 1011",
+        "9750128 RAKS"
+      ],
+      "master_id": 1959997,
+      "master_url": "https://api.discogs.com/masters/1959997",
+      "uri": "/master/1959997-The-Choir-of-Chanters-The-Maistores-of-the-Psaltic-Art-Meteora-Sacra-Service-Of-The-Transfiguration-",
+      "catno": "none",
+      "title": "The Choir of Chanters The Maistores of the Psaltic Art - Meteora Sacra - Service Of The Transfiguration Of Our Saviour",
+      "thumb": "https://i.discogs.com/z_AvVsYkb8HH_sHZymce6lufRa2r_ZirrFbngTqxrhA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MjY5/MDA5LTE2MTI2MTMw/ODQtMzQ1OS5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/27DPzKbyhNVwtbSKBRJMSCmvDeNAxbZWsxNxvI8Aoqo/rs:fit/g:sm/q:90/h:480/w:542/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MjY5/MDA5LTE2MTI2MTMw/ODQtMzQ1OS5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1959997",
+      "community": {
+        "want": 4,
+        "have": 4
+      }
+    },
+    {
+      "country": "US",
+      "year": "1984",
+      "format": [
+        "Vinyl",
+        "12\"",
+        "EP",
+        "33 \u2153 RPM"
+      ],
+      "label": [
+        "Fang Records",
+        "Chris Rael",
+        "Black Pond Studios",
+        "Frankford/Wayne Recording Labs"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "New Wave"
+      ],
+      "id": 1780614,
+      "barcode": [
+        "FW-22934-A F/WNS",
+        "FW-22934-B F/WNS"
+      ],
+      "master_id": 1780614,
+      "master_url": "https://api.discogs.com/masters/1780614",
+      "uri": "/Crisrail-The-Game-Of-Music/master/1780614",
+      "catno": "FW-22934",
+      "title": "Crisrail* - The Game Of Music",
+      "thumb": "https://i.discogs.com/t4_kyO4msy2DL7gFFmoRNqCP5YH3fVG0wufK4m9fx7I/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI3OTU1/NDgtMTM1NDUzMjQ1/NC04NDI2LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/aK22-Vf4N0f9UzUBPwmpDfN8hopI9QUz7qLRQwirv8g/rs:fit/g:sm/q:90/h:595/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI3OTU1/NDgtMTM1NDUzMjQ1/NC04NDI2LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1780614",
+      "community": {
+        "want": 450,
+        "have": 140
+      }
+    },
+    {
+      "country": "UK",
+      "year": "1970",
+      "format": [
+        "Vinyl",
+        "LP",
+        "Album"
+      ],
+      "label": [
+        "Columbia",
+        "Columbia",
+        "Lansdowne Series",
+        "Record Supervision",
+        "E.M.I. Records",
+        "The Gramophone Co. Ltd.",
+        "Garrod & Lofthouse Ltd.",
+        "P.S.M."
+      ],
+      "type": "master",
+      "genre": [
+        "Jazz"
+      ],
+      "style": [
+        "Modal"
+      ],
+      "id": 37446,
+      "barcode": [
+        "YAX 4047 - 1 U ",
+        "YAX 4048 - 1 U",
+        "7009 TPS"
+      ],
+      "master_id": 37446,
+      "master_url": "https://api.discogs.com/masters/37446",
+      "uri": "/Neil-Ardley-Ian-Carr-Don-Rendell-Greek-Variations-Other-Aegean-Exercises/master/37446",
+      "catno": "SCX 6414",
+      "title": "Neil Ardley / Ian Carr / Don Rendell - Greek Variations & Other Aegean Exercises",
+      "thumb": "https://i.discogs.com/M5BukATezY5_yjwF1eFmjvAAXozSeaovPJ-PcGar1Nw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc0NjU1/NS0xNDYyNjMzOTE4/LTUzMDEuanBlZw.jpeg",
+      "cover_image": "https://i.discogs.com/zyepox65g7T2dodPjqRVhlhMm76Rn83VkAZVZQihufE/rs:fit/g:sm/q:90/h:569/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc0NjU1/NS0xNDYyNjMzOTE4/LTUzMDEuanBlZw.jpeg",
+      "resource_url": "https://api.discogs.com/masters/37446",
+      "community": {
+        "want": 2059,
+        "have": 332
+      }
+    },
+    {
+      "country": "Unknown",
+      "year": "2023",
+      "format": [
+        "File",
+        "MP3",
+        "Album",
+        "Stereo"
+      ],
+      "label": [
+        "Warp Records"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Post-Punk",
+        "Psychedelic Rock",
+        "Art Rock"
+      ],
+      "id": 3034034,
+      "barcode": [],
+      "master_id": 3034034,
+      "master_url": "https://api.discogs.com/masters/3034034",
+      "uri": "/master/3034034-Yves-Tumor-Praise-A-Lord-Who-Chews-But-Which-Does-Not-Consume-Or-Simply-Hot-Between-Worlds-",
+      "catno": "none",
+      "title": "Yves Tumor - Praise A Lord Who Chews But Which Does Not Consume; (Or Simply, Hot Between Worlds) ",
+      "thumb": "https://i.discogs.com/DJnqhozdWnaR11i3u9m0Zgzp5y4ptOV58qYSijZ9ptY/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI2NDc4/ODM5LTE2NzkyNzgx/NTctMzc2NC5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/gTnbDYwiJ4Xen1PZhVqVj6lrvGbOfpw3UYHG76W7FMM/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI2NDc4/ODM5LTE2NzkyNzgx/NTctMzc2NC5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/3034034",
+      "community": {
+        "want": 682,
+        "have": 2097
+      }
+    },
+    {
+      "country": "Italy",
+      "year": "1981",
+      "format": [
+        "Vinyl",
+        "LP",
+        "Album"
+      ],
+      "label": [
+        "Ariston Music",
+        "Ariston Music",
+        "Dischi Ricordi S.p.A.",
+        "Ariston",
+        "Edizioni Senso Unico",
+        "S. Cecilia",
+        "Intersong Italiana",
+        "CGD Pressing Plant",
+        "Ed. Ariston",
+        "Edizioni Senso Unico",
+        "Intersong Italiana",
+        "Ariston Studios",
+        "Idea Recording"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic",
+        "Rock",
+        "Funk / Soul",
+        "Pop"
+      ],
+      "style": [
+        "Pop Rock",
+        "Synth-pop",
+        "Disco"
+      ],
+      "id": 717983,
+      "barcode": [
+        "S.I.A.E.",
+        "AR LP 12387-1L [cgd logo]  3.4.81 Inzadi",
+        "AR LP 12387-2L [cgd logo] 3.4.81 Inzadi"
+      ],
+      "master_id": 717983,
+      "master_url": "https://api.discogs.com/masters/717983",
+      "uri": "/master/717983-Rettore-Estasi-Clamorosa",
+      "catno": "ARLP/12387",
+      "title": "Rettore - Estasi Clamorosa",
+      "thumb": "https://i.discogs.com/8-EjoD9Rh_RK2TerxnaPT9nt3NsxsVVLYfkYxIkbZgU/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNzc1/MDItMTUyMDQ1NTg3/Mi0yNzA0LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/1hky-b2vxLcjakW-fUl7Cnq9jV8aOPuy0PQLcM-B8zw/rs:fit/g:sm/q:90/h:603/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNzc1/MDItMTUyMDQ1NTg3/Mi0yNzA0LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/717983",
+      "community": {
+        "want": 134,
+        "have": 594
+      }
+    },
+    {
+      "country": "Hungary",
+      "year": "2017",
+      "format": [
+        "CDr",
+        "Album",
+        "Limited Edition"
+      ],
+      "label": [
+        "Not On Label (Meteora Self-released)"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Progressive Metal",
+        "Symphonic Metal",
+        "Power Metal"
+      ],
+      "id": 2432746,
+      "barcode": [],
+      "master_id": 2432746,
+      "master_url": "https://api.discogs.com/masters/2432746",
+      "uri": "/master/2432746-Meteora-Our-Paradise",
+      "catno": "none",
+      "title": "Meteora (2) - Our Paradise",
+      "thumb": "https://i.discogs.com/x5o39rj8RNXfRfAu3_1WQcqbQ3obNlb5qA1Kmx3Gfi0/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwODI3/ODMzLTE1MDQ5Njky/ODEtNTI3OS5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/lXKhP8cNcXJjB7cbgjsvMU4nkPeUjKqb_ImShkjHtkE/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwODI3/ODMzLTE1MDQ5Njky/ODEtNTI3OS5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/2432746",
+      "community": {
+        "want": 5,
+        "have": 5
+      }
+    },
+    {
+      "country": "Germany",
+      "year": "2011",
+      "format": [
+        "Vinyl",
+        "12\"",
+        "Album"
+      ],
+      "label": [
+        "Permanent Vacation"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Krautrock"
+      ],
+      "id": 333614,
+      "barcode": [],
+      "master_id": 333614,
+      "master_url": "https://api.discogs.com/masters/333614",
+      "uri": "/master/333614-Zodiac-Free-Arts-Club-Floating-World",
+      "catno": "PERMVAC 073-1",
+      "title": "Zodiac Free Arts Club - Floating World",
+      "thumb": "https://i.discogs.com/VP2jIhPzuPfeXUx7l49JQhj_jbTKmEi2hRgPKNP1XQ0/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI4NjI0/NTAtMTMwNDUwMDU0/NS5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/5q7ysp42poNkXk91impzwXsx_9ZDVki-8ewMB6h146Y/rs:fit/g:sm/q:90/h:545/w:550/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI4NjI0/NTAtMTMwNDUwMDU0/NS5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/333614",
+      "community": {
+        "want": 54,
+        "have": 174
+      }
+    },
+    {
+      "country": "Worldwide",
+      "year": "2023",
+      "format": [
+        "File",
+        "MP3"
+      ],
+      "label": [
+        "Very Small"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Experimental"
+      ],
+      "id": 3145017,
+      "barcode": [],
+      "master_id": 3145017,
+      "master_url": "https://api.discogs.com/masters/3145017",
+      "uri": "/master/3145017-Linkin-Park-Meteora",
+      "catno": "VS0022",
+      "title": "Linkin Park (2) - Meteora",
+      "thumb": "https://i.discogs.com/qS16pvabOV3Kvxyl5LSOxhPOs80YbY3Z5dHWIAgj3F0/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI3NDgy/NjA0LTE2ODc2MzE4/MDktOTI3Ny5wbmc.jpeg",
+      "cover_image": "https://i.discogs.com/I4mKUe0WmCbPTF8VO_tnc6i9EvKYFu7NnMYOAl2NcVc/rs:fit/g:sm/q:90/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI3NDgy/NjA0LTE2ODc2MzE4/MDktOTI3Ny5wbmc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/3145017",
+      "community": {
+        "want": 0,
+        "have": 3
+      }
+    },
+    {
+      "country": "Italy",
+      "year": "1988",
+      "format": [
+        "Vinyl",
+        "LP",
+        "Album"
+      ],
+      "label": [
+        "Fonit Cetra"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic",
+        "Rock",
+        "Funk / Soul",
+        "Pop"
+      ],
+      "style": [
+        "Chanson",
+        "Pop Rock",
+        "Soul",
+        "Europop"
+      ],
+      "id": 1043478,
+      "barcode": [],
+      "master_id": 1043478,
+      "master_url": "https://api.discogs.com/masters/1043478",
+      "uri": "/master/1043478-Aura-Back-To-Mozart",
+      "catno": "LPX 213",
+      "title": "Aura (20) - Back To Mozart",
+      "thumb": "https://i.discogs.com/LXQvS-m_sihlmR9Nj6wvxzzkcSouVINz8Y1GUzbNrUY/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI2Mzkw/MDItMTMyODEyODM3/MC5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/X_LTorpZiF0afqcq3vPMkhUs6KPTU-Krg5qxhtu661k/rs:fit/g:sm/q:90/h:453/w:450/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI2Mzkw/MDItMTMyODEyODM3/MC5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1043478",
+      "community": {
+        "want": 8,
+        "have": 55
+      }
+    },
+    {
+      "country": "France",
+      "year": "2020",
+      "format": [
+        "File",
+        "MP3"
+      ],
+      "label": [
+        "Mandala"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Hardstyle"
+      ],
+      "id": 1953001,
+      "barcode": [
+        "4061707454608",
+        "DEAR42030459"
+      ],
+      "master_id": 1953001,
+      "master_url": "https://api.discogs.com/masters/1953001",
+      "uri": "/Aria-Meteora/master/1953001",
+      "catno": "MDL023",
+      "title": "Aria (48) - Meteora",
+      "thumb": "https://i.discogs.com/-aaVsNlMBCGqhftjIEy20EeGnlsz8g7K0cPVAfolg5Y/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MjA1/MTI3LTE2MTIxNTY2/MTYtMTI2OS5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/wAehCeDBBRO-c-bfC3VsjhgHOLf6kdkabNcHkIrNUFU/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE3MjA1/MTI3LTE2MTIxNTY2/MTYtMTI2OS5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1953001",
+      "community": {
+        "want": 0,
+        "have": 4
+      }
+    },
+    {
+      "country": "Italy",
+      "year": "2015",
+      "format": [
+        "CD",
+        "Album",
+        "Limited Edition"
+      ],
+      "label": [
+        "War Against Yourself"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic",
+        "Rock"
+      ],
+      "style": [
+        "Black Metal",
+        "Ambient"
+      ],
+      "id": 816511,
+      "barcode": [],
+      "master_id": 816511,
+      "master_url": "https://api.discogs.com/masters/816511",
+      "uri": "/Trou-Noir-Nova/master/816511",
+      "catno": "LAST WAY CD 041",
+      "title": "Trou Noir - Nova",
+      "thumb": "https://i.discogs.com/83Kn1qYtoSoN9mfRLQVDS_SyQ53Wz73ItIwPduZB59M/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY4Mzc3/OTYtMTQzNDMxNjYz/Ny01MzA4LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/E4zIbpN0hbxFG6FiKdefdvvXCZZmT8klPMBzRH6Q86w/rs:fit/g:sm/q:90/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY4Mzc3/OTYtMTQzNDMxNjYz/Ny01MzA4LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/816511",
+      "community": {
+        "want": 27,
+        "have": 62
+      }
+    },
+    {
+      "country": "Philippines",
+      "year": "2003",
+      "format": [
+        "Cassette",
+        "Album"
+      ],
+      "label": [
+        "Warner Music Philippines",
+        "Warner Music Philippines",
+        "Warner Music Philippines",
+        "NRG Studios",
+        "Soundtrack Studios",
+        "Bernie Grundman Mastering"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Nu Metal",
+        "Alternative Rock"
+      ],
+      "id": 1241033,
+      "barcode": [
+        "093624818649"
+      ],
+      "master_id": 1241033,
+      "master_url": "https://api.discogs.com/masters/1241033",
+      "uri": "/Linkin-Park-Meteora/master/1241033",
+      "catno": "48188-4",
+      "title": "Linkin Park - Meteora",
+      "thumb": "https://i.discogs.com/n4hdpcPl0A6SChkRMUELFMyAd8Ed4aa5RmA1T2bEuPM/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwODky/OTczLTE1MDYwODEx/MjYtOTA1OS5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/p-sVPYs09hqjexTdfAev8BlAuqai6cgXwFVTvftdG1U/rs:fit/g:sm/q:90/h:576/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwODky/OTczLTE1MDYwODEx/MjYtOTA1OS5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1241033",
+      "community": {
+        "want": 0,
+        "have": 0
+      }
+    },
+    {
+      "country": "Greece",
+      "year": "2004",
+      "format": [
+        "CD",
+        "Album"
+      ],
+      "label": [
+        "Zillion Mental Anarchie Records",
+        "Time Lock Labs",
+        "Z.M.A. Label Group Distribution"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Psy-Trance"
+      ],
+      "id": 1568541,
+      "barcode": [
+        "5201013616832"
+      ],
+      "master_id": 1568541,
+      "master_url": "https://api.discogs.com/masters/1568541",
+      "uri": "/Time-Lock-10-Seconds-Away/master/1568541",
+      "catno": "ZMA CD 020",
+      "title": "Time Lock - 10 Seconds Away...",
+      "thumb": "https://i.discogs.com/47wCzo05bHsapSpfAeyCf-UTmlznLQks_FMjUvXjXgM/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM5NDk4/MC0xMjAzMzcwNjc3/LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/fZ7CQuqWT8_KChyBT5YXAyX1-XOW_GVCFbygvrUWb2M/rs:fit/g:sm/q:90/h:596/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTM5NDk4/MC0xMjAzMzcwNjc3/LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1568541",
+      "community": {
+        "want": 16,
+        "have": 56
+      }
+    },
+    {
+      "country": "UK",
+      "year": "2022",
+      "format": [
+        "Vinyl",
+        "LP"
+      ],
+      "label": [
+        "Black Acre",
+        "Warp Publishing",
+        "The Carvery"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic",
+        "Folk, World, & Country",
+        "Stage & Screen"
+      ],
+      "style": [
+        "Tribal"
+      ],
+      "id": 2645147,
+      "barcode": [
+        "5056321656469"
+      ],
+      "master_id": 2645147,
+      "master_url": "https://api.discogs.com/masters/2645147",
+      "uri": "/master/2645147-Torozebu-Torozebu",
+      "catno": "ACRE089",
+      "title": "Torozebu - Torozebu",
+      "thumb": "https://i.discogs.com/lKaU7p5lSfIxJbZ_dXegAHmUSiGptHQSOpzv6P4yZ7w/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyMzQ0/MzY0LTE2NDY1MTMz/MzQtNTQxMC5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/26IW20LKoSk-7_z4DkHy1L4hi4Fb78jQ-uuUc7XXN3s/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTIyMzQ0/MzY0LTE2NDY1MTMz/MzQtNTQxMC5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/2645147",
+      "community": {
+        "want": 38,
+        "have": 77
+      }
+    },
+    {
+      "country": "Germany",
+      "year": "2014",
+      "format": [
+        "CD",
+        "Album"
+      ],
+      "label": [
+        "All Score Media",
+        "Indigo"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Surf"
+      ],
+      "id": 715752,
+      "barcode": [
+        "4 047179 919128",
+        "LC 10340",
+        "GEMA"
+      ],
+      "master_id": 715752,
+      "master_url": "https://api.discogs.com/masters/715752",
+      "uri": "/Kilaueas-The-Wiki-Waki-Woooo/master/715752",
+      "catno": "ASM 039",
+      "title": "The Kilaueas!* - Wiki Waki Woooo",
+      "thumb": "https://i.discogs.com/OttgjOx7H-Uj-Ii09E8ISxb0vyqTpuJjIXoaH8zPizk/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU5NDA2/NzQtMTQwNjg5ODM4/NC03NDYwLmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/X2j3YdrIzu99wus7FKVIlv-rg3rHXy8Bnn-ywaNp3G4/rs:fit/g:sm/q:90/h:500/w:500/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTU5NDA2/NzQtMTQwNjg5ODM4/NC03NDYwLmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/715752",
+      "community": {
+        "want": 31,
+        "have": 109
+      }
+    },
+    {
+      "country": "Germany",
+      "year": "1992",
+      "format": [
+        "CD",
+        "Album"
+      ],
+      "label": [
+        "Ardema-Musik"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Berlin-School"
+      ],
+      "id": 636850,
+      "barcode": [],
+      "master_id": 636850,
+      "master_url": "https://api.discogs.com/masters/636850",
+      "uri": "/Pegasus-Emphasis/master/636850",
+      "catno": "920143",
+      "title": "Pegasus (6) - Emphasis",
+      "thumb": "https://i.discogs.com/iIIk0wP0uXxuie_6Ck3q4Mm2CqLIfdkwproJdruJ1JY/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1MDc2/MzEtMTIzODI0NzMw/Ni5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/_oOVv7hKymM9NER-RcMcg_TG3U70BtLYPD7sxmGAncE/rs:fit/g:sm/q:90/h:597/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1MDc2/MzEtMTIzODI0NzMw/Ni5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/636850",
+      "community": {
+        "want": 7,
+        "have": 17
+      }
+    },
+    {
+      "country": "Germany",
+      "year": "2010",
+      "format": [
+        "Vinyl",
+        "LP",
+        "Album",
+        "Stereo"
+      ],
+      "label": [
+        "GLM Music",
+        "Fine Music",
+        "GLM Music GmbH",
+        "Pauler Acoustics",
+        "Master Media Productions"
+      ],
+      "type": "master",
+      "genre": [
+        "Jazz",
+        "Latin",
+        "Folk, World, & Country"
+      ],
+      "style": [
+        "Tango",
+        "Samba",
+        "Gypsy Jazz",
+        "Big Band"
+      ],
+      "id": 773633,
+      "barcode": [
+        "4 014063 415110",
+        "4014063415110",
+        "LC 11188",
+        "GEMA",
+        "FM-151-1 A DMM H.P. MMP VINYL",
+        "FM-151-1 B DMM H.P. MMP VINYL",
+        "FM-151-1 C DMM H.P. MMP VINYL",
+        "FM-151-1 D DMM H.P. MMP VINYL"
+      ],
+      "master_id": 773633,
+      "master_url": "https://api.discogs.com/masters/773633",
+      "uri": "/master/773633-Quadro-Nuevo-Grand-Voyage",
+      "catno": "FM 151-1",
+      "title": "Quadro Nuevo - Grand Voyage",
+      "thumb": "https://i.discogs.com/3PVMUVqzPYwRAA6kzLGx6FrpRwjmMDdsWvjzxcVdN-Q/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYyOTA5/OTYtMTQxNTc4NDgx/MS0xOTA3LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/a643NTxnmCB1Cz3Rf7HAB-T7mRnkEXtQNsVtcexJbqg/rs:fit/g:sm/q:90/h:598/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTYyOTA5/OTYtMTQxNTc4NDgx/MS0xOTA3LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/773633",
+      "community": {
+        "want": 6,
+        "have": 114
+      }
+    },
+    {
+      "country": "US",
+      "year": "2021",
+      "format": [
+        "Cassette",
+        "Limited Edition"
+      ],
+      "label": [
+        "Business Casual"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Vaporwave"
+      ],
+      "id": 2071489,
+      "barcode": [],
+      "master_id": 2071489,
+      "master_url": "https://api.discogs.com/masters/2071489",
+      "uri": "/Telenights-%E6%9C%A8%E6%BC%8F%E3%82%8C%E6%97%A5/master/2071489",
+      "catno": "BIZC300",
+      "title": "Telenights - \u6728\u6f0f\u308c\u65e5",
+      "thumb": "https://i.discogs.com/QdNPlfHWfQlMRmadaNQlKclyyK3DFUfafnJgaAlJCL4/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE4MTM2/MDkzLTE2MTc0NjIy/MzctOTIxMS5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/wDFeNCQVqzI3QePIXge6YE-QKFG_jzhRN7M5LId4bz4/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE4MTM2/MDkzLTE2MTc0NjIy/MzctOTIxMS5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/2071489",
+      "community": {
+        "want": 12,
+        "have": 53
+      }
+    },
+    {
+      "country": "France",
+      "year": "1981",
+      "format": [
+        "Vinyl",
+        "LP"
+      ],
+      "label": [
+        "Disques D\u00e9esse"
+      ],
+      "type": "master",
+      "genre": [
+        "Stage & Screen"
+      ],
+      "style": [],
+      "id": 1584913,
+      "barcode": [],
+      "master_id": 1584913,
+      "master_url": "https://api.discogs.com/masters/1584913",
+      "uri": "/Georges-Hatzinassios-On-A-Vol%C3%A9-La-Cuisse-De-Jupiter/master/1584913",
+      "catno": "DDLX 192",
+      "title": "Georges Hatzinassios* - On A Vol\u00e9 La Cuisse De Jupiter",
+      "thumb": "https://i.discogs.com/FNiBQSIsghtl1ezeHKakZv98VYbLjEBN0hCVzb7Ra0s/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg2Mzgy/MTktMTQ2NTY2NzYx/Ni0zMDM5LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/ESaMtTVej1YW4MDnNGscQkNSRv86TjtC-hpBesQc-5E/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg2Mzgy/MTktMTQ2NTY2NzYx/Ni0zMDM5LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1584913",
+      "community": {
+        "want": 14,
+        "have": 25
+      }
+    },
+    {
+      "country": "Hungary",
+      "year": "2022",
+      "format": [
+        "CD",
+        "Album",
+        "Stereo"
+      ],
+      "label": [
+        "H Music"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Symphonic Metal",
+        "Progressive Metal"
+      ],
+      "id": 2824256,
+      "barcode": [
+        "9 008798 480777"
+      ],
+      "master_id": 2824256,
+      "master_url": "https://api.discogs.com/masters/2824256",
+      "uri": "/master/2824256-Meteora-Of-Shades-And-Colours",
+      "catno": "H-058CD",
+      "title": "Meteora (2) - ...Of Shades And Colours",
+      "thumb": "https://i.discogs.com/-tMXtaR5y5JPOK82Tp5B21yWKx0oyrjjPOEYBQklxME/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0ODI4/MTM0LTE2NjU4MTI1/NjEtMjE1Ni5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/4TR3vENalhdp9E4xfYDMvWqMV9ZoCj1rutnoP3zDpQg/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTI0ODI4/MTM0LTE2NjU4MTI1/NjEtMjE1Ni5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/2824256",
+      "community": {
+        "want": 4,
+        "have": 10
+      }
+    },
+    {
+      "country": "Italy",
+      "year": "2019",
+      "format": [
+        "CDr",
+        "Album"
+      ],
+      "label": [
+        "Not On Label (Federico Romanzi Self-released)",
+        "Federico Romanzi"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Italodance",
+        "Lento Violento",
+        "Progressive Trance"
+      ],
+      "id": 1575141,
+      "barcode": [
+        "S.I.A.E."
+      ],
+      "master_id": 1575141,
+      "master_url": "https://api.discogs.com/masters/1575141",
+      "uri": "/Federico-Romanzi-Dream/master/1575141",
+      "catno": "FR001",
+      "title": "Federico Romanzi - Dream",
+      "thumb": "https://i.discogs.com/Wyc0w8R5x5FnHJBEv71KhxycbtaWj4Ac9yFY3mrg-ec/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzOTIz/ODQwLTE1NjQxNjQw/OTktNzQ0Ny5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/eljLqavZe1405i-8yveqXGj43SWXY9_nq2XRIdSQfe4/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEzOTIz/ODQwLTE1NjQxNjQw/OTktNzQ0Ny5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1575141",
+      "community": {
+        "want": 1,
+        "have": 36
+      }
+    },
+    {
+      "country": "Belgium",
+      "year": "2016",
+      "format": [
+        "File",
+        "MP3"
+      ],
+      "label": [
+        "Dacru Records"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Psy-Trance"
+      ],
+      "id": 2849773,
+      "barcode": [],
+      "master_id": 2849773,
+      "master_url": "https://api.discogs.com/masters/2849773",
+      "uri": "/master/2849773-Alpha-Omega-Transcendental",
+      "catno": "DCREP051",
+      "title": "Alpha & Omega (7) - Transcendental",
+      "thumb": "https://i.discogs.com/k7FNAP_qOBJCeSkBNPXceb_FV0XRZMP3XhmUvA5JjCA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg3NDMw/ODQtMTQ2NzgwNzAx/OS01MzI3LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/oPMK6vvABbFwg28rBnFXWJpnyx6kWHKwFGZVcTxx7ug/rs:fit/g:sm/q:90/h:512/w:512/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg3NDMw/ODQtMTQ2NzgwNzAx/OS01MzI3LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/2849773",
+      "community": {
+        "want": 1,
+        "have": 4
+      }
+    },
+    {
+      "country": "Europe",
+      "year": "2003",
+      "format": [
+        "CD",
+        "Single",
+        "Enhanced"
+      ],
+      "label": [
+        "Warner Bros. Records",
+        "Warner Bros. Records"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Alternative Rock",
+        "Nu Metal"
+      ],
+      "id": 74529,
+      "barcode": [
+        "093624263227",
+        "IFPI L506",
+        "DISCTRONICS W 610 CD 1 01",
+        "IFPI 8733"
+      ],
+      "master_id": 74529,
+      "master_url": "https://api.discogs.com/masters/74529",
+      "uri": "/master/74529-Linkin-Park-Faint",
+      "catno": "W610CD1",
+      "title": "Linkin Park - Faint",
+      "thumb": "https://i.discogs.com/A1VTnqSA0rKE27J7rOVXYgRK2KQxB_35tWmYnGtWT4k/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNzUw/MjYtMTY5OTgwNDA4/OS05MzgwLmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/XwLjb8dOvoUYcr6faN8pWRNAwthMfcjXSjZYsZAGK2Q/rs:fit/g:sm/q:90/h:524/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNzUw/MjYtMTY5OTgwNDA4/OS05MzgwLmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/74529",
+      "community": {
+        "want": 895,
+        "have": 1247
+      }
+    },
+    {
+      "country": "Canada",
+      "year": "2017",
+      "format": [
+        "File",
+        "MP3",
+        "Album"
+      ],
+      "label": [
+        "Emergent Shores",
+        "Proton LLC",
+        "Emergent Shores",
+        "Emergent Shores"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Progressive Trance",
+        "Progressive House"
+      ],
+      "id": 1493828,
+      "barcode": [
+        "853565170271",
+        "US83Z1666628",
+        "US83Z1666629",
+        "US83Z1666630",
+        "US83Z1666631",
+        "US83Z1666632",
+        "US83Z1666633",
+        "US83Z1666634",
+        "US83Z1666635",
+        "US83Z1666636",
+        "US83Z1666637"
+      ],
+      "master_id": 1493828,
+      "master_url": "https://api.discogs.com/masters/1493828",
+      "uri": "/master/1493828-South-Pole-Keep-Your-Heart-LP",
+      "catno": "ESH023",
+      "title": "South Pole - Keep Your Heart LP",
+      "thumb": "https://i.discogs.com/8ZomVwq4zVcdN1zyJiX_Uh2VdrySPxpv_kPDvyWMurg/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTk2ODcy/MDAtMTQ4NDc2OTQ3/Ny0yMzQ5LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/hp1FkfxuJqH63jOJxUmJ8Rro87ylLUGJsgVeGteAaJs/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTk2ODcy/MDAtMTQ4NDc2OTQ3/Ny0yMzQ5LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1493828",
+      "community": {
+        "want": 2,
+        "have": 7
+      }
+    },
+    {
+      "country": "Japan",
+      "year": "2014",
+      "format": [
+        "CD",
+        "Compilation"
+      ],
+      "label": [
+        "Amateras Records"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Happy Hardcore",
+        "Hardcore",
+        "Trance",
+        "House",
+        "Psy-Trance"
+      ],
+      "id": 2446723,
+      "barcode": [],
+      "master_id": 2446723,
+      "master_url": "https://api.discogs.com/masters/2446723",
+      "uri": "/master/2446723-Various-Crevice-Of-Darkness",
+      "catno": "AMRC-0022",
+      "title": "Various - Crevice Of Darkness",
+      "thumb": "https://i.discogs.com/6pTpBzvdLIkBc-dko8-MQwk7Of5Z-MlPc1JrP7GQA5k/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY1MjAw/NTItMTQyMTEwMjQ3/OS00Mjk3LmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/WKEBHTLoStZ85cVpnccumx5EuOx3Is13lWKDx3Y4uOg/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY1MjAw/NTItMTQyMTEwMjQ3/OS00Mjk3LmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/2446723",
+      "community": {
+        "want": 2,
+        "have": 4
+      }
+    },
+    {
+      "country": "Netherlands",
+      "year": "2018",
+      "format": [
+        "CD",
+        "Album",
+        "Stereo"
+      ],
+      "label": [
+        "Not On Label"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Space Rock",
+        "Stoner Rock",
+        "Alternative Rock"
+      ],
+      "id": 1380904,
+      "barcode": [],
+      "master_id": 1380904,
+      "master_url": "https://api.discogs.com/masters/1380904",
+      "uri": "/Stone-Oak-Cosmonaut-The-Last-Machine/master/1380904",
+      "catno": "none",
+      "title": "Stone Oak Cosmonaut - The Last Machine",
+      "thumb": "https://i.discogs.com/_Sd_Shey4A1YUbp8Z6mEeM1jEtjEuJEsOFtvfqQI5HE/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExNDg2/MTI2LTE1MTcxNzEw/ODYtNjE2OC5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/UpW1Rw0Nt1B6z_6FstcAjv7vqvI2S6aQOn-W7fe96ks/rs:fit/g:sm/q:90/h:537/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTExNDg2/MTI2LTE1MTcxNzEw/ODYtNjE2OC5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1380904",
+      "community": {
+        "want": 6,
+        "have": 7
+      }
+    },
+    {
+      "country": "Europe",
+      "year": "2003",
+      "format": [
+        "CD",
+        "Single"
+      ],
+      "label": [
+        "Warner Bros. Records"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Nu Metal"
+      ],
+      "id": 74535,
+      "barcode": [
+        "054391657626",
+        "IFPI L011",
+        "IFPI 0519",
+        "543916576-2 09/03 V01",
+        "GEMA/BIEM",
+        "LC 00392"
+      ],
+      "master_id": 74535,
+      "master_url": "https://api.discogs.com/masters/74535",
+      "uri": "/master/74535-Linkin-Park-Numb",
+      "catno": "5439 16576 2",
+      "title": "Linkin Park - Numb",
+      "thumb": "https://i.discogs.com/ooY1hxL0ZI__aL2uodAIRsti1FIT0gANG3g85SjCYxA/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg0OTA5/MS0xMzQ1NjE2ODE2/LTMwMTUuanBlZw.jpeg",
+      "cover_image": "https://i.discogs.com/cq9c0iABTDa6Ih6D5cJsNx4OANtKVFgUONoK4-cR8nw/rs:fit/g:sm/q:90/h:601/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg0OTA5/MS0xMzQ1NjE2ODE2/LTMwMTUuanBlZw.jpeg",
+      "resource_url": "https://api.discogs.com/masters/74535",
+      "community": {
+        "want": 669,
+        "have": 886
+      }
+    },
+    {
+      "country": "Taiwan",
+      "year": "2013",
+      "format": [
+        "CD",
+        "Album",
+        "DVD",
+        "DVD-Video"
+      ],
+      "label": [
+        "Meteora Records",
+        "Meteora Records",
+        "Hove"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Death Metal",
+        "Melodic Death Metal"
+      ],
+      "id": 1492922,
+      "barcode": [
+        "4 717954 169207"
+      ],
+      "master_id": 1492922,
+      "master_url": "https://api.discogs.com/masters/1492922",
+      "uri": "/%E7%83%99%E5%8D%B0%E4%B9%8B%E6%97%A5-Ashes-of-the-Dawn-%E6%9B%99%E5%85%89%E4%B9%8B%E7%87%BC/master/1492922",
+      "catno": "MTR-003",
+      "title": "\u70d9\u5370\u4e4b\u65e5* - Ashes of the Dawn \u66d9\u5149\u4e4b\u71fc",
+      "thumb": "https://i.discogs.com/-3uvrlY6rOFPxrM-kkwVSb0ub_l4Zs0RzQAJQ2ekkT4/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc0MTc2/NTYtMTQ0MTEwOTQw/My04MTcwLmpwZWc.jpeg",
+      "cover_image": "https://i.discogs.com/6koiSQoDySWicGVnC83b5ma1YyyPvxfuwCDuq98QcA4/rs:fit/g:sm/q:90/h:450/w:450/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc0MTc2/NTYtMTQ0MTEwOTQw/My04MTcwLmpwZWc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1492922",
+      "community": {
+        "want": 6,
+        "have": 33
+      }
+    },
+    {
+      "country": "Europe",
+      "year": "2003",
+      "format": [
+        "CD",
+        "Maxi-Single"
+      ],
+      "label": [
+        "Warner Bros. Records"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Alternative Rock",
+        "Nu Metal"
+      ],
+      "id": 74537,
+      "barcode": [
+        "0-93624-26752-2"
+      ],
+      "master_id": 74537,
+      "master_url": "https://api.discogs.com/masters/74537",
+      "uri": "/Linkin-Park-From-The-Inside/master/74537",
+      "catno": "9362 42675-2",
+      "title": "Linkin Park - From The Inside",
+      "thumb": "https://i.discogs.com/x2NDGr2OfyG3Sa2Fj1wLdsst-lVnoFMn-XkzeYOTbdQ/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDMy/ODUtMTI2Nzk4NDE2/Ni5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/ewNJEvm9EFmHsgw5Yawb1kFpJKfBXVhAgMVS14On8pI/rs:fit/g:sm/q:90/h:465/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDMy/ODUtMTI2Nzk4NDE2/Ni5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/74537",
+      "community": {
+        "want": 291,
+        "have": 341
+      }
+    },
+    {
+      "country": "US",
+      "year": "2001",
+      "format": [
+        "DVD",
+        "DVD-Video"
+      ],
+      "label": [
+        "Warner Bros. Records"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Nu Metal"
+      ],
+      "id": 174908,
+      "barcode": [
+        "0 7599-38592-2 5"
+      ],
+      "master_id": 174908,
+      "master_url": "https://api.discogs.com/masters/174908",
+      "uri": "/master/174908-Linkin-Park-Frat-Party-At-The-Pankake-Festival",
+      "catno": "38592-2",
+      "title": "Linkin Park - Frat Party At The Pankake Festival",
+      "thumb": "https://i.discogs.com/QbTutaAY8i9zPGr5Gcs2R1IcxocstobRdIIxKrExaRY/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ1OTEy/MS0xNDMyNTAwOTE4/LTg0MTQuanBlZw.jpeg",
+      "cover_image": "https://i.discogs.com/VSFxHrKDBXBMyCFX_AZZtN1UbGyNkRzojeNWxR4AMCY/rs:fit/g:sm/q:90/h:862/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTQ1OTEy/MS0xNDMyNTAwOTE4/LTg0MTQuanBlZw.jpeg",
+      "resource_url": "https://api.discogs.com/masters/174908",
+      "community": {
+        "want": 347,
+        "have": 1093
+      }
+    },
+    {
+      "country": "US",
+      "year": "2017",
+      "format": [
+        "Cassette",
+        "Compilation",
+        "Limited Edition"
+      ],
+      "label": [
+        "Elestial Sound"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Ambient",
+        "Experimental",
+        "Minimal",
+        "IDM",
+        "Abstract",
+        "Downtempo",
+        "House",
+        "Chillwave",
+        "Techno",
+        "Synth-pop",
+        "New Age",
+        "Modern Classical"
+      ],
+      "id": 1198834,
+      "barcode": [],
+      "master_id": 1198834,
+      "master_url": "https://api.discogs.com/masters/1198834",
+      "uri": "/Various-A-Thousand-Tones/master/1198834",
+      "catno": "ES26",
+      "title": "Various - A Thousand Tones",
+      "thumb": "https://i.discogs.com/UxqxZLxhMKqwRlox_nQNmvYWf7kIx--mfNWv6Hkp5pQ/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwNDY3/OTkyLTE0OTgwNDg4/NjMtNzIzNy5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/LOcnpAjKOFBidecA8ECcS8dV1PmkeZnJXQb7e07wOzQ/rs:fit/g:sm/q:90/h:942/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwNDY3/OTkyLTE0OTgwNDg4/NjMtNzIzNy5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1198834",
+      "community": {
+        "want": 17,
+        "have": 8
+      }
+    },
+    {
+      "country": "Europe",
+      "year": "2004",
+      "format": [
+        "CD",
+        "Maxi-Single",
+        "Enhanced"
+      ],
+      "label": [
+        "Machine Shop Recordings",
+        "Warner Bros. Records",
+        "Warner Bros. Records",
+        "Warner Bros. Records Inc.",
+        "Warner Bros. Records Inc.",
+        "WEA International Inc.",
+        "WEA International Inc.",
+        "Zomba Songs Inc.",
+        "Zomba Enterprises, Inc.",
+        "Chesterchaz Publishing",
+        "Big Bad Mr. Hahn Music",
+        "Nondisclosure Agreement Music",
+        "Rob Bourdon Music",
+        "Kenji Kobayashi Music",
+        "Pancakey Cakes Music",
+        "Cinram"
+      ],
+      "type": "master",
+      "genre": [
+        "Rock"
+      ],
+      "style": [
+        "Alternative Rock",
+        "Nu Metal"
+      ],
+      "id": 74538,
+      "barcode": [
+        "0 93624 27212 0",
+        "093624272120",
+        "Warner Music (logotype) 936242721-2 05/04 V01",
+        "IFPI L012",
+        "IFPI 0544",
+        "IFPI 0568",
+        "LC 00392"
+      ],
+      "master_id": 74538,
+      "master_url": "https://api.discogs.com/masters/74538",
+      "uri": "/master/74538-Linkin-Park-Breaking-The-Habit",
+      "catno": "9362-42721-2",
+      "title": "Linkin Park - Breaking The Habit",
+      "thumb": "https://i.discogs.com/tOlPbfWXvDfxWZSQE1NhqqBO4FRdmi7VUsTOqLafKiQ/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDMz/MDktMTI2Nzk4MzUz/Mi5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/c2nkX96gcrRsz_UH1f2B2BaHNfaGSYolTtJ-X-7yqrk/rs:fit/g:sm/q:90/h:461/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyNDMz/MDktMTI2Nzk4MzUz/Mi5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/74538",
+      "community": {
+        "want": 575,
+        "have": 779
+      }
+    },
+    {
+      "country": "Belgium",
+      "year": "2020",
+      "format": [
+        "File",
+        "MP3",
+        "EP"
+      ],
+      "label": [
+        "Haunted"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Techno",
+        "Doomcore"
+      ],
+      "id": 1748308,
+      "barcode": [],
+      "master_id": 1748308,
+      "master_url": "https://api.discogs.com/masters/1748308",
+      "uri": "/Der-Heine-Mindwalker-Asteroids/master/1748308",
+      "catno": "HNTD-EP-007",
+      "title": "Der Heine & Mindwalker - Asteroids",
+      "thumb": "https://i.discogs.com/BZCQPub7k6ImXGTRNvcyizZ46jFC06HhNssAKC9srwo/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1NDAz/MjI2LTE1OTA5NTcx/ODItNjI2OS5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/l_x5Yhp83dB5p0aulYU2oY6xY8y4MZKFqO_ncbWJbnI/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE1NDAz/MjI2LTE1OTA5NTcx/ODItNjI2OS5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1748308",
+      "community": {
+        "want": 0,
+        "have": 3
+      }
+    },
+    {
+      "country": "Canada",
+      "year": "2019",
+      "format": [
+        "Vinyl",
+        "12\"",
+        "EP",
+        "Limited Edition"
+      ],
+      "label": [
+        "Yung Dumb Records"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "House",
+        "Breakbeat",
+        "Italo-Disco"
+      ],
+      "id": 1768730,
+      "barcode": [],
+      "master_id": 1768730,
+      "master_url": "https://api.discogs.com/masters/1768730",
+      "uri": "/Fernanda-Arrau-Cook/master/1768730",
+      "catno": "YD008",
+      "title": "Fernanda Arrau - Cook",
+      "thumb": "https://i.discogs.com/pgKQUV5NS0GR1k18SAKLhZfX-D-C-cOf8MNRY2VfeWw/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0ODg1/MjYxLTE1ODQ5NDIw/ODYtMTIzMC5wbmc.jpeg",
+      "cover_image": "https://i.discogs.com/a3DwoNYb5-UAYnjsthg_CAVQFZdCMkAYLWsI5GejdNc/rs:fit/g:sm/q:90/h:599/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE0ODg1/MjYxLTE1ODQ5NDIw/ODYtMTIzMC5wbmc.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1768730",
+      "community": {
+        "want": 7,
+        "have": 8
+      }
+    },
+    {
+      "country": "Australia",
+      "year": "2016",
+      "format": [
+        "File",
+        "MP3",
+        "Album"
+      ],
+      "label": [
+        "Not On Label (Deepspace (3) Self-Released)"
+      ],
+      "type": "master",
+      "genre": [
+        "Electronic"
+      ],
+      "style": [
+        "Ambient"
+      ],
+      "id": 1155234,
+      "barcode": [],
+      "master_id": 1155234,
+      "master_url": "https://api.discogs.com/masters/1155234",
+      "uri": "/Deepspace-The-Empty-Atoms/master/1155234",
+      "catno": "none",
+      "title": "Deepspace (3) - The Empty Atoms",
+      "thumb": "https://i.discogs.com/tSdXSUBVdBjF7hKgLQ85ReC0GmiowFWhDYEbbdJZx9U/rs:fit/g:sm/q:40/h:150/w:150/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDMz/MTU3LTE0OTA0NTg3/NzQtMzM3OS5qcGVn.jpeg",
+      "cover_image": "https://i.discogs.com/OFT63XGl5I7pO17F_z1XxINd_2GnFJVn7A9XMEm7h9g/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEwMDMz/MTU3LTE0OTA0NTg3/NzQtMzM3OS5qcGVn.jpeg",
+      "resource_url": "https://api.discogs.com/masters/1155234",
+      "community": {
+        "want": 0,
+        "have": 4
+      }
+    }
+  ]
+}

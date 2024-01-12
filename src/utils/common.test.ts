@@ -1,4 +1,4 @@
-import { castArray, usernameIsValid } from './common';
+import { castArray, usernameIsValid, sanitizeProvider } from './common';
 
 describe('`castArray` helper', () => {
   it('returns an array when given an array', () => {
@@ -29,5 +29,22 @@ describe('`usernameIsValid` helper', () => {
     expect(usernameIsValid('acbdef0123456789')).toBe(false);
     expect(usernameIsValid('-john_mayer')).toBe(false);
     expect(usernameIsValid('_john_mayer')).toBe(false);
+  });
+});
+
+describe('`sanitizeProvider` helper', () => {
+  it('returns the given provider when it is valid', () => {
+    expect(sanitizeProvider('lastfm')).toBe('lastfm');
+    expect(sanitizeProvider('discogs')).toBe('discogs');
+    expect(sanitizeProvider('spotify')).toBe('spotify');
+  });
+
+  it('returns the default provider when an invalid string is received', () => {
+    expect(sanitizeProvider('winamp')).toBe('discogs');
+    expect(sanitizeProvider(undefined)).toBe('discogs');
+  });
+
+  it('returns a custom default provider when an invalid one is given', () => {
+    expect(sanitizeProvider('winamp', 'lastfm')).toBe('lastfm');
   });
 });
