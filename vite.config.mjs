@@ -75,10 +75,11 @@ const viteConfig = ({ mode }) =>
       }),
       VitePWA({
         registerType: 'prompt',
-        injectRegister: 'inline',
+        injectRegister: 'auto',
         srcDir: 'build',
-        filename: 'service-worker.js',
+        filename: 'sw.js',
         manifest,
+        selfDestroying: true, // Let's try to clean things up
         manifestFilename: 'site.webmanifest',
         minify: false, // Applies to manifest
         workbox: {
