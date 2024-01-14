@@ -22,6 +22,8 @@ import { DEFAULT_SONG_DURATION } from 'Constants';
 
 import './SongForm.css';
 
+import type { Scrobble } from 'utils/types/scrobble';
+
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 const Tooltip = lazyWithPreload(() => import('components/Tooltip'));
 
@@ -153,11 +155,15 @@ export function SongForm() {
     }
   };
 
-  const cloneDataFromScrobble = (scrobble) => {
+  const cloneDataFromScrobble = (scrobble: Partial<Scrobble>) => {
     setArtist(scrobble.artist);
     setTitle(scrobble.title);
     setAlbum(scrobble.album ?? album);
     setAlbumArtist(scrobble.albumArtist ?? albumArtist);
+    if (scrobble.timestamp && scrobble.timestamp instanceof Date) {
+      setTimestamp(scrobble.timestamp);
+      setIsCustomDate(true);
+    }
     validateForm();
   };
 

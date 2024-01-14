@@ -1,10 +1,17 @@
 /* Looking for the localstorage save filter? See `store/index.js` */
 // ToDo: use localforage? (as it's already needed for the adapters anyway)
 
+function reviveDates(key, value) {
+  if (key === 'timestamp') {
+    return new Date(value);
+  }
+  return value;
+}
+
 export function loadState() {
   const serializedState = loadFromLocalStorage('state');
   if (serializedState === null) return undefined;
-  return JSON.parse(serializedState) || null;
+  return JSON.parse(serializedState, reviveDates) || null;
 }
 
 export function saveState(state) {

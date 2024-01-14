@@ -94,7 +94,11 @@ export const ScrobbleSong: FC = () => {
         <div className="col-md-6 SongFormLists-container">
           <Nav tabs>
             <NavItem>
-              <NavLink className={activeTab === 'history' ? 'active' : ''} onClick={goToHistoryTab}>
+              <NavLink
+                className={activeTab === 'history' ? 'active' : ''}
+                onClick={goToHistoryTab}
+                data-cy="ScrobbleSong-history-tab"
+              >
                 <FontAwesomeIcon icon={faHistory} />
                 <span className="ps-1 px-2">
                   <Trans i18nKey="history">History</Trans>
@@ -107,6 +111,7 @@ export const ScrobbleSong: FC = () => {
                 disabled={!hasUsername}
                 className={activeTab === 'userProfile' ? 'active' : ''}
                 onClick={goToProfileTab}
+                data-cy="ScrobbleSong-profile-tab"
               >
                 <FontAwesomeIcon icon={hasUsername ? faUserAstronaut : faCompactDisc} spin={!hasUsername} />
                 <span className="ps-2">

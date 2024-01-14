@@ -68,7 +68,8 @@ export default function ScrobbleItem({
       category: 'Interactions',
       action: 'Clone track',
     });
-    cloneScrobbleTo?.(scrobble);
+    // Hack: the timestamp is ketp in compact mode (profile view) and removed when not (profile view)
+    cloneScrobbleTo?.(compact ? scrobble : { ...scrobble, timestamp: undefined });
   };
 
   const toggleMoreMenu = () => {
@@ -254,12 +255,17 @@ export default function ScrobbleItem({
     rightSideContent = (
       <div>
         <Dropdown isOpen={dropdownOpen} toggle={toggleMoreMenu}>
-          <DropdownToggle tag="div" onClick={toggleMoreMenu} aria-expanded={dropdownOpen}>
+          <DropdownToggle
+            tag="div"
+            onClick={toggleMoreMenu}
+            aria-expanded={dropdownOpen}
+            data-cy="ScrobbleItem-toggle-menu"
+          >
             <Button className="btn-more" size="sm" color="secondary" outline>
               <FontAwesomeIcon icon={faEllipsisH} />
             </Button>
           </DropdownToggle>
-          <DropdownMenu end>
+          <DropdownMenu end data-cy="ScrobbleItem-menu">
             <DropdownItem onClick={scrobbleAgain}>
               <FontAwesomeIcon icon={faRedoAlt} className="me-2" />
               <Trans i18nKey="scrobbleAgain">Scrobble again</Trans>
@@ -303,7 +309,7 @@ export default function ScrobbleItem({
   const scrobbleItemClasses = `scrobbled-item status-${scrobble.status} ${compact ? 'compact' : 'card mb-2'}`;
 
   return (
-    <div className={scrobbleItemClasses}>
+    <div className={scrobbleItemClasses} data-cy="ScrobbleItem">
       <div className={`d-flex flex-row align-items-center p-2 ${compact ? 'flex-wrap' : ''}`}>
         {selectionCheckbox}
         {albumArt && <div className="albumArt align-self-center pe-2">{albumArt}</div>}

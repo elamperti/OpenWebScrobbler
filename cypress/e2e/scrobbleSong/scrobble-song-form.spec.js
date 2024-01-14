@@ -6,12 +6,15 @@ describe('Scrobble song (form)', () => {
     cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/authenticated.json' }).as('userData');
     cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/authenticated.json' });
     cy.intercept('POST', '/api/v2/scrobble.php', { fixture: 'api/v2/scrobble/success.json' }).as('scrobbleData');
+    cy.intercept('GET', 'https://ws.audioscrobbler.com/2.0/*method=user.getRecentTracks*', {
+      fixture: 'lastfm/user/getRecentTracks.chairmandore.json',
+    }).as('recentTracks');
 
     cy.visit('/scrobble/song');
-    cy.location('pathname').should('equal', '/scrobble/song');
   });
 
   it('displays the page', () => {
+    cy.location('pathname').should('equal', '/scrobble/song');
     cy.get('[data-cy="ScrobbleSong"]');
   });
 
@@ -116,6 +119,47 @@ describe('Scrobble song (form)', () => {
         cy.get('[data-cy="SongForm-album"]').should('have.value', 'AM');
         cy.get('[data-cy="SongForm-albumArtist"]').should('have.value', 'Other');
       });
+    });
+  });
+
+  describe('interactions', () => {
+    it('fills the form properly with a scrobble from recent history', () => {
+      // Scrobble a song to be used as recent track
+      cy.get('[data-cy="SongForm-artist"]').type('Arctic Monkeys', { delay: 0 });
+      cy.get('[data-cy="SongForm-title"]').type('Arabella', { delay: 0 });
+      cy.get('[data-cy="SongForm-album"]').type('AM', { delay: 0 });
+      cy.get('[data-cy="SongForm-albumArtist"]').type('Other', { delay: 0 });
+      cy.get('[data-cy="scrobble-button"]').click();
+      cy.wait('@scrobbleData');
+
+      cy.get('[data-cy="ScrobbleSong-history-tab"]').click();
+      cy.get('[data-cy="ScrobbleItem-toggle-menu"]').first().click();
+      cy.get('[data-cy="ScrobbleItem-menu"]').contains('Copy to editor').click();
+
+      // Verify song title and artist match
+      cy.get('[data-cy="SongForm-title"]').should('have.value', 'Arabella');
+      cy.get('[data-cy="SongForm-artist"]').should('have.value', 'Arctic Monkeys');
+      cy.get('[data-cy="SongForm-album"]').should('have.value', 'AM');
+      cy.get('[data-cy="SongForm-albumArtist"]').should('have.value', 'Other');
+
+      // Timestamp picker shouldn't be visible
+      cy.get('[data-cy="DateTimePicker"]').should('not.exist');
+    });
+
+    it('fills the form properly with a scrobble from the user profile', () => {
+      cy.get('[data-cy="ScrobbleSong-profile-tab"]').click();
+      cy.wait('@recentTracks');
+      cy.get('[data-cy="ScrobbleItem-toggle-menu"]').first().click();
+      cy.get('[data-cy="ScrobbleItem-menu"]').contains('Copy to editor').click();
+
+      // Verify song title and artist match
+      cy.get('[data-cy="SongForm-title"]').should('have.value', 'Salad Days');
+      cy.get('[data-cy="SongForm-artist"]').should('have.value', 'Reaching Quiet');
+
+      // Timestamp picker should be visible (with custom date corresponding to the scrobble)
+      cy.get('[data-cy="DateTimePicker"]').should('be.visible');
+      cy.get('[data-cy="DateTimePicker-date"]').should('have.value', 'Oct 19th'); // FIXME: this should not work outside the 2 week range
+      cy.get('[data-cy="DateTimePicker-time"]').should('have.value', '03:22:35');
     });
   });
 });
