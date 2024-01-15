@@ -77,9 +77,8 @@ const viteConfig = ({ mode }) =>
         registerType: 'prompt',
         injectRegister: 'auto',
         srcDir: 'build',
-        filename: 'sw.js',
+        filename: 'service-worker.js',
         manifest,
-        selfDestroying: true, // Let's try to clean things up
         manifestFilename: 'site.webmanifest',
         minify: false, // Applies to manifest
         workbox: {

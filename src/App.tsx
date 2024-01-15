@@ -36,9 +36,7 @@ function App() {
   const growthbook = useGrowthBook();
   const { setLanguage } = useLanguage();
   const { isLoggedIn, user } = useUserData();
-  const serviceWorker = useRegisterSW({
-    immediate: false,
-  });
+  const serviceWorker = useRegisterSW();
 
   // This is used to trigger a suspense while i18n is loading
   const { ready: i18nReady } = useTranslation();
