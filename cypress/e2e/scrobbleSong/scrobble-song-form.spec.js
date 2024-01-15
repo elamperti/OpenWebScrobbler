@@ -125,10 +125,10 @@ describe('Scrobble song (form)', () => {
   describe('interactions', () => {
     it('fills the form properly with a scrobble from recent history', () => {
       // Scrobble a song to be used as recent track
-      cy.get('[data-cy="SongForm-artist"]').type('Arctic Monkeys', { delay: 0 });
-      cy.get('[data-cy="SongForm-title"]').type('Arabella', { delay: 0 });
-      cy.get('[data-cy="SongForm-album"]').type('AM', { delay: 0 });
-      cy.get('[data-cy="SongForm-albumArtist"]').type('Other', { delay: 0 });
+      cy.get('[data-cy="SongForm-artist"]').type('Arctic Monkeys');
+      cy.get('[data-cy="SongForm-title"]').type('Arabella');
+      cy.get('[data-cy="SongForm-album"]').type('AM');
+      cy.get('[data-cy="SongForm-albumArtist"]').type('Other');
       cy.get('[data-cy="scrobble-button"]').click();
       cy.wait('@scrobbleData');
 

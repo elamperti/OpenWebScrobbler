@@ -42,7 +42,7 @@ describe('Scrobble user (search)', () => {
   });
 
   it('navigates to a user SRP when enter key is pressed', () => {
-    cy.get('[data-cy="SearchForm-input"]').type('chairmandore{enter}', { delay: 5 });
+    cy.get('[data-cy="SearchForm-input"]').type('chairmandore{enter}');
 
     cy.location('pathname').should('equal', '/scrobble/user/chairmandore');
   });
@@ -53,7 +53,7 @@ describe('Scrobble user (search)', () => {
   });
 
   it('remembers a recently searched user', () => {
-    cy.get('[data-cy="SearchForm-input"]').type('chairmandore', { delay: 0 });
+    cy.get('[data-cy="SearchForm-input"]').type('chairmandore');
     cy.get('[data-cy="SearchForm-submit"]').click();
     cy.wait('@recentTracks').then(() => {
       cy.go('back');
