@@ -35,7 +35,7 @@ export const ScrobbleSong: FC = () => {
   const [cloneReceiver, setCloneReceiver] = useState(undefined);
   const localScrobbles = useSelector((state: RootState) => state.scrobbles.list);
   const unreadScrobbles = useSelector((state: RootState) => state.scrobbles.unreadCount);
-  const { user, isFetching } = useUserData();
+  const { user } = useUserData();
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
 
@@ -89,7 +89,7 @@ export const ScrobbleSong: FC = () => {
           <h2 className="mb-sm-4 mb-md-3">
             <FontAwesomeIcon icon={faPlayCircle} /> <Trans i18nKey="scrobbleSongs">Scrobble songs</Trans>
           </h2>
-          {isFetching ? <Spinner /> : <SongForm />}
+          <SongForm />
         </div>
         <div className="col-md-6 SongFormLists-container">
           <Nav tabs>

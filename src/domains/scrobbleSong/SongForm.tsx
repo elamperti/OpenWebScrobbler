@@ -1,4 +1,4 @@
-import { Suspense, useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { lazyWithPreload } from 'react-lazy-with-preload';
 import { useDispatch } from 'react-redux';
 import { Trans } from 'react-i18next';
@@ -52,13 +52,13 @@ export function SongForm() {
     artist: false,
   });
   const [albumArtist, setAlbumArtist] = useState('');
-  const [canScrobble, setCanScrobble] = useState(false);
+  const [formIsValid, setFormValid] = useState(false);
   const [timestamp, setTimestamp] = useState(new Date());
   const [title, setTitle] = useState('');
   const [isCustomDate, setIsCustomDate] = useState(false);
 
   const dispatch = useDispatch();
-  const { settings } = useSettings();
+  const { isLoading: settingsLoading, settings } = useSettings();
   const { setCloneFn } = useContext(ScrobbleCloneContext);
 
   // ToDo: refactor to use context or something more practical
@@ -101,8 +101,10 @@ export function SongForm() {
         }
         break;
       case 13: // Enter key
-        if (canScrobble) {
-          scrobbleSong();
+        if (formIsValid) {
+          if (!settingsLoading) {
+            scrobbleSong();
+          }
         } else if (event.target.id === 'artist') {
           document.getElementById('title').focus();
         }
@@ -254,13 +256,7 @@ export function SongForm() {
   };
 
   const validateForm = () => {
-    let formIsValid = false;
-
-    if (artist.trim().length > 0 && title.trim().length > 0) {
-      formIsValid = true;
-    }
-
-    setCanScrobble(formIsValid);
+    setFormValid(artist.trim().length > 0 && title.trim().length > 0);
   };
 
   return (
@@ -381,50 +377,40 @@ export function SongForm() {
         </div>
       </FormGroup>
       <FormGroup className="row">
-        <Suspense
-          fallback={
-            <div>
-              <Trans i18nKey="loading">Loading...</Trans>
-            </div>
-          }
-        >
-          <Label className="col-sm-3">
-            <Trans i18nKey="timestamp">Timestamp</Trans>
-          </Label>
-          <div className="col-sm-9 p-0">
-            <ButtonGroup className="w-100">
-              <Button
-                onClick={toggleTimestampMode}
-                aria-pressed={!isCustomDate}
-                data-cy="timestampMode-now"
-                active={!isCustomDate}
-                size="sm"
-                className="w-50"
-              >
-                <Trans i18nKey="now">Now</Trans>
-              </Button>
-              <Button
-                onClick={toggleTimestampMode}
-                aria-pressed={isCustomDate}
-                data-cy="timestampMode-custom"
-                active={isCustomDate}
-                size="sm"
-                className="w-50"
-              >
-                <Trans i18nKey="custom">Custom</Trans>
-              </Button>
-            </ButtonGroup>
-            <DateTimePicker value={timestamp} onChange={setTimestamp} visible={isCustomDate} />
-            <div className="row">
-              <div className="col-12 mt-1">
-                <FontAwesomeIcon icon={faLightbulb} />{' '}
-                <Trans i18nKey="lastfmWillRejectOldTimestamps">
-                  Last.fm will reject scrobbles older than two weeks
-                </Trans>
-              </div>
+        <Label className="col-sm-3">
+          <Trans i18nKey="timestamp">Timestamp</Trans>
+        </Label>
+        <div className="col-sm-9 p-0">
+          <ButtonGroup className="w-100">
+            <Button
+              onClick={toggleTimestampMode}
+              aria-pressed={!isCustomDate}
+              data-cy="timestampMode-now"
+              active={!isCustomDate}
+              size="sm"
+              className="w-50"
+            >
+              <Trans i18nKey="now">Now</Trans>
+            </Button>
+            <Button
+              onClick={toggleTimestampMode}
+              aria-pressed={isCustomDate}
+              data-cy="timestampMode-custom"
+              active={isCustomDate}
+              size="sm"
+              className="w-50"
+            >
+              <Trans i18nKey="custom">Custom</Trans>
+            </Button>
+          </ButtonGroup>
+          <DateTimePicker value={timestamp} onChange={setTimestamp} visible={isCustomDate} />
+          <div className="row">
+            <div className="col-12 mt-1">
+              <FontAwesomeIcon icon={faLightbulb} />{' '}
+              <Trans i18nKey="lastfmWillRejectOldTimestamps">Last.fm will reject scrobbles older than two weeks</Trans>
             </div>
           </div>
-        </Suspense>
+        </div>
       </FormGroup>
 
       <Button
@@ -433,7 +419,7 @@ export function SongForm() {
         color="success"
         onClick={scrobbleSong}
         data-cy="scrobble-button"
-        disabled={!canScrobble}
+        disabled={!formIsValid || settingsLoading}
       >
         <Trans i18nKey="scrobble">Scrobble</Trans>!
       </Button>
