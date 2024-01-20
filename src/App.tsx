@@ -13,8 +13,6 @@ import { useTranslation } from 'react-i18next';
 import { useRegisterSW } from 'virtual:pwa-register/react';
 import { useGrowthBook } from '@growthbook/growthbook-react';
 import { useUserData } from 'hooks/useUserData';
-import { authUserWithToken } from 'store/actions/userActions';
-import { useQueryClient } from '@tanstack/react-query';
 import { useLanguage } from 'hooks/useLanguage';
 
 import Routes from 'Routes';
@@ -32,7 +30,6 @@ function App() {
   const dispatch = useDispatch();
   const location = useLocation();
   const navigate = useNavigate();
-  const queryClient = useQueryClient();
   const growthbook = useGrowthBook();
   const { setLanguage } = useLanguage();
   const { isLoggedIn, user } = useUserData();
@@ -60,13 +57,8 @@ function App() {
     if (location.search && !isLoggedIn) {
       const token = queryString.token || null;
       if (token) {
-        // Clear the URL, but keep any alert (so login errors are shown)
-        navigate('/', { replace: true, state: { keepAlerts: true } });
-        authUserWithToken(dispatch)(token).finally(() =>
-          queryClient.invalidateQueries({
-            queryKey: ['user'],
-          })
-        );
+        // Redirect to callback handler, keep alerts
+        navigate(`/lastfm/callback/?token=${token}`, { replace: true, state: { keepAlerts: true } });
       }
     }
 

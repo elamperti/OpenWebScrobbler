@@ -12,7 +12,7 @@ const emptyUser = userTransformer(null);
 
 export const useUserData = () => {
   const [storedUserData, updateStoredUserData] = useLocalStorage('user', emptyUser);
-  const { data, isLoading, isFetching, isSuccess } = useQuery({
+  const { data, isLoading, isFetching, isSuccess, isStale, isError } = useQuery({
     queryKey: ['user', 'self'],
     queryFn: () =>
       userGetProfile().then((data) => {
@@ -38,6 +38,8 @@ export const useUserData = () => {
     user: data?.user,
     isLoggedIn: isLoading ? false : data?.isLoggedIn,
     isLoading,
+    isError,
     isFetching,
+    isReady: !isStale && !isFetching,
   };
 };

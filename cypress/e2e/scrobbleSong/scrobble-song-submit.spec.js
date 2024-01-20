@@ -11,10 +11,10 @@ describe('Scrobble song (scrobbling)', () => {
     cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/authenticated.json' });
     cy.intercept('POST', '/api/v2/scrobble.php', { fixture: 'api/v2/scrobble/success.json' }).as('scrobbleData');
 
+    cy.clock(scrobblingBaseDate, ['Date']);
+
     cy.visit('/scrobble/song');
     cy.location('pathname').should('equal', '/scrobble/song');
-
-    cy.clock(scrobblingBaseDate, ['Date']);
 
     cy.get('[data-cy="SongForm-artist"]').type('Arctic Monkeys', { delay: 0 });
     cy.get('[data-cy="SongForm-title"]').type('Arabella', { delay: 0 });

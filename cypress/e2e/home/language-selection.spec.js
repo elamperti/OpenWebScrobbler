@@ -7,7 +7,7 @@ describe('Language preferences', () => {
   describe('for visitors', () => {
     beforeEach(() => {
       cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/visitor.json' });
-      cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/visitor.json' });
+      cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/visitor.json', statusCode: 401 });
       cy.visit('/');
     });
 

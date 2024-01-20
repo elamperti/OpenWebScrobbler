@@ -2,8 +2,8 @@
 export const AUDIOSCROBBLER_API_URL = 'https://ws.audioscrobbler.com/2.0/';
 export const DISCOGS_API_URL = '/api/v2/discogs.php';
 export const LASTFM_AUTH_URL =
-  `https://www.last.fm/api/auth/?api_key=${process.env.REACT_APP_LASTFM_API_KEY}` +
-  `&cb=${window.location.protocol}//${window.location.host}/`;
+  `https://www.last.fm/api/auth?api_key=${process.env.REACT_APP_LASTFM_API_KEY}` +
+  `&cb=${window.location.protocol}//${window.location.host}/lastfm/callback/`;
 export const OPENSCROBBLER_API_URL = '/api/v2';
 export const CONSIDER_HISTORY_STALE_AFTER = 5 * 60 * 1000; // 5 minutes
 export const SETTINGS_DEBOUNCE_PERIOD = 3 * 1000; // 3 seconds

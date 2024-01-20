@@ -11,10 +11,12 @@ import {
   ScrobbleAlbumTracklist,
 } from 'domains/scrobbleAlbum';
 import { ScrobbleUserSearch, ScrobbleUserResults } from './domains/scrobbleUser';
+import { Callback } from 'domains/lastfm/Callback';
 
 export default function Routes() {
   return (
     <Switch>
+      <Route path="/lastfm/callback" element={<Callback />} />
       <Route path="/scrobble/song" element={<ScrobbleSong />} />
       <Route path="/scrobble/album" element={<PrivateRoute using={ScrobbleAlbumSearch} />} />
       <Route path="/scrobble/album/search/:albumName" element={<PrivateRoute using={ScrobbleAlbumResults} />} />

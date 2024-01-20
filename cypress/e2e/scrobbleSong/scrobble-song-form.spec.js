@@ -4,7 +4,7 @@ describe('Scrobble song (form)', () => {
     cy.clearCookies();
 
     cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/authenticated.json' }).as('userData');
-    cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/authenticated.json' });
+    cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/authenticated.json' }).as('settings');
     cy.intercept('POST', '/api/v2/scrobble.php', { fixture: 'api/v2/scrobble/success.json' }).as('scrobbleData');
     cy.intercept('GET', 'https://ws.audioscrobbler.com/2.0/*method=user.getRecentTracks*', {
       fixture: 'lastfm/user/getRecentTracks.chairmandore.json',
@@ -43,6 +43,24 @@ describe('Scrobble song (form)', () => {
     cy.get('[data-cy="SongForm"]').should('not.exist');
     cy.wait('@delayedUserData');
     cy.get('[data-cy="SongForm"]').should('exist');
+  });
+
+  it.skip('persists the form state while revalidating settings', () => {
+    cy.clock();
+    cy.wait('@userData');
+    cy.wait('@settings');
+
+    cy.get('[data-cy="SongForm-artist"]').type('Arctic Monkeys');
+    cy.get('[data-cy="SongForm-title"]').type('Arabella');
+
+    cy.tick(1000 * 60 * 5); // 5 minutes
+    cy.document().trigger('visibilitychange');
+
+    // FIXME: I couldn't trigger a user revalidation
+    cy.wait('@userData');
+
+    cy.get('[data-cy="SongForm-artist"]').should('have.value', 'Arctic Monkeys');
+    cy.get('[data-cy="SongForm-title"]').should('have.value', 'Arabella');
   });
 
   it('disables the Scrobble button when the form is incomplete', () => {

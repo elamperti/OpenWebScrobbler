@@ -14,9 +14,9 @@ export const useSettings = () => {
   const queryClient = useQueryClient();
   const [storedSettings, updateStoredSettings] = useLocalStorage('settings', defaultSettings);
   const { currentLanguage, setLanguage } = useLanguage();
-  const { isLoggedIn } = useUserData();
+  const { isReady: userIsReady, isLoggedIn } = useUserData();
 
-  const { data, isLoading, isFetching } = useQuery({
+  const { data, isLoading, isFetching, isSuccess, isFetched, isError } = useQuery({
     queryKey: ['user', 'settings'],
     queryFn: () =>
       userGetSettings().then((data) => {
@@ -24,7 +24,7 @@ export const useSettings = () => {
         return data;
       }),
     staleTime: Infinity,
-    enabled: !!isLoggedIn,
+    enabled: userIsReady && !!isLoggedIn,
     // placeholderData: storedSettings,
   });
 
@@ -48,7 +48,10 @@ export const useSettings = () => {
   return {
     settings: data,
     updateSettings: saveSettings.mutate,
-    isLoading,
+    isError,
     isFetching,
+    isLoading,
+    isReady: isFetched,
+    isSuccess,
   };
 };

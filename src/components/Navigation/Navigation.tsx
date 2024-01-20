@@ -52,7 +52,13 @@ export default function Navigation() {
           {isLoggedIn ? (
             <UserDropdown />
           ) : (
-            <NavigationItem external href={LASTFM_AUTH_URL} i18nKey="logIn" icon={faSignInAlt} />
+            <NavigationItem
+              external
+              href={LASTFM_AUTH_URL}
+              i18nKey="logIn"
+              icon={faSignInAlt}
+              data-cy="Navigation-login-link"
+            />
           )}
         </Nav>
       </Collapse>
