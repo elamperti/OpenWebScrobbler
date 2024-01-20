@@ -7,4 +7,8 @@ describe('Home (visitor)', () => {
   it('shows the visitor version of the home page', () => {
     cy.get('[data-cy="HomeVisitor"]');
   });
+
+  it('shows a login link in navigation', () => {
+    cy.get('[data-cy="NavigationItem-logIn"]').should('exist');
+  });
 });

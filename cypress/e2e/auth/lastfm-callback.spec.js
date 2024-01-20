@@ -43,6 +43,12 @@ describe('Authentication', () => {
       }).as('settings');
     });
 
+    it('hides the login link and user menu in navigation', () => {
+      cy.visit('/lastfm/callback/?token=s3CM7rzuQKurE0U_Enq_3RHTYrm7XyyT');
+      cy.get('[data-cy="NavigationItem-logIn"]').should('not.exist');
+      cy.get('[data-cy="UserDropdown"]').should('not.exist');
+    });
+
     it('authenticates the user correctly', () => {
       cy.visit('/lastfm/callback/?token=s3CM7rzuQKurE0U_Enq_3RHTYrm7XyyT');
       cy.wait('@callback');

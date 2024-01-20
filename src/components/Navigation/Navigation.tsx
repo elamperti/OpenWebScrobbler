@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHeadphonesAlt, faCompactDisc, faSignInAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
@@ -19,9 +19,19 @@ import './Navigation.scss';
 export default function Navigation() {
   const { isLoggedIn } = useUserData();
   const { settings } = useSettings();
+  const location = useLocation();
   const [menuIsOpen, toggleMenu] = useState(false);
+  const [showUserMenu, setUserMenuVisible] = useState(true);
   const bsBreakpoint = useBootstrapBreakpoint();
   const langSelectorInNav = bsBreakpoint > BS_SIZE_SM;
+
+  useEffect(() => {
+    if (location.pathname.includes('/lastfm/callback')) {
+      setUserMenuVisible(false);
+    } else {
+      setUserMenuVisible(true);
+    }
+  }, [location.pathname]);
 
   return (
     <Navbar
@@ -49,17 +59,12 @@ export default function Navigation() {
         )}
         <Nav navbar className="justify-content-end flex-grow-1">
           {langSelectorInNav && <LanguageSelector />}
-          {isLoggedIn ? (
-            <UserDropdown />
-          ) : (
-            <NavigationItem
-              external
-              href={LASTFM_AUTH_URL}
-              i18nKey="logIn"
-              icon={faSignInAlt}
-              data-cy="Navigation-login-link"
-            />
-          )}
+          {showUserMenu &&
+            (isLoggedIn ? (
+              <UserDropdown />
+            ) : (
+              <NavigationItem external href={LASTFM_AUTH_URL} i18nKey="logIn" icon={faSignInAlt} />
+            ))}
         </Nav>
       </Collapse>
     </Navbar>
