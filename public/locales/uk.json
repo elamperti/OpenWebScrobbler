@@ -71,20 +71,7 @@
       "short": "MMM do"
     },
     "months": {
-      "short": [
-        "січ.",
-        "лют.",
-        "бер.",
-        "кві.",
-        "тра.",
-        "чер.",
-        "лип.",
-        "сер.",
-        "вер.",
-        "жов.",
-        "лис.",
-        "гру."
-      ],
+      "short": ["січ.", "лют.", "бер.", "кві.", "тра.", "чер.", "лип.", "сер.", "вер.", "жов.", "лис.", "гру."],
       "long": [
         "Січень",
         "Лютий",
@@ -145,7 +132,7 @@
   "settingsSavedSuccessfully": "Ваші налаштування збережені успішно!",
   "loginError": {
     "title": "Помилка під час входу",
-    "message": "Сталася непередбачувана помилка. Ми шкодуємо про це!"
+    "message": "Сталася непередбачувана помилка."
   },
   "logoutInfo": {
     "title": "До нової зустрічі!",
@@ -157,5 +144,12 @@
   "slowDown": "Повільніше!",
   "slowDownMessage": "Ви скробблите занадто швидко. Будь ласка, зачекайте і спробуйте знов через декілька хвилин.",
   "comingSoon": "скоро",
-  "searchOnProvider": "Шукати на {{dataProvider}}"
+  "searchOnProvider": "Шукати на {{dataProvider}}",
+  "showTrackNumbers": "Show track number in album lists",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }

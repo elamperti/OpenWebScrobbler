@@ -71,20 +71,7 @@
       "short": "MMM do"
     },
     "months": {
-      "short": [
-        "Sty",
-        "Lut",
-        "Mar",
-        "Kwi",
-        "Maj",
-        "Cze",
-        "Lip",
-        "Sie",
-        "Wrz",
-        "Paź",
-        "Lis",
-        "Gru"
-      ],
+      "short": ["Sty", "Lut", "Mar", "Kwi", "Maj", "Cze", "Lip", "Sie", "Wrz", "Paź", "Lis", "Gru"],
       "long": [
         "Styczeń",
         "Luty",
@@ -145,7 +132,7 @@
   "settingsSavedSuccessfully": "Twoje ustawienia zostały zapisane z powodzeniem!",
   "loginError": {
     "title": "Błąd logowania",
-    "message": "Wystąpił nieoczekiwany błąd podczas logowania. Przepraszamy!"
+    "message": "Wystąpił nieoczekiwany błąd podczas logowania."
   },
   "logoutInfo": {
     "title": "Do zobaczenia!",
@@ -157,5 +144,12 @@
   "slowDown": "Slow down!",
   "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes.",
   "comingSoon": "coming soon",
-  "searchOnProvider": "Search on {{dataProvider}}"
+  "searchOnProvider": "Search on {{dataProvider}}",
+  "showTrackNumbers": "Show track number in album lists",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }

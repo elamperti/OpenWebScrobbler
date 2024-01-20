@@ -71,20 +71,7 @@
       "short": "MMM do"
     },
     "months": {
-      "short": [
-        "Jan",
-        "Fev",
-        "Mar",
-        "Abr",
-        "Mai",
-        "Jun",
-        "Jul",
-        "Ago",
-        "Set",
-        "Out",
-        "Nov",
-        "Dez"
-      ],
+      "short": ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
       "long": [
         "Janeiro",
         "Fevereiro",
@@ -145,7 +132,7 @@
   "settingsSavedSuccessfully": "Suas configurações foram salvas com sucesso!",
   "loginError": {
     "title": "Erro ao acessar",
-    "message": "há um erro de acesso inesperado. Desculpe sobre isso!"
+    "message": "há um erro de acesso inesperado."
   },
   "logoutInfo": {
     "title": "Te vejo depois!",
@@ -157,5 +144,12 @@
   "slowDown": "Slow down!",
   "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes.",
   "comingSoon": "em desenvolvimento",
-  "searchOnProvider": "Search on {{dataProvider}}"
+  "searchOnProvider": "Search on {{dataProvider}}",
+  "showTrackNumbers": "Show track number in album lists",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }

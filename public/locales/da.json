@@ -71,20 +71,7 @@
       "short": "MMM do"
     },
     "months": {
-      "short": [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "Maj",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Okt",
-        "Nov",
-        "Dec"
-      ],
+      "short": ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"],
       "long": [
         "Januar",
         "Februar",
@@ -145,7 +132,7 @@
   "settingsSavedSuccessfully": "Dine indstillinger blev gemt successfuldt!",
   "loginError": {
     "title": "Fejl ved login",
-    "message": "Der opstod en uventet fejl ved login. Beklager!"
+    "message": "Der opstod en uventet fejl ved login."
   },
   "logoutInfo": {
     "title": "Vi ses snart!",
@@ -157,5 +144,12 @@
   "slowDown": "Sænk farten!",
   "slowDownMessage": "Du scrobbler for hurtigt. Vent venligst et øjeblik og prøv igen om et par minutter.",
   "comingSoon": "kommer snart",
-  "searchOnProvider": "Søg på {{dataProvider}}"
+  "searchOnProvider": "Søg på {{dataProvider}}",
+  "showTrackNumbers": "Vis spornummer på albumlister",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }

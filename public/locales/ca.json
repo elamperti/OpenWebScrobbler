@@ -40,7 +40,7 @@
   "translateYourLanguage": "Voleu afegir-hi la vostra llengua?",
   "logIn": "Inicia la sessió",
   "logOut": "Finalitza la sessió",
-  "dataProvider": "Data source",
+  "dataProvider": "Font de dades",
   "now": "Ara",
   "custom": "Personalitzat…",
   "timestamp": "Data i hora",
@@ -71,20 +71,7 @@
       "short": "do MMM"
     },
     "months": {
-      "short": [
-        "gen.",
-        "febr.",
-        "març",
-        "abr.",
-        "maig",
-        "juny",
-        "jul.",
-        "ag.",
-        "set.",
-        "oct.",
-        "nov.",
-        "des."
-      ],
+      "short": ["gen.", "febr.", "març", "abr.", "maig", "juny", "jul.", "ag.", "set.", "oct.", "nov.", "des."],
       "long": [
         "gener",
         "febrer",
@@ -109,8 +96,8 @@
     "unexpectedResponse": "Resposta inesperada",
     "apiCallFailed": "La trucada a l’API ha fallat"
   },
-  "next": "Next",
-  "previous": "Previous",
+  "next": "Anterior",
+  "previous": "Següent",
   "settingsFor": "Paràmetres per a",
   "saveSettings": "Desa els paràmetres",
   "defaultLanguage": "Llengua per defecte",
@@ -145,7 +132,7 @@
   "settingsSavedSuccessfully": "S’han desat els paràmetres correctament.",
   "loginError": {
     "title": "S’ha produït un error en iniciar la sessió",
-    "message": "Hi ha hagut un error inesperat en iniciar la sessió. Disculpeu!"
+    "message": "Hi ha hagut un error inesperat en iniciar la sessió."
   },
   "logoutInfo": {
     "title": "Fins aviat!",
@@ -156,6 +143,13 @@
   "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
   "slowDown": "Slow down!",
   "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes.",
-  "comingSoon": "coming soon",
-  "searchOnProvider": "Search on {{dataProvider}}"
+  "comingSoon": "pròximament",
+  "searchOnProvider": "Search on {{dataProvider}}",
+  "showTrackNumbers": "Show track number in album lists",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }

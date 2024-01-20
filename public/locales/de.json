@@ -16,9 +16,9 @@
   "emptyAlbum": "Dieses Album scheint leer zu sein.",
   "scrobbleSongs": "Scrobble Lieder",
   "scrobbleSelected": "Scrobble Ausgewählte",
-  "findAlbumCopy": "Gebe den Namen eines Albums oder Künstlers ein",
+  "findAlbumCopy": "Gib den Namen eines Albums oder Künstlers ein",
   "customTimestamp": "Eigener Zeitpunkt",
-  "albumTimestampLogicDescription": "Scrobbling tracks \"now\" will scrobble the last track at the current time, backdating the previous ones accordingly (as if you had just finished listening). The \"custom timestamp\" will define the timestamp of the first track and add time to the following tracks from there (i.e. you specify the time you started listening to this album)",
+  "albumTimestampLogicDescription": "Beim Scrobbeln von Titeln \"jetzt\" wird der letzte Titel zum aktuellen Zeitpunkt gescrobbelt, wobei die vorherigen Titel entsprechend rückdatiert werden (als ob du gerade mit dem Hören fertig geworden wärst). \"Eigener Zeitpunkt\" legt den Zeitpunkt des ersten Titels fest und fügt von da an die Zeit zu den folgenden Titeln hinzu (das heißt du gibst die Zeit an, zu der du mit dem Anhören dieses Albums begonnen hast)",
   "albumArtist": "Album-Künstler",
   "history": "Hörverlauf",
   "yourProfile": "Dein Profil",
@@ -28,7 +28,7 @@
   "otherUser": "Benutzer",
   "or": "oder",
   "refresh": "Neu laden",
-  "findFriendCopy": "Gebe einen last.fm Benutzernamen ein, um ihre letzen Lieder zu sehen",
+  "findFriendCopy": "Gib einen last.fm Benutzernamen ein, um ihre letzen Lieder zu sehen",
   "visitProfile": "Profil ansehen",
   "search": "Suche",
   "backToSearch": "Zurück zur Suche",
@@ -37,10 +37,10 @@
   "invalidUsername": "Ungültiger Benutzername",
   "recentlySearchedUsers": "Kürzlich gesucht",
   "language": "Sprache",
-  "translateYourLanguage": "Wollen Sie Ihre Sprache ergänzen?",
+  "translateYourLanguage": "Willst du deine Sprache ergänzen?",
   "logIn": "Einloggen",
   "logOut": "Ausloggen",
-  "dataProvider": "Data source",
+  "dataProvider": "Datenquelle",
   "now": "Jetzt",
   "custom": "Eigener...",
   "timestamp": "Zeitstempel",
@@ -58,33 +58,20 @@
   "lockAlbum": "Sperre Album-Feld",
   "buyOnAmzn": "Auf Amazon kaufen",
   "pasteIntercepted": "Der eingefügte Text wurde automatisch geteilt!",
-  "considerDonating": "Bitte unterstützen Sie das Projekt bei Patreon!",
+  "considerDonating": "Bitte unterstütze das Projekt bei Patreon!",
   "footer": {
-    "joinCommunity": "Sie können gerne unserer Community <1>auf Discord</1> beitreten!",
-    "supportThisProject": "Bitte <1>unterstützen Sie dieses Projekt</1> bei Patreon :)",
-    "specialThanks": "Besonderer Dank gilt all den Sponsoren, Übersetzern und <1>den Veröffentlichern</1>"
+    "joinCommunity": "Du kannst gerne unserer Community <1>auf Discord</1> beitreten!",
+    "supportThisProject": "Bitte <1>unterstütze dieses Projekt</1> bei Patreon :)",
+    "specialThanks": "Besonderer Dank gilt all den Sponsoren, Übersetzern und <1>den Beitragenden</1>"
   },
   "settings": "Einstellungen",
-  "cancel": "Abbruch",
+  "cancel": "Abbrechen",
   "dates": {
     "format": {
       "short": "MMM do"
     },
     "months": {
-      "short": [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "Mai",
-        "Jun",
-        "Jul",
-        "Aug",
-        "Sep",
-        "Okt",
-        "Nov",
-        "Dez"
-      ],
+      "short": ["Jan", "Feb", "Mar", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"],
       "long": [
         "Januar",
         "Februar",
@@ -109,8 +96,8 @@
     "unexpectedResponse": "Unerwartete Antwort",
     "apiCallFailed": "API-Aufruf ist fehlgeschlagen"
   },
-  "next": "Next",
-  "previous": "Previous",
+  "next": "Weiter",
+  "previous": "Zurück",
   "settingsFor": "Einstellungen für",
   "saveSettings": "Einstellungen speichern",
   "defaultLanguage": "Bevorzugte Sprache",
@@ -118,8 +105,8 @@
   "use12HoursFormat": "Das 12-Stunden Zeitformat benutzen (AM/PM)",
   "splitPastedText": "Den Text aufteilen, der in Künstler-/Titel-Felder eingefügt wurde",
   "welcomeToTheScrobbler": "Willkommen beim <1>Open Scrobbler</1>!",
-  "purpose": "Dieses Seite lässt Sie Titel und Alben manuell scrobblen, die Sie im Radio, auf Vinyl oder woanders gehört haben.",
-  "authNeeded": "Authorisieren Sie bitte die App um zu starten!",
+  "purpose": "Mit diesem Tool kannst du Songs und Alben, die du im Radio, auf Vinyl oder an einem anderen Ort gehört hast, wo du manuell scrobbeln musst, scrobbeln.",
+  "authNeeded": "Authorisiere die App um zu starten!",
   "logInWithLastFm": "Mit Last.fm einloggen",
   "logInIsSafe": "Dies geschieht sicher über Last.fm",
   "about": {
@@ -128,34 +115,41 @@
   },
   "support": {
     "title": "Das Projekt unterstützen",
-    "copy": "Bitte überlegen Sie sich ein Pate zu werden, um die Seite am Leben zu halten und zu ünterstüzten!",
-    "CTA": "Werde ein Pate"
+    "copy": "Bitte denke darüber nach, ein Sponsor zu werden, um diese Seite aufrechtzuerhalten und die Entwicklung zu unterstützen!",
+    "CTA": "Werde ein Sponsor"
   },
   "discord": {
-    "title": "Treten Sie uns bei Discord bei!",
-    "copy": "Bleiben Sie mit anderen Musik-Fans in Verbindung und finden Sie heraus, was es Neues gibt!",
+    "title": "Treten uns bei Discord bei!",
+    "copy": "Bleiben mit anderen Musik-Fans in Verbindung und finde heraus, was es Neues gibt!",
     "CTA": "Trete Discord bei"
   },
   "authFailed": "Anmeldung fehlgeschlagen",
-  "loginAgain": "Loggen Sie sich erneut ein!",
+  "loginAgain": "Loggen dich erneut ein!",
   "serviceUnavailable": "Service nicht erreichbar",
   "unexpectedError": "Unerwarteter Fehler",
-  "unexpectedErrorMessage": "Ihr Ad-Blocker könnte API-Aufrufe zu last.fm blockieren. Bitte versuchen sie diesen zu deaktivieren oder fügen sie eine Ausnahme für ws.audioscrobbler.com hinzu.",
-  "lastfmUnavailable": "Last.fm antwortet nicht, bitte versuchen sie es später noch einmal.",
-  "settingsSavedSuccessfully": "Ihre Einstellungen wurden erfolgreich gespeichert!",
+  "unexpectedErrorMessage": "Dein Ad-Blocker könnte API-Aufrufe zu last.fm blockieren, bitte versuche ihn zu deaktivieren oder füge eine Ausnahme für ws.audioscrobbler.com hinzu",
+  "lastfmUnavailable": "Last.fm antwortet nicht, bitte versuche es später noch einmal.",
+  "settingsSavedSuccessfully": "Deine Einstellungen wurden erfolgreich gespeichert!",
   "loginError": {
     "title": "Fehler beim Anmelden",
-    "message": "Es gab einen unerwarteten Fehler beim Anmelden. Entschuldigen Sie bitte!"
+    "message": "Es ist ein unerwarteter Fehler beim Einloggen aufgetreten."
   },
   "logoutInfo": {
     "title": "Bis bald!",
     "message": "Erfolgreich abgemeldet."
   },
-  "includeReleases": "Include releases",
-  "rateLimitExceeded": "Rate limit exceeded.",
-  "rateLimitMessage": "Scrobbled too fast? Rate limit resets at midnight UTC (this limit is enforced by Last.fm)",
-  "slowDown": "Slow down!",
-  "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes.",
-  "comingSoon": "coming soon",
-  "searchOnProvider": "Search on {{dataProvider}}"
+  "includeReleases": "Veröffentlichung einbeziehen",
+  "rateLimitExceeded": "Ratenlimit überschritten",
+  "rateLimitMessage": "Zu schnell gescrobbelt? Das Ratenlimit wird um Mitternacht UTC zurückgesetzt (dieses Limit wird von Last.fm durchgesetzt)",
+  "slowDown": "Langsamer!",
+  "slowDownMessage": "Du scrobbelst zu schnell. Bitte warte einen Moment und versuche es in ein paar Minuten noch einmal.",
+  "comingSoon": "bald verfügbar",
+  "searchOnProvider": "Suche auf {{dataProvider}}",
+  "showTrackNumbers": "Titelnummern in Albumlisten anzeigen",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }

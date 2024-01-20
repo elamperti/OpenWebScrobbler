@@ -58,7 +58,6 @@
   "lockAlbum": "Lock album field",
   "buyOnAmzn": "Search on Amazon",
   "pasteIntercepted": "The pasted text was automatically split!",
-  "undo": "Undo",
   "considerDonating": "Please support this project on Patreon!",
   "footer": {
     "joinCommunity": "You are welcome to join our community <1>on Discord</1>!",
@@ -133,7 +132,7 @@
   "settingsSavedSuccessfully": "Your settings were saved successfully!",
   "loginError": {
     "title": "Error logging in",
-    "message": "There was an unexpected error logging in. Sorry about that!"
+    "message": "There was an unexpected error logging in."
   },
   "logoutInfo": {
     "title": "See you soon!",
@@ -145,5 +144,12 @@
   "slowDown": "Slow down!",
   "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes.",
   "comingSoon": "coming soon",
-  "searchOnProvider": "Search on {{dataProvider}}"
+  "searchOnProvider": "Search on {{dataProvider}}",
+  "showTrackNumbers": "Show track number in album lists",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }

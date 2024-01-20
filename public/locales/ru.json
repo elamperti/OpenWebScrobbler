@@ -132,7 +132,7 @@
   "settingsSavedSuccessfully": "Ваши настройки успешно сохранены!",
   "loginError": {
     "title": "Ошибка при входе",
-    "message": "При входе произошла непредвиденная ошибка. Сожалеем об этом! Повторите попытку позднее."
+    "message": "При входе произошла непредвиденная ошибка."
   },
   "logoutInfo": {
     "title": "До скорой встречи!",
@@ -144,5 +144,12 @@
   "slowDown": "Медленнее!",
   "slowDownMessage": "Вы скробблите слишком быстро. Пожалуйста, подождите и повторите попытку через несколько минут..",
   "comingSoon": "вскоре",
-  "searchOnProvider": "Поиск в {{dataProvider}}"
+  "searchOnProvider": "Поиск в {{dataProvider}}",
+  "showTrackNumbers": "Show track number in album lists",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }

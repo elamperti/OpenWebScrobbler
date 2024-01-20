@@ -71,19 +71,7 @@
       "short": "d/MMM"
     },
     "months": {
-      "short": [
-        "Ene",
-        "Feb",
-        "Mar",
-        "Abr",
-        "May",
-        "Jun",
-        "Jul",
-        "Ago",
-        "Sep",
-        "Nov",
-        "Dic"
-      ],
+      "short": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Nov", "Dic"],
       "long": [
         "Enero",
         "Febrero",
@@ -143,7 +131,7 @@
   "settingsSavedSuccessfully": "Tu configuración fue guardada exitosamente!",
   "loginError": {
     "title": "Error al iniciar sesión",
-    "message": "Hubo un error inesperado al iniciar sesión. ¡Lo lamento!"
+    "message": "Hubo un error inesperado al iniciar sesión."
   },
   "logoutInfo": {
     "title": "Hasta pronto!",
@@ -155,5 +143,12 @@
   "slowDown": "Más despacio!",
   "slowDownMessage": "Estás scrobbleando demasiado rápido. Aguarda un momento e intenta nuevamente en unos minutos.",
   "comingSoon": "muy pronto",
-  "searchOnProvider": "Buscar en {{dataProvider}}"
+  "searchOnProvider": "Buscar en {{dataProvider}}",
+  "showTrackNumbers": "Mostrar número de canción en álbums",
+  "startingSession": "Iniciando sesión...",
+  "finishingValidation": "Validando token con Last.fm",
+  "gettingLastfmUser": "Obteniendo detalles del usuario de Last.fm",
+  "fetchingUserSettings": "Aplicando preferencias de usuario",
+  "validationFailed": "Algo salió mal!",
+  "tryAgain": "Intentar nuevamente"
 }

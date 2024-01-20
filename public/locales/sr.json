@@ -71,20 +71,7 @@
       "short": "MMM do"
     },
     "months": {
-      "short": [
-        "Jan",
-        "Feb",
-        "Mar",
-        "Apr",
-        "Maj",
-        "Jun",
-        "Jul",
-        "Avg",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec"
-      ],
+      "short": ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Avg", "Sep", "Oct", "Nov", "Dec"],
       "long": [
         "Januar",
         "Februar",
@@ -145,7 +132,7 @@
   "settingsSavedSuccessfully": "Vaša podešavanja su uspešno sačuvana!",
   "loginError": {
     "title": "Greška prilikom prijavljivanja",
-    "message": "Došlo je do neočekivane greške prilikom prijavljivanja. Žao nam je zbog toga!"
+    "message": "Došlo je do neočekivane greške prilikom prijavljivanja."
   },
   "logoutInfo": {
     "title": "Vidimo se uskoro!",
@@ -157,5 +144,12 @@
   "slowDown": "Usporite!",
   "slowDownMessage": "Prebrzo skrobolujete. Sačekajte trenutak i pokušajte ponovo za nekoliko minuta.",
   "comingSoon": "coming soon",
-  "searchOnProvider": "Search on {{dataProvider}}"
+  "searchOnProvider": "Search on {{dataProvider}}",
+  "showTrackNumbers": "Show track number in album lists",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }

@@ -99,7 +99,7 @@
     "start:server": "vite --port 3000",
     "start:services": "docker-compose up",
     "build": "yarn typecheck && vite build",
-    "prettier": "prettier --write \"src/**/*.js\"",
+    "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
     "lint": "eslint src/ cypress/",
     "fix": "yarn prettier && yarn lint --fix",
     "test": "yarn test:unit && yarn test:e2e",
@@ -111,7 +111,7 @@
     "watch": "vitest watch",
     "typecheck": "yarn run tsc",
     "cypress": "start-test 'NO_DEVTOOLS=1 yarn start:server --port 3030' 3030 'TZ=Etc/GMT-3 cypress open --e2e --browser chrome'",
-    "translations:fetch": "poeditor pull",
+    "translations:fetch": "poeditor pull && prettier --write \"public/locales/*.json\"",
     "translations:update": "poeditor push"
   },
   "browserslist": {

@@ -71,20 +71,7 @@
       "short": "MMM do"
     },
     "months": {
-      "short": [
-        "Oca",
-        "Şub",
-        "Mar",
-        "Nis",
-        "May",
-        "Haz",
-        "Tem",
-        "Ağu",
-        "Eyl",
-        "Eki",
-        "Kas",
-        "Ara"
-      ],
+      "short": ["Oca", "Şub", "Mar", "Nis", "May", "Haz", "Tem", "Ağu", "Eyl", "Eki", "Kas", "Ara"],
       "long": [
         "Ocak",
         "Şubat",
@@ -145,7 +132,7 @@
   "settingsSavedSuccessfully": "Ayarların başarıyla kaydedildi!",
   "loginError": {
     "title": "Giriş yapma başarısız",
-    "message": "Giriş sırasında beklenmedik bir hata ile karşılaşıldı. Üzgünüz!"
+    "message": "Giriş sırasında beklenmedik bir hata ile karşılaşıldı."
   },
   "logoutInfo": {
     "title": "Görüşmek üzere!",
@@ -157,5 +144,12 @@
   "slowDown": "Slow down!",
   "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes.",
   "comingSoon": "coming soon",
-  "searchOnProvider": "Search on {{dataProvider}}"
+  "searchOnProvider": "Search on {{dataProvider}}",
+  "showTrackNumbers": "Show track number in album lists",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }

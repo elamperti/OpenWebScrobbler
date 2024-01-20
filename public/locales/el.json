@@ -71,20 +71,7 @@
       "short": "MMM do"
     },
     "months": {
-      "short": [
-        "Ιαν",
-        "Φεβ",
-        "Μαρ",
-        "Απρ",
-        "Μάι",
-        "Ιουν",
-        "Ιουλ",
-        "Αυγ",
-        "Σεπ",
-        "Οκτ",
-        "Νοε",
-        "Δεκ"
-      ],
+      "short": ["Ιαν", "Φεβ", "Μαρ", "Απρ", "Μάι", "Ιουν", "Ιουλ", "Αυγ", "Σεπ", "Οκτ", "Νοε", "Δεκ"],
       "long": [
         "Ιανουάριος",
         "Φεβρουάριος",
@@ -145,7 +132,7 @@
   "settingsSavedSuccessfully": "Οι ρυθμίσεις σας αποθηκεύτηκαν με επιτυχία!",
   "loginError": {
     "title": "Σφάλμα κατά τη σύνδεση",
-    "message": "Υπήρξε ένα απροσδόκητο σφάλμα κατά τη σύνδεση. Συγγνώμη για αυτό!"
+    "message": "Υπήρξε ένα απροσδόκητο σφάλμα κατά τη σύνδεση."
   },
   "logoutInfo": {
     "title": "Τα λέμε σύντομα!",
@@ -157,5 +144,12 @@
   "slowDown": "Slow down!",
   "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes.",
   "comingSoon": "coming soon",
-  "searchOnProvider": "Search on {{dataProvider}}"
+  "searchOnProvider": "Search on {{dataProvider}}",
+  "showTrackNumbers": "Show track number in album lists",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }

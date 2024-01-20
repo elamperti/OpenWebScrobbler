@@ -132,7 +132,7 @@
   "settingsSavedSuccessfully": "¡Los tos axustes guardaron con ésitu!",
   "loginError": {
     "title": "Erru n'aniciante sesión",
-    "message": "Hebo un erru inesperáu n'aniciante sesión, ¡perdón!"
+    "message": "Hebo un erru inesperáu n'aniciante sesión."
   },
   "logoutInfo": {
     "title": "¡Vémonos!",
@@ -144,5 +144,12 @@
   "slowDown": "¡Cálmate!",
   "slowDownMessage": "Tas faciendo scrobbles más rápido de la cuenta. Por favor, espera un momentu y preba otra vegada en dellos minutos.",
   "comingSoon": "bien llueu",
-  "searchOnProvider": "Busca en {{dataProvider}}"
+  "searchOnProvider": "Busca en {{dataProvider}}",
+  "showTrackNumbers": "Show track number in album lists",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }

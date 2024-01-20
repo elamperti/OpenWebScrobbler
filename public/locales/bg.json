@@ -132,7 +132,7 @@
   "settingsSavedSuccessfully": "Твойте настройки бяха запазени успешно!",
   "loginError": {
     "title": "Грешка с влизането",
-    "message": "Имаше неочаквана грешка при влизането. Извинете за това!"
+    "message": "Имаше неочаквана грешка при влизането."
   },
   "logoutInfo": {
     "title": "До скоро!",
@@ -144,5 +144,12 @@
   "slowDown": "По бавно!",
   "slowDownMessage": "Скробълвате твърде бързо. Изчакайте момент и опитайте пак след няколко минути.",
   "comingSoon": "Скоро",
-  "searchOnProvider": "Потърси в {{dataProvider}}"
+  "searchOnProvider": "Потърси в {{dataProvider}}",
+  "showTrackNumbers": "Show track number in album lists",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }

@@ -71,20 +71,7 @@
       "short": "do MMM"
     },
     "months": {
-      "short": [
-        "Jan",
-        "Fev",
-        "Mar",
-        "Avr",
-        "Mai",
-        "Jui",
-        "Jui",
-        "Aou",
-        "Sep",
-        "Oct",
-        "Nov",
-        "Dec"
-      ],
+      "short": ["Jan", "Fev", "Mar", "Avr", "Mai", "Jui", "Jui", "Aou", "Sep", "Oct", "Nov", "Dec"],
       "long": [
         "Janvier",
         "Février",
@@ -145,7 +132,7 @@
   "settingsSavedSuccessfully": "Vos paramêtres sont bien sauvegardé !",
   "loginError": {
     "title": "Erreur de connexion",
-    "message": "Il y a un soucis avec la connexion. Désolé !"
+    "message": "Il y a un soucis avec la connexion."
   },
   "logoutInfo": {
     "title": "À bientôt !",
@@ -157,5 +144,12 @@
   "slowDown": "Slow down!",
   "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes.",
   "comingSoon": "coming soon",
-  "searchOnProvider": "Search on {{dataProvider}}"
+  "searchOnProvider": "Search on {{dataProvider}}",
+  "showTrackNumbers": "Show track number in album lists",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }
