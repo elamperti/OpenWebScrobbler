@@ -1,31 +1,21 @@
 import { useEffect } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import useLocalStorage from './useLocalStorage';
-import { settingsTransformer } from 'utils/clients/api/transformers/settings.transformer';
 import { userGetSettings } from 'utils/clients/api/methods/userGetSettings';
 import { settingsUpdate } from 'utils/clients/api/methods/settingsUpdate';
 import { Settings } from 'utils/types/settings';
 import { useLanguage } from './useLanguage';
 import { useUserData } from './useUserData';
 
-const defaultSettings = settingsTransformer({});
-
 export const useSettings = () => {
   const queryClient = useQueryClient();
-  const [storedSettings, updateStoredSettings] = useLocalStorage('settings', defaultSettings);
   const { currentLanguage, setLanguage } = useLanguage();
   const { isReady: userIsReady, isLoggedIn } = useUserData();
 
   const { data, isLoading, isFetching, isSuccess, isFetched, isError } = useQuery({
     queryKey: ['user', 'settings'],
-    queryFn: () =>
-      userGetSettings().then((data) => {
-        updateStoredSettings(data);
-        return data;
-      }),
+    queryFn: userGetSettings,
     staleTime: Infinity,
     enabled: userIsReady && !!isLoggedIn,
-    // placeholderData: storedSettings,
   });
 
   const updateLang = (lang: String | undefined) => {
