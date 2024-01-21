@@ -22,7 +22,14 @@ describe('Language preferences', () => {
     });
 
     it('remembers the chosen language', () => {
-      cy.intercept('GET', '/api/v2/settings.php', { statusCode: 418, body: {} });
+      cy.intercept(
+        {
+          method: 'GET',
+          url: '/api/v2/settings.php',
+          middleware: true,
+        },
+        (req) => req.reply({ statusCode: 418, body: {} })
+      );
       cy.get('[data-cy="LanguageSelector"]').click();
       cy.get('[data-lang="es"]').click();
       cy.reload();
@@ -46,6 +53,16 @@ describe('Language preferences', () => {
     });
 
     it('remembers the chosen language', () => {
+      // Note: this is while settings don't override it
+      cy.intercept(
+        {
+          method: 'GET',
+          url: '/api/v2/settings.php',
+          middleware: true,
+        },
+        (req) => req.reply({ statusCode: 418, body: {} })
+      );
+
       cy.get('[data-cy="LanguageSelector"]').click();
       cy.get('[data-lang="es"]').click();
       cy.reload();
