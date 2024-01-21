@@ -70,6 +70,23 @@ describe('Discogs transformer: album search', () => {
             master_id: '',
             title: 'title',
             year: 2022,
+          },
+        ],
+      },
+    });
+
+    expect(results.length).toBe(0);
+  });
+
+  it('only returns a valid release year', () => {
+    const results = albumSearchTransformer({
+      data: {
+        results: [
+          {
+            type: 'master',
+            master_id: 2,
+            title: 'title',
+            year: 0,
             thumb: 'https://example.com/thumb',
             cover_image: 'https://example.com/cover',
           },
@@ -77,6 +94,6 @@ describe('Discogs transformer: album search', () => {
       },
     });
 
-    expect(results.length).toBe(0);
+    expect(results[0].releasedate).toBeUndefined();
   });
 });

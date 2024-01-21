@@ -155,4 +155,20 @@ describe('Discogs transformer: album info', () => {
       })
     );
   });
+
+  it('only returns a valid release year', () => {
+    const results = albumGetInfoTransformer({
+      data: {
+        title: 'title',
+        artists: [
+          {
+            name: 'artist',
+          },
+        ],
+        year: '0',
+      },
+    });
+
+    expect(results.releasedate).toBeUndefined();
+  });
 });

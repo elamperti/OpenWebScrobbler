@@ -15,12 +15,14 @@ export function albumGetInfoTransformer(response: any, discogsId?: string): Albu
     artist = 'Various Artists';
   }
 
+  const albumYear = response?.data?.year || 0;
+
   return {
     discogsId,
     name: response?.data?.title || '',
     artist,
     artistId: (hasArtist && response.data.artists[0].id) || null,
-    releasedate: response?.data?.year,
+    releasedate: parseInt(albumYear) > 0 ? albumYear : undefined,
     url: '',
     cover: image && {
       sm: image.uri150,
