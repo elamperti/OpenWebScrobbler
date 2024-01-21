@@ -45,7 +45,7 @@ export function ScrobbleArtistResults() {
         });
       }
     },
-    enabled: dataProvider === PROVIDER_DISCOGS ? !!params.discogsId : !!artistName,
+    enabled: dataProvider === PROVIDER_DISCOGS ? !!params.discogsId : !!(artistName || params.mbid),
   });
 
   return (
