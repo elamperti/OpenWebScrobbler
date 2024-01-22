@@ -35,6 +35,7 @@ export const useUserData = () => {
         if (process.env.REACT_APP_GROWTHBOOK_API_KEY) {
           growthbook.setAttributes({
             ...growthbook.getAttributes(),
+            loggedIn: true,
             id: hashedUserId,
           });
         }
