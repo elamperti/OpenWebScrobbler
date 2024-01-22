@@ -97,8 +97,9 @@ export function Callback() {
 
   if (validationFailed || userFailed || settingsFailed) {
     ReactGA.event({
-      category: 'Lastfm Login',
-      action: validationFailed ? 'Rejected' : 'Failed',
+      category: 'Lastfm',
+      action: 'Login',
+      label: validationFailed ? 'Rejected' : 'Failed',
     });
   }
 
