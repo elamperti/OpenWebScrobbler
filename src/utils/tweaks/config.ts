@@ -1,6 +1,8 @@
 import type { TweaksConfig } from './types';
 
-import './quirks/hideReactQueryButton.css';
+if (process.env.NODE_ENV === 'development') {
+  import('./quirks/hideReactQueryButton.css');
+}
 
 const config: TweaksConfig = {
   pane: {

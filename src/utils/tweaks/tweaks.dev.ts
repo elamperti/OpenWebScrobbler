@@ -14,13 +14,16 @@ const saveTweaksState = () => {
 };
 
 export const init = async() => {
-  const { Pane } = await import('tweakpane');
   import('./quirks/tweakpaneFixes.css');
 
   const container = document.createElement('div');
   container.id = 'tweaks-container';
   document.body.appendChild(container);
 
+  // This must happen before importing Tweakpane
+  const treeWasEmpty = !restoreTweaksState();
+
+  const { Pane } = await import('tweakpane');
   const pane = new Pane({ title: 'Tweaks ✨', container });
 
   const draggableAnchor = document.createElement('div');
@@ -77,8 +80,6 @@ export const init = async() => {
     wasPreviouslyOpened = !wasPreviouslyOpened;
     sessionStorage.setItem('tweaksPaneExpanded', wasPreviouslyOpened.toString());
   });
-
-  const treeWasEmpty = restoreTweaksState();
 
   // Initialize config and populate panel
   for (const category in config.params) {

@@ -1,11 +1,11 @@
 import { throttle } from 'lodash-es';
 
-import './draggablePane.css';
-
 const MINIMUM_DISTANCE_FROM_EDGE = 24; // px
 const OFFSET_FROM_EDGE = 8; // px
 
 export function makeDraggable(container, draggableSelector, completelyDisableClickEvents = false) {
+  import('./draggablePane.css');
+
   let initialX = 0;
   let initialY = 0;
   let isDragging = false;
