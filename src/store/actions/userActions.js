@@ -23,11 +23,6 @@ export function logOut(dispatch) {
         ReactGA.set({
           userId: undefined,
         });
-        try {
-          localStorage.removeItem('hashedUID');
-        } catch (err) {
-          // pass
-        }
         history.push('/');
         dispatch(
           createAlert(

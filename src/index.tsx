@@ -130,6 +130,10 @@ if (process.env.REACT_APP_GROWTHBOOK_API_KEY) {
     apiHost: 'https://cdn.growthbook.io',
     clientKey: process.env.REACT_APP_GROWTHBOOK_API_KEY,
     enableDevMode: process.env.NODE_ENV === 'development',
+    backgroundSync: false,
+    attributes: {
+      loggedIn: false,
+    },
     trackingCallback: (experiment, result) => {
       ReactGA.event({
         category: 'Experiments',
@@ -142,6 +146,11 @@ if (process.env.REACT_APP_GROWTHBOOK_API_KEY) {
       }
     },
   });
+
+  growthbook.loadFeatures({
+    timeout: 4000,
+  });
+
   wrappedApp = <GrowthBookProvider growthbook={growthbook}>{wrappedApp}</GrowthBookProvider>;
 }
 
