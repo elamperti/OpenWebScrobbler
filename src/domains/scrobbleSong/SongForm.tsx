@@ -275,8 +275,7 @@ export function SongForm() {
             className="hasLock"
             data-cy="SongForm-artist"
             value={artist}
-            onChange={() => {}}
-            onInput={(e) => setArtist((e.target as HTMLInputElement).value)}
+            onChange={(e) => setArtist((e.target as HTMLInputElement).value)}
             onKeyUp={catchKeys}
             onPaste={catchPaste}
           />
@@ -315,8 +314,7 @@ export function SongForm() {
             tabIndex={2}
             data-cy="SongForm-title"
             value={title}
-            onChange={() => {}}
-            onInput={(e) => setTitle((e.target as HTMLInputElement).value)}
+            onChange={(e) => setTitle((e.target as HTMLInputElement).value)}
             onKeyUp={catchKeys}
             onPaste={catchPaste}
           />
@@ -339,8 +337,7 @@ export function SongForm() {
             className="hasLock"
             data-cy="SongForm-album"
             value={album}
-            onChange={() => {}}
-            onInput={(e) => setAlbum((e.target as HTMLInputElement).value)}
+            onChange={(e) => setAlbum((e.target as HTMLInputElement).value)}
             onKeyUp={catchKeys}
           />
           <div
@@ -370,8 +367,7 @@ export function SongForm() {
             className="hasLock"
             data-cy="SongForm-albumArtist"
             value={albumArtist}
-            onChange={() => {}}
-            onInput={(e) => setAlbumArtist((e.target as HTMLInputElement).value)}
+            onChange={(e) => setAlbumArtist((e.target as HTMLInputElement).value)}
             onKeyUp={catchKeys}
           />
         </div>
