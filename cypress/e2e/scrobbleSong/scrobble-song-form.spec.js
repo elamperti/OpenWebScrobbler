@@ -142,6 +142,10 @@ describe('Scrobble song (form)', () => {
 
   describe('interactions', () => {
     it('fills the form properly with a scrobble from recent history', () => {
+      cy.intercept('GET', 'https://ws.audioscrobbler.com/2.0/*method=album.getInfo*', {
+        fixture: 'lastfm/album/getInfo.am.json',
+      }).as('albumInfo');
+
       // Scrobble a song to be used as recent track
       cy.get('[data-cy="SongForm-artist"]').type('Arctic Monkeys');
       cy.get('[data-cy="SongForm-title"]').type('Arabella');

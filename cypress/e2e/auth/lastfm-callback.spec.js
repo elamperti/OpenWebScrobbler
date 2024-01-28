@@ -271,7 +271,7 @@ describe('Authentication', () => {
         },
         (req) => {
           req.on('response', (res) => {
-            res.setDelay(100);
+            res.setDelay(250);
           });
           req.reply({ fixture: 'api/v2/user/authenticated.json' });
         }
