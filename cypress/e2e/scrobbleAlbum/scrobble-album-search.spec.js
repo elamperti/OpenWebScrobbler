@@ -4,7 +4,7 @@ describe('Scrobble album (SRP)', () => {
     cy.clearLocalStorage();
 
     cy.intercept('GET', '/api/v2/user.php', { fixture: 'api/v2/user/authenticated.json' }).as('userData');
-    cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/authenticated.json' });
+    cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/authenticated.json' }).as('settings');
 
     cy.intercept('GET', 'https://ws.audioscrobbler.com/2.0/*method=artist.search*', {
       fixture: 'lastfm/artist/search.meteora.json',
@@ -34,8 +34,23 @@ describe('Scrobble album (SRP)', () => {
     cy.get('[data-cy="SearchForm-dropdown-menu"]').children().should('have.length', 2);
   });
 
+  it.skip('focuses the search bar on load', () => {
+    cy.wait('@settings');
+    cy.focused().should('have.attr', 'data-cy', 'SearchForm-input');
+  });
+
   describe('using Discogs', () => {
+    beforeEach(() => {
+      cy.intercept('GET', '/api/v2/discogs.php?method=artist.search*', {
+        fixture: 'api/v2/discogs/artist.search.meteora.json',
+      });
+      cy.intercept('GET', '/api/v2/discogs.php?method=album.search*', {
+        fixture: 'api/v2/discogs/album.search.meteora.json',
+      });
+    });
+
     it('shows a switch to expand Discogs results', () => {
+      cy.wait('@settings');
       cy.get('[data-cy="SearchForm-input"]').type('Meteora');
       cy.get('[data-cy="SearchForm-submit"]').should('be.enabled');
 
@@ -45,6 +60,7 @@ describe('Scrobble album (SRP)', () => {
     });
 
     it('navigates to the SRP when submitting the form', () => {
+      cy.wait('@settings');
       cy.get('[data-cy="SearchForm-input"]').type('Meteora');
       cy.get('[data-cy="SearchForm-submit"]').should('be.enabled');
 
@@ -58,6 +74,7 @@ describe('Scrobble album (SRP)', () => {
 
   describe('using Last.fm', () => {
     it('hides Discogs switch when Lastfm is selected', () => {
+      cy.wait('@settings');
       cy.get('[data-cy="SearchForm-input"]').type('Meteora');
       cy.get('[data-cy="SearchForm-submit"]').should('be.enabled');
 
@@ -67,6 +84,7 @@ describe('Scrobble album (SRP)', () => {
     });
 
     it('navigates to the SRP when submitting the form', () => {
+      cy.wait('@settings');
       cy.get('[data-cy="SearchForm-input"]').type('Meteora');
       cy.get('[data-cy="SearchForm-submit"]').should('be.enabled');
 
