@@ -51,7 +51,6 @@ export function ScrobbleUserSearch() {
           maxLength={15}
           size="lg"
           value={state?.userToSearch || ''}
-          // disableSearch={true}
           validator={validationMiddleware}
           feedbackMessageKey={usernameIsValid ? 'userNotFound' : 'invalidUsername'}
         />

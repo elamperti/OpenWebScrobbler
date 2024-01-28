@@ -26,11 +26,7 @@ export default function Navigation() {
   const langSelectorInNav = bsBreakpoint > BS_SIZE_SM;
 
   useEffect(() => {
-    if (location.pathname.includes('/lastfm/callback')) {
-      setUserMenuVisible(false);
-    } else {
-      setUserMenuVisible(true);
-    }
+    setUserMenuVisible(!location.pathname.includes('/lastfm/callback'));
   }, [location.pathname]);
 
   return (

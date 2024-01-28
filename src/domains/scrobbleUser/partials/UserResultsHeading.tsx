@@ -44,7 +44,6 @@ export function UserResultsHeading({ isLoading, userToSearch }: { isLoading: boo
           size="sm"
           value=""
           readOnly={isLoading}
-          disableSearch={isLoading}
           validator={usernameIsValid}
           feedbackMessageKey="invalidUsername"
         />
