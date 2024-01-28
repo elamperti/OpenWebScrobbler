@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ChangeEvent, useRef } from 'react';
 import { Trans } from 'react-i18next';
 
 import {
@@ -7,7 +7,6 @@ import {
   DropdownToggle,
   FormFeedback,
   FormGroup,
-  Input,
   Label,
   Row,
   UncontrolledDropdown,
@@ -23,14 +22,13 @@ type SearchFormProps = {
   ariaLabel: string;
   searchOptions?: ReactNode;
   searchCopy: string;
-  disableSearch: boolean;
   feedbackMessageKey?: string;
   id: string;
-  maxLength: number;
   onSearch: (query: string) => void;
-  readOnly: boolean;
-  size: 'lg' | 'sm';
-  validator: (query: string) => boolean;
+  maxLength?: number | null;
+  readOnly?: boolean;
+  size?: 'lg' | 'sm';
+  validator?: (query: string) => boolean;
   value?: string;
 };
 
@@ -38,30 +36,33 @@ export default function SearchForm({
   ariaLabel,
   searchOptions,
   searchCopy,
-  feedbackMessageKey,
+  feedbackMessageKey = '',
   id,
-  maxLength,
+  maxLength = null,
   onSearch,
   readOnly,
-  size,
-  value,
+  size = 'lg',
+  value: initalValue = '',
   validator,
 }: SearchFormProps) {
-  const [query, setQuery] = useState(value || '');
+  const [query, setQuery] = useState(initalValue || '');
   const [isValid, setValidation] = useState(true);
+  const searchInput = useRef<HTMLInputElement>(null);
+
+  // This is needed to prevent the "invalid" state from showing on first render
+  const inputIsInvalid = query.length > 1 && !isValid;
 
   useEffect(() => {
-    const searchInput = document.getElementById(id) as HTMLInputElement;
-
     if (searchInput) {
-      searchInput.focus();
-      searchInput.setSelectionRange(0, searchInput.value.length);
+      searchInput.current.focus();
+      searchInput.current.setSelectionRange(0, searchInput.current.value.length);
     }
-  }, [id]);
+  }, [searchInput]);
 
-  const updateQuery = (newQuery: string) => {
+  const updateQuery = (e: ChangeEvent<HTMLInputElement>) => {
+    const newQuery = e.target.value;
     setQuery(newQuery);
-    setValidation(validator(newQuery));
+    if (validator) setValidation(validator(newQuery));
   };
 
   const callOnSearch = () => {
@@ -96,16 +97,17 @@ export default function SearchForm({
             <Label for="title" className="required sr-only">
               {ariaLabel}
             </Label>
-            <Input
+            <input
               type="text"
               name={id}
               id={id}
-              bsSize={size}
+              ref={searchInput}
+              className={`form-control form-control-${size}${inputIsInvalid ? ' is-invalid' : ''}`}
               value={query}
-              invalid={query.length > 1 && !isValid}
+              aria-invalid={inputIsInvalid}
               readOnly={readOnly}
               onKeyDown={catchEnter}
-              onInput={(e) => updateQuery((e.target as HTMLInputElement).value)}
+              onChange={updateQuery}
               maxLength={maxLength}
               data-cy="SearchForm-input"
             />
@@ -133,13 +135,3 @@ export default function SearchForm({
     </div>
   );
 }
-
-SearchForm.defaultProps = {
-  disableSearch: false,
-  feedbackMessageKey: '',
-  maxLength: null,
-  readOnly: false,
-  size: 'lg',
-  validator: () => true,
-  value: null,
-};
