@@ -385,6 +385,7 @@ export function SongForm() {
               active={!isCustomDate}
               size="sm"
               className="w-50"
+              outline
             >
               <Trans i18nKey="now">Now</Trans>
             </Button>
@@ -395,6 +396,7 @@ export function SongForm() {
               active={isCustomDate}
               size="sm"
               className="w-50"
+              outline
             >
               <Trans i18nKey="custom">Custom</Trans>
             </Button>
