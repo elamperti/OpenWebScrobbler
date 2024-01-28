@@ -76,10 +76,6 @@ function App() {
   }, [dispatch, isLoggedIn, location.search]);
 
   useEffect(() => {
-    if (isLoggedIn) SettingsModal.preload();
-  }, [isLoggedIn]);
-
-  useEffect(() => {
     if (process.env.REACT_APP_SENTRY_DSN && Sentry.isInitialized()) {
       if (user?.name) {
         Sentry.setUser({

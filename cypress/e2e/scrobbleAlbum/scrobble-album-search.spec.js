@@ -15,6 +15,7 @@ describe('Scrobble album (SRP)', () => {
 
     cy.visit('/scrobble/album');
     cy.wait('@userData');
+    cy.wait('@settings');
   });
 
   it('shows a proper search form', () => {
@@ -35,7 +36,6 @@ describe('Scrobble album (SRP)', () => {
   });
 
   it.skip('focuses the search bar on load', () => {
-    cy.wait('@settings');
     cy.focused().should('have.attr', 'data-cy', 'SearchForm-input');
   });
 
@@ -50,7 +50,6 @@ describe('Scrobble album (SRP)', () => {
     });
 
     it('shows a switch to expand Discogs results', () => {
-      cy.wait('@settings');
       cy.get('[data-cy="SearchForm-input"]').type('Meteora');
       cy.get('[data-cy="SearchForm-submit"]').should('be.enabled');
 
@@ -60,7 +59,6 @@ describe('Scrobble album (SRP)', () => {
     });
 
     it('navigates to the SRP when submitting the form', () => {
-      cy.wait('@settings');
       cy.get('[data-cy="SearchForm-input"]').type('Meteora');
       cy.get('[data-cy="SearchForm-submit"]').should('be.enabled');
 
@@ -74,7 +72,6 @@ describe('Scrobble album (SRP)', () => {
 
   describe('using Last.fm', () => {
     it('hides Discogs switch when Lastfm is selected', () => {
-      cy.wait('@settings');
       cy.get('[data-cy="SearchForm-input"]').type('Meteora');
       cy.get('[data-cy="SearchForm-submit"]').should('be.enabled');
 
@@ -84,7 +81,6 @@ describe('Scrobble album (SRP)', () => {
     });
 
     it('navigates to the SRP when submitting the form', () => {
-      cy.wait('@settings');
       cy.get('[data-cy="SearchForm-input"]').type('Meteora');
       cy.get('[data-cy="SearchForm-submit"]').should('be.enabled');
 
