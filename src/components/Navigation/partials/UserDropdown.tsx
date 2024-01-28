@@ -33,10 +33,12 @@ export default function UserDropdow() {
 
       // ToDo: clear local storage
 
-      const newGBAttributes = growthbook.getAttributes();
-      delete newGBAttributes.id;
-      newGBAttributes.loggedIn = false;
-      growthbook.setAttributes(newGBAttributes);
+      if (growthbook?.ready) {
+        const newGBAttributes = growthbook.getAttributes();
+        delete newGBAttributes.id;
+        newGBAttributes.loggedIn = false;
+        growthbook.setAttributes(newGBAttributes);
+      }
 
       try {
         localStorage.removeItem('hashedUID');

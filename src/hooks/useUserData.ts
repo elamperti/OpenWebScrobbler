@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import { useGrowthBook } from '@growthbook/growthbook-react';
 import ReactGA from 'react-ga-neo';
@@ -25,25 +25,30 @@ export const useUserData = () => {
     refetchOnWindowFocus: true,
     placeholderData: storedUserData,
   });
+  const [hashedUserId, setHashedUserId] = useState(null);
 
   useEffect(() => {
     if (isSuccess && data?.user?.name) {
-      sha256(data.user.name).then((hashedUserId) => {
+      sha256(data.user.name).then((hash) => {
+        setHashedUserId(hash);
         ReactGA.set({
-          userId: hashedUserId,
+          userId: hash,
         });
-        if (process.env.REACT_APP_GROWTHBOOK_API_KEY) {
-          growthbook.setAttributes({
-            ...growthbook.getAttributes(),
-            loggedIn: true,
-            id: hashedUserId,
-          });
-        }
-        saveToLocalStorage('hashedUID', hashedUserId);
+        saveToLocalStorage('hashedUID', hash);
+      });
+    }
+  }, [isSuccess, data]);
+
+  useEffect(() => {
+    if (growthbook?.ready) {
+      growthbook.setAttributes({
+        ...growthbook.getAttributes(),
+        loggedIn: true,
+        id: hashedUserId,
       });
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isSuccess, data]);
+  }, [growthbook?.ready, hashedUserId]);
 
   return {
     user: data?.user,
