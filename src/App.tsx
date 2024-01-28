@@ -80,7 +80,7 @@ function App() {
   }, [isLoggedIn]);
 
   useEffect(() => {
-    if (process.env.REACT_APP_SENTRY_DSN) {
+    if (process.env.REACT_APP_SENTRY_DSN && Sentry.isInitialized()) {
       if (user?.name) {
         Sentry.setUser({
           username: user.name,

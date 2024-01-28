@@ -10,7 +10,7 @@
     "@fortawesome/react-fontawesome": "^0.2.0",
     "@growthbook/growthbook-react": "^0.21.0",
     "@redux-devtools/extension": "^3.3.0",
-    "@sentry/react": "^7.92.0",
+    "@sentry/react": "^7.98.0",
     "@tanstack/react-query": "^5.17.8",
     "axios": "^1.6.5",
     "bootswatch": "^5.3.2",
@@ -42,7 +42,7 @@
   "devDependencies": {
     "@locator/babel-jsx": "^0.4.3",
     "@locator/runtime": "^0.4.3",
-    "@sentry/vite-plugin": "^2.10.2",
+    "@sentry/vite-plugin": "^2.10.3",
     "@tanstack/react-query-devtools": "^5.17.8",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/react": "^14.1.2",
