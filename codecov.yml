@@ -1,0 +1,20 @@
+coverage:
+  status:
+    project:
+      default:
+        target: auto
+        # adjust accordingly based on how flaky your tests are
+        # this allows a 10% drop from the previous base commit coverage
+        threshold: 5%
+        informational: true
+        paths:
+          - 'src'
+    patch:
+      default:
+        informational: true
+
+# change to `comment: false` to disable
+comment:
+  layout: 'files'
+  require_changes: true
+  behavior: once

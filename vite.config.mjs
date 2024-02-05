@@ -113,7 +113,8 @@ const viteConfig = ({ mode }) =>
     },
     test: {
       coverage: {
-        enabled: false,
+        provider: 'v8',
+        enabled: true,
         reporter: ['lcov', 'html'],
         reportsDirectory: './coverage',
         thresholds: {

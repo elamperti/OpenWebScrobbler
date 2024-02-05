@@ -93,7 +93,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/core@npm:^7.11.1, @babel/core@npm:^7.21.3, @babel/core@npm:^7.7.5":
+"@babel/core@npm:^7.11.1, @babel/core@npm:^7.12.3, @babel/core@npm:^7.21.3, @babel/core@npm:^7.7.5":
   version: 7.23.9
   resolution: "@babel/core@npm:7.23.9"
   dependencies:
@@ -388,7 +388,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@babel/parser@npm:^7.18.5, @babel/parser@npm:^7.22.5, @babel/parser@npm:^7.23.6, @babel/parser@npm:^7.23.9":
+"@babel/parser@npm:^7.14.7, @babel/parser@npm:^7.18.5, @babel/parser@npm:^7.22.5, @babel/parser@npm:^7.23.6, @babel/parser@npm:^7.23.9":
   version: 7.23.9
   resolution: "@babel/parser@npm:7.23.9"
   bin:
@@ -3465,6 +3465,25 @@ __metadata:
   peerDependencies:
     vite: ^4 || ^5
   checksum: aae7c02f390559d0fbfb6285f1ba80917493d2c4979315f62f90fa06fb19b0b40362717fac035cac726575fdb120f66c4094f27bea846e2009686d15bc8637ae
+  languageName: node
+  linkType: hard
+
+"@vitest/coverage-istanbul@npm:^1.2.2":
+  version: 1.2.2
+  resolution: "@vitest/coverage-istanbul@npm:1.2.2"
+  dependencies:
+    debug: "npm:^4.3.4"
+    istanbul-lib-coverage: "npm:^3.2.2"
+    istanbul-lib-instrument: "npm:^6.0.1"
+    istanbul-lib-report: "npm:^3.0.1"
+    istanbul-lib-source-maps: "npm:^4.0.1"
+    istanbul-reports: "npm:^3.1.6"
+    magicast: "npm:^0.3.3"
+    picocolors: "npm:^1.0.0"
+    test-exclude: "npm:^6.0.0"
+  peerDependencies:
+    vitest: ^1.0.0
+  checksum: 2e4cb2ce36579f3bfb81f7da5fe4a72c12c2c61714848dfcd52eb913105d06f4999db9807f5df465a1d4618cd3dadefe8badd87093926302d6fdaeff4db53e94
   languageName: node
   linkType: hard
 
@@ -7742,6 +7761,19 @@ __metadata:
   languageName: node
   linkType: hard
 
+"istanbul-lib-instrument@npm:^6.0.1":
+  version: 6.0.1
+  resolution: "istanbul-lib-instrument@npm:6.0.1"
+  dependencies:
+    "@babel/core": "npm:^7.12.3"
+    "@babel/parser": "npm:^7.14.7"
+    "@istanbuljs/schema": "npm:^0.1.2"
+    istanbul-lib-coverage: "npm:^3.2.0"
+    semver: "npm:^7.5.4"
+  checksum: 313d61aca3f82a04ad9377841d05061d603ea3d4a4dd281fdda2479ec4ddbc86dc1792c73651f21c93480570d1ecadc5f63011e2df86f30ee662b62c0c00e3d8
+  languageName: node
+  linkType: hard
+
 "istanbul-lib-processinfo@npm:^2.0.2":
   version: 2.0.3
   resolution: "istanbul-lib-processinfo@npm:2.0.3"
@@ -9196,6 +9228,7 @@ __metadata:
     "@types/react-redux": "npm:^7.1.33"
     "@typescript-eslint/parser": "npm:^6.18.0"
     "@vitejs/plugin-react-swc": "npm:^3.5.0"
+    "@vitest/coverage-istanbul": "npm:^1.2.2"
     "@vitest/coverage-v8": "npm:^1.1.3"
     axios: "npm:^1.6.5"
     bootswatch: "npm:^5.3.2"
@@ -9218,7 +9251,6 @@ __metadata:
     i18next-browser-languagedetector: "npm:^7.2.0"
     i18next-http-backend: "npm:^2.4.2"
     is-ci: "npm:^3.0.1"
-    istanbul-lib-coverage: "npm:^3.2.2"
     jsdom: "npm:^23.2.0"
     lint-staged: "npm:^15.2.0"
     localforage: "npm:^1.10.0"

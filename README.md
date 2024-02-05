@@ -1,4 +1,6 @@
-# Open Scrobbler [![GitHub Actions](https://github.com/elamperti/OpenWebScrobbler/actions/workflows/test.yml/badge.svg)](https://github.com/elamperti/OpenWebScrobbler/actions) [![E2E tests](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/count/b19z84/main&style=flat&logo=cypress)](https://cloud.cypress.io/projects/b19z84/runs) [![Discord](https://img.shields.io/badge/Discord-online-green.svg?logo=discord)](https://discord.gg/vcbprTz) [![Patreon](https://img.shields.io/badge/Patreon-donate-orange.svg)](https://www.patreon.com/OpenScrobbler)
+# Open Scrobbler
+
+[![GitHub Actions](https://github.com/elamperti/OpenWebScrobbler/actions/workflows/test.yml/badge.svg)](https://github.com/elamperti/OpenWebScrobbler/actions) [![E2E tests](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/count/b19z84/main&style=flat&logo=cypress)](https://cloud.cypress.io/projects/b19z84/runs) [![codecov](https://codecov.io/gh/elamperti/OpenWebScrobbler/graph/badge.svg?token=VbgOTPlw8v)](https://codecov.io/gh/elamperti/OpenWebScrobbler) [![Discord](https://img.shields.io/badge/Discord-online-green.svg?logo=discord)](https://discord.gg/vcbprTz) [![Patreon](https://img.shields.io/badge/Patreon-support-orange.svg)](https://www.patreon.com/OpenScrobbler)
 
 ![Screenshot](https://user-images.githubusercontent.com/910672/45590262-55333c00-b90b-11e8-9f95-c360d35ced5f.jpg)
 
