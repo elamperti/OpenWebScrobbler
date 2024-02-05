@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react-swc';
 import svgrPlugin from 'vite-plugin-svgr';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
 import { VitePWA } from 'vite-plugin-pwa';
-import { terser } from 'rollup-plugin-terser';
+import terser from '@rollup/plugin-terser';
 import VitePluginReactRemoveAttributes from 'vite-plugin-react-remove-attributes';
 import { sentryVitePlugin } from '@sentry/vite-plugin';
 import tsconfigPaths from 'vite-tsconfig-paths';

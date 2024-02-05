@@ -42,6 +42,7 @@
   "devDependencies": {
     "@locator/babel-jsx": "^0.4.3",
     "@locator/runtime": "^0.4.3",
+    "@rollup/plugin-terser": "^0.4.4",
     "@sentry/vite-plugin": "^2.10.3",
     "@tanstack/react-query-devtools": "^5.17.8",
     "@testing-library/dom": "^9.3.3",
@@ -76,7 +77,6 @@
     "nyc": "^15.1.0",
     "poeditor-ci": "^1.15.0",
     "prettier": "^3.1.1",
-    "rollup-plugin-terser": "^7.0.2",
     "sass": "^1.69.7",
     "start-server-and-test": "^2.0.3",
     "tweakpane": "^4.0.3",
