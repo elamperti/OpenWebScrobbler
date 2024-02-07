@@ -86,6 +86,7 @@ const viteConfig = ({ mode }) =>
         },
       }),
       sentryVitePlugin({
+        disable: process.env.NODE_ENV !== 'production',
         bundleSizeOptimizations: {
           excludeDebugStatements: true,
           excludeReplayIframe: true,
@@ -123,6 +124,7 @@ const viteConfig = ({ mode }) =>
           functions: 10,
           lines: 10,
         },
+        exclude: ['public/**', 'lint-staged.config.mjs'],
       },
       globals: true,
       environment: 'jsdom',
