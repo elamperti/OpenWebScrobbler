@@ -131,6 +131,8 @@ export function ScrobbleAlbumTracklist() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [albumInfo.isSuccess]);
 
+  const showTracklist = (triedAlternativeProvider && Array.isArray(albumInfo.data?.tracks)) || !albumInfo.isLoading;
+
   return (
     <>
       <AlbumBreadcrumb
@@ -142,7 +144,7 @@ export function ScrobbleAlbumTracklist() {
       />
       <div className="row mb-5">
         <div className="col-md-7 mb-4">
-          {!albumInfo.isLoading || (Array.isArray(albumInfo.data?.tracks) && triedAlternativeProvider) ? (
+          {showTracklist ? (
             <Tracklist tracks={albumInfo.data?.tracks || []} albumInfo={albumInfo.data?.info} />
           ) : (
             <Spinner />
