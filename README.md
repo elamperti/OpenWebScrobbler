@@ -21,10 +21,14 @@ Contributions and suggestions are welcome. Please read the [contribution guideli
 To join the translators team, follow the link at the bottom of the language selector in the application ("Want to add your language?").
 
 ## Development setup
-You'll need [a Last.fm API account](https://www.last.fm/api/account/create)! (and probably a Discogs API key as well)
+You'll need [a Last.fm API account](https://www.last.fm/api/account/create)! (and probably a Discogs API key as well, if you want to search for albums). Please note you need to paste the Last.fm API key twice on variables `LASTFM_API_KEY` and `REACT_APP_LASTFM_API_KEY`. The same applies to Discogs API key.
+You will also need to install Docker Desktop, and make sure it is running before running trying to run the project.
+
+Windows only: you need to run the development server from within WSL; trying to run with node on Windows directly won't work. [More details on this issue](https://github.com/elamperti/OpenWebScrobbler/issues/216).
 
   * Run `yarn` to download the required libraries.
   * Copy `.env` to `.env.development.local` and fill in the required constants.
+  * Run `yarn start`.
 
 ## Testing
 You will need to copy `cypress.env.json` to `cypress.development.json` and update the file to execute the tests. Don't use last.fm account credentials from a real account!
