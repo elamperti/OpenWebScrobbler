@@ -1,4 +1,5 @@
 import { useState, useEffect, ChangeEvent, useRef } from 'react';
+import { useLocation } from 'react-router-dom';
 import { Trans } from 'react-i18next';
 
 import {
@@ -42,15 +43,12 @@ export default function SearchForm({
   onSearch,
   readOnly,
   size = 'lg',
-  value: initalValue = '',
+  value: initialValue = '',
   validator,
 }: SearchFormProps) {
-  const [query, setQuery] = useState(initalValue || '');
-  const [isValid, setValidation] = useState(true);
+  const [query, setQuery] = useState(initialValue || '');
   const searchInput = useRef<HTMLInputElement>(null);
-
-  // This is needed to prevent the "invalid" state from showing on first render
-  const inputIsInvalid = query.length > 1 && !isValid;
+  const isValid = validator ? validator(query) : true;
 
   useEffect(() => {
     if (searchInput) {
@@ -60,9 +58,7 @@ export default function SearchForm({
   }, [searchInput]);
 
   const updateQuery = (e: ChangeEvent<HTMLInputElement>) => {
-    const newQuery = e.target.value;
-    setQuery(newQuery);
-    if (validator) setValidation(validator(newQuery));
+    setQuery(e.target.value.trim());
   };
 
   const callOnSearch = () => {
@@ -75,7 +71,10 @@ export default function SearchForm({
     }
   };
 
+  // This is needed to prevent the "invalid" state from showing on first render
+  const inputIsInvalid = query.length > 1 && !isValid;
   const disableSearch = !isValid || query.length < 1;
+
   const searchButton = (
     <Button
       block
@@ -111,7 +110,7 @@ export default function SearchForm({
               maxLength={maxLength}
               data-cy="SearchForm-input"
             />
-            <FormFeedback valid={query.length < 1 || isValid}>
+            <FormFeedback valid={query.length < 1 || isValid} data-cy="SongForm-invalid-feedback">
               {feedbackMessageKey ? <Trans i18nKey={feedbackMessageKey} /> : 'Unknown error'}
             </FormFeedback>
           </FormGroup>

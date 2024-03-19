@@ -5,7 +5,7 @@ import { Row } from 'reactstrap';
 import { Trans, useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
-import { usernameIsValid as validateUsername } from 'utils/common';
+import { usernameIsValid } from 'utils/common';
 
 import SearchForm from 'components/SearchForm';
 import Avatar from 'components/Avatar';
@@ -13,26 +13,27 @@ import useLocalStorage from 'hooks/useLocalStorage';
 
 export function ScrobbleUserSearch() {
   const navigate = useNavigate();
-  const { state } = useLocation();
+  const { state: locationState } = useLocation();
   const { t } = useTranslation();
   const [recentUsers] = useLocalStorage('recentUsers', []);
   const [previousFailedSearch, setFailedSearch] = useState('');
-  const [usernameIsValid, setUsernameValid] = useState(false);
+  const [isSameUserAsBefore, setSameUserAsBefore] = useState(false);
 
   const searchUser = (user: string) => navigate(`/scrobble/user/${user}`);
 
   useEffect(() => {
-    if (state && state.justFailedSearch) {
-      setFailedSearch(state.userToSearch.toLowerCase());
+    if (locationState && locationState.justFailedSearch) {
+      setFailedSearch(locationState.userToSearch.toLowerCase());
+      setSameUserAsBefore(true);
     }
-  }, [state]);
+  }, [locationState]);
 
   const validationMiddleware = (str = '') => {
-    setUsernameValid(validateUsername(str));
-    if (previousFailedSearch && str.toLowerCase() === previousFailedSearch) {
-      return false;
+    if (previousFailedSearch) {
+      setSameUserAsBefore(str.trim().toLowerCase() === previousFailedSearch);
+      if (isSameUserAsBefore) return false;
     }
-    return usernameIsValid;
+    return usernameIsValid(str);
   };
 
   return (
@@ -50,9 +51,9 @@ export function ScrobbleUserSearch() {
           id="userToSearch"
           maxLength={15}
           size="lg"
-          value={state?.userToSearch || ''}
+          value={locationState?.userToSearch || ''}
           validator={validationMiddleware}
-          feedbackMessageKey={usernameIsValid ? 'userNotFound' : 'invalidUsername'}
+          feedbackMessageKey={isSameUserAsBefore ? 'userNotFound' : 'invalidUsername'}
         />
         {recentUsers.length > 0 && (
           <>
