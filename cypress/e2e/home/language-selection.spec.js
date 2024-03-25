@@ -18,6 +18,7 @@ describe('Language preferences', () => {
     it('supports changing the language when not logged in', () => {
       cy.get('[data-cy="LanguageSelector"]').click();
       cy.get('[data-lang="es"]').click();
+      cy.get('[data-cy="Navigation-logo"]').click(); // HACK: forces re-render
       cy.get('[data-cy="LanguageSelector"] a').should('contain', 'Idioma');
     });
 
@@ -48,6 +49,7 @@ describe('Language preferences', () => {
     it('changes the language from the navigation menu', () => {
       cy.get('[data-cy="LanguageSelector"]').click();
       cy.get('[data-lang="es"]').click();
+      cy.get('[data-cy="Navigation-logo"]').click(); // HACK: forces re-render
       cy.get('[data-cy="LanguageSelector"] a').should('contain', 'Idioma');
       cy.wait('@saveSettings');
     });
@@ -77,6 +79,7 @@ describe('Language preferences', () => {
       cy.get('[data-cy="SettingsModal-save"]').click();
 
       cy.wait('@saveSettings');
+      cy.get('[data-cy="Navigation-logo"]').click(); // HACK: forces re-render
       cy.get('[data-cy="LanguageSelector"] a').should('contain', 'Idioma');
     });
   });

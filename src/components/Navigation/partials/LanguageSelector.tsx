@@ -12,11 +12,10 @@ import { useLanguage } from 'hooks/useLanguage';
 import './LanguageSelector.scss';
 
 export default function LanguageSelector({ className = '' }: { className?: string }) {
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
   const { isLoggedIn } = useUserData();
   const { updateSettings } = useSettings();
-  const { setLanguage } = useLanguage();
-  const currentLanguage = i18n.language;
+  const { currentLanguage, setLanguage } = useLanguage();
 
   function changeLanguage(el) {
     const lang = el.target.dataset.lang;
