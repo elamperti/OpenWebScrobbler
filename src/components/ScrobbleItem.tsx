@@ -166,7 +166,7 @@ export default function ScrobbleItem({
 
   if (scrobble.timestamp) {
     if (!isToday(new Date(scrobble.timestamp))) {
-      timestampFormat = 'd/MM ';
+      timestampFormat = `${settings?.use12Hours ? 'M/d' : 'd/MM'} `;
     }
     timestampFormat += settings?.use12Hours ? 'hh:mm a' : 'HH:mm';
     theTimestamp = format(new Date(scrobble.timestamp), timestampFormat);
