@@ -55,7 +55,7 @@ input.hasLock {
   left: -0.15em;
   padding: 0.1em 0.2em !important;
   position: relative;
-  z-index: 999; /* for mobile */
+  z-index: 900; /* for mobile */
 }
 
 @media (max-width: 575.98px) {
