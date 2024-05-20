@@ -17,6 +17,7 @@ export const languageList = [
   { code: 'en', name: 'English' },
   { code: 'es', name: 'Español' }, // Spanish
   { code: 'fr', name: 'Français' }, // French
+  { code: 'hr', name: 'Hrvatski' }, // Croatian
   { code: 'it', name: 'Italiano' },
   { code: 'nl', name: 'Nederlands' }, // Dutch
   { code: 'pl', name: 'Polski' }, // Polish
@@ -39,6 +40,7 @@ export const fallbackLng = {
   'en-UK': ['en'],
   'es-AR': ['es'],
   'es-ES': ['es'],
+  'hr-HR': ['hr'],
   'it-CH': ['it'],
   'pt-BR': ['pt'],
   'pt-PT': ['pt'],
