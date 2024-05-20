@@ -146,10 +146,10 @@
   "comingSoon": "kommer snart",
   "searchOnProvider": "Søg på {{dataProvider}}",
   "showTrackNumbers": "Vis spornummer på albumlister",
-  "startingSession": "Logging you in...",
-  "finishingValidation": "Validating token with Last.fm",
-  "gettingLastfmUser": "Getting Last.fm user details",
-  "fetchingUserSettings": "Retrieving your preferences",
-  "validationFailed": "Something went wrong!",
-  "tryAgain": "Try again"
+  "startingSession": "Logger dig ind...",
+  "finishingValidation": "Validerer token med Last.fm",
+  "gettingLastfmUser": "Henter Last.fm-brugerdetaljer",
+  "fetchingUserSettings": "Henter dine præferencer",
+  "validationFailed": "Noget gik galt!",
+  "tryAgain": "Prøv igen"
 }
