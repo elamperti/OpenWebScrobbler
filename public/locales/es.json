@@ -103,7 +103,7 @@
   "availableLanguages": "Idiomas disponibles",
   "use12HoursFormat": "Usar formato de 12 horas (AM/PM)",
   "splitPastedText": "Dividir texto al pegar en los campos de artista o título",
-  "welcomeToTheScrobbler": "¡Bienvenidos al <1>Open Scrobbler</1>!",
+  "welcomeToTheScrobbler": "¡Bienvenidos a <1>Open Scrobbler</1>!",
   "purpose": "Esta herramienta permite scrobblear canciones y álbums que hayas escuchado en la radio, en vinilos, o de alguna otra forma que requiera scrobblear manualmente.",
   "authNeeded": "¡Autoriza la aplicación para empezar!",
   "logInWithLastFm": "Ingresar con Last.fm",

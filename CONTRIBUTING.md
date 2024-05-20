@@ -1,6 +1,6 @@
 # Contributing
 
-I'm really glad you're reading this, because it's through the help of contributors that the Open Scrobbler can continue to grow! Below you will find guidelines for contributing new features, bug fixes or translations.
+I'm really glad you're reading this, because it's through the help of contributors that Open Scrobbler can continue to grow! Below you will find guidelines for contributing new features, bug fixes or translations.
 
 <!-- TOC depthFrom:2 -->
 - [Fixing bugs](#fixing-bugs)

@@ -50,5 +50,4 @@ Just start it with `yarn start` (it will launch both the API server and the Reac
 The `build` script should be enough! :)
 
 ## Thank you!
-
-One of the best things about open source is the great community around it. The Open Scrobbler has several contributors and each one of them has made this tool better for everyone. Thanks to [all of them](https://github.com/elamperti/OpenWebScrobbler/graphs/contributors)!
+One of the best things about open source is the great community around it. Open Scrobbler has several contributors and each one of them has made this tool better for everyone. Thanks to [all of them](https://github.com/elamperti/OpenWebScrobbler/graphs/contributors)!
