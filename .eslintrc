@@ -27,7 +27,16 @@
       "version": "detect"
     }
   },
-  "plugins": ["react", "react-hooks", "vitest", "cypress", "n", "promise", "no-only-tests"],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "eslint-plugin-react-compiler",
+    "vitest",
+    "cypress",
+    "n",
+    "promise",
+    "no-only-tests"
+  ],
   "globals": {
     "vi": true
   },
@@ -47,6 +56,7 @@
     "no-only-tests/no-only-tests": "error",
     "no-unused-vars": "warn",
     "prefer-const": "warn",
+    "react-compiler/react-compiler": "error",
     "semi": [2, "always"],
     "space-infix-ops": 1,
     "space-before-function-paren": [2, "never"],
