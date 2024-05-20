@@ -21,6 +21,7 @@ import { useQueryClient } from '@tanstack/react-query';
 
 import type { FC } from 'react';
 import { useUserData } from 'hooks/useUserData';
+import { ClearHistoryButton } from 'components/ClearHistoryButton';
 
 type SidebarTab = 'history' | 'userProfile';
 
@@ -37,6 +38,8 @@ export const ScrobbleSong: FC = () => {
   const { user } = useUserData();
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
+
+  const hasUsername = !!user?.name;
 
   const goToHistoryTab = () => {
     if (activeTab !== 'history') {
@@ -64,22 +67,6 @@ export const ScrobbleSong: FC = () => {
       });
     }
   };
-
-  let clearListButton;
-  const hasUsername = !!user?.name;
-
-  if (activeTab === 'history') {
-    if (localScrobbles.length > 0) {
-      clearListButton = (
-        <div className="ms-auto d-flex my-auto">
-          <Button className="btn-clear" size="sm" color="secondary" onClick={() => dispatch(clearListOfScrobbles())}>
-            <FontAwesomeIcon icon={faTrashAlt} className="me-1" />
-            <Trans i18nKey="clearHistory">Clear history</Trans>
-          </Button>
-        </div>
-      );
-    }
-  }
 
   return (
     <ScrobbleCloneContext.Provider value={{ cloneFn: cloneReceiver, setCloneFn: setCloneReceiver }}>
@@ -118,7 +105,11 @@ export const ScrobbleSong: FC = () => {
                 </span>
               </NavLink>
             </NavItem>
-            {clearListButton}
+            {activeTab === 'history' && (
+              <div className="ms-auto d-flex my-auto">
+                <ClearHistoryButton />
+              </div>
+            )}
           </Nav>
           <TabContent activeTab={activeTab}>
             <TabPane className="ScrobbleList-container pt-2" tabId="history">
