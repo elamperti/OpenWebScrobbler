@@ -7,6 +7,7 @@ import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
 import format from 'date-fns/format';
 import isToday from 'date-fns/isToday';
+import getYear from 'date-fns/getYear';
 
 import { Button, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, FormGroup, Label } from 'reactstrap';
 import { useState } from 'react';
@@ -165,11 +166,16 @@ export default function ScrobbleItem({
   }
 
   if (scrobble.timestamp) {
-    if (!isToday(new Date(scrobble.timestamp))) {
-      timestampFormat = `${settings?.use12Hours ? 'M/d' : 'd/MM'} `;
+    const scrobbleDate = new Date(scrobble.timestamp);
+    if (!isToday(scrobbleDate)) {
+      timestampFormat = settings?.use12Hours ? 'M/d' : 'd/MM';
+      if (getYear(scrobbleDate) < getYear(new Date())) {
+        timestampFormat += '/yyyy';
+      }
+      timestampFormat += ' ';
     }
     timestampFormat += settings?.use12Hours ? 'hh:mm a' : 'HH:mm';
-    theTimestamp = format(new Date(scrobble.timestamp), timestampFormat);
+    theTimestamp = format(scrobbleDate, timestampFormat);
   } else {
     if (scrobble.duration > 0) {
       // Yes, there are songs over one hour. Is it worth making this more complex for those? (no, it isn't)
