@@ -8,7 +8,6 @@
   "album": "专辑",
   "scrobbleFromAlbum": "记录专辑",
   "scrobbleAlbum": "记录专辑",
-  "album_plural": "专辑",
   "goBack": "撤回",
   "topAlbumsBy": "{{nameOfArtist}} 的专辑",
   "noAlbumsFound": "没有找到<1>{{albumOrArtist}}</1>的专辑",

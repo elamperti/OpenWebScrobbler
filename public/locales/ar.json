@@ -8,7 +8,6 @@
   "album": "الألبوم",
   "scrobbleFromAlbum": "سجل الألبومات",
   "scrobbleAlbum": "سجل الألبوم",
-  "album_plural": "الألبومات",
   "goBack": "تراجع",
   "topAlbumsBy": "الالبومات بواسطة {{nameOfArtist}}",
   "noAlbumsFound": "لم يتم العثور على ألبومات ل <1>{{albumOrArtist}}</1>\n",
