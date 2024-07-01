@@ -99,7 +99,7 @@
     "start:services": "docker-compose up",
     "build": "yarn typecheck && vite build",
     "prettier": "prettier --write \"src/**/*.{js,jsx,ts,tsx}\"",
-    "lint": "eslint src/ cypress/",
+    "lint": "eslint \"./src\" \"./cypress\" --ext .js,.jsx,.ts,.tsx",
     "fix": "yarn prettier && yarn lint --fix",
     "test": "yarn test:unit && yarn test:e2e",
     "test:e2e": "TZ=Etc/GMT-3 start-test 'yarn start:server --port 3030' 3030 'cypress run'",
