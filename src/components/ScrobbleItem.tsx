@@ -34,6 +34,7 @@ import { useSettings } from 'hooks/useSettings';
 
 interface ScrobbleItemProps {
   scrobble: Scrobble;
+  scrobbleRemovalPattern?: string;
   compact?: boolean;
   hideArtist?: boolean;
   muteArtist?: boolean;
@@ -48,6 +49,7 @@ interface ScrobbleItemProps {
 
 export default function ScrobbleItem({
   scrobble,
+  scrobbleRemovalPattern = '',
   compact = false,
   hideArtist = false,
   muteArtist = false,
@@ -86,6 +88,7 @@ export default function ScrobbleItem({
     enqueueScrobble(dispatch)([
       {
         ...scrobble,
+        title: scrobbleRemovalPattern !== '' ? scrobble.title.replaceAll(scrobbleRemovalPattern, '').trim() : scrobble.title,
         timestamp: useOriginalTimestamp ? scrobble.timestamp : new Date(),
       },
     ]);
