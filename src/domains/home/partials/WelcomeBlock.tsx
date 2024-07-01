@@ -1,5 +1,6 @@
 import { Trans } from 'react-i18next';
 
+
 export default function WelcomeBlock() {
   return (
     <>

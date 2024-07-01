@@ -1,17 +1,18 @@
 // import { useSelector } from 'react-redux';
-import { Navigate, Route, Routes as Switch } from 'react-router-dom';
-
-import Home from 'domains/home';
 import PrivateRoute from 'components/PrivateRoute';
-import { ScrobbleSong } from './domains/scrobbleSong';
+import Home from 'domains/home';
+import { Callback } from 'domains/lastfm/Callback';
 import {
   ScrobbleAlbumSearch,
   ScrobbleArtistResults,
   ScrobbleAlbumResults,
   ScrobbleAlbumTracklist,
 } from 'domains/scrobbleAlbum';
+import { Navigate, Route, Routes as Switch } from 'react-router-dom';
+
+import { ScrobbleSong } from './domains/scrobbleSong';
 import { ScrobbleUserSearch, ScrobbleUserResults } from './domains/scrobbleUser';
-import { Callback } from 'domains/lastfm/Callback';
+
 
 export default function Routes() {
   return (

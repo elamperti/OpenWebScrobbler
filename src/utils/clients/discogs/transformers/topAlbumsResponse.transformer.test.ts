@@ -1,5 +1,6 @@
 import { topAlbumsTransformer } from './topAlbumsResponse.transformer';
 
+
 describe('Discogs transformer: top albums', () => {
   it('formats the results', () => {
     const results = topAlbumsTransformer({

@@ -1,8 +1,9 @@
+import type { Track } from 'utils/types/track';
+
 import { get, hasIn } from 'lodash-es';
 import shortid from 'shortid';
-import { sanitizeArtistName } from './common/sanitizeArtistName';
 
-import type { Track } from 'utils/types/track';
+import { sanitizeArtistName } from './common/sanitizeArtistName';
 
 /*
   This function takes a [[HH:]MM:]SS string (e.g. "1:03:55") and converts it

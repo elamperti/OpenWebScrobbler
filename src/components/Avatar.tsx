@@ -1,13 +1,12 @@
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
-
 import type { SizeProp } from '@fortawesome/fontawesome-svg-core';
-
 import type { AvatarSizes } from 'utils/types/avatar';
 
+import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+
 import './Avatar.css';
+
 
 interface AvatarProps {
   alt: string;

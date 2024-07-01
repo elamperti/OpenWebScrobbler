@@ -1,5 +1,6 @@
 import { Avatar } from './avatar';
 
+
 type BaseArtist = {
   name: string;
   url: string;

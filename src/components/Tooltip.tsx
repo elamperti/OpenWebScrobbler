@@ -1,6 +1,8 @@
+import type { TooltipProps } from 'reactstrap';
+
 import { useState } from 'react';
 import { Tooltip as BSTooltip } from 'reactstrap';
-import type { TooltipProps } from 'reactstrap';
+
 
 export default function Tooltip(props: TooltipProps) {
   const [isOpen, setIsOpen] = useState(false);

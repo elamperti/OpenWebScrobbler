@@ -1,5 +1,6 @@
 import type { TweaksConfig } from './types';
 
+
 if (process.env.NODE_ENV === 'development') {
   import('./quirks/hideReactQueryButton.css');
 }

@@ -1,7 +1,7 @@
+import { faQuestion, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Trans } from 'react-i18next';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestion, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 
 export default function EmptyScrobbleListFiller() {
   return (

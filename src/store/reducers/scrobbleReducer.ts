@@ -1,7 +1,4 @@
 import axios from 'axios';
-import { get, hasIn } from 'lodash-es';
-import shortid from 'shortid';
-
 import {
   ENQUEUE_NEW,
   FLUSH_QUEUE,
@@ -14,9 +11,12 @@ import {
   OPENSCROBBLER_API_URL,
   MAX_SCROBBLES_PER_REQUEST,
 } from 'Constants';
+import { get, hasIn } from 'lodash-es';
+import shortid from 'shortid';
 import { prepareScrobbles } from 'store/transformers/scrobbleTransformer';
 import { castArray } from 'utils/common';
 import { Scrobble } from 'utils/types/scrobble';
+
 
 type ScrobbleState = {
   countNewScrobbles: boolean;

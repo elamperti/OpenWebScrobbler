@@ -1,27 +1,26 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
-import ReactGA from 'react-ga-neo';
-import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { get } from 'lodash-es';
+import type { RootState } from 'store';
 
-import { Row } from 'reactstrap';
-import { Trans } from 'react-i18next';
 import { faHistory } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import useLocalStorage from 'hooks/useLocalStorage';
-import { userGetRecentTracks } from 'utils/clients/lastfm/methods/userGetRecentTracks';
-import { MAX_RECENT_USERS } from 'Constants';
-
-import ScrobbleList from 'components/ScrobbleList';
-import Spinner from 'components/Spinner';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 import Paginator from 'components/Paginator';
+import ScrobbleList from 'components/ScrobbleList';
+import Spinner from 'components/Spinner';
+import { MAX_RECENT_USERS } from 'Constants';
+import useLocalStorage from 'hooks/useLocalStorage';
+import { get } from 'lodash-es';
+import { useEffect, useState } from 'react';
+import ReactGA from 'react-ga-neo';
+import { Trans } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { useParams, useNavigate } from 'react-router-dom';
+import { Row } from 'reactstrap';
+import { userGetRecentTracks } from 'utils/clients/lastfm/methods/userGetRecentTracks';
+
 import FriendScrobbles from './partials/FriendScrobbles';
 import { UserResultsHeading } from './partials/UserResultsHeading';
 
-import type { RootState } from 'store';
 
 export function ScrobbleUserResults() {
   const { username: usernameFromParams } = useParams();

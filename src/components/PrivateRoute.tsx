@@ -1,7 +1,8 @@
-import { Navigate } from 'react-router-dom';
-import { useUserData } from 'hooks/useUserData';
-
 import type { FC } from 'react';
+
+import { useUserData } from 'hooks/useUserData';
+import { Navigate } from 'react-router-dom';
+
 
 export default function PrivateRoute({ using: View }: { using: FC }) {
   const { isLoggedIn, isFetching } = useUserData();

@@ -1,18 +1,6 @@
-import { useDispatch } from 'react-redux';
-import { Trans } from 'react-i18next';
-import ReactGA from 'react-ga-neo';
-import { get } from 'lodash-es';
+import type { Scrobble } from 'utils/types/scrobble';
 
-import { enqueueScrobble } from 'store/actions/scrobbleActions';
-
-import format from 'date-fns/format';
-import isToday from 'date-fns/isToday';
-import getYear from 'date-fns/getYear';
-
-import { Button, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, FormGroup, Label } from 'reactstrap';
-import { useState } from 'react';
-import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock, faCopy } from '@fortawesome/free-regular-svg-icons';
 import {
   faCheck,
   faCompactDisc,
@@ -24,13 +12,23 @@ import {
   faSync,
   faTimes,
 } from '@fortawesome/free-solid-svg-icons';
-import { faClock, faCopy } from '@fortawesome/free-regular-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { getAmznLink } from 'Constants';
-
-import type { Scrobble } from 'utils/types/scrobble';
+import format from 'date-fns/format';
+import getYear from 'date-fns/getYear';
+import isToday from 'date-fns/isToday';
+import { useSettings } from 'hooks/useSettings';
+import { get } from 'lodash-es';
+import { useState } from 'react';
+import ReactGA from 'react-ga-neo';
+import { Trans } from 'react-i18next';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import { useDispatch } from 'react-redux';
+import { Button, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, FormGroup, Label } from 'reactstrap';
+import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
 import './ScrobbleItem.css';
-import { useSettings } from 'hooks/useSettings';
+
 
 interface ScrobbleItemProps {
   scrobble: Scrobble;

@@ -1,28 +1,26 @@
-import { Suspense, useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import qs from 'qs';
-import { find } from 'lodash-es';
-import lazyWithPreload from 'react-lazy-with-preload';
-
-import * as Sentry from '@sentry/react';
-import { interceptAxios } from 'utils/axios';
-import { languageList, fallbackLng } from 'utils/i18n';
-
-import { useTranslation } from 'react-i18next';
-import { useRegisterSW } from 'virtual:pwa-register/react';
 import { useGrowthBook } from '@growthbook/growthbook-react';
-import { useUserData } from 'hooks/useUserData';
-import { useLanguage } from 'hooks/useLanguage';
-
-import Routes from 'Routes';
-import Navigation from 'components/Navigation';
-import Footer from 'components/Footer';
+import * as Sentry from '@sentry/react';
 import AlertZone from 'components/AlertZone';
 import AnalyticsListener from 'components/AnalyticsListener';
-import UpdateToast from 'components/UpdateToast';
-import Spinner from 'components/Spinner';
+import Footer from 'components/Footer';
+import Navigation from 'components/Navigation';
 import { SettingsModalContext } from 'components/SettingsModal/SettingsModalContext';
+import Spinner from 'components/Spinner';
+import UpdateToast from 'components/UpdateToast';
+import { useLanguage } from 'hooks/useLanguage';
+import { useUserData } from 'hooks/useUserData';
+import { find } from 'lodash-es';
+import qs from 'qs';
+import { Suspense, useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import lazyWithPreload from 'react-lazy-with-preload';
+import { useDispatch } from 'react-redux';
+import { useLocation, useNavigate } from 'react-router-dom';
+import Routes from 'Routes';
+import { interceptAxios } from 'utils/axios';
+import { languageList, fallbackLng } from 'utils/i18n';
+import { useRegisterSW } from 'virtual:pwa-register/react';
+
 
 const SettingsModal = lazyWithPreload(() => import('components/SettingsModal'));
 

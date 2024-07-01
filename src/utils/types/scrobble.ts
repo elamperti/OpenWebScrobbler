@@ -1,6 +1,7 @@
 import { AlbumCover } from './album';
 import { Track } from './track';
 
+
 export type Scrobble = Track & {
   uuid?: string; // DEPRECATED - TODO: dedupe
   cover?: AlbumCover;

@@ -1,5 +1,6 @@
 import { albumGetInfoTransformer } from './albumGetInfoResponse.transformer';
 
+
 describe('Last.fm transformer: album info', () => {
   it('formats the response', () => {
     const results = albumGetInfoTransformer({

@@ -1,27 +1,23 @@
-import { useState, createContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Trans } from 'react-i18next';
-import ReactGA from 'react-ga-neo';
-
-import { Badge, Button, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCompactDisc, faHistory, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
-import { faPlayCircle, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
-
+import type { FC } from 'react';
 import type { RootState } from 'store';
-import { clearListOfScrobbles, scrobbleCounterEnabled } from 'store/actions/scrobbleActions';
 
+import { faPlayCircle, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faCompactDisc, faHistory, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useQueryClient } from '@tanstack/react-query';
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 import ScrobbleList from 'components/ScrobbleList';
-import Spinner from 'components/Spinner';
-import { SongForm } from './SongForm';
+import { useUserData } from 'hooks/useUserData';
+import { useState, createContext } from 'react';
+import ReactGA from 'react-ga-neo';
+import { Trans } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
+import { Badge, Button, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
+import { clearListOfScrobbles, scrobbleCounterEnabled } from 'store/actions/scrobbleActions';
 
 import { LastFmProfileHistory } from './partials/LastFmProfileHistory';
-import { useQueryClient } from '@tanstack/react-query';
+import { SongForm } from './SongForm';
 
-import type { FC } from 'react';
-import { useUserData } from 'hooks/useUserData';
 
 type SidebarTab = 'history' | 'userProfile';
 

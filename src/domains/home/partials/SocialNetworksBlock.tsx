@@ -1,12 +1,13 @@
-import ReactGA from 'react-ga-neo';
-import { Button, Row, Col } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
-import { Trans } from 'react-i18next';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useFeatureIsOn } from '@growthbook/growthbook-react';
+import ReactGA from 'react-ga-neo';
+import { Trans } from 'react-i18next';
+import { Button, Row, Col } from 'reactstrap';
 
 import './SocialNetworksBlock.scss';
+
 
 export default function SocialNetworksBlock() {
   const glowFF = useFeatureIsOn('glowing-support');

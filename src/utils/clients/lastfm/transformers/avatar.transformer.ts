@@ -1,5 +1,6 @@
 import { Avatar } from 'utils/types/avatar';
 
+
 const sizeMap = {
   small: 'sm',
   medium: 'md',

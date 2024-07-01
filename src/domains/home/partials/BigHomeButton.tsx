@@ -1,11 +1,12 @@
-import { Link } from 'react-router-dom';
-import { Trans } from 'react-i18next';
-import { Button } from 'reactstrap';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Trans } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { Button } from 'reactstrap';
+
 import './BigHomeButton.scss';
+
 
 export default function BigHomeButton({ href, i18nKey, icon }: { href: string; i18nKey: string; icon: IconProp }) {
   return (

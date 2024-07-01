@@ -1,6 +1,7 @@
+import type { Artist } from 'utils/types/artist';
+
 import { avatarTransformer } from './avatar.transformer';
 
-import type { Artist } from 'utils/types/artist';
 
 export function artistsSearchTransformer(raw: any): Artist[] {
   const results = raw?.results?.artistmatches?.artist || [];

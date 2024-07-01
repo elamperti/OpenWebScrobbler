@@ -1,8 +1,9 @@
+import type { Track } from 'utils/types/track';
+
 import { get, hasIn } from 'lodash-es';
 import shortid from 'shortid';
 import { castArray } from 'utils/common';
 
-import type { Track } from 'utils/types/track';
 
 export function tracksTransformer(
   response: any,

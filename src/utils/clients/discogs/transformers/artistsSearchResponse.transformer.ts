@@ -1,6 +1,7 @@
+import type { Artist } from 'utils/types/artist';
+
 import { sanitizeArtistName } from './common/sanitizeArtistName';
 
-import type { Artist } from 'utils/types/artist';
 
 export function artistsSearchTransformer(raw: any): Artist[] {
   const results = raw?.data?.results || [];

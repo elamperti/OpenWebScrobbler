@@ -1,5 +1,6 @@
 import { throttle } from 'lodash-es';
 
+
 const MINIMUM_DISTANCE_FROM_EDGE = 24; // px
 const OFFSET_FROM_EDGE = 8; // px
 

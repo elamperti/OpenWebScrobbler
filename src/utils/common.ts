@@ -1,5 +1,6 @@
 import { PROVIDER_DISCOGS, PROVIDER_NAME, Provider } from 'Constants';
 
+
 export function castArray(x: any): Array<any> {
   return Array.isArray(x) ? x : [x];
 }

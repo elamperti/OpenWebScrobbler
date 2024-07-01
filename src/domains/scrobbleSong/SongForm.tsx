@@ -1,28 +1,25 @@
+import type { Scrobble } from 'utils/types/scrobble';
+
+import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
+import { faThumbtack, faExchangeAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { DEFAULT_SONG_DURATION } from 'Constants';
+import addDays from 'date-fns/addDays';
+import addSeconds from 'date-fns/addSeconds';
+import { useSettings } from 'hooks/useSettings';
 import { useContext, useEffect, useState } from 'react';
+import ReactGA from 'react-ga-neo';
+import { Trans } from 'react-i18next';
 import { lazyWithPreload } from 'react-lazy-with-preload';
 import { useDispatch } from 'react-redux';
-import { Trans } from 'react-i18next';
-import ReactGA from 'react-ga-neo';
-
-import addSeconds from 'date-fns/addSeconds';
-import addDays from 'date-fns/addDays';
-
 import { Button, ButtonGroup, Form, FormGroup, Input, Label } from 'reactstrap';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbtack, faExchangeAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
-import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
-
-import { useSettings } from 'hooks/useSettings';
-import { enqueueScrobble } from 'store/actions/scrobbleActions';
 import { createAlert, dismissAlert } from 'store/actions/alertActions';
-import { ScrobbleCloneContext } from './ScrobbleSong';
+import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
-import { DEFAULT_SONG_DURATION } from 'Constants';
+import { ScrobbleCloneContext } from './ScrobbleSong';
 
 import './SongForm.css';
 
-import type { Scrobble } from 'utils/types/scrobble';
 
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 const Tooltip = lazyWithPreload(() => import('components/Tooltip'));

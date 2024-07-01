@@ -2,6 +2,7 @@ import type { SyntheticEvent } from 'react';
 
 import { Pagination, PaginationItem, PaginationLink } from 'reactstrap';
 
+
 const MAX_PAGE_ITEMS = 7; // ToDo: make it dynamic by viewport and/or currentPage digits' count
 
 type PaginatorProps = {

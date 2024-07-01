@@ -1,6 +1,7 @@
-import { Trans } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Trans } from 'react-i18next';
+
 
 const Spinner = ({ noTranslation = false }: { noTranslation?: boolean }) => {
   return (

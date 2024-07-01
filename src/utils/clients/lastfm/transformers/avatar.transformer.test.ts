@@ -1,5 +1,6 @@
 import { avatarTransformer } from './avatar.transformer';
 
+
 describe('Last.fm transformer: avatars', () => {
   it('transforms an array of avatars into an object with the correct keys', () => {
     const avatars = [

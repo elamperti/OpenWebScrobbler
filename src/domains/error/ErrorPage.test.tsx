@@ -1,6 +1,8 @@
-import { render, screen, fireEvent } from '@testing-library/react';
-import ErrorPage from './ErrorPage';
 import sentry from '@sentry/react';
+import { render, screen, fireEvent } from '@testing-library/react';
+
+import ErrorPage from './ErrorPage';
+
 
 describe('ErrorPage', () => {
   it('renders correctly', () => {

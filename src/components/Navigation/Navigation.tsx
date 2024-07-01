@@ -1,20 +1,20 @@
+import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
+import { faHeadphonesAlt, faCompactDisc, faSignInAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { LASTFM_AUTH_URL } from 'Constants';
+import { useSettings } from 'hooks/useSettings';
+import { useUserData } from 'hooks/useUserData';
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeadphonesAlt, faCompactDisc, faSignInAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
-import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
-
 import { useBootstrapBreakpoint, BS_SIZE_SM } from 'utils/bootstrapBreakpoints';
-import { useUserData } from 'hooks/useUserData';
-import { useSettings } from 'hooks/useSettings';
 
 import LanguageSelector from './partials/LanguageSelector';
 import NavigationItem from './partials/NavigationItem';
 import UserDropdown from './partials/UserDropdown';
-import { LASTFM_AUTH_URL } from 'Constants';
 
 import './Navigation.scss';
+
 
 export default function Navigation() {
   const { isLoggedIn } = useUserData();

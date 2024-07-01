@@ -11,10 +11,8 @@ import 'bootswatch/dist/slate/bootstrap.min.css';
 
 import { Provider as ReduxProvider } from 'react-redux';
 import store from 'store';
-
 import ReactGA from 'react-ga-neo';
 import * as Sentry from '@sentry/react';
-
 import { GrowthBook, GrowthBookProvider } from '@growthbook/growthbook-react';
 
 import 'utils/i18n';

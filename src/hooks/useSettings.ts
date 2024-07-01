@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { userGetSettings } from 'utils/clients/api/methods/userGetSettings';
+import { useEffect } from 'react';
 import { settingsUpdate } from 'utils/clients/api/methods/settingsUpdate';
+import { userGetSettings } from 'utils/clients/api/methods/userGetSettings';
 import { Settings } from 'utils/types/settings';
+
 import { useLanguage } from './useLanguage';
 import { useUserData } from './useUserData';
+
 
 export const useSettings = () => {
   const queryClient = useQueryClient();

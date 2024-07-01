@@ -1,5 +1,7 @@
-import { BindingApi } from '@tweakpane/core';
 import type { Pane } from 'tweakpane';
+
+import { BindingApi } from '@tweakpane/core';
+
 
 declare global {
   // eslint-disable-next-line no-unused-vars

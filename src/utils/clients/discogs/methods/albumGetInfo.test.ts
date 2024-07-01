@@ -1,7 +1,8 @@
-import { discogsAPI } from '../apiClient';
-import { albumGetInfo } from './albumGetInfo';
-
 import type { DiscogsAlbum } from 'utils/types/album';
+
+import { albumGetInfo } from './albumGetInfo';
+import { discogsAPI } from '../apiClient';
+
 
 vi.mock('../apiClient');
 

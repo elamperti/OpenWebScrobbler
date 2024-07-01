@@ -1,11 +1,10 @@
-import { useEffect } from 'react';
-
-import { useUserData } from 'hooks/useUserData';
-
 import HomeUser from 'domains/home/HomeUser';
 import HomeVisitor from 'domains/home/HomeVisitor';
+import { useUserData } from 'hooks/useUserData';
+import { useEffect } from 'react';
 
 import './Home.scss';
+
 
 const bodyDecoration = 'with-shadow';
 

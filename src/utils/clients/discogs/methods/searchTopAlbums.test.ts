@@ -1,5 +1,6 @@
-import { discogsAPI } from '../apiClient';
 import { searchTopAlbums } from './searchTopAlbums';
+import { discogsAPI } from '../apiClient';
+
 
 vi.mock('../apiClient');
 

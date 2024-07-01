@@ -1,23 +1,20 @@
-import { useEffect, useState } from 'react';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-
-import { albumSearch as LastFmSearch } from 'utils/clients/lastfm';
-import { albumSearch as DiscogsSearch } from 'utils/clients/discogs';
-import { sanitizeProvider } from 'utils/common';
-
-import { Trans } from 'react-i18next';
-import { Row } from 'reactstrap';
-
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { useQuery } from '@tanstack/react-query';
 import Spinner from 'components/Spinner';
+import { PROVIDER_DISCOGS } from 'Constants';
+import { useEffect, useState } from 'react';
+import { Trans } from 'react-i18next';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
+import { Row } from 'reactstrap';
+import { albumSearch as DiscogsSearch } from 'utils/clients/discogs';
+import { albumSearch as LastFmSearch } from 'utils/clients/lastfm';
+import { sanitizeProvider } from 'utils/common';
+
 import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 import AlbumResults from './partials/AlbumResults';
 import ArtistResults from './partials/ArtistResults';
 
-import { PROVIDER_DISCOGS } from 'Constants';
 
 export function ScrobbleAlbumResults() {
   const [searchParams] = useSearchParams();

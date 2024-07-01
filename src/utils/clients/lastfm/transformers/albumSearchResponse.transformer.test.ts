@@ -1,5 +1,6 @@
 import { albumSearchTransformer } from './albumSearchResponse.transformer';
 
+
 describe('Last.fm transformer: album search', () => {
   it('formats the results', () => {
     const results = albumSearchTransformer({

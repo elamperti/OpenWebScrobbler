@@ -1,11 +1,11 @@
-import ReactGA from 'react-ga-neo';
-import { hasIn } from 'lodash-es';
-
 import { USER_LOGGED_OUT } from 'Constants';
-
-import history from 'utils/history';
-import { createAlert } from './alertActions';
+import { hasIn } from 'lodash-es';
+import ReactGA from 'react-ga-neo';
 import { openscrobblerAPI } from 'utils/clients/api/apiClient';
+import history from 'utils/history';
+
+import { createAlert } from './alertActions';
+
 
 export function logOut(dispatch) {
   return (alertObject) => {

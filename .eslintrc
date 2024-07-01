@@ -7,6 +7,7 @@
   },
   "extends": [
     "standard",
+    "plugin:import/recommended",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:react/jsx-runtime",
@@ -23,11 +24,16 @@
     "sourceType": "module"
   },
   "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    },
     "react": {
       "version": "detect"
     }
   },
-  "plugins": ["react", "react-hooks", "vitest", "cypress", "n", "promise", "no-only-tests"],
+  "plugins": ["react", "react-hooks", "vitest", "cypress", "n", "promise", "no-only-tests", "import"],
   "globals": {
     "vi": true
   },
@@ -42,7 +48,21 @@
         "functions": "never"
       }
     ],
+    "import/consistent-type-specifier-style": ["error", "prefer-top-level"],
+    "import/newline-after-import": ["error", { "count": 2 }],
+    "import/order": [
+      "error",
+      {
+        "alphabetize": {
+          "caseInsensitive": true,
+          "order": "asc"
+        },
+        "groups": ["type", "builtin", "external", "internal", ["sibling", "parent"], "index", "object"],
+        "newlines-between": "always"
+      }
+    ],
     "multiline-ternary": "off",
+    "no-multiple-empty-lines": "off",
     "no-console": "warn",
     "no-only-tests/no-only-tests": "error",
     "no-unused-vars": "warn",

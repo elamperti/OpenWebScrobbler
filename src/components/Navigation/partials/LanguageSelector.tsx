@@ -1,15 +1,15 @@
-import { languageList } from 'utils/i18n';
-import ReactGA from 'react-ga-neo';
-import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGlobe } from '@fortawesome/free-solid-svg-icons';
-import { useTranslation } from 'react-i18next';
-
-import { useUserData } from 'hooks/useUserData';
-import { useSettings } from 'hooks/useSettings';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useLanguage } from 'hooks/useLanguage';
+import { useSettings } from 'hooks/useSettings';
+import { useUserData } from 'hooks/useUserData';
+import ReactGA from 'react-ga-neo';
+import { useTranslation } from 'react-i18next';
+import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
+import { languageList } from 'utils/i18n';
 
 import './LanguageSelector.scss';
+
 
 export default function LanguageSelector({ className = '' }: { className?: string }) {
   const { t } = useTranslation();

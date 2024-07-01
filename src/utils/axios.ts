@@ -1,14 +1,12 @@
+import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
 import axios, { InternalAxiosRequestConfig } from 'axios';
-import ReactGA from 'react-ga-neo';
+import { Alert } from 'components/AlertZone/types';
+import { OPENSCROBBLER_API_URL } from 'Constants';
 import { get } from 'lodash-es';
 import qs from 'qs';
-
-import { logOut } from 'store/actions/userActions';
+import ReactGA from 'react-ga-neo';
 import { createAlert } from 'store/actions/alertActions';
-import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import { Alert } from 'components/AlertZone/types';
-
-import { OPENSCROBBLER_API_URL } from 'Constants';
+import { logOut } from 'store/actions/userActions';
 
 // The types are skipped with eslint because of an error I couldn't fix
 // (it's a linting issue, not a TS issue)

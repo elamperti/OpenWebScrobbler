@@ -1,25 +1,22 @@
-import { useEffect, useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import { useNavigate } from 'react-router-dom';
-import ReactGA from 'react-ga-neo';
-
-import { useFeatureIsOn } from '@growthbook/growthbook-react';
-import useLocalStorage from 'hooks/useLocalStorage';
-
-import { Row, FormGroup, Input, Label, DropdownItem } from 'reactstrap';
-import SearchForm from 'components/SearchForm';
-
-import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { PROVIDER_NAME, PROVIDER_LASTFM, PROVIDER_DISCOGS } from 'Constants';
-
-import AlbumList from './partials/AlbumList';
-
 import type { Provider } from 'Constants';
 import type { Album, DiscogsAlbum, LastFmAlbum } from 'utils/types/album';
 
+import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useFeatureIsOn } from '@growthbook/growthbook-react';
+import SearchForm from 'components/SearchForm';
+import { PROVIDER_NAME, PROVIDER_LASTFM, PROVIDER_DISCOGS } from 'Constants';
+import useLocalStorage from 'hooks/useLocalStorage';
+import { useEffect, useState } from 'react';
+import ReactGA from 'react-ga-neo';
+import { Trans, useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { Row, FormGroup, Input, Label, DropdownItem } from 'reactstrap';
+
+import AlbumList from './partials/AlbumList';
+
 import './ScrobbleAlbumSearch.scss';
+
 
 export function ScrobbleAlbumSearch() {
   const [includeReleases, setIncludeReleases] = useState(false);

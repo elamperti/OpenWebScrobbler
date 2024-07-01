@@ -1,5 +1,6 @@
-import { lastfmAPI } from '../apiClient';
 import { searchTopAlbums } from './searchTopAlbums';
+import { lastfmAPI } from '../apiClient';
+
 
 vi.mock('../apiClient');
 

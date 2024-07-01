@@ -1,5 +1,6 @@
 import { castArray, usernameIsValid, sanitizeProvider, sha256 } from './common';
 
+
 describe('`castArray` helper', () => {
   it('returns an array when given an array', () => {
     const arr = [1, 2, 3];

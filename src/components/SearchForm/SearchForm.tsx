@@ -1,7 +1,7 @@
-import { useState, useEffect, ChangeEvent, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
-import { Trans } from 'react-i18next';
+import type { ReactNode } from 'react';
 
+import { useState, useEffect, ChangeEvent, useRef } from 'react';
+import { Trans } from 'react-i18next';
 import {
   Button,
   DropdownMenu,
@@ -12,8 +12,6 @@ import {
   Row,
   UncontrolledDropdown,
 } from 'reactstrap';
-
-import type { ReactNode } from 'react';
 
 import styles from './SearchForm.module.scss';
 

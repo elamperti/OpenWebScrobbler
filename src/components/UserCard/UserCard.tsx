@@ -1,11 +1,10 @@
+import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import Avatar from 'components/Avatar';
 import { Trans } from 'react-i18next';
 
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faExternalLinkAlt } from '@fortawesome/free-solid-svg-icons';
-
-import Avatar from 'components/Avatar';
-
 import './UserCard.css';
+
 
 type UserCardProps = {
   name: string;

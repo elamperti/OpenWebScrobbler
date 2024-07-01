@@ -1,12 +1,12 @@
-import { useState } from 'react';
-import { useDispatch } from 'react-redux';
-
-import { Trans } from 'react-i18next';
-import { Alert as ReactstrapAlert } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
+import { useState } from 'react';
+import { Trans } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { Alert as ReactstrapAlert } from 'reactstrap';
 import { dismissAlert } from 'store/actions/alertActions';
+
 import { Alert } from '../types';
+
 
 export default function AlertItem({ id: alertId, type, errorNumber, title, message, rawMessage, icon }: Alert) {
   const [isOpen, setOpenState] = useState(true);

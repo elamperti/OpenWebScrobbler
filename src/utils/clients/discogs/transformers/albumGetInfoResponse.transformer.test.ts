@@ -1,5 +1,6 @@
 import { albumGetInfoTransformer } from './albumGetInfoResponse.transformer';
 
+
 describe('Discogs transformer: album info', () => {
   it('returns an empty album if there was a problem retrieving it', () => {
     const results = albumGetInfoTransformer({ data: { message: 'Error ' } });

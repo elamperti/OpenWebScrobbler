@@ -1,15 +1,15 @@
-import { useQuery } from '@tanstack/react-query';
-
-import { Input, FormGroup, Label } from 'reactstrap';
-import { Trans } from 'react-i18next';
-
-import UserCard from 'components/UserCard';
-import ScrobbleList from 'components/ScrobbleList';
-import { userGetProfile } from 'utils/clients/lastfm/methods/userGetProfile';
-import { useSettings } from 'hooks/useSettings';
-
 import type { Scrobble } from 'utils/types/scrobble';
+
+import { useQuery } from '@tanstack/react-query';
+import ScrobbleList from 'components/ScrobbleList';
+import UserCard from 'components/UserCard';
+import { useSettings } from 'hooks/useSettings';
+import { Trans } from 'react-i18next';
+import { Input, FormGroup, Label } from 'reactstrap';
+import { userGetProfile } from 'utils/clients/lastfm/methods/userGetProfile';
+
 import RefreshProfile from './RefreshProfile';
+
 
 export default function FriendScrobbles({
   username,

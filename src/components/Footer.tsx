@@ -1,10 +1,10 @@
-import { useLocation } from 'react-router-dom';
-import { Trans } from 'react-i18next';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faDiscord, faPatreon } from '@fortawesome/free-brands-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Trans } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 
 import './Footer.css';
+
 
 function Footer() {
   const location = useLocation();

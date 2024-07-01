@@ -1,23 +1,20 @@
-import qs from 'qs';
-import ReactGA from 'react-ga-neo';
-import { useEffect, useState } from 'react';
-import { Trans } from 'react-i18next';
-
-import { useNavigate } from 'react-router-dom';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useUserData } from 'hooks/useUserData';
-import { useSettings } from 'hooks/useSettings';
-
-import { validateLastfmToken } from 'utils/clients/api/methods/validateLastfmToken';
-import { logout } from 'utils/clients/api/methods/logout';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import Spinner from 'components/Spinner';
+import { LASTFM_AUTH_URL } from 'Constants';
+import { useSettings } from 'hooks/useSettings';
+import { useUserData } from 'hooks/useUserData';
+import qs from 'qs';
+import { useEffect, useState } from 'react';
+import ReactGA from 'react-ga-neo';
+import { Trans } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+import { logout } from 'utils/clients/api/methods/logout';
+import { validateLastfmToken } from 'utils/clients/api/methods/validateLastfmToken';
+
 import { ProgressItem } from './partials/ProgressItem';
 
-import { LASTFM_AUTH_URL } from 'Constants';
 
 function logoutAndTryAgain(e) {
   e.preventDefault();

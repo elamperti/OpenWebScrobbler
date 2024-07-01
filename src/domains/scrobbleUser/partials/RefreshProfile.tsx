@@ -1,9 +1,9 @@
-import { useQueryClient } from '@tanstack/react-query';
-
-import { Button } from 'reactstrap';
-import { Trans } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useQueryClient } from '@tanstack/react-query';
+import { Trans } from 'react-i18next';
+import { Button } from 'reactstrap';
+
 
 export default function RefreshProfile({ username }: { username: string }) {
   const queryClient = useQueryClient();

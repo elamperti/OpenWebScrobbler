@@ -1,6 +1,7 @@
+import type { Album } from 'utils/types/album';
+
 import { get } from 'lodash-es';
 
-import type { Album } from 'utils/types/album';
 
 export function topAlbumsTransformer(response: any) {
   const albums: Album[] = [];

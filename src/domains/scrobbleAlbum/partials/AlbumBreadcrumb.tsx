@@ -1,17 +1,15 @@
-import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
-
-import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
-
-import { faCompactDisc, faUser } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { PROVIDER_NAME } from 'Constants';
-
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import type { Album, DiscogsAlbum, LastFmAlbum } from 'utils/types/album';
 
+import { faCompactDisc, faUser } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { PROVIDER_NAME } from 'Constants';
+import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
+import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+
 import './AlbumBreadcrumb.scss';
+
 
 function generateBreadcrumbItem(targetPath: string, caption: string, state = {}, icon: IconProp = undefined) {
   return (

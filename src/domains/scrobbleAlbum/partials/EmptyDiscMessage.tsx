@@ -1,7 +1,8 @@
-import { useNavigate } from 'react-router-dom';
-import { Trans } from 'react-i18next';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBolt, faCompactDisc, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Trans } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
+
 
 export function EmptyDiscMessage() {
   const navigate = useNavigate();

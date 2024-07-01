@@ -1,9 +1,10 @@
-import Avatar from 'components/Avatar';
-
 import type { MouseEventHandler } from 'react';
 import type { Artist } from 'utils/types/artist';
 
+import Avatar from 'components/Avatar';
+
 import './ArtistCard.css';
+
 
 const ArtistCard = ({
   artist,

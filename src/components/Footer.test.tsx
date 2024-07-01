@@ -1,6 +1,8 @@
 import { render, screen } from '@testing-library/react';
+
 import Footer from './Footer';
 import i18n from '../utils/i18n';
+
 
 const returnedLocation = {
   pathName: '',

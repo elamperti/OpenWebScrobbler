@@ -13,11 +13,15 @@
     "noEmit": true,
     "noFallthroughCasesInSwitch": true,
     "noUnusedLocals": false,
+    "paths": {
+      "src/*": ["./src/*"]
+    },
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": false,
     "target": "ESNext",
     "types": ["vite/client", "vite-plugin-svgr/client", "vitest/globals", "vite-plugin-pwa/client"]
   },
-  "include": ["src"]
+  "exclude": ["node_modules/"],
+  "include": ["lint-staged.config.mjs", "vite.config.mjs"]
 }

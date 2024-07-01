@@ -1,5 +1,6 @@
 import { topAlbumsTransformer } from './topAlbumsResponse.transformer';
 
+
 describe('Last.fm transformer: top albums', () => {
   it('formats the results', () => {
     const results = topAlbumsTransformer({

@@ -1,5 +1,6 @@
 import { sanitizeArtistName } from './sanitizeArtistName';
 
+
 describe('`sanitizeArtistName` helper', () => {
   it('removes trailing numbers added by Discogs', () => {
     expect(sanitizeArtistName('artist (123)')).toBe('artist');

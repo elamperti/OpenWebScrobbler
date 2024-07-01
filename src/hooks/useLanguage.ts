@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { changeLanguage } from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { fallbackLng } from 'utils/i18n';
+
 
 export const useLanguage = () => {
   const { i18n } = useTranslation();

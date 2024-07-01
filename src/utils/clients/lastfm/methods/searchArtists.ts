@@ -1,6 +1,7 @@
 import { lastfmAPI } from '../apiClient';
 import { artistsSearchTransformer } from '../transformers/artistsSearchResponse.transformer';
 
+
 export async function searchArtists(artistName: string) {
   const response = await lastfmAPI.get('', {
     params: {

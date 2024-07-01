@@ -1,16 +1,17 @@
 /// <reference types="vitest" />
-import { defineConfig, loadEnv } from 'vite';
-
+import terser from '@rollup/plugin-terser';
+import { sentryVitePlugin } from '@sentry/vite-plugin';
 import react from '@vitejs/plugin-react-swc';
-import svgrPlugin from 'vite-plugin-svgr';
+import { defineConfig, loadEnv } from 'vite';
 import { viteExternalsPlugin } from 'vite-plugin-externals';
 import { VitePWA } from 'vite-plugin-pwa';
-import terser from '@rollup/plugin-terser';
 import VitePluginReactRemoveAttributes from 'vite-plugin-react-remove-attributes';
-import { sentryVitePlugin } from '@sentry/vite-plugin';
+import svgrPlugin from 'vite-plugin-svgr';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
+
 const manifest = require('./src/webmanifest.json');
+
 
 const removeAttributes = VitePluginReactRemoveAttributes.default;
 

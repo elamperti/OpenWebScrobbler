@@ -1,11 +1,12 @@
-import { CSSProperties } from 'react';
-import { random } from 'lodash-es';
+import type { AlbumCover, AlbumCoverSizes } from 'utils/types/album';
 
+import { random } from 'lodash-es';
+import { CSSProperties } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import 'react-lazy-load-image-component/src/effects/opacity.css';
 
 import './AlbumCard.css';
-import { AlbumCover, AlbumCoverSizes } from 'utils/types/album';
+
 
 interface AlbumCardProps {
   artist?: string;

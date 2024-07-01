@@ -1,21 +1,19 @@
-import { useContext } from 'react';
-import { useDispatch } from 'react-redux';
-import { useQueryClient } from '@tanstack/react-query';
-import { useGrowthBook } from '@growthbook/growthbook-react';
-import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, NavLink } from 'reactstrap';
-import { Trans } from 'react-i18next';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faExternalLinkAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-
-import { useUserData } from 'hooks/useUserData';
-import { logOut } from 'store/actions/userActions';
-
-import { useBootstrapBreakpoint, BS_SIZE_MD } from 'utils/bootstrapBreakpoints';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useGrowthBook } from '@growthbook/growthbook-react';
+import { useQueryClient } from '@tanstack/react-query';
 import Avatar from 'components/Avatar';
 import { SettingsModalContext } from 'components/SettingsModal/SettingsModalContext';
+import { useUserData } from 'hooks/useUserData';
+import { useContext } from 'react';
+import { Trans } from 'react-i18next';
+import { useDispatch } from 'react-redux';
+import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, NavLink } from 'reactstrap';
+import { logOut } from 'store/actions/userActions';
+import { useBootstrapBreakpoint, BS_SIZE_MD } from 'utils/bootstrapBreakpoints';
 
 import './UserDropdown.scss';
+
 
 export default function UserDropdow() {
   const dispatch = useDispatch();

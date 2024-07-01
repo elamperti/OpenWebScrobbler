@@ -1,6 +1,7 @@
 import { avatarTransformer } from 'utils/clients/lastfm/transformers/avatar.transformer';
 import { User } from 'utils/types/user';
 
+
 export function userTransformer(raw: any) {
   const username = raw?.user?.name || '';
 

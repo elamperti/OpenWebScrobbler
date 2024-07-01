@@ -1,5 +1,6 @@
 import { Avatar } from './avatar';
 
+
 export type User = {
   id: string;
   name: string;

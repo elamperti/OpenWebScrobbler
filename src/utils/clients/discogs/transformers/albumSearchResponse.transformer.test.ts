@@ -1,5 +1,6 @@
 import { albumSearchTransformer } from './albumSearchResponse.transformer';
 
+
 describe('Discogs transformer: album search', () => {
   it('formats the results', () => {
     const results = albumSearchTransformer({

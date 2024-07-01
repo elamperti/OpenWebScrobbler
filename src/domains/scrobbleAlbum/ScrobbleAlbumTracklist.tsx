@@ -1,28 +1,26 @@
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import { useQuery } from '@tanstack/react-query';
-import ReactGA from 'react-ga-neo';
-import { Trans } from 'react-i18next';
+import type { RootState } from 'store';
+import type { DiscogsAlbum, Album } from 'utils/types/album';
 
 import { faHistory } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { _discogsFindBestMatch } from 'store/actions/albumActions';
-import ScrobbleList from 'components/ScrobbleList';
+import { useQuery } from '@tanstack/react-query';
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
+import ScrobbleList from 'components/ScrobbleList';
 import Spinner from 'components/Spinner';
-import Tracklist from './partials/Tracklist';
-import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
-
 import { MAX_RECENT_ALBUMS, PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
-
+import useLocalStorage from 'hooks/useLocalStorage';
+import { useState, useEffect } from 'react';
+import ReactGA from 'react-ga-neo';
+import { Trans } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { _discogsFindBestMatch } from 'store/actions/albumActions';
 import { albumGetInfo as DiscogsAlbumGetInfo } from 'utils/clients/discogs';
 import { albumGetInfo as LastfmAlbumGetInfo } from 'utils/clients/lastfm';
-import useLocalStorage from 'hooks/useLocalStorage';
 
-import type { RootState } from 'store';
-import type { DiscogsAlbum, Album } from 'utils/types/album';
+import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
+import Tracklist from './partials/Tracklist';
+
 
 const sanitizeParam = (param: string) => {
   return param ? decodeURIComponent(param) : null;

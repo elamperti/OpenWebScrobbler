@@ -1,6 +1,4 @@
 import axios from 'axios';
-import shortid from 'shortid';
-
 import {
   AUDIOSCROBBLER_API_URL,
   ENQUEUE_NEW,
@@ -11,6 +9,8 @@ import {
   SCROBBLE_COVER_SEARCH,
   SCROBBLING_DEBOUNCE_PERIOD,
 } from 'Constants';
+import shortid from 'shortid';
+
 
 export function enqueueScrobble(dispatch) {
   return (scrobbles = []) => {

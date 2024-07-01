@@ -1,23 +1,19 @@
-import { forwardRef, useMemo, useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import ReactGA from 'react-ga-neo';
-
-import addDays from 'date-fns/addDays';
-import subDays from 'date-fns/subDays';
-import format from 'date-fns/format';
-
-import { Input, InputGroup, InputGroupText, Modal, ModalBody, ModalHeader } from 'reactstrap';
-import TimeKeeper from 'react-timekeeper';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faClock } from '@fortawesome/free-regular-svg-icons';
-
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import addDays from 'date-fns/addDays';
+import format from 'date-fns/format';
+import subDays from 'date-fns/subDays';
 import { useSettings } from 'hooks/useSettings';
-
+import { forwardRef, useMemo, useState } from 'react';
 import DayPickerInput from 'react-day-picker/DayPickerInput';
+import ReactGA from 'react-ga-neo';
+import { Trans, useTranslation } from 'react-i18next';
+import TimeKeeper from 'react-timekeeper';
+import { Input, InputGroup, InputGroupText, Modal, ModalBody, ModalHeader } from 'reactstrap';
 
 import 'react-day-picker/lib/style.css';
 import './DateTimePicker.scss';
+
 
 function DatePickerInput(props = {}) {
   return (
