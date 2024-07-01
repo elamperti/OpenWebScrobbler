@@ -14,7 +14,6 @@ import { clearListOfScrobbles, scrobbleCounterEnabled } from 'store/actions/scro
 
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 import ScrobbleList from 'components/ScrobbleList';
-import Spinner from 'components/Spinner';
 import { SongForm } from './SongForm';
 
 import { LastFmProfileHistory } from './partials/LastFmProfileHistory';
