@@ -16,6 +16,7 @@ interface ScrobbleListProps {
   onSelect?: (scrobble: any) => void;
   selected?: Set<string>;
   scrobbles?: any[];
+  scrobblesCleanupPattern?: string;
 }
 
 export default function ScrobbleList({
@@ -28,6 +29,7 @@ export default function ScrobbleList({
   onSelect,
   selected,
   scrobbles = [],
+  scrobblesCleanupPattern,
 }: ScrobbleListProps) {
   const { cloneFn, setCloneFn } = useContext(ScrobbleCloneContext);
   let albumHasVariousArtists = !isAlbum;
@@ -52,6 +54,7 @@ export default function ScrobbleList({
       return (
         <ScrobbleItem
           scrobble={scrobble}
+          cleanupPattern={scrobblesCleanupPattern}
           analyticsEvent={analyticsEventForScrobbles}
           cloneScrobbleTo={setCloneFn ? cloneFn : undefined}
           compact={compact}

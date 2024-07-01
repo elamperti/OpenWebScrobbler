@@ -11,6 +11,7 @@ import getYear from 'date-fns/getYear';
 
 import { Button, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, FormGroup, Label } from 'reactstrap';
 import { useState } from 'react';
+import { renderToStaticMarkup } from 'react-dom/server';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -28,12 +29,14 @@ import { faClock, faCopy } from '@fortawesome/free-regular-svg-icons';
 import { getAmznLink } from 'Constants';
 
 import type { Scrobble } from 'utils/types/scrobble';
+import { replaceLastOccurrence } from 'utils/common';
 
 import './ScrobbleItem.css';
 import { useSettings } from 'hooks/useSettings';
 
 interface ScrobbleItemProps {
   scrobble: Scrobble;
+  cleanupPattern?: string;
   compact?: boolean;
   hideArtist?: boolean;
   muteArtist?: boolean;
@@ -48,6 +51,7 @@ interface ScrobbleItemProps {
 
 export default function ScrobbleItem({
   scrobble,
+  cleanupPattern = '',
   compact = false,
   hideArtist = false,
   muteArtist = false,
@@ -86,6 +90,7 @@ export default function ScrobbleItem({
     enqueueScrobble(dispatch)([
       {
         ...scrobble,
+        title: cleanupPattern ? scrobble.title.replaceAll(cleanupPattern, '').trim() : scrobble.title,
         timestamp: useOriginalTimestamp ? scrobble.timestamp : new Date(),
       },
     ]);
@@ -103,6 +108,31 @@ export default function ScrobbleItem({
       return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
     });
   };
+
+  const getCompleteItem = (item: string, highlight?: string) => {
+    const parsedItem = item;
+
+    if (!highlight || !item.endsWith(highlight)) {
+      return parsedItem;
+    }
+
+    const parsedComplete = highlight;
+
+    const textComplete = renderToStaticMarkup((
+      <span className="scrobbled-item-cleanup">
+        {parsedComplete}
+      </span>
+    ));
+
+    const itemComplete = replaceLastOccurrence(
+      parsedItem,
+      parsedComplete,
+      textComplete
+    );
+
+    return itemComplete;
+  };
+
   let albumArt;
   let errorMessage;
   let rightSideContent;
@@ -219,7 +249,7 @@ export default function ScrobbleItem({
     songInfo = (
       <Label className="d-flex align-items-center mb-0" htmlFor={scrobbleItemInputId}>
         {!!settings?.showTrackNumbers && scrobble.trackNumber && <span className="me-1">{scrobble.trackNumber}.</span>}
-        <span className="song flex-grow-1 pe-2 truncate">{songFullTitle}</span>
+        <span className="song flex-grow-1 pe-2 truncate" dangerouslySetInnerHTML={{ __html: getCompleteItem(songFullTitle, cleanupPattern) }}></span>
         {timeOrDuration}
       </Label>
     );
@@ -227,7 +257,7 @@ export default function ScrobbleItem({
     // FULL view
     songInfo = (
       <>
-        <span className="song">{songFullTitle}</span>
+        <span className="song" dangerouslySetInnerHTML={{ __html: getCompleteItem(songFullTitle, cleanupPattern) }}></span>
         <Label className="d-flex mb-0" htmlFor={scrobbleItemInputId}>
           <small className="text-muted flex-grow-1 truncate album">
             {scrobble.album && (

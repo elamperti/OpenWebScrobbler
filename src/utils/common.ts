@@ -16,6 +16,26 @@ export function sanitizeProvider(provider: string, defaultProvder: Provider = PR
   return defaultProvder;
 }
 
+export function replaceLastOccurrence(fullString: string, lastString: string, replaceString: string) {
+  const lastStringIndex = fullString.lastIndexOf(lastString);
+
+  if (lastStringIndex === -1) {
+    return fullString;
+  }
+
+  return (
+    `${fullString.substring(0, lastStringIndex)}${replaceString}${fullString.substring(lastStringIndex + lastString.length)}`
+  );
+};
+
+export function cleanupLastEndStringOccurrence(fullString: string, pattern: string) {
+  if (fullString.endsWith(pattern)) {
+    return fullString.substring(0, fullString.length - pattern.length).trim();
+  }
+
+  return fullString;
+}
+
 export async function sha256(str: string) {
   const msgUint8 = new TextEncoder().encode(str); // encode as (utf-8) Uint8Array
   const hashBuffer = await crypto.subtle.digest('SHA-256', msgUint8); // hash the message
