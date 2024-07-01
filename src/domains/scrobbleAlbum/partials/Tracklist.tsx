@@ -33,11 +33,13 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
   const { t } = useTranslation();
 
   const [showTimestampCopy, setShowTimestampCopy] = useState(false);
+  const [showRemovalPatternCopy, setShowRemovalPatternCopy] = useState(false);
   const amznLink = useMemo<string>(() => getAmznLink(albumInfo?.artist, albumInfo?.name), [albumInfo]);
   const [canScrobble, setCanScrobble] = useState(true);
   // ToDo: simplify customTimestamp + useCustomTimestamp
   const [customTimestamp, setCustomTimestamp] = useState(new Date());
   const [useCustomTimestamp, setUseCustomTimestamp] = useState(false);
+  const [useRemovalPattern, setUseRemovalPattern] = useState('');
   const [selectedTracks, setSelectedTracks] = useState<Set<string>>(new Set());
   const [totalDuration, setTotalDuration] = useState(0);
   const albumHasTracks = tracks && tracks.length > 0;
@@ -89,9 +91,17 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
     setSelectedTracks(newSet);
   };
 
+  const toggleRemovalPatternCopy = () => {
+    setShowRemovalPatternCopy(!showRemovalPatternCopy);
+  };
+
   const handleTimestampChange = (newTimestamp) => {
     setCustomTimestamp(newTimestamp);
     setCanScrobble(true);
+  };
+
+  const handleRemovalPatternChange = (event) => {
+    setUseRemovalPattern(event.target.value);
   };
 
   const scrobbleSelectedTracks = () => {
@@ -112,6 +122,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
       .reduce((result, track) => {
         const newTrack = {
           ...track,
+          title: useRemovalPattern !== '' ? track.title.replaceAll(useRemovalPattern, '').trim() : track.title,
           album: albumInfo?.name || '',
           albumArtist: albumInfo?.artist || '',
           timestamp: rollingTimestamp,
@@ -247,11 +258,47 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
         noMenu
         analyticsEventForScrobbles="Scrobble individual album song"
         scrobbles={tracks || []}
+        scrobblesRemovalPattern={useRemovalPattern}
         onSelect={toggleSelectedTrack}
         selected={selectedTracks}
       >
         <EmptyDiscMessage />
       </ScrobbleList>
+
+      <div className="d-flex flex-column mt-4 album-removal-pattern">
+        <FormGroup>
+          <div className="col-12">
+            <label htmlFor="albumRemovalPattern" className="mb-2">
+              <Trans i18nKey="albumRemovalPattern" />:
+            </label>
+            <FontAwesomeIcon
+              id="removalPatternInfoIcon"
+              className="px-3"
+              icon={faQuestionCircle}
+              color="var(--bs-gray)"
+              onClick={toggleRemovalPatternCopy}
+            />
+          </div>
+          <div className="col-6">
+            <Input
+              className="form-control-sm form-control"
+              id="albumRemovalPattern"
+              onChange={handleRemovalPatternChange}
+            />
+          </div>
+          <div className="col-12">
+            <Alert
+              color="dark"
+              isOpen={showRemovalPatternCopy}
+              toggle={toggleRemovalPatternCopy}
+              className="text-justify mt-3"
+              fade={false}
+            >
+              <Trans i18nKey="albumRemovalPatternDescription" />
+            </Alert>
+          </div>
+        </FormGroup>
+      </div>
     </>
   );
 }
