@@ -8,7 +8,6 @@
   "album": "Альбом",
   "scrobbleFromAlbum": "Скробблинг альбомов",
   "scrobbleAlbum": "Скробблить альбом",
-  "album_plural": "Альбом",
   "goBack": "Назад",
   "topAlbumsBy": "Популярные альбомы {{nameOfArtist}}",
   "noAlbumsFound": "Не найдено альбомов, по запросу <1>{{albumOrArtist}}</1>",

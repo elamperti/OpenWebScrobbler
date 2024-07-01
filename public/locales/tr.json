@@ -8,7 +8,6 @@
   "album": "Albüm",
   "scrobbleFromAlbum": "Albüm skropla",
   "scrobbleAlbum": "Albüm skropla",
-  "album_plural": "Albümler",
   "goBack": "Geri dön",
   "topAlbumsBy": "{{nameOfArtist}} adlı sanatçıdan albümler",
   "noAlbumsFound": "<1>{{albumOrArtist}}</1> aramasıyla eşleşen bir albüm yok",

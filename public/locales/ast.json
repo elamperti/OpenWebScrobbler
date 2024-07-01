@@ -8,7 +8,6 @@
   "album": "Álbum",
   "scrobbleFromAlbum": "Scrobbliar álbumes",
   "scrobbleAlbum": "Scrobbliar álbum",
-  "album_plural": "Álbumes",
   "goBack": "Tornar",
   "topAlbumsBy": "Álbumes de {{nameOfArtist}}",
   "noAlbumsFound": "Nun s'atopó dengún álbum pa <1>{{albumOrArtist}}</1>",
