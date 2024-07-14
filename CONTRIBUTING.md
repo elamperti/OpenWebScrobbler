@@ -26,6 +26,7 @@ Once you have a possible fix, open a pull request so it can be reviewed and merg
 It's highly encouraged to [open an issue](https://github.com/elamperti/OpenWebScrobbler/issues/new/choose) (or comment on an existing one) before you start coding, especially if you are planning to implement new features or wish to make big changes in the codebase. With this previous discussion, everyone saves time and there's a higher chance to get your work merged.
 
 ### Making changes to the database structure
+
 All changes to the database schema must be added as migrations (use [migration #1](./assets/db/migrations/0001_keepOriginalTimestamp.sql) as a guiding template) and remain backwards compatible. All new migrations are applied automatically in the development containers (just keep in mind that each migration runs only once, so you may need to manually revert any failed attempt).
 
 ---
