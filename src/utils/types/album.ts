@@ -1,14 +1,8 @@
-/* eslint-disable no-unused-vars */
-
 type AlbumCoverSizeSteps = 'sm' | 'lg';
 
-export type AlbumCover = {
-  [key in AlbumCoverSizeSteps]: string;
-};
+export type AlbumCover = Record<AlbumCoverSizeSteps, string>;
 
-export type AlbumCoverSizes = {
-  [key in AlbumCoverSizeSteps]: number;
-};
+export type AlbumCoverSizes = Record<AlbumCoverSizeSteps, number>;
 
 export type BaseAlbum = {
   artist: string;

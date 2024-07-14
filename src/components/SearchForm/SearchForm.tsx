@@ -1,5 +1,4 @@
 import { useState, useEffect, ChangeEvent, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
 import { Trans } from 'react-i18next';
 
 import {

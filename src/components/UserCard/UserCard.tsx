@@ -17,12 +17,7 @@ type UserCardProps = {
 export function UserCard({ name, user, isHeading, withLinkToProfile }: UserCardProps) {
   const externalLink = (
     <div>
-      <a
-        href={user.url || `https://last.fm/user/${name}`}
-        // eslint-disable-next-line react/jsx-no-target-blank
-        target="_blank"
-        rel="noopener noreferrer"
-      >
+      <a href={user.url || `https://last.fm/user/${name}`} target="_blank" rel="noopener noreferrer">
         <Trans i18nKey="visitProfile">Visit profile</Trans>
       </a>{' '}
       <FontAwesomeIcon icon={faExternalLinkAlt} />
