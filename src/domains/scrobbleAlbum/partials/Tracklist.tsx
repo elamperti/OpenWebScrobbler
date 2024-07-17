@@ -25,6 +25,7 @@ import { cleanupLastEndStringOccurrence } from 'utils/common';
 import type { Album, DiscogsAlbum } from 'utils/types/album';
 import type { Scrobble } from 'utils/types/scrobble';
 import type { Track } from 'utils/types/track';
+import { usePatternSmart } from 'hooks/usePatternSmart';
 
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 
@@ -101,6 +102,11 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
     setUseCleanupPattern(event.target.value);
   }, []);
 
+  const cleanupPatternSmart = usePatternSmart({
+    pattern: useCleanupPattern,
+    totalTrackNames: Array.from(tracks) as Scrobble[],
+  });
+
   const scrobbleSelectedTracks = () => {
     const userHasNotSelectedTracks = selectedTracks.size < 1;
     const timestampCalculationSubstractsTime = !useCustomTimestamp;
@@ -119,7 +125,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
       .reduce((result, track) => {
         const newTrack = {
           ...track,
-          title: useCleanupPattern !== '' ? cleanupLastEndStringOccurrence(track.title, useCleanupPattern) : track.title,
+          title: cleanupPatternSmart !== '' ? cleanupLastEndStringOccurrence(track.title, cleanupPatternSmart) : track.title,
           album: albumInfo?.name || '',
           albumArtist: albumInfo?.artist || '',
           timestamp: rollingTimestamp,
@@ -258,7 +264,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
         noMenu
         analyticsEventForScrobbles="Scrobble individual album song"
         scrobbles={tracks || []}
-        scrobblesCleanupPattern={useCleanupPattern}
+        scrobblesCleanupPattern={cleanupPatternSmart}
         onSelect={toggleSelectedTrack}
         selected={selectedTracks}
       >
