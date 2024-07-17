@@ -6,12 +6,24 @@ import ReactGA from 'react-ga-neo';
 import useLocalStorage from './useLocalStorage';
 import { userGetProfile } from 'utils/clients/api/methods/userGetProfile';
 import { userTransformer } from 'utils/clients/api/transformers/user.transformer';
+import type { User } from 'utils/types/user';
 import { sha256 } from 'utils/common';
 import { saveToLocalStorage } from 'localstorage';
 
 const emptyUser = userTransformer(null);
 
-export const useUserData = () => {
+export type UseUserDataResult = {
+  user?: User;
+  isLoggedIn: boolean;
+  isLoading: boolean;
+  isError: boolean;
+  isFetching: boolean;
+  isReady: boolean;
+};
+
+export type UseUserDataHook = () => UseUserDataResult;
+
+export const useUserData: UseUserDataHook = () => {
   const [storedUserData, updateStoredUserData] = useLocalStorage('user', emptyUser);
   const growthbook = useGrowthBook();
   const { data, isLoading, isFetching, isSuccess, isStale, isError } = useQuery({
