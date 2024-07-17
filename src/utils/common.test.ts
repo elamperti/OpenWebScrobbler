@@ -4,6 +4,7 @@ import {
   sanitizeProvider,
   replaceLastOccurrence,
   cleanupLastEndStringOccurrence,
+  keyOfLongestArray,
   sha256,
 } from './common';
 
@@ -82,6 +83,51 @@ describe('`cleanupLastEndStringOccurrence` helper', () => {
 
   it('returns full string if cleanup pattern is not at end of string', () => {
     expect(cleanupLastEndStringOccurrence('live forever (live)', 'live')).toBe('live forever (live)');
+  });
+});
+
+describe('`keyOfLongestArray` helper', () => {
+  it('return first array as longest', () => {
+    const objectToAnalyze = {
+      longest: Array(5).fill(null),
+      second: Array(3).fill(null),
+      third: Array(3).fill(null),
+    };
+
+    expect(keyOfLongestArray(objectToAnalyze)).toBe('longest');
+  });
+
+  it('return last array as longest', () => {
+    const objectToAnalyze = {
+      first: Array(1).fill(null),
+      second: Array(3).fill(null),
+      longest: Array(5).fill(null),
+    };
+
+    expect(keyOfLongestArray(objectToAnalyze)).toBe('longest');
+  });
+
+  it('return a central array as longest', () => {
+    const objectToAnalyze = {
+      first: Array(1).fill(null),
+      second: Array(3).fill(null),
+      longest: Array(5).fill(null),
+      fourth: Array(3).fill(null),
+    };
+
+    expect(keyOfLongestArray(objectToAnalyze)).toBe('longest');
+  });
+
+  it('return the last array as one of the longest', () => {
+    const objectToAnalyze = {
+      first: Array(1).fill(null),
+      second: Array(3).fill(null),
+      third: Array(5).fill(null),
+      fourth: Array(3).fill(null),
+      longest: Array(5).fill(null),
+    };
+
+    expect(keyOfLongestArray(objectToAnalyze)).toBe('longest');
   });
 });
 
