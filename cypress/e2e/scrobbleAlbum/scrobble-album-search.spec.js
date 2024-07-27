@@ -24,6 +24,10 @@ describe('Scrobble album (SRP)', () => {
     cy.get('[data-cy="SearchForm-submit"]').should('be.disabled');
   });
 
+  it('allows autocomplete', () => {
+    cy.get('[data-cy="SearchForm-input"]').should('have.attr', 'autocomplete', 'on');
+  });
+
   it('lists possible data sources in the button', () => {
     cy.get('[data-cy="SearchForm-dropdown"]').should('exist');
     cy.get('[data-cy="SearchForm-input"]').type('Hybrid Theory', { delay: 0 });
@@ -50,7 +54,8 @@ describe('Scrobble album (SRP)', () => {
     });
 
     it('shows a switch to expand Discogs results', () => {
-      cy.get('[data-cy="SearchForm-input"]').type('Meteora');
+      // eslint-disable-next-line cypress/no-unnecessary-waiting
+      cy.get('[data-cy="SearchForm-input"]').rawInput('Meteora');
       cy.get('[data-cy="SearchForm-submit"]').should('be.enabled');
 
       cy.get('[data-cy="SearchForm-dropdown-toggle"]').click();
@@ -59,7 +64,7 @@ describe('Scrobble album (SRP)', () => {
     });
 
     it('navigates to the SRP when submitting the form', () => {
-      cy.get('[data-cy="SearchForm-input"]').type('Meteora');
+      cy.get('[data-cy="SearchForm-input"]').rawInput('Meteora');
       cy.get('[data-cy="SearchForm-submit"]').should('be.enabled');
 
       cy.get('[data-cy="SearchForm-dropdown-toggle"]').click();
@@ -72,7 +77,7 @@ describe('Scrobble album (SRP)', () => {
 
   describe('using Last.fm', () => {
     it('hides Discogs switch when Lastfm is selected', () => {
-      cy.get('[data-cy="SearchForm-input"]').type('Meteora');
+      cy.get('[data-cy="SearchForm-input"]').rawInput('Meteora');
       cy.get('[data-cy="SearchForm-submit"]').should('be.enabled');
 
       cy.get('[data-cy="SearchForm-dropdown-toggle"]').click();
@@ -81,7 +86,7 @@ describe('Scrobble album (SRP)', () => {
     });
 
     it('navigates to the SRP when submitting the form', () => {
-      cy.get('[data-cy="SearchForm-input"]').type('Meteora');
+      cy.get('[data-cy="SearchForm-input"]').rawInput('Meteora');
       cy.get('[data-cy="SearchForm-submit"]').should('be.enabled');
 
       cy.get('[data-cy="SearchForm-dropdown-toggle"]').click();

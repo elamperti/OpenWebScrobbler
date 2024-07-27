@@ -20,6 +20,10 @@ describe('Scrobble user (search)', () => {
     cy.get('[data-cy="SearchForm-submit"]').should('be.disabled');
   });
 
+  it('disallows autocomplete', () => {
+    cy.get('[data-cy="SearchForm-input"]').should('have.attr', 'autocomplete', 'off');
+  });
+
   it("doesn't allow searching for invalid users", () => {
     cy.get('[data-cy="SearchForm-input"]').type('1111');
     cy.get('[data-cy="SearchForm-submit"]').should('be.disabled');
