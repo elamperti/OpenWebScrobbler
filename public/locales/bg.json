@@ -8,7 +8,7 @@
   "album": "Албум",
   "scrobbleFromAlbum": "Скробълни от албум",
   "scrobbleAlbum": "Скробълни албум",
-  "album_plural": "Албуми",
+  "album_other": "Албуми",
   "goBack": "Назад",
   "topAlbumsBy": "Албуми от {{nameOfArtist}}",
   "noAlbumsFound": "Няма намерени албуми за <1>{{albumOrArtist}}</1>",

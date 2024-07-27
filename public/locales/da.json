@@ -8,7 +8,7 @@
   "album": "Album",
   "scrobbleFromAlbum": "Scrobbl albummer",
   "scrobbleAlbum": "Scrobbl album",
-  "album_plural": "Albummer",
+  "album_other": "Albummer",
   "goBack": "Gå tilbage",
   "topAlbumsBy": "Albummer af {{nameOfArtist}}",
   "noAlbumsFound": "Ingen albummer fundet for <1>{{albumOrArtist}}</1>",

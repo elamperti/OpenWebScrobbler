@@ -8,7 +8,7 @@
   "album": "الألبوم",
   "scrobbleFromAlbum": "سجل الألبومات",
   "scrobbleAlbum": "سجل الألبوم",
-  "album_plural": "الألبومات",
+  "album_other": "الألبومات",
   "goBack": "تراجع",
   "topAlbumsBy": "الالبومات بواسطة {{nameOfArtist}}",
   "noAlbumsFound": "لم يتم العثور على ألبومات ل <1>{{albumOrArtist}}</1>\n",
@@ -145,7 +145,7 @@
   "settingsSavedSuccessfully": "تم حفظ إعداداتك بنجاح!",
   "loginError": {
     "title": "خطأ في تسجيل الدخول",
-    "message": "حدث خطأ غير متوقع اثناء تسجيل الدخول. نأسف لذلك!"
+    "message": "حدث خطأ غير متوقع اثناء تسجيل الدخول."
   },
   "logoutInfo": {
     "title": "اراك قريبا!",
@@ -158,7 +158,11 @@
   "slowDownMessage": "أنت تسجل بشكل سريع جدا. يرجى الانتظار لحظة ثم حاول مرة أخرى خلال بضع دقائق.",
   "comingSoon": "قريباً",
   "searchOnProvider": "ابحث من خلال {{dataProvider}}\n",
-  "option shown in Settings": {
-    "showTrackNumbers": "إظهار ترتيب الأغاني في قوائم الألبومات"
-  }
+  "showTrackNumbers": "إظهار ترتيب الأغاني في قوائم الألبومات",
+  "startingSession": "Logging you in...",
+  "finishingValidation": "Validating token with Last.fm",
+  "gettingLastfmUser": "Getting Last.fm user details",
+  "fetchingUserSettings": "Retrieving your preferences",
+  "validationFailed": "Something went wrong!",
+  "tryAgain": "Try again"
 }
