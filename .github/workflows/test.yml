@@ -37,6 +37,9 @@ jobs:
       - name: Lint
         run: yarn lint
 
+      - name: Prettier
+        run: yarn prettier
+
       - name: Typecheck
         run: yarn typecheck
 
