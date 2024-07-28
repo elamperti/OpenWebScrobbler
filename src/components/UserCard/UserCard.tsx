@@ -27,7 +27,7 @@ export function UserCard({ name, user, isHeading, withLinkToProfile }: UserCardP
   return (
     <div className={`user-card d-flex w-100 px-3 g-0 align-items-center${isHeading ? ' py-3' : ''}`}>
       <div className="text-center">
-        <Avatar url={user.avatar.md} alt={name} size="md" />
+        <Avatar url={user.avatar?.md} alt={name} size="md" />
       </div>
       <div className="d-flex-grow-1 ps-3">
         <h3>{name}</h3>

@@ -43,7 +43,7 @@ export default function FriendScrobbles({
     <>
       <div className="UserCard-container rect row mx-0 pb-3">
         <div className="col-sm-8 d-flex align-items-middle">
-          {!friendProfileQuery.isLoading && (
+          {friendProfileQuery.isSuccess && (
             <UserCard user={friendProfileQuery.data} name={username} isHeading withLinkToProfile />
           )}
         </div>

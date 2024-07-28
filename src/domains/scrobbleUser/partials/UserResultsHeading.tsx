@@ -35,6 +35,7 @@ export function UserResultsHeading({ isLoading, userToSearch }: { isLoading: boo
           onSearch={switchUserQuery}
           searchCopy={t('search')}
           ariaLabel="Username"
+          autocomplete="off"
           id="userToSearch"
           maxLength={15}
           size="sm"

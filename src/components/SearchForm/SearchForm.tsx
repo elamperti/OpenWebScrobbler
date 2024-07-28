@@ -20,6 +20,7 @@ import styles from './SearchForm.module.scss';
 
 type SearchFormProps = {
   ariaLabel: string;
+  autocomplete?: 'off' | 'on';
   searchOptions?: ReactNode;
   searchCopy: string;
   feedbackMessageKey?: string;
@@ -34,6 +35,7 @@ type SearchFormProps = {
 
 export default function SearchForm({
   ariaLabel,
+  autocomplete,
   searchOptions,
   searchCopy,
   feedbackMessageKey = '',
@@ -103,6 +105,7 @@ export default function SearchForm({
               className={`form-control form-control-${size}${inputIsInvalid ? ' is-invalid' : ''}`}
               value={query}
               aria-invalid={inputIsInvalid}
+              autoComplete={autocomplete || 'on'}
               readOnly={readOnly}
               onKeyDown={catchEnter}
               onChange={updateQuery}

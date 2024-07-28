@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Trans } from 'react-i18next';
 import ReactGA from 'react-ga-neo';
 
-import { Badge, Button, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
+import { Badge, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompactDisc, faHistory, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
-import { faPlayCircle, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
 
 import type { RootState } from 'store';
-import { clearListOfScrobbles, scrobbleCounterEnabled } from 'store/actions/scrobbleActions';
+import { scrobbleCounterEnabled } from 'store/actions/scrobbleActions';
 
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 import ScrobbleList from 'components/ScrobbleList';
