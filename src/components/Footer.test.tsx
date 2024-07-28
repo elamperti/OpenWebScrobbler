@@ -6,7 +6,7 @@ const returnedLocation = {
   pathName: '',
 };
 
-vi.mock('react-router-dom', async() => ({
+vi.mock('react-router-dom', async () => ({
   ...(await vi.importActual('react-router-dom')),
   useLocation: () => returnedLocation,
 }));

@@ -13,7 +13,7 @@ const saveTweaksState = () => {
   sessionStorage.setItem('tweaks', JSON.stringify(__tweaksState));
 };
 
-export const init = async() => {
+export const init = async () => {
   import('./quirks/tweakpaneFixes.css');
 
   const container = document.createElement('div');

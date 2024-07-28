@@ -56,10 +56,10 @@
     "no-only-tests/no-only-tests": "error",
     "no-unused-vars": "warn",
     "prefer-const": "warn",
-    "react-compiler/react-compiler": "error",
+    "react-compiler/react-compiler": "warn",
     "semi": [2, "always"],
     "space-infix-ops": 1,
-    "space-before-function-paren": [2, "never"],
+    "space-before-function-paren": "off",
     "strict": ["error", "global"]
   },
   "overrides": [
