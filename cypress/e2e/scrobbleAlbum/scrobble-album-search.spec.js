@@ -43,6 +43,20 @@ describe('Scrobble album (SRP)', () => {
     cy.focused().should('have.attr', 'data-cy', 'SearchForm-input');
   });
 
+  it('blocks an empty search query', () => {
+    cy.get('[data-cy="SearchForm-input"]').rawInput('     ');
+    cy.get('[data-cy="SearchForm-submit"]').should('not.be.enabled');
+    cy.get('[data-cy="SearchForm-input"]').should('have.value', '     ');
+  });
+
+  it('allows spaces in search query', () => {
+    cy.get('[data-cy="SearchForm-input"]').rawInput(' Abbey Road  ');
+    cy.get('[data-cy="SearchForm-submit"]').should('be.enabled');
+
+    cy.get('[data-cy="SearchForm-submit"]').click();
+    cy.location('pathname').should('equal', '/scrobble/album/search/Abbey%20Road');
+  });
+
   describe('using Discogs', () => {
     beforeEach(() => {
       cy.intercept('GET', '/api/v2/discogs.php?method=artist.search*', {

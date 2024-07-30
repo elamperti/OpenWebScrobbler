@@ -49,7 +49,7 @@ export default function SearchForm({
 }: SearchFormProps) {
   const [query, setQuery] = useState(initialValue || '');
   const searchInput = useRef<HTMLInputElement>(null);
-  const isValid = validator ? validator(query) : true;
+  const isValid = validator ? validator(query.trim()) : true;
 
   useEffect(() => {
     if (searchInput) {
@@ -59,7 +59,7 @@ export default function SearchForm({
   }, [searchInput]);
 
   const updateQuery = (e: ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value.trim());
+    setQuery(e.target.value);
   };
 
   const callOnSearch = () => {
