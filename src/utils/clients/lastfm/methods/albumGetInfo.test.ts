@@ -4,7 +4,7 @@ import { albumGetInfo } from './albumGetInfo';
 vi.mock('../apiClient');
 
 describe('Last.fm client: `albumGetInfo` method', () => {
-  it('calls the API to get the album info', async() => {
+  it('calls the API to get the album info', async () => {
     await albumGetInfo({ mbid: '1', artist: 'test-artist', name: 'test' });
 
     expect(lastfmAPI.get).toHaveBeenCalledWith('', {
@@ -14,7 +14,7 @@ describe('Last.fm client: `albumGetInfo` method', () => {
     });
   });
 
-  it('uses the mbid of the album', async() => {
+  it('uses the mbid of the album', async () => {
     await albumGetInfo({ mbid: '1', artist: 'test-artist', name: 'test' });
 
     expect(lastfmAPI.get).toHaveBeenCalledWith('', {
@@ -24,7 +24,7 @@ describe('Last.fm client: `albumGetInfo` method', () => {
     });
   });
 
-  it('uses the album and artist name in absence of an mbid', async() => {
+  it('uses the album and artist name in absence of an mbid', async () => {
     await albumGetInfo({ artist: 'test-artist', name: 'test' });
 
     expect(lastfmAPI.get).toHaveBeenCalledWith('', {

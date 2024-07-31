@@ -4,7 +4,7 @@ import { searchTopAlbums } from './searchTopAlbums';
 vi.mock('../apiClient');
 
 describe('Discogs client: `searchTopAlbums` method', () => {
-  it('calls the API with the given Discogs id', async() => {
+  it('calls the API with the given Discogs id', async () => {
     await searchTopAlbums('1');
 
     expect(discogsAPI.get).toHaveBeenCalledWith('', {
