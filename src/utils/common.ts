@@ -24,10 +24,8 @@ export function replaceLastOccurrence(fullString: string, lastString: string, re
     return fullString;
   }
 
-  return (
-    `${fullString.substring(0, lastStringIndex)}${replaceString}${fullString.substring(lastStringIndex + lastString.length)}`
-  );
-};
+  return `${fullString.substring(0, lastStringIndex)}${replaceString}${fullString.substring(lastStringIndex + lastString.length)}`;
+}
 
 export function cleanupLastEndStringOccurrence(fullString: string, pattern: string) {
   if (fullString.endsWith(pattern)) {

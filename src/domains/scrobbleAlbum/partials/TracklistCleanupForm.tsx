@@ -31,11 +31,7 @@ export function TracklistCleanupForm({ onCleanupPatternChange }: TracklistCleanu
           />
         </div>
         <div className="col-6">
-          <Input
-            className="form-control-sm form-control"
-            id="albumCleanupPattern"
-            onChange={onCleanupPatternChange}
-          />
+          <Input className="form-control-sm form-control" id="albumCleanupPattern" onChange={onCleanupPatternChange} />
         </div>
         <div className="col-12">
           <Alert

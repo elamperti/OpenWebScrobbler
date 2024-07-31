@@ -118,17 +118,9 @@ export default function ScrobbleItem({
 
     const parsedComplete = highlight;
 
-    const textComplete = renderToStaticMarkup((
-      <span className="scrobbled-item-cleanup">
-        {parsedComplete}
-      </span>
-    ));
+    const textComplete = renderToStaticMarkup(<span className="scrobbled-item-cleanup">{parsedComplete}</span>);
 
-    const itemComplete = replaceLastOccurrence(
-      parsedItem,
-      parsedComplete,
-      textComplete
-    );
+    const itemComplete = replaceLastOccurrence(parsedItem, parsedComplete, textComplete);
 
     return itemComplete;
   };
@@ -249,7 +241,10 @@ export default function ScrobbleItem({
     songInfo = (
       <Label className="d-flex align-items-center mb-0" htmlFor={scrobbleItemInputId}>
         {!!settings?.showTrackNumbers && scrobble.trackNumber && <span className="me-1">{scrobble.trackNumber}.</span>}
-        <span className="song flex-grow-1 pe-2 truncate" dangerouslySetInnerHTML={{ __html: getCompleteItem(songFullTitle, cleanupPattern) }}></span>
+        <span
+          className="song flex-grow-1 pe-2 truncate"
+          dangerouslySetInnerHTML={{ __html: getCompleteItem(songFullTitle, cleanupPattern) }}
+        ></span>
         {timeOrDuration}
       </Label>
     );
@@ -257,7 +252,10 @@ export default function ScrobbleItem({
     // FULL view
     songInfo = (
       <>
-        <span className="song" dangerouslySetInnerHTML={{ __html: getCompleteItem(songFullTitle, cleanupPattern) }}></span>
+        <span
+          className="song"
+          dangerouslySetInnerHTML={{ __html: getCompleteItem(songFullTitle, cleanupPattern) }}
+        ></span>
         <Label className="d-flex mb-0" htmlFor={scrobbleItemInputId}>
           <small className="text-muted flex-grow-1 truncate album">
             {scrobble.album && (

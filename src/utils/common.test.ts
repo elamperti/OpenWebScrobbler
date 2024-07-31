@@ -78,7 +78,9 @@ describe('`cleanupLastEndStringOccurrence` helper', () => {
 
   it('returns full string without the last with extra alphabetic characters', () => {
     expect(cleanupLastEndStringOccurrence('live forever (remastered)', '(remastered)')).toBe('live forever');
-    expect(cleanupLastEndStringOccurrence('Dazed and Confused - 3/23/69 Top Gear;Remaster', ' - 3/23/69 Top Gear;Remaster')).toBe('Dazed and Confused');
+    expect(
+      cleanupLastEndStringOccurrence('Dazed and Confused - 3/23/69 Top Gear;Remaster', ' - 3/23/69 Top Gear;Remaster')
+    ).toBe('Dazed and Confused');
   });
 
   it('returns full string if cleanup pattern is not at end of string', () => {

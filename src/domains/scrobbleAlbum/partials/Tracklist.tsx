@@ -125,7 +125,8 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
       .reduce((result, track) => {
         const newTrack = {
           ...track,
-          title: cleanupPatternSmart !== '' ? cleanupLastEndStringOccurrence(track.title, cleanupPatternSmart) : track.title,
+          title:
+            cleanupPatternSmart !== '' ? cleanupLastEndStringOccurrence(track.title, cleanupPatternSmart) : track.title,
           album: albumInfo?.name || '',
           albumArtist: albumInfo?.artist || '',
           timestamp: rollingTimestamp,
