@@ -1,4 +1,4 @@
-import { useState, useContext } from 'react';
+import { useState, useContext, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { Button, Form, FormGroup, Input, Label, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
@@ -24,12 +24,20 @@ export default function SettingsModal() {
   const dispatch = useDispatch();
   const { t, i18n } = useTranslation();
   const currentLanguage = i18n.language;
-
-  const [language, setLanguage] = useState(currentSettings?.lang || currentLanguage);
-  const [use12Hours, setUse12Hours] = useState(currentSettings?.use12Hours);
-  const [catchPaste, setCatchPaste] = useState(currentSettings?.catchPaste);
+  const [language, setLanguage] = useState(currentLanguage);
+  const [use12Hours, setUse12Hours] = useState(false);
+  const [catchPaste, setCatchPaste] = useState(false);
   const trackNumbersEnabled = false; // useFeatureIsOn('show-track-numbers');
-  const [showTrackNumbers, setShowTrackNumbers] = useState(currentSettings?.showTrackNumbers);
+  const [showTrackNumbers, setShowTrackNumbers] = useState(false);
+
+  useEffect(() => {
+    if (currentSettings) {
+      setLanguage(currentSettings.lang);
+      setUse12Hours(currentSettings.use12Hours);
+      setCatchPaste(currentSettings.catchPaste);
+      setShowTrackNumbers(currentSettings.showTrackNumbers);
+    }
+  }, [currentSettings]);
 
   const close = () => setSettingsModalVisible(false);
 
