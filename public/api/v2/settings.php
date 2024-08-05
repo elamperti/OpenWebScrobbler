@@ -56,6 +56,19 @@
   $_SESSION['settings']['saved'] = !!$db->save_settings($_SESSION['userInfo']->name, $new_settings);
 
   } // IF POST
+  else {
+    if (!$_SESSION['settings']) {
+      require('inc/database.php');
+      $db = new Database();
+      $settings = $db->get_settings($_SESSION['userInfo']->name);
+      if ($settings) {
+        $_SESSION['settings'] = $settings;
+      } else {
+        require('inc/error.php');
+        raiseOWSError('User settings not found', 404, 9);
+      }
+    }
+  }
 
   echo json_encode($_SESSION['settings']);
 
