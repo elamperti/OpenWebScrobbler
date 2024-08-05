@@ -151,5 +151,14 @@
   "gettingLastfmUser": "Recupero le tue credenziali Last.fm",
   "fetchingUserSettings": "Recupero i tuoi settaggi",
   "validationFailed": "Qualcosa è andato storto!",
-  "tryAgain": "Riprova ancora"
+  "tryAgain": "Riprova ancora",
+  "patreonConnectionSuccess": "Account Patreon connesso con successo!",
+  "connectingToPatreon": "Connessione a Patreon...",
+  "verifyingPatreonAccount": "Verifica dell'account Patreon",
+  "connectingAccounts": "Connessione a Patreon in corso...",
+  "applications": "Applicazioni",
+  "connect": "Connetti",
+  "General settings title": {
+    "general": "Generale"
+  }
 }

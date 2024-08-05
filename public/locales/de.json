@@ -146,10 +146,19 @@
   "comingSoon": "bald verfügbar",
   "searchOnProvider": "Suche auf {{dataProvider}}",
   "showTrackNumbers": "Titelnummern in Albumlisten anzeigen",
-  "startingSession": "Logging you in...",
-  "finishingValidation": "Validating token with Last.fm",
-  "gettingLastfmUser": "Getting Last.fm user details",
-  "fetchingUserSettings": "Retrieving your preferences",
-  "validationFailed": "Something went wrong!",
-  "tryAgain": "Try again"
+  "startingSession": "Anmeldung läuft...",
+  "finishingValidation": "Token wird bei Last.fm überprüft",
+  "gettingLastfmUser": "Last.fm-Benutzerdetails werden abgerufen",
+  "fetchingUserSettings": "Ihre Einstellungen werden abgerufen",
+  "validationFailed": "Etwas ist schiefgelaufen!",
+  "tryAgain": "Erneut versuchen",
+  "patreonConnectionSuccess": "Patreon-Konto erfolgreich verbunden!",
+  "connectingToPatreon": "Verbindung zu Patreon wird hergestellt...",
+  "verifyingPatreonAccount": "Patreon-Konto wird verifiziert",
+  "connectingAccounts": "Verbindung mit Patreon wird hergestellt...",
+  "applications": "Anwendungen",
+  "connect": "Verbinden",
+  "General settings title": {
+    "general": "Allgemein"
+  }
 }
