@@ -69,7 +69,7 @@ export default function ScrobbleItem({
       category: 'Interactions',
       action: 'Clone track',
     });
-    // Hack: the timestamp is ketp in compact mode (profile view) and removed when not (profile view)
+    // Hack: the timestamp is kept in compact mode (profile view) and removed when not (profile view)
     cloneScrobbleTo?.(compact ? scrobble : { ...scrobble, timestamp: undefined });
   };
 

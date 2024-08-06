@@ -5,6 +5,7 @@ export const LASTFM_AUTH_URL =
   `https://www.last.fm/api/auth?api_key=${process.env.REACT_APP_LASTFM_API_KEY}` +
   `&cb=${window.location.protocol}//${window.location.host}/lastfm/callback/`;
 export const OPENSCROBBLER_API_URL = '/api/v2';
+export const SETLISTFM_API_URL = '/api/v2/setlistfm.php';
 export const CONSIDER_HISTORY_STALE_AFTER = 5 * 60 * 1000; // 5 minutes
 export const SETTINGS_DEBOUNCE_PERIOD = 3 * 1000; // 3 seconds
 export const SCROBBLING_DEBOUNCE_PERIOD = 1.5 * 1000; // 1.5 seconds
@@ -15,16 +16,19 @@ export const MAX_RECENT_ALBUMS = 8;
 export const DEFAULT_SONG_DURATION = 3 * 60; // ToDo: use this value when skipping time forward after scrobble
 
 // ToDo: improve this
-export type Provider = 'lastfm' | 'discogs' | 'spotify';
+export type Provider = 'lastfm' | 'discogs' | 'spotify' | 'setlistfm';
 
 export const PROVIDER_LASTFM: Provider = 'lastfm';
 export const PROVIDER_DISCOGS: Provider = 'discogs';
 export const PROVIDER_SPOTIFY: Provider = 'spotify';
+export const PROVIDER_SETLISTFM: Provider = 'setlistfm';
 
 export const PROVIDER_NAME = {
   [PROVIDER_LASTFM]: 'Last.fm',
   [PROVIDER_DISCOGS]: 'Discogs',
   [PROVIDER_SPOTIFY]: 'Spotify',
+  [PROVIDER_SETLISTFM]: 'Setlist.fm',
+
 };
 
 // Alerts store
