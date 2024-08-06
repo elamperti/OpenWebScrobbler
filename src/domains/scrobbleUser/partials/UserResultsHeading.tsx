@@ -1,9 +1,5 @@
-import { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useParams, useNavigate } from 'react-router-dom';
-import ReactGA from 'react-ga-neo';
-import { keepPreviousData, useQuery, QueryClient, useQueryClient } from '@tanstack/react-query';
-import { get } from 'lodash-es';
+import { useNavigate } from 'react-router-dom';
+import { useQueryClient } from '@tanstack/react-query';
 
 import { Row, Button } from 'reactstrap';
 import { Trans, useTranslation } from 'react-i18next';
@@ -39,6 +35,7 @@ export function UserResultsHeading({ isLoading, userToSearch }: { isLoading: boo
           onSearch={switchUserQuery}
           searchCopy={t('search')}
           ariaLabel="Username"
+          autocomplete="off"
           id="userToSearch"
           maxLength={15}
           size="sm"

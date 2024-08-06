@@ -1,5 +1,4 @@
 import { useState, useEffect, ChangeEvent, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
 import { Trans } from 'react-i18next';
 
 import {
@@ -21,6 +20,7 @@ import styles from './SearchForm.module.scss';
 
 type SearchFormProps = {
   ariaLabel: string;
+  autocomplete?: 'off' | 'on';
   searchOptions?: ReactNode;
   searchCopy: string;
   feedbackMessageKey?: string;
@@ -35,6 +35,7 @@ type SearchFormProps = {
 
 export default function SearchForm({
   ariaLabel,
+  autocomplete,
   searchOptions,
   searchCopy,
   feedbackMessageKey = '',
@@ -48,7 +49,7 @@ export default function SearchForm({
 }: SearchFormProps) {
   const [query, setQuery] = useState(initialValue || '');
   const searchInput = useRef<HTMLInputElement>(null);
-  const isValid = validator ? validator(query) : true;
+  const isValid = validator ? validator(query.trim()) : true;
 
   useEffect(() => {
     if (searchInput) {
@@ -58,7 +59,7 @@ export default function SearchForm({
   }, [searchInput]);
 
   const updateQuery = (e: ChangeEvent<HTMLInputElement>) => {
-    setQuery(e.target.value.trim());
+    setQuery(e.target.value);
   };
 
   const callOnSearch = () => {
@@ -104,6 +105,7 @@ export default function SearchForm({
               className={`form-control form-control-${size}${inputIsInvalid ? ' is-invalid' : ''}`}
               value={query}
               aria-invalid={inputIsInvalid}
+              autoComplete={autocomplete || 'on'}
               readOnly={readOnly}
               onKeyDown={catchEnter}
               onChange={updateQuery}

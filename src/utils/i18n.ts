@@ -17,10 +17,12 @@ export const languageList = [
   { code: 'en', name: 'English' },
   { code: 'es', name: 'Español' }, // Spanish
   { code: 'fr', name: 'Français' }, // French
+  { code: 'hr', name: 'Hrvatski' }, // Croatian
   { code: 'it', name: 'Italiano' },
   { code: 'nl', name: 'Nederlands' }, // Dutch
   { code: 'pl', name: 'Polski' }, // Polish
   { code: 'pt', name: 'Português' },
+  { code: 'pt-BR', name: 'Português (BR)' },
   { code: 'sr', name: 'Српски' }, // Serbian
   { code: 'ru', name: 'Русский' }, // Russian
   { code: 'tr', name: 'Türkçe' }, // Turkish
@@ -39,8 +41,9 @@ export const fallbackLng = {
   'en-UK': ['en'],
   'es-AR': ['es'],
   'es-ES': ['es'],
+  'hr-HR': ['hr'],
   'it-CH': ['it'],
-  'pt-BR': ['pt'],
+  'pt-BR': ['pt-BR'],
   'pt-PT': ['pt'],
   'fr-FR': ['fr'],
   'uk-UA': ['uk'],

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
 import { userGetSettings } from 'utils/clients/api/methods/userGetSettings';
 import { settingsUpdate } from 'utils/clients/api/methods/settingsUpdate';
-import { Settings } from 'utils/types/settings';
+import type { Settings } from 'utils/types/settings';
 import { useLanguage } from './useLanguage';
 import { useUserData } from './useUserData';
 

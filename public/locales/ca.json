@@ -8,7 +8,7 @@
   "album": "Àlbum",
   "scrobbleFromAlbum": "Envia àlbums",
   "scrobbleAlbum": "Envia l’àlbum",
-  "album_plural": "Àlbums",
+  "album_other": "Àlbums",
   "goBack": "Torna enrere",
   "topAlbumsBy": "Àlbums per {{nameOfArtist}}",
   "noAlbumsFound": "No s’ha trobat cap àlbum per <1>{{albumOrArtist}}</1>",

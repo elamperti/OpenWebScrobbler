@@ -17,16 +17,14 @@ interface AvatarProps {
   url: string | null;
 }
 
-// eslint-disable-next-line no-unused-vars
-const iconSizes: { [key in AvatarSizes]: SizeProp } = {
+const iconSizes: Record<AvatarSizes, SizeProp> = {
   xl: '5x',
   lg: '5x',
   md: '3x',
   sm: '1x',
 };
 
-// eslint-disable-next-line no-unused-vars
-const imgSizes: { [key in AvatarSizes]: number } = {
+const imgSizes: Record<AvatarSizes, number> = {
   xl: 300,
   lg: 128,
   md: 64,

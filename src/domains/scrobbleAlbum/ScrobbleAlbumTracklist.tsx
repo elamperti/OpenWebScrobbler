@@ -23,6 +23,7 @@ import useLocalStorage from 'hooks/useLocalStorage';
 
 import type { RootState } from 'store';
 import type { DiscogsAlbum, Album } from 'utils/types/album';
+import { ClearHistoryButton } from 'components/ClearHistoryButton';
 
 const sanitizeParam = (param: string) => {
   return param ? decodeURIComponent(param) : null;
@@ -151,9 +152,12 @@ export function ScrobbleAlbumTracklist() {
           )}
         </div>
         <div className="col-md-5">
-          <h4>
-            <FontAwesomeIcon icon={faHistory} /> <Trans i18nKey="yourHistory" />
-          </h4>
+          <div className="d-flex flex-row justify-content-between">
+            <h4>
+              <FontAwesomeIcon icon={faHistory} /> <Trans i18nKey="yourHistory" />
+            </h4>
+            <ClearHistoryButton />
+          </div>
           <div className="ScrobbleList-container">
             <ScrobbleList scrobbles={scrobbles}>
               <EmptyScrobbleListFiller />

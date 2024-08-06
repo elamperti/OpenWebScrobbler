@@ -8,7 +8,7 @@
   "album": "Άλμπουμ",
   "scrobbleFromAlbum": "Scrobble albums",
   "scrobbleAlbum": "Scrobble album",
-  "album_plural": "Albums",
+  "album_other": "Albums",
   "goBack": "Go back",
   "topAlbumsBy": "Albums by {{nameOfArtist}}",
   "noAlbumsFound": "Δεν βρέθηκαν άλμπουμ για <1>{{albumOrArtist}}</1>",

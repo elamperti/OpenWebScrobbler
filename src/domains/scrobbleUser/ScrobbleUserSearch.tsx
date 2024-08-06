@@ -47,6 +47,7 @@ export function ScrobbleUserSearch() {
         <SearchForm
           onSearch={searchUser}
           ariaLabel="Username"
+          autocomplete="off"
           searchCopy={t('search')}
           id="userToSearch"
           maxLength={15}

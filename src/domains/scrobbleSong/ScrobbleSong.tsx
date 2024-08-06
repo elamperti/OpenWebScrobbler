@@ -3,18 +3,17 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Trans } from 'react-i18next';
 import ReactGA from 'react-ga-neo';
 
-import { Badge, Button, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
+import { Badge, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompactDisc, faHistory, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
-import { faPlayCircle, faTrashAlt } from '@fortawesome/free-regular-svg-icons';
+import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
 
 import type { RootState } from 'store';
-import { clearListOfScrobbles, scrobbleCounterEnabled } from 'store/actions/scrobbleActions';
+import { scrobbleCounterEnabled } from 'store/actions/scrobbleActions';
 
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 import ScrobbleList from 'components/ScrobbleList';
-import Spinner from 'components/Spinner';
 import { SongForm } from './SongForm';
 
 import { LastFmProfileHistory } from './partials/LastFmProfileHistory';
@@ -22,6 +21,7 @@ import { useQueryClient } from '@tanstack/react-query';
 
 import type { FC } from 'react';
 import { useUserData } from 'hooks/useUserData';
+import { ClearHistoryButton } from 'components/ClearHistoryButton';
 
 type SidebarTab = 'history' | 'userProfile';
 
@@ -38,6 +38,8 @@ export const ScrobbleSong: FC = () => {
   const { user } = useUserData();
   const dispatch = useDispatch();
   const queryClient = useQueryClient();
+
+  const hasUsername = !!user?.name;
 
   const goToHistoryTab = () => {
     if (activeTab !== 'history') {
@@ -65,22 +67,6 @@ export const ScrobbleSong: FC = () => {
       });
     }
   };
-
-  let clearListButton;
-  const hasUsername = !!user?.name;
-
-  if (activeTab === 'history') {
-    if (localScrobbles.length > 0) {
-      clearListButton = (
-        <div className="ms-auto d-flex my-auto">
-          <Button className="btn-clear" size="sm" color="secondary" onClick={() => dispatch(clearListOfScrobbles())}>
-            <FontAwesomeIcon icon={faTrashAlt} className="me-1" />
-            <Trans i18nKey="clearHistory">Clear history</Trans>
-          </Button>
-        </div>
-      );
-    }
-  }
 
   return (
     <ScrobbleCloneContext.Provider value={{ cloneFn: cloneReceiver, setCloneFn: setCloneReceiver }}>
@@ -119,7 +105,11 @@ export const ScrobbleSong: FC = () => {
                 </span>
               </NavLink>
             </NavItem>
-            {clearListButton}
+            {activeTab === 'history' && (
+              <div className="ms-auto d-flex my-auto">
+                <ClearHistoryButton />
+              </div>
+            )}
           </Nav>
           <TabContent activeTab={activeTab}>
             <TabPane className="ScrobbleList-container pt-2" tabId="history">

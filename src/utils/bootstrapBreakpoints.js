@@ -66,15 +66,15 @@ const __breakpointListener = new BootstrapBreakpointEvent();
 
 export function useBootstrapBreakpoint(returnBreakpointName = false) {
   const [breakpoint, setBreakpoint] = useState(__breakpointListener.current);
-  const resizeEvent = (e) => setBreakpoint(returnBreakpointName ? BS_NAMES[e.detail] : e.detail);
 
   useEffect(() => {
+    const resizeEvent = (e) => setBreakpoint(returnBreakpointName ? BS_NAMES[e.detail] : e.detail);
+
     __breakpointListener.addEventListener('breakpoint', resizeEvent);
     return () => {
       __breakpointListener.removeEventListener('breakpoint', resizeEvent);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [returnBreakpointName]);
 
   return breakpoint;
 }

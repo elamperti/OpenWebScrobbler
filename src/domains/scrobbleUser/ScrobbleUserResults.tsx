@@ -22,6 +22,7 @@ import FriendScrobbles from './partials/FriendScrobbles';
 import { UserResultsHeading } from './partials/UserResultsHeading';
 
 import type { RootState } from 'store';
+import { ClearHistoryButton } from 'components/ClearHistoryButton';
 
 export function ScrobbleUserResults() {
   const { username: usernameFromParams } = useParams();
@@ -119,9 +120,12 @@ export function ScrobbleUserResults() {
 
         {/* Own profile history (sidebar) */}
         <div className="col-md-5">
-          <h4>
-            <FontAwesomeIcon icon={faHistory} /> <Trans i18nKey="yourHistory">Your history</Trans>
-          </h4>
+          <div className="d-flex flex-row justify-content-between">
+            <h4>
+              <FontAwesomeIcon icon={faHistory} /> <Trans i18nKey="yourHistory">Your history</Trans>
+            </h4>
+            <ClearHistoryButton />
+          </div>
           <div className="ScrobbleList-container">
             <ScrobbleList scrobbles={localScrobbles}>
               <EmptyScrobbleListFiller />

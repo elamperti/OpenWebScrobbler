@@ -30,12 +30,15 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           runTests: false
-          install-command: yarn install --immutable
+          install-command: yarn install
         env:
           CI: 1
 
       - name: Lint
         run: yarn lint
+
+      - name: Prettier
+        run: yarn prettier
 
       - name: Typecheck
         run: yarn typecheck
@@ -62,7 +65,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           runTests: false
-          install-command: yarn install --immutable
+          install-command: yarn install
         env:
           CI: 1
 
@@ -96,7 +99,7 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           runTests: false
-          install-command: yarn install --immutable
+          install-command: yarn install
         env:
           CI: 1
 

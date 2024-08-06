@@ -7,7 +7,6 @@ const sizeMap = {
   extralarge: 'xl',
 };
 
-// eslint-disable-next-line no-unused-vars
 export function avatarTransformer(avatars: any[]): Avatar {
   if (!avatars || avatars.length === 0) return null;
 

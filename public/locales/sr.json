@@ -8,7 +8,7 @@
   "album": "Album",
   "scrobbleFromAlbum": "Skrobluj albume",
   "scrobbleAlbum": "Skrobluj album",
-  "album_plural": "Albumi",
+  "album_other": "Albumi",
   "goBack": "Idi nazad",
   "topAlbumsBy": "Albumi {{nameOfArtist}}",
   "noAlbumsFound": "Nisu pronađeni albumi za <1>{{albumOrArtist}}</1>",

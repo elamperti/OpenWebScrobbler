@@ -29,6 +29,8 @@ const defineReactAppEnv = (mode) => {
   }, {});
 };
 
+const reactCompilerConfig = {};
+
 // https://vitejs.dev/config/
 const viteConfig = ({ mode }) =>
   defineConfig({
@@ -57,6 +59,7 @@ const viteConfig = ({ mode }) =>
       react({
         babel: {
           plugins: [
+            ['babel-plugin-react-compiler', reactCompilerConfig], // must run first!
             [
               '@locator/babel-jsx/dist',
               {
@@ -124,7 +127,8 @@ const viteConfig = ({ mode }) =>
           functions: 10,
           lines: 10,
         },
-        exclude: ['public/**', 'lint-staged.config.mjs'],
+        include: ['src/**'],
+        exclude: ['src/**/*.test.*', 'src/**/*.d.ts'],
       },
       globals: true,
       environment: 'jsdom',
