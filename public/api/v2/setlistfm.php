@@ -7,8 +7,7 @@
 
     // curl_setopt($setlistfmrq, CURLOPT_USERAGENT, 'OpenScrobbler/2.0'); 
     curl_setopt($setlistfmrq, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($setlistfmrq, CURLOPT_HTTPHEADER, ["REMOTE_ADDR: $_SERVER[REMOTE_ADDR]", "HTTP_X_FORWARDED_FOR: $_SERVER[REMOTE_ADDR]"]);
-    curl_setopt($setlistfmrq, CURLOPT_HTTPHEADER, ["x-api-key: " . getenv('SETLISTFM_API_KEY')]);
+    curl_setopt($setlistfmrq, CURLOPT_HTTPHEADER, ["REMOTE_ADDR: $_SERVER[REMOTE_ADDR]", "HTTP_X_FORWARDED_FOR: $_SERVER[REMOTE_ADDR]", "Accept: application/json", "x-api-key: " . getenv('SETLISTFM_API_KEY')]);
 
     // $params['key'] = getenv('SETLISTFM_API_KEY');
 

@@ -28,7 +28,6 @@ export const PROVIDER_NAME = {
   [PROVIDER_DISCOGS]: 'Discogs',
   [PROVIDER_SPOTIFY]: 'Spotify',
   [PROVIDER_SETLISTFM]: 'Setlist.fm',
-
 };
 
 // Alerts store
