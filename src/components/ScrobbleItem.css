@@ -97,3 +97,8 @@
   padding-left: 1.15rem;
   padding-right: 1.15rem;
 }
+
+.scrobbled-item-cleanup {
+  color: var(--bs-secondary-color) !important;
+  text-decoration: line-through;
+}
