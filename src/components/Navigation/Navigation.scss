@@ -1,5 +1,5 @@
 #ows-Navigation {
-  box-shadow: 0 3px 4px rgba(0,0,0,0.3);
+  box-shadow: 0 3px 4px rgba(0, 0, 0, 0.3);
   border-width: 0 0 1px;
   margin-bottom: 1.5em;
 
@@ -18,12 +18,5 @@
 
   &.ows-donor {
     border-bottom: 2px solid #b38411;
-
-    .navbar-brand {
-      color: #e9c15e !important;
-      text-shadow: 1px 3px 4px rgba(0,0,0,0.5);
-    }
   }
 }
-
-

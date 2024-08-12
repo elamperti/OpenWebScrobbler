@@ -422,7 +422,7 @@ export function SongForm() {
         <Trans i18nKey="scrobble">Scrobble</Trans>!
       </Button>
 
-      {!settings?.isDonor && (
+      {!settings?.hasActiveSubscription && (
         <div className="donation-cta mt-2">
           <a href="https://www.patreon.com/OpenScrobbler" rel="noopener">
             <Trans i18nKey="considerDonating">Consider donating to the project!</Trans>
