@@ -5,7 +5,6 @@ import { Trans, useTranslation } from 'react-i18next';
 import ReactGA from 'react-ga-neo';
 import addSeconds from 'date-fns/addSeconds';
 import subSeconds from 'date-fns/subSeconds';
-import format from 'date-fns/format';
 
 import { Alert, Badge, Button, FormGroup, Label, Input } from 'reactstrap';
 import { faShoppingCart, faStopwatch, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
@@ -26,6 +25,17 @@ import type { Track } from 'utils/types/track';
 
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 
+function formatDuration(totalSeconds: number) {
+  const datetime = addSeconds(new Date(0), totalSeconds);
+  const h = datetime.getUTCHours();
+  const m = datetime.getUTCMinutes();
+  const s = datetime.getUTCSeconds();
+  
+  const mm = (m < 10) ? ("0" + m) : m.toString();
+  const ss = (s < 10) ? ("0" + s) : s.toString();
+  return (h > 0) ? `${h}:${mm}:${ss}` : `${mm}:${ss}`;
+}
+
 // ToDo: refactor this component completely.
 // It's too complex and carries several blocks from old code.
 export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | null; tracks: Track[] | Scrobble[] }) {
@@ -42,7 +52,6 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
   const [totalDuration, setTotalDuration] = useState(0);
   const albumHasTracks = tracks && tracks.length > 0;
   const hasAlbumInfo = !!albumInfo && Object.keys(albumInfo).length > 0;
-  const durationFormat = totalDuration > 3600 ? 'H:mm:ss' : 'mm:ss';
 
   useEffect(() => {
     let newDuration = 0;
@@ -155,11 +164,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
               {tracks.length > 0 && (
                 <div className="album-heading-duration">
                   <FontAwesomeIcon icon={faStopwatch} className="me-2" color="var(--bs-gray)" />
-                  {totalDuration ? (
-                    format(addSeconds(new Date(0), totalDuration), durationFormat)
-                  ) : (
-                    <Trans i18nKey="unknown">Unknown</Trans>
-                  )}
+                  {totalDuration ? formatDuration(totalDuration) : <Trans i18nKey="unknown">Unknown</Trans>}
                 </div>
               )}
             </div>
