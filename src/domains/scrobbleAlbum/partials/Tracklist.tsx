@@ -60,8 +60,6 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
     setTotalDuration(newDuration);
   }, [albumHasTracks, tracks]);
 
-  DateTimePicker.preload();
-
   const toggleCustomTimestamp = () => {
     if (!useCustomTimestamp) {
       ReactGA.event({
@@ -69,6 +67,8 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
         action: 'Use custom timestamp',
         label: 'Album',
       });
+
+      DateTimePicker.preload();
     }
     setUseCustomTimestamp(!useCustomTimestamp);
   };
@@ -200,15 +200,17 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
           </div>
         </div>
       )}
-      <Suspense
-        fallback={
-          <div>
-            <Trans i18nKey="loading">Loading...</Trans>
-          </div>
-        }
-      >
-        <DateTimePicker value={customTimestamp} onChange={handleTimestampChange} visible={useCustomTimestamp} />
-      </Suspense>
+      {useCustomTimestamp && (
+        <Suspense
+          fallback={
+            <div>
+              <Trans i18nKey="loading">Loading...</Trans>
+            </div>
+          }
+        >
+          <DateTimePicker value={customTimestamp} onChange={handleTimestampChange} />
+        </Suspense>
+      )}
       <Alert
         color="dark"
         isOpen={showTimestampCopy}

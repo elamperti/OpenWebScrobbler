@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { Suspense, useContext, useEffect, useState } from 'react';
 import { lazyWithPreload } from 'react-lazy-with-preload';
 import { useDispatch } from 'react-redux';
 import { Trans } from 'react-i18next';
@@ -71,9 +71,12 @@ export function SongForm() {
 
   useEffect(() => {
     document.getElementById('artist').focus();
-    DateTimePicker.preload();
     Tooltip.preload();
   }, []);
+
+  useEffect(() => {
+    if (isCustomDate) DateTimePicker.preload();
+  }, [isCustomDate]);
 
   useEffect(() => {
     validateForm();
@@ -401,7 +404,17 @@ export function SongForm() {
               <Trans i18nKey="custom">Custom</Trans>
             </Button>
           </ButtonGroup>
-          <DateTimePicker value={timestamp} onChange={setTimestamp} visible={isCustomDate} />
+          {isCustomDate && (
+            <Suspense
+              fallback={
+                <div>
+                  <Trans i18nKey="loading">Loading...</Trans>
+                </div>
+              }
+            >
+              <DateTimePicker value={timestamp} onChange={setTimestamp} />
+            </Suspense>
+          )}
           <div className="row">
             <div className="col-12 mt-1">
               <FontAwesomeIcon icon={faLightbulb} />{' '}
@@ -422,7 +435,7 @@ export function SongForm() {
         <Trans i18nKey="scrobble">Scrobble</Trans>!
       </Button>
 
-      {!settings?.isDonor && (
+      {!settings?.hasActiveSubscription && (
         <div className="donation-cta mt-2">
           <a href="https://www.patreon.com/OpenScrobbler" rel="noopener">
             <Trans i18nKey="considerDonating">Consider donating to the project!</Trans>

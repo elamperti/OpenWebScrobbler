@@ -36,7 +36,7 @@ export default function Navigation() {
       expand="md"
       data-cy="Navigation"
       id="ows-Navigation"
-      className={`${settings?.isDonor ? 'ows-donor' : ''}`}
+      className={`${settings?.hasActiveSubscription ? 'ows-donor' : ''}`}
     >
       <NavbarBrand tag={Link} to="/" data-cy="Navigation-logo" className="flex-grow-1 flex-md-grow-0">
         <FontAwesomeIcon icon={faHeadphonesAlt} className="d-none d-sm-inline" />

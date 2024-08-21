@@ -152,5 +152,14 @@
   "gettingLastfmUser": "Getting Last.fm user details",
   "fetchingUserSettings": "Retrieving your preferences",
   "validationFailed": "Something went wrong!",
-  "tryAgain": "Try again"
+  "tryAgain": "Try again",
+  "patreonConnectionSuccess": "Patreon account connected successfully!",
+  "connectingToPatreon": "Connecting to Patreon...",
+  "verifyingPatreonAccount": "Verifying Patreon account",
+  "connectingAccounts": "Connecting to Patreon...",
+  "applications": "Applications",
+  "connect": "Connect",
+  "General settings title": {
+    "general": "General"
+  }
 }

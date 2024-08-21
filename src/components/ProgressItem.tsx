@@ -4,13 +4,11 @@ import type { ReactNode } from 'react';
 
 export function ProgressItem({
   children,
-  isWaiting = false,
   isLoading = false,
   isError = false,
   isDone = false,
 }: {
   children: ReactNode;
-  isWaiting?: boolean;
   isLoading?: boolean;
   isError?: boolean;
   isDone?: boolean;

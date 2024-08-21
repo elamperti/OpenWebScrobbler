@@ -15,7 +15,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
 import Spinner from 'components/Spinner';
-import { ProgressItem } from './partials/ProgressItem';
+import { ProgressItem } from 'components/ProgressItem';
 
 import { LASTFM_AUTH_URL } from 'Constants';
 
@@ -127,7 +127,6 @@ export function Callback() {
 
           {/* Settings endpoint */}
           <ProgressItem
-            isWaiting={!validation.isSuccess || user.isLoading}
             isLoading={settings.isFetching}
             isError={settings.isError}
             isDone={validation.isSuccess && user.isLoggedIn && settings.isReady}

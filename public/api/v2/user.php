@@ -35,18 +35,8 @@
 
     $_SESSION['uidHash'] = md5($_SESSION['userInfo']->name);
   }
+
   $userdata['user'] = $_SESSION['userInfo'];
 
-  if (isset($_SESSION['settings'])) {
-    $userdata['settings'] = $_SESSION['settings'];
-  } else {
-    require('inc/database.php');
-    $db = new Database();
-    $settings = $db->get_settings($_SESSION['userInfo']->name);
-    if ($settings) {
-      $_SESSION['settings'] = $settings;
-      $userdata['settings'] = $settings;
-    }
-  }
 
   echo json_encode($userdata);

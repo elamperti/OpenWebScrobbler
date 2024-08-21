@@ -151,5 +151,14 @@
   "gettingLastfmUser": "Prikupljanje korisničkih detalja sa Last.fm",
   "fetchingUserSettings": "Prikupljanje Vaših postavki",
   "validationFailed": "Nešto nije prošlo u redu!",
-  "tryAgain": "Pokušajte ponovno"
+  "tryAgain": "Pokušajte ponovno",
+  "patreonConnectionSuccess": "Patreon account connected successfully!",
+  "connectingToPatreon": "Connecting to Patreon...",
+  "verifyingPatreonAccount": "Verifying Patreon account",
+  "connectingAccounts": "Connecting to Patreon...",
+  "applications": "Applications",
+  "connect": "Connect",
+  "General settings title": {
+    "general": "General"
+  }
 }

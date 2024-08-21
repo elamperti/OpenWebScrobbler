@@ -152,5 +152,14 @@
   "gettingLastfmUser": "Henter Last.fm-brugerdetaljer",
   "fetchingUserSettings": "Henter dine præferencer",
   "validationFailed": "Noget gik galt!",
-  "tryAgain": "Prøv igen"
+  "tryAgain": "Prøv igen",
+  "patreonConnectionSuccess": "Patreon account connected successfully!",
+  "connectingToPatreon": "Connecting to Patreon...",
+  "verifyingPatreonAccount": "Verifying Patreon account",
+  "connectingAccounts": "Connecting to Patreon...",
+  "applications": "Applications",
+  "connect": "Connect",
+  "General settings title": {
+    "general": "General"
+  }
 }

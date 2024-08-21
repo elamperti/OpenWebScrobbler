@@ -139,8 +139,8 @@
     "message": "Sucesso ao sair."
   },
   "includeReleases": "Include releases",
-  "rateLimitExceeded": "Rate limit exceeded.",
-  "rateLimitMessage": "Scrobblou muito rapidamente? Rate limit reinicia a meia-noite UTC (this limit is enforced by Last.fm)",
+  "rateLimitExceeded": "Limite de taxa excedido.",
+  "rateLimitMessage": "Scrobblou muito rapidamente? O limite de taxa reinicia a meia-noite UTC (este limite é imposto pelo Last.fm)",
   "slowDown": "Diminua a velocidade!",
   "slowDownMessage": "You are scrobbling too fast. Please wait a moment and try again in a few minutes.",
   "comingSoon": "em desenvolvimento",
@@ -151,5 +151,14 @@
   "gettingLastfmUser": "Pegando informações de usuario do last.fm",
   "fetchingUserSettings": "Buscando suas preferencias",
   "validationFailed": "Algo deu errado!",
-  "tryAgain": "Tente novamente"
+  "tryAgain": "Tente novamente",
+  "patreonConnectionSuccess": "Conta Patreon conectada com sucesso!",
+  "connectingToPatreon": "Conectando ao Patreon...",
+  "verifyingPatreonAccount": "Verificando conta Patreon",
+  "connectingAccounts": "Conectando ao Patreon...",
+  "applications": "Aplicações",
+  "connect": "Conectar",
+  "General settings title": {
+    "general": "Geral"
+  }
 }

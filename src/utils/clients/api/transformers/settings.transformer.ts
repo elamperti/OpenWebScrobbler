@@ -7,7 +7,7 @@ export function settingsTransformer(settings = {}): Settings {
     use12Hours: !!get(settings, 'use12Hours', false),
     catchPaste: !!get(settings, 'catchPaste', true),
     showTrackNumbers: !!get(settings, 'showTrackNumbers', false),
-    isDonor: !!get(settings, 'isDonor', false),
+    hasActiveSubscription: !!get(settings, 'activeSubscription', false),
     keepOriginalTimestamp: !!get(settings, 'keepOriginalTimestamp', true),
   };
 }

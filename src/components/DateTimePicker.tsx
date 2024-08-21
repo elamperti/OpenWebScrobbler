@@ -34,10 +34,9 @@ interface DateTimePickerProps {
   className?: string;
   onChange: (timestamp: Date) => void;
   value: Date;
-  visible?: boolean;
 }
 
-export default function DateTimePicker({ className = '', onChange, value, visible = false }: DateTimePickerProps) {
+export default function DateTimePicker({ className = '', onChange, value }: DateTimePickerProps) {
   const { settings } = useSettings();
   const { t } = useTranslation();
   const [timePickerModalVisible, setTimePickerModalVisible] = useState(false);
@@ -51,8 +50,6 @@ export default function DateTimePicker({ className = '', onChange, value, visibl
   const hideTimePicker = () => setTimePickerModalVisible(false);
   const minDate = useMemo(() => subDays(new Date(), 14), []);
   const maxDate = useMemo(() => addDays(new Date(), 1), []);
-
-  if (!visible) return null;
 
   const handleDateChange = (timestamp) => {
     // Restore hours and minutes
