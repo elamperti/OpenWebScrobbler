@@ -13,6 +13,7 @@ interface ScrobbleListProps {
   isAlbum?: boolean;
   loading?: boolean;
   noMenu?: boolean;
+  albumHasVariousArtists?: boolean;
   onSelect?: (scrobble: any) => void;
   selected?: Set<string>;
   scrobbles?: any[];
@@ -25,12 +26,12 @@ export default function ScrobbleList({
   isAlbum = false,
   loading = false,
   noMenu = false,
+  albumHasVariousArtists = false,
   onSelect,
   selected,
   scrobbles = [],
 }: ScrobbleListProps) {
   const { cloneFn, setCloneFn } = useContext(ScrobbleCloneContext);
-  let albumHasVariousArtists = !isAlbum;
 
   if (loading) {
     return <Spinner />;

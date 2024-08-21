@@ -27,16 +27,16 @@ export function ScrobbleSetlistResult() {
   });
 
   useEffect(() => {
-    if (data !== undefined && data.sets.set.length === 1) {
+    if (data !== undefined) {
       navigate(`/scrobble/setlist/view/${data.id}`, { state: data });
     }
-  }, [data]);
+  }, [data, navigate]);
 
   return (
     <>
       <h2>
         <FontAwesomeIcon icon={faList} className="me-2" />
-        Scrobble Setlist
+        Scrobble Setlist Result
       </h2>
       {/* <Button>`Date: ${data.setlist.eventDate}`</Button> */}
     </>
