@@ -168,7 +168,7 @@ export default function ScrobbleItem({
     >
       {scrobble.timestamp && <FontAwesomeIcon className={`${compact ? 'me-2' : 'ms-2'}`} icon={faClock} />}
       {scrobble.timestamp && formatScrobbleTimestamp(scrobble.timestamp, settings?.use12Hours)}
-      {!scrobble.timestamp && (scrobble.duration > 0) && formatDuration(scrobble.duration)}
+      {!scrobble.timestamp && scrobble.duration > 0 && formatDuration(scrobble.duration)}
     </small>
   );
 
