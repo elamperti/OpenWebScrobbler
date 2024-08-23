@@ -23,7 +23,7 @@ import type { Album, DiscogsAlbum } from 'utils/types/album';
 import type { Scrobble } from 'utils/types/scrobble';
 import type { Track } from 'utils/types/track';
 
-import { formatDuration } from 'utils/datetime'
+import { formatDuration } from 'utils/datetime';
 
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 

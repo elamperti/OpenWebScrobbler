@@ -3,7 +3,7 @@ import isToday from 'date-fns/isToday';
 import getYear from 'date-fns/getYear';
 
 function zeroPad(secondsOrMinutes: number): string {
-  return (secondsOrMinutes < 10) ? ("0" + secondsOrMinutes) : secondsOrMinutes.toString();
+  return (secondsOrMinutes < 10) ? ('0' + secondsOrMinutes) : secondsOrMinutes.toString();
 }
 
 export function formatDuration(totalSeconds: number): string {
@@ -26,4 +26,3 @@ export function formatScrobbleTimestamp(timestamp: Date, use12Hours: boolean): s
   timestampFormat += use12Hours ? 'hh:mm a' : 'HH:mm';
   return format(timestamp, timestampFormat);
 }
-  
