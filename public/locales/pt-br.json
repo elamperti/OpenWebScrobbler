@@ -116,7 +116,9 @@
   "support": {
     "title": "Apoie este projeto",
     "copy": " Por favor, considere tornar-se um patrão para manter este site no ar e ajudar o desenvolvimento!",
-    "CTA": "Torne-se um patrão"
+    "CTA": "Torne-se um patrão",
+    "connectAccount": "Connect account",
+    "thanksForSupporting": "Obrigado por apoiar este projeto!"
   },
   "discord": {
     "title": "Junte-se a nós no Discord!",
@@ -158,7 +160,7 @@
   "connectingAccounts": "Conectando ao Patreon...",
   "applications": "Aplicações",
   "connect": "Conectar",
-  "General settings title": {
-    "general": "Geral"
-  }
+  "general": "Geral",
+  "learnMore": "Saiba mais",
+  "connected": "Conectado"
 }

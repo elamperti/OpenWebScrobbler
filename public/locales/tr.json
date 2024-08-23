@@ -116,7 +116,9 @@
   "support": {
     "title": "Projemizi destekle",
     "copy": "Siteyi ayakta tutmak ve sitenin gelişiminde yardımcı olmak için projeye bağış yap!",
-    "CTA": "Bağış yap"
+    "CTA": "Bağış yap",
+    "connectAccount": "Connect account",
+    "thanksForSupporting": "Thanks for supporting this project!"
   },
   "discord": {
     "title": "Discord kanalımıza katıl!",
@@ -158,7 +160,7 @@
   "connectingAccounts": "Connecting to Patreon...",
   "applications": "Applications",
   "connect": "Connect",
-  "General settings title": {
-    "general": "General"
-  }
+  "general": "General",
+  "learnMore": "Learn more",
+  "connected": "Connected"
 }

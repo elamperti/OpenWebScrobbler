@@ -14,7 +14,7 @@ What is _scrobbling_, you ask? It's tracking the music you listen to, using [las
 
 ## Help us make it better!
 
-This tool is open source and free. You can support its development by [becoming a Patron](https://www.patreon.com/OpenScrobbler) (you'll have a distinct identifier in the application and get a sneak peek into what's coming next! :sparkles: )
+You can support development by [becoming a Patron](https://www.patreon.com/OpenScrobbler) (you'll have a distinct identifier in the application, get a sneak peek into what's coming next, and a few extra features! :sparkles: )
 
 ### Contributing
 

@@ -116,7 +116,9 @@
   "support": {
     "title": "Підтримайте цей проєкт",
     "copy": "Станьте спонсором, щоб підтримати роботу сайту та його розробку!",
-    "CTA": "Стати патроном"
+    "CTA": "Стати патроном",
+    "connectAccount": "Connect account",
+    "thanksForSupporting": "Thanks for supporting this project!"
   },
   "discord": {
     "title": "Приєднуйтесь у Discord!",
@@ -158,7 +160,7 @@
   "connectingAccounts": "Connecting to Patreon...",
   "applications": "Applications",
   "connect": "Connect",
-  "General settings title": {
-    "general": "General"
-  }
+  "general": "General",
+  "learnMore": "Learn more",
+  "connected": "Connected"
 }

@@ -118,7 +118,9 @@
   "support": {
     "title": "Support this project",
     "copy": "Please consider becoming a patron to keep this site up and support development!",
-    "CTA": "Become a patron"
+    "CTA": "Become a patron",
+    "connectAccount": "Connect account",
+    "thanksForSupporting": "Thanks for supporting this project!"
   },
   "discord": {
     "title": "Join us on Discord!",
@@ -159,10 +161,12 @@
   "verifyingPatreonAccount": "Verifying Patreon account",
   "connectingAccounts": "Connecting to Patreon...",
   "applications": "Applications",
-  "connect": "Connect",
+  "autoFillAlbum": "Fill album name from last.fm",
+  "autoFillAlbumInvalidForm": "Enter artist and track for album auto-fill",
   "General settings title": {
     "general": "General"
   },
-  "autoFillAlbum": "Fill album name from last.fm",
-  "autoFillAlbumInvalidForm": "Enter artist and track for album auto-fill"
+  "learnMore": "Learn more",
+  "connect": "Connect",
+  "connected": "Connected"
 }

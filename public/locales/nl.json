@@ -116,7 +116,9 @@
   "support": {
     "title": "Steun dit project",
     "copy": "Het zou fijn zijn mocht je overwegen om dit project te steunen op Patreon! Zo help je deze site om online te blijven en steun je de ontwikkeling ervan :)",
-    "CTA": "Word een patron"
+    "CTA": "Word een patron",
+    "connectAccount": "Connect account",
+    "thanksForSupporting": "Thanks for supporting this project!"
   },
   "discord": {
     "title": "Word lid van onze Discord!",
@@ -158,7 +160,7 @@
   "connectingAccounts": "Verbinding maken met Patreon...",
   "applications": "Toepassingen",
   "connect": "Maak verbinding met",
-  "General settings title": {
-    "general": "Algemeen"
-  }
+  "general": "Algemeen",
+  "learnMore": "Learn more",
+  "connected": "Connected"
 }

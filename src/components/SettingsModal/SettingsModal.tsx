@@ -10,10 +10,13 @@ import { faSave } from '@fortawesome/free-regular-svg-icons';
 import { languageList } from 'utils/i18n';
 
 import { Trans, useTranslation } from 'react-i18next';
+import { useFeatureIsOn } from '@growthbook/growthbook-react';
 import { createAlert } from 'store/actions/alertActions';
 import { useUserData } from 'hooks/useUserData';
 import { useSettings } from 'hooks/useSettings';
+
 import { SettingsModalContext } from './SettingsModalContext';
+import ConnectPatreon from './partials/ConnectPatreon';
 
 export default function SettingsModal() {
   const { user } = useUserData();
@@ -28,6 +31,7 @@ export default function SettingsModal() {
   const [use12Hours, setUse12Hours] = useState(false);
   const [catchPaste, setCatchPaste] = useState(false);
   const trackNumbersEnabled = false; // useFeatureIsOn('show-track-numbers');
+  const connectPatreonFF = useFeatureIsOn('connect-patreon');
   const [showTrackNumbers, setShowTrackNumbers] = useState(false);
 
   useEffect(() => {
@@ -86,6 +90,9 @@ export default function SettingsModal() {
       </ModalHeader>
       <ModalBody>
         <Form>
+          <h3 className="h5 border-bottom border-secondary mb-3">
+            <Trans i18nKey="general">General</Trans>
+          </h3>
           <FormGroup>
             <div className="row ms-0 ms-sm-auto me-0">
               <Label className="col-sm-4" htmlFor="lang">
@@ -154,6 +161,15 @@ export default function SettingsModal() {
               </Label>
             )}
           </FormGroup>
+
+          {connectPatreonFF && (
+            <div className="mt-3">
+              <h3 className="h5 border-bottom border-secondary mb-3">
+                <Trans i18nKey="applications">Applications</Trans>
+              </h3>
+              <ConnectPatreon />
+            </div>
+          )}
         </Form>
       </ModalBody>
       <ModalFooter>

@@ -11,6 +11,11 @@ vi.mock('react-router-dom', async () => ({
   useLocation: () => returnedLocation,
 }));
 
+vi.mock('hooks/useSettings', async () => ({
+  ...(await vi.importActual('hooks/useSettings')),
+  useSettings: () => ({ settings: {} }),
+}));
+
 describe('Footer', () => {
   beforeEach(() => {
     i18n.init();
