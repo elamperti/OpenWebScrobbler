@@ -29,13 +29,33 @@ input.hasLock {
   cursor: pointer;
 }
 
+.suggest-album-button {
+  position: relative;
+  height: 1.6rem;
+  top: -3.4rem;
+  right: 1.75rem;
+  margin-left: calc(100% - 1.5rem);
+  padding: 0.1rem 0.4rem 0.1rem;
+  cursor: pointer;
+}
+
 .input-with-lock {
   max-height: 1rem;
 }
 
-.fa-thumbtack {
+.fa-thumbtack,
+.fa-wand-magic-sparkles {
   color: #aaaaaa;
   transition: 0.2s;
+}
+
+.fa-thumbtack:hover,
+.fa-wand-magic-sparkles:hover {
+  color: #777777;
+}
+
+.fa-wand-magic-sparkles.disabled {
+  color: #cccccc;
 }
 
 .fa-thumbtack.active {

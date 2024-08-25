@@ -10,7 +10,7 @@ import addDays from 'date-fns/addDays';
 import { Button, ButtonGroup, Form, FormGroup, Input, Label } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbtack, faExchangeAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faThumbtack, faExchangeAlt, faHeart, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
 import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 
 import { useSettings } from 'hooks/useSettings';
@@ -23,6 +23,9 @@ import { DEFAULT_SONG_DURATION } from 'Constants';
 import './SongForm.css';
 
 import type { Scrobble } from 'utils/types/scrobble';
+
+import { trackGetInfo } from 'utils/clients/lastfm/methods/trackGetInfo';
+import { get } from 'lodash-es';
 
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 const Tooltip = lazyWithPreload(() => import('components/Tooltip'));
@@ -262,6 +265,17 @@ export function SongForm() {
     setFormValid(artist.trim().length > 0 && title.trim().length > 0);
   };
 
+  const suggestAlbumName = async () => {
+    if (!formIsValid) {
+      return;
+    }
+    const info = await trackGetInfo({ artist: artist, title: title });
+    const suggestedAlbum = get(info, 'album.title');
+    if (suggestedAlbum !== undefined) {
+      setAlbum(suggestedAlbum);
+    }
+  };
+
   return (
     <Form className="SongForm" data-cy="SongForm">
       <FormGroup className="row">
@@ -353,6 +367,22 @@ export function SongForm() {
           </div>
           <Tooltip target="lock-album">
             <Trans i18nKey="lockAlbum">Lock album</Trans>
+          </Tooltip>
+
+          <div
+            className="suggest-album-button rounded"
+            id="suggest-album"
+            data-cy="SongForm-suggest-album-button"
+            onClick={suggestAlbumName}
+          >
+            <FontAwesomeIcon icon={faWandMagicSparkles} className={formIsValid ? '' : 'disabled'} />
+          </div>
+          <Tooltip target="suggest-album">
+            {formIsValid ? (
+              <Trans i18nKey="suggestAlbum">Suggest album name</Trans>
+            ) : (
+              <Trans i18nKey="suggestAlbumInvalidForm">Fill artist and track fields for album suggestions</Trans>
+            )}
           </Tooltip>
         </div>
       </FormGroup>

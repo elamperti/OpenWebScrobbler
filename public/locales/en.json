@@ -160,5 +160,7 @@
   "connect": "Connect",
   "General settings title": {
     "general": "General"
-  }
+  },
+  "suggestAlbum": "Suggest album name",
+  "suggestAlbumInvalidForm": "Fill artist and track fields for album suggestions"
 }
