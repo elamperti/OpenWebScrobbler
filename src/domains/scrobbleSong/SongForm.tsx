@@ -30,7 +30,7 @@ const Tooltip = lazyWithPreload(() => import('components/Tooltip'));
 const reAutoPasteSplitting = / - | ?[–—] ?/;
 const controlOrder = ['artist', 'title', 'album']; // Used for arrow navigation
 
-export function extractArtistTitle(text: string, reverse = false) {
+export function splitArtistTitleFromText(text: string, reverse: boolean) {
   if (reAutoPasteSplitting.test(text)) {
     const result = text.split(reAutoPasteSplitting, 2);
 
@@ -42,6 +42,28 @@ export function extractArtistTitle(text: string, reverse = false) {
   }
 
   return null;
+}
+
+const parseLastFmUrl = (url: string) => {
+  const regex = /^https?:\/\/(www\.)?last\.fm(\/[a-zA-Z]{2})?\/music\/([^/]+)\/_\/([^/]+)$/;
+  const match = url.match(regex);
+
+  if (!match) {
+    return null;
+  }
+
+  const artist = decodeURIComponent(match[3].replace(/\+/g, ' '));
+  const title = decodeURIComponent(match[4].replace(/\+/g, ' '));
+
+  return {
+    artist,
+    title,
+  };
+};
+
+export function extractArtistTitle(text: string, reverse = false) {
+  const parsedText = parseLastFmUrl(text);
+  return parsedText ?? splitArtistTitleFromText(text, reverse);
 }
 
 export function SongForm() {
