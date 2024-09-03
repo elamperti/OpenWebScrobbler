@@ -34,9 +34,9 @@ const reAutoPasteSplitting = / - | ?[–—] ?/;
 const controlOrder = ['artist', 'title', 'album']; // Used for arrow navigation
 
 enum AutoFillStatus {
-  Idle = "",
-  Success = "autofill-success",
-  Fail = "autofill-fail",
+  Idle = '',
+  Success = 'autofill-success',
+  Fail = 'autofill-fail',
 }
 
 export function extractArtistTitle(text: string, reverse = false) {
@@ -276,9 +276,9 @@ export function SongForm() {
     if (!formIsValid) {
       return;
     }
-    const info = await trackGetInfo({ artist: artist, title: title });
+    const info = await trackGetInfo({ artist, title });
     const suggestedAlbum = get(info, 'album.title');
-    
+
     if (suggestedAlbum === undefined) {
       setalbumAutoFillStatus(AutoFillStatus.Fail);
     } else {
