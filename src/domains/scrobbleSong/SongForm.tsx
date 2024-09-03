@@ -33,10 +33,10 @@ const Tooltip = lazyWithPreload(() => import('components/Tooltip'));
 const reAutoPasteSplitting = / - | ?[–—] ?/;
 const controlOrder = ['artist', 'title', 'album']; // Used for arrow navigation
 
-enum SuggestStatus {
+enum AutoFillStatus {
   Idle = "",
-  Success = "suggest-success",
-  Fail = "suggest-fail",
+  Success = "autofill-success",
+  Fail = "autofill-fail",
 }
 
 export function extractArtistTitle(text: string, reverse = false) {
@@ -65,7 +65,7 @@ export function SongForm() {
   const [timestamp, setTimestamp] = useState(new Date());
   const [title, setTitle] = useState('');
   const [isCustomDate, setIsCustomDate] = useState(false);
-  const [albumSuggestStatus, setAlbumSuggestStatus] = useState(SuggestStatus.Idle);
+  const [albumAutoFillStatus, setalbumAutoFillStatus] = useState(AutoFillStatus.Idle);
 
   const dispatch = useDispatch();
   const { isLoading: settingsLoading, settings } = useSettings();
@@ -272,7 +272,7 @@ export function SongForm() {
     setFormValid(artist.trim().length > 0 && title.trim().length > 0);
   };
 
-  const suggestAlbumName = async () => {
+  const autoFillAlbum = async () => {
     if (!formIsValid) {
       return;
     }
@@ -280,12 +280,12 @@ export function SongForm() {
     const suggestedAlbum = get(info, 'album.title');
     
     if (suggestedAlbum === undefined) {
-      setAlbumSuggestStatus(SuggestStatus.Fail);
+      setalbumAutoFillStatus(AutoFillStatus.Fail);
     } else {
-      setAlbumSuggestStatus(SuggestStatus.Success);
+      setalbumAutoFillStatus(AutoFillStatus.Success);
       setAlbum(suggestedAlbum);
     }
-    setTimeout(() => setAlbumSuggestStatus(SuggestStatus.Idle), 1200);
+    setTimeout(() => setalbumAutoFillStatus(AutoFillStatus.Idle), 1200);
   };
 
   return (
@@ -301,7 +301,7 @@ export function SongForm() {
             name="artist"
             id="artist"
             tabIndex={1}
-            className="hasLock"
+            className="has-button"
             data-cy="SongForm-artist"
             value={artist}
             onChange={(e) => setArtist((e.target as HTMLInputElement).value)}
@@ -363,7 +363,7 @@ export function SongForm() {
             name="album"
             id="album"
             tabIndex={3}
-            className={'hasLockAndSuggestButton ' + albumSuggestStatus}
+            className={'has-two-buttons ' + albumAutoFillStatus}
             data-cy="SongForm-album"
             value={album}
             onChange={(e) => setAlbum((e.target as HTMLInputElement).value)}
@@ -371,7 +371,7 @@ export function SongForm() {
           />
 
           <div
-            className={'lock-button rounded ' + albumSuggestStatus}
+            className={'lock-button rounded ' + albumAutoFillStatus}
             id="lock-album"
             data-cy="SongForm-album-lock"
             onClick={toggleLock('album')}
@@ -383,18 +383,18 @@ export function SongForm() {
           </Tooltip>
 
           <div
-            className={'suggest-album-button rounded ' + albumSuggestStatus}
-            id="suggest-album"
-            data-cy="SongForm-suggest-album-button"
-            onClick={suggestAlbumName}
+            className={'autofill-button rounded ' + albumAutoFillStatus}
+            id="autofill-album"
+            data-cy="SongForm-autofill-button"
+            onClick={autoFillAlbum}
           >
             <FontAwesomeIcon icon={faWandMagicSparkles} className={formIsValid ? '' : 'disabled'} />
           </div>
-          <Tooltip target="suggest-album">
+          <Tooltip target="autofill-album">
             {formIsValid ? (
-              <Trans i18nKey="suggestAlbum">Suggest album name</Trans>
+              <Trans i18nKey="autoFillAlbum">Fill album name from last.fm</Trans>
             ) : (
-              <Trans i18nKey="suggestAlbumInvalidForm">Fill artist and track fields for album suggestions</Trans>
+              <Trans i18nKey="autoFillAlbumInvalidForm">Enter artist and track for album auto-fill</Trans>
             )}
           </Tooltip>
         </div>
@@ -410,7 +410,7 @@ export function SongForm() {
             name="albumArtist"
             id="albumArtist"
             tabIndex={3}
-            className="hasLock"
+            className="has-button"
             data-cy="SongForm-albumArtist"
             value={albumArtist}
             onChange={(e) => setAlbumArtist((e.target as HTMLInputElement).value)}

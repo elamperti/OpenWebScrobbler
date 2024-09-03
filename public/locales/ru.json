@@ -161,6 +161,6 @@
   "General settings title": {
     "general": "General"
   },
-  "suggestAlbum": "Предложить альбом",
-  "suggestAlbumInvalidForm": "Заполните имя исполнителя и трек, чтобы предложить альбом"
+  "autoFillAlbum": "Заполнить альбом с last.fm",
+  "autoFillAlbumInvalidForm": "Введите имя исполнителя и трек, чтобы автозаполнить альбом"
 }
