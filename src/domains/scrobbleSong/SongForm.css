@@ -19,6 +19,20 @@ input.hasLock {
   padding-right: 2em;
 }
 
+input.hasLockAndSuggestButton {
+  padding-right: 4em;
+}
+
+input.suggest-success {
+  box-shadow: inset 0 0 0.4em #5bc0de;
+  border-color: #5bc0de;
+}
+
+input.suggest-fail {
+  box-shadow: inset 0 0 0.4em #f00;
+  border-color: #f00;
+}
+
 .lock-button {
   position: relative;
   height: 1.6rem;
@@ -87,4 +101,16 @@ input.hasLock {
 
 .SongForm-PasteAlert {
   cursor: pointer;
+}
+
+@keyframes shake {
+  0% { transform: translateX(0) }
+  25% { transform: translateX(4px) }
+  50% { transform: translateX(-4px) }
+  75% { transform: translateX(4px) }
+  100% { transform: translateX(0) }
+ }
+
+.suggest-fail {
+  animation: shake 0.18s 2;
 }

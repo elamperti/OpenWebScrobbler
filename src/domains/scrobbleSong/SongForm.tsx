@@ -33,6 +33,12 @@ const Tooltip = lazyWithPreload(() => import('components/Tooltip'));
 const reAutoPasteSplitting = / - | ?[–—] ?/;
 const controlOrder = ['artist', 'title', 'album']; // Used for arrow navigation
 
+enum SuggestStatus {
+  Idle = "",
+  Success = "suggest-success",
+  Fail = "suggest-fail",
+}
+
 export function extractArtistTitle(text: string, reverse = false) {
   if (reAutoPasteSplitting.test(text)) {
     const result = text.split(reAutoPasteSplitting, 2);
@@ -59,6 +65,7 @@ export function SongForm() {
   const [timestamp, setTimestamp] = useState(new Date());
   const [title, setTitle] = useState('');
   const [isCustomDate, setIsCustomDate] = useState(false);
+  const [albumSuggestStatus, setAlbumSuggestStatus] = useState(SuggestStatus.Idle);
 
   const dispatch = useDispatch();
   const { isLoading: settingsLoading, settings } = useSettings();
@@ -271,9 +278,14 @@ export function SongForm() {
     }
     const info = await trackGetInfo({ artist: artist, title: title });
     const suggestedAlbum = get(info, 'album.title');
-    if (suggestedAlbum !== undefined) {
+    
+    if (suggestedAlbum === undefined) {
+      setAlbumSuggestStatus(SuggestStatus.Fail);
+    } else {
+      setAlbumSuggestStatus(SuggestStatus.Success);
       setAlbum(suggestedAlbum);
     }
+    setTimeout(() => setAlbumSuggestStatus(SuggestStatus.Idle), 1200);
   };
 
   return (
@@ -351,14 +363,15 @@ export function SongForm() {
             name="album"
             id="album"
             tabIndex={3}
-            className="hasLock"
+            className={'hasLockAndSuggestButton ' + albumSuggestStatus}
             data-cy="SongForm-album"
             value={album}
             onChange={(e) => setAlbum((e.target as HTMLInputElement).value)}
             onKeyUp={catchKeys}
           />
+
           <div
-            className="lock-button rounded"
+            className={'lock-button rounded ' + albumSuggestStatus}
             id="lock-album"
             data-cy="SongForm-album-lock"
             onClick={toggleLock('album')}
@@ -370,7 +383,7 @@ export function SongForm() {
           </Tooltip>
 
           <div
-            className="suggest-album-button rounded"
+            className={'suggest-album-button rounded ' + albumSuggestStatus}
             id="suggest-album"
             data-cy="SongForm-suggest-album-button"
             onClick={suggestAlbumName}
