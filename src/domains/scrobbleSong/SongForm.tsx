@@ -30,7 +30,13 @@ const Tooltip = lazyWithPreload(() => import('components/Tooltip'));
 const reAutoPasteSplitting = / - | ?[–—] ?/;
 const controlOrder = ['artist', 'title', 'album']; // Used for arrow navigation
 
-export function splitArtistTitleFromText(text: string, reverse: boolean) {
+type SongMatch = {
+  artist: string;
+  title: string;
+  album?: string;
+} | null;
+
+function splitArtistTitleFromText(text: string, reverse: boolean): SongMatch {
   if (reAutoPasteSplitting.test(text)) {
     const result = text.split(reAutoPasteSplitting, 2);
 
@@ -44,26 +50,23 @@ export function splitArtistTitleFromText(text: string, reverse: boolean) {
   return null;
 }
 
-const parseLastFmUrl = (url: string) => {
-  const regex = /^https?:\/\/(www\.)?last\.fm(\/[a-zA-Z]{2})?\/music\/([^/]+)\/_\/([^/]+)$/;
-  const match = url.match(regex);
+const reLastfmURL = /last\.fm(?:\/[a-zA-Z]{2})?\/music\/([^/]+)\/([^/]+?)\/([^/]+)/;
+function parseLastFmUrl(url: string): SongMatch {
+  const match = url.match(reLastfmURL);
 
   if (!match) {
     return null;
   }
 
-  const artist = decodeURIComponent(match[3].replace(/\+/g, ' '));
-  const title = decodeURIComponent(match[4].replace(/\+/g, ' '));
-
   return {
-    artist,
-    title,
+    artist: decodeURIComponent(match[1].replace(/\+/g, ' ')),
+    album: match[2] !== '_' ? decodeURIComponent(match[2].replace(/\+/g, ' ')) : undefined,
+    title: decodeURIComponent(match[3].replace(/\+/g, ' ')),
   };
-};
+}
 
-export function extractArtistTitle(text: string, reverse = false) {
-  const parsedText = parseLastFmUrl(text);
-  return parsedText ?? splitArtistTitleFromText(text, reverse);
+export function extractArtistTitle(text: string, reverse = false): SongMatch {
+  return parseLastFmUrl(text) ?? splitArtistTitleFromText(text, reverse);
 }
 
 export function SongForm() {
@@ -155,6 +158,9 @@ export function SongForm() {
 
       setArtist(splittedValues.artist);
       setTitle(splittedValues.title);
+      if (splittedValues.album) {
+        setAlbum(splittedValues.album);
+      }
 
       const undoPaste = () => {
         cloneDataFromScrobble(prevState);
