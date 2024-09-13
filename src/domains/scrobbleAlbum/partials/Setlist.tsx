@@ -1,37 +1,27 @@
 import ScrobbleList from 'components/ScrobbleList';
 import { useEffect, useState } from 'react';
-import { format } from 'date-fns';
+import { addSeconds } from 'date-fns';
 
 import lazyWithPreload from 'react-lazy-with-preload';
 import type { SetTrack, Setlist } from 'utils/types/setlist';
 import { Track } from 'utils/types/track';
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
-import { Badge } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { SetlistFmArtist } from 'utils/types/artist';
+import { Trans } from 'react-i18next';
+import { DEFAULT_CONCERT_SONG_BUFFER, DEFAULT_SONG_DURATION } from 'Constants';
+import { enqueueScrobble } from 'store/actions/scrobbleActions';
+import { useDispatch } from 'react-redux';
 
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 
 export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) {
-  // const [customTimestamp, setCustomTimestamp] = useState(new Date());
-  // const [useCustomTimestamp, setUseCustomTimestamp] = useState(false);
+  const dispatch = useDispatch();
   const [selectedTracks, setSelectedTracks] = useState<Set<string>>(new Set());
   const [allTracks, setAllTracks] = useState([]);
-  // const [totalDuration, setTotalDuration] = useState(0);
-  // const setlistHasTracks = setlist && setlist.sets.length > 0;
-  // const durationFormat = totalDuration > 3600 ? 'H:mm:ss' : 'mm:ss';
+  const [customTimestamp, setCustomTimestamp] = useState(setlist.eventDate);
 
   DateTimePicker.preload();
-
-  // const toggleCustomTimestamp = () => {
-  //   if (!useCustomTimestamp) {
-  //     ReactGA.event({
-  //       category: 'Interactions',
-  //       action: 'Use custom timestamp',
-  //       label: 'Album',
-  //     });
-  //   }
-  //   setUseCustomTimestamp(!useCustomTimestamp);
-  // };
 
   const toggleSelectTrack = (trackId: string, wasCheckedBefore = false) => {
     const newSet = new Set(selectedTracks);
@@ -43,8 +33,6 @@ export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) 
     }
     setSelectedTracks(newSet);
   };
-
-  // const toggleSelectAll =
 
   function getAllTracks() {
     const fullSongList: Track[] = [];
@@ -62,11 +50,39 @@ export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) 
     return { fullSongList, idSet };
   }
 
+  const handleTimestampChange = (newTimestamp) => {
+    setCustomTimestamp(newTimestamp);
+  };
+
+  const scrobbleSelectedTracks = () => {
+    const usingCustomSelection = selectedTracks.size < 1 && selectedTracks.size === allTracks.length;
+    let rollingTimestamp = customTimestamp;
+    const tracksToScrobble = allTracks
+      .filter(({ id }) => usingCustomSelection || selectedTracks.has(id))
+      .reduce((result, track) => {
+        const newTrack = {
+          ...track,
+          timestamp: rollingTimestamp,
+        };
+
+        // Prepare timestamp for next track.
+        rollingTimestamp = addSeconds(
+          rollingTimestamp,
+          (track.duration || DEFAULT_SONG_DURATION) + DEFAULT_CONCERT_SONG_BUFFER
+        );
+        result.push(newTrack);
+        return result;
+      }, []);
+
+    enqueueScrobble(dispatch)(tracksToScrobble);
+    setSelectedTracks(new Set());
+  };
+
   useEffect(() => {
     const { fullSongList, idSet } = getAllTracks();
     setAllTracks(fullSongList);
     setSelectedTracks(idSet);
-  }, [setlist]);
+  }, [setlist, getAllTracks]);
 
   function songToTrack({ song, concertArtist, num }: { song: SetTrack; concertArtist: SetlistFmArtist; num: number }) {
     let ourArtist = concertArtist.name;
@@ -86,16 +102,34 @@ export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) 
 
   return (
     <>
-      {/* <div className="col-3">
-            <ArtistCard artist={setlist.artist} artistId={setlist.artist.mbid} className={"col-3"}onClick={null} />
-     </div> */}
       {true && (
         <div className="setlist-heading-info flex-grow-1">
           <h3 className="collection-heading-collection-name mb-0">{setlist.tour}</h3>
           <h3 className="setlist-heading-artist-name">{setlist.artist.name}</h3>
-          <Badge className="my-1">{format(setlist.eventDate, 'MM/dd/yyyy')}</Badge>
         </div>
       )}
+      <DateTimePicker value={customTimestamp} onChange={handleTimestampChange} />
+
+      <div className="row">
+        <div className="my-2 col-9 col-lg-6 offset-lg-6">
+          <Button
+            className="w-100 me-3"
+            color="success"
+            onClick={scrobbleSelectedTracks}
+            disabled={allTracks.length < 1}
+          >
+            <Trans
+              i18nKey={
+                selectedTracks.size > 0 && selectedTracks.size < allTracks.length
+                  ? 'scrobbleSelected'
+                  : 'scrobbleSetlist'
+              }
+            >
+              Scrobble it
+            </Trans>
+          </Button>
+        </div>
+      </div>
 
       <ScrobbleList
         compact={true}
