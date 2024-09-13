@@ -2,7 +2,7 @@ import ReactGA from 'react-ga-neo';
 
 import SearchForm from 'components/SearchForm';
 // import { SetlistForm } from './SetlistForm';
-import { PROVIDER_SETLISTFM } from 'Constants';
+import { PROVIDER_SETLISTFM, PROVIDER_NAME } from 'Constants';
 // import { useState } from 'react';
 // import { Button } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
@@ -32,9 +32,14 @@ export function ScrobbleSetlistSearch() {
   return (
     <div>
       <h1>Scrobble Setlist</h1>
-      <p>This is the ScrobbleSetlist component.</p>
+      <p>
+        Please provide the setlist link from{' '}
+        <a href="https://www.setlist.fm" target="_blank" rel="noopener noreferrer">
+          Setlilst.fm
+        </a>
+      </p>
       <SearchForm
-        searchCopy={t('searchOnProvider', { dataProvider: PROVIDER_SETLISTFM })}
+        searchCopy={t('searchOnProvider', { dataProvider: PROVIDER_NAME[PROVIDER_SETLISTFM] })}
         onSearch={onSearch}
         ariaLabel="Setlist"
         id="setlistToSearch"

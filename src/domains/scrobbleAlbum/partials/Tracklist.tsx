@@ -147,7 +147,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
           </div>
           <div className="col-9 d-flex flex-column">
             <div className="album-heading-info flex-grow-1">
-              <h3 className="album-heading-album-name mb-0">{albumInfo.name}</h3>
+              <h3 className="collection-heading-collection-name mb-0">{albumInfo.name}</h3>
               <div className="album-heading-artist-name">{albumInfo.artist}</div>
               {(albumInfo as DiscogsAlbum).releasedate && (
                 <Badge className="my-1">{(albumInfo as DiscogsAlbum).releasedate}</Badge>

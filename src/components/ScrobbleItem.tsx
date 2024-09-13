@@ -305,7 +305,7 @@ export default function ScrobbleItem({
           type="checkbox"
           className="me-1"
           checked={selected}
-          onChange={() => onSelect(scrobble.uuid, selected)}
+          onChange={() => onSelect(scrobble.id, selected)}
           id={scrobbleItemInputId}
         />
       </FormGroup>

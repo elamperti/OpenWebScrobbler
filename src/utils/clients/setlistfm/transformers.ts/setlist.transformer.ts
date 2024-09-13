@@ -1,15 +1,25 @@
-import { MusicalSet, SetTrack, Setlist, SetlistFmArtist } from 'utils/types/setlist';
+import { MusicalSet, SetTrack, Setlist, Venue } from 'utils/types/setlist';
+import { SetlistFmArtist } from 'utils/types/artist';
+import { parse } from 'date-fns';
 
 export function setlistTransformer(raw: any) {
+  const dateString = raw?.eventDate || null;
+  let date = null;
+  if (dateString) {
+    date = parse(dateString, 'dd-MM-yyyy', new Date());
+  }
   return {
     id: raw?.id || null,
     versionId: raw?.versionId || null,
-    eventDate: raw?.eventDate || null,
+    eventDate: date,
     artist: setlistArtistTransformer(raw?.artist),
+    venue: setlistVenueTransformer(raw?.venue),
+    tour: raw?.tour?.name || null,
     sets: setlistSetsTransformer(raw?.sets?.set),
     url: null,
   } as Setlist;
 }
+
 function setlistArtistTransformer(artist: any): SetlistFmArtist {
   return {
     name: artist?.name || artist?.sortName || '',
@@ -30,6 +40,17 @@ function setlistSetsTransformer(sets: any[]): MusicalSet[] {
     listOfSets.push(newSet);
   }
   return listOfSets;
+}
+
+function setlistVenueTransformer(venue: any): Venue {
+  const city = venue?.city;
+  return {
+    id: venue?.id,
+    name: venue?.name || '',
+    city: city?.name || null,
+    state: city?.state || null,
+    country: city?.country?.name || null,
+  } as Venue;
 }
 
 function setlistSongsTransformer(songs: any[]): SetTrack[] {

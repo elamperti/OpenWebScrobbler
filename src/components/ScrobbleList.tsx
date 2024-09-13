@@ -59,7 +59,7 @@ export default function ScrobbleList({
           noMenu={noMenu}
           noCover={isAlbum}
           onSelect={onSelect}
-          selected={selected && selected.has(scrobble.uuid)}
+          selected={selected && (selected.has(scrobble.uuid) || selected.has(scrobble.id))}
           key={(scrobble.timestamp || 0) + i}
           muteArtist={isAlbum}
           hideArtist={!albumHasVariousArtists}

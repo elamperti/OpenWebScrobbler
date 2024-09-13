@@ -1,8 +1,4 @@
-type SetlistFmArtist = {
-  name: string;
-  mbid: string;
-  url: string;
-};
+import { SetlistFmArtist } from 'utils/types/artist';
 
 type Song = {
   name: string;
@@ -19,11 +15,21 @@ type MusicalSet = {
   songs: SetTrack[];
 };
 
+type Venue = {
+  id: string;
+  name: string;
+  city: string;
+  state: string;
+  country: string;
+};
+
 export type Setlist = {
   id: string;
   versionId: string;
   eventDate: Date;
   artist: SetlistFmArtist;
+  tour: string;
+  venue: Venue;
   sets: MusicalSet[];
   url: string;
 };
