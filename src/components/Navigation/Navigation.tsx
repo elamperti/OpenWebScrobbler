@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeadphonesAlt, faCompactDisc, faSignInAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { faHeadphonesAlt, faCompactDisc, faSignInAlt, faUserFriends, faList } from '@fortawesome/free-solid-svg-icons';
 import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
 
 import { useBootstrapBreakpoint, BS_SIZE_SM } from 'utils/bootstrapBreakpoints';
@@ -51,6 +51,7 @@ export default function Navigation() {
             <NavigationItem href="/scrobble/song" i18nKey="song" icon={faPlayCircle} />
             <NavigationItem href="/scrobble/album" i18nKey="album" icon={faCompactDisc} />
             <NavigationItem href="/scrobble/user" i18nKey="otherUser" icon={faUserFriends} />
+            <NavigationItem href="/scrobble/setlist" i18nKey="setlist" icon={faList} />
           </Nav>
         )}
         <Nav navbar className="justify-content-end flex-grow-1">

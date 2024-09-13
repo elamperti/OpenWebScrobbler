@@ -66,7 +66,7 @@ export default function ScrobbleItem({
       category: 'Interactions',
       action: 'Clone track',
     });
-    // Hack: the timestamp is ketp in compact mode (profile view) and removed when not (profile view)
+    // Hack: the timestamp is kept in compact mode (profile view) and removed when not (profile view)
     cloneScrobbleTo?.(compact ? scrobble : { ...scrobble, timestamp: undefined });
   };
 
@@ -279,7 +279,7 @@ export default function ScrobbleItem({
           type="checkbox"
           className="me-1"
           checked={selected}
-          onChange={() => onSelect(scrobble.uuid, selected)}
+          onChange={() => onSelect(scrobble.id, selected)}
           id={scrobbleItemInputId}
         />
       </FormGroup>
