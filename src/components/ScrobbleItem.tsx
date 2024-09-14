@@ -5,10 +5,6 @@ import { get } from 'lodash-es';
 
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
-import format from 'date-fns/format';
-import isToday from 'date-fns/isToday';
-import getYear from 'date-fns/getYear';
-
 import { Button, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, FormGroup, Label } from 'reactstrap';
 import { useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
@@ -31,6 +27,7 @@ import type { Scrobble } from 'utils/types/scrobble';
 
 import './ScrobbleItem.css';
 import { useSettings } from 'hooks/useSettings';
+import { formatDuration, formatScrobbleTimestamp } from 'utils/datetime';
 
 interface ScrobbleItemProps {
   scrobble: Scrobble;
@@ -110,8 +107,6 @@ export default function ScrobbleItem({
   let songInfo;
   let songFullTitle;
   let statusIcon;
-  let theTimestamp;
-  let timestampFormat = '';
 
   if (noCover || compact) {
     albumArt = null;
@@ -165,28 +160,6 @@ export default function ScrobbleItem({
     }
   }
 
-  if (scrobble.timestamp) {
-    const scrobbleDate = new Date(scrobble.timestamp);
-    if (!isToday(scrobbleDate)) {
-      timestampFormat = settings?.use12Hours ? 'M/d' : 'd/MM';
-      if (getYear(scrobbleDate) < getYear(new Date())) {
-        timestampFormat += '/yyyy';
-      }
-      timestampFormat += ' ';
-    }
-    timestampFormat += settings?.use12Hours ? 'hh:mm a' : 'HH:mm';
-    theTimestamp = format(scrobbleDate, timestampFormat);
-  } else {
-    if (scrobble.duration > 0) {
-      // Yes, there are songs over one hour. Is it worth making this more complex for those? (no, it isn't)
-      const minutes = Math.floor(scrobble.duration / 60);
-      const seconds = `0${scrobble.duration % 60}`.slice(-2);
-      theTimestamp = `${minutes}:${seconds}`;
-    } else {
-      theTimestamp = '';
-    }
-  }
-
   const timeOrDuration = (
     <small
       className={`text-end timestamp d-flex align-items-center ${compact ? 'flex-row' : 'flex-row-reverse'} ${
@@ -194,7 +167,8 @@ export default function ScrobbleItem({
       }`}
     >
       {scrobble.timestamp && <FontAwesomeIcon className={`${compact ? 'me-2' : 'ms-2'}`} icon={faClock} />}
-      {theTimestamp}
+      {scrobble.timestamp && formatScrobbleTimestamp(scrobble.timestamp, settings?.use12Hours)}
+      {!scrobble.timestamp && scrobble.duration > 0 && formatDuration(scrobble.duration)}
     </small>
   );
 
