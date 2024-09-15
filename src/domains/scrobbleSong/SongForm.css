@@ -29,8 +29,8 @@ input.autofill-success {
 }
 
 input.autofill-fail {
-  box-shadow: inset 0 0 0.4em #f00;
-  border-color: #f00;
+  box-shadow: inset 0 0 0.4em var(--bs-red);
+  border-color: var(--bs-danger-border-subtle);
 }
 
 .lock-button {
@@ -104,12 +104,22 @@ input.autofill-fail {
 }
 
 @keyframes shake {
-  0% { transform: translateX(0) }
-  25% { transform: translateX(4px) }
-  50% { transform: translateX(-4px) }
-  75% { transform: translateX(4px) }
-  100% { transform: translateX(0) }
- }
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(4px);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
 
 .autofill-fail {
   animation: shake 0.18s 2;

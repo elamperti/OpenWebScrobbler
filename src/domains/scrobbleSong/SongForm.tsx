@@ -416,7 +416,10 @@ export function SongForm() {
             data-cy="SongForm-autofill-button"
             onClick={autoFillAlbum}
           >
-            <FontAwesomeIcon icon={faWandMagicSparkles} className={formIsValid ? '' : 'disabled'} />
+            <FontAwesomeIcon
+              icon={faWandMagicSparkles}
+              className={formIsValid || albumAutoFillStatus === AutoFillStatus.Fail ? '' : 'disabled'}
+            />
           </div>
           <Tooltip target="autofill-album">
             {formIsValid ? (
