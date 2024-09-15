@@ -1,0 +1,5 @@
+.TracklistFilter {
+  &-container {
+    height: calc(1.5em + 0.5rem + calc(var(--bs-border-width) * 2)); // boils down to 32px
+  }
+}

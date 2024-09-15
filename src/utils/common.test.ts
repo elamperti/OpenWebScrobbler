@@ -47,12 +47,12 @@ describe('`sanitizeProvider` helper', () => {
   it('returns a custom default provider when an invalid one is given', () => {
     expect(sanitizeProvider('winamp', 'lastfm')).toBe('lastfm');
   });
+});
 
-  describe('`sha256` digest', () => {
-    it('returns the correct SHA-256 hash for a given string', () => {
-      const str = 'hello world';
-      const expectedHash = 'b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9';
-      sha256(str).then((hash) => expect(hash).toBe(expectedHash));
-    });
+describe('`sha256` digest', () => {
+  it('returns the correct SHA-256 hash for a given string', () => {
+    const str = 'hello world';
+    const expectedHash = 'b94d27b9934d3e08a52e52d7da7dabfac484efe37a5380ee9088f7ace2efcde9';
+    sha256(str).then((hash) => expect(hash).toBe(expectedHash));
   });
 });

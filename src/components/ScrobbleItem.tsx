@@ -6,7 +6,7 @@ import { get } from 'lodash-es';
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
 import { Button, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, FormGroup, Label } from 'reactstrap';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
@@ -22,6 +22,7 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import { faClock, faCopy } from '@fortawesome/free-regular-svg-icons';
 import { getAmznLink } from 'Constants';
+import { breakStringUsingPattern, cleanTitleWithPattern } from 'domains/scrobbleAlbum/CleanupContext';
 
 import type { Scrobble } from 'utils/types/scrobble';
 
@@ -31,6 +32,7 @@ import { formatDuration, formatScrobbleTimestamp } from 'utils/datetime';
 
 interface ScrobbleItemProps {
   scrobble: Scrobble;
+  cleanupPattern?: RegExp;
   compact?: boolean;
   hideArtist?: boolean;
   muteArtist?: boolean;
@@ -45,6 +47,7 @@ interface ScrobbleItemProps {
 
 export default function ScrobbleItem({
   scrobble,
+  cleanupPattern,
   compact = false,
   hideArtist = false,
   muteArtist = false,
@@ -83,6 +86,7 @@ export default function ScrobbleItem({
     enqueueScrobble(dispatch)([
       {
         ...scrobble,
+        title: cleanTitleWithPattern(scrobble.title, cleanupPattern),
         timestamp: useOriginalTimestamp ? scrobble.timestamp : new Date(),
       },
     ]);
@@ -100,6 +104,13 @@ export default function ScrobbleItem({
       return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
     });
   };
+
+  const strikethroughMatch = (text: string, pattern?: RegExp) => {
+    return breakStringUsingPattern(text, pattern).map(({ value, isMatch }, index) => (
+      <Fragment key={index}>{!isMatch ? value : <del>{value}</del>}</Fragment>
+    ));
+  };
+
   let albumArt;
   let errorMessage;
   let rightSideContent;
@@ -172,18 +183,23 @@ export default function ScrobbleItem({
     </small>
   );
 
+  const formattedTitle = strikethroughMatch(properCase(scrobble.title, true), cleanupPattern);
   if (!hideArtist) {
     if (muteArtist) {
       songFullTitle = (
         <>
-          {properCase(scrobble.title, true)} <span className="text-muted">{properCase(scrobble.artist)}</span>
+          {formattedTitle} <span className="text-muted">{properCase(scrobble.artist)}</span>
         </>
       );
     } else {
-      songFullTitle = `${properCase(scrobble.artist)} - ${properCase(scrobble.title, true)}`;
+      songFullTitle = (
+        <>
+          {properCase(scrobble.artist)} - {formattedTitle}
+        </>
+      );
     }
   } else {
-    songFullTitle = properCase(scrobble.title, true);
+    songFullTitle = formattedTitle;
   }
 
   const scrobbleItemInputId = `ScrobbleItem-checkbox-${scrobble.uuid}`;
@@ -201,7 +217,7 @@ export default function ScrobbleItem({
     // FULL view
     songInfo = (
       <>
-        <span className="song">{songFullTitle}</span>
+        <span className="song flex-grow-1 pe-2 truncate">{songFullTitle}</span>
         <Label className="d-flex mb-0" htmlFor={scrobbleItemInputId}>
           <small className="text-muted flex-grow-1 truncate album">
             {scrobble.album && (

@@ -20,6 +20,7 @@
   "customTimestamp": "Timestamp personalizzato",
   "albumTimestampLogicDescription": "Scrobblando le canzoni \"adesso\" scrobblerà l'ultima canzone in questo momento, anticipando relativamente le precedenti (come se avessi appena finito di ascoltarle). Il \"timestamp personalizzato\" definirà il timestamp di ascolto della prima traccia ed agginguerà il relativo tempo alle canzoni successive (come se avessi iniziato ad ascoltare l'album nel timestamp selezionato)",
   "albumArtist": "Artista di un Album",
+  "albumCleanupPatternDescription": "Alcune canzoni di album sono visualizzate con un certo testo ripetuto (ad esempio Demo, Live, Remastered, ...). Questi sono pattern che potrebbero risultare fastidiosi da scrobblare, per alcuni utenti. Imposta il pattern completo (incluse parentesi, trattini, ...) che desideri venga rimosso dai nomi delle canzoni.",
   "history": "Storico",
   "yourProfile": "Tuo profilo",
   "yourHistory": "Tuo storico",

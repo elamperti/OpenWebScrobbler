@@ -1,10 +1,11 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 
 import ScrobbleItem from 'components/ScrobbleItem';
 import Spinner from 'components/Spinner';
 import { ScrobbleCloneContext } from 'domains/scrobbleSong/ScrobbleSong';
 
 import type { ReactNode } from 'react';
+import { CleanupPatternContext } from 'domains/scrobbleAlbum/CleanupContext';
 
 interface ScrobbleListProps {
   analyticsEventForScrobbles?: string;
@@ -30,6 +31,7 @@ export default function ScrobbleList({
   scrobbles = [],
 }: ScrobbleListProps) {
   const { cloneFn, setCloneFn } = useContext(ScrobbleCloneContext);
+  const cleanupCtx = useContext(CleanupPatternContext); // this may be undefined
   let albumHasVariousArtists = !isAlbum;
 
   if (loading) {
@@ -53,6 +55,7 @@ export default function ScrobbleList({
         <ScrobbleItem
           scrobble={scrobble}
           analyticsEvent={analyticsEventForScrobbles}
+          cleanupPattern={cleanupCtx?.cleanupPattern}
           cloneScrobbleTo={setCloneFn ? cloneFn : undefined}
           compact={compact}
           noMenu={noMenu}
