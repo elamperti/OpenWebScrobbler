@@ -24,12 +24,7 @@ export function TracklistFilter() {
 
   return (
     <div className="d-flex flex-row-reverse align-items-center TracklistFilter-container">
-      <FontAwesomeIcon
-        icon={faFilter}
-        // className={showForm ? 'text-secondary' : 'text-primary'}
-        className="text-secondary"
-        onClick={() => setFormVisible(!showForm)}
-      />
+      <FontAwesomeIcon icon={faFilter} className="text-secondary" onClick={() => setFormVisible(!showForm)} />
       {showForm && (
         <div className="me-2 d-flex flex-row">
           <label htmlFor="albumCleanupPattern">
