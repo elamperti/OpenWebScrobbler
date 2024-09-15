@@ -20,7 +20,7 @@
   "customTimestamp": "Custom timestamp",
   "albumTimestampLogicDescription": "Scrobbling tracks \"now\" will scrobble the last track at the current time, backdating the previous ones accordingly (as if you had just finished listening). The \"custom timestamp\" will define the timestamp of the first track and add time to the following tracks from there (i.e. you specify the time you started listening to this album).",
   "albumArtist": "Album artist",
-  "albumCleanupPattern": "Removable text pattern from every track name",
+  "filter": "Filter",
   "albumCleanupPatternDescription": "Some albums tracks are displayed with some repeated text (i.e. Demo, Live, Remastered, ...). These are patterns that could be considered annoying to scrobble, for some users. Set the full pattern (including paranthesis, dashes, ...) that you would like to be removed, from the track names.",
   "history": "History",
   "yourProfile": "Your profile",

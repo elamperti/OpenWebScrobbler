@@ -1,4 +1,4 @@
-import { useState, useEffect, Suspense, useMemo, useCallback, ChangeEventHandler } from 'react';
+import { useState, useEffect, Suspense, useMemo, useCallback, ChangeEventHandler, useContext } from 'react';
 import lazyWithPreload from 'react-lazy-with-preload';
 import { useDispatch } from 'react-redux';
 import { Trans, useTranslation } from 'react-i18next';
@@ -18,14 +18,13 @@ import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
 import { DEFAULT_SONG_DURATION, getAmznLink } from 'Constants';
 
+import { cleanTitleWithPattern, CleanupPatternContext } from '../CleanupContext';
 import { EmptyDiscMessage } from './EmptyDiscMessage';
-import { TracklistCleanupForm } from './TracklistCleanupForm';
+import { TracklistFilter } from './TracklistFilter';
 
-import { cleanupLastEndStringOccurrence } from 'utils/common';
 import type { Album, DiscogsAlbum } from 'utils/types/album';
 import type { Scrobble } from 'utils/types/scrobble';
 import type { Track } from 'utils/types/track';
-import { usePatternSmart } from 'hooks/usePatternSmart';
 
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 
@@ -41,9 +40,10 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
   // ToDo: simplify customTimestamp + useCustomTimestamp
   const [customTimestamp, setCustomTimestamp] = useState(new Date());
   const [useCustomTimestamp, setUseCustomTimestamp] = useState(false);
-  const [useCleanupPattern, setUseCleanupPattern] = useState('');
   const [selectedTracks, setSelectedTracks] = useState<Set<string>>(new Set());
   const [totalDuration, setTotalDuration] = useState(0);
+  const { cleanupPattern } = useContext(CleanupPatternContext);
+
   const albumHasTracks = tracks && tracks.length > 0;
   const hasAlbumInfo = !!albumInfo && Object.keys(albumInfo).length > 0;
   const durationFormat = totalDuration > 3600 ? 'H:mm:ss' : 'mm:ss';
@@ -98,15 +98,6 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
     setCanScrobble(true);
   };
 
-  const handleCleanupPatternChange = useCallback<ChangeEventHandler<HTMLInputElement>>((event) => {
-    setUseCleanupPattern(event.target.value);
-  }, []);
-
-  const cleanupPatternSmart = usePatternSmart({
-    pattern: useCleanupPattern,
-    totalTrackNames: Array.from(tracks) as Scrobble[],
-  });
-
   const scrobbleSelectedTracks = () => {
     const userHasNotSelectedTracks = selectedTracks.size < 1;
     const timestampCalculationSubstractsTime = !useCustomTimestamp;
@@ -125,8 +116,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
       .reduce((result, track) => {
         const newTrack = {
           ...track,
-          title:
-            cleanupPatternSmart !== '' ? cleanupLastEndStringOccurrence(track.title, cleanupPatternSmart) : track.title,
+          title: cleanTitleWithPattern(track.title, cleanupPattern),
           album: albumInfo?.name || '',
           albumArtist: albumInfo?.artist || '',
           timestamp: rollingTimestamp,
@@ -259,20 +249,18 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
         </div>
       )}
 
+      <TracklistFilter />
       <ScrobbleList
         compact
         isAlbum
         noMenu
         analyticsEventForScrobbles="Scrobble individual album song"
         scrobbles={tracks || []}
-        scrobblesCleanupPattern={cleanupPatternSmart}
         onSelect={toggleSelectedTrack}
         selected={selectedTracks}
       >
         <EmptyDiscMessage />
       </ScrobbleList>
-
-      <TracklistCleanupForm onCleanupPatternChange={handleCleanupPatternChange} />
     </>
   );
 }

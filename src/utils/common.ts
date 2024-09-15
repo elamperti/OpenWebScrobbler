@@ -1,5 +1,4 @@
 import { PROVIDER_DISCOGS, PROVIDER_NAME, Provider } from 'Constants';
-import type { Scrobble } from './types/scrobble';
 
 export function castArray(x: any): Array<any> {
   return Array.isArray(x) ? x : [x];
@@ -15,38 +14,6 @@ export function sanitizeProvider(provider: string, defaultProvder: Provider = PR
     return provider;
   }
   return defaultProvder;
-}
-
-export function replaceLastOccurrence(fullString: string, lastString: string, replaceString: string) {
-  const lastStringIndex = fullString.lastIndexOf(lastString);
-
-  if (lastStringIndex === -1) {
-    return fullString;
-  }
-
-  return `${fullString.substring(0, lastStringIndex)}${replaceString}${fullString.substring(lastStringIndex + lastString.length)}`;
-}
-
-export function cleanupLastEndStringOccurrence(fullString: string, pattern: string) {
-  if (fullString.endsWith(pattern)) {
-    return fullString.substring(0, fullString.length - pattern.length).trim();
-  }
-
-  return fullString;
-}
-
-export function keyOfLongestArray(objectOfArrays: Record<string, Scrobble[]>): string {
-  let keyOfLongestArray: string = null;
-  let longestArrayLength = -1;
-
-  for (const [arrayKey, arrayItems] of Object.entries(objectOfArrays)) {
-    if (arrayItems.length >= longestArrayLength) {
-      longestArrayLength = arrayItems.length;
-      keyOfLongestArray = arrayKey;
-    }
-  }
-
-  return keyOfLongestArray;
 }
 
 export async function sha256(str: string) {

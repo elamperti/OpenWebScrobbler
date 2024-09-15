@@ -19,6 +19,7 @@ import { MAX_RECENT_ALBUMS, PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants'
 
 import { albumGetInfo as DiscogsAlbumGetInfo } from 'utils/clients/discogs';
 import { albumGetInfo as LastfmAlbumGetInfo } from 'utils/clients/lastfm';
+import { CleanupPatternContext } from './CleanupContext';
 import useLocalStorage from 'hooks/useLocalStorage';
 
 import type { RootState } from 'store';
@@ -38,6 +39,7 @@ export function ScrobbleAlbumTracklist() {
   const [triedAlternativeProvider, setTriedAlternativeProvider] = useState(false);
   const scrobbles = useSelector((state: RootState) => state.scrobbles.list);
   const [recentAlbums, setRecentAlbums] = useLocalStorage<Album[]>('recentAlbums', []);
+  const [cleanupPattern, setCleanupPattern] = useState<RegExp>();
 
   const albumId = sanitizeParam(params.albumId);
   const discogsId = sanitizeParam(params.discogsId);
@@ -145,11 +147,13 @@ export function ScrobbleAlbumTracklist() {
       />
       <div className="row mb-5">
         <div className="col-md-7 mb-4">
-          {showTracklist ? (
-            <Tracklist tracks={albumInfo.data?.tracks || []} albumInfo={albumInfo.data?.info} />
-          ) : (
-            <Spinner />
-          )}
+          <CleanupPatternContext.Provider value={{ cleanupPattern, setCleanupPattern }}>
+            {showTracklist ? (
+              <Tracklist tracks={albumInfo.data?.tracks || []} albumInfo={albumInfo.data?.info} />
+            ) : (
+              <Spinner />
+            )}
+          </CleanupPatternContext.Provider>
         </div>
         <div className="col-md-5">
           <div className="d-flex flex-row justify-content-between">

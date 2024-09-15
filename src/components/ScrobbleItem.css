@@ -98,7 +98,7 @@
   padding-right: 1.15rem;
 }
 
-.scrobbled-item-cleanup {
+.scrobbled-item del {
   color: var(--bs-secondary-color) !important;
-  text-decoration: line-through;
+  background-color: rgba(255, 32, 0, 0.2);
 }
