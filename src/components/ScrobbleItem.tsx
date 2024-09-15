@@ -91,7 +91,6 @@ export default function ScrobbleItem({
         ...scrobble,
         title: cleanTitleWithPattern(scrobble.title, cleanupPattern),
         timestamp: useOriginalTimestamp ? scrobble.timestamp : new Date(),
-        cleanupPattern: cleanupPattern || undefined,
       },
     ]);
     setHasScrobbledAgain(true);
