@@ -10,7 +10,7 @@ import addDays from 'date-fns/addDays';
 import { Button, ButtonGroup, Form, FormGroup, Input, Label } from 'reactstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faThumbtack, faExchangeAlt, faHeart } from '@fortawesome/free-solid-svg-icons';
+import { faThumbtack, faExchangeAlt, faHeart, faWandMagicSparkles } from '@fortawesome/free-solid-svg-icons';
 import { faLightbulb } from '@fortawesome/free-regular-svg-icons';
 
 import { useSettings } from 'hooks/useSettings';
@@ -24,11 +24,20 @@ import './SongForm.css';
 
 import type { Scrobble } from 'utils/types/scrobble';
 
+import { trackGetInfo } from 'utils/clients/lastfm/methods/trackGetInfo';
+import { get } from 'lodash-es';
+
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 const Tooltip = lazyWithPreload(() => import('components/Tooltip'));
 
 const reAutoPasteSplitting = / - | ?[–—] ?/;
 const controlOrder = ['artist', 'title', 'album']; // Used for arrow navigation
+
+enum AutoFillStatus {
+  Idle = '',
+  Success = 'autofill-success',
+  Fail = 'autofill-fail',
+}
 
 type SongMatch = {
   artist: string;
@@ -81,6 +90,7 @@ export function SongForm() {
   const [timestamp, setTimestamp] = useState(new Date());
   const [title, setTitle] = useState('');
   const [isCustomDate, setIsCustomDate] = useState(false);
+  const [albumAutoFillStatus, setalbumAutoFillStatus] = useState(AutoFillStatus.Idle);
 
   const dispatch = useDispatch();
   const { isLoading: settingsLoading, settings } = useSettings();
@@ -290,6 +300,22 @@ export function SongForm() {
     setFormValid(artist.trim().length > 0 && title.trim().length > 0);
   };
 
+  const autoFillAlbum = async () => {
+    if (!formIsValid) {
+      return;
+    }
+    const info = await trackGetInfo({ artist, title });
+    const suggestedAlbum = get(info, 'album.title');
+
+    if (suggestedAlbum === undefined) {
+      setalbumAutoFillStatus(AutoFillStatus.Fail);
+    } else {
+      setalbumAutoFillStatus(AutoFillStatus.Success);
+      setAlbum(suggestedAlbum);
+    }
+    setTimeout(() => setalbumAutoFillStatus(AutoFillStatus.Idle), 1200);
+  };
+
   return (
     <Form className="SongForm" data-cy="SongForm">
       <FormGroup className="row">
@@ -303,7 +329,7 @@ export function SongForm() {
             name="artist"
             id="artist"
             tabIndex={1}
-            className="hasLock"
+            className="has-button"
             data-cy="SongForm-artist"
             value={artist}
             onChange={(e) => setArtist((e.target as HTMLInputElement).value)}
@@ -365,14 +391,15 @@ export function SongForm() {
             name="album"
             id="album"
             tabIndex={3}
-            className="hasLock"
+            className={'has-two-buttons ' + albumAutoFillStatus}
             data-cy="SongForm-album"
             value={album}
             onChange={(e) => setAlbum((e.target as HTMLInputElement).value)}
             onKeyUp={catchKeys}
           />
+
           <div
-            className="lock-button rounded"
+            className={'lock-button rounded ' + albumAutoFillStatus}
             id="lock-album"
             data-cy="SongForm-album-lock"
             onClick={toggleLock('album')}
@@ -381,6 +408,25 @@ export function SongForm() {
           </div>
           <Tooltip target="lock-album">
             <Trans i18nKey="lockAlbum">Lock album</Trans>
+          </Tooltip>
+
+          <div
+            className={'autofill-button rounded ' + albumAutoFillStatus}
+            id="autofill-album"
+            data-cy="SongForm-autofill-button"
+            onClick={autoFillAlbum}
+          >
+            <FontAwesomeIcon
+              icon={faWandMagicSparkles}
+              className={formIsValid || albumAutoFillStatus === AutoFillStatus.Fail ? '' : 'disabled'}
+            />
+          </div>
+          <Tooltip target="autofill-album">
+            {formIsValid ? (
+              <Trans i18nKey="autoFillAlbum">Fill album name from last.fm</Trans>
+            ) : (
+              <Trans i18nKey="autoFillAlbumInvalidForm">Enter artist and track for album auto-fill</Trans>
+            )}
           </Tooltip>
         </div>
       </FormGroup>
@@ -395,7 +441,7 @@ export function SongForm() {
             name="albumArtist"
             id="albumArtist"
             tabIndex={3}
-            className="hasLock"
+            className="has-button"
             data-cy="SongForm-albumArtist"
             value={albumArtist}
             onChange={(e) => setAlbumArtist((e.target as HTMLInputElement).value)}

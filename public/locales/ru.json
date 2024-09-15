@@ -160,5 +160,7 @@
   "connect": "Connect",
   "General settings title": {
     "general": "General"
-  }
+  },
+  "autoFillAlbum": "Заполнить альбом с last.fm",
+  "autoFillAlbumInvalidForm": "Введите имя исполнителя и трек, чтобы автозаполнить альбом"
 }

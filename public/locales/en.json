@@ -162,5 +162,7 @@
   "connect": "Connect",
   "General settings title": {
     "general": "General"
-  }
+  },
+  "autoFillAlbum": "Fill album name from last.fm",
+  "autoFillAlbumInvalidForm": "Enter artist and track for album auto-fill"
 }
