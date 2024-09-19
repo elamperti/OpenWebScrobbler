@@ -30,7 +30,7 @@ export const useSettings: UseSettingsHook = () => {
     enabled: userIsReady && !!isLoggedIn,
   });
 
-  const updateLang = (lang: String | undefined) => {
+  const updateLang = (lang: string | undefined) => {
     if (lang && currentLanguage !== lang) {
       setLanguage(lang as string);
     }

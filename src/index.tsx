@@ -81,7 +81,7 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
 
   try {
     userId = localStorage.getItem('hashedUID');
-  } catch (err) {
+  } catch (error) {
     // pass
   }
 
@@ -90,7 +90,6 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
     clientId = match ? match[1] : undefined;
   }
 
-  // @ts-ignore (we need to keep onerror)
   ReactGA.initialize(process.env.REACT_APP_ANALYTICS_MEASUREMENT_ID, {
     // debug: tweak(false, 'Analytics', 'Debug'),
     gaOptions: {

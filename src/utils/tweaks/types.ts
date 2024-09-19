@@ -35,7 +35,7 @@ export interface TweaksConfig {
           right: string;
           top: string;
         };
-    expanded: Boolean;
+    expanded: boolean;
   };
   params: {
     [key: string]: {

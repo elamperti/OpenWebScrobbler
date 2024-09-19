@@ -44,7 +44,7 @@ export default function UserDropdow() {
 
       try {
         localStorage.removeItem('hashedUID');
-      } catch (err) {
+      } catch (error) {
         // eslint-disable-next-line no-console
         console.warn('Unable to remove UID from localstorage');
       }

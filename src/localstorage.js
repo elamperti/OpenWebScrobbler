@@ -22,7 +22,7 @@ export function saveState(state) {
 export function saveToLocalStorage(key, value) {
   try {
     localStorage.setItem(key, value);
-  } catch (err) {
+  } catch (error) {
     // eslint-disable-next-line no-console
     console.warn(`Saving to local storage failed (${key})`);
   }
@@ -31,7 +31,7 @@ export function saveToLocalStorage(key, value) {
 export function loadFromLocalStorage() {
   try {
     return localStorage.getItem('state');
-  } catch (err) {
+  } catch (error) {
     return null;
   }
 }
