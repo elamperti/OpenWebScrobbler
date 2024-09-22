@@ -38,7 +38,7 @@ if (top.location !== self.location) {
 
 let wrappedApp = (
   <ReduxProvider store={store}>
-    {/* @ts-ignore https://github.com/remix-run/react-router/issues/9630 */}
+    {/* @ts-expect-error https://github.com/remix-run/react-router/issues/9630 */}
     <HistoryRouter history={history}>
       <App />
     </HistoryRouter>
@@ -52,7 +52,7 @@ if (sentryEnabled) {
     debug: tweak(false, 'Sentry', 'Debug'),
     release: process.env.REACT_APP_VERSION,
     environment: process.env.NODE_ENV,
-    // @ts-ignore (sanitizeKeys is a valid property)
+    // @ts-expect-error (sanitizeKeys is a valid property)
     sanitizeKeys: [/token/],
     ignoreErrors: ['ResizeObserver'],
     ignoreUrls: [
