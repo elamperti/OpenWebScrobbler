@@ -12,7 +12,7 @@ export type UseLanguageResult = {
 
 export type UseLanguageHook = () => UseLanguageResult;
 
-export const useLanguage = () => {
+export const useLanguage: UseLanguageHook = () => {
   const { i18n } = useTranslation();
   const [currentLanguage, setLanguage] = useState(i18n.language);
 
