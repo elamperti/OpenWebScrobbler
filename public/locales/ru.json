@@ -161,12 +161,10 @@
   "connectingAccounts": "Connecting to Patreon...",
   "applications": "Applications",
   "connect": "Connect",
-  "General settings title": {
-    "general": "General"
-  },
   "general": "General",
   "learnMore": "Learn more",
   "connected": "Connected",
+  "filter": "Filter",
   "autoFillAlbum": "Заполнить альбом с last.fm",
   "autoFillAlbumInvalidForm": "Введите имя исполнителя и трек, чтобы автозаполнить альбом"
 }

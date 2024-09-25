@@ -118,8 +118,8 @@
     "title": "Støt dette projekt",
     "copy": "Overvej gerne at blive sponsor for at holde siden kørende og støtte dens udvikling!",
     "CTA": "Bliv sponsor",
-    "connectAccount": "Connect account",
-    "thanksForSupporting": "Thanks for supporting this project!"
+    "connectAccount": "Forbind konto",
+    "thanksForSupporting": "Tak for at støtte dette projekt!"
   },
   "discord": {
     "title": "Slut dig til os på Discord!",
@@ -155,13 +155,16 @@
   "fetchingUserSettings": "Henter dine præferencer",
   "validationFailed": "Noget gik galt!",
   "tryAgain": "Prøv igen",
-  "patreonConnectionSuccess": "Patreon account connected successfully!",
-  "connectingToPatreon": "Connecting to Patreon...",
-  "verifyingPatreonAccount": "Verifying Patreon account",
-  "connectingAccounts": "Connecting to Patreon...",
-  "applications": "Applications",
-  "connect": "Connect",
-  "general": "General",
-  "learnMore": "Learn more",
-  "connected": "Connected"
+  "patreonConnectionSuccess": "Patreon-konto forbundet problemfrit!",
+  "connectingToPatreon": "Forbinder til Patreon...",
+  "verifyingPatreonAccount": "Verificerer Patreon-konto",
+  "connectingAccounts": "Forbinder til Patreon...",
+  "applications": "Applikationer",
+  "connect": "Forbind",
+  "general": "Generelt",
+  "learnMore": "Lær mere",
+  "connected": "Forbundet",
+  "filter": "Filter",
+  "autoFillAlbum": "Autocomplete using Last.fm",
+  "autoFillAlbumInvalidForm": "Enter artist and track to autocomplete"
 }

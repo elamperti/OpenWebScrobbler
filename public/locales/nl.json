@@ -3,7 +3,7 @@
   "getScrobbling": "Begin met scrobbelen",
   "loading": "Laden...",
   "artist": "Artiest",
-  "song": "Liedje",
+  "song": "Nummer",
   "title": "Titel",
   "album": "Album",
   "scrobbleFromAlbum": "Scrobbel van album",
@@ -117,8 +117,8 @@
     "title": "Steun dit project",
     "copy": "Overweeg alsjeblieft om dit project te steunen op Patreon! Zo help je deze site om online te blijven en steun je de ontwikkeling ervan :)",
     "CTA": "Word een patron",
-    "connectAccount": "Connect account",
-    "thanksForSupporting": "Thanks for supporting this project!"
+    "connectAccount": "Account verbinden",
+    "thanksForSupporting": "Dankjewel voor het mogelijk maken van dit project!"
   },
   "discord": {
     "title": "Word lid van onze Discord!",

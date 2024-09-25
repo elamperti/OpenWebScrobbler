@@ -163,5 +163,8 @@
   "connect": "Connetti",
   "general": "Generale",
   "learnMore": "Scopri di più",
-  "connected": "Connected"
+  "connected": "Connected",
+  "filter": "Filtrare",
+  "autoFillAlbum": "Autocomplete using Last.fm",
+  "autoFillAlbumInvalidForm": "Enter artist and track to autocomplete"
 }
