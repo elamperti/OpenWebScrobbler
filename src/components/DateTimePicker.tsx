@@ -98,7 +98,7 @@ export default function DateTimePicker({ className = '', onChange, value }: Date
               after: maxDate,
             },
           }}
-          format={t('dates.format.short')}
+          format={t('dates.format.short', { defaultValue: '' })}
           formatDate={format as unknown as (date: Date, format: string) => string}
           component={forwardRef(DatePickerInput)}
           onDayChange={handleDateChange}
