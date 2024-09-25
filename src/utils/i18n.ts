@@ -24,6 +24,7 @@ export const languageList = [
   { code: 'pt', name: 'Português' },
   { code: 'pt-BR', name: 'Português (BR)' },
   { code: 'sr', name: 'Српски' }, // Serbian
+  { code: 'sv', name: 'Svenska' }, // Swedish
   { code: 'ru', name: 'Русский' }, // Russian
   { code: 'tr', name: 'Türkçe' }, // Turkish
   { code: 'uk', name: 'Українська' }, // Ukrainian
@@ -47,6 +48,7 @@ export const fallbackLng = {
   'pt-PT': ['pt'],
   'fr-FR': ['fr'],
   'uk-UA': ['uk'],
+  'sv-SE': ['sv'],
   default: ['en'],
 };
 
