@@ -7,8 +7,8 @@ export async function trackGetInfo(track: { mbid?: string; artist: string; title
         mbid: track.mbid,
       }
     : {
-        artist: track.artist,
-        track: track.title,
+        artist: track.artist.trim(),
+        track: track.title.trim(),
       };
 
   const response = await lastfmAPI.get('', {
