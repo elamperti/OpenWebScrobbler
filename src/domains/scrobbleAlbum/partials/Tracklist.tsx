@@ -84,8 +84,6 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
   const toggleSelectedTrack = (scrobble: Scrobble, wasCheckedBefore = false) => {
     const newSet = new Set(selectedTracks);
     const uuid = scrobble.id ?? scrobble.scrobbleUUID ?? scrobble.uuid ?? scrobble.title;
-    console.log(uuid);
-    console.log(tracks);
 
     if (wasCheckedBefore) {
       newSet.delete(uuid);
@@ -94,7 +92,6 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
     }
 
     setSelectedTracks(newSet);
-    console.log(selectedTracks);
   };
 
   const handleTimestampChange = (newTimestamp) => {

@@ -7,8 +7,5 @@ export const setlistfmAPI = axios.create({
     api_key: process.env.SETLISTFM_API_KEY,
     format: 'json',
   },
-  // headers: {
-  //   'User-Agent': `OpenScrobbler/${process.env.REACT_APP_VERSION} +https://${process.env.REACT_APP_HOST}`,
-  // },
   adapter: undefined,
 });

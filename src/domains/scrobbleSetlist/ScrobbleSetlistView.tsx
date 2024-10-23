@@ -38,7 +38,6 @@ export function ScrobbleSetlistView() {
           </div>
         </div>
       </div>
-      {/* <Button>`Date: ${data.setlist.eventDate}`</Button> */}
     </>
   );
 }

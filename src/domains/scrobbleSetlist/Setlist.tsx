@@ -25,7 +25,6 @@ export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) 
   DateTimePicker.preload();
 
   const toggleSelectTrack = (scrobble: Scrobble, wasCheckedBefore = false) => {
-    console.log(selectedTracks);
     const uuid = scrobble.id ?? scrobble.scrobbleUUID ?? scrobble.uuid ?? scrobble.title;
     const newSet = new Set(selectedTracks);
 
@@ -44,7 +43,6 @@ export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) 
     let counter = 0;
     for (const set of setlist.sets) {
       for (const song of set.songs) {
-        console.log(song);
         if (song.tape) {
           continue;
         }

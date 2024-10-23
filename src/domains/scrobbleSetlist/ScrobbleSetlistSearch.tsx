@@ -1,10 +1,7 @@
 import ReactGA from 'react-ga-neo';
 
 import SearchForm from 'components/SearchForm';
-// import { SetlistForm } from './SetlistForm';
 import { PROVIDER_SETLISTFM, PROVIDER_NAME } from 'Constants';
-// import { useState } from 'react';
-// import { Button } from 'reactstrap';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
@@ -14,7 +11,6 @@ export function extractSetlistID(setlistUrl: string) {
 }
 
 export function ScrobbleSetlistSearch() {
-  // const [dataProvider, setProvider] = useState<Provider>(PROVIDER_SETLISTFM);
   const navigate = useNavigate();
   const validator = (setlistUrl) =>
     setlistUrl.trim().length > 0 && setlistUrl.includes('setlist.fm') && setlistUrl.includes('.html');
@@ -26,7 +22,6 @@ export function ScrobbleSetlistSearch() {
       action: 'Search setlist',
     });
     const setlistId = extractSetlistID(query);
-    console.log(setlistId);
 
     navigate(`/scrobble/setlist/search/${setlistId}`, {
       state: {
