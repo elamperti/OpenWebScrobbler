@@ -77,16 +77,20 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
     setShowTimestampCopy(!showTimestampCopy);
   };
 
-  const toggleSelectedTrack = (trackUUID: string, wasCheckedBefore = false) => {
+  const toggleSelectedTrack = (scrobble: Scrobble, wasCheckedBefore = false) => {
     const newSet = new Set(selectedTracks);
+    const uuid = scrobble.id ?? scrobble.scrobbleUUID ?? scrobble.uuid ?? scrobble.title;
+    console.log(uuid);
+    console.log(tracks);
 
     if (wasCheckedBefore) {
-      newSet.delete(trackUUID);
+      newSet.delete(uuid);
     } else {
-      newSet.add(trackUUID);
+      newSet.add(uuid);
     }
 
     setSelectedTracks(newSet);
+    console.log(selectedTracks);
   };
 
   const handleTimestampChange = (newTimestamp) => {

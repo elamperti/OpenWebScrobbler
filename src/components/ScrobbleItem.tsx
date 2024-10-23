@@ -39,7 +39,7 @@ interface ScrobbleItemProps {
   muteArtist?: boolean;
   noCover?: boolean;
   noMenu?: boolean;
-  onSelect?: (uuid: string, selected: boolean) => void;
+  onSelect?: (track: Scrobble, selected: boolean) => void;
   selected?: boolean;
   cloneScrobbleTo?: (scrobble: Scrobble) => void;
   analyticsEvent?: string;
@@ -305,7 +305,7 @@ export default function ScrobbleItem({
           type="checkbox"
           className="me-1"
           checked={selected}
-          onChange={() => onSelect(scrobble.id, selected)}
+          onChange={() => onSelect(scrobble, selected)}
           id={scrobbleItemInputId}
         />
       </FormGroup>
