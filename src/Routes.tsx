@@ -13,6 +13,7 @@ import {
 import { ScrobbleUserSearch, ScrobbleUserResults } from './domains/scrobbleUser';
 import { ScrobbleSetlistResult, ScrobbleSetlistSearch, ScrobbleSetlistView } from 'domains/scrobbleSetlist';
 import { Callback } from 'domains/lastfm/Callback';
+import { PatreonCallback } from 'domains/patreon';
 
 export default function Routes() {
   return (
@@ -36,6 +37,7 @@ export default function Routes() {
       <Route path="/scrobble/setlist" element={<PrivateRoute using={ScrobbleSetlistSearch} />} />
       <Route path="/scrobble/setlist/search/:setlistId" element={<PrivateRoute using={ScrobbleSetlistResult} />} />
       <Route path="/scrobble/setlist/view/:setlistId" element={<PrivateRoute using={ScrobbleSetlistView} />} />
+      <Route path="/patreon/callback" element={<PrivateRoute using={PatreonCallback} />} />
       <Route path="/" element={<Home />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Switch>

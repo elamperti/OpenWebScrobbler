@@ -97,3 +97,8 @@
   padding-left: 1.15rem;
   padding-right: 1.15rem;
 }
+
+.scrobbled-item del {
+  color: var(--bs-secondary-color) !important;
+  background-color: rgba(255, 32, 0, 0.2);
+}

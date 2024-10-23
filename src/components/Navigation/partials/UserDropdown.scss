@@ -21,12 +21,25 @@
   }
 }
 
-.ows-donor .ows-dropdown-user {
+.ows-subscriber .ows-dropdown-user {
   .ows-username {
     color: #ffd161;
   }
 
   .user-avatar {
     border: 1px solid #ffd161;
+  }
+
+  .ows-crown {
+    position: relative;
+    left: 14px;
+    top: -13px;
+    transform: rotate(-32deg);
+    color: #ffd161;
+    margin-left: -12px;
+
+    @media (max-width: 767px) {
+      margin-left: -22px;
+    }
   }
 }

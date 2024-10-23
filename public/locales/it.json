@@ -20,6 +20,7 @@
   "customTimestamp": "Timestamp personalizzato",
   "albumTimestampLogicDescription": "Scrobblando le canzoni \"adesso\" scrobblerà l'ultima canzone in questo momento, anticipando relativamente le precedenti (come se avessi appena finito di ascoltarle). Il \"timestamp personalizzato\" definirà il timestamp di ascolto della prima traccia ed agginguerà il relativo tempo alle canzoni successive (come se avessi iniziato ad ascoltare l'album nel timestamp selezionato)",
   "albumArtist": "Artista di un Album",
+  "albumCleanupPatternDescription": "Alcune canzoni di album sono visualizzate con un certo testo ripetuto (ad esempio Demo, Live, Remastered, ...). Questi sono pattern che potrebbero risultare fastidiosi da scrobblare, per alcuni utenti. Imposta il pattern completo (incluse parentesi, trattini, ...) che desideri venga rimosso dai nomi delle canzoni.",
   "history": "Storico",
   "yourProfile": "Tuo profilo",
   "yourHistory": "Tuo storico",
@@ -117,7 +118,9 @@
   "support": {
     "title": "Sostieni questo progetto",
     "copy": "Per favore considera di diventare un patron per far sí che lo sviluppo di questo progetto continui!",
-    "CTA": "Diventa un patron"
+    "CTA": "Diventa un patron",
+    "connectAccount": "Connect account",
+    "thanksForSupporting": "Grazie per supportare questo progetto!"
   },
   "discord": {
     "title": "Unisciti a noi su Discord!",
@@ -159,7 +162,7 @@
   "connectingAccounts": "Connessione a Patreon in corso...",
   "applications": "Applicazioni",
   "connect": "Connetti",
-  "General settings title": {
-    "general": "Generale"
-  }
+  "general": "Generale",
+  "learnMore": "Scopri di più",
+  "connected": "Connected"
 }

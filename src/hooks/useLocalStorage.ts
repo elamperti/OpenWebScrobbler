@@ -1,4 +1,16 @@
+import type { Dispatch, SetStateAction } from 'react';
 import { useState, useEffect } from 'react';
+
+export type UseLocalStorageParamKey = string;
+
+export type UseLocalStorageParamValue<T> = T | undefined;
+
+export type UseLocalStorageResult<T> = [value: T, setValue: Dispatch<SetStateAction<T>>, remove: () => void];
+
+export type UseLocalStorageHook<T> = (
+  key: UseLocalStorageParamKey,
+  defaultValue?: UseLocalStorageParamValue<T>
+) => UseLocalStorageResult<T>;
 
 const useLocalStorage = <T>(key: string, defaultValue?: T) => {
   const [value, setValue] = useState<T | undefined>(() => {

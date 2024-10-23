@@ -10,13 +10,13 @@ import { Alert } from 'components/AlertZone/types';
 
 import { OPENSCROBBLER_API_URL } from 'Constants';
 
+type DOMHighResTimeStamp = number; // should be available through `dom` but it isn't.
+
 // The types are skipped with eslint because of an error I couldn't fix
 // (it's a linting issue, not a TS issue)
 interface ExtendedAxiosRequestConfig extends InternalAxiosRequestConfig {
   timing?: {
-    // eslint-disable-next-line no-undef
     start: DOMHighResTimeStamp;
-    // eslint-disable-next-line no-undef
     elapsedTime?: DOMHighResTimeStamp;
   };
 }

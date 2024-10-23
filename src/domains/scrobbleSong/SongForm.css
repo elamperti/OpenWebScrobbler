@@ -15,8 +15,22 @@ Label.required::after {
   width: calc(100% + 15px);
 }
 
-input.hasLock {
+input.has-button {
   padding-right: 2em;
+}
+
+input.has-two-buttons {
+  padding-right: 4em;
+}
+
+input.autofill-success {
+  box-shadow: inset 0 0 0.4em #5bc0de;
+  border-color: #5bc0de;
+}
+
+input.autofill-fail {
+  box-shadow: inset 0 0 0.4em var(--bs-red);
+  border-color: var(--bs-danger-border-subtle);
 }
 
 .lock-button {
@@ -29,13 +43,33 @@ input.hasLock {
   cursor: pointer;
 }
 
+.autofill-button {
+  position: relative;
+  height: 1.6rem;
+  top: -3.4rem;
+  right: 1.75rem;
+  margin-left: calc(100% - 1.5rem);
+  padding: 0.1rem 0.4rem 0.1rem;
+  cursor: pointer;
+}
+
 .input-with-lock {
   max-height: 1rem;
 }
 
-.fa-thumbtack {
+.fa-thumbtack,
+.fa-wand-magic-sparkles {
   color: #aaaaaa;
   transition: 0.2s;
+}
+
+.fa-thumbtack:hover,
+.fa-wand-magic-sparkles:hover {
+  color: #777777;
+}
+
+.fa-wand-magic-sparkles.disabled {
+  color: #cccccc;
 }
 
 .fa-thumbtack.active {
@@ -67,4 +101,26 @@ input.hasLock {
 
 .SongForm-PasteAlert {
   cursor: pointer;
+}
+
+@keyframes shake {
+  0% {
+    transform: translateX(0);
+  }
+  25% {
+    transform: translateX(4px);
+  }
+  50% {
+    transform: translateX(-4px);
+  }
+  75% {
+    transform: translateX(4px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+.autofill-fail {
+  animation: shake 0.18s 2;
 }

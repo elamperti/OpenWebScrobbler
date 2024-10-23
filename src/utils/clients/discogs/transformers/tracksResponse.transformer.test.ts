@@ -1,6 +1,6 @@
 import { tracksTransformer } from './tracksResponse.transformer';
 
-vi.mock('shortid', async (importOriginal) => {
+vi.mock('shortid', async () => {
   return {
     default: {
       generate: () => 'fakeShortId',

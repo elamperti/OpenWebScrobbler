@@ -1,11 +1,10 @@
-import { useState, useEffect, Suspense, useMemo } from 'react';
+import { useState, useEffect, Suspense, useMemo, useContext } from 'react';
 import lazyWithPreload from 'react-lazy-with-preload';
 import { useDispatch } from 'react-redux';
 import { Trans, useTranslation } from 'react-i18next';
 import ReactGA from 'react-ga-neo';
 import addSeconds from 'date-fns/addSeconds';
 import subSeconds from 'date-fns/subSeconds';
-import format from 'date-fns/format';
 
 import { Alert, Badge, Button, FormGroup, Label, Input } from 'reactstrap';
 import { faShoppingCart, faStopwatch, faQuestionCircle } from '@fortawesome/free-solid-svg-icons';
@@ -18,11 +17,15 @@ import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
 import { DEFAULT_SONG_DURATION, getAmznLink } from 'Constants';
 
+import { cleanTitleWithPattern, CleanupPatternContext } from '../CleanupContext';
 import { EmptyDiscMessage } from './EmptyDiscMessage';
+import { TracklistFilter } from './TracklistFilter';
 
 import type { Album, DiscogsAlbum } from 'utils/types/album';
 import type { Scrobble } from 'utils/types/scrobble';
 import type { Track } from 'utils/types/track';
+
+import { formatDuration } from 'utils/datetime';
 
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 
@@ -40,9 +43,10 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
   const [useCustomTimestamp, setUseCustomTimestamp] = useState(false);
   const [selectedTracks, setSelectedTracks] = useState<Set<string>>(new Set());
   const [totalDuration, setTotalDuration] = useState(0);
+  const { cleanupPattern } = useContext(CleanupPatternContext);
+
   const albumHasTracks = tracks && tracks.length > 0;
   const hasAlbumInfo = !!albumInfo && Object.keys(albumInfo).length > 0;
-  const durationFormat = totalDuration > 3600 ? 'H:mm:ss' : 'mm:ss';
 
   useEffect(() => {
     let newDuration = 0;
@@ -116,6 +120,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
       .reduce((result, track) => {
         const newTrack = {
           ...track,
+          title: cleanTitleWithPattern(track.title, cleanupPattern),
           album: albumInfo?.name || '',
           albumArtist: albumInfo?.artist || '',
           timestamp: rollingTimestamp,
@@ -134,7 +139,8 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
         }
 
         return result;
-      }, []);
+      }, [])
+      .filter(({ title }) => title !== '');
 
     enqueueScrobble(dispatch)(tracksToScrobble);
     setCanScrobble(selectedTracks.size > 0);
@@ -159,11 +165,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
               {tracks.length > 0 && (
                 <div className="album-heading-duration">
                   <FontAwesomeIcon icon={faStopwatch} className="me-2" color="var(--bs-gray)" />
-                  {totalDuration ? (
-                    format(addSeconds(new Date(0), totalDuration), durationFormat)
-                  ) : (
-                    <Trans i18nKey="unknown">Unknown</Trans>
-                  )}
+                  {totalDuration ? formatDuration(totalDuration) : <Trans i18nKey="unknown">Unknown</Trans>}
                 </div>
               )}
             </div>
@@ -247,6 +249,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
         </div>
       )}
 
+      <TracklistFilter />
       <ScrobbleList
         compact
         isAlbum

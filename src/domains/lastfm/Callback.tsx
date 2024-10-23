@@ -59,7 +59,7 @@ export function Callback() {
 
     if (location.search && !user.isLoggedIn) {
       const queryString = qs.parse(location.search, { ignoreQueryPrefix: true });
-      setToken(queryString.token || '');
+      setToken((queryString.token as string) || '');
     } else if (!token) {
       navigate('/', { state: { keepAlerts: true } });
     }

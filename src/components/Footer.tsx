@@ -4,10 +4,13 @@ import { Trans } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faDiscord, faPatreon } from '@fortawesome/free-brands-svg-icons';
 
+import { useSettings } from 'hooks/useSettings';
+
 import './Footer.css';
 
 function Footer() {
   const location = useLocation();
+  const { settings } = useSettings();
 
   return (
     <footer>
@@ -23,7 +26,7 @@ function Footer() {
             <FontAwesomeIcon icon={faPatreon} size="2x" />
           </a>
         </div>
-        {location.pathname !== '/' && (
+        {!settings?.hasActiveSubscription && location.pathname !== '/' && (
           <p className="text-center mb-1">
             {/* <Trans i18nKey="footer.joinCommunity">
                 You are welcome to join our community <a href="https://discord.gg/vcbprTz">on Discord</a>!

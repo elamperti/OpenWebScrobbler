@@ -116,7 +116,9 @@
   "support": {
     "title": "Colabora con el proyecto",
     "copy": "Por favor considera hacer un aporte para mantener este sitio en funcionamiento y soportar su desarrollo.",
-    "CTA": "Hacer un aporte"
+    "CTA": "Hacer un aporte",
+    "connectAccount": "Vincular cuenta",
+    "thanksForSupporting": "¡Gracias por ser parte de este proyecto!"
   },
   "discord": {
     "title": "¡Únete a Discord!",
@@ -158,7 +160,7 @@
   "connectingAccounts": "Conectando con Patreon...",
   "applications": "Aplicaciones",
   "connect": "Conectar",
-  "General settings title": {
-    "general": "General"
-  }
+  "general": "General",
+  "learnMore": "Leer más",
+  "connected": "Conectado"
 }

@@ -1,8 +1,16 @@
+import type { Dispatch, SetStateAction } from 'react';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { changeLanguage } from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { fallbackLng } from 'utils/i18n';
+
+export type UseLanguageResult = {
+  currentLanguage: string;
+  setLanguage: Dispatch<SetStateAction<string>>;
+};
+
+export type UseLanguageHook = () => UseLanguageResult;
 
 export const useLanguage = () => {
   const { i18n } = useTranslation();
@@ -20,7 +28,6 @@ export const useLanguage = () => {
         changeLanguage(currentLanguage);
       }
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentLanguage]);
 
   return {

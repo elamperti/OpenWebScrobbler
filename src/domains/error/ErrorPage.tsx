@@ -17,7 +17,8 @@ const ErrorPage = ({ error, eventId, resetError }: { error?: any; eventId?: stri
       if (resetError) {
         resetError();
       }
-    } catch (e) {
+    } catch (error) {
+      // eslint-disable-next-line react-compiler/react-compiler
       window.location.href = '/';
       window.location.reload();
     }

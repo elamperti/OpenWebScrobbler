@@ -4,6 +4,7 @@ export const DISCOGS_API_URL = '/api/v2/discogs.php';
 export const LASTFM_AUTH_URL =
   `https://www.last.fm/api/auth?api_key=${process.env.REACT_APP_LASTFM_API_KEY}` +
   `&cb=${window.location.protocol}//${window.location.host}/lastfm/callback/`;
+export const PATREON_AUTH_URL = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${process.env.REACT_APP_PATREON_CLIENT_ID}&redirect_uri=${window.location.protocol}//${process.env.REACT_APP_HOST}/patreon/callback`;
 export const OPENSCROBBLER_API_URL = '/api/v2';
 export const SETLISTFM_API_URL = '/api/v2/setlistfm.php';
 export const CONSIDER_HISTORY_STALE_AFTER = 5 * 60 * 1000; // 5 minutes

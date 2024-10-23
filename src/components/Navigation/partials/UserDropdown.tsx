@@ -6,9 +6,10 @@ import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavIt
 import { Trans } from 'react-i18next';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog, faExternalLinkAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faCrown, faExternalLinkAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 import { useUserData } from 'hooks/useUserData';
+import { useSettings } from 'hooks/useSettings';
 import { logOut } from 'store/actions/userActions';
 
 import { useBootstrapBreakpoint, BS_SIZE_MD } from 'utils/bootstrapBreakpoints';
@@ -20,6 +21,7 @@ import './UserDropdown.scss';
 export default function UserDropdow() {
   const dispatch = useDispatch();
   const { user } = useUserData();
+  const { settings } = useSettings();
   const bsBreakpoint = useBootstrapBreakpoint();
   const queryClient = useQueryClient();
   const growthbook = useGrowthBook();
@@ -42,7 +44,7 @@ export default function UserDropdow() {
 
       try {
         localStorage.removeItem('hashedUID');
-      } catch (err) {
+      } catch (error) {
         // eslint-disable-next-line no-console
         console.warn('Unable to remove UID from localstorage');
       }
@@ -55,6 +57,7 @@ export default function UserDropdow() {
     <>
       <UncontrolledDropdown data-cy="UserDropdown" nav inNavbar={bsBreakpoint < BS_SIZE_MD}>
         <DropdownToggle nav caret className="ows-dropdown-user">
+          {settings?.hasActiveSubscription && <FontAwesomeIcon icon={faCrown} className="ows-crown" size="xs" />}
           <Avatar url={user.avatar?.md} alt={user.name} size="sm" />
           <span className="ows-username sentry-mask" data-cy="UserDropdown-username">
             {user.name}

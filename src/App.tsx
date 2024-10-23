@@ -100,7 +100,7 @@ function App() {
         {isLoggedIn && <SettingsModal />}
         <Navigation />
       </SettingsModalContext.Provider>
-      <div className="d-flex flex-column" style={{ height: 'calc(100vh - 84px)' }}>
+      <div className="d-flex flex-column" style={{ height: 'calc(100vh - 86px)' }}>
         {process.env.REACT_APP_ANALYTICS_CODE && <AnalyticsListener />}
         {serviceWorker.needRefresh[0] && <UpdateToast onUpdate={serviceWorker.updateServiceWorker} />}
 

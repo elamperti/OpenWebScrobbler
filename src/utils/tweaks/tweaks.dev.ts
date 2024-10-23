@@ -148,7 +148,7 @@ export const init = async () => {
   if (treeWasEmpty) saveTweaksState();
 };
 
-export const tweak = <T>(valueToUseInDevelopment: T, category: string, name: string, options = undefined): T => {
+export const tweak = <T>(valueToUseInDevelopment: T, category: string, name: string, _options = undefined): T => {
   if (__tweaksState?.[category]?.[name] !== undefined) {
     return __tweaksState[category][name];
   }

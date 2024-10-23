@@ -116,7 +116,9 @@
   "support": {
     "title": "Podrži projekt",
     "copy": "Molimo Vas razmislite o učlanjivanju kao \"patron\" kako biste osigurali opstanak ove stranice i podržali njezin razvoj!",
-    "CTA": "Postani patron"
+    "CTA": "Postani patron",
+    "connectAccount": "Connect account",
+    "thanksForSupporting": "Thanks for supporting this project!"
   },
   "discord": {
     "title": "Pridružite nam se na Discord-u!",
@@ -158,7 +160,7 @@
   "connectingAccounts": "Connecting to Patreon...",
   "applications": "Applications",
   "connect": "Connect",
-  "General settings title": {
-    "general": "General"
-  }
+  "general": "General",
+  "learnMore": "Learn more",
+  "connected": "Connected"
 }

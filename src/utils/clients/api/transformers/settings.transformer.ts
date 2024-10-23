@@ -9,5 +9,6 @@ export function settingsTransformer(settings = {}): Settings {
     showTrackNumbers: !!get(settings, 'showTrackNumbers', false),
     hasActiveSubscription: !!get(settings, 'activeSubscription', false),
     keepOriginalTimestamp: !!get(settings, 'keepOriginalTimestamp', true),
+    patreonId: get(settings, 'patreonId', ''),
   };
 }
