@@ -168,6 +168,7 @@
   "General settings title": {
     "general": "General"
   },
+  "invalidSetlistFMUrl": "Invalid Setlist.fm URL",
   "learnMore": "Learn more",
   "connect": "Connect",
   "connected": "Connected"

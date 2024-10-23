@@ -12,6 +12,7 @@ import { Trans } from 'react-i18next';
 import { DEFAULT_CONCERT_SONG_BUFFER, DEFAULT_SONG_DURATION } from 'Constants';
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 import { useDispatch } from 'react-redux';
+import { Scrobble } from 'utils/types/scrobble';
 
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 
@@ -23,14 +24,15 @@ export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) 
 
   DateTimePicker.preload();
 
-  const toggleSelectTrack = (trackId: string, wasCheckedBefore = false) => {
+  const toggleSelectTrack = (scrobble: Scrobble, wasCheckedBefore = false) => {
     console.log(selectedTracks);
+    const uuid = scrobble.id ?? scrobble.scrobbleUUID ?? scrobble.uuid ?? scrobble.title;
     const newSet = new Set(selectedTracks);
 
     if (wasCheckedBefore) {
-      newSet.delete(trackId);
+      newSet.delete(uuid);
     } else {
-      newSet.add(trackId);
+      newSet.add(uuid);
     }
     setSelectedTracks(newSet);
   };
@@ -130,7 +132,7 @@ export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) 
                   : 'scrobbleSetlist'
               }
             >
-              Scrobble it
+              Scrobble setlist
             </Trans>
           </Button>
         </div>

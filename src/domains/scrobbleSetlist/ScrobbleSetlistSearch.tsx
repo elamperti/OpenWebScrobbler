@@ -8,6 +8,11 @@ import { PROVIDER_SETLISTFM, PROVIDER_NAME } from 'Constants';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
+export function extractSetlistID(setlistUrl: string) {
+  const setlistId = setlistUrl.trim().match(/([a-zA-Z0-9]+)(?=\.html)/)[0];
+  return setlistId;
+}
+
 export function ScrobbleSetlistSearch() {
   // const [dataProvider, setProvider] = useState<Provider>(PROVIDER_SETLISTFM);
   const navigate = useNavigate();
@@ -20,7 +25,7 @@ export function ScrobbleSetlistSearch() {
       category: 'Interactions',
       action: 'Search setlist',
     });
-    const setlistId = query.trim().match(/([a-zA-Z0-9]+)(?=\.html)/)[0];
+    const setlistId = extractSetlistID(query);
     console.log(setlistId);
 
     navigate(`/scrobble/setlist/search/${setlistId}`, {
@@ -42,6 +47,7 @@ export function ScrobbleSetlistSearch() {
       <SearchForm
         searchCopy={t('searchOnProvider', { dataProvider: PROVIDER_NAME[PROVIDER_SETLISTFM] })}
         onSearch={onSearch}
+        feedbackMessageKey="invalidSetlistFMUrl"
         ariaLabel="Setlist"
         id="setlistToSearch"
         validator={validator}

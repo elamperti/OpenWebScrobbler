@@ -27,7 +27,6 @@ export default function ScrobbleList({
   isAlbum = false,
   loading = false,
   noMenu = false,
-  albumHasVariousArtists = false,
   onSelect,
   selected,
   scrobbles = [],
