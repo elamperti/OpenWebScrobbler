@@ -2,6 +2,7 @@ import { SetlistFmArtist } from 'utils/types/artist';
 
 type Song = {
   name: string;
+  tape: boolean;
 };
 
 type Cover = Song & {

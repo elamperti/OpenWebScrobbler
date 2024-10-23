@@ -24,6 +24,7 @@ export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) 
   DateTimePicker.preload();
 
   const toggleSelectTrack = (trackId: string, wasCheckedBefore = false) => {
+    console.log(selectedTracks);
     const newSet = new Set(selectedTracks);
 
     if (wasCheckedBefore) {
@@ -41,6 +42,10 @@ export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) 
     let counter = 0;
     for (const set of setlist.sets) {
       for (const song of set.songs) {
+        console.log(song);
+        if (song.tape) {
+          continue;
+        }
         fullSongList.push(songToTrack({ song, concertArtist: artist, num: counter }));
         idSet.add(counter.toString());
         counter++;
@@ -82,7 +87,7 @@ export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) 
     const { fullSongList, idSet } = getAllTracks();
     setAllTracks(fullSongList);
     setSelectedTracks(idSet);
-  }, [setlist, getAllTracks]);
+  }, [setlist]);
 
   function songToTrack({ song, concertArtist, num }: { song: SetTrack; concertArtist: SetlistFmArtist; num: number }) {
     let ourArtist = concertArtist.name;

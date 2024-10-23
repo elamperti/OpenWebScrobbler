@@ -57,10 +57,12 @@ function setlistSongsTransformer(songs: any[]): SetTrack[] {
   const listOfSongs: SetTrack[] = [];
   for (const song of songs) {
     const songTitle = song.name;
-    let setTrack = { name: songTitle } as SetTrack;
+    const tape = song.tape ?? false;
+    let setTrack = { name: songTitle, tape } as SetTrack;
     if ('cover' in song) {
       setTrack = {
         name: songTitle,
+        tape,
         originalArtist: {
           name: song.cover.name,
           mbid: song.cover.mbid,

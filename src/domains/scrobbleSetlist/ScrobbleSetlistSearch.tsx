@@ -20,7 +20,8 @@ export function ScrobbleSetlistSearch() {
       category: 'Interactions',
       action: 'Search setlist',
     });
-    const setlistId = query.trim().slice(-13, -5);
+    const setlistId = query.trim().match(/([a-zA-Z0-9]+)(?=\.html)/)[0];
+    console.log(setlistId);
 
     navigate(`/scrobble/setlist/search/${setlistId}`, {
       state: {

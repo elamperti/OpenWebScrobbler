@@ -4,7 +4,7 @@ import { ClearHistoryButton } from 'components/ClearHistoryButton';
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 import ScrobbleList from 'components/ScrobbleList';
 import Spinner from 'components/Spinner';
-import SetlistViewer from 'domains/scrobbleAlbum/partials/Setlist';
+import SetlistViewer from 'domains/scrobbleSetlist/Setlist';
 import { Trans } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
