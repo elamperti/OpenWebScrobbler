@@ -1,10 +1,8 @@
 import { faList } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useQuery } from '@tanstack/react-query';
-// import Tracklist from 'domains/scrobbleAlbum/partials/Tracklist';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-// import { Button } from 'reactstrap';
 
 import { setlistSearch as SetlistFmSearch } from 'utils/clients/setlistfm';
 
@@ -38,7 +36,6 @@ export function ScrobbleSetlistResult() {
         <FontAwesomeIcon icon={faList} className="me-2" />
         Scrobble Setlist Result
       </h2>
-      {/* <Button>`Date: ${data.setlist.eventDate}`</Button> */}
     </>
   );
 }

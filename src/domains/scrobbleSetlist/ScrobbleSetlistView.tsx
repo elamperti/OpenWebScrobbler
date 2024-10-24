@@ -18,7 +18,7 @@ export function ScrobbleSetlistView() {
     <>
       <h2>
         <FontAwesomeIcon icon={faList} className="me-2" />
-        Scrobble Setlist View
+        Scrobble Setlist
       </h2>
       <div className="row mb-5">
         <div className="col-md-7 mb-4">
