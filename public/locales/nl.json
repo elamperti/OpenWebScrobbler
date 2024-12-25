@@ -17,21 +17,20 @@
   "scrobbleSongs": "Scrobbel liedjes",
   "scrobbleSelected": "Scrobbel selectie",
   "findAlbumCopy": "Voer een album- of artiestennaam in",
-  "customTimestamp": "Aangepast tijdstempel",
+  "customTimestamp": "Aangepaste tijdstempel",
   "albumTimestampLogicDescription": "Als je tracks \"nu\" scrollt, scrollt de laatste track op het huidige tijdstip en worden de vorige tracks dienovereenkomstig geantedateerd (alsof je net klaar bent met luisteren). De \"aangepaste tijdstempel\" definieert de tijdstempel van de eerste track en voegt vanaf daar tijd toe aan de volgende tracks (d.w.z. je geeft de tijd op waarop je begon te luisteren naar dit album)",
   "albumArtist": "Album artiest",
   "history": "Geschiedenis",
   "yourProfile": "Je profiel",
   "yourHistory": "Je geschiedenis",
-  "scrobbleManually": "Handmatig krabbelen",
+  "scrobbleManually": "Handmatig scrobbelen",
   "scrobbleFromOtherUser": "Scrobble van andere gebruiker",
-   "scrobbleFromSetlist": "Scrobble van setlist",
   "otherUser": "Gebruiker",
   "or": "of",
   "refresh": "Opnieuw laden",
   "findFriendCopy": "Voer een last.fm-gebruikersnaam in om hun laatste nummers te zien",
   "visitProfile": "Bekijk profiel",
-  "search": "Zoek op",
+  "search": "Zoeken",
   "backToSearch": "Terug naar zoeken",
   "userNotFound": "Niet gevonden gebruiker",
   "username": "Gebruikersnaam",
@@ -52,7 +51,7 @@
   "songsWillAppearHere": "Na het scrobbelen zullen liedjes hier verschijnen.",
   "clearHistory": "Geschiedenis wissen",
   "scrobbleAgain": "Scrobble opnieuw",
-  "copyToEditor": "Kopie naar redacteur",
+  "copyToEditor": "Kopiëren naar de editor",
   "swapArtistTitle": "Artiest en liedje omdraaien",
   "viewProfile": "Mijn Last.fm-profiel bekijken",
   "lockArtist": "Artiest vastzetten",
@@ -63,7 +62,7 @@
   "footer": {
     "joinCommunity": "Kom gerust een kijkje nemen op <1>onze Discord</1>!",
     "supportThisProject": "<1>Steun dit project</1> alsjeblieft op Patreon :)",
-    "specialThanks": "Speciale dank aan alle donors, vertalers, en <1>de bijdragers</1>"
+    "specialThanks": "Speciale dank aan alle donateurs, vertalers, en <1>de bijdragers</1>"
   },
   "settings": "Instellingen",
   "cancel": "Annuleren",
@@ -106,17 +105,17 @@
   "use12HoursFormat": "Twaalfuurstijd gebruiken (AM/PM)",
   "splitPastedText": "Geplakte tekst opsplitsen in velden artiest/titel",
   "welcomeToTheScrobbler": "Welkom bij de <1>Open Scrobbler</1>!",
-  "purpose": "Deze tool laat je liedjes en albums scrobbelen die je hoorde op de radio, op vinyl, of ergens anders waar je manueel moet scrobbelen.",
-  "authNeeded": "Geef de applicatie toegang tot je Last.fm om te beginnen!",
+  "purpose": "Deze tool laat je liedjes en albums scrobbelen die je hoorde op de radio, op vinyl, of ergens anders waar je handmatig voor moet scrobbelen.",
+  "authNeeded": "Geef de applicatie toegang tot je Last.fm-profiel om te beginnen!",
   "logInWithLastFm": "Log in met Last.fm",
   "logInIsSafe": "Dit wordt veilig gedaan via Last.fm",
   "about": {
     "title": "Wat is dit?",
-    "description": "Een open source scrobbeler voor het internet, die je manueel liedjes laat invoeren om ze aan je Last.fm-profiel toe te voegen."
+    "description": "Een open source scrobbeler voor het internet, die je handmatig liedjes laat invoeren om ze aan je Last.fm-profiel toe te voegen."
   },
   "support": {
     "title": "Steun dit project",
-    "copy": "Het zou fijn zijn mocht je overwegen om dit project te steunen op Patreon! Zo help je deze site om online te blijven en steun je de ontwikkeling ervan :)",
+    "copy": "Overweeg alsjeblieft om dit project te steunen op Patreon! Zo help je deze site om online te blijven en steun je de ontwikkeling ervan :)",
     "CTA": "Word een patron",
     "connectAccount": "Connect account",
     "thanksForSupporting": "Thanks for supporting this project!"
@@ -162,6 +161,10 @@
   "applications": "Toepassingen",
   "connect": "Maak verbinding met",
   "general": "Algemeen",
-  "learnMore": "Learn more",
-  "connected": "Connected"
+  "learnMore": "Meer informatie",
+  "connected": "Verbonden",
+  "filter": "Filteren",
+  "autoFillAlbum": "Automatisch aanvullen met Last.fm",
+  "autoFillAlbumInvalidForm": "Vul een artiest en nummer in om automatisch aan te vullen",
+  "setlist": "Setlist"
 }

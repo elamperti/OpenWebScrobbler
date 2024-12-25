@@ -40,7 +40,6 @@ export function ScrobbleSetlistSearch() {
       <SearchForm
         searchCopy={t('search')}
         onSearch={onSearch}
-        feedbackMessageKey="invalidSetlistFMUrl"
         ariaLabel="Setlist"
         id="setlistToSearch"
         validator={validator}
