@@ -7,7 +7,7 @@ export async function _setlistfmFindSetlist(setlistId) {
     },
   });
 
-  if (data.setlist.sets && data.setlist.sets.length() > 0) {
-    return data.setlist.sets[0].set;
+  if (data.setlist.tracks && data.setlist.tracks.length() > 0) {
+    return data.setlist.tracks[0].set;
   }
 }

@@ -12,4 +12,10 @@ describe('`extractSetlistID` helper', () => {
     const result = extractSetlistID(text);
     expect(result).toEqual('ba97d62');
   });
+
+  it('fails to get an ID for a random text', () => {
+    const text = 'Lorem ipsum';
+    const result = extractSetlistID(text);
+    expect(result).toEqual(null);
+  });
 });

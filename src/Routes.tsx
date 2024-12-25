@@ -35,7 +35,7 @@ export default function Routes() {
       <Route path="/scrobble/user/:username" element={<PrivateRoute using={ScrobbleUserResults} />} />
 
       <Route path="/scrobble/setlist" element={<PrivateRoute using={ScrobbleSetlistSearch} />} />
-      <Route path="/scrobble/setlist/search/:setlistId" element={<PrivateRoute using={ScrobbleSetlistResult} />} />
+      <Route path="/scrobble/setlist/search/:query" element={<PrivateRoute using={ScrobbleSetlistResult} />} />
       <Route path="/scrobble/setlist/view/:setlistId" element={<PrivateRoute using={ScrobbleSetlistView} />} />
 
       <Route path="/patreon/callback" element={<PrivateRoute using={PatreonCallback} />} />

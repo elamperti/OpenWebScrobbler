@@ -29,7 +29,8 @@ To join the translators team, follow the link at the bottom of the language sele
 * Clone the repository
 * Copy `.env` to `.env.development.local`, then set at least the required variables
   * You'll need a [Last.fm API account](https://www.last.fm/api/account/create) to be able to interact with Open Scrobbler (it's used for authentication and queries). Once you have your keys, fill in `REACT_APP_LASTFM_API_KEY` and `LASTFM_API_KEY` (same value in both) and `LASTFM_SECRET`
-  * Optional:  to interact with Discogs, create a [Discogs application](https://www.discogs.com/settings/developers) to get API keys and fill in `DISCOGS_API_KEY` and `DISCOGS_SECRET`
+  * Optional: to interact with Discogs, create a [Discogs application](https://www.discogs.com/settings/developers) to get API keys and fill in `DISCOGS_API_KEY` and `DISCOGS_SECRET`
+  * Optional: to interact with Setlist.fm, [create an application](https://www.setlist.fm/settings/apps) and set `SETLISTFM_API_KEY` with the corresponding API key
 * Run `yarn` to download the required libraries.
 * Run `yarn start` to initialize the docker container and run the application.
 

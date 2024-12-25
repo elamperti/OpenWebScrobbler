@@ -1,1 +1,2 @@
-export { setlistSearch } from './methods/setlistSearch';
+export { getSetlistById } from './methods/setlistGetById';
+export { searchSetlist } from './methods/setlistSearchByArtist';

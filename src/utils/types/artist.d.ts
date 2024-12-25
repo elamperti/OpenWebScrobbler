@@ -14,8 +14,4 @@ export type DiscogsArtist = BaseArtist & {
   discogsId: string;
 };
 
-export type SetlistFmArtist = BaseArtist & {
-  mbid: string;
-};
-
-export type Artist = LastFmArtist | DiscogsArtist | SetlistFmArtist;
+export type Artist = LastFmArtist | DiscogsArtist;

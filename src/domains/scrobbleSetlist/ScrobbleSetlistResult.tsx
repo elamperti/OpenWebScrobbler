@@ -2,40 +2,48 @@ import { faList } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 
-import { setlistSearch as SetlistFmSearch } from 'utils/clients/setlistfm';
+import { searchSetlist } from 'utils/clients/setlistfm';
+import { SetlistList } from './partials/SetlistList';
+import Paginator from 'components/Paginator';
+import Spinner from 'components/Spinner';
+import { Trans } from 'react-i18next';
 
 export function ScrobbleSetlistResult() {
   const params = useParams();
-  const navigate = useNavigate();
-  const [query, setQuery] = useState('');
+  const [artistName, setArtistName] = useState('');
+  const [currentPage, setCurrentPage] = useState(1);
 
   // This extracts the search parameter from the URL
   useEffect(() => {
-    setQuery(decodeURIComponent(params?.setlistId || ''));
+    setArtistName(decodeURIComponent(params?.query || '').toLowerCase());
   }, [params]);
 
-  const { data } = useQuery({
-    queryKey: ['setlist', query],
+  const { data, isLoading } = useQuery({
+    queryKey: ['setlist', 'search', 'artist', artistName, currentPage],
     queryFn: () => {
-      return SetlistFmSearch(query);
+      return searchSetlist(artistName, currentPage);
     },
-    enabled: !!query,
+    enabled: !!artistName,
   });
-
-  useEffect(() => {
-    if (data !== undefined) {
-      navigate(`/scrobble/setlist/view/${data.id}`, { state: data });
-    }
-  }, [data, navigate]);
 
   return (
     <>
       <h2>
         <FontAwesomeIcon icon={faList} className="me-2" />
-        Scrobble Setlist Result
+        <Trans i18nKey="scrobbleSetlist">Scrobble Setlist</Trans>
       </h2>
+      {isLoading ? (
+        <Spinner />
+      ) : (
+        <>
+          {data?.results && <SetlistList setlists={data.results} query={artistName} />}
+          {data?.totalPages > 1 && (
+            <Paginator pageCount={data.totalPages} currentPage={data.page} onPageChange={setCurrentPage} />
+          )}
+        </>
+      )}
     </>
   );
 }

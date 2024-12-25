@@ -1,5 +1,5 @@
 import { Row } from 'reactstrap';
-import { faCompactDisc, faPencilAlt, faUserFriends, faList } from '@fortawesome/free-solid-svg-icons';
+import { faCompactDisc, faPencilAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 import BigHomeButton from './partials/BigHomeButton';
 import SocialNetworksBlock from './partials/SocialNetworksBlock';
 import WelcomeBlock from './partials/WelcomeBlock';
@@ -13,7 +13,6 @@ export default function Home() {
           <BigHomeButton href="/scrobble/song" icon={faPencilAlt} i18nKey="scrobbleManually" />
           <BigHomeButton href="/scrobble/album" icon={faCompactDisc} i18nKey="scrobbleFromAlbum" />
           <BigHomeButton href="/scrobble/user" icon={faUserFriends} i18nKey="scrobbleFromOtherUser" />
-          <BigHomeButton href="/scrobble/setlist" icon={faList} i18nKey="scrobbleFromSetlist" />
         </Row>
       </div>
       <SocialNetworksBlock />
