@@ -18,10 +18,8 @@
   "scrobbleSelected": "Scrobble selected",
   "findAlbumCopy": "Enter an album or artist name",
   "customTimestamp": "Custom timestamp",
-  "albumTimestampLogicDescription": "Scrobbling tracks \"now\" will scrobble the last track at the current time, backdating the previous ones accordingly (as if you had just finished listening). The \"custom timestamp\" will define the timestamp of the first track and add time to the following tracks from there (i.e. you specify the time you started listening to this album).",
+  "albumTimestampLogicDescription": "Scrobbling tracks \"now\" will scrobble the last track at the current time, backdating the previous ones accordingly (as if you had just finished listening). The \"custom timestamp\" will define the timestamp of the first track and add time to the following tracks from there (i.e. you specify the time you started listening to this album)",
   "albumArtist": "Album artist",
-  "filter": "Filter",
-  "albumCleanupPatternDescription": "Some albums tracks are displayed with some repeated text (i.e. Demo, Live, Remastered, ...). These are patterns that could be considered annoying to scrobble, for some users. Set the full pattern (including paranthesis, dashes, ...) that you would like to be removed, from the track names.",
   "history": "History",
   "yourProfile": "Your profile",
   "yourHistory": "Your history",
@@ -161,12 +159,16 @@
   "verifyingPatreonAccount": "Verifying Patreon account",
   "connectingAccounts": "Connecting to Patreon...",
   "applications": "Applications",
-  "autoFillAlbum": "Fill album name from last.fm",
-  "autoFillAlbumInvalidForm": "Enter artist and track for album auto-fill",
-  "General settings title": {
-    "general": "General"
-  },
-  "learnMore": "Learn more",
   "connect": "Connect",
-  "connected": "Connected"
+  "general": "General",
+  "learnMore": "Learn more",
+  "connected": "Connected",
+  "filter": "Filter",
+  "autoFillAlbum": "Autocomplete using Last.fm",
+  "autoFillAlbumInvalidForm": "Enter artist and track to autocomplete",
+  "scrobbleSetlist": "Scrobble setlist",
+  "noSetlistsFound": "No setlists found for <1>{{searchParam}}</1>",
+  "emptySetlist": "This setlist seems to be empty.",
+  "setlist": "Setlist",
+  "searchSetlistPrompt": "Search by artist name or paste a setlist.fm link"
 }

@@ -81,13 +81,14 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
     setShowTimestampCopy(!showTimestampCopy);
   };
 
-  const toggleSelectedTrack = (trackUUID: string, wasCheckedBefore = false) => {
+  const toggleSelectedTrack = (scrobble: Scrobble, wasCheckedBefore = false) => {
     const newSet = new Set(selectedTracks);
+    const uuid = scrobble.id ?? scrobble.scrobbleUUID ?? scrobble.uuid ?? scrobble.title;
 
     if (wasCheckedBefore) {
-      newSet.delete(trackUUID);
+      newSet.delete(uuid);
     } else {
-      newSet.add(trackUUID);
+      newSet.add(uuid);
     }
 
     setSelectedTracks(newSet);
@@ -153,7 +154,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
           </div>
           <div className="col-9 d-flex flex-column">
             <div className="album-heading-info flex-grow-1">
-              <h3 className="album-heading-album-name mb-0">{albumInfo.name}</h3>
+              <h3 className="collection-heading-collection-name mb-0">{albumInfo.name}</h3>
               <div className="album-heading-artist-name">{albumInfo.artist}</div>
               {(albumInfo as DiscogsAlbum).releasedate && (
                 <Badge className="my-1">{(albumInfo as DiscogsAlbum).releasedate}</Badge>

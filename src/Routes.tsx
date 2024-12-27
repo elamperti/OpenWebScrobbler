@@ -1,4 +1,3 @@
-// import { useSelector } from 'react-redux';
 import { Navigate, Route, Routes as Switch } from 'react-router-dom';
 
 import Home from 'domains/home';
@@ -11,6 +10,7 @@ import {
   ScrobbleAlbumTracklist,
 } from 'domains/scrobbleAlbum';
 import { ScrobbleUserSearch, ScrobbleUserResults } from './domains/scrobbleUser';
+import { ScrobbleSetlistResult, ScrobbleSetlistSearch, ScrobbleSetlistView } from 'domains/scrobbleSetlist';
 import { Callback } from 'domains/lastfm/Callback';
 import { PatreonCallback } from 'domains/patreon';
 
@@ -34,8 +34,11 @@ export default function Routes() {
       <Route path="/scrobble/user" element={<PrivateRoute using={ScrobbleUserSearch} />} />
       <Route path="/scrobble/user/:username" element={<PrivateRoute using={ScrobbleUserResults} />} />
 
-      <Route path="/patreon/callback" element={<PrivateRoute using={PatreonCallback} />} />
+      <Route path="/scrobble/setlist" element={<PrivateRoute using={ScrobbleSetlistSearch} />} />
+      <Route path="/scrobble/setlist/search/:query" element={<PrivateRoute using={ScrobbleSetlistResult} />} />
+      <Route path="/scrobble/setlist/view/:setlistId" element={<PrivateRoute using={ScrobbleSetlistView} />} />
 
+      <Route path="/patreon/callback" element={<PrivateRoute using={PatreonCallback} />} />
       <Route path="/" element={<Home />} />
       <Route path="*" element={<Navigate to="/" />} />
     </Switch>

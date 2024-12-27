@@ -8,6 +8,7 @@
       switch ($_GET['method']) {
         case 'album.search':
         case 'artist.search':
+        case 'track.search':
           $endpoint = 'database/search';
           break;
 
@@ -39,7 +40,6 @@
           $params['sort_order'] = 'desc';
           unset($_GET['artist_id']);
           break;
-
         default:
           require('inc/error.php');
           raiseOWSError('Invalid method', 400, 603);

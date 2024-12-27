@@ -161,5 +161,13 @@
   "connect": "Conectar",
   "general": "General",
   "learnMore": "Leer más",
-  "connected": "Conectado"
+  "connected": "Conectado",
+  "filter": "Filtrar",
+  "autoFillAlbum": "Autocompletar usando Last.fm",
+  "autoFillAlbumInvalidForm": "Escribe un artista y título para autcompletar",
+  "scrobbleSetlist": "Scrobblear setlist",
+  "noSetlistsFound": "No se encontraron setlists para <1>{{searchParam}}</1>",
+  "emptySetlist": "Esta setlist parece estar vacía.",
+  "setlist": "Setlist",
+  "searchSetlistPrompt": "Busca por nombre de artista o pega un link de setlist.fm"
 }

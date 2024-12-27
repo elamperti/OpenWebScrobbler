@@ -14,6 +14,7 @@ interface ScrobbleListProps {
   isAlbum?: boolean;
   loading?: boolean;
   noMenu?: boolean;
+  albumHasVariousArtists?: boolean;
   onSelect?: (scrobble: any) => void;
   selected?: Set<string>;
   scrobbles?: any[];
@@ -24,6 +25,7 @@ export default function ScrobbleList({
   children,
   compact = false,
   isAlbum = false,
+  albumHasVariousArtists = false,
   loading = false,
   noMenu = false,
   onSelect,
@@ -32,7 +34,6 @@ export default function ScrobbleList({
 }: ScrobbleListProps) {
   const { cloneFn, setCloneFn } = useContext(ScrobbleCloneContext);
   const cleanupCtx = useContext(CleanupPatternContext); // this may be undefined
-  let albumHasVariousArtists = !isAlbum;
 
   if (loading) {
     return <Spinner />;
@@ -61,7 +62,7 @@ export default function ScrobbleList({
           noMenu={noMenu}
           noCover={isAlbum}
           onSelect={onSelect}
-          selected={selected && selected.has(scrobble.uuid)}
+          selected={selected && (selected.has(scrobble.uuid) || selected.has(scrobble.id))}
           key={(scrobble.timestamp || 0) + i}
           muteArtist={isAlbum}
           hideArtist={!albumHasVariousArtists}

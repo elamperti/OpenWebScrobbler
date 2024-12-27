@@ -25,6 +25,7 @@
   "yourHistory": "Teu histórico",
   "scrobbleManually": "Scrobblar manualmente",
   "scrobbleFromOtherUser": "Scrobblar de outro utilizador",
+  "scrobbleFromSetlist": "Scrobblar de setlist.fm",
   "otherUser": "Utilizador",
   "or": "ou",
   "refresh": "Atualizar",
@@ -89,7 +90,7 @@
     }
   },
   "updates": {
-    "newVersionAvailable": "Há uma nova versão disponível! Por favor <1>recarregua a página</1>"
+    "newVersionAvailable": "Há uma nova versão disponível! Por favor <1>recarrega a página</1>"
   },
   "errors": {
     "lastfmRejected": "Last.fm rejeitou este scrobble",
@@ -162,5 +163,6 @@
   "connect": "Conectar",
   "general": "Geral",
   "learnMore": "Saiba mais",
-  "connected": "Conectado"
+  "connected": "Conectado",
+  "filter": "Filtrar"
 }
