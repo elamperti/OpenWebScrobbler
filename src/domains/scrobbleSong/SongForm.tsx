@@ -3,6 +3,7 @@ import { lazyWithPreload } from 'react-lazy-with-preload';
 import { useDispatch } from 'react-redux';
 import { Trans } from 'react-i18next';
 import ReactGA from 'react-ga-neo';
+import { get } from 'lodash-es';
 
 import addSeconds from 'date-fns/addSeconds';
 import addDays from 'date-fns/addDays';
@@ -25,38 +26,18 @@ import './SongForm.css';
 import type { Scrobble } from 'utils/types/scrobble';
 
 import { trackGetInfo } from 'utils/clients/lastfm/methods/trackGetInfo';
-import { get } from 'lodash-es';
+import { splitArtistTitleFromText } from 'utils/string';
+import { SongMatch } from 'utils/types/string';
 
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 const Tooltip = lazyWithPreload(() => import('components/Tooltip'));
 
-const reAutoPasteSplitting = / - | ?[–—] ?/;
 const controlOrder = ['artist', 'title', 'album']; // Used for arrow navigation
 
 enum AutoFillStatus {
   Idle = '',
   Success = 'autofill-success',
   Fail = 'autofill-fail',
-}
-
-type SongMatch = {
-  artist: string;
-  title: string;
-  album?: string;
-} | null;
-
-function splitArtistTitleFromText(text: string, reverse: boolean): SongMatch {
-  if (reAutoPasteSplitting.test(text)) {
-    const result = text.split(reAutoPasteSplitting, 2);
-
-    if (reverse) {
-      result.reverse();
-    }
-
-    return { artist: result[0], title: result[1] };
-  }
-
-  return null;
 }
 
 const reLastfmURL = /last\.fm(?:\/[a-zA-Z]{2})?\/music\/([^/]+)\/([^/]+?)\/([^/]+)/;
