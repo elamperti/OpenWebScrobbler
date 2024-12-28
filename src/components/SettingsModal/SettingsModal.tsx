@@ -30,7 +30,7 @@ export default function SettingsModal() {
   const [language, setLanguage] = useState(currentLanguage);
   const [use12Hours, setUse12Hours] = useState(false);
   const [catchPaste, setCatchPaste] = useState(false);
-  const trackNumbersEnabled = false; // useFeatureIsOn('show-track-numbers');
+  const trackNumbersEnabled = useFeatureIsOn('show-track-numbers');
   const connectPatreonFF = useFeatureIsOn('connect-patreon');
   const [showTrackNumbers, setShowTrackNumbers] = useState(false);
 
