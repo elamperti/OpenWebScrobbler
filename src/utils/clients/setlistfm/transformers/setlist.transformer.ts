@@ -7,6 +7,9 @@ import type { Track } from 'utils/types/track';
 
 export function setlistTransformer(raw: any, withTracks: boolean): Setlist {
   const artist = raw?.artist?.name ?? 'Unknown';
+  const tracks = Array.isArray(raw.sets?.set)
+    ? raw.sets.set.map(({ song: rawSet }: any) => setlistTracklistTransformer(rawSet || [], artist)).flat()
+    : undefined;
 
   return {
     id: raw.id,
@@ -15,18 +18,13 @@ export function setlistTransformer(raw: any, withTracks: boolean): Setlist {
     artist,
     tour: raw.tour?.name || '',
     venue: setlistVenueTransformer(raw?.venue),
-    tracks:
-      withTracks && Array.isArray(raw.sets?.set)
-        ? raw.sets.set.map(({ song: rawSet }: any) => setlistTracklistTransformer(rawSet || [], artist)).flat()
-        : undefined,
-    trackCount: Array.isArray(raw.sets?.set)
-      ? raw.sets.set.reduce((acc: number, { song: rawSet }: any) => acc + (rawSet?.length || 0), 0)
-      : 0,
+    tracks: withTracks ? tracks : undefined,
+    trackCount: tracks?.length ?? 0,
     url: raw.url || '',
   };
 }
 
-function setlistTracklistTransformer(rawSet: any, artist: string): Track[] {
+export function setlistTracklistTransformer(rawSet: any, artist: string): Track[] {
   if (!Array.isArray(rawSet)) return [];
   return (
     rawSet
