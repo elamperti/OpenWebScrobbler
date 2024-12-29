@@ -35,7 +35,7 @@ jobs:
           CI: 1
 
       - name: Lint
-        run: yarn lint --rule "react-compiler/react-compiler: off"
+        run: 'yarn lint --rule "react-compiler/react-compiler: off"'
 
       - name: Prettier
         run: yarn prettier
