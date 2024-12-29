@@ -30,7 +30,7 @@ function setlistTracklistTransformer(rawSet: any, artist: string): Track[] {
   if (!Array.isArray(rawSet)) return [];
   return (
     rawSet
-      .filter(({ tape }) => Boolean(tape))
+      .filter(({ tape }) => !tape)
       .map((song, i) => ({
         id: shortid.generate(),
         trackNumber: i + 1,
