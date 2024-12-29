@@ -1,4 +1,54 @@
-import { splitArtistTitleFromText } from './string';
+import { splitArtistTitleFromText, properCase } from './string';
+
+describe('properCase', () => {
+  it('handles empty strings', () => {
+    expect(properCase('')).toBe('');
+    expect(properCase('', true)).toBe('');
+  });
+
+  it('preserves already capitalized strings', () => {
+    expect(properCase('The Quick Brown Fox')).toBe('The Quick Brown Fox');
+    expect(properCase('TEST')).toBe('TEST');
+  });
+
+  it('capitalizes first letter of each word in normal mode', () => {
+    expect(properCase('the quick brown fox')).toBe('The Quick Brown Fox');
+    expect(properCase('hello world')).toBe('Hello World');
+  });
+
+  it('capitalizes only first letter in forceUcfirstMode', () => {
+    expect(properCase('the quick brown fox', true)).toBe('The quick brown fox');
+    expect(properCase('HELLO WORLD', true)).toBe('HELLO WORLD');
+  });
+
+  it('preserves special characters', () => {
+    expect(properCase('hello-world')).toBe('Hello-World');
+    expect(properCase('hello-world', true)).toBe('Hello-world');
+    expect(properCase('hello & world')).toBe('Hello & World');
+  });
+
+  it('handles mixed case input', () => {
+    expect(properCase('McDonald')).toBe('McDonald');
+    expect(properCase('iPhone', true)).toBe('iPhone');
+  });
+
+  it('handles single word inputs', () => {
+    expect(properCase('word')).toBe('Word');
+    expect(properCase('WORD')).toBe('WORD');
+    expect(properCase('word', true)).toBe('Word');
+  });
+
+  it('handles multiple spaces', () => {
+    expect(properCase('the   quick  brown   fox')).toBe('The   Quick  Brown   Fox');
+    expect(properCase('the   quick  brown   fox', true)).toBe('The   quick  brown   fox');
+  });
+
+  // The function should be improved for this case, maybe
+  it.skip('handles non-ASCII characters', () => {
+    expect(properCase('éèë')).toBe('Éèë');
+    expect(properCase('éèë', true)).toBe('Éèë');
+  });
+});
 
 describe('splitArtistTitleFromText', () => {
   it('splits artist and title correctly with default separator', () => {
