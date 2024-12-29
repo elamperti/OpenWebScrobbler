@@ -1,6 +1,6 @@
 import { useContext } from 'react';
 
-import ScrobbleItem from 'components/ScrobbleItem';
+import { ScrobbleItem } from 'components/ScrobbleItem';
 import Spinner from 'components/Spinner';
 import { ScrobbleCloneContext } from 'domains/scrobbleSong/ScrobbleSong';
 
@@ -65,7 +65,7 @@ export default function ScrobbleList({
           selected={selected && (selected.has(scrobble.uuid) || selected.has(scrobble.id))}
           key={(scrobble.timestamp || 0) + i}
           muteArtist={isAlbum}
-          hideArtist={!albumHasVariousArtists}
+          hideArtist={isAlbum && !albumHasVariousArtists}
         />
       );
     });

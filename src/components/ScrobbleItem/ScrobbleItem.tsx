@@ -1,34 +1,26 @@
-import { useDispatch } from 'react-redux';
 import { Trans } from 'react-i18next';
-import ReactGA from 'react-ga-neo';
 import { get } from 'lodash-es';
 
-import { enqueueScrobble } from 'store/actions/scrobbleActions';
+import { useSettings } from 'hooks/useSettings';
 
-import { Button, Input, Dropdown, DropdownToggle, DropdownMenu, DropdownItem, FormGroup, Label } from 'reactstrap';
-import { Fragment, useState } from 'react';
+import { Input, FormGroup, Label } from 'reactstrap';
+import { Fragment } from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {
-  faCheck,
-  faCompactDisc,
-  faEllipsisH,
-  faInbox,
-  faRedoAlt,
-  faShoppingCart,
-  faSquare,
-  faSync,
-  faTimes,
-} from '@fortawesome/free-solid-svg-icons';
-import { faClock, faCopy } from '@fortawesome/free-regular-svg-icons';
-import { getAmznLink } from 'Constants';
-import { breakStringUsingPattern, cleanTitleWithPattern } from 'domains/scrobbleAlbum/CleanupContext';
+import { faCompactDisc, faSquare } from '@fortawesome/free-solid-svg-icons';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { breakStringUsingPattern } from 'domains/scrobbleAlbum/CleanupContext';
 
+import { properCase } from 'utils/string';
+import { formatDuration, formatScrobbleTimestamp } from 'utils/datetime';
 import type { Scrobble } from 'utils/types/scrobble';
 
+import { useScrobbleAgain } from './useScrobbleAgain';
+
+import { ScrobbleItemMenu } from './partials/ScrobbleItemMenu';
+import { ScrobbleStatusIcon } from './partials/ScrobbleStatusIcon';
+import { ScrobbleAgainButton } from './partials/ScrobbleAgainButton';
 import './ScrobbleItem.css';
-import { useSettings } from 'hooks/useSettings';
-import { formatDuration, formatScrobbleTimestamp } from 'utils/datetime';
 
 interface ScrobbleItemProps {
   scrobble: Scrobble;
@@ -45,6 +37,14 @@ interface ScrobbleItemProps {
   lazyScrollPosition?: any;
 }
 
+const placeholderCDIcon = <FontAwesomeIcon size="3x" icon={faCompactDisc} />;
+
+const strikethroughMatch = (text: string, pattern?: RegExp) => {
+  return breakStringUsingPattern(text, pattern).map(({ value, isMatch }, index) => (
+    <Fragment key={index}>{!isMatch ? value : <del>{value}</del>}</Fragment>
+  ));
+};
+
 export default function ScrobbleItem({
   scrobble,
   cleanupPattern,
@@ -56,120 +56,17 @@ export default function ScrobbleItem({
   onSelect,
   selected = false,
   cloneScrobbleTo,
-  analyticsEvent = 'Scrobble again',
+  analyticsEvent,
   lazyScrollPosition,
 }: ScrobbleItemProps) {
-  const [hasScrobbledAgain, setHasScrobbledAgain] = useState(false);
-  const [dropdownOpen, setDropdownOpen] = useState(false);
   const { settings } = useSettings();
-  const dispatch = useDispatch();
+  const useOriginalTimestamp = noMenu ? get(settings, 'keepOriginalTimestamp') : false;
+  const scrobbleAgain = useScrobbleAgain(scrobble, useOriginalTimestamp, analyticsEvent, cleanupPattern);
 
-  const cloneScrobble = () => {
-    ReactGA.event({
-      category: 'Interactions',
-      action: 'Clone track',
-    });
-    // Hack: the timestamp is kept in compact mode (profile view) and removed when not (profile view)
-    cloneScrobbleTo?.(compact ? scrobble : { ...scrobble, timestamp: undefined });
-  };
-
-  const toggleMoreMenu = () => {
-    setDropdownOpen(!dropdownOpen);
-  };
-
-  const scrobbleAgain = () => {
-    const useOriginalTimestamp = noMenu ? get(settings, 'keepOriginalTimestamp') : false;
-    ReactGA.event({
-      category: 'Interactions',
-      action: analyticsEvent,
-    });
-    enqueueScrobble(dispatch)([
-      {
-        ...scrobble,
-        title: cleanTitleWithPattern(scrobble.title, cleanupPattern),
-        timestamp: useOriginalTimestamp ? scrobble.timestamp : new Date(),
-      },
-    ]);
-    setHasScrobbledAgain(true);
-  };
-
-  const properCase = (str: string, forceUcfirstMode = false) => {
-    if (!str) return '';
-    if (str.match(/[A-Z]/u)) {
-      return str;
-    } else if (forceUcfirstMode) {
-      return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
-    }
-    return str.replace(/\w+\b/g, (word) => {
-      return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
-    });
-  };
-
-  const strikethroughMatch = (text: string, pattern?: RegExp) => {
-    return breakStringUsingPattern(text, pattern).map(({ value, isMatch }, index) => (
-      <Fragment key={index}>{!isMatch ? value : <del>{value}</del>}</Fragment>
-    ));
-  };
-
-  let albumArt;
-  let errorMessage;
-  let rightSideContent;
-  let selectionCheckbox;
-  let songInfo;
-  let songFullTitle;
-  let statusIcon;
-
-  if (noCover || compact) {
-    albumArt = null;
-  } else {
-    const placeholderCDIcon = <FontAwesomeIcon size="3x" icon={faCompactDisc} />;
-    albumArt = !scrobble.cover ? (
-      placeholderCDIcon
-    ) : (
-      <LazyLoadImage
-        className="cover rounded"
-        src={scrobble.cover.sm || scrobble.cover}
-        alt={scrobble.album}
-        placeholder={placeholderCDIcon}
-        scrollPosition={lazyScrollPosition}
-        width="45"
-        height="45"
-        effect="opacity"
-        async
-      />
-    );
-  }
-
-  if (scrobble.status) {
-    switch (scrobble.status) {
-      case 'success':
-        statusIcon = faCheck;
-        break;
-      case 'retry':
-        statusIcon = faSync;
-        break;
-      case 'error':
-        statusIcon = faTimes;
-        break;
-      case 'pending':
-        statusIcon = faCompactDisc;
-        break;
-      case 'queued':
-        statusIcon = faInbox;
-        break;
-      default:
-        statusIcon = null;
-    }
-
-    if (scrobble.status === 'error') {
-      errorMessage = (
-        <div className="error px-2">
-          {scrobble.errorDescription && !scrobble.errorMessage ? <Trans i18nKey={scrobble.errorDescription} /> : null}
-          {get(scrobble, 'errorMessage')}
-        </div>
-      );
-    }
-  }
+  const showAlbumArt = !compact && !noCover;
+  const scrobbleItemInputId = `ScrobbleItem-checkbox-${scrobble.uuid}`;
+  const properTitle = properCase(scrobble.title, true);
+  const formattedTitle = cleanupPattern ? strikethroughMatch(properTitle, cleanupPattern) : properTitle;
 
   const timeOrDuration = (
     <small
@@ -177,142 +74,114 @@ export default function ScrobbleItem({
         !scrobble.timestamp && 'duration text-muted'
       }`}
     >
-      {scrobble.timestamp && <FontAwesomeIcon className={`${compact ? 'me-2' : 'ms-2'}`} icon={faClock} />}
-      {scrobble.timestamp && formatScrobbleTimestamp(scrobble.timestamp, settings?.use12Hours)}
+      {scrobble.timestamp && (
+        <>
+          <FontAwesomeIcon className={`${compact ? 'me-2' : 'ms-2'}`} icon={faClock} />
+          {formatScrobbleTimestamp(scrobble.timestamp, settings?.use12Hours)}
+        </>
+      )}
       {!scrobble.timestamp && scrobble.duration > 0 && formatDuration(scrobble.duration)}
     </small>
   );
 
-  const formattedTitle = strikethroughMatch(properCase(scrobble.title, true), cleanupPattern);
-  if (!hideArtist) {
-    if (muteArtist) {
-      songFullTitle = (
-        <>
-          {formattedTitle} <span className="text-muted">{properCase(scrobble.artist)}</span>
-        </>
-      );
-    } else {
-      songFullTitle = (
-        <>
-          {properCase(scrobble.artist)} - {formattedTitle}
-        </>
-      );
-    }
-  } else {
-    songFullTitle = formattedTitle;
-  }
-
-  const scrobbleItemInputId = `ScrobbleItem-checkbox-${scrobble.uuid}`;
-
-  if (compact) {
-    // COMPACT view
-    songInfo = (
-      <Label className="d-flex align-items-center mb-0" htmlFor={scrobbleItemInputId}>
-        {!!settings?.showTrackNumbers && scrobble.trackNumber && <span className="me-1">{scrobble.trackNumber}.</span>}
-        <span className="song flex-grow-1 pe-2 truncate">{songFullTitle}</span>
-        {timeOrDuration}
-      </Label>
-    );
-  } else {
-    // FULL view
-    songInfo = (
-      <>
-        <span className="song flex-grow-1 pe-2 truncate">{songFullTitle}</span>
-        <Label className="d-flex mb-0" htmlFor={scrobbleItemInputId}>
-          <small className="text-muted flex-grow-1 truncate album">
-            {scrobble.album && (
-              <>
-                <FontAwesomeIcon className="me-1" icon={faCompactDisc} transform="shrink-4" mask={faSquare} />
-                {properCase(scrobble.album, true)}
-                {scrobble.albumArtist ? ` - ${properCase(scrobble.albumArtist, true)}` : ''}
-              </>
-            )}
-          </small>
-          {timeOrDuration}
-        </Label>
-      </>
-    );
-  }
-
-  if (noMenu) {
-    rightSideContent = (
-      <Button
-        onClick={scrobbleAgain}
-        size="sm"
-        color="success"
-        className="quick-scrobble-button"
-        outline
-        disabled={hasScrobbledAgain}
-      >
-        {hasScrobbledAgain ? <FontAwesomeIcon icon={faCheck} /> : <Trans i18nKey="scrobble">Scrobble</Trans>}
-      </Button>
-    );
-  } else {
-    rightSideContent = (
-      <div>
-        <Dropdown isOpen={dropdownOpen} toggle={toggleMoreMenu}>
-          <DropdownToggle
-            tag="div"
-            onClick={toggleMoreMenu}
-            aria-expanded={dropdownOpen}
-            data-cy="ScrobbleItem-toggle-menu"
-          >
-            <Button className="btn-more" size="sm" color="secondary" outline>
-              <FontAwesomeIcon icon={faEllipsisH} />
-            </Button>
-          </DropdownToggle>
-          <DropdownMenu end data-cy="ScrobbleItem-menu">
-            <DropdownItem onClick={scrobbleAgain}>
-              <FontAwesomeIcon icon={faRedoAlt} className="me-2" />
-              <Trans i18nKey="scrobbleAgain">Scrobble again</Trans>
-            </DropdownItem>
-            <DropdownItem tag="a" href={getAmznLink(scrobble.artist, scrobble.album)} target="_blank" rel="noopener">
-              <FontAwesomeIcon icon={faShoppingCart} className="me-2" />
-              <Trans i18nKey="buyOnAmzn" />
-            </DropdownItem>
-            {cloneScrobbleTo && (
-              <>
-                <DropdownItem key="cloneDivider" divider />
-                <DropdownItem key="clone" onClick={cloneScrobble}>
-                  <FontAwesomeIcon icon={faCopy} className="me-2" />
-                  <Trans i18nKey="copyToEditor">Copy to editor</Trans>
-                </DropdownItem>
-              </>
-            )}
-          </DropdownMenu>
-        </Dropdown>
-        <span className="status-icon">
-          {statusIcon && <FontAwesomeIcon size="xs" icon={statusIcon} spin={statusIcon === faCompactDisc} />}
-        </span>
-      </div>
-    );
-  }
-
-  if (onSelect) {
-    selectionCheckbox = (
-      <FormGroup check inline className="me-0">
-        <Input
-          type="checkbox"
-          className="me-1"
-          checked={selected}
-          onChange={() => onSelect(scrobble, selected)}
-          id={scrobbleItemInputId}
-        />
-      </FormGroup>
-    );
-  }
-
-  const scrobbleItemClasses = `scrobbled-item status-${scrobble.status} ${compact ? 'compact' : 'card mb-2'}`;
+  const songFullTitle = hideArtist ? (
+    formattedTitle
+  ) : muteArtist ? (
+    <>
+      {formattedTitle} <span className="text-muted">{properCase(scrobble.artist)}</span>
+    </>
+  ) : (
+    `${properCase(scrobble.artist)} - ${formattedTitle}`
+  );
 
   return (
-    <div className={scrobbleItemClasses} data-cy="ScrobbleItem">
-      <div className={`d-flex flex-row align-items-center p-2 ${compact ? 'flex-wrap' : ''}`}>
-        {selectionCheckbox}
-        {albumArt && <div className="albumArt align-self-center pe-2">{albumArt}</div>}
-        <div className="flex-grow-1 truncate">{songInfo}</div>
-        <div className="ms-auto ps-2">{rightSideContent}</div>
+    <div
+      className={`scrobbled-item status-${scrobble.status} ${compact ? 'compact' : 'card mb-2'}`}
+      data-cy="ScrobbleItem"
+    >
+      <div className={`d-flex flex-row align-items-center p-2${compact ? ' flex-wrap' : ''}`}>
+        {/* Select checkbox */}
+        {onSelect && (
+          <FormGroup check inline className="me-0">
+            <Input
+              type="checkbox"
+              className="me-1"
+              checked={selected}
+              onChange={() => onSelect(scrobble, selected)}
+              id={scrobbleItemInputId}
+            />
+          </FormGroup>
+        )}
+
+        {/* Album art */}
+        {showAlbumArt && (
+          <div className="albumArt align-self-center pe-2">
+            {!scrobble.cover ? (
+              placeholderCDIcon
+            ) : (
+              <LazyLoadImage
+                className="cover rounded"
+                src={scrobble.cover.sm || scrobble.cover}
+                alt={scrobble.album}
+                placeholder={placeholderCDIcon}
+                scrollPosition={lazyScrollPosition}
+                width="45"
+                height="45"
+                effect="opacity"
+                async
+              />
+            )}
+          </div>
+        )}
+
+        {/* Main content */}
+        <div className="flex-grow-1 truncate">
+          {compact ? (
+            <Label className="d-flex mb-0 align-items-center" htmlFor={scrobbleItemInputId}>
+              {!!settings?.showTrackNumbers && scrobble.trackNumber && (
+                <span className="me-1">{scrobble.trackNumber}.</span>
+              )}
+              <span className="song flex-grow-1 pe-2 truncate">{songFullTitle}</span>
+              {timeOrDuration}
+            </Label>
+          ) : (
+            <>
+              <span className="song flex-grow-1 pe-2 truncate">{songFullTitle}</span>
+              <Label className="d-flex mb-0" htmlFor={scrobbleItemInputId}>
+                <small className="text-muted flex-grow-1 truncate album">
+                  {scrobble.album && (
+                    <>
+                      <FontAwesomeIcon className="me-1" icon={faCompactDisc} transform="shrink-4" mask={faSquare} />
+                      {properCase(scrobble.album, true)}
+                      {scrobble.albumArtist ? ` - ${properCase(scrobble.albumArtist, true)}` : ''}
+                    </>
+                  )}
+                </small>
+                {timeOrDuration}
+              </Label>
+            </>
+          )}
+        </div>
+
+        {/* Right side content */}
+        <div className="ms-auto ps-2">
+          {noMenu ? (
+            <ScrobbleAgainButton onScrobble={scrobbleAgain} />
+          ) : (
+            <>
+              <ScrobbleItemMenu scrobble={scrobble} scrobbleAgain={scrobbleAgain} cloneScrobbleTo={cloneScrobbleTo} />
+              <ScrobbleStatusIcon status={scrobble.status} />
+            </>
+          )}
+        </div>
       </div>
-      {errorMessage}
+
+      {scrobble.status === 'error' && (
+        <div className="error px-2">
+          {scrobble.errorDescription && !scrobble.errorMessage ? <Trans i18nKey={scrobble.errorDescription} /> : null}
+          {get(scrobble, 'errorMessage')}
+        </div>
+      )}
     </div>
   );
 }
