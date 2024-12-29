@@ -7,10 +7,10 @@ export function properCase(str: string, forceUcfirstMode = false) {
   if (str.match(/[A-Z]/u)) {
     return str;
   } else if (forceUcfirstMode) {
-    return str.charAt(0).toUpperCase() + str.substr(1).toLowerCase();
+    return str.charAt(0).toUpperCase() + str.slice(1).toLowerCase();
   }
   return str.replace(/\w+\b/g, (word) => {
-    return word.charAt(0).toUpperCase() + word.substr(1).toLowerCase();
+    return word.charAt(0).toUpperCase() + word.slice(1).toLowerCase();
   });
 }
 
