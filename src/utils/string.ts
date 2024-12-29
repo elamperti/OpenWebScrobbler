@@ -15,8 +15,11 @@ export function properCase(str: string, forceUcfirstMode = false) {
 }
 
 export function splitArtistTitleFromText(text: string, reverse: boolean): SongMatch {
-  if (reAutoPasteSplitting.test(text)) {
+  if (text.length > 3 && reAutoPasteSplitting.test(text)) {
     const result = text.split(reAutoPasteSplitting, 2);
+
+    // skip splitting when one part is missing
+    if (!result[0] || !result[1]) return null;
 
     if (reverse) {
       result.reverse();

@@ -19,6 +19,18 @@ describe('splitArtistTitleFromText', () => {
     expect(result).toBeNull();
   });
 
+  it('skips splitting when there is one part missing', () => {
+    const text = 'Artist -';
+    const result = splitArtistTitleFromText(text, false);
+    expect(result).toBeNull();
+  });
+
+  it('skips splitting when both parts are missing', () => {
+    const text = '—';
+    const result = splitArtistTitleFromText(text, false);
+    expect(result).toBeNull();
+  });
+
   it('breaks normal hyphen-minus (0x2D) only when surrounded by spaces', () => {
     const text = 'Alt-J - Breezeblocks';
     const result = splitArtistTitleFromText(text, false);
