@@ -16,7 +16,7 @@ export function PatreonBlock() {
   const glowFF = useFeatureIsOn('glowing-support');
   const showSubscriptionFF = useFeatureIsOn('show-subscription');
   const connectPatreonFF = useFeatureIsOn('connect-patreon');
-  const showConnectButton = connectPatreonFF; // && !settings?.patreonId;
+  const showConnectButton = connectPatreonFF && !settings?.patreonId;
   const showPatreonButton = !settings?.hasActiveSubscription;
 
   const onPatreonClick = () => {
