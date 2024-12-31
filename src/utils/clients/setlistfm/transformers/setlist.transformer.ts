@@ -29,14 +29,17 @@ export function setlistTracklistTransformer(rawSet: any, artist: string): Track[
   return (
     rawSet
       .filter(({ tape }) => !tape)
-      .map((song, i) => ({
-        id: shortid.generate(),
-        trackNumber: i + 1,
-        artist,
-        title: song.name,
-        album: '',
-        albumArtist: '',
-        duration: 0,
-      })) || []
+      .map(
+        (song, i) =>
+          ({
+            id: shortid.generate(),
+            trackNumber: i + 1,
+            artist,
+            title: song.name,
+            album: '',
+            albumArtist: '',
+            duration: 0,
+          }) as Track
+      ) || []
   );
 }

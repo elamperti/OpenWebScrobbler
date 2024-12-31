@@ -14,6 +14,7 @@ import { breakStringUsingPattern } from 'domains/scrobbleAlbum/CleanupContext';
 import { properCase } from 'utils/string';
 import { formatDuration, formatScrobbleTimestamp } from 'utils/datetime';
 import type { Scrobble } from 'utils/types/scrobble';
+import type { TrackID } from 'utils/types/track';
 
 import { useScrobbleAgain } from './useScrobbleAgain';
 
@@ -30,7 +31,7 @@ interface ScrobbleItemProps {
   muteArtist?: boolean;
   noCover?: boolean;
   noMenu?: boolean;
-  onSelect?: (track: Scrobble, selected: boolean) => void;
+  onSelect?: (track: TrackID, selected: boolean) => void;
   selected?: boolean;
   cloneScrobbleTo?: (scrobble: Scrobble) => void;
   analyticsEvent?: string;
@@ -64,7 +65,7 @@ export default function ScrobbleItem({
   const scrobbleAgain = useScrobbleAgain(scrobble, useOriginalTimestamp, analyticsEvent, cleanupPattern);
 
   const showAlbumArt = !compact && !noCover;
-  const scrobbleItemInputId = `ScrobbleItem-checkbox-${scrobble.uuid}`;
+  const scrobbleItemInputId = `ScrobbleItem-checkbox-${scrobble.id}`;
   const properTitle = properCase(scrobble.title, true);
   const formattedTitle = cleanupPattern ? strikethroughMatch(properTitle, cleanupPattern) : properTitle;
 
@@ -107,7 +108,7 @@ export default function ScrobbleItem({
               type="checkbox"
               className="me-1"
               checked={selected}
-              onChange={() => onSelect(scrobble, selected)}
+              onChange={() => onSelect(scrobble.id, selected)}
               id={scrobbleItemInputId}
             />
           </FormGroup>

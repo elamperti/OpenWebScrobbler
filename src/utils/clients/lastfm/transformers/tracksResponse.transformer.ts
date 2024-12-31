@@ -20,10 +20,10 @@ export function tracksTransformer(
       title: track.name,
       album: get(options, 'album'),
       duration: track.duration ? parseInt(track.duration) : 0,
-      uuid: shortid.generate(),
+      id: shortid.generate(),
       cover: undefined,
       trackNumber: track['@attr'] ? parseInt(track['@attr'].rank) : null,
-    };
+    } as Track;
 
     if (hasIn(options, 'cover')) {
       transformedTrack.cover = options.cover;

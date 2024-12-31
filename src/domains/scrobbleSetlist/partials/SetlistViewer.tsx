@@ -9,7 +9,7 @@ import { Trans } from 'react-i18next';
 import { DEFAULT_CONCERT_INTERVAL_DURATION, DEFAULT_SONG_DURATION } from 'Constants';
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
-import type { Scrobble } from 'utils/types/scrobble';
+import type { TrackID } from 'utils/types/track';
 import type { Setlist } from 'utils/types/setlist';
 import { SetlistCard } from './SetlistCard';
 import { EmptySetlistMessage } from './EmptySetlistMessage';
@@ -18,7 +18,7 @@ const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker')
 
 export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) {
   const dispatch = useDispatch();
-  const [selectedTracks, setSelectedTracks] = useState<Set<string>>(new Set());
+  const [selectedTracks, setSelectedTracks] = useState<Set<TrackID>>(new Set());
   const [customTimestamp, setCustomTimestamp] = useState(setlist.date);
   const [hasBeenScrobbled, setSetlistScrobbled] = useState(false);
   const setlistIsValid = setlist.trackCount > 0;
@@ -27,20 +27,16 @@ export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) 
 
   DateTimePicker.preload();
 
-  const toggleSelectTrack = (scrobble: Scrobble, wasCheckedBefore = false) => {
-    const uuid = scrobble.id ?? scrobble.scrobbleUUID ?? scrobble.uuid ?? scrobble.title;
+  const toggleSelectedTrack = (scrobbleId: TrackID, wasCheckedBefore = false) => {
     const newSet = new Set(selectedTracks);
 
     if (wasCheckedBefore) {
-      newSet.delete(uuid);
+      newSet.delete(scrobbleId);
     } else {
-      newSet.add(uuid);
+      newSet.add(scrobbleId);
     }
-    setSelectedTracks(newSet);
-  };
 
-  const handleTimestampChange = (newTimestamp) => {
-    setCustomTimestamp(newTimestamp);
+    setSelectedTracks(newSet);
   };
 
   const scrobbleSelectedTracks = () => {
@@ -75,7 +71,7 @@ export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) 
   return (
     <>
       <SetlistCard linkArtist className="mt-1 border-0" setlist={setlist} />
-      {setlistIsValid && <DateTimePicker value={customTimestamp} onChange={handleTimestampChange} />}
+      {setlistIsValid && <DateTimePicker value={customTimestamp} onChange={setCustomTimestamp} />}
 
       <div className="row">
         <div className="my-2 col-9 col-lg-6 offset-lg-6">
@@ -103,7 +99,7 @@ export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) 
         analyticsEventForScrobbles="Scrobble individual setlist song"
         scrobbles={tracks || []}
         albumHasVariousArtists={true}
-        onSelect={toggleSelectTrack}
+        onSelect={toggleSelectedTrack}
         selected={selectedTracks}
       >
         <EmptySetlistMessage />

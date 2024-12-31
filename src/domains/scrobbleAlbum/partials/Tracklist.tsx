@@ -23,7 +23,7 @@ import { TracklistFilter } from './TracklistFilter';
 
 import type { Album, DiscogsAlbum } from 'utils/types/album';
 import type { Scrobble } from 'utils/types/scrobble';
-import type { Track } from 'utils/types/track';
+import type { Track, TrackID } from 'utils/types/track';
 
 import { formatDuration } from 'utils/datetime';
 
@@ -41,7 +41,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
   // ToDo: simplify customTimestamp + useCustomTimestamp
   const [customTimestamp, setCustomTimestamp] = useState(new Date());
   const [useCustomTimestamp, setUseCustomTimestamp] = useState(false);
-  const [selectedTracks, setSelectedTracks] = useState<Set<string>>(new Set());
+  const [selectedTracks, setSelectedTracks] = useState<Set<TrackID>>(new Set());
   const [totalDuration, setTotalDuration] = useState(0);
   const { cleanupPattern } = useContext(CleanupPatternContext);
 
@@ -81,20 +81,19 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
     setShowTimestampCopy(!showTimestampCopy);
   };
 
-  const toggleSelectedTrack = (scrobble: Scrobble, wasCheckedBefore = false) => {
+  const toggleSelectedTrack = (trackId: TrackID, wasCheckedBefore = false) => {
     const newSet = new Set(selectedTracks);
-    const uuid = scrobble.id ?? scrobble.scrobbleUUID ?? scrobble.uuid ?? scrobble.title;
 
     if (wasCheckedBefore) {
-      newSet.delete(uuid);
+      newSet.delete(trackId);
     } else {
-      newSet.add(uuid);
+      newSet.add(trackId);
     }
 
     setSelectedTracks(newSet);
   };
 
-  const handleTimestampChange = (newTimestamp) => {
+  const handleTimestampChange = (newTimestamp: Date) => {
     setCustomTimestamp(newTimestamp);
     setCanScrobble(true);
   };
@@ -113,7 +112,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
     }
 
     const tracksToScrobble = tracklist
-      .filter(({ uuid }) => userHasNotSelectedTracks || selectedTracks.has(uuid))
+      .filter(({ id }) => userHasNotSelectedTracks || selectedTracks.has(id))
       .reduce((result, track) => {
         const newTrack = {
           ...track,

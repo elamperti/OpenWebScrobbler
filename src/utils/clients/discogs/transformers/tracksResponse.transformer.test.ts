@@ -70,7 +70,7 @@ describe('Discogs transformer: tracks response', () => {
         title: 'track',
         album: 'album',
         duration: 259,
-        uuid: 'fakeShortId',
+        id: 'fakeShortId',
         cover: null,
         trackNumber: null,
       },

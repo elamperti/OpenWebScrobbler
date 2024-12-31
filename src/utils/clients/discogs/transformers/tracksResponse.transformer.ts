@@ -45,10 +45,10 @@ export function tracksTransformer(
         album,
         albumArtist,
         duration: track.duration && _HMSStrToSeconds(track.duration),
-        uuid: shortid.generate(),
+        id: shortid.generate(),
         cover: null,
         trackNumber: track.position || null,
-      };
+      } as Track;
 
       if (hasIn(options, 'cover')) {
         transformedTrack.cover = options.cover;

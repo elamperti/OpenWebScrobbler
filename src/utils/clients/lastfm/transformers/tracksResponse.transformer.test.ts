@@ -29,7 +29,7 @@ describe('Last.fm transformer: tracks', () => {
         title: 'track',
         album: undefined,
         duration: 123,
-        uuid: expect.anything(),
+        id: expect.anything(),
         cover: undefined,
         trackNumber: 2,
       },
