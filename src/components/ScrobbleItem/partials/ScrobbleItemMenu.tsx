@@ -9,14 +9,31 @@ import type { Scrobble } from 'utils/types/scrobble';
 interface ScrobbleItemMenuProps {
   scrobble: Scrobble;
   scrobbleAgain: () => void;
-  cloneScrobbleTo?: (scrobble: Scrobble) => void;
+  onScrobble?: (scrobble: Scrobble) => void;
+  keepScrobbleTimestamp?: boolean;
 }
 
-export function ScrobbleItemMenu({ scrobble, scrobbleAgain, cloneScrobbleTo }: ScrobbleItemMenuProps) {
+export function ScrobbleItemMenu({
+  scrobble,
+  scrobbleAgain,
+  onScrobble,
+  keepScrobbleTimestamp,
+}: ScrobbleItemMenuProps) {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggleMoreMenu = () => {
     setDropdownOpen(!dropdownOpen);
+  };
+
+  const cloneScrobble = () => {
+    onScrobble(
+      keepScrobbleTimestamp
+        ? scrobble
+        : {
+            ...scrobble,
+            timestamp: undefined,
+          }
+    );
   };
 
   return (
@@ -40,10 +57,10 @@ export function ScrobbleItemMenu({ scrobble, scrobbleAgain, cloneScrobbleTo }: S
           <FontAwesomeIcon icon={faShoppingCart} className="me-2" />
           <Trans i18nKey="buyOnAmzn" />
         </DropdownItem>
-        {cloneScrobbleTo && (
+        {onScrobble && (
           <>
             <DropdownItem key="cloneDivider" divider />
-            <DropdownItem key="clone" onClick={() => cloneScrobbleTo(scrobble)}>
+            <DropdownItem key="clone" onClick={cloneScrobble}>
               <FontAwesomeIcon icon={faCopy} className="me-2" />
               <Trans i18nKey="copyToEditor">Copy to editor</Trans>
             </DropdownItem>

@@ -169,7 +169,13 @@ export default function ScrobbleItem({
             <ScrobbleAgainButton onScrobble={scrobbleAgain} />
           ) : (
             <>
-              <ScrobbleItemMenu scrobble={scrobble} scrobbleAgain={scrobbleAgain} cloneScrobbleTo={cloneScrobbleTo} />
+              <ScrobbleItemMenu
+                scrobble={scrobble}
+                scrobbleAgain={scrobbleAgain}
+                onScrobble={cloneScrobbleTo}
+                // the timestamp is kept in compact mode (profile tab) and removed when not (history tab)
+                keepScrobbleTimestamp={compact}
+              />
               <ScrobbleStatusIcon status={scrobble.status} />
             </>
           )}
