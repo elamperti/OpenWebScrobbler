@@ -13,6 +13,13 @@ describe('Scrobble album (SRP)', () => {
       fixture: 'lastfm/album/search.meteora.json',
     }).as('albumSearch');
 
+    cy.intercept('GET', '/api/v2/discogs.php?method=artist.search*', {
+      fixture: 'api/v2/discogs/artist.search.meteora.json',
+    });
+    cy.intercept('GET', '/api/v2/discogs.php?method=album.search*', {
+      fixture: 'api/v2/discogs/album.search.meteora.json',
+    });
+
     cy.visit('/scrobble/album');
     cy.wait('@userData');
     cy.wait('@settings');

@@ -11,6 +11,11 @@ describe('Scrobble song (scrobbling)', () => {
     cy.intercept('GET', '/api/v2/settings.php', { fixture: 'api/v2/settings/authenticated.json' });
     cy.intercept('POST', '/api/v2/scrobble.php', { fixture: 'api/v2/scrobble/success.json' }).as('scrobbleData');
 
+    // Just in case it needs to fetch the album cover
+    cy.intercept('GET', 'https://ws.audioscrobbler.com/2.0/*method=album.getInfo*', {
+      fixture: 'lastfm/album/getInfo.am.json',
+    }).as('albumCover');
+
     cy.clock(scrobblingBaseDate, ['Date']);
 
     cy.visit('/scrobble/song');

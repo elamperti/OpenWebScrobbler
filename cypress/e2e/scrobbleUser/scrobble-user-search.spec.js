@@ -81,7 +81,7 @@ describe('Scrobble user (search)', () => {
       }
     ).as('invalidRecentTracks');
 
-    cy.get('[data-cy="SearchForm-input"]').type('invalidUser');
+    cy.get('[data-cy="SearchForm-input"]').should('be.visible').type('invalidUser');
     cy.get('[data-cy="SearchForm-submit"]').click();
 
     cy.wait('@invalidRecentTracks');
