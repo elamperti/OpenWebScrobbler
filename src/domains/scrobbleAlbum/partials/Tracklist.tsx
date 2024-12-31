@@ -31,7 +31,7 @@ const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker')
 
 // ToDo: refactor this component completely.
 // It's too complex and carries several blocks from old code.
-export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | null; tracks: Track[] | Scrobble[] }) {
+export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | null; tracks: Track[] }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
