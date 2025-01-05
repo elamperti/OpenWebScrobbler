@@ -1,7 +1,7 @@
 import ScrobbleList from 'components/ScrobbleList';
 import { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
-import { addSeconds } from 'date-fns';
+import { addSeconds, subDays } from 'date-fns';
 import lazyWithPreload from 'react-lazy-with-preload';
 import { Button } from 'reactstrap';
 import { Trans } from 'react-i18next';
@@ -19,7 +19,10 @@ const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker')
 export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) {
   const dispatch = useDispatch();
   const [selectedTracks, setSelectedTracks] = useState<Set<TrackID>>(new Set());
-  const [customTimestamp, setCustomTimestamp] = useState(setlist.date);
+  const [customTimestamp, setCustomTimestamp] = useState(() => {
+    const twoWeeksAgo = subDays(new Date(), 14);
+    return setlist.date && setlist.date > twoWeeksAgo ? setlist.date : new Date();
+  });
   const [hasBeenScrobbled, setSetlistScrobbled] = useState(false);
   const setlistIsValid = setlist.trackCount > 0;
 
