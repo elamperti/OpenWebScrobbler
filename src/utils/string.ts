@@ -1,6 +1,6 @@
 import type { SongMatch } from 'utils/types/string';
 
-const reAutoPasteSplitting = / - | ?[－–—] ?/;
+const reAutoPasteSplitting = / - ?| ?- | ?[－–—] ?/;
 
 export function properCase(str: string, forceUcfirstMode = false) {
   if (!str) return '';

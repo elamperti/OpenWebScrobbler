@@ -81,8 +81,20 @@ describe('splitArtistTitleFromText', () => {
     expect(result).toBeNull();
   });
 
-  it('breaks normal hyphen-minus (0x2D) only when surrounded by spaces', () => {
-    const text = 'Alt-J - Breezeblocks';
+  it('breaks normal hyphen-minus (0x2D) when surrounded by spaces', () => {
+    const text = 'X-ray Spex - The Day the World Turned Day-Glo';
+    const result = splitArtistTitleFromText(text, false);
+    expect(result).toEqual({ artist: 'X-ray Spex', title: 'The Day the World Turned Day-Glo' });
+  });
+
+  it('breaks normal nyphen with space only on the right', () => {
+    const text = 'Alt-J- Breezeblocks';
+    const result = splitArtistTitleFromText(text, false);
+    expect(result).toEqual({ artist: 'Alt-J', title: 'Breezeblocks' });
+  });
+
+  it('breaks normal nyphen with space only on the left', () => {
+    const text = 'Alt-J -Breezeblocks';
     const result = splitArtistTitleFromText(text, false);
     expect(result).toEqual({ artist: 'Alt-J', title: 'Breezeblocks' });
   });
