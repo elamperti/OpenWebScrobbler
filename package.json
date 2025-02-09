@@ -12,6 +12,7 @@
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
     "@growthbook/growthbook-react": "^1.6.0",
+    "@hello-pangea/dnd": "^18.0.1",
     "@redux-devtools/extension": "^3.3.0",
     "@sentry/react": "^9.33.0",
     "@tanstack/react-query": "^5.81.5",

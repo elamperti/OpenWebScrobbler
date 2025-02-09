@@ -4,6 +4,7 @@ import PrivateRoute from 'components/PrivateRoute';
 import Home from 'domains/home';
 import { Callback } from 'domains/lastfm/Callback';
 import { PatreonCallback } from 'domains/patreon';
+import { PlaylistsHome, PlaylistView } from 'domains/playlists';
 import {
   ScrobbleAlbumResults,
   ScrobbleAlbumSearch,
@@ -37,6 +38,9 @@ export default function Routes() {
       <Route path="/scrobble/setlist" element={<PrivateRoute using={ScrobbleSetlistSearch} />} />
       <Route path="/scrobble/setlist/search/:query" element={<PrivateRoute using={ScrobbleSetlistResult} />} />
       <Route path="/scrobble/setlist/view/:setlistId" element={<PrivateRoute using={ScrobbleSetlistView} />} />
+
+      <Route path="/playlists" element={<PlaylistsHome />} />
+      <Route path="/playlists/view/:playlistId" element={<PlaylistView />} />
 
       <Route path="/patreon/callback" element={<PrivateRoute using={PatreonCallback} />} />
       <Route path="/" element={<Home />} />

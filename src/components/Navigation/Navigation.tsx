@@ -4,7 +4,14 @@ import { Link, useLocation } from 'react-router-dom';
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
-import { faCompactDisc, faHeadphonesAlt, faList, faSignInAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import {
+  faCompactDisc,
+  faHeadphonesAlt,
+  faList,
+  faRectangleList,
+  faSignInAlt,
+  faUserFriends,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { useSettings } from 'hooks/useSettings';
 import { useUserData } from 'hooks/useUserData';
@@ -53,6 +60,7 @@ export default function Navigation() {
             <NavigationItem href="/scrobble/song" i18nKey="song" icon={faPlayCircle} />
             <NavigationItem href="/scrobble/album" i18nKey="album" icon={faCompactDisc} />
             <NavigationItem href="/scrobble/user" i18nKey="otherUser" icon={faUserFriends} />
+            <NavigationItem href="/playlists" i18nKey="playlist" icon={faRectangleList} />
             <NavigationItem href="/scrobble/setlist" i18nKey="setlist" icon={faList} />
           </Nav>
         )}

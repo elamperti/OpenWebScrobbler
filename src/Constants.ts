@@ -6,6 +6,8 @@ export const LASTFM_AUTH_URL =
   `&cb=${window.location.protocol}//${window.location.host}/lastfm/callback/`;
 export const PATREON_AUTH_URL = `https://www.patreon.com/oauth2/authorize?response_type=code&client_id=${process.env.REACT_APP_PATREON_CLIENT_ID}&redirect_uri=${window.location.protocol}//${process.env.REACT_APP_HOST}/patreon/callback`;
 export const OPENSCROBBLER_API_URL = '/api/v2';
+console.log('OPENSCROBBLER_API_URL', process.env.REACT_APP_API_BASE_PATH);
+export const OPENSCROBBLER_API_V4_URL = process.env.REACT_APP_API_BASE_PATH; // New endpoints
 export const CONSIDER_HISTORY_STALE_AFTER = 5 * 60 * 1000; // 5 minutes
 export const SETTINGS_DEBOUNCE_PERIOD = 3 * 1000; // 3 seconds
 export const SCROBBLING_DEBOUNCE_PERIOD = 1.5 * 1000; // 1.5 seconds
