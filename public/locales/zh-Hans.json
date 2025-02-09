@@ -1,8 +1,8 @@
 {
   "scrobble": "记录",
   "getScrobbling": "开始记录",
-  "loading": "加载中。。。",
-  "artist": "歌手",
+  "loading": "加载中……",
+  "artist": "艺术家",
   "song": "歌曲",
   "title": "曲目",
   "album": "专辑",
