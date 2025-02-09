@@ -11,6 +11,7 @@ export const languageList = [
   { code: 'bg', name: 'Български' }, // Bulgarian
   { code: 'ca', name: 'Català' }, // Catalan
   // { code: 'zh-Hans', name: '中文' }, // Chinese (simplified)
+  { code: 'cs', name: 'Čeština' }, // Czech
   { code: 'da', name: 'Dansk' }, // Danish
   { code: 'de', name: 'Deutsch' }, // German
   { code: 'el', name: 'Ελληνικά' }, // Greek
@@ -36,6 +37,7 @@ export const fallbackLng = {
   'bg-BG': ['bg'],
   'ca-ES': ['ca'],
   'ca-AD': ['ca'],
+  'cs-CZ': ['cs'],
   'el-GR': ['el'],
   'el-CY': ['el'],
   'en-US': ['en'],
