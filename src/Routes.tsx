@@ -18,7 +18,7 @@ export default function Routes() {
   return (
     <Switch>
       <Route path="/lastfm/callback" element={<Callback />} />
-      <Route path="/scrobble/song" element={<ScrobbleSong />} />
+      <Route path="/scrobble/song" element={<PrivateRoute using={ScrobbleSong} />} />
       <Route path="/scrobble/album" element={<PrivateRoute using={ScrobbleAlbumSearch} />} />
       <Route path="/scrobble/album/search/:albumName" element={<PrivateRoute using={ScrobbleAlbumResults} />} />
       <Route path="/scrobble/artist">

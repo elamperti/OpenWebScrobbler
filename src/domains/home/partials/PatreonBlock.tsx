@@ -7,16 +7,18 @@ import { Trans } from 'react-i18next';
 import { useFeatureIsOn } from '@growthbook/growthbook-react';
 
 import { useSettings } from 'hooks/useSettings';
+import { useUserData } from 'hooks/useUserData';
 import { PATREON_AUTH_URL } from 'Constants';
 
 import './SocialNetworksBlock.scss';
 
 export function PatreonBlock() {
   const { settings } = useSettings();
+  const { isLoggedIn } = useUserData();
   const glowFF = useFeatureIsOn('glowing-support');
   const showSubscriptionFF = useFeatureIsOn('show-subscription');
   const connectPatreonFF = useFeatureIsOn('connect-patreon');
-  const showConnectButton = connectPatreonFF && !settings?.patreonId;
+  const showConnectButton = connectPatreonFF && !settings?.patreonId && isLoggedIn;
   const showPatreonButton = !settings?.hasActiveSubscription;
 
   const onPatreonClick = () => {
