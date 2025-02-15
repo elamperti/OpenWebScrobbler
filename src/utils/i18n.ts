@@ -5,7 +5,13 @@ import Backend from 'i18next-http-backend';
 import LanguageDetector from 'i18next-browser-languagedetector';
 import { tweak } from './tweaks/Tweaks';
 
-export const languageList = [
+type i18nLanguage = {
+  code: string;
+  name: string;
+  rtl?: boolean;
+};
+
+export const languageList: i18nLanguage[] = [
   { code: 'ast', name: 'Asturianu' }, // Asturian
   { code: 'ar', name: 'العربية', rtl: true }, // Arabic
   { code: 'bg', name: 'Български' }, // Bulgarian
