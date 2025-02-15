@@ -120,6 +120,9 @@ describe('Scrobble song (form)', () => {
     it('keeps pinned artist', () => {
       cy.get('[data-cy="SongForm-artist-lock"]').click();
 
+      // Indirectly wait for activation
+      cy.get('[data-cy="SongForm-artist-lock"] svg').should('have.class', 'active');
+
       cy.get('[data-cy="scrobble-button"]').click();
 
       cy.wait('@scrobbleData').then(() => {
@@ -130,6 +133,9 @@ describe('Scrobble song (form)', () => {
 
     it('keeps pinned album', () => {
       cy.get('[data-cy="SongForm-album-lock"]').click();
+
+      // Indirectly wait for activation
+      cy.get('[data-cy="SongForm-album-lock"] svg').should('have.class', 'active');
 
       cy.get('[data-cy="scrobble-button"]').click();
 
