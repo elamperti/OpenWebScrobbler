@@ -1,4 +1,5 @@
 <?php
+  require_once('inc/analytics.php');
   session_start();
 
   // Wipe session
@@ -10,6 +11,5 @@
   ));
 
   // Track event
-  require_once('inc/analytics.php');
   $ga = new Analytics();
   $ga->event('Session', 'Logout', 'Success');

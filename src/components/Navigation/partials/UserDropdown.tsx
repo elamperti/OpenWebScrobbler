@@ -2,6 +2,7 @@ import { useContext } from 'react';
 import { useDispatch } from 'react-redux';
 import { useQueryClient } from '@tanstack/react-query';
 import { useGrowthBook } from '@growthbook/growthbook-react';
+import ReactGA from 'react-ga-neo';
 import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, NavLink } from 'reactstrap';
 import { Trans } from 'react-i18next';
 
@@ -28,25 +29,23 @@ export default function UserDropdow() {
   const { setSettingsModalVisible } = useContext(SettingsModalContext);
 
   const onLogOut = () => {
-    logOut(dispatch)().then(() => {
-      queryClient.invalidateQueries({
-        queryKey: ['user'],
-      });
-
-      // ToDo: clear local storage
+    ReactGA.event({
+      category: 'Session',
+      action: 'Logout',
+      label: 'Intent',
+    });
+    logOut(dispatch)().finally(() => {
+      setTimeout(() => {
+        queryClient.invalidateQueries({
+          queryKey: ['user'],
+        });
+      }, 1000);
 
       if (growthbook?.ready) {
         const newGBAttributes = growthbook.getAttributes();
         delete newGBAttributes.id;
         newGBAttributes.loggedIn = false;
         growthbook.setAttributes(newGBAttributes);
-      }
-
-      try {
-        localStorage.removeItem('hashedUID');
-      } catch (error) {
-        // eslint-disable-next-line no-console
-        console.warn('Unable to remove UID from localstorage');
       }
     });
   };

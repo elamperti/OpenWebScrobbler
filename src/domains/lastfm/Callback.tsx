@@ -26,9 +26,6 @@ function logoutAndTryAgain(e) {
     action: 'Retry',
   });
   logout().finally(() => {
-    ReactGA.set({
-      userId: undefined,
-    });
     window.location.href = LASTFM_AUTH_URL;
   });
 }

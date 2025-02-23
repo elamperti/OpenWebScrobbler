@@ -1,27 +1,17 @@
-import ReactGA from 'react-ga-neo';
 import { hasIn } from 'lodash-es';
 
 import { USER_LOGGED_OUT } from 'Constants';
 
 import history from 'utils/history';
 import { createAlert } from './alertActions';
-import { openscrobblerAPI } from 'utils/clients/api/apiClient';
+import { logout } from 'utils/clients/api/methods/logout';
 
 export function logOut(dispatch) {
   return (alertObject) => {
-    ReactGA.event({
-      category: 'Session',
-      action: 'Logout',
-      label: 'Intent',
-    }); // ToDo: add nonInteraction prop when logout is not manual
-    return openscrobblerAPI
-      .post('/logout.php')
+    return logout()
       .then(() => {
         dispatch({
           type: USER_LOGGED_OUT,
-        });
-        ReactGA.set({
-          userId: undefined,
         });
         history.push('/');
         dispatch(
