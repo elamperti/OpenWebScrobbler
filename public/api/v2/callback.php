@@ -1,6 +1,6 @@
 <?php
-  $token = $_POST['token'] ?: '';
-  if (strlen($token) != 32) {
+  $lastfmToken = $_POST['token'] ?: '';
+  if (strlen($lastfmToken) != 32) {
     require('inc/error.php');
     raiseOWSError('Bad token', 400);
   }
@@ -16,7 +16,7 @@
   require('inc/api.php');
   require_once('inc/analytics.php');
 
-  $response = $api->call('auth.getSession', array('token' => $token));
+  $response = $api->call('auth.getSession', array('token' => $lastfmToken));
 
   if ($response) {
     $response = json_decode($response);

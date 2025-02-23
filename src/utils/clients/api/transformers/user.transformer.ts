@@ -5,6 +5,7 @@ export function userTransformer(raw: any) {
   const username = raw?.user?.name || '';
 
   return {
+    token: raw?.token || null,
     user: {
       id: raw?.user?.id || null,
       name: username,

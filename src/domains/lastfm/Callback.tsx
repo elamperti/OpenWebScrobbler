@@ -31,15 +31,15 @@ function logoutAndTryAgain(e) {
 }
 
 export function Callback() {
-  const [token, setToken] = useState('');
+  const [lastfmToken, setLastfmToken] = useState('');
   const navigate = useNavigate();
   const queryClient = useQueryClient();
   const user = useUserData();
   const settings = useSettings();
   const validation = useQuery({
-    queryKey: ['lastfm', 'callback', token],
+    queryKey: ['lastfm', 'callback', lastfmToken],
     queryFn: () =>
-      validateLastfmToken(token).then((data) => {
+      validateLastfmToken(lastfmToken).then((data) => {
         if (data.success) {
           queryClient.invalidateQueries({
             queryKey: ['user'],
@@ -48,7 +48,7 @@ export function Callback() {
         return data;
       }),
     staleTime: Infinity,
-    enabled: !!token,
+    enabled: !!lastfmToken,
   });
 
   useEffect(() => {
@@ -56,8 +56,8 @@ export function Callback() {
 
     if (location.search && !user.isLoggedIn) {
       const queryString = qs.parse(location.search, { ignoreQueryPrefix: true });
-      setToken((queryString.token as string) || '');
-    } else if (!token) {
+      setLastfmToken((queryString.token as string) || '');
+    } else if (!lastfmToken) {
       navigate('/', { state: { keepAlerts: true } });
     }
     // Including `navigate` in this array causes a bug in album search, see #220
@@ -66,19 +66,19 @@ export function Callback() {
 
   useEffect(() => {
     // note: to prevent redirect when settings fails, add `&& settings.isSuccess`
-    if (token && user.isLoggedIn && validation.isSuccess && settings.isReady) {
+    if (lastfmToken && user.isLoggedIn && validation.isSuccess && settings.isReady) {
       ReactGA.event({
         category: 'Lastfm Login',
         action: 'Success',
       });
       setTimeout(() => {
         navigate('/', { state: { keepAlerts: true } });
-      }, 500); // This is just so the user sees everyting is ok
+      }, 500); // This is just so the user sees everything is ok
     }
-  }, [user, validation, settings, token, navigate]);
+  }, [lastfmToken, user, validation, settings, navigate]);
 
   // Show a spinner while we check if the user is already logged in
-  if (!token) {
+  if (!lastfmToken) {
     return (
       <div data-cy="Callback-Spinner">
         <Spinner />

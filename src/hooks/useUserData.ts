@@ -49,6 +49,11 @@ export const useUserData: UseUserDataHook = () => {
         saveToLocalStorage('hashedUID', hash);
       });
     }
+
+    // JWT
+    if (isSuccess && data?.token) {
+      saveToLocalStorage('token', data.token);
+    }
   }, [isSuccess, data]);
 
   useEffect(() => {

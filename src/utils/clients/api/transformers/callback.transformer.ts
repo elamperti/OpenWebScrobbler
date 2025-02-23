@@ -1,5 +1,6 @@
 type CallbackTransformerResponse = {
   success: boolean;
+  token: string | null;
   error?: {
     code: number;
     message: string;
@@ -9,6 +10,7 @@ type CallbackTransformerResponse = {
 export function callbackTransformer(raw: any) {
   const response: CallbackTransformerResponse = {
     success: raw?.status === 'ok',
+    token: raw?.token || null,
   };
 
   if (!response.success) {

@@ -11,3 +11,14 @@ export const openscrobblerAPI = axios.create({
     return statusCode >= 200 && statusCode < 300;
   },
 });
+
+openscrobblerAPI.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
