@@ -1,8 +1,8 @@
-import { setlistfmAPI } from 'utils/clients/setlistfm/apiClient';
+import { openscrobblerAPI } from 'utils/clients/api/apiClient';
 import { setlistSearchTransformer } from '../transformers/setlistSearch.transformer';
 
 export async function searchSetlist(artistName, page) {
-  const { data } = await setlistfmAPI.get('', {
+  const { data } = await openscrobblerAPI.get('/setlistfm.php', {
     params: {
       artistName,
       page: page > 1 ? page : undefined,

@@ -8,7 +8,7 @@ import { useQuery } from '@tanstack/react-query';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHistory, faList } from '@fortawesome/free-solid-svg-icons';
 
-import { getSetlistById } from 'utils/clients/setlistfm';
+import { getSetlistById } from 'utils/clients/api/methods/setlistGetById';
 
 import { ClearHistoryButton } from 'components/ClearHistoryButton';
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';

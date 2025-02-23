@@ -4,7 +4,7 @@ import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { searchSetlist } from 'utils/clients/setlistfm';
+import { searchSetlist } from 'utils/clients/api/methods/setlistSearchByArtist';
 import { SetlistList } from './partials/SetlistList';
 import Paginator from 'components/Paginator';
 import Spinner from 'components/Spinner';

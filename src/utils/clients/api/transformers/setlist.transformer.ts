@@ -1,9 +1,18 @@
 import { parse } from 'date-fns';
 import shortid from 'shortid';
-import { setlistVenueTransformer } from './venue.transformer';
 
-import type { Setlist } from 'utils/types/setlist';
+import type { Setlist, SetlistVenue } from 'utils/types/setlist';
 import type { Track } from 'utils/types/track';
+
+export function setlistVenueTransformer(venue: any): SetlistVenue {
+  const city = venue?.city;
+  return {
+    name: venue.name || '',
+    city: city?.name || '',
+    state: city?.state || '',
+    country: city?.country?.name || '',
+  };
+}
 
 export function setlistTransformer(raw: any, withTracks: boolean): Setlist {
   const artist = raw?.artist?.name ?? 'Unknown';
