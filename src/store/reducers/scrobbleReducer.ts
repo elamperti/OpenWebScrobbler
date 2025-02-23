@@ -1,4 +1,3 @@
-import axios from 'axios';
 import { get, hasIn } from 'lodash-es';
 import shortid from 'shortid';
 
@@ -11,12 +10,13 @@ import {
   CLEAR_SCROBBLES_LIST,
   SCROBBLE,
   SCROBBLE_COVER_SEARCH,
-  OPENSCROBBLER_API_URL,
   MAX_SCROBBLES_PER_REQUEST,
 } from 'Constants';
-import { prepareScrobbles } from 'store/transformers/scrobbleTransformer';
+
 import { castArray } from 'utils/common';
-import { Scrobble } from 'utils/types/scrobble';
+import { scrobble } from 'utils/clients/api/methods/scrobble';
+
+import type { Scrobble } from 'utils/types/scrobble';
 
 type ScrobbleState = {
   countNewScrobbles: boolean;
@@ -134,11 +134,7 @@ const scrobbleReducer = (state = initialState, action) => {
           () =>
             dispatch({
               type: SCROBBLE,
-              payload: axios.post(`${OPENSCROBBLER_API_URL}/scrobble.php`, prepareScrobbles(scrobbles), {
-                headers: {
-                  scrobbleUUID,
-                },
-              }),
+              payload: scrobble(scrobbles, scrobbleUUID),
             }),
           0
         );
