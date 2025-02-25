@@ -20,6 +20,15 @@
 
   if ($response) {
     $response = json_decode($response);
+
+    require('inc/jwt.php');
+    $jwtPayload = array(
+      'name' => $response->session->name,
+      // 'key' => $response->session->key
+    );
+    $jwt = new JWT();
+    $token = $jwt->sign($jwtPayload); // sign the JWT
+
     $ga = new Analytics();
 
     if (array_key_exists('session', $response)) {
@@ -27,7 +36,8 @@
       $_SESSION['key'] = strval($response->session->key);
       session_write_close();
       echo json_encode(array(
-        'status' => 'ok'
+        'status' => 'ok',
+        'token' => $token,
       ));
       ob_end_flush();
 
