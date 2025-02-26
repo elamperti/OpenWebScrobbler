@@ -1,5 +1,6 @@
 import { sanitizeArtistName } from './common/sanitizeArtistName';
-import { Album } from 'utils/types/album';
+
+import type { Album } from 'utils/types/album';
 
 export function albumGetInfoTransformer(response: any, discogsId?: string): Album {
   const hasArtist = Array.isArray(response?.data?.artists) && response.data.artists.length > 0;

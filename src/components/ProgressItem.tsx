@@ -1,5 +1,6 @@
-import { faCheck, faCircleExclamation, faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faCircleExclamation, faCompactDisc } from '@fortawesome/free-solid-svg-icons';
+
 import type { ReactNode } from 'react';
 
 export function ProgressItem({

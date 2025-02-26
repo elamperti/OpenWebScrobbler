@@ -1,21 +1,19 @@
+import { useEffect, useState } from 'react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 import qs from 'qs';
 import ReactGA from 'react-ga-neo';
-import { useEffect, useState } from 'react';
 import { Trans } from 'react-i18next';
-
 import { useNavigate } from 'react-router-dom';
-import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { useUserData } from 'hooks/useUserData';
-import { useSettings } from 'hooks/useSettings';
-
-import { validateLastfmToken } from 'utils/clients/api/methods/validateLastfmToken';
-import { logout } from 'utils/clients/api/methods/logout';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 
-import Spinner from 'components/Spinner';
 import { ProgressItem } from 'components/ProgressItem';
+import Spinner from 'components/Spinner';
+import { useSettings } from 'hooks/useSettings';
+import { useUserData } from 'hooks/useUserData';
+import { logout } from 'utils/clients/api/methods/logout';
+import { validateLastfmToken } from 'utils/clients/api/methods/validateLastfmToken';
 
 import { LASTFM_AUTH_URL } from 'Constants';
 

@@ -1,26 +1,26 @@
-import { Trans } from 'react-i18next';
-import { get } from 'lodash-es';
-
-import { useSettings } from 'hooks/useSettings';
-
-import { Input, FormGroup, Label } from 'reactstrap';
 import { Fragment } from 'react';
+import { get } from 'lodash-es';
+import { Trans } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCompactDisc, faSquare } from '@fortawesome/free-solid-svg-icons';
-import { faClock } from '@fortawesome/free-regular-svg-icons';
-import { breakStringUsingPattern } from 'domains/scrobbleAlbum/CleanupContext';
 
-import { properCase } from 'utils/string';
+import { FormGroup, Input, Label } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faClock } from '@fortawesome/free-regular-svg-icons';
+import { faCompactDisc, faSquare } from '@fortawesome/free-solid-svg-icons';
+
+import { breakStringUsingPattern } from 'domains/scrobbleAlbum/CleanupContext';
+import { useSettings } from 'hooks/useSettings';
 import { formatDuration, formatScrobbleTimestamp } from 'utils/datetime';
+import { properCase } from 'utils/string';
+
+import { ScrobbleAgainButton } from './partials/ScrobbleAgainButton';
+import { ScrobbleItemMenu } from './partials/ScrobbleItemMenu';
+import { ScrobbleStatusIcon } from './partials/ScrobbleStatusIcon';
+import { useScrobbleAgain } from './useScrobbleAgain';
+
 import type { Scrobble } from 'utils/types/scrobble';
 import type { TrackID } from 'utils/types/track';
 
-import { useScrobbleAgain } from './useScrobbleAgain';
-
-import { ScrobbleItemMenu } from './partials/ScrobbleItemMenu';
-import { ScrobbleStatusIcon } from './partials/ScrobbleStatusIcon';
-import { ScrobbleAgainButton } from './partials/ScrobbleAgainButton';
 import './ScrobbleItem.css';
 
 interface ScrobbleItemProps {

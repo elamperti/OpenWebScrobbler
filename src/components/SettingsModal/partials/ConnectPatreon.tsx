@@ -1,12 +1,14 @@
-import { Button } from 'reactstrap';
-import { Trans } from 'react-i18next';
 import ReactGA from 'react-ga-neo';
+import { Trans } from 'react-i18next';
+
+import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';
 
 import { useSettings } from 'hooks/useSettings';
 
 import { PATREON_AUTH_URL } from 'Constants';
+
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faPatreon } from '@fortawesome/free-brands-svg-icons';
 

@@ -1,6 +1,5 @@
-import type { IconProp } from '@fortawesome/fontawesome-svg-core';
-
 import type { ReactNode } from 'react';
+import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 export type Alert = {
   id: string;

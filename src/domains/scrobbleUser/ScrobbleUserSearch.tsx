@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, useLocation } from 'react-router-dom';
+import { Trans, useTranslation } from 'react-i18next';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 import { Row } from 'reactstrap';
-import { Trans, useTranslation } from 'react-i18next';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserFriends } from '@fortawesome/free-solid-svg-icons';
-import { usernameIsValid } from 'utils/common';
 
-import SearchForm from 'components/SearchForm';
 import Avatar from 'components/Avatar';
+import SearchForm from 'components/SearchForm';
 import useLocalStorage from 'hooks/useLocalStorage';
+import { usernameIsValid } from 'utils/common';
 
 export function ScrobbleUserSearch() {
   const navigate = useNavigate();

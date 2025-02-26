@@ -1,20 +1,20 @@
 import { get, hasIn } from 'lodash-es';
 import shortid from 'shortid';
 
+import { scrobble } from 'utils/clients/api/methods/scrobble';
+import { castArray } from 'utils/common';
+
 import {
+  CLEAR_SCROBBLES_LIST,
+  COUNT_SCROBBLES_DISABLE,
+  COUNT_SCROBBLES_ENABLE,
   ENQUEUE_NEW,
   FLUSH_QUEUE,
-  COUNT_SCROBBLES_ENABLE,
-  COUNT_SCROBBLES_DISABLE,
-  USER_LOGGED_OUT,
-  CLEAR_SCROBBLES_LIST,
+  MAX_SCROBBLES_PER_REQUEST,
   SCROBBLE,
   SCROBBLE_COVER_SEARCH,
-  MAX_SCROBBLES_PER_REQUEST,
+  USER_LOGGED_OUT,
 } from 'Constants';
-
-import { castArray } from 'utils/common';
-import { scrobble } from 'utils/clients/api/methods/scrobble';
 
 import type { Scrobble } from 'utils/types/scrobble';
 

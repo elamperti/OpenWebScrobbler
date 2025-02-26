@@ -1,5 +1,5 @@
-import { Trans } from 'react-i18next';
 import ReactGA from 'react-ga-neo';
+import { Trans } from 'react-i18next';
 
 import { Alert, Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';

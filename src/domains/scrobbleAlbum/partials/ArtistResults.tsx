@@ -1,16 +1,17 @@
 import { useQuery } from '@tanstack/react-query';
-import { useNavigate } from 'react-router-dom';
 import ReactGA from 'react-ga-neo';
-
-import { searchArtists as LastFmSearch } from 'utils/clients/lastfm';
-import { searchArtists as DiscogsSearch } from 'utils/clients/discogs';
 import { Trans } from 'react-i18next';
-
-import { PROVIDER_DISCOGS, PROVIDER_LASTFM, Provider } from 'Constants';
+import { useNavigate } from 'react-router-dom';
 
 import Spinner from 'components/Spinner';
+import { searchArtists as DiscogsSearch } from 'utils/clients/discogs';
+import { searchArtists as LastFmSearch } from 'utils/clients/lastfm';
+
 import ArtistList from './ArtistList';
 
+import { PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
+
+import type { Provider } from 'Constants';
 import type { DiscogsArtist, LastFmArtist } from 'utils/types/artist';
 
 export default function ArtistResults({ query, dataProvider }: { query: string; dataProvider: Provider }) {

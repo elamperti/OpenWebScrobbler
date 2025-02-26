@@ -1,10 +1,10 @@
-import { useNavigate } from 'react-router-dom';
 import { useQueryClient } from '@tanstack/react-query';
-
-import { Row, Button } from 'reactstrap';
 import { Trans, useTranslation } from 'react-i18next';
-import { faChevronLeft, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+import { useNavigate } from 'react-router-dom';
+
+import { Button, Row } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faChevronLeft, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 
 import SearchForm from 'components/SearchForm';
 import { usernameIsValid } from 'utils/common';

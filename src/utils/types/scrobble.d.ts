@@ -1,4 +1,4 @@
-import { Track } from './track';
+import type { Track } from './track';
 
 export type Scrobble = Track & {
   scrobbleUUID?: string; // Used to track scrobbled items (i.e. after scrobbling)

@@ -1,20 +1,19 @@
 import { useEffect, useState } from 'react';
+import { useFeatureIsOn } from '@growthbook/growthbook-react';
+import ReactGA from 'react-ga-neo';
 import { Trans, useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
-import ReactGA from 'react-ga-neo';
 
-import { useFeatureIsOn } from '@growthbook/growthbook-react';
+import { DropdownItem, FormGroup, Input, Label, Row } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
+
+import SearchForm from 'components/SearchForm';
 import useLocalStorage from 'hooks/useLocalStorage';
 
-import { Row, FormGroup, Input, Label, DropdownItem } from 'reactstrap';
-import SearchForm from 'components/SearchForm';
-
-import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-
-import { PROVIDER_NAME, PROVIDER_LASTFM, PROVIDER_DISCOGS } from 'Constants';
-
 import AlbumList from './partials/AlbumList';
+
+import { PROVIDER_DISCOGS, PROVIDER_LASTFM, PROVIDER_NAME } from 'Constants';
 
 import type { Provider } from 'Constants';
 import type { Album, DiscogsAlbum, LastFmAlbum } from 'utils/types/album';

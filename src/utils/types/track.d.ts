@@ -1,4 +1,4 @@
-import { AlbumCover } from './album';
+import type { AlbumCover } from './album';
 
 export type TrackID = string;
 

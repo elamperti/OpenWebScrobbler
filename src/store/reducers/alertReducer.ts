@@ -1,6 +1,8 @@
 import shortid from 'shortid';
-import { ALERT_CREATE, ALERT_DISMISS, ALERT_CLEAR_ALL } from 'Constants';
-import { Alert } from 'components/AlertZone/types';
+
+import { ALERT_CLEAR_ALL, ALERT_CREATE, ALERT_DISMISS } from 'Constants';
+
+import type { Alert } from 'components/AlertZone/types';
 
 const initialState: Alert[] = [];
 

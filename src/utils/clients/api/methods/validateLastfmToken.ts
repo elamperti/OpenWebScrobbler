@@ -1,6 +1,7 @@
+import { saveToLocalStorage } from 'localstorage';
+
 import { openscrobblerAPI } from '../apiClient';
 import { callbackTransformer } from '../transformers/callback.transformer';
-import { saveToLocalStorage } from 'localstorage';
 
 export function validateLastfmToken(token: string) {
   const params = new URLSearchParams();

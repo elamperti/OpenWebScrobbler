@@ -1,5 +1,7 @@
 import { get } from 'lodash-es';
+
 import { sanitizeArtistName } from './common/sanitizeArtistName';
+
 import type { Album } from 'utils/types/album';
 
 export function topAlbumsTransformer(response: any): Album[] {

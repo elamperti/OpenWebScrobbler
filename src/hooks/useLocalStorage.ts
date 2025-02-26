@@ -1,5 +1,6 @@
+import { useEffect, useState } from 'react';
+
 import type { Dispatch, SetStateAction } from 'react';
-import { useState, useEffect } from 'react';
 
 export type UseLocalStorageParamKey = string;
 

@@ -4,7 +4,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 
 import type { SizeProp } from '@fortawesome/fontawesome-svg-core';
-
 import type { AvatarSizes } from 'utils/types/avatar';
 
 import './Avatar.css';

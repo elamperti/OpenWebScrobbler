@@ -1,4 +1,4 @@
-import { splitArtistTitleFromText, properCase } from './string';
+import { properCase, splitArtistTitleFromText } from './string';
 
 describe('properCase', () => {
   it('handles empty strings', () => {

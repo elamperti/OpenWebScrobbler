@@ -1,8 +1,9 @@
 import { Row } from 'reactstrap';
+
 import ArtistCard from './ArtistCard';
-import { Artist } from 'utils/types/artist';
 
 import type { MouseEventHandler } from 'react';
+import type { Artist } from 'utils/types/artist';
 
 export default function ArtistList({
   artists = [],

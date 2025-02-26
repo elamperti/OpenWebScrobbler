@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
-
-import { albumSearch as LastFmSearch } from 'utils/clients/lastfm';
-import { albumSearch as DiscogsSearch } from 'utils/clients/discogs';
-import { sanitizeProvider } from 'utils/common';
-
 import { Trans } from 'react-i18next';
-import { Row } from 'reactstrap';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
-import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
+import { Row } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 
 import Spinner from 'components/Spinner';
+import { albumSearch as DiscogsSearch } from 'utils/clients/discogs';
+import { albumSearch as LastFmSearch } from 'utils/clients/lastfm';
+import { sanitizeProvider } from 'utils/common';
+
 import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 import AlbumResults from './partials/AlbumResults';
 import ArtistResults from './partials/ArtistResults';

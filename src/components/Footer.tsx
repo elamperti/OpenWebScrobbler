@@ -1,8 +1,8 @@
-import { useLocation } from 'react-router-dom';
 import { Trans } from 'react-i18next';
+import { useLocation } from 'react-router-dom';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faGithub, faDiscord, faPatreon } from '@fortawesome/free-brands-svg-icons';
+import { faDiscord, faGithub, faPatreon } from '@fortawesome/free-brands-svg-icons';
 
 import { useSettings } from 'hooks/useSettings';
 

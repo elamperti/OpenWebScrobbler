@@ -1,4 +1,5 @@
 import { Navigate } from 'react-router-dom';
+
 import { useUserData } from 'hooks/useUserData';
 
 import type { FC } from 'react';

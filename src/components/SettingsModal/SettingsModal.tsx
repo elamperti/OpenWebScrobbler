@@ -1,22 +1,20 @@
-import { useState, useContext, useEffect } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { useFeatureIsOn } from '@growthbook/growthbook-react';
+import { Trans, useTranslation } from 'react-i18next';
 import { useDispatch } from 'react-redux';
 
-import { Button, Form, FormGroup, Input, Label, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
-
+import { Button, Form, FormGroup, Input, Label, Modal, ModalBody, ModalFooter, ModalHeader } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCog } from '@fortawesome/free-solid-svg-icons';
 import { faSave } from '@fortawesome/free-regular-svg-icons';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 
+import { useSettings } from 'hooks/useSettings';
+import { useUserData } from 'hooks/useUserData';
+import { createAlert } from 'store/actions/alertActions';
 import { languageList } from 'utils/i18n';
 
-import { Trans, useTranslation } from 'react-i18next';
-import { useFeatureIsOn } from '@growthbook/growthbook-react';
-import { createAlert } from 'store/actions/alertActions';
-import { useUserData } from 'hooks/useUserData';
-import { useSettings } from 'hooks/useSettings';
-
-import { SettingsModalContext } from './SettingsModalContext';
 import ConnectPatreon from './partials/ConnectPatreon';
+import { SettingsModalContext } from './SettingsModalContext';
 
 export default function SettingsModal() {
   const { user } = useUserData();

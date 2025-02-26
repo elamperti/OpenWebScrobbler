@@ -1,14 +1,16 @@
 import { useEffect, useState } from 'react';
-import { useQuery } from '@tanstack/react-query';
 import { useGrowthBook } from '@growthbook/growthbook-react';
+import { useQuery } from '@tanstack/react-query';
+import { saveToLocalStorage } from 'localstorage';
 import ReactGA from 'react-ga-neo';
 
-import useLocalStorage from './useLocalStorage';
 import { userGetProfile } from 'utils/clients/api/methods/userGetProfile';
 import { userTransformer } from 'utils/clients/api/transformers/user.transformer';
-import type { User } from 'utils/types/user';
 import { sha256 } from 'utils/common';
-import { saveToLocalStorage } from 'localstorage';
+
+import useLocalStorage from './useLocalStorage';
+
+import type { User } from 'utils/types/user';
 
 const emptyUser = userTransformer(null);
 

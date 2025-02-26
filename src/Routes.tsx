@@ -1,18 +1,18 @@
 import { Navigate, Route, Routes as Switch } from 'react-router-dom';
 
-import Home from 'domains/home';
 import PrivateRoute from 'components/PrivateRoute';
-import { ScrobbleSong } from './domains/scrobbleSong';
-import {
-  ScrobbleAlbumSearch,
-  ScrobbleArtistResults,
-  ScrobbleAlbumResults,
-  ScrobbleAlbumTracklist,
-} from 'domains/scrobbleAlbum';
-import { ScrobbleUserSearch, ScrobbleUserResults } from './domains/scrobbleUser';
-import { ScrobbleSetlistResult, ScrobbleSetlistSearch, ScrobbleSetlistView } from 'domains/scrobbleSetlist';
+import Home from 'domains/home';
 import { Callback } from 'domains/lastfm/Callback';
 import { PatreonCallback } from 'domains/patreon';
+import {
+  ScrobbleAlbumResults,
+  ScrobbleAlbumSearch,
+  ScrobbleAlbumTracklist,
+  ScrobbleArtistResults,
+} from 'domains/scrobbleAlbum';
+import { ScrobbleSetlistResult, ScrobbleSetlistSearch, ScrobbleSetlistView } from 'domains/scrobbleSetlist';
+import { ScrobbleSong } from 'domains/scrobbleSong';
+import { ScrobbleUserResults, ScrobbleUserSearch } from 'domains/scrobbleUser';
 
 export default function Routes() {
   return (

@@ -1,10 +1,9 @@
-import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { Link } from 'react-router-dom';
 
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
-
-import { faCompactDisc, faUser } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCompactDisc, faUser } from '@fortawesome/free-solid-svg-icons';
 
 import { PROVIDER_NAME } from 'Constants';
 

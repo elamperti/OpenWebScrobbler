@@ -1,7 +1,9 @@
 import { Trans } from 'react-i18next';
-import { SetlistCard } from './SetlistCard';
-import type { Setlist } from 'utils/types/setlist';
 import { Link } from 'react-router-dom';
+
+import { SetlistCard } from './SetlistCard';
+
+import type { Setlist } from 'utils/types/setlist';
 
 export function SetlistList({ setlists, query }: { setlists: Setlist[]; query: string }) {
   if (!Array.isArray(setlists) || setlists.length === 0) {

@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Trans } from 'react-i18next';
+
 import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCheck } from '@fortawesome/free-solid-svg-icons';

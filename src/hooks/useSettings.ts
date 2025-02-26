@@ -1,10 +1,14 @@
 import { useEffect } from 'react';
-import { UseMutateFunction, useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { userGetSettings } from 'utils/clients/api/methods/userGetSettings';
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+
 import { settingsUpdate } from 'utils/clients/api/methods/settingsUpdate';
-import type { Settings } from 'utils/types/settings';
+import { userGetSettings } from 'utils/clients/api/methods/userGetSettings';
+
 import { useLanguage } from './useLanguage';
 import { useUserData } from './useUserData';
+
+import type { UseMutateFunction } from '@tanstack/react-query';
+import type { Settings } from 'utils/types/settings';
 
 export type UseSettingsResult = {
   settings: Settings;

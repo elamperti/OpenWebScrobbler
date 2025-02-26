@@ -2,10 +2,10 @@ import { useContext } from 'react';
 
 import { ScrobbleItem } from 'components/ScrobbleItem';
 import Spinner from 'components/Spinner';
+import { CleanupPatternContext } from 'domains/scrobbleAlbum/CleanupContext';
 import { ScrobbleCloneContext } from 'domains/scrobbleSong/ScrobbleSong';
 
 import type { ReactNode } from 'react';
-import { CleanupPatternContext } from 'domains/scrobbleAlbum/CleanupContext';
 
 interface ScrobbleListProps {
   analyticsEventForScrobbles?: string;

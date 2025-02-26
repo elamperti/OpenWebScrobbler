@@ -1,20 +1,17 @@
 import { forwardRef, useMemo, useState } from 'react';
-import { Trans, useTranslation } from 'react-i18next';
-import ReactGA from 'react-ga-neo';
-
 import addDays from 'date-fns/addDays';
-import subDays from 'date-fns/subDays';
 import format from 'date-fns/format';
+import subDays from 'date-fns/subDays';
+import ReactGA from 'react-ga-neo';
+import { Trans, useTranslation } from 'react-i18next';
 
-import { Input, InputGroup, InputGroupText, Modal, ModalBody, ModalHeader } from 'reactstrap';
+import DayPickerInput from 'react-day-picker/DayPickerInput';
 import TimeKeeper from 'react-timekeeper';
-
+import { Input, InputGroup, InputGroupText, Modal, ModalBody, ModalHeader } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faClock } from '@fortawesome/free-regular-svg-icons';
 
 import { useSettings } from 'hooks/useSettings';
-
-import DayPickerInput from 'react-day-picker/DayPickerInput';
 
 import 'react-day-picker/lib/style.css';
 import './DateTimePicker.scss';

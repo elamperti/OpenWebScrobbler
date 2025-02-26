@@ -1,9 +1,11 @@
-import type { Dispatch, SetStateAction } from 'react';
 import { useEffect, useState } from 'react';
-import { useTranslation } from 'react-i18next';
 import { changeLanguage } from 'i18next';
 import LanguageDetector from 'i18next-browser-languagedetector';
+import { useTranslation } from 'react-i18next';
+
 import { fallbackLng } from 'utils/i18n';
+
+import type { Dispatch, SetStateAction } from 'react';
 
 export type UseLanguageResult = {
   currentLanguage: string;

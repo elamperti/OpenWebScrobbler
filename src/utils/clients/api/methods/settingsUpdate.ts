@@ -1,6 +1,7 @@
-import { Settings } from 'utils/types/settings';
 import { openscrobblerAPI } from '../apiClient';
 import { settingsTransformer } from '../transformers/settings.transformer';
+
+import type { Settings } from 'utils/types/settings';
 
 function objectToSearchParams(obj: { [key: string]: any }) {
   const params = new URLSearchParams();

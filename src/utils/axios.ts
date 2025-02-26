@@ -1,14 +1,17 @@
-import axios, { InternalAxiosRequestConfig } from 'axios';
-import ReactGA from 'react-ga-neo';
+import axios from 'axios';
 import { get } from 'lodash-es';
 import qs from 'qs';
+import ReactGA from 'react-ga-neo';
 
-import { logOut } from 'store/actions/userActions';
-import { createAlert } from 'store/actions/alertActions';
 import { faExclamationTriangle } from '@fortawesome/free-solid-svg-icons';
-import { Alert } from 'components/AlertZone/types';
+
+import { createAlert } from 'store/actions/alertActions';
+import { logOut } from 'store/actions/userActions';
 
 import { OPENSCROBBLER_API_URL } from 'Constants';
+
+import type { InternalAxiosRequestConfig } from 'axios';
+import type { Alert } from 'components/AlertZone/types';
 
 type DOMHighResTimeStamp = number; // should be available through `dom` but it isn't.
 

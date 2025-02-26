@@ -1,20 +1,21 @@
 import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
 import { Trans } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
-import { RootState } from 'store';
-import { useQuery } from '@tanstack/react-query';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHistory, faList } from '@fortawesome/free-solid-svg-icons';
-
-import { getSetlistById } from 'utils/clients/api/methods/setlistGetById';
 
 import { ClearHistoryButton } from 'components/ClearHistoryButton';
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 import ScrobbleList from 'components/ScrobbleList';
 import Spinner from 'components/Spinner';
+import { getSetlistById } from 'utils/clients/api/methods/setlistGetById';
+
 import SetlistViewer from './partials/SetlistViewer';
+
+import type { RootState } from 'store';
 
 export function ScrobbleSetlistView() {
   const params = useParams();

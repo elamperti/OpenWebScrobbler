@@ -1,8 +1,10 @@
 import { Trans, useTranslation } from 'react-i18next';
-import { Button, Row, Col } from 'reactstrap';
+
+import { Button, Col, Row } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faLock } from '@fortawesome/free-solid-svg-icons';
 import { faLastfm } from '@fortawesome/free-brands-svg-icons';
+import { faLock } from '@fortawesome/free-solid-svg-icons';
+
 import SocialNetworksBlock from './partials/SocialNetworksBlock';
 import WelcomeBlock from './partials/WelcomeBlock';
 

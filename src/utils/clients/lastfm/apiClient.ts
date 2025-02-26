@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { AUDIOSCROBBLER_API_URL } from 'Constants';
 
 export const lastfmAPI = axios.create({

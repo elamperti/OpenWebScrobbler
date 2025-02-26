@@ -1,17 +1,19 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+
 import { Collapse, Nav, Navbar, NavbarBrand, NavbarToggler } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeadphonesAlt, faCompactDisc, faSignInAlt, faUserFriends, faList } from '@fortawesome/free-solid-svg-icons';
 import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
+import { faCompactDisc, faHeadphonesAlt, faList, faSignInAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
 
-import { useBootstrapBreakpoint, BS_SIZE_SM } from 'utils/bootstrapBreakpoints';
-import { useUserData } from 'hooks/useUserData';
 import { useSettings } from 'hooks/useSettings';
+import { useUserData } from 'hooks/useUserData';
+import { BS_SIZE_SM, useBootstrapBreakpoint } from 'utils/bootstrapBreakpoints';
 
 import LanguageSelector from './partials/LanguageSelector';
 import NavigationItem from './partials/NavigationItem';
 import UserDropdown from './partials/UserDropdown';
+
 import { LASTFM_AUTH_URL } from 'Constants';
 
 import './Navigation.scss';

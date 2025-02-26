@@ -1,30 +1,30 @@
-import { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 import ReactGA from 'react-ga-neo';
 import { Trans } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 
-import { faHistory } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faHistory } from '@fortawesome/free-solid-svg-icons';
 
-import { _discogsFindBestMatch } from 'store/actions/albumActions';
-import ScrobbleList from 'components/ScrobbleList';
+import { ClearHistoryButton } from 'components/ClearHistoryButton';
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
+import ScrobbleList from 'components/ScrobbleList';
 import Spinner from 'components/Spinner';
-import Tracklist from './partials/Tracklist';
+import useLocalStorage from 'hooks/useLocalStorage';
+import { _discogsFindBestMatch } from 'store/actions/albumActions';
+import { albumGetInfo as DiscogsAlbumGetInfo } from 'utils/clients/discogs';
+import { albumGetInfo as LastfmAlbumGetInfo } from 'utils/clients/lastfm';
+
+import { CleanupPatternContext } from './CleanupContext';
 import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
+import Tracklist from './partials/Tracklist';
 
 import { MAX_RECENT_ALBUMS, PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
-import { albumGetInfo as DiscogsAlbumGetInfo } from 'utils/clients/discogs';
-import { albumGetInfo as LastfmAlbumGetInfo } from 'utils/clients/lastfm';
-import { CleanupPatternContext } from './CleanupContext';
-import useLocalStorage from 'hooks/useLocalStorage';
-
 import type { RootState } from 'store';
-import type { DiscogsAlbum, Album } from 'utils/types/album';
-import { ClearHistoryButton } from 'components/ClearHistoryButton';
+import type { Album, DiscogsAlbum } from 'utils/types/album';
 
 const sanitizeParam = (param: string) => {
   return param ? decodeURIComponent(param) : null;

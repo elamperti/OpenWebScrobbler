@@ -2,25 +2,28 @@ import ReactDOM from 'react-dom/client';
 import { unstable_HistoryRouter as HistoryRouter } from 'react-router-dom';
 
 import './index.css';
+
 import App from 'App';
-import history from 'utils/history';
+
 import ErrorPage from 'domains/error/ErrorPage';
+import history from 'utils/history';
+
 // import reportWebVitals from 'utils/reportWebVitals';
 
 import 'bootswatch/dist/slate/bootstrap.min.css';
 
-import { Provider as ReduxProvider } from 'react-redux';
-import store from 'store';
-
-import ReactGA from 'react-ga-neo';
-import * as Sentry from '@sentry/react';
-
 import { GrowthBook, GrowthBookProvider } from '@growthbook/growthbook-react';
+import * as Sentry from '@sentry/react';
+import ReactGA from 'react-ga-neo';
+import { Provider as ReduxProvider } from 'react-redux';
+
+import store from 'store';
 
 import 'utils/i18n';
 
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
+
 import { tweak } from 'utils/tweaks/Tweaks';
 
 // Avoid proxies that may interfer with the site

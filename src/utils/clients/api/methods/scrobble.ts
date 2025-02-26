@@ -1,5 +1,6 @@
-import { openscrobblerAPI } from '../apiClient';
 import { prepareScrobbles } from 'store/transformers/scrobbleTransformer';
+
+import { openscrobblerAPI } from '../apiClient';
 
 // Helper function to convert object with arrays to URLSearchParams
 // (this will be removed after upgrading the endpoint)

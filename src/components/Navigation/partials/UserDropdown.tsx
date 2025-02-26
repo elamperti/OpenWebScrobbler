@@ -1,21 +1,20 @@
 import { useContext } from 'react';
-import { useDispatch } from 'react-redux';
-import { useQueryClient } from '@tanstack/react-query';
 import { useGrowthBook } from '@growthbook/growthbook-react';
+import { useQueryClient } from '@tanstack/react-query';
 import ReactGA from 'react-ga-neo';
-import { UncontrolledDropdown, DropdownToggle, DropdownMenu, DropdownItem, NavItem, NavLink } from 'reactstrap';
 import { Trans } from 'react-i18next';
+import { useDispatch } from 'react-redux';
 
+import { DropdownItem, DropdownMenu, DropdownToggle, NavItem, NavLink, UncontrolledDropdown } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCog, faCrown, faExternalLinkAlt, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
-import { useUserData } from 'hooks/useUserData';
-import { useSettings } from 'hooks/useSettings';
-import { logOut } from 'store/actions/userActions';
-
-import { useBootstrapBreakpoint, BS_SIZE_MD } from 'utils/bootstrapBreakpoints';
 import Avatar from 'components/Avatar';
 import { SettingsModalContext } from 'components/SettingsModal/SettingsModalContext';
+import { useSettings } from 'hooks/useSettings';
+import { useUserData } from 'hooks/useUserData';
+import { logOut } from 'store/actions/userActions';
+import { BS_SIZE_MD, useBootstrapBreakpoint } from 'utils/bootstrapBreakpoints';
 
 import './UserDropdown.scss';
 

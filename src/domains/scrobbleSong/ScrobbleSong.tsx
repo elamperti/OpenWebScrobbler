@@ -1,27 +1,25 @@
-import { useState, createContext } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Trans } from 'react-i18next';
+import { createContext, useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import ReactGA from 'react-ga-neo';
+import { Trans } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Badge, Nav, NavItem, NavLink, TabContent, TabPane } from 'reactstrap';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCompactDisc, faHistory, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 import { faPlayCircle } from '@fortawesome/free-regular-svg-icons';
+import { faCompactDisc, faHistory, faUserAstronaut } from '@fortawesome/free-solid-svg-icons';
 
-import type { RootState } from 'store';
-import { scrobbleCounterEnabled } from 'store/actions/scrobbleActions';
-
+import { ClearHistoryButton } from 'components/ClearHistoryButton';
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 import ScrobbleList from 'components/ScrobbleList';
-import { SongForm } from './SongForm';
+import { useUserData } from 'hooks/useUserData';
+import { scrobbleCounterEnabled } from 'store/actions/scrobbleActions';
 
 import { LastFmProfileHistory } from './partials/LastFmProfileHistory';
-import { useQueryClient } from '@tanstack/react-query';
+import { SongForm } from './SongForm';
 
 import type { FC } from 'react';
-import { useUserData } from 'hooks/useUserData';
-import { ClearHistoryButton } from 'components/ClearHistoryButton';
+import type { RootState } from 'store';
 
 type SidebarTab = 'history' | 'userProfile';
 

@@ -1,8 +1,10 @@
-import { faMapMarkerAlt, faUser } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
+
 import { Card, CardBody } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faMapMarkerAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+
 import type { Setlist } from 'utils/types/setlist';
 
 export function SetlistCard({

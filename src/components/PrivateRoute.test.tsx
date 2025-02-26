@@ -1,7 +1,9 @@
-import { MemoryRouter } from 'react-router-dom';
 import { render, screen } from '@testing-library/react';
-import PrivateRoute from './PrivateRoute';
+import { MemoryRouter } from 'react-router-dom';
+
 import { useUserData } from 'hooks/useUserData';
+
+import PrivateRoute from './PrivateRoute';
 
 import type { Mock } from 'vitest';
 

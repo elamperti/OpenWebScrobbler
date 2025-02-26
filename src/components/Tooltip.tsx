@@ -1,5 +1,7 @@
 import { useState } from 'react';
+
 import { Tooltip as BSTooltip } from 'reactstrap';
+
 import type { TooltipProps } from 'reactstrap';
 
 export default function Tooltip(props: TooltipProps) {

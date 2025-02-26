@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 export const BS_SIZE_XS = 0;
 export const BS_SIZE_SM = 576;

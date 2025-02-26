@@ -1,10 +1,12 @@
 import ReactGA from 'react-ga-neo';
-import { Button, Row, Col } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faDiscord } from '@fortawesome/free-brands-svg-icons';
 import { Trans } from 'react-i18next';
 
+import { Button, Col, Row } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faDiscord } from '@fortawesome/free-brands-svg-icons';
+
 import './SocialNetworksBlock.scss';
+
 import { PatreonBlock } from './PatreonBlock';
 
 export default function SocialNetworksBlock() {

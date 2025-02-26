@@ -1,5 +1,6 @@
 import { get, hasIn } from 'lodash-es';
 import shortid from 'shortid';
+
 import { sanitizeArtistName } from './common/sanitizeArtistName';
 
 import type { Track } from 'utils/types/track';

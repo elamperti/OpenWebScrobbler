@@ -1,8 +1,8 @@
 import ReactGA from 'react-ga-neo';
+import { Trans, useTranslation } from 'react-i18next';
+import { useNavigate } from 'react-router-dom';
 
 import SearchForm from 'components/SearchForm';
-import { useNavigate } from 'react-router-dom';
-import { Trans, useTranslation } from 'react-i18next';
 
 export function extractSetlistID(setlistUrl: string): string | null {
   return setlistUrl.match(/([a-zA-Z0-9]+)(?=\.htm)/)?.[0] ?? null;

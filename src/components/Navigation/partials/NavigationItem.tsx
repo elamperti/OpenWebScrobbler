@@ -1,7 +1,9 @@
-import { NavLink as RouterNavLink } from 'react-router-dom';
 import { Trans } from 'react-i18next';
+import { NavLink as RouterNavLink } from 'react-router-dom';
+
 import { NavItem, NavLink } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 
 export default function NavigationItem({

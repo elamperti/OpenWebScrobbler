@@ -1,14 +1,14 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { Trans } from 'react-i18next';
 import ReactGA from 'react-ga-neo';
+import { Trans } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
 import { Button } from 'reactstrap';
-
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrashAlt } from '@fortawesome/free-regular-svg-icons';
 
-import type { RootState } from 'store';
 import { clearListOfScrobbles } from 'store/actions/scrobbleActions';
+
+import type { RootState } from 'store';
 
 export function ClearHistoryButton() {
   const dispatch = useDispatch();

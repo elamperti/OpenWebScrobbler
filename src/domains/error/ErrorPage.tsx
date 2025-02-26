@@ -2,7 +2,7 @@ import { showReportDialog } from '@sentry/react';
 
 import { Button, Navbar, NavbarBrand } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faHeadphonesAlt, faBolt, faCompactDisc, faPaperPlane, faArrowLeft } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faBolt, faCompactDisc, faHeadphonesAlt, faPaperPlane } from '@fortawesome/free-solid-svg-icons';
 
 /* ToDo: Translate this whole page? What about i18n lib errors? */
 

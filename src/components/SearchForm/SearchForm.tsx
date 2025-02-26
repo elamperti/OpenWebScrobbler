@@ -1,4 +1,4 @@
-import { useState, useEffect, ChangeEvent, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Trans } from 'react-i18next';
 
 import {
@@ -12,9 +12,9 @@ import {
   UncontrolledDropdown,
 } from 'reactstrap';
 
-import type { ReactNode } from 'react';
-
 import styles from './SearchForm.module.scss';
+
+import type { ChangeEvent, ReactNode } from 'react';
 
 // ToDo: check and fix any double-renders on change/validation
 

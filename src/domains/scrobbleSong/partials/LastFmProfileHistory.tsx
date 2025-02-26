@@ -1,4 +1,5 @@
 import { useQuery } from '@tanstack/react-query';
+
 import EmptyScrobbleListFiller from 'components/EmptyScrobbleListFiller';
 import ScrobbleList from 'components/ScrobbleList';
 import { userGetRecentTracks } from 'utils/clients/lastfm/methods/userGetRecentTracks';

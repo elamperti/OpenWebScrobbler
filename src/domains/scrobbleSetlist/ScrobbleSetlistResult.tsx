@@ -1,14 +1,16 @@
-import { faList } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useQuery } from '@tanstack/react-query';
 import { useEffect, useState } from 'react';
+import { useQuery } from '@tanstack/react-query';
+import { Trans } from 'react-i18next';
 import { useParams } from 'react-router-dom';
 
-import { searchSetlist } from 'utils/clients/api/methods/setlistSearchByArtist';
-import { SetlistList } from './partials/SetlistList';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faList } from '@fortawesome/free-solid-svg-icons';
+
 import Paginator from 'components/Paginator';
 import Spinner from 'components/Spinner';
-import { Trans } from 'react-i18next';
+import { searchSetlist } from 'utils/clients/api/methods/setlistSearchByArtist';
+
+import { SetlistList } from './partials/SetlistList';
 
 export function ScrobbleSetlistResult() {
   const params = useParams();

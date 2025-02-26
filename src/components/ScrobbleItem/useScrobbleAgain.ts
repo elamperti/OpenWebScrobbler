@@ -1,9 +1,10 @@
-import { useDispatch } from 'react-redux';
 import ReactGA from 'react-ga-neo';
+import { useDispatch } from 'react-redux';
 
-import { enqueueScrobble } from 'store/actions/scrobbleActions';
-import type { Scrobble } from 'utils/types/scrobble';
 import { cleanTitleWithPattern } from 'domains/scrobbleAlbum/CleanupContext';
+import { enqueueScrobble } from 'store/actions/scrobbleActions';
+
+import type { Scrobble } from 'utils/types/scrobble';
 
 export function useScrobbleAgain(
   scrobble: Scrobble,

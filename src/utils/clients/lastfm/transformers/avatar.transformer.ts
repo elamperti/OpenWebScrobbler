@@ -1,4 +1,4 @@
-import { Avatar } from 'utils/types/avatar';
+import type { Avatar } from 'utils/types/avatar';
 
 const sizeMap = {
   small: 'sm',

@@ -1,13 +1,15 @@
+import { useFeatureIsOn } from '@growthbook/growthbook-react';
 import ReactGA from 'react-ga-neo';
+import { Trans } from 'react-i18next';
 import { Link } from 'react-router-dom';
-import { Button, Row, Col } from 'reactstrap';
+
+import { Button, Col, Row } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHandHoldingHeart } from '@fortawesome/free-solid-svg-icons';
-import { Trans } from 'react-i18next';
-import { useFeatureIsOn } from '@growthbook/growthbook-react';
 
 import { useSettings } from 'hooks/useSettings';
 import { useUserData } from 'hooks/useUserData';
+
 import { PATREON_AUTH_URL } from 'Constants';
 
 import './SocialNetworksBlock.scss';

@@ -1,10 +1,11 @@
 import { hasIn } from 'lodash-es';
 
-import { USER_LOGGED_OUT } from 'Constants';
-
-import history from 'utils/history';
-import { createAlert } from './alertActions';
 import { logout } from 'utils/clients/api/methods/logout';
+import history from 'utils/history';
+
+import { createAlert } from './alertActions';
+
+import { USER_LOGGED_OUT } from 'Constants';
 
 export function logOut(dispatch) {
   return (alertObject) => {

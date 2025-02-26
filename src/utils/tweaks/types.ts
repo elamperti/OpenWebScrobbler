@@ -1,4 +1,4 @@
-import { BindingApi } from '@tweakpane/core';
+import type { BindingApi } from '@tweakpane/core';
 import type { Pane } from 'tweakpane';
 
 declare global {

@@ -1,18 +1,21 @@
-import ScrobbleList from 'components/ScrobbleList';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
 import { addSeconds, subDays } from 'date-fns';
-import lazyWithPreload from 'react-lazy-with-preload';
-import { Button } from 'reactstrap';
 import { Trans } from 'react-i18next';
+import lazyWithPreload from 'react-lazy-with-preload';
+import { useDispatch } from 'react-redux';
 
-import { DEFAULT_CONCERT_INTERVAL_DURATION, DEFAULT_SONG_DURATION } from 'Constants';
+import { Button } from 'reactstrap';
+
+import ScrobbleList from 'components/ScrobbleList';
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
 
-import type { TrackID } from 'utils/types/track';
-import type { Setlist } from 'utils/types/setlist';
-import { SetlistCard } from './SetlistCard';
 import { EmptySetlistMessage } from './EmptySetlistMessage';
+import { SetlistCard } from './SetlistCard';
+
+import { DEFAULT_CONCERT_INTERVAL_DURATION, DEFAULT_SONG_DURATION } from 'Constants';
+
+import type { Setlist } from 'utils/types/setlist';
+import type { TrackID } from 'utils/types/track';
 
 const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker'));
 

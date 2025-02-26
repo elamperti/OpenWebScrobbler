@@ -1,4 +1,4 @@
-import { cleanTitleWithPattern, breakStringUsingPattern, strToCleanupPattern } from './CleanupContext';
+import { breakStringUsingPattern, cleanTitleWithPattern, strToCleanupPattern } from './CleanupContext';
 
 describe('cleanTitleWithPattern', () => {
   it('removes pattern from title', () => {

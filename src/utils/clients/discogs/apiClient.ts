@@ -1,4 +1,5 @@
 import axios from 'axios';
+
 import { DISCOGS_API_URL } from 'Constants';
 
 export const discogsAPI = axios.create({

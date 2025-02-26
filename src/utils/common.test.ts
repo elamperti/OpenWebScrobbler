@@ -1,4 +1,4 @@
-import { castArray, usernameIsValid, sanitizeProvider, sha256 } from './common';
+import { castArray, sanitizeProvider, sha256, usernameIsValid } from './common';
 
 describe('`castArray` helper', () => {
   it('returns an array when given an array', () => {

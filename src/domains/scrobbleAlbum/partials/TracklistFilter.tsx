@@ -1,9 +1,13 @@
-import { ChangeEventHandler, useCallback, useContext, useState } from 'react';
+import { useCallback, useContext, useState } from 'react';
 import { Trans } from 'react-i18next';
+
 import { Input } from 'reactstrap';
-import { faFilter } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faFilter } from '@fortawesome/free-solid-svg-icons';
+
 import { CleanupPatternContext, strToCleanupPattern } from '../CleanupContext';
+
+import type { ChangeEventHandler } from 'react';
 
 import './TracklistFilter.scss';
 

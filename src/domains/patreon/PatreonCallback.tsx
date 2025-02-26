@@ -1,13 +1,14 @@
 import { useEffect, useState } from 'react';
+import { useQueryClient } from '@tanstack/react-query';
 import qs from 'qs';
 import { Trans } from 'react-i18next';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useQueryClient } from '@tanstack/react-query';
 import { useDispatch } from 'react-redux';
-import { useSettings } from 'hooks/useSettings';
-import { openscrobblerAPI } from 'utils/clients/api/apiClient';
+import { useLocation, useNavigate } from 'react-router-dom';
+
 import { ProgressItem } from 'components/ProgressItem';
+import { useSettings } from 'hooks/useSettings';
 import { createAlert } from 'store/actions/alertActions';
+import { openscrobblerAPI } from 'utils/clients/api/apiClient';
 
 export function PatreonCallback() {
   const location = useLocation();

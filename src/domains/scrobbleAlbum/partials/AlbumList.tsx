@@ -1,7 +1,8 @@
-import { MouseEventHandler } from 'react';
-
 import { Row } from 'reactstrap';
+
 import AlbumCard from 'components/AlbumCard';
+
+import type { MouseEventHandler } from 'react';
 import type { Album } from 'utils/types/album';
 
 export default function AlbumList({

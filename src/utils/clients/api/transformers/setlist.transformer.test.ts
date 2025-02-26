@@ -1,4 +1,4 @@
-import { setlistTransformer, setlistTracklistTransformer } from './setlist.transformer';
+import { setlistTracklistTransformer, setlistTransformer } from './setlist.transformer';
 
 const mockSetlistData = {
   id: '6ba88aa6',

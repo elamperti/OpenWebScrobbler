@@ -1,5 +1,6 @@
 import { Row } from 'reactstrap';
 import { faCompactDisc, faPencilAlt, faUserFriends } from '@fortawesome/free-solid-svg-icons';
+
 import BigHomeButton from './partials/BigHomeButton';
 import SocialNetworksBlock from './partials/SocialNetworksBlock';
 import WelcomeBlock from './partials/WelcomeBlock';

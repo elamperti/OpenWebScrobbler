@@ -1,10 +1,9 @@
-import { legacy_createStore as createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { composeWithDevTools } from '@redux-devtools/extension';
-import promise from 'redux-promise-middleware';
-import createDebounce from 'redux-debounced';
-import { throttle } from 'lodash-es';
-
 import { loadState, saveState } from 'localstorage';
+import { throttle } from 'lodash-es';
+import { applyMiddleware, combineReducers, compose, legacy_createStore as createStore } from 'redux';
+import createDebounce from 'redux-debounced';
+import promise from 'redux-promise-middleware';
 
 import alertReducer from './reducers/alertReducer';
 import scrobbleReducer from './reducers/scrobbleReducer';

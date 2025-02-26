@@ -1,9 +1,12 @@
 import { useState } from 'react';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEllipsisH, faRedoAlt, faShoppingCart, faCopy } from '@fortawesome/free-solid-svg-icons';
 import { Trans } from 'react-i18next';
+
+import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownToggle } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCopy, faEllipsisH, faRedoAlt, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+
 import { getAmznLink } from 'Constants';
+
 import type { Scrobble } from 'utils/types/scrobble';
 
 interface ScrobbleItemMenuProps {

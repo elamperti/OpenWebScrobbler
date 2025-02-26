@@ -1,6 +1,6 @@
 import format from 'date-fns/format';
-import isToday from 'date-fns/isToday';
 import getYear from 'date-fns/getYear';
+import isToday from 'date-fns/isToday';
 
 function zeroPad(secondsOrMinutes: number): string {
   return secondsOrMinutes < 10 ? '0' + secondsOrMinutes : secondsOrMinutes.toString();

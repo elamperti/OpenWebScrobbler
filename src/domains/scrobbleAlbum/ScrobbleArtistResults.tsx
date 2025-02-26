@@ -1,21 +1,20 @@
 import { useEffect, useState } from 'react';
-import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 import { useQuery } from '@tanstack/react-query';
 import { Trans, useTranslation } from 'react-i18next';
+import { useLocation, useParams, useSearchParams } from 'react-router-dom';
 
-import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 
-import { searchTopAlbums as LastFmSearch } from 'utils/clients/lastfm';
+import Spinner from 'components/Spinner';
 import { searchTopAlbums as DiscogsSearch } from 'utils/clients/discogs';
+import { searchTopAlbums as LastFmSearch } from 'utils/clients/lastfm';
 import { sanitizeProvider } from 'utils/common';
-
-import { PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
 import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 import AlbumResults from './partials/AlbumResults';
 
-import Spinner from 'components/Spinner';
+import { PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
 export function ScrobbleArtistResults() {
   const { t } = useTranslation();
