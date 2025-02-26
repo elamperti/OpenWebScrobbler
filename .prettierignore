@@ -1,3 +1,4 @@
 *.md
+.eslintrc
 cypress/fixtures/**/*.json
 index.html

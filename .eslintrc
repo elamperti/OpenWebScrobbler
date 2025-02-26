@@ -60,6 +60,7 @@
       "argsIgnorePattern": "^_",
       "caughtErrorsIgnorePattern": "^_|error"
     }],
+    "@typescript-eslint/consistent-type-imports": "error",
     "@typescript-eslint/no-duplicate-enum-values": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/ban-ts-comment": "warn",

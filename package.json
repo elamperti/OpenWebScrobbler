@@ -39,6 +39,7 @@
     "web-vitals": "^3.5.2"
   },
   "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^4.4.1",
     "@locator/babel-jsx": "^0.4.4",
     "@locator/runtime": "^0.4.4",
     "@rollup/plugin-terser": "^0.4.4",

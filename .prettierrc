@@ -6,5 +6,32 @@
   "singleQuote": true,
   "trailingComma": "es5",
   "arrowParens": "always",
-  "proseWrap": "never"
+  "proseWrap": "never",
+  "plugins": ["@ianvs/prettier-plugin-sort-imports"],
+  "importOrder": [
+    "^(vitest|@testing-library)",
+    "^(react|react-dom/client)$",
+    "<BUILTIN_MODULES>",
+    "<THIRD_PARTY_MODULES>",
+    "",
+    "^(reactstrap|react-day|react-time)",
+    "^@fortawesome/react-fontawesome",
+    "^@fortawesome",
+    "",
+    "^(components|hooks|utils|domains|store)",
+    "",
+    "^[.]",
+    "",
+    "^Constants$",
+    "",
+    "<TYPES>^react$",
+    "<TYPES>^(node:)",
+    "<TYPES>",
+    "<TYPES>^[.]",
+    "",
+    ".s?css$"
+  ],
+  "importOrderParserPlugins": ["typescript", "jsx", "decorators-legacy"],
+  "importOrderTypeScriptVersion": "5.3.0",
+  "importOrderCaseSensitive": false
 }
