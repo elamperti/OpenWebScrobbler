@@ -1,4 +1,4 @@
-import { Suspense, useContext, useEffect, useMemo, useState } from 'react';
+import { Suspense, useContext, useMemo, useState } from 'react';
 import addSeconds from 'date-fns/addSeconds';
 import subSeconds from 'date-fns/subSeconds';
 import ReactGA from 'react-ga-neo';
@@ -6,22 +6,21 @@ import { Trans, useTranslation } from 'react-i18next';
 import lazyWithPreload from 'react-lazy-with-preload';
 import { useDispatch } from 'react-redux';
 
-import { Alert, Badge, Button, FormGroup, Input, Label } from 'reactstrap';
+import { Alert, Button, FormGroup, Input, Label } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faQuestionCircle, faShoppingCart, faStopwatch } from '@fortawesome/free-solid-svg-icons';
+import { faQuestionCircle, faShoppingCart } from '@fortawesome/free-solid-svg-icons';
 
-import AlbumCard from 'components/AlbumCard';
 import ScrobbleList from 'components/ScrobbleList';
 import { enqueueScrobble } from 'store/actions/scrobbleActions';
-import { formatDuration } from 'utils/datetime';
 
 import { cleanTitleWithPattern, CleanupPatternContext } from '../CleanupContext';
+import { AlbumMetadata } from './AlbumMetadata';
 import { EmptyDiscMessage } from './EmptyDiscMessage';
 import { TracklistFilter } from './TracklistFilter';
 
 import { DEFAULT_SONG_DURATION, getAmznLink } from 'Constants';
 
-import type { Album, DiscogsAlbum } from 'utils/types/album';
+import type { Album } from 'utils/types/album';
 import type { Scrobble } from 'utils/types/scrobble';
 import type { Track, TrackID } from 'utils/types/track';
 
@@ -29,7 +28,7 @@ const DateTimePicker = lazyWithPreload(() => import('components/DateTimePicker')
 
 // ToDo: refactor this component completely.
 // It's too complex and carries several blocks from old code.
-export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | null; tracks: Track[] }) {
+export default function Tracklist({ albumInfo, tracks = [] }: { albumInfo: Album | null; tracks: Track[] }) {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -40,27 +39,10 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
   const [customTimestamp, setCustomTimestamp] = useState(new Date());
   const [useCustomTimestamp, setUseCustomTimestamp] = useState(false);
   const [selectedTracks, setSelectedTracks] = useState<Set<TrackID>>(new Set());
-  const [totalDuration, setTotalDuration] = useState(0);
   const { cleanupPattern } = useContext(CleanupPatternContext);
 
-  const albumHasTracks = tracks && tracks.length > 0;
+  const albumHasTracks = tracks?.length > 0;
   const hasAlbumInfo = !!albumInfo && Object.keys(albumInfo).length > 0;
-
-  useEffect(() => {
-    let newDuration = 0;
-    if (albumHasTracks) {
-      for (const track of tracks) {
-        if (track.duration) {
-          newDuration += track.duration;
-        } else {
-          newDuration = 0;
-          break;
-        }
-      }
-    }
-
-    setTotalDuration(newDuration);
-  }, [albumHasTracks, tracks]);
 
   const toggleCustomTimestamp = () => {
     if (!useCustomTimestamp) {
@@ -101,6 +83,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
     const timestampCalculationSubstractsTime = !useCustomTimestamp;
     const tracklist = Array.from(tracks) as Scrobble[];
     let rollingTimestamp = useCustomTimestamp ? customTimestamp : new Date();
+
     if (timestampCalculationSubstractsTime) {
       // When the user specifies a custom timestamp it will be the one of the first track,
       // so we'll be adding track.duration to that starting timestamp. In the other case,
@@ -142,63 +125,51 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
     setShowTimestampCopy(false);
   };
 
+  const tracksUsingAlbumInfo = tracks.map((track) => ({
+    ...track,
+    album: albumInfo?.name || '',
+    albumArtist: albumInfo?.artist || '',
+  }));
+
   return (
     <>
       {hasAlbumInfo && (
-        <div className="album-heading row my-2">
-          <div className="col-3">
-            <AlbumCard background={albumInfo.cover} sizes={albumInfo.coverSizes} />
-          </div>
-          <div className="col-9 d-flex flex-column">
-            <div className="album-heading-info flex-grow-1">
-              <h3 className="collection-heading-collection-name mb-0">{albumInfo.name}</h3>
-              <div className="album-heading-artist-name">{albumInfo.artist}</div>
-              {(albumInfo as DiscogsAlbum).releasedate && (
-                <Badge className="my-1">{(albumInfo as DiscogsAlbum).releasedate}</Badge>
-              )}
-              {tracks.length > 0 && (
-                <div className="album-heading-duration">
-                  <FontAwesomeIcon icon={faStopwatch} className="me-2" color="var(--bs-gray)" />
-                  {totalDuration ? formatDuration(totalDuration) : <Trans i18nKey="unknown">Unknown</Trans>}
-                </div>
-              )}
-            </div>
-            {albumHasTracks && (
-              <div className="align-self-end mb-0">
-                <FormGroup check inline>
-                  <Input
-                    type="radio"
-                    id="useNowTimestamp"
-                    name="useCustomTimestamp"
-                    checked={!useCustomTimestamp}
-                    onChange={toggleCustomTimestamp}
-                  />
-                  <Label for="useNowTimestamp" check>
-                    <Trans i18nKey="now" />
-                  </Label>
-                </FormGroup>
-                <FormGroup check inline>
-                  <Input
-                    type="radio"
-                    id="useCustomTimestamp"
-                    name="useCustomTimestamp"
-                    checked={useCustomTimestamp}
-                    onChange={toggleCustomTimestamp}
-                  />
-                  <Label for="useCustomTimestamp" check>
-                    <Trans i18nKey="customTimestamp" />
-                  </Label>
-                </FormGroup>
-                <FontAwesomeIcon
-                  id="timestampInfoIcon"
-                  icon={faQuestionCircle}
-                  color="var(--bs-gray)"
-                  onClick={toggleTimestampCopy}
+        <AlbumMetadata albumInfo={albumInfo} tracks={tracks}>
+          {albumHasTracks && (
+            <div className="align-self-end mb-0">
+              <FormGroup check inline>
+                <Input
+                  type="radio"
+                  id="useNowTimestamp"
+                  name="useCustomTimestamp"
+                  checked={!useCustomTimestamp}
+                  onChange={toggleCustomTimestamp}
                 />
-              </div>
-            )}
-          </div>
-        </div>
+                <Label for="useNowTimestamp" check>
+                  <Trans i18nKey="now" />
+                </Label>
+              </FormGroup>
+              <FormGroup check inline>
+                <Input
+                  type="radio"
+                  id="useCustomTimestamp"
+                  name="useCustomTimestamp"
+                  checked={useCustomTimestamp}
+                  onChange={toggleCustomTimestamp}
+                />
+                <Label for="useCustomTimestamp" check>
+                  <Trans i18nKey="customTimestamp" />
+                </Label>
+              </FormGroup>
+              <FontAwesomeIcon
+                id="timestampInfoIcon"
+                icon={faQuestionCircle}
+                color="var(--bs-gray)"
+                onClick={toggleTimestampCopy}
+              />
+            </div>
+          )}
+        </AlbumMetadata>
       )}
       {useCustomTimestamp && (
         <Suspense
@@ -249,7 +220,7 @@ export default function Tracklist({ albumInfo, tracks }: { albumInfo: Album | nu
         isAlbum
         noMenu
         analyticsEventForScrobbles="Scrobble individual album song"
-        scrobbles={tracks || []}
+        scrobbles={tracksUsingAlbumInfo}
         onSelect={toggleSelectedTrack}
         selected={selectedTracks}
       >

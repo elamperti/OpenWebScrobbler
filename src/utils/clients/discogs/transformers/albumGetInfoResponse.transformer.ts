@@ -1,8 +1,9 @@
 import { sanitizeArtistName } from './common/sanitizeArtistName';
 
+import type { QueryKey } from '@tanstack/react-query';
 import type { Album } from 'utils/types/album';
 
-export function albumGetInfoTransformer(response: any, discogsId?: string): Album {
+export function albumGetInfoTransformer(response: any, discogsId?: string, queryKey?: QueryKey): Album {
   const hasArtist = Array.isArray(response?.data?.artists) && response.data.artists.length > 0;
   const images = response?.data?.images || [];
 
@@ -34,5 +35,6 @@ export function albumGetInfoTransformer(response: any, discogsId?: string): Albu
       lg: image.width,
     },
     trackCount: response?.data?.tracklist?.length || 0,
+    queryKey,
   };
 }

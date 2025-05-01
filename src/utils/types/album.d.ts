@@ -1,3 +1,5 @@
+import type { QueryKey } from '@tanstack/react-query';
+
 type AlbumCoverSizeSteps = 'sm' | 'lg';
 
 export type AlbumCover = Record<AlbumCoverSizeSteps, string>;
@@ -12,6 +14,7 @@ export type BaseAlbum = {
   releasedate?: string;
   trackCount?: number;
   url?: string;
+  queryKey?: QueryKey;
 };
 
 export type LastFmAlbum = BaseAlbum & {
@@ -24,3 +27,8 @@ export type DiscogsAlbum = BaseAlbum & {
 };
 
 export type Album = DiscogsAlbum | LastFmAlbum;
+
+export type AlbumWithTracks = {
+  info: Album;
+  tracks: Track[];
+};

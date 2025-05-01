@@ -7,7 +7,7 @@ vi.mock('../apiClient');
 
 describe('Discogs client: `albumGetInfo` method', () => {
   it('calls the API with the given Discogs ID', async () => {
-    await albumGetInfo('1');
+    await albumGetInfo('1', ['queryKey']);
 
     expect(discogsAPI.get).toHaveBeenCalledWith('', {
       params: {
@@ -18,7 +18,7 @@ describe('Discogs client: `albumGetInfo` method', () => {
   });
 
   it('has the Discogs ID in the response', async () => {
-    const response = await albumGetInfo('release-560656');
+    const response = await albumGetInfo('release-560656', ['queryKey']);
 
     expect((response.info as DiscogsAlbum).discogsId).toBe('release-560656');
   });

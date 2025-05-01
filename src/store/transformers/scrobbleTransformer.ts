@@ -1,4 +1,6 @@
-export function prepareScrobbles(scrobbles) {
+import type { Scrobble } from 'utils/types/scrobble';
+
+export function prepareScrobbles(scrobbles: Scrobble[]) {
   const artist = [];
   const track = [];
   const album = [];
