@@ -36,7 +36,7 @@ describe('ErrorPage', () => {
   it('reloads the page when the refresh button is clicked', () => {
     const originalLocation = window.location;
     delete window.location;
-    window.location = { reload: vi.fn() } as unknown as Location;
+    window.location = { reload: vi.fn() } as any;
 
     render(<ErrorPage />);
 
@@ -44,6 +44,6 @@ describe('ErrorPage', () => {
     fireEvent.click(refreshButton);
     expect(window.location.reload).toHaveBeenCalled();
 
-    window.location = originalLocation;
+    window.location = originalLocation as any;
   });
 });
