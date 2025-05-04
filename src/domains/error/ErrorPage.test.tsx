@@ -1,9 +1,17 @@
 import { fireEvent, render, screen } from '@testing-library/react';
-import sentry from '@sentry/react';
+import { showReportDialog } from '@sentry/react';
 
 import ErrorPage from './ErrorPage';
 
+vi.mock('@sentry/react', () => ({
+  showReportDialog: vi.fn(),
+}));
+
 describe('ErrorPage', () => {
+  beforeEach(() => {
+    vi.clearAllMocks();
+  });
+
   it('renders correctly', () => {
     render(<ErrorPage />);
 
@@ -20,13 +28,12 @@ describe('ErrorPage', () => {
 
   it('has working buttons', () => {
     const returnFn = vi.fn();
-    const reportDialog = vi.spyOn(sentry, 'showReportDialog');
 
     render(<ErrorPage resetError={returnFn} />);
 
     const reportButton = screen.getByText(/Tell us what happened/);
     fireEvent.click(reportButton);
-    expect(reportDialog).toHaveBeenCalled();
+    expect(showReportDialog).toHaveBeenCalled();
 
     const returnButton = screen.getByText(/Return to the scrobbler/);
     fireEvent.click(returnButton);

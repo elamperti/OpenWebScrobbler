@@ -64,8 +64,8 @@ if (sentryEnabled) {
       /^chrome:\/\//i,
     ],
     integrations: [
-      new Sentry.BrowserTracing(),
-      new Sentry.Replay({
+      Sentry.browserTracingIntegration(),
+      Sentry.replayIntegration({
         maskAllText: false,
       }),
     ],
