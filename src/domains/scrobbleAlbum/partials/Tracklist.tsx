@@ -39,6 +39,7 @@ export default function Tracklist({ albumInfo, tracks = [] }: { albumInfo: Album
   const [customTimestamp, setCustomTimestamp] = useState(new Date());
   const [useCustomTimestamp, setUseCustomTimestamp] = useState(false);
   const [selectedTracks, setSelectedTracks] = useState<Set<TrackID>>(new Set());
+  const [lastSelectedTrack, setLastSelectedTrack] = useState(tracks[0]?.id);
   const { cleanupPattern } = useContext(CleanupPatternContext);
 
   const albumHasTracks = tracks?.length > 0;
@@ -61,15 +62,25 @@ export default function Tracklist({ albumInfo, tracks = [] }: { albumInfo: Album
     setShowTimestampCopy(!showTimestampCopy);
   };
 
-  const toggleSelectedTrack = (trackId: TrackID, wasCheckedBefore = false) => {
+  const selectTrack = (trackId: TrackID, newValue: boolean, shiftKey = false) => {
     const newSet = new Set(selectedTracks);
+    const currentIndex = tracks.findIndex(({ id }) => id === trackId);
 
-    if (wasCheckedBefore) {
-      newSet.delete(trackId);
+    const toggleTrack = (id: TrackID, selected: boolean) => (selected ? newSet.add(id) : newSet.delete(id));
+
+    if (shiftKey) {
+      const anchorIndex = tracks.findIndex(({ id }) => id === lastSelectedTrack);
+      const start = Math.min(anchorIndex, currentIndex);
+      const end = Math.max(anchorIndex, currentIndex);
+
+      for (let i = start; i <= end; i++) {
+        toggleTrack(tracks[i].id, newValue);
+      }
     } else {
-      newSet.add(trackId);
+      toggleTrack(trackId, newValue);
     }
 
+    setLastSelectedTrack(trackId);
     setSelectedTracks(newSet);
   };
 
@@ -122,6 +133,7 @@ export default function Tracklist({ albumInfo, tracks = [] }: { albumInfo: Album
     enqueueScrobble(dispatch)(tracksToScrobble);
     setCanScrobble(selectedTracks.size > 0);
     setSelectedTracks(new Set());
+    setLastSelectedTrack(tracks[0].id);
     setShowTimestampCopy(false);
   };
 
@@ -221,8 +233,9 @@ export default function Tracklist({ albumInfo, tracks = [] }: { albumInfo: Album
         noMenu
         analyticsEventForScrobbles="Scrobble individual album song"
         scrobbles={tracksUsingAlbumInfo}
-        onSelect={toggleSelectedTrack}
+        onSelect={selectTrack}
         selected={selectedTracks}
+        key={selectedTracks.size}
       >
         <EmptyDiscMessage />
       </ScrobbleList>

@@ -31,7 +31,7 @@ interface ScrobbleItemProps {
   muteArtist?: boolean;
   noCover?: boolean;
   noMenu?: boolean;
-  onSelect?: (track: TrackID, selected: boolean) => void;
+  onSelect?: (track: TrackID, newValue: boolean, shiftKey: boolean) => void;
   selected?: boolean;
   cloneScrobbleTo?: (scrobble: Scrobble) => void;
   analyticsEvent?: string;
@@ -108,7 +108,11 @@ export default function ScrobbleItem({
               type="checkbox"
               className="me-1"
               checked={selected}
-              onChange={() => onSelect(scrobble.id, selected)}
+              onChange={() => {}}
+              onClick={(e: React.MouseEvent) => {
+                onSelect(scrobble.id, !selected, e.shiftKey);
+                e.preventDefault();
+              }}
               id={scrobbleItemInputId}
             />
           </FormGroup>

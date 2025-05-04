@@ -6,6 +6,7 @@ import { CleanupPatternContext } from 'domains/scrobbleAlbum/CleanupContext';
 import { ScrobbleCloneContext } from 'domains/scrobbleSong/ScrobbleSong';
 
 import type { ReactNode } from 'react';
+import type { Scrobble } from 'utils/types/scrobble';
 
 interface ScrobbleListProps {
   analyticsEventForScrobbles?: string;
@@ -15,7 +16,7 @@ interface ScrobbleListProps {
   loading?: boolean;
   noMenu?: boolean;
   albumHasVariousArtists?: boolean;
-  onSelect?: (scrobble: any) => void;
+  onSelect?: (scrobble: any, newValue: boolean, shiftKey: boolean) => void;
   selected?: Set<string>;
   scrobbles?: any[];
 }
@@ -51,7 +52,7 @@ export default function ScrobbleList({
       }
     }
 
-    const ScrobbleListContent = scrobbles.map((scrobble, i) => {
+    const ScrobbleListContent = scrobbles.map((scrobble: Scrobble, i) => {
       return (
         <ScrobbleItem
           scrobble={scrobble}
@@ -63,7 +64,7 @@ export default function ScrobbleList({
           noCover={isAlbum}
           onSelect={onSelect}
           selected={selected && selected.has(scrobble.id)}
-          key={(scrobble.timestamp || 0) + i}
+          key={scrobble.scrobbleUUID || scrobble.id || i}
           muteArtist={isAlbum}
           hideArtist={isAlbum && !albumHasVariousArtists}
         />
