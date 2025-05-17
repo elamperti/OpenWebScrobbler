@@ -1,26 +1,22 @@
 import type { Scrobble } from 'utils/types/scrobble';
 
-export function prepareScrobbles(scrobbles: Scrobble[]) {
-  const artist = [];
-  const track = [];
-  const album = [];
-  const albumArtist = [];
-  const timestamp = [];
+export function prepareScrobbles(scrobbles: Partial<Scrobble>[]) {
+  const output = {
+    artist: [],
+    track: [],
+    album: [],
+    albumArtist: [],
+    timestamp: [],
+  };
 
   // Transform content for OWS API
   for (const scrobble of scrobbles) {
-    timestamp.push(new Date(scrobble.timestamp).toISOString());
-    artist.push(scrobble.artist);
-    track.push(scrobble.title);
-    album.push(scrobble.album);
-    albumArtist.push(scrobble.albumArtist);
+    output.timestamp.push(new Date(scrobble.timestamp).toISOString());
+    output.artist.push(scrobble.artist);
+    output.track.push(scrobble.title);
+    output.album.push(scrobble.album || '');
+    output.albumArtist.push(scrobble.albumArtist || '');
   }
 
-  return {
-    artist,
-    track,
-    album,
-    albumArtist,
-    timestamp,
-  };
+  return output;
 }
