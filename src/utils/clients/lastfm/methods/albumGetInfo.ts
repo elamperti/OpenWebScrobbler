@@ -2,7 +2,13 @@ import { lastfmAPI } from '../apiClient';
 import { albumGetInfoTransformer } from '../transformers/albumGetInfoResponse.transformer';
 import { tracksTransformer } from '../transformers/tracksResponse.transformer';
 
-export async function albumGetInfo(album: { mbid?: string; artist: string; name: string }) {
+import type { QueryKey } from '@tanstack/react-query';
+import type { AlbumWithTracks } from 'utils/types/album';
+
+export async function albumGetInfo(
+  album: { mbid?: string; artist: string; name: string },
+  queryKey: QueryKey
+): Promise<AlbumWithTracks> {
   const searchParams = album.mbid
     ? {
         mbid: album.mbid,
@@ -19,7 +25,7 @@ export async function albumGetInfo(album: { mbid?: string; artist: string; name:
     },
   });
 
-  const info = albumGetInfoTransformer(response, album.mbid);
+  const info = albumGetInfoTransformer(response, album.mbid, queryKey);
 
   return {
     info,

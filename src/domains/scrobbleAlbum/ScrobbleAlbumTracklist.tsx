@@ -68,16 +68,19 @@ export function ScrobbleAlbumTracklist() {
 
   const albumInfo = useQuery({
     queryKey: ['album', tracklistDataProvider, ...queryKeyDetails],
-    queryFn: () => {
+    queryFn: (ctx) => {
       if (tracklistDataProvider === PROVIDER_DISCOGS) {
-        return DiscogsAlbumGetInfo(discogsId);
+        return DiscogsAlbumGetInfo(discogsId, ctx.queryKey);
       } else {
         // uses mbid if defined, otherwise artist+album
-        return LastfmAlbumGetInfo({
-          mbid: albumId,
-          artist,
-          name: albumName,
-        });
+        return LastfmAlbumGetInfo(
+          {
+            mbid: albumId,
+            artist,
+            name: albumName,
+          },
+          ctx.queryKey
+        );
       }
     },
     enabled: queryKeyDetails.length > 0,
@@ -149,7 +152,7 @@ export function ScrobbleAlbumTracklist() {
         <div className="col-md-7 mb-4">
           <CleanupPatternContext.Provider value={{ cleanupPattern, setCleanupPattern }}>
             {showTracklist ? (
-              <Tracklist tracks={albumInfo.data?.tracks || []} albumInfo={albumInfo.data?.info} />
+              <Tracklist tracks={albumInfo.data?.tracks} albumInfo={albumInfo.data?.info} />
             ) : (
               <Spinner />
             )}

@@ -2,7 +2,10 @@ import { discogsAPI } from '../apiClient';
 import { albumGetInfoTransformer } from '../transformers/albumGetInfoResponse.transformer';
 import { tracksTransformer } from '../transformers/tracksResponse.transformer';
 
-export async function albumGetInfo(discogsId: string) {
+import type { QueryKey } from '@tanstack/react-query';
+import type { AlbumWithTracks } from 'utils/types/album';
+
+export async function albumGetInfo(discogsId: string, queryKey: QueryKey): Promise<AlbumWithTracks> {
   const response = await discogsAPI.get('', {
     params: {
       method: 'album.getInfo',
@@ -10,7 +13,7 @@ export async function albumGetInfo(discogsId: string) {
     },
   });
 
-  const info = albumGetInfoTransformer(response, discogsId);
+  const info = albumGetInfoTransformer(response, discogsId, queryKey);
 
   return {
     info,

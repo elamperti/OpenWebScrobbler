@@ -1,7 +1,8 @@
 
+import type { QueryKey } from '@tanstack/react-query';
 import type { Album } from 'utils/types/album';
 
-export function albumGetInfoTransformer(response: any, mbid?: string): Album | null {
+export function albumGetInfoTransformer(response: any, mbid?: string, queryKey?: QueryKey): Album | null {
   const album = response?.data?.album;
 
   if (!album) return null;
@@ -21,5 +22,6 @@ export function albumGetInfoTransformer(response: any, mbid?: string): Album | n
       lg: 300,
     },
     trackCount: album.tracks?.track?.length ?? 0,
+    queryKey,
   };
 }

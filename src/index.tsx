@@ -64,8 +64,8 @@ if (sentryEnabled) {
       /^chrome:\/\//i,
     ],
     integrations: [
-      new Sentry.BrowserTracing(),
-      new Sentry.Replay({
+      Sentry.browserTracingIntegration(),
+      Sentry.replayIntegration({
         maskAllText: false,
       }),
     ],
@@ -158,7 +158,3 @@ if (process.env.REACT_APP_GROWTHBOOK_API_KEY) {
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(wrappedApp);
-
-// Measure performance Learn more: https://bit.ly/CRA-vitals
-// ToDo: Analyze if this is worth using
-// reportWebVitals(process.env.NODE_ENV === 'development' ? console.log : undefined);
