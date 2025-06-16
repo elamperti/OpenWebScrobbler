@@ -1,4 +1,4 @@
-import { get, hasIn } from 'lodash-es';
+import { hasIn } from 'lodash-es';
 import shortid from 'shortid';
 
 import { sanitizeArtistName } from './common/sanitizeArtistName';
@@ -29,8 +29,8 @@ export function tracksTransformer(
     return [];
   }
 
-  const albumArtist = get(options, 'artist', '');
-  const album = get(options, 'album', '');
+  const albumArtist = options?.artist ?? '';
+  const album = options?.album ?? '';
 
   return response?.data.tracklist
     .filter(({ type_: trackType }) => {
@@ -41,7 +41,7 @@ export function tracksTransformer(
     })
     .map((track) => {
       const transformedTrack = {
-        artist: sanitizeArtistName(get(track, 'artists[0].name', options?.artist || '')),
+        artist: sanitizeArtistName((track.artists?.[0]?.name ?? options?.artist) || ''),
         title: track.title,
         album,
         albumArtist,

@@ -1,10 +1,11 @@
-import { get, hasIn } from 'lodash-es';
+import { hasIn } from 'lodash-es';
 
 export function userRecentTracksTransformer(response: any) {
   const tracks = [];
+  const rawTrackList = response?.data?.recenttracks?.track ?? [];
   if (hasIn(response, 'data.recenttracks.track')) {
-    for (const item of get(response, 'data.recenttracks.track', [])) {
-      if (!get(item, '[@attr].nowplaying', false)) {
+    for (const item of rawTrackList) {
+      if (!item?.['@attr']?.nowplaying) {
         tracks.push({
           artist: item.artist['#text'],
           title: item.name,
@@ -16,9 +17,10 @@ export function userRecentTracksTransformer(response: any) {
     }
   }
 
+  const totalPagesValue = response?.data?.recenttracks?.['@attr']?.totalPages;
   return {
-    username: get(response, 'data.recenttracks[@attr].user', ''),
-    totalPages: get(response, 'data.recenttracks[@attr].totalPages', ''),
+    username: response?.data?.recenttracks?.['@attr']?.user ?? '',
+    totalPages: totalPagesValue ? parseInt(totalPagesValue, 10) : 0,
     scrobbles: tracks.reverse(),
   };
 }

@@ -1,5 +1,4 @@
 import { Fragment } from 'react';
-import { get } from 'lodash-es';
 import { Trans } from 'react-i18next';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 
@@ -61,7 +60,7 @@ export default function ScrobbleItem({
   lazyScrollPosition,
 }: ScrobbleItemProps) {
   const { settings } = useSettings();
-  const useOriginalTimestamp = noMenu ? get(settings, 'keepOriginalTimestamp') : false;
+  const useOriginalTimestamp = noMenu ? settings?.keepOriginalTimestamp : false;
   const scrobbleAgain = useScrobbleAgain(scrobble, useOriginalTimestamp, analyticsEvent, cleanupPattern);
 
   const showAlbumArt = !compact && !noCover;
@@ -190,7 +189,7 @@ export default function ScrobbleItem({
       {scrobble.status === 'error' && (
         <div className="error px-2">
           {scrobble.errorDescription && !scrobble.errorMessage ? <Trans i18nKey={scrobble.errorDescription} /> : null}
-          {get(scrobble, 'errorMessage')}
+          {scrobble.errorMessage}
         </div>
       )}
     </div>
