@@ -1,7 +1,6 @@
 import { Suspense, useContext, useEffect, useState } from 'react';
 import addDays from 'date-fns/addDays';
 import addSeconds from 'date-fns/addSeconds';
-import { get } from 'lodash-es';
 import ReactGA from 'react-ga-neo';
 import { Trans } from 'react-i18next';
 import { lazyWithPreload } from 'react-lazy-with-preload';
@@ -285,7 +284,7 @@ export function SongForm() {
       return;
     }
     const info = await trackGetInfo({ artist, title });
-    const suggestedAlbum = get(info, 'album.title');
+    const suggestedAlbum = info?.album?.title;
 
     if (suggestedAlbum === undefined) {
       setalbumAutoFillStatus(AutoFillStatus.Fail);

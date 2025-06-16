@@ -1,4 +1,4 @@
-import { get, hasIn } from 'lodash-es';
+import { hasIn } from 'lodash-es';
 import shortid from 'shortid';
 
 import { scrobble } from 'utils/clients/api/methods/scrobble';
@@ -200,7 +200,7 @@ const scrobbleReducer = (state = initialState, action) => {
         }
         return overrideScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           status: 'error',
-          errorMessage: get(action.payload, 'data.message'),
+          errorMessage: action.payload?.data?.message,
           errorDescription: 'errors.unexpectedResponse',
         });
       }
