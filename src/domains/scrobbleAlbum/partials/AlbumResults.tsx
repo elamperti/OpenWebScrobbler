@@ -1,4 +1,3 @@
-import { get } from 'lodash-es';
 import ReactGA from 'react-ga-neo';
 import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
@@ -26,9 +25,10 @@ export default function AlbumResults({
 
   if (Array.isArray(albums)) {
     if (albums.length === 0) {
+      const albumOrArtist = (query as any)?.name ?? query;
       return (
         <div className="col-12 text-center my-4">
-          <Trans i18nKey="noAlbumsFound" values={{ albumOrArtist: get(query, 'name', query) }}>
+          <Trans i18nKey="noAlbumsFound" values={{ albumOrArtist }}>
             No albums found for <em>your search query</em>
           </Trans>
           <br />

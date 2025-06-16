@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { get } from 'lodash-es';
 import ReactGA from 'react-ga-neo';
 import { Trans } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -84,7 +83,7 @@ export function ScrobbleUserResults() {
 
   useEffect(() => {
     if (isError) {
-      const errNumber = get(error, 'response.data.error');
+      const errNumber = error?.response?.data?.error;
       // 6: User not found - 17: User has a private profile
       if (errNumber === 6 || errNumber === 17) {
         // ToDo: handle private profile case

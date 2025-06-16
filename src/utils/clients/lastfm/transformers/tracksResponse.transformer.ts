@@ -1,4 +1,4 @@
-import { get, hasIn } from 'lodash-es';
+import { hasIn } from 'lodash-es';
 import shortid from 'shortid';
 
 import { castArray } from 'utils/common';
@@ -11,7 +11,7 @@ export function tracksTransformer(
 ): Track[] {
   // tracks.track can be either an array of tracks or just a track object (when it's only one track).
   // A consistency only second to that of jelly.
-  const rawTrackList = castArray(get(response, 'data.album.tracks.track', []));
+  const rawTrackList = castArray(response?.data?.album?.tracks?.track ?? []);
 
   const tracks = [];
 
@@ -19,7 +19,7 @@ export function tracksTransformer(
     const transformedTrack = {
       artist: track.artist.name,
       title: track.name,
-      album: get(options, 'album'),
+      album: options?.album,
       duration: track.duration ? parseInt(track.duration) : 0,
       id: shortid.generate(),
       cover: undefined,
