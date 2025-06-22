@@ -127,34 +127,36 @@ wrappedApp = (
   </QueryClientProvider>
 );
 
-if (process.env.REACT_APP_GROWTHBOOK_API_KEY) {
-  const growthbook = new GrowthBook({
-    apiHost: 'https://cdn.growthbook.io',
-    clientKey: process.env.REACT_APP_GROWTHBOOK_API_KEY,
-    enableDevMode: process.env.NODE_ENV === 'development',
-    backgroundSync: false,
-    attributes: {
-      loggedIn: false,
-    },
-    trackingCallback: (experiment, result) => {
-      ReactGA.event({
-        category: 'Experiments',
-        action: 'Viewed Experiment',
-        label: experiment.key,
-        value: result.variationId,
-      });
-      if (sentryEnabled) {
-        Sentry.setTag(`experiment-${experiment.key}`, result.variationId);
-      }
-    },
-  });
+/**
+ * Since the GrowthBookProvider is needed by the useGrowthbook hook, it must be rendered
+ * even if there's no valid GrowthBook API key set.
+ */
+const growthbook = new GrowthBook({
+  apiHost: 'https://cdn.growthbook.io',
+  clientKey: process.env.REACT_APP_GROWTHBOOK_API_KEY || 'invalid-key',
+  enableDevMode: process.env.NODE_ENV === 'development',
+  backgroundSync: false,
+  attributes: {
+    loggedIn: false,
+  },
+  trackingCallback: (experiment, result) => {
+    ReactGA.event({
+      category: 'Experiments',
+      action: 'Viewed Experiment',
+      label: experiment.key,
+      value: result.variationId,
+    });
+    if (sentryEnabled) {
+      Sentry.setTag(`experiment-${experiment.key}`, result.variationId);
+    }
+  },
+});
 
-  growthbook.loadFeatures({
-    timeout: 4000,
-  });
+growthbook.init({
+  timeout: 4000,
+});
 
-  wrappedApp = <GrowthBookProvider growthbook={growthbook}>{wrappedApp}</GrowthBookProvider>;
-}
+wrappedApp = <GrowthBookProvider growthbook={growthbook}>{wrappedApp}</GrowthBookProvider>;
 
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(wrappedApp);

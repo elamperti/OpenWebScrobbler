@@ -61,6 +61,7 @@ describe('Scrobble user (search)', () => {
     cy.get('[data-cy="SearchForm-input"]').type('chairmandore');
     cy.get('[data-cy="SearchForm-submit"]').click();
     cy.wait('@recentTracks').then(() => {
+      cy.get('.UserCard-container + .ScrobbleList-container').should('exist');
       cy.go('back');
       cy.location('pathname').should('equal', '/scrobble/user');
     });
