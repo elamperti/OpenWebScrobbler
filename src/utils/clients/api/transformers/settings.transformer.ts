@@ -1,6 +1,6 @@
 import type { Settings } from 'utils/types/settings';
 
-export function settingsTransformer(settings = {}): Settings {
+export function settingsTransformer(settings: any = {}): Settings {
   return {
     lang: settings?.lang ?? 'auto',
     use12Hours: !!(settings?.use12Hours ?? false),
