@@ -1,15 +1,13 @@
-import { get } from 'lodash-es';
-
 import type { Settings } from 'utils/types/settings';
 
-export function settingsTransformer(settings = {}): Settings {
+export function settingsTransformer(settings: any = {}): Settings {
   return {
-    lang: get(settings, 'lang', 'auto'),
-    use12Hours: !!get(settings, 'use12Hours', false),
-    catchPaste: !!get(settings, 'catchPaste', true),
-    showTrackNumbers: !!get(settings, 'showTrackNumbers', false),
-    hasActiveSubscription: !!get(settings, 'activeSubscription', false),
-    keepOriginalTimestamp: !!get(settings, 'keepOriginalTimestamp', true),
-    patreonId: get(settings, 'patreonId', ''),
+    lang: settings?.lang ?? 'auto',
+    use12Hours: !!(settings?.use12Hours ?? false),
+    catchPaste: !!(settings?.catchPaste ?? true),
+    showTrackNumbers: !!(settings?.showTrackNumbers ?? false),
+    hasActiveSubscription: !!(settings?.activeSubscription ?? false),
+    keepOriginalTimestamp: !!(settings?.keepOriginalTimestamp ?? true),
+    patreonId: settings?.patreonId ?? '',
   };
 }

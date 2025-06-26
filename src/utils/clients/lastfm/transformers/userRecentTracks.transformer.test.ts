@@ -29,7 +29,7 @@ describe('Last.fm transformer: user recent tracks', () => {
 
     const expected = {
       username: 'testuser',
-      totalPages: '10',
+      totalPages: 10,
       scrobbles: [
         {
           artist: 'Taylor Swift',
@@ -56,7 +56,7 @@ describe('Last.fm transformer: user recent tracks', () => {
 
     const expected = {
       username: '',
-      totalPages: '',
+      totalPages: 0,
       scrobbles: [],
     };
 
@@ -77,7 +77,7 @@ describe('Last.fm transformer: user recent tracks', () => {
 
     const expected = {
       username: 'testuser',
-      totalPages: '1',
+      totalPages: 1,
       scrobbles: [],
     };
 
@@ -115,7 +115,7 @@ describe('Last.fm transformer: user recent tracks', () => {
 
     const expected = {
       username: 'testuser',
-      totalPages: '10',
+      totalPages: 10,
       scrobbles: [
         {
           artist: 'Taylor Swift',

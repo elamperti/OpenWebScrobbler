@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { get } from 'lodash-es';
 import qs from 'qs';
 import ReactGA from 'react-ga-neo';
 
@@ -28,7 +27,7 @@ interface ExtendedAxiosRequestConfig extends InternalAxiosRequestConfig {
  * For invalid (ERROR) responses
  */
 function axiosErrorHandler(payload, dispatch) {
-  const errorNumber = payload ? get(payload, 'data.error', payload.status) : -1;
+  const errorNumber = payload?.data?.error ?? payload?.status ?? -1;
   let newError: Partial<Alert> = {
     type: 'danger',
     persistent: false,
@@ -53,7 +52,7 @@ function axiosErrorHandler(payload, dispatch) {
       newError.persistent = true;
       showErrorNumber = true;
 
-      if (get(payload, 'config.params.method') !== 'user.getRecentTracks') {
+      if (payload?.config?.params?.method !== 'user.getRecentTracks') {
         logOut(dispatch)(newError);
       }
       break;
@@ -82,7 +81,7 @@ function axiosErrorHandler(payload, dispatch) {
     default:
       newError.title = 'unexpectedError';
       // newError.message = 'unexpectedErrorMessage';
-      newError.rawMessage = get(payload, 'data.message', null);
+      newError.rawMessage = payload?.data?.message ?? null;
       showErrorNumber = true;
   }
 

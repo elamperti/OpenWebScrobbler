@@ -1,8 +1,6 @@
-import { get } from 'lodash-es';
-
 export function albumSearchTransformer(response: any) {
   const albums = [];
-  const rawAlbumList = get(response, 'data.results.albummatches.album', []);
+  const rawAlbumList = response?.data?.results?.albummatches?.album ?? [];
 
   for (const album of rawAlbumList) {
     if (album.name === '(null)') continue;
@@ -12,8 +10,8 @@ export function albumSearchTransformer(response: any) {
       name: album.name,
       url: album.url,
       cover: {
-        sm: get(album, 'image[2][#text]'),
-        lg: get(album, 'image[3][#text]'),
+        sm: album.image?.[2]?.['#text'],
+        lg: album.image?.[3]?.['#text'],
       },
       coverSizes: {
         sm: 174,

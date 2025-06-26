@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
-import { get } from 'lodash-es';
 import ReactGA from 'react-ga-neo';
 import { Trans } from 'react-i18next';
 import { useSelector } from 'react-redux';
@@ -23,7 +22,10 @@ import { UserResultsHeading } from './partials/UserResultsHeading';
 
 import { MAX_RECENT_USERS } from 'Constants';
 
+import type { AxiosError } from 'axios';
 import type { RootState } from 'store';
+
+type UserGetRecentTracksResult = Awaited<ReturnType<typeof userGetRecentTracks>>;
 
 export function ScrobbleUserResults() {
   const { username: usernameFromParams } = useParams();
@@ -34,7 +36,10 @@ export function ScrobbleUserResults() {
   const [recentUsers, setRecentUsers] = useLocalStorage('recentUsers', []);
   const navigate = useNavigate();
 
-  const { data, isLoading, isFetching, isError, error, isSuccess, isPlaceholderData } = useQuery({
+  const { data, isLoading, isFetching, isError, error, isSuccess, isPlaceholderData } = useQuery<
+    UserGetRecentTracksResult,
+    AxiosError
+  >({
     queryKey: ['profile', lowercaseUsername, 'scrobbles', currentPage],
     queryFn: () => userGetRecentTracks(lowercaseUsername, currentPage),
     staleTime: 1000 * 60 * 3, // minutes
@@ -84,7 +89,7 @@ export function ScrobbleUserResults() {
 
   useEffect(() => {
     if (isError) {
-      const errNumber = get(error, 'response.data.error');
+      const errNumber = (error?.response?.data as any)?.error;
       // 6: User not found - 17: User has a private profile
       if (errNumber === 6 || errNumber === 17) {
         // ToDo: handle private profile case

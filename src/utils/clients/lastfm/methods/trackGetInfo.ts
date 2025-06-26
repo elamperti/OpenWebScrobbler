@@ -1,5 +1,3 @@
-import { get } from 'lodash-es';
-
 import { lastfmAPI } from '../apiClient';
 
 export async function trackGetInfo(track: { mbid?: string; artist: string; title: string }) {
@@ -19,5 +17,5 @@ export async function trackGetInfo(track: { mbid?: string; artist: string; title
     },
   });
 
-  return get(response, 'data.track');
+  return response?.data?.track;
 }
