@@ -1,9 +1,7 @@
-import { hasIn } from 'lodash-es';
-
 export function userRecentTracksTransformer(response: any) {
   const tracks = [];
   const rawTrackList = response?.data?.recenttracks?.track ?? [];
-  if (hasIn(response, 'data.recenttracks.track')) {
+  if (response?.data?.recenttracks?.track) {
     for (const item of rawTrackList) {
       if (!item?.['@attr']?.nowplaying) {
         tracks.push({

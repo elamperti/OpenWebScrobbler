@@ -1,4 +1,3 @@
-import { hasIn } from 'lodash-es';
 import shortid from 'shortid';
 
 import { sanitizeArtistName } from './common/sanitizeArtistName';
@@ -51,7 +50,7 @@ export function tracksTransformer(
         trackNumber: track.position || null,
       } as Track;
 
-      if (hasIn(options, 'cover')) {
+      if (options?.cover) {
         transformedTrack.cover = options.cover;
       }
 

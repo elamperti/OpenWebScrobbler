@@ -1,5 +1,3 @@
-import { hasIn } from 'lodash-es';
-
 import { logout } from 'utils/clients/api/methods/logout';
 import history from 'utils/history';
 
@@ -17,7 +15,7 @@ export function logOut(dispatch) {
         history.push('/');
         dispatch(
           createAlert(
-            hasIn(alertObject, 'message')
+            alertObject && 'message' in alertObject
               ? alertObject
               : {
                   type: 'info',
