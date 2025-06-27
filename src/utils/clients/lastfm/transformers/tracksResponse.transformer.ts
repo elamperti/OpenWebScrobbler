@@ -1,4 +1,3 @@
-import { hasIn } from 'lodash-es';
 import shortid from 'shortid';
 
 import { castArray } from 'utils/common';
@@ -26,7 +25,7 @@ export function tracksTransformer(
       trackNumber: track['@attr'] ? parseInt(track['@attr'].rank) : null,
     } as Track;
 
-    if (hasIn(options, 'cover')) {
+    if (options?.cover) {
       transformedTrack.cover = options.cover;
     }
 

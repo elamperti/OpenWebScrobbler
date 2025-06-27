@@ -1,4 +1,3 @@
-import { hasIn } from 'lodash-es';
 import shortid from 'shortid';
 
 import { scrobble } from 'utils/clients/api/methods/scrobble';
@@ -188,7 +187,7 @@ const scrobbleReducer = (state = initialState, action) => {
       };
 
     case `${SCROBBLE}_FULFILLED`:
-      if (hasIn(action.payload, 'data.scrobbles[@attr]')) {
+      if (action.payload?.data?.scrobbles?.['@attr']) {
         return updateScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           scrobbles: castArray(action.payload.data.scrobbles.scrobble),
           // attr: action.payload.scrobbles['@attr'],
@@ -206,7 +205,7 @@ const scrobbleReducer = (state = initialState, action) => {
       }
 
     case `${SCROBBLE}_REJECTED`:
-      if (hasIn(action.payload, 'config.headers.scrobbleUUID')) {
+      if (action.payload?.config?.headers?.scrobbleUUID) {
         return overrideScrobbleProps(state, action.payload.config.headers.scrobbleUUID, {
           status: 'error',
           errorDescription: 'errors.apiCallFailed',
@@ -216,7 +215,7 @@ const scrobbleReducer = (state = initialState, action) => {
 
     case `${SCROBBLE_COVER_SEARCH}_FULFILLED`:
       trackUUID = action.payload.config.params._uuid;
-      if (hasIn(action.payload, 'data.track.album') || hasIn(action.payload, 'data.album')) {
+      if (action.payload?.data?.track?.album || action.payload?.data?.album) {
         albumData = action.payload.data.album || action.payload.data.track.album;
         if (albumData.image) {
           const cover = albumData.image[1]['#text'];
