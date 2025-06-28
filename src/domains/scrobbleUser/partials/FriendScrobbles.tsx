@@ -67,7 +67,10 @@ export default function FriendScrobbles({
           </div>
         )}
       </div>
-      <div className={`ScrobbleList-container with-gradient${loading ? ' opacity-50' : ''}`}>
+      <div
+        className={`ScrobbleList-container with-gradient${loading ? ' opacity-50' : ''}`}
+        data-cy="FriendScrobbles-ScrobbleList"
+      >
         <ScrobbleList compact noMenu analyticsEventForScrobbles="Scrobble from user" scrobbles={scrobbles}>
           <div className="mt-3 text-center">
             <Trans i18nKey="noSongsScrobbled">This user hasn&apos;t scrobbled anything yet!</Trans>

@@ -116,7 +116,12 @@ export function ScrobbleUserResults() {
           {isLoading && <Spinner />}
           {data && (
             <>
-              <FriendScrobbles loading={isFetching} username={data.username} scrobbles={data.scrobbles} />
+              <FriendScrobbles
+                key={currentPage}
+                loading={isFetching}
+                username={data.username}
+                scrobbles={data.scrobbles}
+              />
               {!isLoading && totalPages > 1 && (
                 <Paginator pageCount={totalPages} currentPage={currentPage} onPageChange={setCurrentPage} />
               )}

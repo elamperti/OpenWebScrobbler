@@ -24,7 +24,7 @@ export default function Paginator({ currentPage, pageCount, onPageChange }: Pagi
     .map((_, i) => minBound + i);
 
   return (
-    <Pagination className="mt-3 d-flex justify-content-center">
+    <Pagination className="mt-3 d-flex justify-content-center" data-cy="Paginator">
       {currentPage > Math.ceil(MAX_PAGE_ITEMS / 2) && (
         <PaginationItem>
           <PaginationLink first onClick={goToPage} data-page={1} />
