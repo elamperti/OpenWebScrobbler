@@ -53,7 +53,7 @@ export default function AlbumCard({
     </div>
   );
 
-  const albumArt = background && (
+  const albumArt = background?.sm && (
     <LazyLoadImage className="albumArt" src={background.sm} srcSet={srcset} alt={name} effect="opacity" />
   );
 

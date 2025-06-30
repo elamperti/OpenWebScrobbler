@@ -120,12 +120,12 @@ export default function ScrobbleItem({
         {/* Album art */}
         {showAlbumArt && (
           <div className="albumArt align-self-center pe-2">
-            {!scrobble.cover ? (
+            {!scrobble?.cover?.sm ? (
               placeholderCDIcon
             ) : (
               <LazyLoadImage
                 className="cover rounded"
-                src={scrobble.cover.sm || scrobble.cover}
+                src={scrobble.cover.sm}
                 alt={scrobble.album}
                 placeholder={placeholderCDIcon}
                 scrollPosition={lazyScrollPosition}
