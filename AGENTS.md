@@ -106,6 +106,8 @@ Agents **must not** write to `public/` and **must refrain** from touching `.gith
 - E2E tests live in `cypress/e2e`.
 - All tests must be deterministic, idempotent, and clean up after themselves.
 - Assume tests will run in different timezones.
+- Avoid the "should" prefix in test names, start with verb phrases that describe the behavior being tested.
+- Use real artists, albums, and track titles in tests instead of generic placeholders (when possible).
 
 ---
 
