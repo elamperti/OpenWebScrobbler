@@ -125,7 +125,6 @@ export default function SearchForm({
               <DropdownToggle
                 caret
                 color="success"
-                className={disableSearch ? styles['fake-disabled'] : ''}
                 data-cy="SearchForm-dropdown-toggle"
               />
               <DropdownMenu data-cy="SearchForm-dropdown-menu">{searchOptions}</DropdownMenu>
