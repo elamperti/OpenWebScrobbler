@@ -256,7 +256,7 @@ describe('Authentication', () => {
       });
     });
 
-    it.only('shows the human verification item if configured', () => {
+    it('shows the human verification item if configured', () => {
       cy.visit('/?token=s3CM7rzuQKurE0U_Enq_3RHTYrm7XyyT');
       cy.window().then((win) => {
         cy.stub(win, 'getTurnstileSiteKey').returns('3x00000000000000000000FF');
