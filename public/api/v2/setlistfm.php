@@ -31,7 +31,7 @@
 
     require_once('inc/analytics.php');
     $ga = new Analytics();
-    $ga->timing('Setlist.fm Response Time', $method, round(curl_getinfo($setlistfmrq, CURLINFO_TOTAL_TIME) * 1000));
+    $ga->timing('Setlist.fm Response Time', 'Setlist', round(curl_getinfo($setlistfmrq, CURLINFO_TOTAL_TIME) * 1000));
 
     curl_close($setlistfmrq);
     echo $response;
