@@ -5,7 +5,7 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompactDisc, faUser } from '@fortawesome/free-solid-svg-icons';
 
-import { PROVIDER_NAME } from 'Constants';
+import ProviderItem from './ProviderItem';
 
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import type { Album, DiscogsAlbum, LastFmAlbum } from 'utils/types/album';
@@ -29,6 +29,7 @@ interface AlbumBreadcrumbProps {
   artistQuery?: string;
   artistDiscogsId?: string;
   dataProvider?: string;
+  showProviderDropdown?: boolean;
 }
 
 export default function AlbumBreadcrumb({
@@ -37,6 +38,7 @@ export default function AlbumBreadcrumb({
   artistDiscogsId,
   album,
   dataProvider,
+  showProviderDropdown,
 }: AlbumBreadcrumbProps) {
   const { t } = useTranslation();
   const itemList = [generateBreadcrumbItem('/scrobble/album', t('search'), { provider: dataProvider })];
@@ -98,7 +100,7 @@ export default function AlbumBreadcrumb({
       {itemList}
       {dataProvider && (
         <div className="flex-grow-1 text-end">
-          {t('dataProvider')}: <span data-cy="AlbumBreadcrumb-provider">{PROVIDER_NAME[dataProvider]}</span>
+          <ProviderItem dataProvider={dataProvider} showDropdown={showProviderDropdown} />
         </div>
       )}
     </Breadcrumb>
