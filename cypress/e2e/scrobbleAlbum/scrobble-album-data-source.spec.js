@@ -51,7 +51,7 @@ describe('Scrobble album data source (SRP)', () => {
       cy.get('[data-cy="DataSourceDropdown-menu"]')
         .find('[data-cy="DataSourceDropdown-item-lastfm"]')
         .click();
-        
+
       // check Last.fm results
       cy.get('[data-cy="AlbumCard"]')
         .first()
@@ -100,7 +100,7 @@ describe('Scrobble album data source (SRP)', () => {
       cy.get('[data-cy="DataSourceDropdown-menu"]')
         .find('[data-cy="DataSourceDropdown-item-discogs"]')
         .click();
-        
+
       // check Discogs results
       cy.get('[data-cy="AlbumCard"]')
         .first()
