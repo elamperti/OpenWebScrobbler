@@ -28,17 +28,22 @@ export default function ProviderItem({ dataProvider, showDropdown }: ProviderDro
     return (
       <>
         <UncontrolledDropdown data-cy="DataSourceDropdown" nav inNavbar={bsBreakpoint < BS_SIZE_MD}>
-          <DropdownToggle nav caret className="ows-dropdown-user">
+          <DropdownToggle nav caret className="ows-dropdown-user" data-cy="DataSourceDropdown-toggle">
             {t('dataProvider')}: <span data-cy="AlbumBreadcrumb-provider">{PROVIDER_NAME[dataProvider]}</span>
           </DropdownToggle>
-          <DropdownMenu end>
+          <DropdownMenu end data-cy="DataSourceDropdown-menu">
             <DropdownItem
               active={dataProvider === PROVIDER_DISCOGS}
               onClick={() => changeDataProvider(PROVIDER_DISCOGS)}
+              data-cy={`DataSourceDropdown-item-${PROVIDER_DISCOGS}`}
             >
               {PROVIDER_NAME[PROVIDER_DISCOGS]}
             </DropdownItem>
-            <DropdownItem active={dataProvider === PROVIDER_LASTFM} onClick={() => changeDataProvider(PROVIDER_LASTFM)}>
+            <DropdownItem
+              active={dataProvider === PROVIDER_LASTFM}
+              onClick={() => changeDataProvider(PROVIDER_LASTFM)}
+              data-cy={`DataSourceDropdown-item-${PROVIDER_LASTFM}`}
+            >
               {PROVIDER_NAME[PROVIDER_LASTFM]}
             </DropdownItem>
           </DropdownMenu>
