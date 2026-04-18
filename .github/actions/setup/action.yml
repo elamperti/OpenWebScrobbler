@@ -1,0 +1,32 @@
+name: 'Setup Environment'
+description: 'Common setup steps for Node, Yarn, Cypress caching, and dependency installation'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Enable Corepack
+      run: corepack enable
+      shell: bash
+
+    - name: Cache Cypress binary
+      uses: actions/cache@v4
+      with:
+        path: ~/.cache/Cypress
+        key: cypress-bin-${{ runner.os }}-${{ hashFiles('yarn.lock') }}
+        restore-keys: |
+          cypress-bin-${{ runner.os }}-
+
+    - name: Use Node.js
+      uses: actions/setup-node@v6
+      with:
+        node-version-file: 'package.json'
+        cache: yarn
+
+    - name: Setup Yarn and install dependencies
+      run: |
+        yarn set version latest --yarn-path
+        yarn install --immutable
+        yarn cypress install
+      shell: bash
+      env:
+        CI: 1

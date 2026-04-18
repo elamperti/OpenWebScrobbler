@@ -16,23 +16,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Use Node.js v20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Prepare Yarn Modern
-        run: |
-          corepack enable
-          yarn set version latest --yarn-path
-
-      - name: Install dependencies
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false
-          install-command: yarn install
-        env:
-          CI: 1
+      - name: Setup environment
+        uses: ./.github/actions/setup
 
       - name: Lint
         run: 'yarn lint --rule "react-compiler/react-compiler: off"'
@@ -51,23 +36,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Use Node.js v20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Prepare Yarn Modern
-        run: |
-          corepack enable
-          yarn set version latest --yarn-path
-
-      - name: Install dependencies
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false
-          install-command: yarn install
-        env:
-          CI: 1
+      - name: Setup environment
+        uses: ./.github/actions/setup
 
       - name: Unit tests
         run: yarn test:coverage
@@ -85,26 +55,11 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Use Node.js v20
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-
-      - name: Prepare Yarn Modern
-        run: |
-          corepack enable
-          yarn set version latest --yarn-path
-
-      - name: Install dependencies
-        uses: cypress-io/github-action@v6
-        with:
-          runTests: false
-          install-command: yarn install
-        env:
-          CI: 1
+      - name: Setup environment
+        uses: ./.github/actions/setup
 
       - name: E2E tests
-        uses: cypress-io/github-action@v6
+        uses: cypress-io/github-action@v7
         with:
           install: false
           build: npx cypress info
