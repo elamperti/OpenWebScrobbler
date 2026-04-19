@@ -18,6 +18,25 @@ const envPrefix = 'REACT_APP_';
 const isDevEnvironment = process.env.NODE_ENV === 'development';
 const isProdEnvironment = process.env.NODE_ENV === 'production';
 
+const showCurrentEnvPlugin = () => ({
+  name: 'show-current-env',
+  configureServer(server) {
+    const originalPrintUrls = server.printUrls;
+    server.printUrls = () => {
+      originalPrintUrls();
+      const env = process.env.NODE_ENV || 'development';
+      const bold = '\x1b[1m';
+      let color = '\x1b[33m'; // yellow
+      if (env === 'development') color = '\x1b[32m';
+      else if (env === 'test') color = '\x1b[36m';
+      else if (env === 'production') color = '\x1b[31m';
+      const reset = '\x1b[0m';
+      // eslint-disable-next-line no-console
+      console.log(`  ➜  Current environment: ${color}${bold}${env}${reset}`);
+    };
+  },
+});
+
 const defineReactAppEnv = (mode) => {
   const env = loadEnv(mode, process.cwd(), '');
   return Object.keys(env).reduce((acc, key) => {
@@ -54,6 +73,7 @@ const viteConfig = ({ mode }) =>
       'process.env.REACT_APP_VERSION': JSON.stringify(process.env.npm_package_version),
     },
     plugins: [
+      showCurrentEnvPlugin(),
       tsconfigPaths(),
       react({
         babel: {
