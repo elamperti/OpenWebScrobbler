@@ -46,6 +46,7 @@ function Footer() {
           {' ❤ '}
           <br />
           <span className="app-version">v{process.env.REACT_APP_VERSION}</span>
+          {process.env.NODE_ENV === 'test' && <span className="ms-2 text-info fw-bold">TEST ENV</span>}
           {/* {' • '}
           <a href="//status.openscrobbler.com/" target="_blank" rel="noreferrer">
             Status

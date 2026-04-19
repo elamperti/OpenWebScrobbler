@@ -26,8 +26,11 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 
 import { tweak } from 'utils/tweaks/Tweaks';
 
+const isDevEnvironment = process.env.NODE_ENV === 'development';
+const isTestEnvironment = process.env.NODE_ENV === 'test';
+
 // Avoid proxies that may interfer with the site
-if (process.env.NODE_ENV !== 'development' && document.location.host !== process.env.REACT_APP_HOST) {
+if (!isDevEnvironment && !isTestEnvironment && document.location.host !== process.env.REACT_APP_HOST) {
   // eslint-disable-next-line no-restricted-globals
   parent.window.location.href = `//${process.env.REACT_APP_HOST}/`;
 }
@@ -69,9 +72,9 @@ if (sentryEnabled) {
         maskAllText: false,
       }),
     ],
-    replaysSessionSampleRate: process.env.NODE_ENV === 'development' ? 0 : 0.02,
+    replaysSessionSampleRate: isDevEnvironment || isTestEnvironment ? 0 : 0.02,
     replaysOnErrorSampleRate: 0.75,
-    tracesSampleRate: process.env.NODE_ENV === 'development' ? 0.2 : 0.05,
+    tracesSampleRate: isDevEnvironment ? 0.2 : 0.05,
   });
 
   wrappedApp = <Sentry.ErrorBoundary fallback={ErrorPage}>{wrappedApp}</Sentry.ErrorBoundary>;
@@ -99,7 +102,7 @@ if (process.env.REACT_APP_ANALYTICS_CODE) {
       clientId,
       userId,
     },
-    testMode: process.env.NODE_ENV === 'test',
+    testMode: isTestEnvironment,
     titleCase: true,
   });
 
@@ -134,7 +137,7 @@ wrappedApp = (
 const growthbook = new GrowthBook({
   apiHost: 'https://cdn.growthbook.io',
   clientKey: process.env.REACT_APP_GROWTHBOOK_API_KEY || 'invalid-key',
-  enableDevMode: process.env.NODE_ENV === 'development',
+  enableDevMode: isDevEnvironment,
   backgroundSync: false,
   attributes: {
     loggedIn: false,

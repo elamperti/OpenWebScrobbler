@@ -38,8 +38,7 @@ export function Callback() {
   const settings = useSettings();
 
   // ToDo: remove from window, used only to stub with Cypress :(
-  const turnstileSiteKey = (window.getTurnstileSiteKey || getTurnstileSiteKey)();
-
+  const turnstileSiteKey = (window.getTurnstileSiteKey ?? getTurnstileSiteKey)();
   const [turnstileLoading, setTurnstileLoaded] = useState(false);
   const [turnstileError, setTurnstileError] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState('');
@@ -131,7 +130,7 @@ export function Callback() {
 
           {/* Last.fm auth */}
           <ProgressItem
-            isLoading={turnstileToken && !validation.isSuccess}
+            isLoading={turnstileReady && !validation.isSuccess}
             isError={validationFailed}
             isDone={validation.data?.success}
           >

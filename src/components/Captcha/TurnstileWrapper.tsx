@@ -17,7 +17,7 @@ interface TurnstileWrapperProps extends Partial<TurnstileProps> {
   action: string;
 }
 export const TurnstileWrapper = (props: TurnstileWrapperProps) => {
-  const turnstileSiteKey = useMemo<string>(() => (window.getTurnstileSiteKey || getTurnstileSiteKey)(), []);
+  const turnstileSiteKey = useMemo<string>(() => (window.getTurnstileSiteKey ?? getTurnstileSiteKey)(), []);
   const bypassTurnstile = useFeatureIsOn('bypass-turnstile');
   const { captchaToken, setCaptchaToken } = useContext(CaptchaContext);
   const [reset, setReset] = useState(null);

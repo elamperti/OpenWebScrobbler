@@ -26,13 +26,13 @@ describe('Scrobble user (results)', () => {
 
   describe('Normal user', () => {
     beforeEach(() => {
-      cy.intercept('GET', 'https://ws.audioscrobbler.com/2.0/*method=user.getRecentTracks*page=1', {
+      cy.intercept('GET', 'https://ws.audioscrobbler.com/2.0/*method=user.getRecentTracks*page=1*', {
         fixture: 'lastfm/user/getRecentTracks.elamperti.page1.json',
       }).as('page1');
-      cy.intercept('GET', 'https://ws.audioscrobbler.com/2.0/*method=user.getRecentTracks*page=2', {
+      cy.intercept('GET', 'https://ws.audioscrobbler.com/2.0/*method=user.getRecentTracks*page=2*', {
         fixture: 'lastfm/user/getRecentTracks.elamperti.page2.json',
       }).as('page2');
-      cy.intercept('GET', 'https://ws.audioscrobbler.com/2.0/*method=user.getRecentTracks*page=3', {
+      cy.intercept('GET', 'https://ws.audioscrobbler.com/2.0/*method=user.getRecentTracks*page=3*', {
         fixture: 'lastfm/user/getRecentTracks.elamperti.page3.json',
       }).as('page3');
 

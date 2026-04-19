@@ -118,7 +118,7 @@
     "test:coverage": "vitest run --coverage",
     "watch": "vitest watch",
     "typecheck": "yarn run tsc",
-    "cy": "start-test 'NO_DEVTOOLS=1 yarn start:server --port 3030' 3030 'TZ=Etc/GMT-3 cypress open --e2e --browser chrome'",
+    "cy": "start-test 'NODE_ENV=test NO_DEVTOOLS=1 yarn start:server --port 3030' 3030 'TZ=Etc/GMT-3 cypress open --e2e --browser chrome'",
     "translations:fetch": "poeditor pull && prettier --write \"public/locales/*.json\"",
     "translations:update": "poeditor push"
   },
