@@ -6,6 +6,7 @@
     "node": ">=24"
   },
   "dependencies": {
+    "@cypress/vite-plugin-cypress-esm": "^1.1.2",
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-regular-svg-icons": "^6.7.2",
@@ -101,6 +102,7 @@
   },
   "scripts": {
     "prepare": "is-ci || husky install",
+    "dev": "yarn start",
     "start": "concurrently -r --kill-others 'yarn start:server' 'yarn start:services'",
     "start:server": "vite --port 3000",
     "start:services": "docker-compose up",

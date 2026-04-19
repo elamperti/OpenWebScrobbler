@@ -1985,6 +1985,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@cypress/vite-plugin-cypress-esm@npm:^1.1.2":
+  version: 1.1.2
+  resolution: "@cypress/vite-plugin-cypress-esm@npm:1.1.2"
+  dependencies:
+    debug: "npm:^4.3.4"
+    picomatch: "npm:2.3.0"
+  checksum: 10c0/0fcef3af4ec8c2490ef7491c46cb52b864353cc63d7269f620568d7be595eb999ec98215dbf440702b7cbb6f51718f734f9606de247e201aef4ef615496d109b
+  languageName: node
+  linkType: hard
+
 "@cypress/xvfb@npm:^1.2.4":
   version: 1.2.4
   resolution: "@cypress/xvfb@npm:1.2.4"
@@ -10645,6 +10655,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "openscrobbler@workspace:."
   dependencies:
+    "@cypress/vite-plugin-cypress-esm": "npm:^1.1.2"
     "@fortawesome/fontawesome-svg-core": "npm:^6.7.2"
     "@fortawesome/free-brands-svg-icons": "npm:^6.7.2"
     "@fortawesome/free-regular-svg-icons": "npm:^6.7.2"
@@ -11031,6 +11042,13 @@ __metadata:
   version: 1.1.1
   resolution: "picocolors@npm:1.1.1"
   checksum: 10c0/e2e3e8170ab9d7c7421969adaa7e1b31434f789afb9b3f115f6b96d91945041ac3ceb02e9ec6fe6510ff036bcc0bf91e69a1772edc0b707e12b19c0f2d6bcf58
+  languageName: node
+  linkType: hard
+
+"picomatch@npm:2.3.0":
+  version: 2.3.0
+  resolution: "picomatch@npm:2.3.0"
+  checksum: 10c0/a65bde78212368e16afb82429a0ea033d20a836270446acb53ec6e31d939bccf1213f788bc49361f7aff47b67c1fb74d898f99964f67f26ca07a3cd815ddbcbb
   languageName: node
   linkType: hard
 
