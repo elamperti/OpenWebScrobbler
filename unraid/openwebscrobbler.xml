@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<Container version="2">
+  <Name>OpenWebScrobbler</Name>
+  <Repository>54ac/openwebscrobbler</Repository>
+  <Registry>https://hub.docker.com/r/54ac/openwebscrobbler/</Registry>
+  <Network>bridge</Network>
+  <Shell>bash</Shell>
+  <Privileged>false</Privileged>
+  <Support>https://hub.docker.com/r/54ac/openwebscrobbler/</Support>
+  <Project>https://github.com/elamperti/OpenWebScrobbler/</Project>
+  <Overview>An open source scrobbling client for the web. Just login and scrobble the track(s) you want! This tool lets you scrobble songs you heard on the radio, vinyls or at some place where you need to manually scrobble.&#13;
+&#13;
+You may use it directly from here: https://openscrobbler.com/</Overview>
+  <WebUI>http://[IP]:[PORT:3274]/</WebUI>
+  <Icon>https://raw.githubusercontent.com/elamperti/OpenWebScrobbler/main/public/android-chrome-192x192.png</Icon>
+  <Config Name="Web UI port" Target="80" Default="3274" Mode="tcp" Description="" Type="Port" Display="always" Required="true" Mask="false">3274</Config>
+  <Config Name="Database storage" Target="/var/www/html/database" Default="/mnt/user/appdata/openwebscrobbler/database" Mode="rw" Description="" Type="Path" Display="always" Required="true" Mask="false">/mnt/user/appdata/openwebscrobbler/database</Config>
+  <Config Name="Last.fm API key" Target="LASTFM_API_KEY" Default="" Mode="" Description="https://www.last.fm/api/account/create" Type="Variable" Display="always" Required="true" Mask="false"></Config>
+  <Config Name="Last.fm API secret" Target="LASTFM_SECRET" Default="" Mode="" Description="" Type="Variable" Display="always" Required="true" Mask="true"></Config>
+  <Config Name="Discogs API key" Target="DISCOGS_API_KEY" Default="" Mode="" Description="https://www.discogs.com/applications/edit" Type="Variable" Display="always" Required="false" Mask="false"></Config>
+  <Config Name="Discogs API secret" Target="DISCOGS_SECRET" Default="" Mode="" Description="" Type="Variable" Display="always" Required="false" Mask="true"></Config>
+  <Config Name="Setlist.fm API Key" Target="SETLISTFM_API_KEY" Default="" Mode="" Description="https://www.setlist.fm/settings/apps" Type="Variable" Display="always" Required="false" Mask="false"/>
+</Container>

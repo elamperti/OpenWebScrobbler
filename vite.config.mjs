@@ -68,6 +68,9 @@ const viteConfig = ({ mode }) =>
     envPrefix,
     define: {
       ...defineReactAppEnv(mode),
+      // Allow this var to be set dynamically in frontend
+      'process.env.REACT_APP_LASTFM_API_KEY': 'window.__env.REACT_APP_LASTFM_API_KEY',
+      'process.env.REACT_APP_HOST': 'window.location.host',
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV),
       'process.env.NO_DEVTOOLS': JSON.stringify(process.env.NO_DEVTOOLS || process.env.CI),
       'process.env.REACT_APP_VERSION': JSON.stringify(process.env.npm_package_version),
