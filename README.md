@@ -38,7 +38,7 @@ To join the translators team, follow the link at the bottom of the language sele
 
 You will need to copy `cypress.env.json` to `cypress.development.json` and update the file to execute the tests. Don't use last.fm account credentials from a real account!
 
-Tests can be run with `yarn test`, Cypress console can be accessed with `yarn cypress`.
+Tests can be run with `yarn test`, Cypress console can be accessed with `yarn cy`.
 
 To check test coverage run `yarn test:coverage`
 

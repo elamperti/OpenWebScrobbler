@@ -1,0 +1,40 @@
+{
+  "user": {
+    "name": "elamperti",
+    "age": "0",
+    "subscriber": "0",
+    "realname": "Enrico",
+    "bootstrap": "0",
+    "playcount": "123456",
+    "artist_count": "9999",
+    "playlists": "0",
+    "track_count": "52200",
+    "album_count": "28370",
+    "image": [
+      {
+        "size": "small",
+        "#text": "https:\/\/lastfm.freetls.fastly.net\/i\/u\/34s\/861f136748339732f8b885c335173f0b.png"
+      },
+      {
+        "size": "medium",
+        "#text": "https:\/\/lastfm.freetls.fastly.net\/i\/u\/64s\/861f136748339732f8b885c335173f0b.png"
+      },
+      {
+        "size": "large",
+        "#text": "https:\/\/lastfm.freetls.fastly.net\/i\/u\/174s\/861f136748339732f8b885c335173f0b.png"
+      },
+      {
+        "size": "extralarge",
+        "#text": "https:\/\/lastfm.freetls.fastly.net\/i\/u\/300x300\/861f136748339732f8b885c335173f0b.png"
+      }
+    ],
+    "registered": {
+      "unixtime": "1177185149",
+      "#text": 1177185149
+    },
+    "country": "Argentina",
+    "gender": "n",
+    "url": "https:\/\/www.last.fm\/user\/elamperti",
+    "type": "user"
+  }
+}

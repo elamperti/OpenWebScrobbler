@@ -49,7 +49,7 @@ export function ScrobbleAlbumResults() {
         <FontAwesomeIcon icon={faCompactDisc} className="me-2" />
         <Trans i18nKey="scrobbleAlbum">Scrobble Album</Trans>
       </h2>
-      <AlbumBreadcrumb albumQuery={query} dataProvider={dataProvider} />
+      <AlbumBreadcrumb albumQuery={query} dataProvider={dataProvider} showProviderDropdown={true} />
       <Row className="mb-4">
         <div className="col-md-8">
           {isFetching ? <Spinner /> : <AlbumResults albums={data} query={query} useFullWidth={false} />}

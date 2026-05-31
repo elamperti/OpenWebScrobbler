@@ -1,6 +1,11 @@
 const requestDelay = 100;
 
 describe('Authentication', () => {
+  beforeEach(() => {
+    cy.clearLocalStorage();
+    cy.clearCookies();
+  });
+
   describe('Visitor (happy path)', () => {
     beforeEach(() => {
       let userCallsCounter = 0;
@@ -73,6 +78,8 @@ describe('Authentication', () => {
 
     it('shows the correct steps and status', () => {
       cy.visit('/lastfm/callback/?token=s3CM7rzuQKurE0U_Enq_3RHTYrm7XyyT');
+
+      cy.wait('@userData'); // first call, user is not logged in
       cy.get('[data-cy="Callback-container"]').should('exist');
 
       cy.log('Step 1: Validating token');
@@ -167,6 +174,7 @@ describe('Authentication', () => {
       // cy.stub(callbackUtils, 'logoutAndTryAgain').returns(true).as('logout');
 
       cy.visit('/lastfm/callback/?token=s3CM7rzuQKurE0U_Enq_3RHTYrm7XyyT');
+
       cy.wait('@callback');
 
       cy.get('[data-cy="Callback-try-again"]').click();
@@ -187,6 +195,7 @@ describe('Authentication', () => {
       ).as('userData');
 
       cy.visit('/lastfm/callback/?token=s3CM7rzuQKurE0U_Enq_3RHTYrm7XyyT');
+
       cy.wait('@userData');
 
       cy.get('[data-cy="Callback-issues-block"]').should('exist');
@@ -230,6 +239,7 @@ describe('Authentication', () => {
       ).as('settings');
 
       cy.visit('/lastfm/callback/?token=s3CM7rzuQKurE0U_Enq_3RHTYrm7XyyT');
+
       cy.wait('@settings');
 
       cy.get('[data-cy="ProgressItem"]').contains('preferences').should('have.attr', 'data-status', 'error');
@@ -256,7 +266,7 @@ describe('Authentication', () => {
       });
     });
 
-    it.only('shows the human verification item if configured', () => {
+    it('shows the human verification item if configured', () => {
       cy.visit('/?token=s3CM7rzuQKurE0U_Enq_3RHTYrm7XyyT');
       cy.window().then((win) => {
         cy.stub(win, 'getTurnstileSiteKey').returns('3x00000000000000000000FF');

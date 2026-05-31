@@ -64,10 +64,11 @@ export const getAmznLink = (artist: string, album: string) => {
 };
 
 export const getTurnstileSiteKey = (): string => {
+  if (process.env.NODE_ENV === 'test') {
+    return null;
+  }
   return process.env.REACT_APP_CF_TURNSTILE_SITE_KEY;
 };
-
-export const CAPTCHA_ENABLED = !!process.env.REACT_APP_CF_TURNSTILE_SITE_KEY;
 
 if (window.Cypress) {
   window.getTurnstileSiteKey = getTurnstileSiteKey;
