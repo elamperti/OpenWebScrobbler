@@ -9,7 +9,7 @@ import UserCard from 'components/UserCard';
 import { useSettings } from 'hooks/useSettings';
 import { userGetProfile } from 'utils/clients/lastfm/methods/userGetProfile';
 
-import RefreshProfile from './RefreshProfile';
+import RefreshProfileButton from './RefreshProfile';
 
 import type { Scrobble } from 'utils/types/scrobble';
 
@@ -50,7 +50,7 @@ export default function FriendScrobbles({
           )}
         </div>
         <div className="col-sm-4 d-flex px-3 mb-2 flex-fill justify-content-sm-end">
-          <RefreshProfile username={lowercaseUsername} />
+          <RefreshProfileButton username={lowercaseUsername} />
         </div>
         {dataIsReady && (
           <div className="col-12 px-3">

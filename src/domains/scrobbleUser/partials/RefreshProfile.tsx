@@ -5,7 +5,7 @@ import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSync } from '@fortawesome/free-solid-svg-icons';
 
-export default function RefreshProfile({ username }: { username: string }) {
+export default function RefreshProfileButton({ username }: { username: string }) {
   const queryClient = useQueryClient();
 
   if (!username) return null;
