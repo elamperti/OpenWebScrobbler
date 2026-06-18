@@ -5,6 +5,7 @@ export function userRecentTracksTransformer(response: any) {
     for (const item of rawTrackList) {
       if (!item?.['@attr']?.nowplaying) {
         tracks.push({
+          id: 'scrobbledAt-' + item.date.uts, // Important for keys/selectable lists tracking by id
           artist: item.artist['#text'],
           title: item.name,
           album: item.album['#text'],

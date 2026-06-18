@@ -32,6 +32,7 @@ describe('Last.fm transformer: user recent tracks', () => {
       totalPages: 10,
       scrobbles: [
         {
+          id: 'scrobbledAt-1628750000',
           artist: 'Taylor Swift',
           title: 'Shake It Off',
           album: '1989',
@@ -39,6 +40,7 @@ describe('Last.fm transformer: user recent tracks', () => {
           timestamp: new Date(1628750000000),
         },
         {
+          id: 'scrobbledAt-1628760000',
           artist: 'Taylor Swift',
           title: 'Blank Space',
           album: '1989',
@@ -118,6 +120,7 @@ describe('Last.fm transformer: user recent tracks', () => {
       totalPages: 10,
       scrobbles: [
         {
+          id: 'scrobbledAt-1628760000',
           artist: 'Taylor Swift',
           title: 'Blank Space',
           album: '1989',
