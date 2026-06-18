@@ -35,6 +35,7 @@ export const languageList: i18nLanguage[] = [
   { code: 'pl', name: 'Polski' }, // Polish
   { code: 'pt', name: 'Português' },
   { code: 'pt-BR', name: 'Português (BR)' },
+  { code: 'ro', name: 'Română' }, // Romanian
   { code: 'sr', name: 'Српски' }, // Serbian
   { code: 'sv', name: 'Svenska' }, // Swedish
   { code: 'ru', name: 'Русский' }, // Russian
@@ -63,6 +64,7 @@ export const fallbackLng = {
   'nb-SJ': ['nb'],
   'pt-BR': ['pt-BR'],
   'pt-PT': ['pt'],
+  'ro-RO': ['ro'],
   'fr-FR': ['fr'],
   'gl-ES': ['gl'],
   'uk-UA': ['uk'],
