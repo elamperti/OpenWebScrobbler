@@ -27,6 +27,7 @@ export const languageList: i18nLanguage[] = [
   { code: 'fr', name: 'Français' }, // French
   { code: 'gl', name: 'Galego' }, // Galician
   { code: 'hr', name: 'Hrvatski' }, // Croatian
+  { code: 'hu', name: 'Magyar' }, // Hungarian
   { code: 'it', name: 'Italiano' },
   { code: 'lt', name: 'Lietuvių' }, // Lithuanian
   { code: 'nl', name: 'Nederlands' }, // Dutch
@@ -55,6 +56,7 @@ export const fallbackLng = {
   'es-AR': ['es'],
   'es-ES': ['es'],
   'hr-HR': ['hr'],
+  'hu-HU': ['hu'],
   'it-CH': ['it'],
   'lt-LT': ['lt'],
   'nb-NO': ['nb'],
