@@ -8,6 +8,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 
 import Spinner from 'components/Spinner';
+import { albumSearch as BandcampSearch } from 'utils/clients/bandcamp';
 import { albumSearch as DiscogsSearch } from 'utils/clients/discogs';
 import { albumSearch as LastFmSearch } from 'utils/clients/lastfm';
 import { sanitizeProvider } from 'utils/common';
@@ -16,7 +17,7 @@ import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 import AlbumResults from './partials/AlbumResults';
 import ArtistResults from './partials/ArtistResults';
 
-import { PROVIDER_DISCOGS } from 'Constants';
+import { PROVIDER_BANDCAMP, PROVIDER_DISCOGS } from 'Constants';
 
 export function ScrobbleAlbumResults() {
   const [searchParams] = useSearchParams();
@@ -34,7 +35,9 @@ export function ScrobbleAlbumResults() {
   const { data, isFetching } = useQuery({
     queryKey: ['albums', dataProvider, query, 1], // First page only for now
     queryFn: () => {
-      if (dataProvider === PROVIDER_DISCOGS) {
+      if (dataProvider === PROVIDER_BANDCAMP) {
+        return BandcampSearch(query, !!state?.includeTracks);
+      } else if (dataProvider === PROVIDER_DISCOGS) {
         return DiscogsSearch(query, !!state?.includeReleases);
       } else {
         return LastFmSearch(query);

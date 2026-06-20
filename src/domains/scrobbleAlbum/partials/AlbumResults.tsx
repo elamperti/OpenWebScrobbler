@@ -8,8 +8,9 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import Spinner from 'components/Spinner';
 
 import AlbumList from './AlbumList';
+import { albumViewPath } from '../albumViewPath';
 
-import type { Album, DiscogsAlbum, LastFmAlbum } from 'utils/types/album';
+import type { Album } from 'utils/types/album';
 
 export default function AlbumResults({
   useFullWidth,
@@ -58,16 +59,7 @@ export default function AlbumResults({
           label: albumIndex,
         });
 
-        if ((targetAlbum as LastFmAlbum).mbid) {
-          navigateWithState(`/scrobble/album/view/mbid/${(targetAlbum as LastFmAlbum).mbid}`);
-        } else if ((targetAlbum as DiscogsAlbum).discogsId) {
-          navigateWithState(`/scrobble/album/view/dsid/${(targetAlbum as DiscogsAlbum).discogsId}`);
-        } else {
-          navigateWithState(
-            `/scrobble/album/view/${encodeURIComponent(targetAlbum.artist.replace('%', ''))}` +
-              `/${encodeURIComponent(targetAlbum.name.replace('%', ''))}`
-          );
-        }
+        navigateWithState(albumViewPath(targetAlbum));
       };
 
       return <AlbumList albums={albums} className={colSizes} onClick={navigateToAlbum} />;

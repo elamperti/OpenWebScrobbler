@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 
 import Spinner from 'components/Spinner';
+import { artistGetInfo as BandcampArtistGetInfo } from 'utils/clients/bandcamp';
 import { searchTopAlbums as DiscogsSearch } from 'utils/clients/discogs';
 import { searchTopAlbums as LastFmSearch } from 'utils/clients/lastfm';
 import { sanitizeProvider } from 'utils/common';
@@ -14,7 +15,7 @@ import { sanitizeProvider } from 'utils/common';
 import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 import AlbumResults from './partials/AlbumResults';
 
-import { PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
+import { PROVIDER_BANDCAMP, PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
 export function ScrobbleArtistResults() {
   const { t } = useTranslation();
@@ -25,17 +26,23 @@ export function ScrobbleArtistResults() {
 
   const dataProvider =
     state?.provider ||
-    (params.discogsId ? PROVIDER_DISCOGS : sanitizeProvider(searchParams.get('source'), PROVIDER_LASTFM));
+    (params.bandcampDomain
+      ? PROVIDER_BANDCAMP
+      : params.discogsId
+        ? PROVIDER_DISCOGS
+        : sanitizeProvider(searchParams.get('source'), PROVIDER_LASTFM));
 
   useEffect(() => {
-    setArtistName(decodeURIComponent(params.artistName || ''));
+    setArtistName(decodeURIComponent(params.bandcampDomain || params.artistName || ''));
   }, [params]);
 
-  const artistKey = params.mbid || params.discogsId || artistName;
+  const artistKey = params.mbid || params.discogsId || params.bandcampDomain || artistName;
   const { data, isFetching } = useQuery({
     queryKey: ['topAlbums', dataProvider, artistKey, 1], // First page only for now
     queryFn: () => {
-      if (dataProvider === PROVIDER_DISCOGS) {
+      if (dataProvider === PROVIDER_BANDCAMP) {
+        return BandcampArtistGetInfo(params.bandcampDomain);
+      } else if (dataProvider === PROVIDER_DISCOGS) {
         return DiscogsSearch(params.discogsId);
       } else {
         return LastFmSearch({

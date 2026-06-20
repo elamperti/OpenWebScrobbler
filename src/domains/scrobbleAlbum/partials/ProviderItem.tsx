@@ -5,7 +5,7 @@ import { DropdownItem, DropdownMenu, DropdownToggle, UncontrolledDropdown } from
 
 import { BS_SIZE_MD, useBootstrapBreakpoint } from 'utils/bootstrapBreakpoints';
 
-import { PROVIDER_DISCOGS, PROVIDER_LASTFM, PROVIDER_NAME } from 'Constants';
+import { PROVIDER_BANDCAMP, PROVIDER_DISCOGS, PROVIDER_LASTFM, PROVIDER_NAME } from 'Constants';
 
 interface ProviderDropdownProps {
   dataProvider: string;
@@ -45,6 +45,13 @@ export default function ProviderItem({ dataProvider, showDropdown }: ProviderDro
               data-cy={`DataSourceDropdown-item-${PROVIDER_LASTFM}`}
             >
               {PROVIDER_NAME[PROVIDER_LASTFM]}
+            </DropdownItem>
+            <DropdownItem
+              active={dataProvider === PROVIDER_BANDCAMP}
+              onClick={() => changeDataProvider(PROVIDER_BANDCAMP)}
+              data-cy={`DataSourceDropdown-item-${PROVIDER_BANDCAMP}`}
+            >
+              {PROVIDER_NAME[PROVIDER_BANDCAMP]}
             </DropdownItem>
           </DropdownMenu>
         </UncontrolledDropdown>

@@ -14,6 +14,7 @@ import ScrobbleList from 'components/ScrobbleList';
 import Spinner from 'components/Spinner';
 import useLocalStorage from 'hooks/useLocalStorage';
 import { _discogsFindBestMatch } from 'store/actions/albumActions';
+import { albumGetInfo as BandcampAlbumGetInfo } from 'utils/clients/bandcamp';
 import { albumGetInfo as DiscogsAlbumGetInfo } from 'utils/clients/discogs';
 import { albumGetInfo as LastfmAlbumGetInfo } from 'utils/clients/lastfm';
 
@@ -21,7 +22,7 @@ import { CleanupPatternContext } from './CleanupContext';
 import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 import Tracklist from './partials/Tracklist';
 
-import { MAX_RECENT_ALBUMS, PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
+import { MAX_RECENT_ALBUMS, PROVIDER_BANDCAMP, PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
 import type { RootState } from 'store';
 import type { Album, DiscogsAlbum } from 'utils/types/album';
@@ -45,17 +46,27 @@ export function ScrobbleAlbumTracklist() {
   const discogsId = sanitizeParam(params.discogsId);
   const albumName = sanitizeParam(params.albumName);
   const artist = sanitizeParam(params.artist);
+  const bandcampDomain = sanitizeParam(params.bandcampDomain);
+  const releaseType = sanitizeParam(params.releaseType); // 'album' or 'track'
+  const slug = sanitizeParam(params.slug);
+  const bandcampUrl =
+    bandcampDomain && (releaseType === 'album' || releaseType === 'track') && slug
+      ? `https://${bandcampDomain}/${releaseType}/${slug}`
+      : null;
 
   let queryKeyDetails = [];
   let tracklistDataProvider = null;
 
   if (!triedAlternativeProvider) {
-    if (albumId || discogsId) {
+    if (albumId || discogsId || bandcampUrl) {
       setTriedAlternativeProvider(true);
     }
   }
 
-  if (albumId) {
+  if (bandcampUrl) {
+    tracklistDataProvider = PROVIDER_BANDCAMP;
+    queryKeyDetails = ['bandcampId', bandcampUrl];
+  } else if (albumId) {
     tracklistDataProvider = PROVIDER_LASTFM;
     queryKeyDetails = ['mbid', albumId];
   } else if (discogsId) {
@@ -69,7 +80,9 @@ export function ScrobbleAlbumTracklist() {
   const albumInfo = useQuery({
     queryKey: ['album', tracklistDataProvider, ...queryKeyDetails],
     queryFn: (ctx) => {
-      if (tracklistDataProvider === PROVIDER_DISCOGS) {
+      if (tracklistDataProvider === PROVIDER_BANDCAMP) {
+        return BandcampAlbumGetInfo(bandcampUrl, ctx.queryKey);
+      } else if (tracklistDataProvider === PROVIDER_DISCOGS) {
         return DiscogsAlbumGetInfo(discogsId, ctx.queryKey);
       } else {
         // uses mbid if defined, otherwise artist+album

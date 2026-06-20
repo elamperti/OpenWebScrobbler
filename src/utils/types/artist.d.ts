@@ -14,4 +14,8 @@ export type DiscogsArtist = BaseArtist & {
   discogsId: string;
 };
 
-export type Artist = LastFmArtist | DiscogsArtist;
+export type BandcampArtist = BaseArtist & {
+  bandcampDomain: string;
+};
+
+export type Artist = LastFmArtist | DiscogsArtist | BandcampArtist;
