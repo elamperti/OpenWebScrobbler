@@ -61,8 +61,10 @@ export default function ArtistResults({ query, dataProvider }: { query: string; 
         navigateWithState(`/scrobble/artist/mbid/${encodeURIComponent((selectedArtist as LastFmArtist).mbid)}`);
       } else if ((selectedArtist as DiscogsArtist).discogsId) {
         navigateWithState(`/scrobble/artist/dsid/${encodeURIComponent((selectedArtist as DiscogsArtist).discogsId)}`);
-      } else if ((selectedArtist as BandcampArtist).bandcampDomain) {
-        navigateWithState(`/scrobble/artist/bc/${(selectedArtist as BandcampArtist).bandcampDomain}`);
+      } else if ((selectedArtist as BandcampArtist).bandId) {
+        navigate(`/scrobble/artist/bc/${(selectedArtist as BandcampArtist).bandId}`, {
+          state: { query, artist: selectedArtist.name },
+        });
       } else {
         navigateWithState(`/scrobble/artist/${encodeURIComponent(selectedArtist.name)}`);
       }

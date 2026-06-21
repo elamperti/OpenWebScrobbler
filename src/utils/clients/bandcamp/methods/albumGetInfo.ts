@@ -5,15 +5,22 @@ import { tracksTransformer } from '../transformers/tracksResponse.transformer';
 import type { QueryKey } from '@tanstack/react-query';
 import type { AlbumWithTracks } from 'utils/types/album';
 
-export async function albumGetInfo(bandcampUrl: string, queryKey: QueryKey): Promise<AlbumWithTracks> {
+export async function albumGetInfo(
+  bandId: string,
+  tralbumType: 'a' | 't',
+  tralbumId: string,
+  queryKey: QueryKey
+): Promise<AlbumWithTracks> {
   const response = await bandcampAPI.get('', {
     params: {
       method: 'album.getInfo',
-      album_url: bandcampUrl,
+      band_id: bandId,
+      tralbum_type: tralbumType,
+      tralbum_id: tralbumId,
     },
   });
 
-  const info = albumGetInfoTransformer(response, bandcampUrl, queryKey);
+  const info = albumGetInfoTransformer(response, bandId, tralbumType, tralbumId, queryKey);
 
   return {
     info,

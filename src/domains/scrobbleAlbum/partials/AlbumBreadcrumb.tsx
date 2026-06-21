@@ -55,12 +55,12 @@ export default function AlbumBreadcrumb({
   }
 
   const albumArtist = album?.artist;
-  const bandcampId = (album as BandcampAlbum)?.bandcampId;
+  const bandId = (album as BandcampAlbum)?.bandId;
   if (artistQuery || albumArtist) {
-    if (bandcampId) {
+    if (bandId) {
       itemList.push(
         generateBreadcrumbItem(
-          `/scrobble/artist/bc/${new URL(bandcampId).hostname}`,
+          `/scrobble/artist/bc/${bandId}`,
           albumArtist || artistQuery,
           { artist: albumArtist, query: albumQuery, provider: dataProvider },
           faUser

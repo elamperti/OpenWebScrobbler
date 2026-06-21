@@ -1,0 +1,13 @@
+{
+  "title": "Meteora",
+  "tralbum_artist": "Linkin Park",
+  "art_id": 1234567890,
+  "release_date": 1048896000,
+  "bandcamp_url": "https://linkinpark.bandcamp.com/album/meteora",
+  "album_id": 1111111111,
+  "tracks": [
+    { "track_num": 1, "title": "Foreword", "duration": 13.0 },
+    { "track_num": 2, "title": "Don't Stay", "duration": 187.0 },
+    { "track_num": 3, "title": "Somewhere I Belong", "duration": 214.0 }
+  ]
+}

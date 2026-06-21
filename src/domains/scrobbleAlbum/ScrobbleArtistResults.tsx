@@ -26,22 +26,18 @@ export function ScrobbleArtistResults() {
 
   const dataProvider =
     state?.provider ||
-    (params.bandcampDomain
+    (params.bandId
       ? PROVIDER_BANDCAMP
       : params.discogsId
         ? PROVIDER_DISCOGS
         : sanitizeProvider(searchParams.get('source'), PROVIDER_LASTFM));
 
-  useEffect(() => {
-    setArtistName(decodeURIComponent(params.bandcampDomain || params.artistName || ''));
-  }, [params]);
-
-  const artistKey = params.mbid || params.discogsId || params.bandcampDomain || artistName;
+  const artistKey = params.mbid || params.discogsId || params.bandId || artistName;
   const { data, isFetching } = useQuery({
     queryKey: ['topAlbums', dataProvider, artistKey, 1], // First page only for now
     queryFn: () => {
       if (dataProvider === PROVIDER_BANDCAMP) {
-        return BandcampArtistGetInfo(params.bandcampDomain);
+        return BandcampArtistGetInfo(params.bandId);
       } else if (dataProvider === PROVIDER_DISCOGS) {
         return DiscogsSearch(params.discogsId);
       } else {
@@ -51,8 +47,24 @@ export function ScrobbleArtistResults() {
         });
       }
     },
-    enabled: dataProvider === PROVIDER_DISCOGS ? !!params.discogsId : !!(artistName || params.mbid),
+    enabled:
+      dataProvider === PROVIDER_DISCOGS
+        ? !!params.discogsId
+        : dataProvider === PROVIDER_BANDCAMP
+          ? !!params.bandId
+          : !!(artistName || params.mbid),
   });
+
+  useEffect(() => {
+    if (!params.bandId) {
+      setArtistName(decodeURIComponent(params.artistName || ''));
+    }
+  }, [params]);
+
+  // For Bandcamp, derive display name from navigation state or fetched discography.
+  const bandcampDisplayName = params.bandId ? state?.artist || (Array.isArray(data) && data[0]?.artist) || '' : '';
+
+  const displayName = bandcampDisplayName || artistName;
 
   return (
     <>
@@ -61,15 +73,15 @@ export function ScrobbleArtistResults() {
         {t('scrobbleAlbum')}
       </h2>
       <AlbumBreadcrumb
-        artistQuery={state?.artist || artistName}
+        artistQuery={displayName}
         artistDiscogsId={params?.discogsId}
         albumQuery={state?.query}
         dataProvider={dataProvider}
       />
       <h3 className="mt-3 mb-0">
-        {state?.artist && <Trans i18nKey="topAlbumsBy" t={t} values={{ nameOfArtist: state.artist }} />}
+        {displayName && <Trans i18nKey="topAlbumsBy" t={t} values={{ nameOfArtist: displayName }} />}
       </h3>
-      {isFetching ? <Spinner /> : <AlbumResults albums={data} query={artistName} useFullWidth={true} />}
+      {isFetching ? <Spinner /> : <AlbumResults albums={data} query={displayName} useFullWidth={true} />}
     </>
   );
 }

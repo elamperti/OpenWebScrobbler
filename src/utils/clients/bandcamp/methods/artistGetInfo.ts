@@ -3,12 +3,12 @@ import { artistGetInfoTransformer } from '../transformers/artistGetInfoResponse.
 
 import type { BandcampAlbum } from 'utils/types/album';
 
-export async function artistGetInfo(domain: string): Promise<BandcampAlbum[]> {
+export async function artistGetInfo(bandId: string): Promise<BandcampAlbum[]> {
   const response = await bandcampAPI.get('', {
     params: {
       method: 'artist.getInfo',
-      artist_url: `https://${domain}/music`,
+      band_id: bandId,
     },
   });
-  return artistGetInfoTransformer(response, domain);
+  return artistGetInfoTransformer(response);
 }

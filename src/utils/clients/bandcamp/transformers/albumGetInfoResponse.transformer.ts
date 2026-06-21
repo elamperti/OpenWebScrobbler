@@ -1,26 +1,31 @@
+import { coverFromArtId } from './albumSearchResponse.transformer';
+
 import type { QueryKey } from '@tanstack/react-query';
 import type { BandcampAlbum } from 'utils/types/album';
 
-const coverFromArtId = (artId: number | string) => ({
-  sm: `https://f4.bcbits.com/img/a${artId}_2.jpg`,
-  lg: `https://f4.bcbits.com/img/a${artId}_16.jpg`,
-});
-
-export function albumGetInfoTransformer(response: any, bandcampId?: string, queryKey?: QueryKey): BandcampAlbum {
+export function albumGetInfoTransformer(
+  response: any,
+  bandId?: string,
+  tralbumType?: 'a' | 't',
+  tralbumId?: string,
+  queryKey?: QueryKey
+): BandcampAlbum {
   const data = response?.data || {};
-  const artId = data.art_id ?? data.current?.art_id;
-  // album_release_date like "07 Oct 2007 00:00:00 GMT" → year string
-  const year = data.album_release_date ? String(new Date(data.album_release_date).getFullYear()) : undefined;
+  const artId = data.art_id;
+  // release_date is unix seconds
+  const year = data.release_date ? String(new Date(data.release_date * 1000).getFullYear()) : undefined;
 
   return {
-    bandcampId,
-    name: data.current?.title || '',
-    artist: data.artist || '',
+    bandId: bandId || '',
+    tralbumId: tralbumId || '',
+    tralbumType: tralbumType || 'a',
+    name: data.title || '',
+    artist: data.tralbum_artist || '',
     releasedate: year && year !== 'NaN' ? year : undefined,
-    url: bandcampId,
+    url: data.bandcamp_url,
     cover: artId ? coverFromArtId(artId) : null,
     coverSizes: artId ? { sm: 350, lg: 700 } : null,
-    trackCount: Array.isArray(data.trackinfo) ? data.trackinfo.length : 0,
+    trackCount: data.tracks?.length ?? 0,
     queryKey,
   };
 }

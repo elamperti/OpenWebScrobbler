@@ -27,7 +27,9 @@ export type DiscogsAlbum = BaseAlbum & {
 };
 
 export type BandcampAlbum = BaseAlbum & {
-  bandcampId: string; // the album page URL
+  bandId: string;
+  tralbumId: string;
+  tralbumType: 'a' | 't';
 };
 
 export type Album = DiscogsAlbum | LastFmAlbum | BandcampAlbum;

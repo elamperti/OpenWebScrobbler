@@ -46,26 +46,23 @@ export function ScrobbleAlbumTracklist() {
   const discogsId = sanitizeParam(params.discogsId);
   const albumName = sanitizeParam(params.albumName);
   const artist = sanitizeParam(params.artist);
-  const bandcampDomain = sanitizeParam(params.bandcampDomain);
-  const releaseType = sanitizeParam(params.releaseType); // 'album' or 'track'
-  const slug = sanitizeParam(params.slug);
-  const bandcampUrl =
-    bandcampDomain && (releaseType === 'album' || releaseType === 'track') && slug
-      ? `https://${bandcampDomain}/${releaseType}/${slug}`
-      : null;
+  const bandId = sanitizeParam(params.bandId);
+  const tralbumType = params.tralbumType === 'a' || params.tralbumType === 't' ? params.tralbumType : null;
+  const tralbumId = sanitizeParam(params.tralbumId);
+  const isBandcamp = !!(bandId && tralbumType && tralbumId);
 
   let queryKeyDetails = [];
   let tracklistDataProvider = null;
 
   if (!triedAlternativeProvider) {
-    if (albumId || discogsId || bandcampUrl) {
+    if (albumId || discogsId || isBandcamp) {
       setTriedAlternativeProvider(true);
     }
   }
 
-  if (bandcampUrl) {
+  if (isBandcamp) {
     tracklistDataProvider = PROVIDER_BANDCAMP;
-    queryKeyDetails = ['bandcampId', bandcampUrl];
+    queryKeyDetails = ['bandcamp', bandId, tralbumType, tralbumId];
   } else if (albumId) {
     tracklistDataProvider = PROVIDER_LASTFM;
     queryKeyDetails = ['mbid', albumId];
@@ -81,7 +78,7 @@ export function ScrobbleAlbumTracklist() {
     queryKey: ['album', tracklistDataProvider, ...queryKeyDetails],
     queryFn: (ctx) => {
       if (tracklistDataProvider === PROVIDER_BANDCAMP) {
-        return BandcampAlbumGetInfo(bandcampUrl, ctx.queryKey);
+        return BandcampAlbumGetInfo(bandId, tralbumType, tralbumId, ctx.queryKey);
       } else if (tracklistDataProvider === PROVIDER_DISCOGS) {
         return DiscogsAlbumGetInfo(discogsId, ctx.queryKey);
       } else {

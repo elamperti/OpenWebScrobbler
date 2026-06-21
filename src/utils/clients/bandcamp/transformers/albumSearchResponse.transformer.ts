@@ -12,10 +12,12 @@ export function albumSearchTransformer(response: any): BandcampAlbum[] {
     .map((album) => ({
       artist: album.band_name || '',
       name: album.name,
-      bandcampId: album.item_url_path,
-      url: album.item_url_path,
+      bandId: album.band_id ? String(album.band_id) : '',
+      tralbumId: album.id ? String(album.id) : '',
+      tralbumType: album.type as 'a' | 't',
+      url: `/scrobble/album/view/bc/${album.band_id}/${album.type}/${album.id}`,
       cover: album.art_id ? coverFromArtId(album.art_id) : album.img ? { sm: album.img, lg: album.img } : null,
       coverSizes: { sm: 350, lg: 700 },
     }))
-    .filter((album) => album.bandcampId && album.name);
+    .filter((album) => album.bandId && album.tralbumId && album.name);
 }

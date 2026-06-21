@@ -1,34 +1,32 @@
 import { albumGetInfoTransformer } from './albumGetInfoResponse.transformer';
 
 describe('Bandcamp transformer: album getInfo', () => {
-  it('formats the album info', () => {
+  it('formats the album info from mobile shape', () => {
     const info = albumGetInfoTransformer(
       {
         data: {
-          artist: 'Radiohead',
-          current: { title: 'In Rainbows' },
+          tralbum_artist: 'Radiohead',
+          title: 'In Rainbows',
           art_id: 552435637,
-          album_release_date: '07 Oct 2007 00:00:00 GMT',
-          trackinfo: [{ track_num: 1 }, { track_num: 2 }],
+          release_date: 1191715200, // 2007-10-07 in unix seconds
+          bandcamp_url: 'https://radiohead.bandcamp.com/album/in-rainbows',
+          tracks: [{ track_num: 1 }, { track_num: 2 }],
         },
       },
-      'https://radiohead.bandcamp.com/album/in-rainbows'
+      '3957198221',
+      'a',
+      '2162872411'
     );
 
     expect(info.name).toBe('In Rainbows');
     expect(info.artist).toBe('Radiohead');
-    expect(info.bandcampId).toBe('https://radiohead.bandcamp.com/album/in-rainbows');
+    expect(info.bandId).toBe('3957198221');
+    expect(info.tralbumId).toBe('2162872411');
+    expect(info.tralbumType).toBe('a');
+    expect(info.url).toBe('https://radiohead.bandcamp.com/album/in-rainbows');
     expect(info.cover?.lg).toBe('https://f4.bcbits.com/img/a552435637_16.jpg');
     expect(info.releasedate).toBe('2007');
     expect(info.trackCount).toBe(2);
-  });
-
-  it('falls back to the current art_id when the top-level one is missing', () => {
-    const info = albumGetInfoTransformer({
-      data: { current: { title: 'In Rainbows', art_id: 552435637 } },
-    });
-
-    expect(info.cover?.sm).toBe('https://f4.bcbits.com/img/a552435637_2.jpg');
   });
 
   it('returns an empty album when the response has no data', () => {
@@ -43,7 +41,7 @@ describe('Bandcamp transformer: album getInfo', () => {
 
   it('drops an unparseable release date', () => {
     const info = albumGetInfoTransformer({
-      data: { current: { title: 'In Rainbows' }, album_release_date: 'not a date' },
+      data: { title: 'In Rainbows', release_date: null },
     });
 
     expect(info.releasedate).toBeUndefined();

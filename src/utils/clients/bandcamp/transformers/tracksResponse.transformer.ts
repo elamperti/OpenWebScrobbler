@@ -6,7 +6,7 @@ export function tracksTransformer(
   response: any,
   options?: { album: string; artist: string; cover?: { sm: string; lg: string } | null }
 ): Track[] {
-  const trackinfo = response?.data?.trackinfo;
+  const trackinfo = response?.data?.tracks;
   if (!Array.isArray(trackinfo) || trackinfo.length === 0) return [];
 
   const album = options?.album ?? '';

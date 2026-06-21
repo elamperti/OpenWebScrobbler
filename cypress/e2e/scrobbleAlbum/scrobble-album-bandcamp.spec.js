@@ -12,6 +12,12 @@ describe('Scrobble album using Bandcamp (SRP)', () => {
     cy.intercept('GET', '/api/v2/bandcamp.php?method=album.search*', {
       fixture: 'api/v2/bandcamp/album.search.meteora.json',
     }).as('albumSearch');
+    cy.intercept('GET', '/api/v2/bandcamp.php?method=album.getInfo*', {
+      fixture: 'api/v2/bandcamp/album.getInfo.json',
+    }).as('albumGetInfo');
+    cy.intercept('GET', '/api/v2/bandcamp.php?method=artist.getInfo*', {
+      fixture: 'api/v2/bandcamp/artist.getInfo.json',
+    }).as('artistGetInfo');
 
     // Last.fm intercepts so the data-source switch test has somewhere to land
     cy.intercept('GET', 'https://ws.audioscrobbler.com/2.0/*method=artist.search*', {
@@ -38,7 +44,7 @@ describe('Scrobble album using Bandcamp (SRP)', () => {
       .first()
       .parent()
       .should('have.attr', 'href')
-      .and('match', /https:\/\/.*\.bandcamp\.com\/album\/.*/);
+      .and('match', /scrobble\/album\/view\/bc\/\d+\/[at]\/\d+/);
   });
 
   it('links artists to their corresponding Bandcamp URL', () => {
@@ -67,7 +73,7 @@ describe('Scrobble album using Bandcamp (SRP)', () => {
       .first()
       .parent()
       .should('have.attr', 'href')
-      .and('match', /https:\/\/.*\.bandcamp\.com\/album\/.*/);
+      .and('match', /scrobble\/album\/view\/bc\/\d+\/[at]\/\d+/);
 
     cy.get('[data-cy="DataSourceDropdown-toggle"]').click();
     cy.get('[data-cy="DataSourceDropdown-menu"]').find('[data-cy="DataSourceDropdown-item-lastfm"]').click();
@@ -83,7 +89,7 @@ describe('Scrobble album using Bandcamp (SRP)', () => {
   it('displays static data source on album view', () => {
     cy.get('[data-cy="AlbumCard"]').first().click();
 
-    cy.location('pathname').should('match', /scrobble\/album\/view/);
+    cy.location('pathname').should('match', /scrobble\/album\/view\/bc\/\d+\/[at]\/\d+/);
 
     cy.get('[data-cy="DataSourceDropdown-toggle"]').should('not.exist');
     cy.get('[data-cy="AlbumBreadcrumb-provider"]').should('have.text', 'Bandcamp');

@@ -4,13 +4,13 @@ import { artistGetInfo } from './artistGetInfo';
 vi.mock('../apiClient');
 
 describe('Bandcamp client: `artistGetInfo` method', () => {
-  it('calls the API with the artist music page URL', async () => {
-    await artistGetInfo('radiohead.bandcamp.com');
+  it('calls the API with band_id', async () => {
+    await artistGetInfo('3957198221');
 
     expect(bandcampAPI.get).toHaveBeenCalledWith('', {
       params: {
         method: 'artist.getInfo',
-        artist_url: 'https://radiohead.bandcamp.com/music',
+        band_id: '3957198221',
       },
     });
   });

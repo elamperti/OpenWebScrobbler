@@ -25,12 +25,12 @@ export default function Routes() {
         <Route path=":artistName" element={<PrivateRoute using={ScrobbleArtistResults} />} />
         <Route path="mbid/:mbid" element={<PrivateRoute using={ScrobbleArtistResults} />} />
         <Route path="dsid/:discogsId" element={<PrivateRoute using={ScrobbleArtistResults} />} />
-        <Route path="bc/:bandcampDomain" element={<PrivateRoute using={ScrobbleArtistResults} />} />
+        <Route path="bc/:bandId" element={<PrivateRoute using={ScrobbleArtistResults} />} />
       </Route>
       <Route path="/scrobble/album/view">
         <Route path="mbid/:albumId" element={<PrivateRoute using={ScrobbleAlbumTracklist} />} />
         <Route path="dsid/:discogsId" element={<PrivateRoute using={ScrobbleAlbumTracklist} />} />
-        <Route path="bc/:bandcampDomain/:releaseType/:slug" element={<PrivateRoute using={ScrobbleAlbumTracklist} />} />
+        <Route path="bc/:bandId/:tralbumType/:tralbumId" element={<PrivateRoute using={ScrobbleAlbumTracklist} />} />
         <Route path=":artist/:albumName" element={<PrivateRoute using={ScrobbleAlbumTracklist} />} />
       </Route>
       <Route path="/scrobble/user" element={<PrivateRoute using={ScrobbleUserSearch} />} />

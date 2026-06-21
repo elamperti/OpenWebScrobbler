@@ -3,7 +3,7 @@ import { tracksTransformer } from './tracksResponse.transformer';
 describe('Bandcamp transformer: tracks', () => {
   it('formats a normal album using the album artist', () => {
     const tracks = tracksTransformer(
-      { data: { trackinfo: [{ track_num: 1, title: 'Bloom', duration: 237.293 }] } },
+      { data: { tracks: [{ track_num: 1, title: 'Bloom', duration: 237.293 }] } },
       { album: 'The King of Limbs', artist: 'Radiohead' }
     );
 
@@ -18,7 +18,7 @@ describe('Bandcamp transformer: tracks', () => {
     const tracks = tracksTransformer(
       {
         data: {
-          trackinfo: [
+          tracks: [
             { track_num: 1, title: 'Foo - Bar', duration: 100 },
             { track_num: 2, title: 'Baz - Qux', duration: 100 },
           ],

@@ -3,12 +3,14 @@
     "results": [
       {
         "type": "b",
+        "id": 9999999991,
         "name": "Linkin Park",
         "item_url_root": "https://linkinpark.bandcamp.com",
         "img": "https://f4.bcbits.com/img/0012345678_21.jpg"
       },
       {
         "type": "b",
+        "id": 9999999993,
         "name": "Meteora",
         "item_url_root": "https://meteora.bandcamp.com",
         "img": "https://f4.bcbits.com/img/0012345679_21.jpg"

@@ -1,13 +1,14 @@
 import { artistsSearchTransformer } from './artistsSearchResponse.transformer';
 
 describe('Bandcamp transformer: artist search', () => {
-  it('formats the results and derives the domain from the url', () => {
+  it('formats the results and exposes bandId', () => {
     const results = artistsSearchTransformer({
       data: {
         auto: {
           results: [
             {
               type: 'b',
+              id: 3957198221,
               name: 'Radiohead',
               item_url_root: 'https://radiohead.bandcamp.com',
               img: 'https://example.com/img.jpg',
@@ -20,7 +21,7 @@ describe('Bandcamp transformer: artist search', () => {
     expect(results).toEqual([
       {
         name: 'Radiohead',
-        bandcampDomain: 'radiohead.bandcamp.com',
+        bandId: '3957198221',
         url: 'https://radiohead.bandcamp.com',
         avatar: {
           sm: 'https://example.com/img.jpg',
@@ -32,13 +33,14 @@ describe('Bandcamp transformer: artist search', () => {
     ]);
   });
 
-  it('filters out non-band entries and bands without a url', () => {
+  it('filters out non-band entries and bands without a url or id', () => {
     const results = artistsSearchTransformer({
       data: {
         auto: {
           results: [
-            { type: 'a', name: 'An album', item_url_root: 'https://x.bandcamp.com' },
-            { type: 'b', name: 'No url' },
+            { type: 'a', id: 1, name: 'An album', item_url_root: 'https://x.bandcamp.com' },
+            { type: 'b', name: 'No url', id: 2 },
+            { type: 'b', name: 'No id', item_url_root: 'https://x.bandcamp.com' },
           ],
         },
       },
