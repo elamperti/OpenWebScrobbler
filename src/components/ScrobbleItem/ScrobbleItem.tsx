@@ -107,10 +107,8 @@ export default function ScrobbleItem({
               type="checkbox"
               className="me-1"
               checked={selected}
-              onChange={() => {}}
-              onClick={(e: React.MouseEvent) => {
-                onSelect(scrobble.id, !selected, e.shiftKey);
-                e.preventDefault();
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
+                onSelect(scrobble.id, !selected, (e.nativeEvent as MouseEvent).shiftKey);
               }}
               id={scrobbleItemInputId}
             />

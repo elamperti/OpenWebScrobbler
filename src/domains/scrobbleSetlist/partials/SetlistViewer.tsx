@@ -36,7 +36,8 @@ export default function SetlistViewer({ setlist }: { setlist: Setlist | null }) 
 
   DateTimePicker.preload();
 
-  const toggleSelectedTrack = (scrobbleId: TrackID, wasCheckedBefore = false) => {
+  const toggleSelectedTrack = (scrobbleId: TrackID) => {
+    const wasCheckedBefore = selectedTracks.has(scrobbleId);
     const newSet = new Set(selectedTracks);
 
     if (wasCheckedBefore) {
