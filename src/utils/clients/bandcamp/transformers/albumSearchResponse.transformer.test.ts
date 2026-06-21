@@ -34,4 +34,19 @@ describe('Bandcamp transformer: album search', () => {
       },
     ]);
   });
+
+  it('filters out album entries missing a name or url', () => {
+    const results = albumSearchTransformer({
+      data: {
+        auto: {
+          results: [
+            { type: 'a', band_name: 'Radiohead', item_url_path: 'https://radiohead.bandcamp.com/album/x' },
+            { type: 'a', name: 'No URL', band_name: 'Radiohead' },
+          ],
+        },
+      },
+    });
+
+    expect(results).toEqual([]);
+  });
 });
