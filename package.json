@@ -67,7 +67,7 @@
     "@vitest/coverage-v8": "^3.2.4",
     "babel-plugin-react-compiler": "19.1.0-rc.2",
     "concurrently": "^9.2.0",
-    "cypress": "14.5.0",
+    "cypress": "15.17.0",
     "eslint": "^8",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-cypress": "^4.3.0",
