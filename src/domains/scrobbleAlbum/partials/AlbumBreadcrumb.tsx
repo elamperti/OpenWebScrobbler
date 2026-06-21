@@ -5,8 +5,8 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompactDisc, faUser } from '@fortawesome/free-solid-svg-icons';
 
-import ProviderItem from './ProviderItem';
 import { albumViewPath } from '../albumViewPath';
+import ProviderItem from './ProviderItem';
 
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
 import type { Album, BandcampAlbum } from 'utils/types/album';

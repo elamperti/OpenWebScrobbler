@@ -3,7 +3,17 @@ import { artistGetInfoTransformer } from './artistGetInfoResponse.transformer';
 describe('Bandcamp transformer: artist getInfo', () => {
   it('rebuilds sm/lg cover from the art id in art_url', () => {
     const [album] = artistGetInfoTransformer(
-      { data: { releases: [{ page_url: '/album/in-rainbows', title: 'In Rainbows', art_url: 'https://f4.bcbits.com/img/a552435637_2.jpg' }] } },
+      {
+        data: {
+          releases: [
+            {
+              page_url: '/album/in-rainbows',
+              title: 'In Rainbows',
+              art_url: 'https://f4.bcbits.com/img/a552435637_2.jpg',
+            },
+          ],
+        },
+      },
       'radiohead.bandcamp.com'
     );
 

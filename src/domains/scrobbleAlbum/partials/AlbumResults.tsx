@@ -7,8 +7,8 @@ import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
 import Spinner from 'components/Spinner';
 
-import AlbumList from './AlbumList';
 import { albumViewPath } from '../albumViewPath';
+import AlbumList from './AlbumList';
 
 import type { Album } from 'utils/types/album';
 

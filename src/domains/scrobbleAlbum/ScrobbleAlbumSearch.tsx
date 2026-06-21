@@ -11,8 +11,8 @@ import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import SearchForm from 'components/SearchForm';
 import useLocalStorage from 'hooks/useLocalStorage';
 
-import AlbumList from './partials/AlbumList';
 import { albumViewPath } from './albumViewPath';
+import AlbumList from './partials/AlbumList';
 
 import { PROVIDER_BANDCAMP, PROVIDER_DISCOGS, PROVIDER_LASTFM, PROVIDER_NAME } from 'Constants';
 

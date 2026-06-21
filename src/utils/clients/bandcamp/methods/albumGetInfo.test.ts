@@ -18,6 +18,8 @@ describe('Bandcamp client: `albumGetInfo` method', () => {
   it('has the Bandcamp URL in the response', async () => {
     const response = await albumGetInfo('https://radiohead.bandcamp.com/album/in-rainbows', ['queryKey']);
 
-    expect(response.info.bandcampId).toBe('https://radiohead.bandcamp.com/album/in-rainbows');
+    expect((response.info as { bandcampId: string }).bandcampId).toBe(
+      'https://radiohead.bandcamp.com/album/in-rainbows'
+    );
   });
 });

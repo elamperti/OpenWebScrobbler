@@ -1,6 +1,8 @@
-import type { BandcampAlbum } from 'utils/types/album';
 import { coverFromArtId } from './albumSearchResponse.transformer';
+
 import { MAX_RELEASES_SCRAPED_FROM_ARTIST_BANDCAMP_PAGE } from 'Constants';
+
+import type { BandcampAlbum } from 'utils/types/album';
 
 // `domain` is the artist host; page_url is usually relative (/album/away-team) but custom
 // pages can link absolute external URLs, so only prefix the domain when it's a path.

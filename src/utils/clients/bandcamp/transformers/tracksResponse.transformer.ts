@@ -1,4 +1,5 @@
 import shortid from 'shortid';
+
 import type { Track } from 'utils/types/track';
 
 export function tracksTransformer(
