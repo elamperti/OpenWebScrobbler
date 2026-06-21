@@ -1,0 +1,22 @@
+{
+  "auto": {
+    "results": [
+      {
+        "type": "b",
+        "name": "Linkin Park",
+        "item_url_root": "https://linkinpark.bandcamp.com",
+        "img": "https://f4.bcbits.com/img/0012345678_21.jpg"
+      },
+      {
+        "type": "b",
+        "name": "Meteora",
+        "item_url_root": "https://meteora.bandcamp.com",
+        "img": "https://f4.bcbits.com/img/0012345679_21.jpg"
+      },
+      {
+        "type": "a",
+        "name": "An album, not a band"
+      }
+    ]
+  }
+}

@@ -1,0 +1,32 @@
+{
+  "auto": {
+    "results": [
+      {
+        "type": "a",
+        "name": "Meteora",
+        "band_name": "Linkin Park",
+        "art_id": 1234567890,
+        "item_url_path": "https://linkinpark.bandcamp.com/album/meteora"
+      },
+      {
+        "type": "a",
+        "name": "Meteora (Demos)",
+        "band_name": "Linkin Park",
+        "art_id": 1234567891,
+        "item_url_path": "https://linkinpark.bandcamp.com/album/meteora-demos"
+      },
+      {
+        "type": "a",
+        "name": "Meteora Live",
+        "band_name": "Tribute Band",
+        "art_id": 1234567892,
+        "item_url_path": "https://tributeband.bandcamp.com/album/meteora-live"
+      },
+      {
+        "type": "b",
+        "name": "A band, not an album",
+        "band_name": "Filtered Out"
+      }
+    ]
+  }
+}
