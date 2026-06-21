@@ -14,6 +14,7 @@ import ScrobbleList from 'components/ScrobbleList';
 import Spinner from 'components/Spinner';
 import useLocalStorage from 'hooks/useLocalStorage';
 import { _discogsFindBestMatch } from 'store/actions/albumActions';
+import { albumGetInfo as BandcampAlbumGetInfo } from 'utils/clients/bandcamp';
 import { albumGetInfo as DiscogsAlbumGetInfo } from 'utils/clients/discogs';
 import { albumGetInfo as LastfmAlbumGetInfo } from 'utils/clients/lastfm';
 
@@ -21,7 +22,7 @@ import { CleanupPatternContext } from './CleanupContext';
 import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 import Tracklist from './partials/Tracklist';
 
-import { MAX_RECENT_ALBUMS, PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
+import { MAX_RECENT_ALBUMS, PROVIDER_BANDCAMP, PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
 import type { RootState } from 'store';
 import type { Album, DiscogsAlbum } from 'utils/types/album';
@@ -45,17 +46,24 @@ export function ScrobbleAlbumTracklist() {
   const discogsId = sanitizeParam(params.discogsId);
   const albumName = sanitizeParam(params.albumName);
   const artist = sanitizeParam(params.artist);
+  const bandId = sanitizeParam(params.bandId);
+  const tralbumType = params.tralbumType === 'a' || params.tralbumType === 't' ? params.tralbumType : null;
+  const tralbumId = sanitizeParam(params.tralbumId);
+  const isBandcamp = !!(bandId && tralbumType && tralbumId);
 
   let queryKeyDetails = [];
   let tracklistDataProvider = null;
 
   if (!triedAlternativeProvider) {
-    if (albumId || discogsId) {
+    if (albumId || discogsId || isBandcamp) {
       setTriedAlternativeProvider(true);
     }
   }
 
-  if (albumId) {
+  if (isBandcamp) {
+    tracklistDataProvider = PROVIDER_BANDCAMP;
+    queryKeyDetails = ['bandcamp', bandId, tralbumType, tralbumId];
+  } else if (albumId) {
     tracklistDataProvider = PROVIDER_LASTFM;
     queryKeyDetails = ['mbid', albumId];
   } else if (discogsId) {
@@ -69,7 +77,9 @@ export function ScrobbleAlbumTracklist() {
   const albumInfo = useQuery({
     queryKey: ['album', tracklistDataProvider, ...queryKeyDetails],
     queryFn: (ctx) => {
-      if (tracklistDataProvider === PROVIDER_DISCOGS) {
+      if (tracklistDataProvider === PROVIDER_BANDCAMP) {
+        return BandcampAlbumGetInfo(bandId, tralbumType, tralbumId, ctx.queryKey);
+      } else if (tracklistDataProvider === PROVIDER_DISCOGS) {
         return DiscogsAlbumGetInfo(discogsId, ctx.queryKey);
       } else {
         // uses mbid if defined, otherwise artist+album

@@ -32,7 +32,7 @@ describe('Scrobble album data source (SRP)', () => {
     it('displays dropdown for data sources', () => {
       cy.get('[data-cy="DataSourceDropdown-toggle"]').should('exist');
       cy.get('[data-cy="DataSourceDropdown-toggle"]').click();
-      cy.get('[data-cy="DataSourceDropdown-menu"]').children().should('have.length', 2);
+      cy.get('[data-cy="DataSourceDropdown-menu"]').children().should('have.length', 3);
       // check active item matches data source
       cy.get('[data-cy="DataSourceDropdown-menu"]')
         .children('button.active')
@@ -81,7 +81,7 @@ describe('Scrobble album data source (SRP)', () => {
     it('displays dropdown for data sources', () => {
       cy.get('[data-cy="DataSourceDropdown-toggle"]').should('exist');
       cy.get('[data-cy="DataSourceDropdown-toggle"]').click();
-      cy.get('[data-cy="DataSourceDropdown-menu"]').children().should('have.length', 2);
+      cy.get('[data-cy="DataSourceDropdown-menu"]').children().should('have.length', 3);
       // check active item matches data source
       cy.get('[data-cy="DataSourceDropdown-menu"]')
         .children('button.active')

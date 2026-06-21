@@ -7,6 +7,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 
 import Spinner from 'components/Spinner';
+import { artistGetInfo as BandcampArtistGetInfo } from 'utils/clients/bandcamp';
 import { searchTopAlbums as DiscogsSearch } from 'utils/clients/discogs';
 import { searchTopAlbums as LastFmSearch } from 'utils/clients/lastfm';
 import { sanitizeProvider } from 'utils/common';
@@ -14,7 +15,7 @@ import { sanitizeProvider } from 'utils/common';
 import AlbumBreadcrumb from './partials/AlbumBreadcrumb';
 import AlbumResults from './partials/AlbumResults';
 
-import { PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
+import { PROVIDER_BANDCAMP, PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
 export function ScrobbleArtistResults() {
   const { t } = useTranslation();
@@ -25,17 +26,19 @@ export function ScrobbleArtistResults() {
 
   const dataProvider =
     state?.provider ||
-    (params.discogsId ? PROVIDER_DISCOGS : sanitizeProvider(searchParams.get('source'), PROVIDER_LASTFM));
+    (params.bandId
+      ? PROVIDER_BANDCAMP
+      : params.discogsId
+        ? PROVIDER_DISCOGS
+        : sanitizeProvider(searchParams.get('source'), PROVIDER_LASTFM));
 
-  useEffect(() => {
-    setArtistName(decodeURIComponent(params.artistName || ''));
-  }, [params]);
-
-  const artistKey = params.mbid || params.discogsId || artistName;
+  const artistKey = params.mbid || params.discogsId || params.bandId || artistName;
   const { data, isFetching } = useQuery({
     queryKey: ['topAlbums', dataProvider, artistKey, 1], // First page only for now
     queryFn: () => {
-      if (dataProvider === PROVIDER_DISCOGS) {
+      if (dataProvider === PROVIDER_BANDCAMP) {
+        return BandcampArtistGetInfo(params.bandId);
+      } else if (dataProvider === PROVIDER_DISCOGS) {
         return DiscogsSearch(params.discogsId);
       } else {
         return LastFmSearch({
@@ -44,8 +47,24 @@ export function ScrobbleArtistResults() {
         });
       }
     },
-    enabled: dataProvider === PROVIDER_DISCOGS ? !!params.discogsId : !!(artistName || params.mbid),
+    enabled:
+      dataProvider === PROVIDER_DISCOGS
+        ? !!params.discogsId
+        : dataProvider === PROVIDER_BANDCAMP
+          ? !!params.bandId
+          : !!(artistName || params.mbid),
   });
+
+  useEffect(() => {
+    if (!params.bandId) {
+      setArtistName(decodeURIComponent(params.artistName || ''));
+    }
+  }, [params]);
+
+  // For Bandcamp, derive display name from navigation state or fetched discography.
+  const bandcampDisplayName = params.bandId ? state?.artist || (Array.isArray(data) && data[0]?.artist) || '' : '';
+
+  const displayName = bandcampDisplayName || artistName;
 
   return (
     <>
@@ -54,15 +73,15 @@ export function ScrobbleArtistResults() {
         {t('scrobbleAlbum')}
       </h2>
       <AlbumBreadcrumb
-        artistQuery={state?.artist || artistName}
+        artistQuery={displayName}
         artistDiscogsId={params?.discogsId}
         albumQuery={state?.query}
         dataProvider={dataProvider}
       />
       <h3 className="mt-3 mb-0">
-        {state?.artist && <Trans i18nKey="topAlbumsBy" t={t} values={{ nameOfArtist: state.artist }} />}
+        {displayName && <Trans i18nKey="topAlbumsBy" t={t} values={{ nameOfArtist: displayName }} />}
       </h3>
-      {isFetching ? <Spinner /> : <AlbumResults albums={data} query={artistName} useFullWidth={true} />}
+      {isFetching ? <Spinner /> : <AlbumResults albums={data} query={displayName} useFullWidth={true} />}
     </>
   );
 }

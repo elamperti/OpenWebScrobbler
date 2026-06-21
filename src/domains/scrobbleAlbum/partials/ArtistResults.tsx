@@ -4,15 +4,16 @@ import { Trans } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import Spinner from 'components/Spinner';
+import { searchArtists as BandcampSearch } from 'utils/clients/bandcamp';
 import { searchArtists as DiscogsSearch } from 'utils/clients/discogs';
 import { searchArtists as LastFmSearch } from 'utils/clients/lastfm';
 
 import ArtistList from './ArtistList';
 
-import { PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
+import { PROVIDER_BANDCAMP, PROVIDER_DISCOGS, PROVIDER_LASTFM } from 'Constants';
 
 import type { Provider } from 'Constants';
-import type { DiscogsArtist, LastFmArtist } from 'utils/types/artist';
+import type { BandcampArtist, DiscogsArtist, LastFmArtist } from 'utils/types/artist';
 
 export default function ArtistResults({ query, dataProvider }: { query: string; dataProvider: Provider }) {
   const navigate = useNavigate();
@@ -20,7 +21,9 @@ export default function ArtistResults({ query, dataProvider }: { query: string; 
   const { data, isFetching } = useQuery({
     queryKey: ['artists', dataProvider, query, 1], // First page only for now
     queryFn: () => {
-      if (dataProvider === PROVIDER_DISCOGS) {
+      if (dataProvider === PROVIDER_BANDCAMP) {
+        return BandcampSearch(query);
+      } else if (dataProvider === PROVIDER_DISCOGS) {
         return DiscogsSearch(query);
       } else if (dataProvider === PROVIDER_LASTFM) {
         return LastFmSearch(query);
@@ -58,6 +61,10 @@ export default function ArtistResults({ query, dataProvider }: { query: string; 
         navigateWithState(`/scrobble/artist/mbid/${encodeURIComponent((selectedArtist as LastFmArtist).mbid)}`);
       } else if ((selectedArtist as DiscogsArtist).discogsId) {
         navigateWithState(`/scrobble/artist/dsid/${encodeURIComponent((selectedArtist as DiscogsArtist).discogsId)}`);
+      } else if ((selectedArtist as BandcampArtist).bandId) {
+        navigate(`/scrobble/artist/bc/${(selectedArtist as BandcampArtist).bandId}`, {
+          state: { query, artist: selectedArtist.name },
+        });
       } else {
         navigateWithState(`/scrobble/artist/${encodeURIComponent(selectedArtist.name)}`);
       }

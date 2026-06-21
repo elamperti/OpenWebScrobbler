@@ -1,6 +1,7 @@
 // Various settings
 export const AUDIOSCROBBLER_API_URL = 'https://ws.audioscrobbler.com/2.0/';
 export const DISCOGS_API_URL = '/api/v2/discogs.php';
+export const BANDCAMP_API_URL = '/api/v2/bandcamp.php';
 export const LASTFM_AUTH_URL =
   `https://www.last.fm/api/auth?api_key=${process.env.REACT_APP_LASTFM_API_KEY}` +
   `&cb=${window.location.protocol}//${window.location.host}/lastfm/callback/`;
@@ -18,20 +19,23 @@ export const DEFAULT_SONG_DURATION = 3 * 60; // ToDo: use this value when skippi
 // Adding some leeway to encapsulate this, but it will never be perfect.
 export const DEFAULT_CONCERT_INTERVAL_DURATION = 2 * 60;
 export const MAX_SIMULTANEOUS_ALERTS = 2;
+export const MAX_RELEASES_SCRAPED_FROM_ARTIST_BANDCAMP_PAGE = 100;
 
 // ToDo: improve this
-export type Provider = 'lastfm' | 'discogs' | 'spotify' | 'setlistfm';
+export type Provider = 'lastfm' | 'discogs' | 'spotify' | 'setlistfm' | 'bandcamp';
 
 export const PROVIDER_LASTFM: Provider = 'lastfm';
 export const PROVIDER_DISCOGS: Provider = 'discogs';
 export const PROVIDER_SPOTIFY: Provider = 'spotify';
 export const PROVIDER_SETLISTFM: Provider = 'setlistfm';
+export const PROVIDER_BANDCAMP: Provider = 'bandcamp';
 
 export const PROVIDER_NAME = {
   [PROVIDER_LASTFM]: 'Last.fm',
   [PROVIDER_DISCOGS]: 'Discogs',
   [PROVIDER_SPOTIFY]: 'Spotify',
   [PROVIDER_SETLISTFM]: 'Setlist.fm',
+  [PROVIDER_BANDCAMP]: 'Bandcamp',
 };
 
 // Alerts store

@@ -26,7 +26,13 @@ export type DiscogsAlbum = BaseAlbum & {
   artistId: string | null;
 };
 
-export type Album = DiscogsAlbum | LastFmAlbum;
+export type BandcampAlbum = BaseAlbum & {
+  bandId: string;
+  tralbumId: string;
+  tralbumType: 'a' | 't';
+};
+
+export type Album = DiscogsAlbum | LastFmAlbum | BandcampAlbum;
 
 export type AlbumWithTracks = {
   info: Album;

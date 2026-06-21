@@ -43,7 +43,7 @@ describe('Scrobble album (SRP)', () => {
     cy.get('[data-cy="SearchForm-dropdown-toggle"]').click();
 
     // Count the number of items in the dropdown menu
-    cy.get('[data-cy="SearchForm-dropdown-menu"]').children().should('have.length', 2);
+    cy.get('[data-cy="SearchForm-dropdown-menu"]').children().should('have.length', 3);
   });
 
   it.skip('focuses the search bar on load', () => {

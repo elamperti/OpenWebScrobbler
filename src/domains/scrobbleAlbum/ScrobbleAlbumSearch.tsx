@@ -11,17 +11,19 @@ import { faCompactDisc } from '@fortawesome/free-solid-svg-icons';
 import SearchForm from 'components/SearchForm';
 import useLocalStorage from 'hooks/useLocalStorage';
 
+import { albumViewPath } from './albumViewPath';
 import AlbumList from './partials/AlbumList';
 
-import { PROVIDER_DISCOGS, PROVIDER_LASTFM, PROVIDER_NAME } from 'Constants';
+import { PROVIDER_BANDCAMP, PROVIDER_DISCOGS, PROVIDER_LASTFM, PROVIDER_NAME } from 'Constants';
 
 import type { Provider } from 'Constants';
-import type { Album, DiscogsAlbum, LastFmAlbum } from 'utils/types/album';
+import type { Album } from 'utils/types/album';
 
 import './ScrobbleAlbumSearch.scss';
 
 export function ScrobbleAlbumSearch() {
   const [includeReleases, setIncludeReleases] = useState(false);
+  const [includeTracks, setIncludeTracks] = useState(false);
   const [lastUsedProvider, setLastUsedProvider] = useLocalStorage<Provider>('lastUsedProvider', PROVIDER_DISCOGS);
   const [dataProvider, setProvider] = useState<Provider>(lastUsedProvider);
   const navigate = useNavigate();
@@ -45,6 +47,7 @@ export function ScrobbleAlbumSearch() {
       state: {
         provider: dataProvider,
         includeReleases,
+        includeTracks,
         query,
       },
     });
@@ -61,14 +64,7 @@ export function ScrobbleAlbumSearch() {
       label: albumIndex,
     });
 
-    if ((targetAlbum as LastFmAlbum).mbid) {
-      navigate(`/scrobble/album/view/mbid/${(targetAlbum as LastFmAlbum).mbid}`);
-    } else if ((targetAlbum as DiscogsAlbum).discogsId) {
-      navigate(`/scrobble/album/view/dsid/${(targetAlbum as DiscogsAlbum).discogsId}`);
-    } else {
-      const sanitizedArtistName = targetAlbum.artist ? encodeURIComponent(targetAlbum.artist.replace('%', '')) : '_';
-      navigate(`/scrobble/album/view/${sanitizedArtistName}/${encodeURIComponent(targetAlbum.name.replace('%', ''))}`);
-    }
+    navigate(albumViewPath(targetAlbum));
   };
 
   const validator = (str) => str.trim().length > 0;
@@ -77,6 +73,7 @@ export function ScrobbleAlbumSearch() {
     <>
       <DropdownItem onClick={() => setProvider(PROVIDER_DISCOGS)}>Discogs</DropdownItem>
       <DropdownItem onClick={() => setProvider(PROVIDER_LASTFM)}>Last.fm</DropdownItem>
+      <DropdownItem onClick={() => setProvider(PROVIDER_BANDCAMP)}>Bandcamp</DropdownItem>
       {spotifyFF && (
         <DropdownItem disabled>
           Spotify (<Trans i18nKey="comingSoon">coming soon!</Trans>)
@@ -116,6 +113,22 @@ export function ScrobbleAlbumSearch() {
               />
               <Label for="includeReleases" check>
                 <Trans i18nKey="includeReleases" />
+              </Label>
+            </FormGroup>
+          )}
+          {dataProvider === PROVIDER_BANDCAMP && (
+            <FormGroup inline switch>
+              <Input
+                className="mt-1"
+                type="switch"
+                name="includeTracks"
+                id="includeTracks"
+                checked={includeTracks}
+                onChange={() => setIncludeTracks(!includeTracks)}
+                data-cy="ScrobbleAlbumSearch-include-tracks"
+              />
+              <Label for="includeTracks" check>
+                <Trans i18nKey="includeTracks" />
               </Label>
             </FormGroup>
           )}

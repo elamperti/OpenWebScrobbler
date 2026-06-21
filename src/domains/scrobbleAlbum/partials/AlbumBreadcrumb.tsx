@@ -5,10 +5,11 @@ import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCompactDisc, faUser } from '@fortawesome/free-solid-svg-icons';
 
+import { albumViewPath } from '../albumViewPath';
 import ProviderItem from './ProviderItem';
 
 import type { IconProp } from '@fortawesome/fontawesome-svg-core';
-import type { Album, DiscogsAlbum, LastFmAlbum } from 'utils/types/album';
+import type { Album, BandcampAlbum } from 'utils/types/album';
 
 import './AlbumBreadcrumb.scss';
 
@@ -54,8 +55,18 @@ export default function AlbumBreadcrumb({
   }
 
   const albumArtist = album?.artist;
+  const bandId = (album as BandcampAlbum)?.bandId;
   if (artistQuery || albumArtist) {
-    if (artistDiscogsId) {
+    if (bandId) {
+      itemList.push(
+        generateBreadcrumbItem(
+          `/scrobble/artist/bc/${bandId}`,
+          albumArtist || artistQuery,
+          { artist: albumArtist, query: albumQuery, provider: dataProvider },
+          faUser
+        )
+      );
+    } else if (artistDiscogsId) {
       itemList.push(
         generateBreadcrumbItem(
           `/scrobble/artist/dsid/${artistDiscogsId}`,
@@ -80,19 +91,7 @@ export default function AlbumBreadcrumb({
   }
 
   if (album && album.name) {
-    let targetPath;
-
-    if ((album as LastFmAlbum).mbid) {
-      targetPath = `/scrobble/album/view/mbid/${(album as LastFmAlbum).mbid}`;
-    } else if ((album as DiscogsAlbum).discogsId) {
-      targetPath = `/scrobble/album/view/dsid/${(album as DiscogsAlbum).discogsId}`;
-    } else {
-      targetPath =
-        `/scrobble/album/view/${encodeURIComponent(album.artist.replace('%', ''))}` +
-        `/${encodeURIComponent(album.name.replace('%', ''))}`;
-    }
-
-    itemList.push(generateBreadcrumbItem(targetPath, album.name, { query: albumQuery }, faCompactDisc));
+    itemList.push(generateBreadcrumbItem(albumViewPath(album), album.name, { query: albumQuery }, faCompactDisc));
   }
 
   return (
